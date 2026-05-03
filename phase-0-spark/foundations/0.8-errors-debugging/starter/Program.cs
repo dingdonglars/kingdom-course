@@ -1,0 +1,98 @@
+// Inventory Tool — Module 0.8 starter (v2 — hardened with try/catch + validation)
+
+var inventory = new Dictionary<string, int>();
+const string SaveFile = "inventory.txt";
+
+Console.WriteLine("Inventory Tool. Type 'help' for commands.");
+
+while (true)
+{
+    Console.Write("> ");
+    var line = Console.ReadLine();
+    if (line is null) break;
+    line = line.Trim();
+    if (line.Length == 0) continue;
+
+    var parts = line.Split(' ', 2);
+    var cmd = parts[0].ToLower();
+    var arg = parts.Length > 1 ? parts[1].Trim() : "";
+
+    try
+    {
+        switch (cmd)
+        {
+            case "add":
+                if (string.IsNullOrEmpty(arg)) { Console.WriteLine("Usage: add <item>"); break; }
+                inventory[arg] = inventory.GetValueOrDefault(arg, 0) + 1;
+                Console.WriteLine($"Added: {arg} (now have {inventory[arg]})");
+                break;
+
+            case "remove":
+                if (string.IsNullOrEmpty(arg)) { Console.WriteLine("Usage: remove <item>"); break; }
+                if (inventory.ContainsKey(arg) && inventory[arg] > 0)
+                {
+                    inventory[arg]--;
+                    if (inventory[arg] == 0) inventory.Remove(arg);
+                    Console.WriteLine($"Removed: {arg}");
+                }
+                else
+                {
+                    Console.WriteLine($"Not found: {arg}");
+                }
+                break;
+
+            case "find":
+                if (string.IsNullOrEmpty(arg)) { Console.WriteLine("Usage: find <item>"); break; }
+                if (inventory.ContainsKey(arg))
+                    Console.WriteLine($"Found: {arg} (count: {inventory[arg]})");
+                else
+                    Console.WriteLine($"Not found: {arg}");
+                break;
+
+            case "list":
+                if (inventory.Count == 0) Console.WriteLine("Empty.");
+                else
+                {
+                    Console.WriteLine($"You have:");
+                    foreach (var (item, count) in inventory.OrderBy(kvp => kvp.Key))
+                        Console.WriteLine($"  - {item} x{count}");
+                }
+                break;
+
+            case "save":
+                var savedLines = inventory.Select(kvp => $"{kvp.Key}={kvp.Value}");
+                File.WriteAllText(SaveFile, string.Join("\n", savedLines));
+                Console.WriteLine($"Saved {inventory.Count} item(s) to {SaveFile}.");
+                break;
+
+            case "load":
+                if (!File.Exists(SaveFile)) { Console.WriteLine($"No save file at {SaveFile}."); break; }
+                inventory.Clear();
+                int loaded = 0, skipped = 0;
+                foreach (var l in File.ReadAllLines(SaveFile))
+                {
+                    var kv = l.Split('=', 2);
+                    if (kv.Length == 2 && int.TryParse(kv[1], out var n) && n > 0) { inventory[kv[0]] = n; loaded++; }
+                    else skipped++;
+                }
+                Console.WriteLine($"Loaded {loaded} item(s) from {SaveFile}." + (skipped > 0 ? $" Skipped {skipped} bad line(s)." : ""));
+                break;
+
+            case "help":
+                Console.WriteLine("Commands: add <item>, remove <item>, find <item>, list, save, load, quit");
+                break;
+
+            case "quit":
+            case "exit":
+                Console.WriteLine("Bye.");
+                return;
+
+            default:
+                Console.WriteLine($"Unknown command: {cmd}. Type 'help'.");
+                break;
+        }
+    }
+    catch (IOException ex) { Console.WriteLine($"File problem: {ex.Message}"); }
+    catch (UnauthorizedAccessException ex) { Console.WriteLine($"Permission problem: {ex.Message}"); }
+    catch (Exception ex) { Console.WriteLine($"Unexpected error: {ex.Message}"); }
+}
