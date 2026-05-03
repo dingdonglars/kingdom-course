@@ -7,5 +7,3 @@ dotnet run
 ```
 
 You should see one of three roasts, picked at random. Replace the roasts with your own and run it again.
-</content>
-</invoke>

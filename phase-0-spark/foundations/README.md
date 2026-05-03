@@ -34,5 +34,3 @@ A small CLI you'll actually keep on your machine — track your books, your Robl
 ---
 
 [**→ Start Module 0.5 — Types Deep Dive + Naming Conventions**](./0.5-types-and-naming/lesson.md)
-</content>
-</invoke>

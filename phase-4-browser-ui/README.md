@@ -43,5 +43,3 @@ A URL friends click. The Kingdom loads as a webpage. They play it. Same engine t
 ---
 
 [**→ Start Module 4.0 — Context Engineering Unlock**](./4.0-context-engineering-unlock/lesson.md)
-</content>
-</invoke>

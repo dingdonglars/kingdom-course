@@ -22,5 +22,3 @@ a. Not yet — you need a degree
 b. Not yet — you need to know more languages
 c. Yes — programmers are people who write programs
 d. Only on weekends
-</content>
-</invoke>

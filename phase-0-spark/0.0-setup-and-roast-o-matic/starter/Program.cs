@@ -12,5 +12,3 @@ string[] roasts = {
 var random = new Random();
 var roast = roasts[random.Next(roasts.Length)];
 Console.WriteLine(roast);
-</content>
-</invoke>

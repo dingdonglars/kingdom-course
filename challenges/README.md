@@ -14,5 +14,3 @@ Each `M<n>/` subfolder contains:
 ## Status
 
 All 7 milestone suites are stubs at Plan 0 time. They get authored as part of the per-block plans (p001–p007).
-</content>
-</invoke>

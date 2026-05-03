@@ -12,5 +12,3 @@ These prompts honor the three-bucket policy (`ai-context/for-you.md`). Each live
 - **`walk-through-code.md`** — when you want to understand code line-by-line (yours or someone else's).
 
 Each phase introduces a new prompt-craft pattern. New prompts are added here as they earn their place.
-</content>
-</invoke>

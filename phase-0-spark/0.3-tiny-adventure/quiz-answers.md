@@ -19,5 +19,3 @@ Splitting code into methods is *organisation*. Each method has a clear single pu
 ## 5. b
 
 When a method finishes, control returns to the line *after* the call. So if `Hallway` says `Kitchen();` and `Kitchen` returns, `Hallway` continues from the next line. (In our adventure, that "next line" is the *end* of the `if/else` chain in `Hallway`, which is the end of the `Hallway` method itself — so the program then returns to wherever called `Hallway`. In this case, the very first line of the program. So the program ends.)
-</content>
-</invoke>

@@ -37,5 +37,3 @@ These are the artefacts a future employer or collaborator sees. Producing Englis
 ## When in doubt
 
 If you're stuck on language and the scaffolding above isn't working: post in `#help` with the paragraph that broke and what specifically isn't landing. We adjust the lesson if it's a course problem; we work it through together if it's a learning moment.
-</content>
-</invoke>

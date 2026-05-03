@@ -19,5 +19,3 @@ In an `if / else if / else` chain, branches are tested top-to-bottom. The *first
 ## 5. b
 
 `Console.ReadLine()` can return `null` (the question mark in its return type — `string?` — tells you that). `int.Parse` doesn't accept null. The `??` operator is *null coalescing* — `a ?? b` gives you `a` if it's not null, otherwise `b`. So `input ?? "0"` falls back to `"0"` if the input was somehow null. We're being defensive.
-</content>
-</invoke>

@@ -43,5 +43,3 @@ A URL you can text to a friend. They click it. They sign in with their Google ac
 ---
 
 [**→ Start Module 3.0 — Reading Code Before Writing It**](./3.0-reading-code-before-writing-it/lesson.md)
-</content>
-</invoke>

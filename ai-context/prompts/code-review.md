@@ -39,5 +39,3 @@ For each issue Claude raises:
 2. If yes — fix it.
 3. If no — ask Claude *to explain the issue further*, still without writing the fix.
 4. After fixing, re-run `code-review.md` and see if there's anything left.
-</content>
-</invoke>

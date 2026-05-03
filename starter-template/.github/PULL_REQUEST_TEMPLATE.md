@@ -32,5 +32,3 @@
 - If yes, which files / chunks?
   - `<file path>`: <brief description of what the AI did>
 - For each AI-assisted chunk: I (the author) can explain every line.
-</content>
-</invoke>

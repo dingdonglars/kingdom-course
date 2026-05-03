@@ -34,5 +34,3 @@ a. What
 b. How to run
 c. Detailed API documentation
 d. What's next
-</content>
-</invoke>

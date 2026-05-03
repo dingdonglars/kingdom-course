@@ -54,5 +54,3 @@ Calibrate your explanations to the level. If a concept hasn't been introduced ye
 ## When you are unsure
 
 Ask the learner. The cost of asking is one extra message. The cost of writing for them is the lesson.
-</content>
-</invoke>

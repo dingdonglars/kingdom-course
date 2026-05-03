@@ -21,5 +21,3 @@ The script (when implemented):
 4. Uses Playwright headless Chromium to capture each named view.
 5. Compresses to JPEG (quality 70, max width 1200px) per spec §20.
 6. Copies into the named output dir.
-</content>
-</invoke>

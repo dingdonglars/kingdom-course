@@ -144,5 +144,3 @@ Open `quiz.md` for a (very celebratory) quiz.
 You did, today, what every working developer in the world does every day: wrote code, committed it, pushed it. The rest is just learning what to write.
 
 Welcome to programming. See you in Module 0.1.
-</content>
-</invoke>

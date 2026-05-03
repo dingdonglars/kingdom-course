@@ -39,5 +39,3 @@ A playable game *you wrote*, that you can demo to anyone in 30 seconds. *"Yeah, 
 ---
 
 [**→ Start Module 1.1 — OOP Basics**](./1.1-oop-basics/lesson.md)
-</content>
-</invoke>

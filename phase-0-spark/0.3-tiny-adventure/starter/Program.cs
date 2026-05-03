@@ -77,5 +77,3 @@ void Library()
         Library();
     }
 }
-</content>
-</invoke>

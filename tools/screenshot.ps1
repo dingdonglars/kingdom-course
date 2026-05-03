@@ -12,5 +12,3 @@ param(
 Write-Host "screenshot.ps1 is a stub. Implementation lands in p006."
 Write-Host "Args received: -ReferenceTag $ReferenceTag -OutputDir $OutputDir"
 exit 1
-</content>
-</invoke>

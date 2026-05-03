@@ -13,5 +13,3 @@
 ## 3. c
 
 Yes. The definition is the activity, not the credential. You wrote a program today. You're a programmer. The rest of this course is just *more* programming.
-</content>
-</invoke>

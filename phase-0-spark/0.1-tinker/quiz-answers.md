@@ -19,5 +19,3 @@ The `$` prefix turns a regular string into an *interpolated* string. Anything in
 ## 5. b
 
 `name?.ToUpper()` calls the `ToUpper()` method on `name`, which gives back the uppercase version. The `?.` is the *null-conditional* operator — if `name` is `null` (which `ReadLine()` *can* return if the input stream is closed), `?.` skips the call and the whole expression is `null`. Otherwise, you get `ALICE`.
-</content>
-</invoke>

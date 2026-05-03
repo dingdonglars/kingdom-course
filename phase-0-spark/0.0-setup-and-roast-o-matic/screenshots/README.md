@@ -13,5 +13,3 @@ Screenshots Lars captures during a dry-run of Module 0.0. These belong here:
 - No identifying personal context.
 
 These are captured by hand by Lars on a dry-run machine, not by an automated tool. Replace this README with the actual PNGs once captured.
-</content>
-</invoke>

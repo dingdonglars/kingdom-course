@@ -34,5 +34,3 @@ a. Because `0` is funnier than the user's actual input
 b. Because `Console.ReadLine()` returns `string?` (a string that *might* be `null`), and `int.Parse` can't handle `null` — `?? "0"` says "use the input if it's not null; otherwise use the string '0'"
 c. To start counting from zero
 d. There's no good reason; it's a habit
-</content>
-</invoke>

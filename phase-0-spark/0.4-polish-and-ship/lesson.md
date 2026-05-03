@@ -114,5 +114,3 @@ Open `quiz.md`.
 ## Connect
 
 Foundations starts next week. We finally name the things you've been using all month — types, methods, collections, errors. After Foundations, you'll know enough C# to start building the Kingdom proper.
-</content>
-</invoke>

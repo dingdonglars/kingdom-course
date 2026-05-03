@@ -125,5 +125,3 @@ Open `quiz.md`.
 ## Connect
 
 Your Kingdom is going to have buildings, citizens, events, items — collections of things. `List<>` (and its cousin `Dictionary<>`) is how those collections live in code. And methods are how you'll structure the engine: `Building.Upgrade()`, `Citizen.AssignJob(...)`, `Kingdom.AdvanceTurn()`.
-</content>
-</invoke>

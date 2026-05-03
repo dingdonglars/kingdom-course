@@ -44,5 +44,3 @@ A public Roblox game your friends play *on Roblox*. With your engine. Written by
 ---
 
 [**→ Start Module 5.1 — Roblox Studio Tour**](./5.1-roblox-studio-tour/lesson.md)
-</content>
-</invoke>

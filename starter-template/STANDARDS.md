@@ -95,5 +95,3 @@ Course-content prose targets approximately **CEFR B1–B2** — short sentences,
 ## Language rule
 
 The course is **English only**. AI may *receive* a question in Portuguese; AI's *authored output* and the learner's *produced* artefacts (code, journal, commits, PRs) stay English.
-</content>
-</invoke>

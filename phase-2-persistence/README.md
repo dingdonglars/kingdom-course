@@ -39,5 +39,3 @@ You can demo the Kingdom *across two sessions*. Close the app, reopen it, your k
 ---
 
 [**→ Start Module 2.1 — File I/O**](./2.1-file-io/lesson.md)
-</content>
-</invoke>

@@ -24,5 +24,3 @@ dotnet test path\to\challenges\M0\M0.Tests.csproj
 ```
 
 Green = M0 met. Red = at least one toy folder is missing, won't build, or you forgot the README / wins entry.
-</content>
-</invoke>

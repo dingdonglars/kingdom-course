@@ -34,5 +34,3 @@ a. `Hey alice`
 b. `Hey ALICE`
 c. `Hey null`
 d. An error
-</content>
-</invoke>

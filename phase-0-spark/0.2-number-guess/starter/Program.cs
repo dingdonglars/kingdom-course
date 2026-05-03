@@ -27,5 +27,3 @@ while (true)
         break;
     }
 }
-</content>
-</invoke>

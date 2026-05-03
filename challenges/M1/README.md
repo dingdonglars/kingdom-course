@@ -5,5 +5,3 @@
 ## Status
 
 Stub. Authored as part of p002 per-block plan. Not yet runnable.
-</content>
-</invoke>

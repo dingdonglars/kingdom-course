@@ -27,5 +27,3 @@ if (File.Exists("hero.txt"))
     Console.WriteLine();
     Console.WriteLine($"(File saved. Next time the program runs, '{saved}' will be remembered.)");
 }
-</content>
-</invoke>

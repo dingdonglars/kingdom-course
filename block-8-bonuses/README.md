@@ -35,5 +35,3 @@ The deep capstone for the AI Unlock you got at Module 4.0. You've been using AI 
 ## A standing invitation
 
 If a bonus idea earns its place during your run of the course, it lands here. The slot is open.
-</content>
-</invoke>

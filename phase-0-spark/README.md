@@ -36,5 +36,3 @@ A repo with four tiny games + a README you wrote yourself. The kind of thing you
 ---
 
 [**→ Start Module 0.0 — Setup + Roast-O-Matic**](./0.0-setup-and-roast-o-matic/lesson.md)
-</content>
-</invoke>

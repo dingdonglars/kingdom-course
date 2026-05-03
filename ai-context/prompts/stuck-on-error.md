@@ -50,5 +50,3 @@ Use when: you've tried something and hit an error, and *you've already spent at 
 ## When NOT to use this
 
 If you haven't tried anything yet, **don't paste the error to Claude**. Read the error first. Try something. Then come back.
-</content>
-</invoke>

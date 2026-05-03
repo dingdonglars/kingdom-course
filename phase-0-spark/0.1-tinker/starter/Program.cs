@@ -15,5 +15,3 @@ var random = new Random();
 var roast = roasts[random.Next(roasts.Length)];
 
 Console.WriteLine($"Hey {name?.ToUpper()} — {roast}");
-</content>
-</invoke>

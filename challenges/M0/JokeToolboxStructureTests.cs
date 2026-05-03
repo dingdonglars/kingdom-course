@@ -74,5 +74,3 @@ public class JokeToolboxStructureTests
         Assert.True(content.Length > 100, "wins.md exists but is empty or too short. Write at least one paragraph about M0.");
     }
 }
-</content>
-</invoke>

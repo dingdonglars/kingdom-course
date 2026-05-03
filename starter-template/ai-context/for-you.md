@@ -69,5 +69,3 @@ The skill being taught after the gate is **context engineering** — making the 
 ## When in doubt
 
 Ask Lars. Or post in `#help`. The protocol exists to be questioned.
-</content>
-</invoke>

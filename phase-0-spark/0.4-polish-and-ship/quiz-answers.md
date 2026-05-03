@@ -19,5 +19,3 @@ The path `"hero.txt"` (no folder prefix) is *relative* — it's resolved against
 ## 5. c
 
 The four sections that matter: **What**, **How to run**, **What I learned** (or "Why this exists"), **What's next**. Detailed API documentation belongs in dedicated docs (or in the code itself), not in the README. READMEs are *introductions*; they should fit on one screen.
-</content>
-</invoke>

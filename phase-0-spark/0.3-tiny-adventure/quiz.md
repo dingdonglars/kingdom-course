@@ -34,5 +34,3 @@ a. Back to wherever called `Hallway()`
 b. Back into `Hallway()` right after the call to `Kitchen()`
 c. To the start of the program
 d. It depends
-</content>
-</invoke>

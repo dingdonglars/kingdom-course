@@ -24,5 +24,3 @@ Use when: you've read about a concept and want a clearer walkthrough.
 - Names what you don't understand → Claude focuses on the gap.
 - Names your level (concepts known/unknown) → Claude calibrates.
 - Asks for a concrete example → no abstract pontification.
-</content>
-</invoke>

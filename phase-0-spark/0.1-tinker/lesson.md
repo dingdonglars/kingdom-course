@@ -56,5 +56,3 @@ Open `quiz.md`.
 ## Connect
 
 You just made your program *interactive*. Tomorrow we add randomness on purpose — your first guessing game.
-</content>
-</invoke>

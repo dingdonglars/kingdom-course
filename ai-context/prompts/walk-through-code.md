@@ -27,5 +27,3 @@ Use when: you want to understand code line-by-line — yours, the reference repo
 ## A meta-skill
 
 This prompt is also Module 3.0's whole pedagogy — *senior developers read more than they write.* Use it on the reference repo when you open it; use it on Stack Overflow snippets you find; use it on your own code from six weeks ago. Reading code is a skill in itself.
-</content>
-</invoke>

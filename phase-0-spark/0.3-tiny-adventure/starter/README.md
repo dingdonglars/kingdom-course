@@ -7,5 +7,3 @@ dotnet run
 ```
 
 Win condition: take the knife in the kitchen, then read the book in the library.
-</content>
-</invoke>

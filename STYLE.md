@@ -129,5 +129,3 @@ Per spec §5.2 — see template at `STYLE.md` Appendix A below.
 
 [**→ Start the first module**](./first-module-link)
 ```
-</content>
-</invoke>

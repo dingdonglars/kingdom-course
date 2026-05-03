@@ -55,5 +55,3 @@ This course teaches programming *with* AI, not against it. There's a moment abou
 Course is under active authoring (started 2026-05). Phases land block-by-block. The `phase-N-<name>/` folder for a phase is fleshed out before that block opens.
 
 Welcome to the Kingdom. Let's build something.
-</content>
-</invoke>

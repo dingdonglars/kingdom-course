@@ -7,5 +7,3 @@
 ---
 
 *(no entries yet — your first one lands at the end of M0)*
-</content>
-</invoke>

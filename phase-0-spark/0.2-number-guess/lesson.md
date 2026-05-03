@@ -80,5 +80,3 @@ Open `quiz.md`.
 ## Connect
 
 Your Kingdom is going to be full of random events — bandit raids, lucky harvests, festival days. The same `Random` you used here will pick which event happens. The same `if/else` you used here will decide what the event does to your gold pile.
-</content>
-</invoke>
