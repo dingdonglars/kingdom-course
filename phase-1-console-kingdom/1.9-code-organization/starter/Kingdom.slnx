@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/Kingdom.Engine.Tests/Kingdom.Engine.Tests.csproj" />
+  </Folder>
+  <Project Path="Kingdom.Console/Kingdom.Console.csproj" />
+  <Project Path="Kingdom.Engine/Kingdom.Engine.csproj" />
+</Solution>
