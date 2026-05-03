@@ -1,0 +1,29 @@
+# Wins log
+
+> Every milestone gets a 3-line entry below. Read this in 6 months — it's the proof that you grew.
+
+---
+
+## M0 — Spark Week
+
+- First C# program compiled and ran
+- (etc — fill in once shipped)
+
+---
+
+## M1 — Foundations
+
+- (TBD)
+
+---
+
+## M2 — Block 3 — Console Kingdom
+
+- 35 tests passing, deterministic with `IRandom`/`IClock` + FakeItEasy
+- Engine vs shell pattern internalised — same engine will run in 4 different hosts
+- Repo organised by area (`Buildings/`, `Events/`, `Infrastructure/`)
+
+**Before:** Module 0.0 — `Console.WriteLine("Hello, kingdom!");`
+**After:**  Module 1.10 — A 14-file engine with a deterministic event log
+
+Posted to `#wins` on YYYY-MM-DD.
