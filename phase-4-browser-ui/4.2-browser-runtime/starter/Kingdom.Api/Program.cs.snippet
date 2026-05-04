@@ -1,0 +1,9 @@
+// Add to your Program.cs:
+
+// services
+builder.Services.AddCors();
+
+// after var app = builder.Build();
+app.UseCors(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+// For production: replace AllowAnyOrigin() with .WithOrigins("https://your-frontend-url")
