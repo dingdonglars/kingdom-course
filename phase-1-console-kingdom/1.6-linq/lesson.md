@@ -282,6 +282,16 @@ You met LINQ — about ten methods that cover almost every "ask the list a quest
 - **extension method** — static method, `this` first parameter, called like instance
 - **deferred execution** — LINQ runs lazily, when results are asked for
 
+## Git move of the week — see your history as a graph
+
+Your commit log is starting to have shape. Want to see it?
+
+In VS Code, install the **GitLens** extension if you haven't (Extensions sidebar, search *"GitLens"*). Then `Ctrl + Shift + P` → *"GitLens: Show Commit Graph"*. The graph view opens — every commit you've made, parent links drawn, branches as coloured lanes. Reading your own DAG is the first step toward reasoning about it.
+
+> **Same move, in the terminal:** `git log --oneline --graph --decorate --all`.
+
+We go properly into the model behind this graph in B3.1 if you take that bonus.
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

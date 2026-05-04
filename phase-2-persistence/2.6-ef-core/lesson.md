@@ -351,6 +351,16 @@ You replaced raw SQL with C# objects and let EF Core do the translation. Two ent
 - **`Add` + `SaveChanges`** — EF's INSERT pattern
 - **`Include`** — eager-load a related collection
 
+## Git move of the week — read a diff line by line
+
+You changed a lot today: new EF entities, a DbContext, a new store. Before merging or sharing this with someone (or with future-you), read the diff *carefully* — line by line.
+
+In VS Code's Source Control panel: click any file under *Changes* to open the side-by-side diff. Step through the hunks; ask yourself *"why this line?"* for each one. The hunks you can't justify in plain English are the ones to either understand better or revert.
+
+To read someone else's diff (a teammate's PR, your own old commit): in the GitLens Commit Graph, click any commit; the panel on the right shows the same hunk-by-hunk view.
+
+> **In the terminal:** `git show <commit-hash>` shows a single commit's diff. `git log -p` shows every commit's diff in your history.
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

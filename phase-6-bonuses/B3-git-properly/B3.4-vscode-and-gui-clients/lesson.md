@@ -1,8 +1,8 @@
 # Bonus B3.4 — Tools — git inside VS Code (and other clients)
 
-You've spent a year typing git commands in PowerShell. The CLI is the bedrock — it works the same on every machine, every server, every CI pipeline you'll ever touch. But the picture in your head from B3.1 (the DAG) is *visual*, and visual tools make some operations much faster. The most useful one is already on your machine: VS Code's Source Control panel. Today's lesson is how to use it well, and a brief tour of the dedicated GUI clients people reach for when they want even more.
+You've spent a year using VS Code's Source Control panel as your daily git surface. By now you've also met enough CLI to know when each is the right tool. Today's lesson goes deeper on the panel + GitLens (the extension you installed back at M1.6), and tours the dedicated GUI clients people reach for when they want even more.
 
-The headline: keep using the CLI. Add the VS Code panel for the things it makes faster — staging individual lines, reading diffs, scanning a branch's history. Reach for a dedicated GUI (Fork, GitKraken, etc.) only if you find yourself wanting one; many seasoned developers never do.
+The headline: keep what you've been doing. The Source Control panel for daily work, the CLI for the moves the panel doesn't expose (`reflog`, `cherry-pick`, `rebase -i`, scripts, CI, server work). Reach for a dedicated GUI (Fork, GitKraken, etc.) only if you find yourself wanting one; many seasoned developers never do.
 
 > **Words to watch**
 >

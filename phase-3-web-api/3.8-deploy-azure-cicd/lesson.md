@@ -168,6 +168,23 @@ You took your local API and put it on the public internet at a URL anyone can vi
 - **environment variables (prod)** — config and secrets, set in the platform, never the repo
 - **HTTPS-only** — required for cookie auth; toggle on in App Service settings
 
+## Git move of the week — `gh pr` from the CLI
+
+You've been opening pull requests by clicking around on github.com. The `gh` CLI is a faster way once you've used it twice. Install it from [cli.github.com](https://cli.github.com/) — single-file installer.
+
+After install, run `gh auth login` once to connect it to your GitHub account.
+
+> **This whole flow is CLI — `gh` is a command-line tool by design:**
+>
+> ```powershell
+> gh pr create --title "M4 — Web API" --body "..."
+> gh pr list                          # PRs in the current repo
+> gh pr view 12                       # see PR #12 details
+> gh pr checks                        # CI status of the current PR
+> ```
+
+The web UI on github.com is fine; `gh` is just faster once your fingers know it. Try `gh pr create` for your next PR and see whether it's a fit.
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

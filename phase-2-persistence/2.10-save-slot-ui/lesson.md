@@ -311,6 +311,19 @@ You wrapped your save-slot CRUD in a real interactive menu. `Program.cs` collaps
 - **`Console.SetIn` / `SetOut`** — script and capture in tests
 - **EOF handling** — return cleanly when input runs out
 
+## Git move of the week — merge vs rebase (preview)
+
+By now your `git log` is thick with commits. Two ways to combine work from one branch into another, with different shapes:
+
+- **Merge** preserves the parallel-work shape with a *merge commit* joining two branches. Honest about how the work happened.
+- **Rebase** replays your commits on top of another branch, giving them new SHAs and a linear history. Cleaner to read; loses the parallel-work shape.
+
+In VS Code's Source Control panel: `...` menu → *Branch → Merge from* (or *Rebase from*). Pick the source branch.
+
+The rule of thumb: **rebase your own unpushed branches** to clean them up before merging. **Merge** when work crosses into a shared branch like `main`. **Never rebase** a branch others might have pulled — their commits get new SHAs, theirs don't, and the next `git pull` is confused.
+
+We go properly into both moves in B3.2 if you take that bonus.
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

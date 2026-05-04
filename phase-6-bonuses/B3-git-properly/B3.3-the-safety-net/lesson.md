@@ -24,6 +24,8 @@ This is the safety net. As long as the reflog still has the SHA, the commit is r
 
 ## Step 1 — using reflog
 
+This whole module is **CLI-only**. The Source Control panel doesn't have a button for `reflog`, `fsck`, or the rescue moves built on them — these are exactly the cases where the terminal is the right tool. (You've been using the panel all year; this is the lesson where you'll appreciate that the CLI is *also* still under your fingers.)
+
 In any repo, run:
 
 ```powershell

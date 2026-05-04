@@ -350,6 +350,21 @@ You proved a save-and-load cycle preserves the whole kingdom — five round-trip
 - **`protected` constructor** — only subclasses can call it
 - **property-based testing (light)** — one assertion across many inputs
 
+## Git move of the week — `git stash`
+
+You started a change. Halfway through, something else came up — a quick fix, an experiment, a lesson you wanted to do clean. *Stash* sets your current changes aside without committing them, leaving a clean working tree.
+
+In VS Code's Source Control panel: `...` menu (top right of the panel) → *Stash → Stash*. Type a description, hit Enter. Your changes disappear from *Changes*. To get them back: `...` menu → *Stash → Pop Latest Stash*.
+
+> **Same move, in the terminal:**
+>
+> ```powershell
+> git stash push -m "halfway through the round-trip test"
+> git stash pop          # bring it back
+> ```
+
+The stash is non-destructive — your changes are saved, not gone. Use it any time you want a clean tree without losing what you had.
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -178,6 +178,21 @@ You moved the API from one-kingdom-in-memory to many-kingdoms-in-the-database, w
 - **201 Created** — successful POST that made something new, with a `Location` header
 - **204 No Content** — successful operation with nothing to return; standard for `DELETE`
 
+## Git move of the week — `git reflog`
+
+The thing nobody tells you about git: it almost never actually loses your work. Even after `git reset --hard`, even after a botched rebase, the commits are still in git's storage — git just stopped pointing at them.
+
+`git reflog` is the safety net. It shows every recent position of HEAD, in reverse order. As long as the SHA you want is still in the reflog (default ~30 days), you can recover it.
+
+> **This one's CLI-only — the panel doesn't have a button for it.**
+>
+> ```powershell
+> git reflog                     # see where HEAD has been
+> git reset --hard HEAD@{1}      # go back one HEAD position
+> ```
+
+Specifically: if you panic-`reset --hard` past commits you wanted to keep, run `git reflog`, find the SHA from before the reset, run `git reset --hard <that-sha>` — and they're back. We go properly into the safety net in B3.3 if you take that bonus.
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

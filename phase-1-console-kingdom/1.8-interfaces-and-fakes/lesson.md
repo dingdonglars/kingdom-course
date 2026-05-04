@@ -370,6 +370,23 @@ You extracted `IRandom` and `IClock` from the engine, accepted them through `Eve
 - **`A.CallTo(...).Returns(...)`** — surgical control of fake behaviour
 - **deterministic** — same inputs always give same outputs
 
+## Git move of the week — branches
+
+Until now your work has all been on `main`. From here on, anything non-trivial deserves its own branch — your `main` stays clean for shippable work.
+
+In VS Code: click the branch name in the bottom-left status bar (it says `main`). A picker drops down with *"Create new branch"* at the top. Type a name — like `feature/event-engine` — and you're on it. The bottom-left now shows the new branch.
+
+To switch back: same place, pick `main`.
+
+> **Same move, in the terminal:**
+>
+> ```powershell
+> git switch -c feature/event-engine    # create + switch
+> git switch main                        # switch back
+> ```
+
+A branch in git is just a movable pointer to a commit; making one is free. We dig into the model in B3.1.
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

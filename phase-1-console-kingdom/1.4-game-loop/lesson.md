@@ -232,6 +232,16 @@ The kingdom went from a one-shot photograph to a thing that *moves*. You added a
 - *`virtual`* — a method more specific classes are allowed to replace
 - the through-line — engine knows *how*; shell decides *when*
 
+## Git move of the week — read your diff
+
+You wrote real code today: a `Tick` override on `Building`, an `AdvanceDay` on `Kingdom`, new tests. Before you commit, *read what you're about to commit.*
+
+In VS Code's Source Control panel, click any modified file under *Changes* — the side-by-side diff opens. Old version on the left, new on the right, every changed line highlighted. Skim it once before staging.
+
+The discipline catches accidents — a `Console.WriteLine` left in, a half-edited comment, a file you didn't mean to touch. Two seconds of reading saves the kind of small bug that takes ten minutes to find later.
+
+> **Same move, in the terminal:** `git diff` (unstaged changes), or `git diff --staged` (what's queued for the next commit).
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -180,6 +180,16 @@ Your kingdom went from a program that prints to a program that *saves*. You wrot
 - **`Directory.CreateDirectory`** — make a folder, idempotent
 - **engine vs shell** — disk lives in the shell; engine stays clean
 
+## Git move of the week — `.gitignore`
+
+You started writing files to disk this module. Some files belong in git (your code, your `.csproj`, the test files). Some don't (the build outputs in `bin/` and `obj/`, user secrets, `.env` files, OS junk like `.DS_Store`).
+
+Your `kingdom` repo already has a `.gitignore` from the day-1 kit — open it at the repo root. Each line is a pattern of files git should *ignore*. When you create a new file matching one of those patterns, the Source Control panel quietly skips it; it never shows up in *Changes*.
+
+If you're confused why VS Code isn't offering a file you expected: check `.gitignore`. Most *"git is being weird about this file"* moments are this.
+
+> **In the terminal:** `git status --ignored` lists what git is currently ignoring — useful when you want to be sure.
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

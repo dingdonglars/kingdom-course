@@ -70,6 +70,23 @@ Three colours of squiggle live under your code:
 
 If the explanation is too dense, paste it into Claude. *"What does this C# error mean: ..."* That's a fine, encouraged use of AI.
 
+## Git lives in the Source Control panel
+
+You'll do almost all your git from inside VS Code, not from the terminal. The Source Control panel is the third icon down on the left sidebar (looks like a branch with a fork) — keyboard shortcut `Ctrl + Shift + G G`.
+
+What you'll do here every day:
+
+- **Stage** files — hover *Changes* and click `+`, or click `+` next to one file to stage just that one.
+- **Commit** — type a message in the box, click the blue **checkmark**.
+- **Push** — click **Sync Changes** at the bottom of the panel.
+- **Read a diff** — click any modified file under *Changes*; side-by-side diff opens. This is much easier than `git diff` for anything more than a few lines.
+
+Two extras worth installing on day 2 (or day 1 if you're keen):
+
+- **GitLens** — adds inline blame ("last edited by you, 3 weeks ago") and a Commit Graph view that shows your DAG visually. Free tier is plenty. Install from Extensions sidebar.
+
+The terminal stays for the moves the panel doesn't have a button for: `git reflog`, `git cherry-pick`, interactive rebase, `gh pr`, scripts, CI debugging. We meet those in B3 if you take that bonus.
+
 ## When stuff breaks — the three reset moves
 
 When VS Code itself feels broken (red squiggles on code you didn't change, IntelliSense stopped working, files look stale), try these in order. Each is harmless.

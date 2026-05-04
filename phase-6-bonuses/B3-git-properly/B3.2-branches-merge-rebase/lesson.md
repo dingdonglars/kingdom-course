@@ -111,6 +111,10 @@ What this gives you: a clean linear history. Reviewers love it. Bisecting (findi
 
 What it costs: the originals are gone. The new commits have new SHAs. If you'd already pushed `C4` and `C5` to GitHub, and someone else pulled them, your rebase has now diverged from theirs — *invisibly*. They'll get conflicts the next time they pull. This is the danger.
 
+## In the panel vs the terminal
+
+Both moves exist in VS Code's Source Control panel: `...` menu → *Branch → Merge from* or *Branch → Rebase from*, then pick the source branch. The panel handles the common path; for advanced moves (interactive rebase, squash, fixup), drop to the terminal — that's where the full power lives. We'll spend the rest of the lesson at the CLI because it makes the *what's actually happening* easier to see.
+
 ## The rule of thumb
 
 - **Rebase your *own* unpushed branches** to clean them up before merging. Safe; only your local copy.

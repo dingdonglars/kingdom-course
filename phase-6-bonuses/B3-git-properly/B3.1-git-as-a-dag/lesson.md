@@ -96,21 +96,18 @@ If HEAD points directly at a commit instead of a branch, you're in *detached HEA
 
 ## Step 4 — looking at your own DAG
 
-Open your kingdom repo. Run:
+Open your kingdom repo. The visual you want is the GitLens **Commit Graph** — `Ctrl + Shift + P` → *"GitLens: Show Commit Graph"*. Every commit you've made appears as a node, parent links drawn between them, branches as coloured lanes. *That picture, on screen, is your real DAG.* If GitLens isn't installed yet, install it (Extensions sidebar → search *GitLens*).
 
-```powershell
-git log --oneline --graph --decorate --all
-```
+Pick a commit in the graph and click it — the right-side panel shows the message, parent, author, and the diff against the parent. Notice the diff is *not* the whole snapshot — it's the *change*, computed from this commit's snapshot and the parent's. You're looking at the model.
 
-You'll see your year of work as a tree. The asterisks are commits; the lines are parent links; the labels are branches and HEAD.
-
-Pick one commit hash. Run:
-
-```powershell
-git show <hash>
-```
-
-Git shows you the commit message, the author, the parent, and the diff against the parent. Notice it's *not* the whole snapshot — `git show` displays the *change*, computed from the snapshot and the parent's snapshot. You're looking at the model.
+> **Same move, in the terminal:**
+>
+> ```powershell
+> git log --oneline --graph --decorate --all   # the graph
+> git show <hash>                               # one commit's diff
+> ```
+>
+> Same shape, same data; the panel is just a clearer rendering. Many B3 readers prefer the CLI for raw inspection — `git log --graph` is fast, scriptable, and works over SSH. Use both.
 
 ## Tinker
 
