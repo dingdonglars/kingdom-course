@@ -26,7 +26,7 @@
 
 ## AI assistance
 
-> *Required after the AI Unlock (end of Block 5 / after M4). Honor system. Used by `/milestone-review` to seed Lars's viva. Honest disclosure that turns out wrong is a learning moment, not a strike — hiding AI use is the failure.*
+> *Required after the AI Unlock (end of Phase 3 / after M4). Honor system. Used by `/milestone-review` to seed Lars's viva. Honest disclosure that turns out wrong is a learning moment, not a strike — hiding AI use is the failure.*
 
 - [ ] AI-assisted in this PR? **yes / no**
 - If yes, which files / chunks?

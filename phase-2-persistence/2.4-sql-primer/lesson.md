@@ -254,7 +254,7 @@ Insert 10,000 rows in a loop. Notice how fast SQLite is on small data. (For *bul
 
 ## What you just did
 
-Your kingdom now has a third place to live: a SQLite database file. You wrote your first `CREATE TABLE`, your first parametrised `INSERT`, your first `SELECT` reader loop — and three tests to prove the round trip (54 passing total). Along the way you met the five SQL commands (`CREATE`, `INSERT`, `SELECT`, `UPDATE`, `DELETE`) which between them cover most of what you'll write for the rest of the year. You also met the most-published security bug in the world — *SQL injection* — and saw why parameters, never concatenation, are the only safe answer. The engine and the JSON code didn't change today; that's the third runtime over the same engine.
+Your kingdom now has a third place to live: a SQLite database file. You wrote your first `CREATE TABLE`, your first parametrised `INSERT`, your first `SELECT` reader loop — and three tests to prove the round trip (54 passing total). Along the way you met the five SQL commands (`CREATE`, `INSERT`, `SELECT`, `UPDATE`, `DELETE`) which between them cover most of what you'll write for the rest of the year. You also met the most-published security bug in the world — *SQL injection* — and saw why parameters, never concatenation, are the only safe answer. The engine and the JSON code didn't change today; that's the third shell over the same engine.
 
 **Key concepts you can now name:**
 

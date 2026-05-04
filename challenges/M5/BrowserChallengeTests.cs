@@ -65,8 +65,8 @@ public class BrowserChallengeTests
         Assert.True(File.Exists(winsPath), $"Expected journal/wins.md.");
         var content = File.ReadAllText(winsPath);
         Assert.True(content.Length > 100, "wins.md too short for M5.");
-        Assert.True(content.Contains("M5") || content.Contains("Block 6") || content.Contains("Browser"),
-            "wins.md should mention M5 / Block 6 / Browser.");
+        Assert.True(content.Contains("M5") || content.Contains("Phase 4") || content.Contains("Browser"),
+            "wins.md should mention M5 / Phase 4 / Browser.");
     }
 
     private static bool HasDep(JsonElement root, string name)

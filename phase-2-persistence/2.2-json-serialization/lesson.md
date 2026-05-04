@@ -1,6 +1,6 @@
 # Module 2.2 — JSON Serialisation
 
-Yesterday you wrote five lines of human-readable text to disk. Today the kingdom learns to write itself as **JSON** — the `{ "Name": "Eldoria", "Day": 11, ... }` format that powers almost every API on the internet. You'll also add a brand new project — `Kingdom.Persistence` — to keep the JSON code separate from both engine and console. Same kingdom, third runtime.
+Yesterday you wrote five lines of human-readable text to disk. Today the kingdom learns to write itself as **JSON** — the `{ "Name": "Eldoria", "Day": 11, ... }` format that powers almost every API on the internet. You'll also add a brand new project — `Kingdom.Persistence` — to keep the JSON code separate from both engine and console. Same kingdom, third shell.
 
 JSON is also where you meet a small but important pattern: the **DTO** (a *Data Transfer Object* — a small data-only record purpose-built for moving data across a boundary like disk or the network). You'll meet DTOs again every phase from here on. We're introducing them properly today.
 
@@ -17,7 +17,7 @@ JSON is also where you meet a small but important pattern: the **DTO** (a *Data 
 
 Phase 1's events were a great sign that *small immutable records* are how we model data. JSON is what records become when they leave the program — for disk, for the network, for another language entirely. A `record` in C# round-trips cleanly to JSON; almost no extra plumbing needed.
 
-The new project — `Kingdom.Persistence` — exists for one reason: the engine should not know about JSON. If we put JSON code in `Kingdom.Engine`, every runtime ever built on top of it would drag JSON along, even when it doesn't need it (Roblox doesn't use JSON; the database runtime uses SQL, not JSON). By giving JSON its own project, every runtime can pick whether to depend on it.
+The new project — `Kingdom.Persistence` — exists for one reason: the engine should not know about JSON. If we put JSON code in `Kingdom.Engine`, every shell ever built on top of it would drag JSON along, even when it doesn't need it (Roblox doesn't use JSON; the database shell uses SQL, not JSON). By giving JSON its own project, every shell can pick whether to depend on it.
 
 The dependency direction looks like this:
 
@@ -293,7 +293,7 @@ Try saving a thousand kingdoms in a loop with different names. The filesystem st
 
 ## What you just did
 
-You shipped your first real save format. Same kingdom from yesterday, but now it serialises to JSON and reloads cleanly — five tests prove it (43 passing total). Along the way you stood up a third project, `Kingdom.Persistence`, so the engine doesn't drag JSON along to runtimes that don't want it. You also met the **DTO** pattern, which you'll see in every phase from here on: a small data-only record purpose-built for crossing a boundary, kept separate from the engine's model. The engine project still has zero changes — that's two modules in a row.
+You shipped your first real save format. Same kingdom from yesterday, but now it serialises to JSON and reloads cleanly — five tests prove it (43 passing total). Along the way you stood up a third project, `Kingdom.Persistence`, so the engine doesn't drag JSON along to shells that don't want it. You also met the **DTO** pattern, which you'll see in every phase from here on: a small data-only record purpose-built for crossing a boundary, kept separate from the engine's model. The engine project still has zero changes — that's two modules in a row.
 
 **Key concepts you can now name:**
 

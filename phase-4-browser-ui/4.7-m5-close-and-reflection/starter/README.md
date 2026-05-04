@@ -9,5 +9,5 @@ No code delta. The starter ships:
 After:
 - M5 entry in `wins.md`
 - One Phase 0 toy refactored, committed
-- Tag `m5-block-6-complete` pushed
+- Tag `m5-phase-4-complete` pushed
 - Mentor PR opened

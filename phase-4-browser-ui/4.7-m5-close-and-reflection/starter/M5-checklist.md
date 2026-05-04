@@ -7,7 +7,7 @@
 - [ ] Write the M5 entry in `journal/wins.md` (mention the refactor + commit hash)
 - [ ] Screenshot of live URL + browser kingdom rendering
 - [ ] Post to `#wins`
-- [ ] Tag locally: `git tag m5-block-6-complete && git push origin m5-block-6-complete`
+- [ ] Tag locally: `git tag m5-phase-4-complete && git push origin m5-phase-4-complete`
 - [ ] Open mentor PR with AI-assistance section
 
 ## Optional Svelte taster (Week 42)

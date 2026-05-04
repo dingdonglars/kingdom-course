@@ -34,8 +34,8 @@ public class RobloxArtefactTests
         Assert.True(File.Exists(winsPath), $"Expected journal/wins.md.");
         var content = File.ReadAllText(winsPath);
         Assert.True(content.Length > 100, "wins.md too short for M6.");
-        Assert.True(content.Contains("M6") || content.Contains("Block 7") || content.Contains("Roblox"),
-            "wins.md should mention M6 / Block 7 / Roblox.");
+        Assert.True(content.Contains("M6") || content.Contains("Phase 5") || content.Contains("Roblox"),
+            "wins.md should mention M6 / Phase 5 / Roblox.");
         Assert.Contains("roblox.com/games", content);
     }
 

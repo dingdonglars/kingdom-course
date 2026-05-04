@@ -13,7 +13,7 @@ The demo `Program.cs` does the right things, but it's a script — *open program
 
 ## Why a real loop matters
 
-A script `Program.cs` is fine for testing your code. But a *user* — even an audience of one (you) — needs to *interact*. Today's loop is your first interactive runtime. The pattern repeats at every layer:
+A script `Program.cs` is fine for testing your code. But a *user* — even an audience of one (you) — needs to *interact*. Today's loop is your first interactive shell. The pattern repeats at every layer:
 
 - Console: `while (true) { print menu; read input; act; }`
 - Web API: `while (true) { receive request; route; act; respond; }`
@@ -165,7 +165,7 @@ var store = new KingdomEfStore(dbPath);
 SaveSlotUI.Run(store, rng, clock);
 ```
 
-That's the whole runtime. Read input, dispatch, save. Engine and persistence do the actual work.
+That's the whole shell. Read input, dispatch, save. Engine and persistence do the actual work.
 
 Build and run:
 

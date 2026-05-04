@@ -59,7 +59,7 @@ public class PersistenceChallengeTests
         Assert.True(File.Exists(winsPath), $"Expected journal/wins.md.");
         var content = File.ReadAllText(winsPath);
         Assert.True(content.Length > 100, "wins.md exists but is too short. Write at least one paragraph for M3.");
-        Assert.True(content.Contains("M3") || content.Contains("Block 4") || content.Contains("Persistence"),
-            "wins.md should mention M3 / Block 4 / Persistence.");
+        Assert.True(content.Contains("M3") || content.Contains("Phase 2") || content.Contains("Persistence"),
+            "wins.md should mention M3 / Phase 2 / Persistence.");
     }
 }

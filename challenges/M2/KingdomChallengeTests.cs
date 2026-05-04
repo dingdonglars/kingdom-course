@@ -100,7 +100,7 @@ public class KingdomChallengeTests
         Assert.True(File.Exists(winsPath), $"Expected journal/wins.md.");
         var content = File.ReadAllText(winsPath);
         Assert.True(content.Length > 100, "wins.md exists but is too short. Write at least one paragraph for M2.");
-        Assert.True(content.Contains("M2") || content.Contains("Block 3") || content.Contains("Console Kingdom"),
-            "wins.md should mention M2 / Block 3 / Console Kingdom.");
+        Assert.True(content.Contains("M2") || content.Contains("Phase 1") || content.Contains("Console Kingdom"),
+            "wins.md should mention M2 / Phase 1 / Console Kingdom.");
     }
 }

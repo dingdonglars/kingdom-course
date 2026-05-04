@@ -167,7 +167,7 @@ Module 3.7 brings real HTTP integration tests with `WebApplicationFactory<Progra
 
 ## Tinker
 
-Hit your URL from a Discord message. A friend can hit it too if you tunnel with `ngrok http 5000`. Don't deploy yet — there's no auth, and anyone could mess with your data.
+Hit your URL from a chat message. A friend can hit it too if you tunnel with `ngrok http 5000`. Don't deploy yet — there's no auth, and anyone could mess with your data.
 
 Add a second endpoint: `app.MapGet("/", () => "Welcome, traveller.");`. Visit `/` in the browser.
 

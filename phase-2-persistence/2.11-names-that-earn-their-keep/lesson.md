@@ -125,7 +125,7 @@ Read [`Naming Things`](https://en.wikipedia.org/wiki/Naming_(parameter)) on your
 
 ## What you just did
 
-You sat with the codebase and tightened every public name. Some you renamed; some you dropped; some you left alone with new respect. The code didn't get smarter — but a future reader will hit half as many surprises. You also closed M3: tests still 71 passing, persistence works across four runtimes (text, JSON, SQLite, EF Core), the kingdom remembers itself across sessions. That's the milestone. Don't skip the ritual that follows.
+You sat with the codebase and tightened every public name. Some you renamed; some you dropped; some you left alone with new respect. The code didn't get smarter — but a future reader will hit half as many surprises. You also closed M3: tests still 71 passing, persistence works across four shells (text, JSON, SQLite, EF Core), the kingdom remembers itself across sessions. That's the milestone. Don't skip the ritual that follows.
 
 **Key concepts you can now name:**
 
@@ -167,4 +167,4 @@ Posted to #wins on YYYY-MM-DD.
 
 ## Next
 
-**Phase 3 begins.** It introduces the **web API** — your engine, served over HTTP. Same engine again, fourth runtime. The browser will follow in Phase 4; the AI Unlock fires at the end of Phase 3.
+**Phase 3 begins.** It introduces the **web API** — your engine, served over HTTP. Same engine again, fourth shell. The browser will follow in Phase 4; the AI Unlock fires at the end of Phase 3.

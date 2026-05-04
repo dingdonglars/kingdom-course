@@ -4,9 +4,9 @@ Authoring helpers used during course-content authoring. Not part of the learner-
 
 ## screenshot.ps1
 
-Captures browser screenshots from the reference repo at a tagged commit. Used during Phase 4 authoring (Block 6) to generate `screenshots/` for browser-UI lessons.
+Captures browser screenshots from the reference repo at a tagged commit. Used during Phase 4 authoring to generate `screenshots/` for browser-UI lessons.
 
-**Status:** skeleton at Plan 0 time. Filled in during p006 (Block 6 authoring) when browser screenshots are first needed.
+**Status:** skeleton at Plan 0 time. Filled in during p006 authoring when browser screenshots are first needed.
 
 **Usage (target shape):**
 

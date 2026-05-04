@@ -31,7 +31,7 @@ We have three options:
 
 Option B is the standard answer. We add a small *factory method* (a static method that returns an instance) on `Kingdom` that takes a snapshot record and returns a fully-loaded `Kingdom`.
 
-> **Lesson within a lesson:** adding load support often pushes you to redesign the model. That's a feature, not a problem. The model that "looks right" sometimes only looks right for one runtime. Persistence forces you to confront the data form.
+> **Lesson within a lesson:** adding load support often pushes you to redesign the model. That's a feature, not a problem. The model that "looks right" sometimes only looks right for one shell. Persistence forces you to confront the data form.
 
 ## Delta starter
 

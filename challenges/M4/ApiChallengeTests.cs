@@ -67,7 +67,7 @@ public class ApiChallengeTests
         Assert.True(File.Exists(winsPath), $"Expected journal/wins.md.");
         var content = File.ReadAllText(winsPath);
         Assert.True(content.Length > 100, "wins.md too short for M4.");
-        Assert.True(content.Contains("M4") || content.Contains("Block 5") || content.Contains("Live API"),
-            "wins.md should mention M4 / Block 5 / Live API.");
+        Assert.True(content.Contains("M4") || content.Contains("Phase 3") || content.Contains("Live API"),
+            "wins.md should mention M4 / Phase 3 / Live API.");
     }
 }

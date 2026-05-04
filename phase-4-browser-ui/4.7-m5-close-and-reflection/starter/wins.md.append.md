@@ -1,4 +1,4 @@
-## M5 — Block 6 — Browser-Playable Kingdom
+## M5 — Phase 4 — Browser-Playable Kingdom
 
 - Live frontend URL: `https://kingdom-_______.azurestaticapps.net`
 - Vite + TypeScript + componentised vanilla TS
