@@ -28,10 +28,10 @@ var name = Console.ReadLine();
 Change the last line so the roast uses the name:
 
 ```csharp
-Console.WriteLine($"Hey {name?.ToUpper()} — {roast}");
+Console.WriteLine($"Hey {name.ToUpper()} — {roast}");
 ```
 
-The `$` in front of the string is **string interpolation**. Anything inside `{curly braces}` is treated as real C# — it gets evaluated, turned into text, and dropped into the string. So `$"Hey {name?.ToUpper()}"` becomes `Hey BOB` if `name` is `"bob"`. Beats jamming things together with `+`. The little `?.` is doing safety work we'll name properly in Module 0.5; treat it as a small detail to ignore for now.
+The `$` in front of the string is **string interpolation**. Anything inside `{curly braces}` is treated as real C# — it gets evaluated, turned into text, and dropped into the string. So `$"Hey {name.ToUpper()}"` becomes `Hey BOB` if `name` is `"bob"`. Beats jamming things together with `+`.
 
 Run it:
 

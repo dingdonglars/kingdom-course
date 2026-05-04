@@ -14,4 +14,4 @@ string[] roasts = {
 var random = new Random();
 var roast = roasts[random.Next(roasts.Length)];
 
-Console.WriteLine($"Hey {name?.ToUpper()} — {roast}");
+Console.WriteLine($"Hey {name.ToUpper()} — {roast}");
