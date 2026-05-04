@@ -1,44 +1,44 @@
-# Challenge — M2 — *Kingdom v1 (Console)*
+# Challenge — M2 — *Console Kingdom*
 
-Wraps **Block 3 (Console Kingdom)**.
+Wraps **Phase 1 — Console Kingdom**.
 
-## What this checks
+M2 is the first milestone where the test suite has real teeth. The engine has to be deterministic — that is, two runs with the same seed produce the same events in the same order. If you new'd up `Random` directly anywhere in the engine, this challenge fails. That's the moment Module 1.8's lesson on `IRandom` finally pays for itself.
 
-That your repo by end of M2 has:
+## What this verifies
 
-- `Kingdom.Engine/`, `Kingdom.Console/`, and `tests/Kingdom.Engine.Tests/` projects that build.
-- The engine separated from the shell (no `Console.WriteLine` inside `Kingdom.Engine/`).
-- An `IRandom`-style abstraction so the engine is deterministic when seeded.
-- The four building subclasses (`Farm`, `Lumberyard`, `Mine`, plus the abstract/base `Building`).
-- An `EventLog` populated by an event engine that takes `IRandom`.
-- Sub-namespace organisation — at least `Kingdom.Engine.Buildings` and one other.
-- 30+ passing tests across the engine.
-- A `journal/wins.md` entry for M2 of at least 100 characters.
+| Check | Looks for |
+| --- | --- |
+| Project layout | `Kingdom.Engine/`, `Kingdom.Console/`, and `tests/Kingdom.Engine.Tests/` build |
+| Engine vs shell | No `Console.WriteLine` inside `Kingdom.Engine/` |
+| Building family | `Farm`, `Lumberyard`, `Mine`, plus the abstract `Building` |
+| `IRandom` abstraction | An interface in the engine that the events system depends on |
+| EventLog | A property on `Kingdom` that grows when the engine ticks |
+| Sub-namespaces | At least `Kingdom.Engine.Buildings` and one other |
+| Test count | 30+ passing tests across the engine |
+| Wins entry | `journal/wins.md` with an M2 entry of at least 100 characters |
 
-## What this does NOT check
+## What this skips
 
-- Exact resource starting values, tick rates, or chance %s — pick what makes sense for your kingdom.
-- The names of your event subclasses (only that `EventLog` exists and grows).
-- The exact subfolder names (just that `Buildings/` exists).
-- README polish (visual check by mentor).
+- Exact resource starting values, tick rates, or chance percentages — the kingdom is yours to balance.
+- The names of your event subclasses — only that the log fills up.
+- The exact sub-namespace names beyond `Buildings/`.
+- README polish — that's a mentor read at milestone review.
 
 ## How to run
 
-In your repo root:
+From your repo root:
 
 ```powershell
 dotnet test path\to\challenges\M2\M2.Tests.csproj
 ```
 
-Green = M2 met. Run the per-milestone ritual: wins post + before/after + Discord.
+Green = M2 met. Then the milestone ritual: wins entry, `#wins` post, before/after one-liner.
 
-## What this looks like in practice
-
-The challenge runs a structural smoke test:
+## What the suite actually does
 
 1. Compiles your engine.
-2. Reflects on it: does `Kingdom.Engine.Buildings.Building` exist? Does `Kingdom.Engine.Infrastructure.IRandom` exist? Does `Kingdom.Engine.Kingdom` have an `EventLog` property?
-3. Runs your engine for 50 days with a seeded `SystemRandom`. Asserts the `EventLog.Count > 0`.
-4. Runs *the same scenario twice with the same seed*; asserts both runs produce the same number of events with identical descriptions in order.
+2. Reflects on it — does `Kingdom.Engine.Buildings.Building` exist? Does `Kingdom.Engine.Infrastructure.IRandom` exist? Does `Kingdom.Engine.Kingdom` have an `EventLog` property?
+3. Runs the engine for 50 days with a seeded `SystemRandom`. Asserts `EventLog.Count > 0`.
+4. Runs the same scenario twice with the same seed; asserts both runs produce the same events in the same order.
 
-The third point is the hard one — if your `EventEngine` newed up `Random` directly, it'll fail. That's the fail-the-test moment that closes the loop on Module 1.8.
+Step 4 is the determinism check. If the engine reaches for `new Random()` anywhere, the two runs diverge and the test fails — closing the loop on Module 1.8.

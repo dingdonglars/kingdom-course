@@ -1,27 +1,31 @@
-# Challenge — M6 — *Kingdom v5 (Roblox-Published)*
+# Challenge — M6 — *Roblox-Published Kingdom*
 
-Wraps **Block 7 (Roblox Kingdom)**.
+Wraps **Phase 5 — Roblox Kingdom**. This is the year-end milestone — the moment you send your friends a Roblox link and they actually play.
 
-> **No automated tests.** Roblox publishes outside the .NET tooling chain; verifying a published place programmatically would require Roblox's API + auth tokens — out of scope. The artefact *is* the public Roblox URL.
+> **No automated runtime tests for the Roblox place itself.** Roblox publishes outside the .NET tooling chain, and verifying a published place programmatically would need Roblox's API and auth tokens — out of scope for this repo. The artefact *is* the public Roblox URL, and the proof is your friends playing it.
 
-## What this checks (manual)
+## What this verifies
 
-- A `roblox-kingdom/` (or similarly named) folder exists with at least the engine ModuleScripts ported to Luau (`Building.lua`, `Farm.lua`, `Lumberyard.lua`, `Mine.lua`, `Kingdom.lua`, `ResourceLedger.lua`, `Citizen.lua`)
-- A live Roblox place URL exists and 3 friends have visited it (provide screenshots)
-- `journal/wins.md` has an M6 entry mentioning M6 / Block 7 / Roblox + the place URL
-- `journal/m6-looking-back.md` exists and is filled in (~the four prompts from M5.8)
+| Check | Looks for |
+| --- | --- |
+| Roblox folder | `roblox-kingdom/` (or similar) with engine ModuleScripts ported to Luau — at minimum `Building.lua`, `Farm.lua`, `Lumberyard.lua`, `Mine.lua`, `Kingdom.lua`, `ResourceLedger.lua`, `Citizen.lua` |
+| Public URL | A live Roblox place URL exists; three friends have visited it (screenshots) |
+| Wins entry | `journal/wins.md` with an M6 entry mentioning M6 / Phase 5 / Roblox plus the place URL |
+| Looking-back entry | `journal/m6-looking-back.md` exists and is filled in (the four prompts from Module 5.8) |
 
-## What this does NOT check
+## What this skips
 
-- That the place is *good* (no automated quality bar — your friends are the bar)
-- That the Lua code passes lint (no automated Lua lint in this repo; do it manually)
+- Whether the place is *good* — there's no automated quality check. Your friends are the standard.
+- Whether the Lua passes lint — no automated Lua lint in this repo. Run it yourself.
 
 ## How to run
+
+From your repo root:
 
 ```powershell
 dotnet test path\to\challenges\M6\M6.Tests.csproj
 ```
 
-The .NET test verifies the *artefacts*: folder structure, wins entry, capstone entry. The actual *play* is the human bar.
+The .NET test verifies the artefacts: folder structure, wins entry, looking-back entry. The actual *play* is the human check.
 
 Green = M6 met. Mentor signs off the year.

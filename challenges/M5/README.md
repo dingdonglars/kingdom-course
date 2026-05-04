@@ -1,27 +1,33 @@
-# Challenge — M5 — *Kingdom v4 (Browser-Playable)*
+# Challenge — M5 — *Browser-Playable Kingdom*
 
-Wraps **Block 6 (Browser Kingdom)**.
+Wraps **Phase 4 — Browser Kingdom**.
 
-## What this checks
+M5 confirms the frontend is real: a Vite + TypeScript project that builds, has its own tests, and ships to a real public URL via a static-web-apps workflow. The test runner can't open a browser, so it checks the artefacts that prove the rest.
 
-- A `web-vite/` (or `web/`) frontend project exists with TypeScript
-- `web-vite/package.json` declares `vite`, `vitest`, and a build script
-- Frontend tests exist (`*.test.ts` files in `web-vite/src/`)
-- The build succeeds (`npm run build` produces `dist/`)
-- Frontend tests pass (`npm test`)
-- A static-web-apps deploy workflow exists (`.github/workflows/azure-static-web-apps-*.yml`)
-- `journal/wins.md` has an M5 entry mentioning M5 / Block 6 / browser
+## What this verifies
 
-## What this does NOT check
+| Check | Looks for |
+| --- | --- |
+| Frontend project | `web-vite/` (or `web/`) with TypeScript |
+| Dependencies | `web-vite/package.json` declares `vite`, `vitest`, and a build script |
+| Frontend tests | `*.test.ts` files in `web-vite/src/` |
+| Build succeeds | `npm run build` produces `dist/` |
+| Tests pass | `npm test` is green |
+| Deploy workflow | `.github/workflows/azure-static-web-apps-*.yml` exists |
+| Wins entry | `journal/wins.md` with an M5 entry mentioning M5 / Phase 4 / browser |
 
-- The exact URL is live (impossible from this test runner)
-- The exact components / shape of the UI
-- Real OAuth flow (tested separately by signing in manually)
+## What this skips
+
+- That the live URL is actually serving your site — impossible from the test runner.
+- The exact components or visual layout — the mentor reviews these.
+- The real OAuth flow — you sign in manually to verify that one.
 
 ## How to run
+
+From your repo root:
 
 ```powershell
 dotnet test path\to\challenges\M5\M5.Tests.csproj
 ```
 
-Green = M5 met. Run the per-milestone ritual: wins post + before/after + Discord.
+Green = M5 met. Then the milestone ritual.

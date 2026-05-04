@@ -1,26 +1,28 @@
-# Challenge — M0 — *The Joke Toolbox*
+# Challenge — M0 — *Spark Week*
 
-Wraps **Block 1 (Spark Week)**.
+Wraps **Phase 0 — Spark Week** (modules 0.0–0.4).
 
-## What this checks
+M0 is about structure, not behavior. The four toys you wrote each week run on their own — you saw them work when you `dotnet run`'d them. What this challenge confirms is that the repo is laid out the way the rest of the course expects, and that you ran the milestone ritual.
 
-That your repo by end of M0 has:
+## What this verifies
 
-- Four toy folders at the repo root: `RoastOMatic/`, `NumberGuess/`, `TinyAdventure/`, `Polish/`.
-- Each toy has a `.csproj` that builds (`dotnet build` succeeds).
-- A `README.md` at the repo root (your M0 README).
-- A `journal/wins.md` entry exists (per the milestone ritual).
+| Check | Looks for |
+| --- | --- |
+| Toy folders | `RoastOMatic/`, `NumberGuess/`, `TinyAdventure/`, `Polish/` at the repo root |
+| Each toy builds | A `.csproj` per toy; `dotnet build` succeeds |
+| Repo README | `README.md` at the repo root |
+| Wins entry | `journal/wins.md` exists with an M0 entry |
 
-## What this does NOT check
+## What this skips
 
-The toys themselves. We trust the lesson `dotnet run` checks. M0's challenge is *structure*, not behavior — *did you ship four toys with a README*.
+The toys themselves — whether the roast generator picks adjectives well, whether the guessing game ranges feel right. Those are visual checks during the lesson and a chat at milestone review.
 
 ## How to run
 
-In your repo root:
+From your repo root:
 
 ```powershell
 dotnet test path\to\challenges\M0\M0.Tests.csproj
 ```
 
-Green = M0 met. Red = at least one toy folder is missing, won't build, or you forgot the README / wins entry.
+Green = M0 met. Red usually means a toy folder is missing, won't build, or you forgot the README or wins entry. Read the failure message — the test names tell you exactly which check tripped.
