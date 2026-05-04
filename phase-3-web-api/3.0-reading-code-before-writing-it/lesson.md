@@ -1,66 +1,65 @@
 # Module 3.0 — Reading Code Before Writing It
 
-> **Hook:** every other module so far has been *write code*. Today is *read* code — somebody else's. **Reading is the senior skill that nobody teaches and everyone needs.** Before we write our first ASP.NET endpoint, you'll spend 30 minutes reading two real ones and saying out loud what they do.
+Every module so far has been *write code*. Today is *read* code — somebody else's. Before we write our first ASP.NET endpoint, you'll spend about thirty minutes reading two real ones and saying out loud what they do. The artefact you produce is a journal entry, not a program. That's the whole module: read, take notes, commit your notes.
+
+Reading is the skill nobody teaches and everyone needs. The senior on a team reads roughly five times more code than they write. They know which file to open first, they scan rather than parse, they notice the *missing* things. None of that is innate — it's a habit you build by doing it on purpose, weekly, even when you're not chasing a bug.
 
 > **Words to watch**
-> - **read-don't-write hour** — a deliberate window where you only read; no editing
-> - **call graph** — who calls what; the way a method's behaviour ripples
-> - **smell** — a not-yet-bug that makes you suspicious
+>
+> - **read-don't-write hour** — a deliberate window where you only read code; no editing
+> - **call graph** — who calls what; how a method's behaviour ripples through a project
+> - **smell** — a not-yet-bug; something that makes you suspicious without being clearly broken
 
 ---
 
 ## Why read first
 
-The default learning loop is `read tutorial → write thing → break → fix`. It works for syntax. It doesn't work for *judgement* — knowing why one structure is better than another. Judgement comes from reading lots of code and asking *"what does this person know that I don't?"*
+The default learning loop most people use is *read tutorial → write thing → break → fix*. It works for syntax. It does not work for *judgement* — knowing why one way of structuring code is better than another. Judgement comes from reading lots of code and asking *"what does this person know that I don't?"*
 
-The senior on your team reads 5x more code than they write. They know which file to open first. They scan rather than parse. They notice missing things. **All of that is a learnable habit.** The bar is reading 1 hour a week — deliberately, not just when you're hunting a bug.
+The standard you can aim for is one hour of reading per week, deliberately, not just when you're hunting a bug. That's the habit this module starts.
 
-## Today's exercise
+## What you're doing today
 
-Open this file in your browser:
+Two files to read. Don't run them. Don't edit them. Just read.
+
+The first one is small — a one-screen minimal API sample by the ASP.NET Core team:
 
 > [`https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/samples/MvcSandbox/Program.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/samples/MvcSandbox/Program.cs)
 
-That's a small minimal-API sample by the ASP.NET Core team. **Don't edit. Don't run.** Just read.
-
-Open this companion:
+The second one is bigger — a real TODO API by David Fowler, one of the people who designed ASP.NET Core:
 
 > [`https://github.com/davidfowl/TodoApi/blob/main/TodoApi/Program.cs`](https://github.com/davidfowl/TodoApi/blob/main/TodoApi/Program.cs)
 
-A larger real-world example: a complete TODO API by David Fowler (one of the ASP.NET Core architects).
-
-## The five questions
-
-For each file, answer in 1-2 sentences each, in your `journal/3.0-reading.md`:
+For each file, answer these five questions in your `journal/3.0-reading.md` (template at the bottom of this lesson). One or two sentences each — handwritten reasoning, not Wikipedia summaries.
 
 1. **What does this file do, in one English sentence?**
-2. **What's the very first thing it sets up?** (`builder = WebApplication.CreateBuilder(args);` — what does that do?)
-3. **List the endpoints in order. For each: HTTP verb, path, what it returns.**
-4. **Find one thing that surprises you.** It might be a syntax (`builder.Services.AddSingleton<X>()`) or a pattern (`MapGroup("/todos")`). Write down what you don't yet understand.
-5. **Find one thing you think you understand. Write a one-sentence summary.** When we cover it formally next module, check whether you were right.
+2. **What's the very first thing it sets up?** (`builder = WebApplication.CreateBuilder(args);` — what does that line actually do?)
+3. **List the endpoints in order.** For each one: HTTP verb, path, what it returns.
+4. **Find one thing that surprises you.** Some syntax you've never seen, a pattern you don't recognise. Write down what you don't yet understand.
+5. **Find one thing you think you understand. Write a one-sentence summary.** When we cover it formally next module, you'll check whether you were right.
 
-> Don't Google answers as you read. The point is to *try* understanding, then *check yourself* later. Wrong guesses are part of how you build judgement.
+> Don't search for answers as you read. The point is to *try* understanding, then *check yourself* later. Wrong guesses are part of how you build judgement — they're where the new knowledge actually fits.
 
 ## Smell test
 
-While reading, also note:
+While you're reading, also note things that look a bit off. Real codebases are full of these. Examples:
 
-- Anything that looks copy-pasted (might want to extract a helper)
+- Anything that looks copy-pasted that could have been a helper
 - Variable names that say nothing (`var thing = ...`)
-- Long methods doing many things
-- Magic numbers (`if (x > 100)` — why 100?)
+- Long methods doing many different things
+- Magic numbers — `if (x > 100)` — why a hundred? Where does that number come from?
 
-You'll see all of these in real codebases. **Most of the time the answer is "yes, it's not great, but the cost of fixing is higher than the cost of leaving."** That's also a senior judgement: knowing what to fix and what to live with.
+Most of the time, the answer for code in the wild is *"yes, it's not perfect, but the cost of fixing is higher than the cost of leaving."* Knowing what to fix and what to live with is also a senior judgement. Reading like this is how you build the eye for it.
 
-## Delta starter
+## What ships in the starter
 
-This module is reading + a journal entry. The starter ships:
+This module is reading plus a journal entry. The starter folder ships:
 
-- `journal/3.0-reading.md` template — five questions to fill in for each file
+- `journal/3.0-reading.md` — a template with the five questions to fill in for each file
 
 No code. No tests. The artefact is your written notes.
 
-`journal/3.0-reading.md` template:
+The template:
 
 ```markdown
 # Module 3.0 — Reading code
@@ -91,27 +90,31 @@ No code. No tests. The artefact is your written notes.
 
 ## Tinker
 
-- Read a third file: pick *anything* in the `dotnet/aspnetcore` repo that interests you. Time-box: 15 minutes. Whatever you read, write one sentence about it in your journal.
-- Compare the two files: how do their styles differ? `MvcSandbox` is a one-screen demo; `TodoApi` is a real app. Both are written by experts; neither is wrong. **Style varies by purpose.**
-- Commit your `journal/3.0-reading.md` to your repo. **Reading-and-noting is real work.** Make it visible in your git log.
+Pick a third file from the `dotnet/aspnetcore` repo — anything that catches your eye. Time-box it to fifteen minutes. Whatever you read, write one sentence about it in your journal.
 
-## Name it
+Compare the two files you read. How do their styles differ? `MvcSandbox` is a one-screen demo; `TodoApi` is a real application. Both are written by people who know the framework deeply. Neither is wrong. Style varies by purpose, and noticing that is itself a step forward.
 
-- **Read-don't-write hour.** Time deliberately reserved for reading code, not editing it.
-- **Call graph (informal).** Mapping who calls what; a way to read a codebase by following the threads.
-- **Smell.** A pattern that makes you uneasy. Not always a bug. Worth noticing.
-- **Five questions.** A reusable mini-protocol for any unfamiliar file: what / first setup / endpoints / surprise / claimed understanding.
+Commit your `journal/3.0-reading.md` to your repo. Reading-and-noting is real work, and a real commit makes it visible in your git log. Future-you scrolling through commits in three months will see *"yep, that was the day I started reading other people's code on purpose."*
 
-## The rule of the through-line
+## Reading as a deliverable
 
-> **Treat reading as a deliverable. The notes in `journal/3.0-reading.md` are your artefact for this module.**
+The notes you write today are the artefact for this module. Coming sessions will refer back to them — *"compare the surprise you wrote down to what we just learned."* The journal is the through-line; treat it like any other commit.
 
-Coming sessions will refer back to those notes — *"compare the surprise you wrote down to what we just learned."*
+## What you just did
 
-## Quiz / challenge
+You spent thirty minutes reading two real ASP.NET Core files written by the people who built the framework — and you wrote down what you saw, including what surprised you and what you guessed at. No code, no tests, just notes. That seems small, but it starts the habit that separates beginners from intermediates: senior developers read far more code than they write, and they read on purpose. By committing your `journal/3.0-reading.md` to your repo, you also treated reading as a real deliverable instead of an unpaid prerequisite. Next module you'll meet the same patterns from inside, in your own code.
 
-Open `quiz.md`.
+**Key concepts you can now name:**
 
-## Connect
+- **read-don't-write hour** — reading time set aside on purpose
+- **call graph** — following who calls what through a project
+- **smell** — a pattern that makes you uneasy, not always a bug
+- **the five questions** — a reusable mini-protocol for any unfamiliar file
 
-Module 3.1 starts the actual API: HTTP basics, the minimal API setup you just read about, and your first endpoint.
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 3.1 starts the actual API: HTTP basics, the minimal API setup you just read about, and your first endpoint serving your kingdom over the internet.

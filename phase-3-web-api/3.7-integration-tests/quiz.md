@@ -1,39 +1,41 @@
 # Quiz — Module 3.7
 
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+
 ## 1. What's the difference between a unit test and an integration test?
 
-a. They're identical
-b. Unit tests exercise one component in isolation; integration tests exercise multiple together — catching seam bugs (routing, serialisation, auth wiring)
-c. Integration tests are deprecated
-d. Unit tests are slower
+- **a.** They are different names for the same kind of test
+- **b.** Unit tests exercise one component in isolation; integration tests exercise multiple together — catching seam bugs (routing, serialisation, auth wiring)
+- **c.** Integration tests have been deprecated since .NET 9
+- **d.** Unit tests are slower and integration tests are faster
 
 ## 2. What does `WebApplicationFactory<Program>` do?
 
-a. Compiles the project
-b. Boots your whole API in-process (no real port) and gives you an `HttpClient` to make real requests against it
-c. Mocks all dependencies
-d. Disables auth
+- **a.** Compiles the project into a DLL ready for deployment
+- **b.** Boots your whole API in-process (no real port) and gives you an `HttpClient` to make real requests against it
+- **c.** Mocks every dependency in the application
+- **d.** Disables authentication on every endpoint
 
 ## 3. Why does `Program.cs` end with `public partial class Program { }`?
 
-a. Required by the framework
-b. So `WebApplicationFactory<Program>` can reference the `Program` type — the top-level Program class needs to be visible to the test project
-c. Style preference
-d. Documentation
+- **a.** It's required by every ASP.NET Core project
+- **b.** So `WebApplicationFactory<Program>` can reference the `Program` type — top-level Program needs to be visible to the test project
+- **c.** It is a stylistic preference with no real effect
+- **d.** It enables OpenAPI documentation generation
 
-## 4. The lesson recommends ~5-10 integration tests. Why so few?
+## 4. The lesson recommends roughly five to ten integration tests. Why so few?
 
-a. They're slower and more brittle than unit tests. Cover the critical seams — auth-required, OpenAPI spec, key endpoints — and rely on unit tests for breadth.
-b. They're hard to write
-c. The framework limits them
-d. Required by Microsoft
+- **a.** They're slower and more brittle than unit tests. Cover the critical seams — auth-required, OpenAPI spec, key endpoints — and rely on unit tests for breadth.
+- **b.** They are difficult to write and best avoided
+- **c.** The framework limits how many can run in one project
+- **d.** Microsoft requires a maximum count for performance reasons
 
 ## 5. Why use a per-fixture temp DB?
 
-a. So tests don't interfere with each other or your dev DB. Each fixture gets a fresh DB; gone after the run.
-b. Performance
-c. Required by EF
-d. To save bandwidth
+- **a.** So tests don't interfere with each other or with your dev DB. Each fixture gets a fresh DB; it's gone after the run.
+- **b.** Pure performance — temp DBs are faster than disk-based ones
+- **c.** EF Core requires a unique DB path on every test invocation
+- **d.** To save bandwidth on continuous integration runs
 
 ---
 

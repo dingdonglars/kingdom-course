@@ -1,4 +1,4 @@
-## M4 — Block 5 — Live API
+## M4 — Phase 3 — Live API
 
 - **Live URL:** `https://kingdom-api-_______.azurewebsites.net`
 - Friends sign in with Google + play

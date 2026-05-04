@@ -1,39 +1,41 @@
 # Quiz — Module 3.1
 
-## 1. Which of these is the *verb* in `GET /kingdom HTTP/1.1`?
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
 
-a. `kingdom`
-b. `GET`
-c. `HTTP/1.1`
-d. `/kingdom`
+## 1. Which part of `GET /kingdom HTTP/1.1` is the *verb*?
 
-## 2. What's an *idempotent* HTTP method?
+- **a.** `kingdom`
+- **b.** `GET`
+- **c.** `HTTP/1.1`
+- **d.** `/kingdom`
 
-a. One that's been deprecated
-b. One where doing it twice has the same effect as doing it once. `GET`, `PUT`, `DELETE` are idempotent; `POST` typically isn't.
-c. One that returns JSON
-d. One that requires authentication
+## 2. What does it mean for an HTTP method to be *idempotent*?
 
-## 3. What does the `4xx` family of status codes mean?
+- **a.** Doing it twice has the same effect as doing it once — `GET`, `PUT`, `DELETE` are idempotent; `POST` typically isn't
+- **b.** It returns JSON instead of plain text
+- **c.** It requires the client to be signed in
+- **d.** It has been replaced by a newer method
 
-a. Server's fault
-b. Client sent something wrong (bad request, not found, unauthorized, forbidden)
-c. Success
-d. Redirect
+## 3. What does the 4xx family of status codes mean?
 
-## 4. What does `app.MapGet("/kingdom", () => ...)` do?
+- **a.** The request succeeded
+- **b.** The client sent something wrong — bad request, not found, unauthorized, forbidden
+- **c.** The server crashed or hit a problem of its own
+- **d.** The server is asking the client to redirect somewhere else
 
-a. Sends a GET request
-b. Registers a route — when an HTTP `GET /kingdom` arrives, run the lambda and serialise its return value to JSON
-c. Creates a new endpoint URL
-d. Configures logging
+## 4. What does `app.MapGet("/kingdom", () => ...)` actually do?
 
-## 5. The lesson says "the API is a shell." What's that mean here?
+- **a.** Sends a `GET` request out to another server
+- **b.** Registers a route — when a `GET /kingdom` arrives, run the lambda and turn its return value into JSON
+- **c.** Creates a brand-new endpoint URL on the public internet
+- **d.** Configures logging for the application
 
-a. ASP.NET runs in a shell
-b. HTTP is just one more way to talk to the engine; the engine doesn't change. Same as Console (M1.10), Persistence (Block 4), now Web API.
-c. The shell is the operating system
-d. It's a metaphor with no real meaning
+## 5. The lesson says *the API is another outer layer*. What's that mean here?
+
+- **a.** ASP.NET runs inside an operating system shell
+- **b.** HTTP is just one more way to talk to the engine; the engine itself doesn't change. Same as console, same as persistence, now web API.
+- **c.** The shell is the operating system the server runs on
+- **d.** It's a metaphor without a concrete meaning
 
 ---
 

@@ -1,13 +1,16 @@
-# Module 3.8 — Deploy to Azure + GitHub Actions CI/CD
+# Module 3.8 — Deploy to Azure Plus GitHub Actions CI/CD
 
-> **Hook:** today the kingdom is *on the internet*. A real URL — `https://kingdom-api-yourname.azurewebsites.net` — that anyone can visit. **And every push to `main` redeploys automatically** via GitHub Actions. From "code on my laptop" to "live URL with auto-deploy" in one module.
+Today the kingdom is *on the internet*. A real URL — `https://kingdom-api-yourname.azurewebsites.net` — that anyone in the world can visit. And every push to `main` redeploys the site automatically via GitHub Actions. From *code on my laptop* to *live URL with auto-deploy* in one module.
+
+This is also the module where we slow down on **production hygiene** for a moment. Secrets stay out of the repo. HTTPS is on. Logs are structured. The patterns you set today are the ones you'll keep for the rest of your career.
 
 > **Words to watch**
-> - **App Service (Azure)** — managed hosting for web apps; Free F1 tier costs $0
-> - **CI/CD** — Continuous Integration / Continuous Deployment — auto-build, auto-deploy on push
+>
+> - **App Service (Azure)** — managed hosting for web apps; the Free F1 tier costs nothing
+> - **CI/CD** — Continuous Integration and Continuous Deployment — auto-build, auto-deploy on push
 > - **GitHub Actions** — workflow runner built into GitHub; YAML files in `.github/workflows/`
 > - **publish profile** — credentials Azure provides for deploys
-> - **environment variables** — production config (no secrets in repo, ever)
+> - **environment variables** — production config; never secrets in the repo, ever
 
 ---
 
@@ -15,15 +18,15 @@
 
 Three reasons:
 
-1. **Free F1 tier** — $0/month. Limits: 1GB RAM, shared CPU, sleeps after 20 min idle, 60 min/day compute. Plenty for a learning project.
-2. **Native .NET hosting** — no Docker needed for the simplest path; just push the build artefact.
-3. **GitHub integration** — Azure has a one-click "deploy from GitHub" wizard that sets up the action for you.
+1. **Free F1 tier** — $0/month. Limits: 1 GB RAM, shared CPU, sleeps after 20 minutes idle, 60 minutes of compute per day. Plenty for a learning project.
+2. **Native .NET hosting** — no Docker container needed for the simplest path; just push the build artefact.
+3. **GitHub integration** — Azure has a one-click *deploy from GitHub* wizard that sets up the action for you.
 
-(Alternatives: Azure Container Apps, Render, Fly.io, AWS App Runner. Same patterns, different consoles.)
+Alternatives: Azure Container Apps, Render, Fly.io, AWS App Runner. Same patterns, different consoles.
 
-## The deploy in 5 manual steps (one-time)
+## The deploy in five manual steps (one-time)
 
-> **Heads up — real cloud setup. These steps are best followed with the Azure portal open. Document each step in `journal/3.8-deploy-api.md`.**
+> **Heads up — real cloud setup. Best followed with the Azure portal open. Document each step in `journal/3.8-deploy-api.md`.**
 
 1. **Create an App Service**
    - portal.azure.com → Create resource → Web App
@@ -31,12 +34,12 @@ Three reasons:
    - Runtime stack: .NET 10 (or latest LTS)
    - Pricing: **F1 Free**
    - Region: nearest to you (latency)
-2. **Add the OAuth redirect URI to your Google client** — in Google Cloud Console:
+2. **Add the OAuth redirect URI to your Google client** in Google Cloud Console:
    - `https://kingdom-api-<yourname>.azurewebsites.net/signin-google`
 3. **Set production environment variables** in the App Service → Configuration:
    - `Google__ClientId` = your prod (or same dev) client id
    - `Google__ClientSecret` = the secret
-   - (Note: double underscore `__` becomes `:` for ASP.NET config — `Google:ClientId`)
+   - Note: double underscore `__` becomes `:` for ASP.NET config — `Google:ClientId`
 4. **Get the publish profile** (or set up Federated identity):
    - App Service → Get publish profile → download the `.PublishSettings` file
 5. **Add the publish profile to GitHub Secrets**:
@@ -109,9 +112,9 @@ Read what this does:
 - **`on: push: branches: [main]`** — runs on every push to `main`
 - **Job 1 (`build`)** — restore, build, test, publish to a `publish/` directory; upload as an artifact
 - **Job 2 (`deploy`)** — download the artifact; deploy to Azure
-- **Tests run before deploy.** A failing test fails the deploy. **CI is the gatekeeper.**
+- **Tests run before deploy.** A failing test fails the deploy. **CI is the guard.**
 
-Commit + push the workflow:
+Commit and push the workflow:
 
 ```powershell
 git add .github/workflows/deploy.yml
@@ -119,7 +122,7 @@ git commit -m "[infra] add deploy-to-Azure workflow"
 git push
 ```
 
-GitHub → Actions tab → watch the workflow run. ~3 minutes later, your site is live.
+GitHub → Actions tab → watch the workflow run. About three minutes later, your site is live.
 
 ## Production hygiene checklist
 
@@ -127,34 +130,41 @@ GitHub → Actions tab → watch the workflow run. ~3 minutes later, your site i
 - [x] **HTTPS only**: App Service → TLS/SSL settings → "HTTPS Only = On"
 - [x] **OAuth redirect**: prod URL added to Google client
 - [x] **Logging**: structured logs visible in App Service → Log stream
-- [ ] **DB**: SQLite on App Service is fine for a hobby project, but the file is ephemeral on free tier (lost on restart). **For Module 3.9 / future:** swap to Azure SQL Database (still free tier eligible) or PostgreSQL.
-- [ ] **Custom domain + cert**: optional; auto-managed if you upgrade off Free.
-- [ ] **Monitoring**: Application Insights (free tier) for real metrics + traces.
+- [ ] **DB**: SQLite on App Service is fine for a hobby project, but the file is ephemeral on Free tier (lost on restart). For Module 3.9 / future, swap to Azure SQL Database (still free-tier eligible) or PostgreSQL.
+- [ ] **Custom domain plus cert**: optional; auto-managed if you upgrade off Free tier.
+- [ ] **Monitoring**: Application Insights (free tier) for real metrics and traces.
 
 ## Tinker
 
-- After deploy, visit `https://kingdom-api-<yourname>.azurewebsites.net` — kingdom is live. Send the URL to a friend. They click "Sign In with Google," sign in, and start playing.
-- Watch `App Service → Log stream` while a friend uses it. **Your structured `LogInformation` calls show up in real time.**
-- Push a small change. Watch the action run. Watch the URL update. **That's the deploy loop you'll keep for years.**
-- Try `https://kingdom-api-<yourname>.azurewebsites.net/openapi/v1.json` — the OpenAPI spec is also live. Anyone can read your API contract.
+After deploy, visit `https://kingdom-api-<yourname>.azurewebsites.net`. Kingdom is live. Send the URL to a friend. They click Sign In with Google, sign in, start playing.
 
-## Name it
+Watch `App Service → Log stream` while a friend uses it. Your structured `LogInformation` calls show up in real time.
 
-- **App Service** — Azure's managed PaaS for web apps. Free F1 tier for hobby use.
-- **CI/CD** — auto-build + auto-deploy on push. The lubricant of any non-trivial project.
-- **GitHub Actions** — workflow runner via YAML files in `.github/workflows/`.
-- **Publish profile** — credentials for the deploy step.
-- **Environment variables (prod)** — config + secrets, set in the platform, *never* in the repo.
-- **HTTPS-only** — required for cookie auth. Toggle on in App Service settings.
+Push a small change. Watch the action run. Watch the URL update. That's the deploy loop you'll keep for years.
 
-## The rule of the through-line
+Try `https://kingdom-api-<yourname>.azurewebsites.net/openapi/v1.json` — the OpenAPI spec is also live. Anyone can read your API contract.
 
-> **Never deploy by hand twice.** The first manual deploy is fine; the second one means you should automate. Automation makes deploy boring. Boring deploy = frequent deploy = small changes = fast iteration.
+## The through-line
 
-## Quiz / challenge
+Never deploy by hand twice. The first manual deploy is fine; the second one means you should automate. Automation makes deploys boring; boring deploys mean frequent deploys; frequent deploys mean small changes; small changes mean fast iteration. The workflow you wrote today is the lubricant under everything you'll build from this point on.
 
-Open `quiz.md`.
+## What you just did
 
-## Connect
+You took your local API and put it on the public internet at a URL anyone can visit. You set up an Azure App Service on the Free tier, configured the production environment variables, downloaded a publish profile, and stored it as a GitHub secret. Then you wrote a GitHub Actions workflow that builds, tests, and deploys on every push to `main` — three minutes from `git push` to live URL. Tests guard the deploy, so a failing test fails the release. You also walked through the production-hygiene checklist: HTTPS-only, secrets out of repo, structured logs visible in the App Service log stream. The deploy loop you set up today is the loop you'll keep using for years.
 
-Module 3.9 closes Block 5: **M4 milestone close + AI Unlock**. The big one — after M4, the AI mode flag flips from `pre-unlock` (friction-only) to `post-unlock` (real assistance). Everything you build from Phase 4 onwards has the AI on as a real collaborator.
+**Key concepts you can now name:**
+
+- **App Service** — Azure's managed PaaS for web apps; Free F1 tier for hobby use
+- **CI/CD** — auto-build plus auto-deploy on push
+- **GitHub Actions** — workflow runner via YAML in `.github/workflows/`
+- **publish profile** — credentials for the deploy step, stored as a GitHub secret
+- **environment variables (prod)** — config and secrets, set in the platform, never the repo
+- **HTTPS-only** — required for cookie auth; toggle on in App Service settings
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 3.9 closes Phase 3: **the M4 milestone close plus the AI Unlock**. The big one — after M4, the AI mode flag flips from `pre-unlock` (friction-only) to `post-unlock` (real assistance). Everything you build from Phase 4 onwards has the AI on as a real collaborator.

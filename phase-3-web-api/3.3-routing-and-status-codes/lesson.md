@@ -1,12 +1,15 @@
-# Module 3.3 — Routing, Status Codes & Multi-Kingdom CRUD
+# Module 3.3 — Routing, Status Codes, and Multi-Kingdom CRUD
 
-> **Hook:** `POST /kingdoms` to create one. `GET /kingdoms` to list them. `GET /kingdoms/{id}` for a specific. `DELETE /kingdoms/{id}` to remove. **CRUD over HTTP** — every web API ever built. Plus the right status codes (201 on create, 404 on missing, 204 on delete) so clients know what happened.
+So far the API has been one kingdom in memory. Today the API supports many kingdoms, persisted via the EF store from Phase 2. `POST /kingdoms` to create one. `GET /kingdoms` to list them. `GET /kingdoms/{id}` for a specific one. `DELETE /kingdoms/{id}` to remove. This is **CRUD over HTTP** — *create, read, update, delete* — the pattern under every web API ever built.
+
+The other half of today is using the *right* status codes for each operation. 201 when a `POST` creates something; 404 when the resource doesn't exist; 204 when a delete succeeds. Clients branch on status codes — returning the wrong one isn't a small detail, it's a wire-level bug.
 
 > **Words to watch**
-> - **route parameter** — `{id}` in the path; bound to a method argument
-> - **`MapGroup`** — group routes that share a prefix, like a folder for endpoints
-> - **REST conventions** — informal rules for verb + path + status combinations
-> - **`Created` (201)** — the right status when a `POST` makes a new thing — includes a `Location` header pointing at the new resource
+>
+> - **route parameter** — `{id}` in the path, bound to a method argument
+> - **`MapGroup`** — group routes that share a path prefix, like a folder for endpoints
+> - **REST conventions** — informal rules everyone agrees on for verb plus path plus status combinations
+> - **`Created` (201)** — the right status for a successful `POST` that made a new thing; includes a `Location` header pointing at the new resource
 
 ---
 
@@ -20,17 +23,17 @@
 | Update | `PUT` | `/kingdoms/{id}` | 200 + updated, or 204 No Content | 404 / 400 |
 | Delete | `DELETE` | `/kingdoms/{id}` | 204 No Content | 404 |
 
-Following this lets any client developer guess the URL just from the verbs and entity names. **Conventions reduce the cognitive load** — the second client team writes itself.
+Following these conventions lets any client developer guess the URL just from the verb and the entity name. Conventions reduce the work of reading an API — the second client team writes itself, because they already know what to expect.
 
-## Delta starter
+## What ships in the starter
 
-Today's API switches from "one in-memory kingdom" to "many kingdoms, persisted via the EF store from Block 4."
+Today the API switches from *one in-memory kingdom* to *many kingdoms, persisted via the EF store from Phase 2*.
 
-- **NEW:** `Kingdom.Api/Dtos/CreateKingdomRequest.cs`, `KingdomCreated.cs`
-- **MODIFIED:** `Kingdom.Api/Program.cs` — uses `KingdomEfStore` + `MapGroup("/kingdoms")` + 5 endpoints
-- **MODIFIED:** `Kingdom.Api/Kingdom.Api.csproj` — already references Persistence (M3.1)
+- **NEW:** `Kingdom.Api/Dtos/CreateKingdomRequest.cs` and `KingdomCreated.cs`
+- **MODIFIED:** `Kingdom.Api/Program.cs` — uses `KingdomEfStore` plus `MapGroup("/kingdoms")` and five endpoints
+- **MODIFIED:** `Kingdom.Api/Kingdom.Api.csproj` — already references Persistence (from M3.1)
 
-## Step 1 — request/response DTOs
+## Step 1 — request and response DTOs
 
 `Dtos/CreateKingdomRequest.cs`:
 
@@ -61,7 +64,7 @@ using Kingdom.Persistence.EfCore;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-// One DB file per process. (Module 3.6 will switch to a configurable path.)
+// One DB file per process. (Module 3.6 switches this to a configurable path.)
 var dbPath = Path.Combine(AppContext.BaseDirectory, "kingdoms.db");
 var store = new KingdomEfStore(dbPath);
 store.EnsureCreated();
@@ -127,10 +130,10 @@ public partial class Program { }
 Five things to read carefully:
 
 1. **`MapGroup("/kingdoms")`** — every endpoint registered on `group` gets the `/kingdoms` prefix. Cleans up the path strings.
-2. **`{id:int}`** — route parameter with a *type constraint*. `/kingdoms/abc` won't match (no `int` parsing); `/kingdoms/5` does, with `id = 5`.
-3. **`Results.Created(uri, value)`** — the right answer for a successful POST. Sets status 201 *and* `Location: /kingdoms/5` header so the client knows the URL of the new thing.
-4. **`Results.NoContent()`** — 204 — successful, nothing to return. Standard for DELETE.
-5. **`try/catch (InvalidOperationException)`** — `store.Load` throws if missing; we translate to a 404. **Not great** — exception-as-control-flow. M3.4 will introduce `TryLoad` to handle this without exceptions.
+2. **`{id:int}`** — a route parameter with a *type constraint*. `/kingdoms/abc` won't match (no int parsing); `/kingdoms/5` does, with `id = 5`.
+3. **`Results.Created(uri, value)`** — the right answer for a successful `POST`. Sets status 201 *and* the `Location: /kingdoms/5` header so the client knows the URL of the new thing.
+4. **`Results.NoContent()`** — 204 — the operation succeeded, there's nothing to return. Standard for `DELETE`.
+5. **`try/catch (InvalidOperationException)`** — `store.Load` throws if the record is missing; we translate that to a 404. This is *not great* — it's exception-as-control-flow. M3.4 will introduce a `TryLoad` to handle the missing-record case without exceptions.
 
 ## Step 3 — try it all
 
@@ -151,27 +154,34 @@ Every status code from the table makes an appearance.
 
 ## Tinker
 
-- Try `POST /kingdoms` with `{"name": ""}`. **400 Bad Request.** With a missing body — also 400. The framework + your validation cover the obvious cases.
-- Add `app.MapGet("/kingdoms/{id:int}/buildings", ...)` returning the buildings of one kingdom.
-- Use `MapDelete` on `/kingdoms` (no id) to delete *all* kingdoms — risky! Most APIs require an explicit `?confirm=yes` flag for destructive batch ops.
-- Run two `POST /kingdoms` calls — observe the auto-incrementing ids.
+Try `POST /kingdoms` with `{"name": ""}`. You get a 400 Bad Request from your own validation. With a missing body, you also get a 400 — that one comes from the framework. Between you and the framework, the obvious cases are covered.
 
-## Name it
+Add `app.MapGet("/kingdoms/{id:int}/buildings", ...)` returning the buildings of one kingdom.
 
-- **Route parameter** (`{id}`). Path placeholder bound to a method argument. Use `:int` for type constraints.
-- **`MapGroup`** — share a path prefix among related endpoints.
-- **REST conventions** — informal rules everyone agrees on: verbs to mean what they mean, status codes to mean what they mean.
-- **201 Created** — the right success status for a successful POST that made a new thing.
-- **204 No Content** — success, nothing to send. Standard for DELETE.
+Use `MapDelete` on `/kingdoms` (no id) to delete *all* kingdoms — risky! Most APIs require an explicit `?confirm=yes` flag for destructive batch operations.
 
-## The rule of the through-line
+Run two `POST /kingdoms` calls in a row. Watch the auto-incrementing ids in the responses.
 
-> **Status codes are part of your API.** Returning the wrong one isn't a "minor detail"; it's a wire-shape bug. Clients branch on status. A `200 OK` with `{ "error": "not found" }` confuses every consumer.
+## The through-line
 
-## Quiz / challenge
+Status codes are part of your API. Returning the wrong one isn't a minor detail; it's a wire-level bug. Clients branch on status. A `200 OK` with `{ "error": "not found" }` confuses every consumer. Use 201 for creates, 204 for deletes, 404 for missing resources, 400 for bad input. The conventions exist so any client team can guess the right behaviour without reading your code.
 
-Open `quiz.md`.
+## What you just did
 
-## Connect
+You moved the API from one-kingdom-in-memory to many-kingdoms-in-the-database, with a full set of CRUD endpoints. You used `MapGroup("/kingdoms")` to share a path prefix across five handlers, route constraints (`{id:int}`) to reject malformed URLs at the framework layer, and `Results.Created`, `Results.NoContent`, `Results.NotFound` and `Results.BadRequest` to return the right status codes for the right reasons. You also met your first code smell — exception-as-control-flow in the missing-record case — and named it as something M3.4 will clean up.
 
-Module 3.4 introduces **OpenAPI/Swagger** — auto-generated documentation for the API you just built — and **logging**, the structured kind. Both turn a working API into one you can hand to another developer.
+**Key concepts you can now name:**
+
+- **route parameter** — path placeholder bound to a handler argument, with optional `:int` constraint
+- **`MapGroup`** — share a path prefix among related endpoints
+- **REST conventions** — verbs and status codes everyone agrees on
+- **201 Created** — successful POST that made something new, with a `Location` header
+- **204 No Content** — successful operation with nothing to return; standard for `DELETE`
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 3.4 introduces **OpenAPI (Swagger)** — auto-generated documentation for the API you just built — and **structured logging**. Both turn a working API into one you can hand to another developer without a tour.

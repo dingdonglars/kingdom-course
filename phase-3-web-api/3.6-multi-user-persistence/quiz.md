@@ -1,39 +1,41 @@
 # Quiz — Module 3.6
 
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+
 ## 1. Why does *every* store method take `ownerSub` as a parameter?
 
-a. To make the API verbose
-b. So a caller who forgets it gets a compile error, not a security bug. Mandatory parameters are guard rails.
-c. EF requires it
-d. To make tests easier
+- **a.** To make the API more verbose for documentation purposes
+- **b.** So a caller who forgets it gets a compile error rather than a security bug. Required parameters are guard rails.
+- **c.** Because EF Core's tracker requires a per-user identifier on every call
+- **d.** To make the unit tests simpler to write
 
 ## 2. What's the difference between authentication and authorisation?
 
-a. They're identical
-b. Authentication = *who are you* (sign-in). Authorisation = *what are you allowed to do* (e.g., access this kingdom)
-c. Authorisation runs before authentication
-d. Only one is needed
+- **a.** They are different spellings of exactly the same idea
+- **b.** Authentication answers *who are you* (sign-in). Authorisation answers *what are you allowed to do* (e.g., access this kingdom).
+- **c.** Authorisation always runs before authentication in ASP.NET
+- **d.** Only authentication is needed; authorisation is optional padding
 
 ## 3. Why prefer `sub` over `email` to identify the user in the database?
 
-a. `sub` is shorter
-b. `email` can change; `sub` (subject id) is permanent and globally unique
-c. `email` doesn't exist in claims
-d. Tradition
+- **a.** `sub` is shorter and saves a few bytes per row
+- **b.** `email` can change; `sub` (the subject id) is permanent and globally unique
+- **c.** `email` doesn't appear in the claims set Google returns
+- **d.** It's a tradition with no real reason behind it
 
-## 4. Why is the *cross-user* test (`Load other user's kingdom throws`) the most important one?
+## 4. Why is the *cross-user* test (*loading another user's kingdom throws*) the most important one?
 
-a. It catches the bug class that real-world breaches happen on. The "happy path" test wouldn't notice if you forgot the `WHERE OwnerSub = ?` clause.
-b. It runs faster
-c. Required by xUnit
-d. It's not particularly important
+- **a.** It catches the bug class real-world breaches actually happen on. The happy-path test wouldn't notice if you forgot the `WHERE OwnerSub = ?` clause.
+- **b.** It runs noticeably faster than the other tests
+- **c.** It's required by xUnit on multi-user projects
+- **d.** It's not particularly important compared to the others
 
 ## 5. Why does `HasIndex(k => k.OwnerSub)` matter?
 
-a. EF requires it
-b. Every list query is `WHERE OwnerSub = ?`. Without an index, the DB scans the whole table — slow as data grows. With an index, it's a direct lookup.
-c. For security
-d. Style preference
+- **a.** EF Core refuses to compile without an index on every queryable column
+- **b.** Every list query is `WHERE OwnerSub = ?`. Without an index, the DB scans the whole table — slow as data grows. With an index, it's a direct lookup.
+- **c.** It enables encryption on the column at rest
+- **d.** It is purely a stylistic preference with no runtime effect
 
 ---
 

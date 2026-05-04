@@ -1,10 +1,13 @@
-# Module 3.4 — OpenAPI/Swagger & Logging
+# Module 3.4 — OpenAPI and Structured Logging
 
-> **Hook:** today the API gets two adult features. **OpenAPI** auto-generates documentation — visit `/swagger` and a UI lets anyone (or any AI) explore your endpoints, send test requests, see responses. **Logging** writes structured records of every request — for debugging, performance, and the time something goes wrong in production.
+The API works, but right now the only way for someone else to know what it does is to read your source code. Today the API gets two grown-up features. **OpenAPI** auto-generates documentation — visit `/swagger` (or `/scalar/v1`) and a UI lets anyone explore your endpoints, send test requests, and see real responses. **Logging** writes structured records of every request — for debugging now, and for the moment six months from now when something goes wrong in production and you have to figure out what.
+
+Both features are cheap to add today and very expensive to add when production is on fire. We add them now while the API is small enough to grasp end-to-end.
 
 > **Words to watch**
-> - **OpenAPI** — a standard description format for HTTP APIs (formerly Swagger; now both names are used)
-> - **Swagger UI** — the interactive HTML page generated from an OpenAPI spec
+>
+> - **OpenAPI** — a standard description format for HTTP APIs (formerly called Swagger; both names still appear)
+> - **Swagger UI / Scalar** — interactive HTML pages generated from an OpenAPI spec
 > - **structured logging** — log entries with named fields, not just text strings
 > - **`ILogger<T>`** — ASP.NET Core's logger interface, dependency-injected per consumer
 
@@ -12,15 +15,15 @@
 
 ## Why OpenAPI
 
-**Without OpenAPI:** the only way to know your API is to read the source code or read your README. Clients re-invent assumptions. The first wrong call is in production.
+Without OpenAPI, the only way to know your API is to read the source code or read your README. Clients re-invent assumptions. The first wrong call lands in production.
 
-**With OpenAPI:** there's a machine-readable spec at `/openapi/v1.json`. The Swagger UI at `/swagger` shows every endpoint, its parameters, request/response shapes, status codes. **Anyone can call your API in 10 seconds without reading a line of C#.**
+With OpenAPI, there's a machine-readable spec at `/openapi/v1.json`. The Swagger UI at `/swagger` shows every endpoint, its parameters, request/response shapes, and possible status codes. Anyone can call your API in ten seconds without reading a line of C#.
 
-In .NET 9+, OpenAPI is a single line: `builder.Services.AddOpenApi();` + `app.MapOpenApi();`.
+In .NET 9 and later, OpenAPI is one line each side: `builder.Services.AddOpenApi();` plus `app.MapOpenApi();`.
 
 ## Why structured logging
 
-`Console.WriteLine($"User {userId} did action {action}")` is *string* logging. The log entry is unstructured text — to find "all actions by user 42," you grep.
+`Console.WriteLine($"User {userId} did action {action}")` is *string* logging. The log entry is unstructured text — to find "all actions by user 42," you grep through the file.
 
 **Structured** logging:
 
@@ -28,15 +31,15 @@ In .NET 9+, OpenAPI is a single line: `builder.Services.AddOpenApi();` + `app.Ma
 _log.LogInformation("User {UserId} did action {Action}", userId, action);
 ```
 
-The log entry is JSON-ish (depending on sink): `{ "msg": "User did action", "UserId": 42, "Action": "tick" }`. To find all actions by user 42, you query: `WHERE UserId = 42`. **The cost difference at 10k events: hours vs seconds.**
+The log entry is JSON-ish (depending on the destination): `{ "msg": "User did action", "UserId": 42, "Action": "tick" }`. To find every action by user 42, you query: `WHERE UserId = 42`. The cost difference at ten thousand log entries is hours versus seconds.
 
-`ILogger<T>` is the standard. Inject it; call `LogInformation`, `LogWarning`, `LogError`. The framework + your sink (Console / file / Application Insights / Seq) handle the rest.
+`ILogger<T>` is the standard. Inject it; call `LogInformation`, `LogWarning`, `LogError`. The framework plus your destination of choice (console, file, Application Insights, Seq) handle the rest.
 
-## Delta starter
+## What ships in the starter
 
-- **MODIFIED:** `Kingdom.Api/Kingdom.Api.csproj` — adds `Microsoft.AspNetCore.OpenApi` package
-- **MODIFIED:** `Kingdom.Api/Program.cs` — adds OpenAPI registration + endpoint, plus `ILogger` injection in two handlers
-- The `Console` and `Debug` log providers are already wired by default in ASP.NET Core templates.
+- **MODIFIED:** `Kingdom.Api/Kingdom.Api.csproj` — adds the `Microsoft.AspNetCore.OpenApi` package
+- **MODIFIED:** `Kingdom.Api/Program.cs` — adds OpenAPI registration plus the endpoint, and `ILogger` injection in two handlers
+- The console and debug log destinations are already wired by default in ASP.NET Core templates.
 
 ## Step 0 — install OpenAPI
 
@@ -58,9 +61,9 @@ var app = builder.Build();
 app.MapOpenApi();                           // <-- expose /openapi/v1.json
 ```
 
-Run: visit `http://localhost:5xxx/openapi/v1.json`. JSON of your entire API.
+Run, then visit `http://localhost:5xxx/openapi/v1.json`. JSON of your entire API.
 
-For the interactive UI, add **Scalar** (the modern lightweight alternative to Swashbuckle's Swagger UI):
+For an interactive UI, add **Scalar** — a modern lightweight alternative to the older Swashbuckle Swagger UI:
 
 ```powershell
 dotnet add package Scalar.AspNetCore
@@ -71,13 +74,13 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference();            // serves /scalar/v1
 ```
 
-Visit `http://localhost:5xxx/scalar/v1` — beautiful interactive docs. **Click any endpoint, fill in the parameters, hit Try It.**
+Visit `http://localhost:5xxx/scalar/v1`. You get interactive docs you can click around. Pick any endpoint, fill in the parameters, hit Try It.
 
-(The older `Swashbuckle.AspNetCore` package serves the classic Swagger UI at `/swagger`. Both work; pick whichever feels nicer.)
+The older `Swashbuckle.AspNetCore` package serves the classic Swagger UI at `/swagger`. Both work; pick whichever feels nicer.
 
 ## Step 2 — add `ILogger`
 
-In a minimal-API handler, inject `ILogger<Program>` (or any class type) just by adding it as a parameter — the DI container provides it:
+In a minimal-API handler, you can inject `ILogger<Program>` (or any class type) just by adding it as a parameter — the dependency-injection container provides it for free:
 
 ```csharp
 group.MapPost("/", (CreateKingdomRequest req, ILogger<Program> log) =>
@@ -96,7 +99,7 @@ group.MapPost("/", (CreateKingdomRequest req, ILogger<Program> log) =>
 });
 ```
 
-Two log calls — one warning, one information. Run + create a kingdom + watch the console:
+Two log calls — one warning, one information. Run, create a kingdom, watch the console:
 
 ```
 warn: Program[0]
@@ -105,16 +108,16 @@ info: Program[0]
       Created kingdom 1 'Eldoria'
 ```
 
-The `{KingdomId}` and `{KingdomName}` are *placeholders* — Serilog/Application Insights / Seq capture them as named fields, not just substituted into text. **In production this is the difference between grep-and-pray and SQL-on-logs.**
+The `{KingdomId}` and `{KingdomName}` are *placeholders* — Serilog, Application Insights, or Seq capture them as named fields rather than just substituting them into text. In production, that's the difference between grep-and-pray and SQL-on-logs.
 
 Levels in order of severity:
 
-- `LogTrace` (very chatty)
-- `LogDebug` (development only)
-- `LogInformation` (normal events)
-- `LogWarning` (something off, app continues)
-- `LogError` (something failed, user-visible)
-- `LogCritical` (everything-on-fire)
+- `LogTrace` — very chatty
+- `LogDebug` — development only
+- `LogInformation` — normal events
+- `LogWarning` — something off, app continues
+- `LogError` — something failed, user-visible
+- `LogCritical` — everything-on-fire
 
 ## Step 3 — config
 
@@ -131,32 +134,38 @@ Levels in order of severity:
 }
 ```
 
-`Microsoft.AspNetCore` is set to `Warning` so the framework's chatter doesn't drown out your messages. Tune to taste.
+`Microsoft.AspNetCore` is set to `Warning` so the framework's built-in chatter doesn't drown out your messages. Tune to taste.
 
 ## Tinker
 
-- Visit `/scalar/v1`, click `POST /kingdoms`, hit "Try It," fill in `{ "name": "Test" }`, see the 201 + Location header. **Anyone can do this**, including a future Athos in 6 months who forgot the API shape.
-- Add `app.UseSerilogRequestLogging();` after installing `Serilog.AspNetCore` — every request gets a single log line with method, path, status, duration. **Free observability.**
-- Try `LogLevel.Debug` for one handler — observe the increased verbosity. Then notice: when `LogLevel.Default = Information`, your `LogDebug` calls don't appear. Filtering happens *before* the message is rendered.
-- Add `[ProducesResponseType(StatusCodes.Status201Created)]` style annotations (or the minimal-API equivalent `Produces<T>(...)`) so the OpenAPI spec lists the possible status codes for each endpoint.
+Visit `/scalar/v1`, click `POST /kingdoms`, hit Try It, fill in `{ "name": "Test" }`, and watch the 201 plus the `Location` header come back. Anyone can do this — including future-you in six months who forgot the API's exact layout.
 
-## Name it
+Add `app.UseSerilogRequestLogging();` after installing `Serilog.AspNetCore`. Every request now gets a single log line with method, path, status, and duration. Free observability.
 
-- **OpenAPI** — the spec format (JSON or YAML) describing an API.
-- **Swagger UI / Scalar** — interactive HTML docs generated from an OpenAPI spec.
-- **`AddOpenApi()` + `MapOpenApi()`** — .NET 9+'s built-in OpenAPI generator (no Swashbuckle needed).
-- **`ILogger<T>`** — DI'd logger; T is the calling class for log categorisation.
-- **Structured logging** — log entries with named fields, queryable.
-- **Log level** — `Information` / `Warning` / `Error` etc. Filtering happens by level.
+Try `LogLevel.Debug` for one handler. Notice the increased verbosity. Then notice: when `LogLevel.Default = Information`, your `LogDebug` calls don't appear. Filtering happens *before* the message is rendered.
 
-## The rule of the through-line
+Add the minimal-API equivalent of `[ProducesResponseType(StatusCodes.Status201Created)]` — `Produces<T>(...)` — so the OpenAPI spec lists the possible status codes for each endpoint.
 
-> **Make your API legible and observable from day one.** OpenAPI documents the *shape*; structured logging captures the *behaviour*. Both are cheap to add early and *very* hard to add when production is on fire.
+## The through-line
 
-## Quiz / challenge
+Make your API legible and observable from day one. OpenAPI documents the *form* of each endpoint; structured logging captures the *behaviour*. Both are cheap to add early and very hard to add when production is on fire.
 
-Open `quiz.md`.
+## What you just did
 
-## Connect
+You turned your API from *a working endpoint set* into *a documented, observable service*. Three new lines added the OpenAPI spec, the Scalar UI, and structured logs to your handlers. Anyone can now hit `/scalar/v1` and explore your API without reading a line of C#. Every request you handle leaves a structured record with named fields that real log tools can query. Two skills that took years to standardise across the industry, available from the start of your API's life.
 
-Module 3.5 introduces **OAuth via Google** — letting users sign in. Production auth is a full topic; we do the smallest correct version (Google Sign-In + cookie auth). After 3.5, every request can know *which user* it's for.
+**Key concepts you can now name:**
+
+- **OpenAPI** — the spec format describing an API in JSON or YAML
+- **Swagger UI / Scalar** — interactive HTML docs generated from that spec
+- **`AddOpenApi` / `MapOpenApi`** — .NET's built-in OpenAPI generator, no third-party package needed
+- **`ILogger<T>`** — DI-supplied logger; the type parameter is the calling class for filtering
+- **structured logging** — log entries with named fields, queryable later
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 3.5 introduces **OAuth via Google** — letting users sign in. Production auth is a full topic; we do the smallest correct version (Google Sign-In plus cookie auth). After 3.5, every request can know *which user* it's for.

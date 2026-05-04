@@ -4,7 +4,7 @@
 - [ ] Write the M4 entry in `journal/wins.md`
 - [ ] Take a screenshot of your live URL + Scalar (`/scalar/v1`)
 - [ ] Post the screenshot + before/after one-liner to `#wins`
-- [ ] Tag locally: `git tag m4-block-5-complete && git push origin m4-block-5-complete`
+- [ ] Tag locally: `git tag m4-phase-3-complete && git push origin m4-phase-3-complete`
 
 ## AI Unlock (THE BIG ONE)
 - [ ] Edit `ai-context/CLAUDE.md` line 7 in **your repo** — change `pre-unlock` → `post-unlock`

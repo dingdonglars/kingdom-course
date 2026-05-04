@@ -1,25 +1,28 @@
 # Module 3.6 — Multi-User Persistence
 
-> **Hook:** today every kingdom belongs to a *user*. The signed-in user's `sub` is stored alongside every save. `GET /kingdoms` returns *only your* kingdoms — never anyone else's. This is what makes the API a real multi-user product instead of a global free-for-all.
+Today every kingdom belongs to a *user*. The signed-in user's `sub` is stored alongside every save. `GET /kingdoms` returns *only your* kingdoms — never anyone else's. This is what turns the API from a global free-for-all into a real multi-user product.
+
+The change is small in lines of code. It's enormous in importance. Multi-user data is *the* most-bug-prone code in any web app, and the bugs are quiet: one user sees another user's data, or modifies it, and nobody notices for weeks. The fix is a single `WHERE` clause; the cost of forgetting is enormous. We're going to bake the discipline in now, while the codebase is small enough to grasp end-to-end.
 
 > **Words to watch**
+>
 > - **owner** — the user who created the resource (we use Google's `sub` claim)
-> - **authorisation** (vs. authentication) — auth*entication* is "who are you"; auth*orisation* is "what are you allowed to do"
-> - **scoped query** — every `WHERE` clause includes `OwnerSub = currentUser` to prevent cross-user reads/writes
-> - **migration with data preservation** — adding a non-null column to a table with existing rows requires a default
+> - **authorisation** vs. **authentication** — auth*entication* is *who are you*; auth*orisation* is *what are you allowed to do*
+> - **scoped query** — every `WHERE` clause includes `OwnerSub = currentUser` to prevent cross-user reads or writes
+> - **migration with data preservation** — adding a non-null column to a table with existing rows requires a default value
 
 ---
 
 ## Why this matters more than it looks
 
-Multi-user data is *the* most-bug-prone code in any web app. The bugs are quiet: one user sees another user's data, or modifies it. **The fix is small (one `WHERE` clause), the cost of forgetting is enormous.** We codify the discipline now.
+This is the bug class that lands on the front page when it goes wrong. The classic version: a user types `/kingdoms/1234` into the URL bar, and gets back somebody else's kingdom. The fix is one `WHERE OwnerSub = ?` clause; the absence of that clause is what lets the bug exist. We codify the discipline now so it's automatic forever.
 
-## Delta starter
+## What ships in the starter
 
 - **MODIFIED:** `Kingdom.Persistence/EfCore/KingdomEntity.cs` — adds `string OwnerSub` (foreign-key-like, indexed)
 - **NEW migration:** `dotnet ef migrations add AddOwnerSub` (you run this)
 - **MODIFIED:** `Kingdom.Persistence/EfCore/KingdomEfStore.cs` — every method takes `ownerSub` and scopes its query
-- **MODIFIED:** `Kingdom.Api/Program.cs` — reads `sub` from the auth cookie and passes to the store
+- **MODIFIED:** `Kingdom.Api/Program.cs` — reads `sub` from the auth cookie and passes it to the store
 - **NEW:** `tests/Kingdom.Persistence.Tests/MultiUserTests.cs`
 
 ## Step 1 — entity gets `OwnerSub`
@@ -49,11 +52,11 @@ Then generate the migration:
 dotnet ef migrations add AddOwnerSub --project Kingdom.Persistence --startup-project Kingdom.Console
 ```
 
-The generated migration will add the column. **For existing rows, EF will use the default `""`** — meaning they'll be unowned. Real production migrations would either backfill or refuse to add the column without a strategy. For our learning DB, the default is fine.
+The generated migration adds the column. For existing rows, EF will use the default `""` — meaning they'll be unowned. Real production migrations would either backfill the column or refuse to add it without a strategy. For our learning DB, the default is fine.
 
 ## Step 2 — store methods take `ownerSub`
 
-Every public method gains a `string ownerSub` parameter and scopes the query:
+Every public method gains a `string ownerSub` parameter and scopes the query. Notice the LINQ break-before-the-dot pattern when the chain has three or more methods:
 
 ```csharp
 public int Save(string ownerSub, Kingdom.Engine.Kingdom kingdom)
@@ -83,14 +86,15 @@ public Kingdom.Engine.Kingdom Load(string ownerSub, int id, IRandom rng, IClock 
 public IReadOnlyList<KingdomSlotInfo> ListSlots(string ownerSub)
 {
     using var ctx = new KingdomDbContext(_dbPath);
-    return ctx.Kingdoms.AsNoTracking()
-        .Where(k => k.OwnerSub == ownerSub)                   // <-- scoped list
+    return ctx.Kingdoms
+        .AsNoTracking()
+        .Where(k => k.OwnerSub == ownerSub)
         .OrderBy(k => k.Id)
         .Select(k => new KingdomSlotInfo(k.Id, k.Name, k.Day))
         .ToList();
 }
 
-// Same pattern for Update + Delete: WHERE Id = id AND OwnerSub = ownerSub
+// Same pattern for Update and Delete: WHERE Id = id AND OwnerSub = ownerSub
 ```
 
 The bug-resistant pattern: **`ownerSub` is a required parameter on every method.** A caller who forgets it gets a compile error, not a security bug. Don't make it optional.
@@ -102,7 +106,8 @@ static string GetOwnerSub(HttpContext ctx)
 {
     var sub = ctx.User.FindFirst("sub")?.Value
            ?? ctx.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-    return sub ?? throw new InvalidOperationException("No sub claim — request is unauthenticated.");
+    return sub ?? throw new InvalidOperationException(
+        "No sub claim — request is unauthenticated.");
 }
 
 group.MapGet("/", (HttpContext ctx) => store.ListSlots(GetOwnerSub(ctx)));
@@ -110,7 +115,8 @@ group.MapGet("/", (HttpContext ctx) => store.ListSlots(GetOwnerSub(ctx)));
 group.MapPost("/", (CreateKingdomRequest req, HttpContext ctx, ILogger<Program> log) =>
 {
     var sub = GetOwnerSub(ctx);
-    if (string.IsNullOrWhiteSpace(req.Name)) return Results.BadRequest(new { error = "Name is required." });
+    if (string.IsNullOrWhiteSpace(req.Name))
+        return Results.BadRequest(new { error = "Name is required." });
     var k = new Kingdom.Engine.Kingdom(req.Name.Trim(), rng, clock);
     var id = store.Save(sub, k);
     log.LogInformation("Created kingdom {KingdomId} for {OwnerSub}", id, sub);
@@ -158,29 +164,36 @@ public void Load_OfOtherUsersKingdom_Throws()
 }
 ```
 
-The second test is the one that would have caught the bug. **Always test the cross-user case.**
+The second test is the one that would catch the bug. Always test the cross-user case.
 
 ## Tinker
 
-- Sign in as User A, create a kingdom. Sign out. Sign in as User B (different Google account). `GET /kingdoms` is empty. Try `GET /kingdoms/<UserA_kingdom_id>` — `404` (the scoped lookup returns nothing, treated as not-found).
-- Drop the `&& k.OwnerSub == ownerSub` clause from `Load`. Run the tests — the cross-user test fails. **Restore the clause.** That's the test that earns its keep.
-- Add a `IsPublic boolean` field to allow players to share kingdoms read-only. Now scoped queries become `OwnerSub == ownerSub OR IsPublic == true`. Same discipline, slightly relaxed scope.
+Sign in as User A, create a kingdom. Sign out. Sign in as User B (a different Google account). `GET /kingdoms` is empty. Try `GET /kingdoms/<UserA_kingdom_id>` — 404. The scoped lookup returns nothing, treated as not-found.
 
-## Name it
+Drop the `&& k.OwnerSub == ownerSub` clause from `Load`. Run the tests — the cross-user test fails. Restore the clause. That's the test that earns its keep.
 
-- **Owner** — the user who created/owns a resource. We use Google `sub` (stable id).
-- **Scoped query** — every read/write filters by owner. Forgetting one is a real-world security bug.
-- **Authorisation** — what you're allowed to do with the resource (vs. authentication = who you are).
-- **`HasIndex(k => k.OwnerSub)`** — tells the DB to maintain an index on the column; lookup-by-owner stays fast as data grows.
+Add an `IsPublic` boolean field to allow players to share kingdoms read-only. Now scoped queries become `OwnerSub == ownerSub OR IsPublic == true`. Same discipline, slightly relaxed scope.
 
-## The rule of the through-line
+## The through-line
 
-> **Multi-user safety lives in the data layer, not the UI.** The UI can hide buttons, but if the API doesn't scope its queries, anyone with curl can read anyone's data. The `WHERE OwnerSub = ?` clause is the contract.
+Multi-user safety lives in the data layer, not the UI. The UI can hide buttons, but if the API doesn't scope its queries, anyone with `curl` can read anyone's data. The `WHERE OwnerSub = ?` clause is the contract.
 
-## Quiz / challenge
+## What you just did
 
-Open `quiz.md`.
+You turned the API from *one big shared kingdom database* into *each user sees only their own kingdoms*. The change was one new column (`OwnerSub`), one new index, and a `WHERE OwnerSub = ?` clause on every read and write. The bug-resistant pattern: make `ownerSub` a required parameter on every store method, so a caller who forgets it gets a compile error, not a 4 a.m. security incident. The cross-user test you wrote — *Load of another user's kingdom throws* — is the test that matters most; it's the test that would catch a missing `WHERE` clause before it ships. Two new tests, eighty-plus passing total.
 
-## Connect
+**Key concepts you can now name:**
 
-Module 3.7 introduces **integration tests** with `WebApplicationFactory<Program>`. Real HTTP, real auth, real DB — fully scripted, fully verified. The thing that gives you confidence to refactor without manual smoke testing every time.
+- **owner** — the user who owns a resource; we use Google's `sub` claim
+- **scoped query** — every read/write filters by owner
+- **authorisation** — what you're allowed to do (vs. authentication = who you are)
+- **`HasIndex(k => k.OwnerSub)`** — keeps lookup-by-owner fast as data grows
+- **the cross-user test** — the test that earns its keep when somebody refactors
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 3.7 introduces **integration tests** with `WebApplicationFactory<Program>`. Real HTTP, real auth, real DB — fully scripted, fully verified. The thing that gives you confidence to refactor without manually clicking through every endpoint.
