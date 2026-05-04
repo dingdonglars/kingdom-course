@@ -20,7 +20,7 @@ Git itself is already installed (you set it up on day 1, M0.0). VS Code already 
 
 The one extension that genuinely earns its place: **GitLens**. Install it now if you haven't.
 
-1. In VS Code, open Extensions (`Ctrl+Shift+X`).
+1. In VS Code, open Extensions (`Ctrl + Shift + X`).
 2. Search for *"GitLens — Git supercharged"* by GitKraken.
 3. Click **Install**.
 
@@ -28,7 +28,7 @@ GitLens adds inline blame on every line ("last edited by you, two months ago"), 
 
 ## Step 2 — opening the Source Control panel
 
-The Source Control panel is the second-to-top icon in VS Code's left sidebar — looks like a branch with a fork. Click it. (Or press `Ctrl+Shift+G` then `G`.)
+The Source Control panel is the second-to-top icon in VS Code's left sidebar — looks like a branch with a fork. Click it. (Or press `Ctrl + Shift + G G`.)
 
 You'll see three sections:
 
@@ -54,14 +54,14 @@ Click any modified file in *Changes*. VS Code opens a side-by-side diff: old ver
 
 The same view works on commits in history: with GitLens installed, opening the *Source Control* panel's history view and clicking a commit shows the diff for that commit, file by file. Useful for *"what did I actually change in last Tuesday's commit?"*
 
-For a graphical view of the whole DAG, GitLens adds a **Commit Graph** view (Ctrl+Shift+P → *"GitLens: Show Commit Graph"*). It's the closest thing to the picture you drew in B3.1 — branches, commits, parent links, all visual. When you find yourself running `git log --graph --all` more than twice in a session, switch to the graph view.
+For a graphical view of the whole DAG, GitLens adds a **Commit Graph** view (`Ctrl + Shift + P` → *"GitLens: Show Commit Graph"*). It's the closest thing to the picture you drew in B3.1 — branches, commits, parent links, all visual. When you find yourself running `git log --graph --all` more than twice in a session, switch to the graph view.
 
 ## Step 4 — when to fall back to the CLI
 
 The panel handles ~90% of daily moves. The CLI is faster for:
 
 - **Anything scripted** — git commands in PowerShell scripts, CI pipelines, etc.
-- **Operations the panel hides** — `git rebase -i`, `git cherry-pick`, `git reflog`, `git fsck`. The panel doesn't surface every command; the CLI exposes everything.
+- **Operations the panel hides** — `git rebase -i`, `git cherry-pick`, `git reflog`, `git fsck`. The panel doesn't have a button for every command; the CLI exposes everything.
 - **Working over SSH or in WSL** — you may not have VS Code there.
 - **When something is confusing** — sometimes the panel's abstraction hides what's actually happening; dropping to the CLI and reading `git status` is faster than guessing what the GUI is doing.
 

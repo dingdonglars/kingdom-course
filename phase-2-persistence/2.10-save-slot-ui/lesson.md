@@ -313,12 +313,19 @@ You wrapped your save-slot CRUD in a real interactive menu. `Program.cs` collaps
 
 ## Git move of the week — merge vs rebase (preview)
 
-By now your `git log` is thick with commits. Two ways to combine work from one branch into another, with different shapes:
+By now your `git log` is thick with commits. Two ways to combine work from one branch into another, with different histories:
 
-- **Merge** preserves the parallel-work shape with a *merge commit* joining two branches. Honest about how the work happened.
-- **Rebase** replays your commits on top of another branch, giving them new SHAs and a linear history. Cleaner to read; loses the parallel-work shape.
+- **Merge** preserves the parallel-work layout with a *merge commit* joining two branches. Honest about how the work happened.
+- **Rebase** replays your commits on top of another branch, giving them new SHAs (the unique fingerprint git uses to identify each commit) and a linear history. Cleaner to read; loses the parallel-work layout.
 
 In VS Code's Source Control panel: `...` menu → *Branch → Merge from* (or *Rebase from*). Pick the source branch.
+
+> **Same move, in the terminal:**
+>
+> ```powershell
+> git switch main && git merge feature/save-slots     # merge
+> git switch feature/save-slots && git rebase main    # rebase
+> ```
 
 The rule of thumb: **rebase your own unpushed branches** to clean them up before merging. **Merge** when work crosses into a shared branch like `main`. **Never rebase** a branch others might have pulled — their commits get new SHAs, theirs don't, and the next `git pull` is confused.
 

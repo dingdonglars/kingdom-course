@@ -1,11 +1,11 @@
 # Module 0.0 — Setup + Roast-O-Matic
 
-By the end of today you have a real program on your computer that prints roasts you wrote — and it's on the internet, in your own GitHub repo. Two and a half hours from now you'll have done what most people think takes weeks. We're going to install some tools, set up the folder where your year of work lives, write a tiny program, and push it where the world can see it.
+By the end of today you have a real program on your computer that prints roasts you wrote — and it's on the internet, in your own GitHub repo. About three hours from now you'll have done what most people think takes weeks. We're going to install some tools, set up the folder where your year of work lives, write a tiny program, and push it where the world can see it.
 
 ## What you need first
 
 - A Windows PC (you have this).
-- About two and a half hours uninterrupted.
+- About three hours uninterrupted. (Could be a bit less; could be a bit more if downloads are slow.)
 - Lars sitting next to you for the install part. The fun starts after that.
 
 ---
@@ -156,7 +156,7 @@ Hello, World!
 
 ### Do it — make it print roasts
 
-Open `Program.cs` in VS Code (it should already be visible in the file tree on the left). You'll see one line: `Console.WriteLine("Hello, World!");`. Replace it with the canonical demo (copy from `starter/Program.cs` in the course repo):
+Open `Program.cs` in VS Code (it should already be visible in the file tree on the left). You'll see one line: `Console.WriteLine("Hello, World!");`. Replace it with the standard demo (copy from `starter/Program.cs` in the course repo):
 
 ```csharp
 string[] roasts = {

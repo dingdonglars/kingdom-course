@@ -90,7 +90,7 @@ O ritmo é o ritmo de desenvolvedores trabalhando. Pegar isso agora significa n�
 
 ## Por onde começar
 
-Abra `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md`. É o dia um. Daqui a duas horas você vai ter mandado seu primeiro programa para o GitHub e postado seu primeiro `#wins`.
+Abra `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md`. É o dia um. Daqui a umas três horas você vai ter mandado seu primeiro programa para o GitHub e postado seu primeiro `#wins`.
 
 Outros documentos que vale saber que existem, mas você não precisa ler em ordem:
 

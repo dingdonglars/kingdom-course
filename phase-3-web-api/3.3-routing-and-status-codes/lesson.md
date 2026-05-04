@@ -182,7 +182,7 @@ You moved the API from one-kingdom-in-memory to many-kingdoms-in-the-database, w
 
 The thing nobody tells you about git: it almost never actually loses your work. Even after `git reset --hard`, even after a botched rebase, the commits are still in git's storage — git just stopped pointing at them.
 
-`git reflog` is the safety net. It shows every recent position of HEAD, in reverse order. As long as the SHA you want is still in the reflog (default ~30 days), you can recover it.
+`git reflog` (short for *reference log*) is the safety net. It shows every recent position of HEAD (git's "you are here" pointer), in reverse order. As long as the SHA (a commit's unique fingerprint) you want is still in the reflog — default ~30 days — you can recover it.
 
 > **This one's CLI-only — the panel doesn't have a button for it.**
 >

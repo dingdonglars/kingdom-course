@@ -43,7 +43,7 @@ git switch main
 git merge feature/farms
 ```
 
-Git creates a new commit, `M`, with *two parents* (`C6` from `main`, `C5` from `feature/farms`). The DAG now has a fork-and-join shape:
+Git creates a new commit, `M`, with *two parents* (`C6` from `main`, `C5` from `feature/farms`). The DAG now has a fork-and-join layout:
 
 ```
                             +-------+
@@ -164,7 +164,7 @@ git merge feature
 git log --oneline --graph --all
 ```
 
-You'll see the fork-and-join shape with a merge commit.
+You'll see the fork-and-join layout with a merge commit.
 
 **Reset and try rebase:**
 
@@ -177,19 +177,19 @@ git log --oneline --graph --all
 
 Now linear. The feature commits have new SHAs.
 
-Compare the two `git log --graph` outputs side by side. The first preserves the parallel-work shape; the second pretends the work happened in sequence.
+Compare the two `git log --graph` outputs side by side. The first preserves the parallel-work layout; the second pretends the work happened in sequence.
 
 ## Tinker
 
 Try `git rebase -i HEAD~3`. Interactive rebase opens an editor where you can reorder, squash, or edit your last three commits. Squash is the move you'll reach for most — combine three small commits into one neat one before merging.
 
-Read your kingdom repo's `git log --graph --all`. How many merge commits are there? How many points where two branches re-joined? That's the shape of how the year actually happened.
+Read your kingdom repo's `git log --graph --all`. How many merge commits are there? How many points where two branches re-joined? That's the layout of how the year actually happened.
 
 Try `git push --force-with-lease` in your sandbox after a rebase. Notice it succeeds when no one else has touched the branch.
 
 ## What you just did
 
-You met the two ways to combine git history — `merge` (preserves the parallel-work shape with a merge commit) and `rebase` (replays your commits onto a new base, producing linear history with new SHAs). You learned the rule of thumb: rebase your own unpushed branches; merge into shared branches; never rebase shared history. You met `force-push` and the safer `--force-with-lease`. You ran a sandbox where you saw the same two-branch situation produce two different DAG shapes depending on the choice.
+You met the two ways to combine git history — `merge` (preserves the parallel-work layout with a merge commit) and `rebase` (replays your commits onto a new base, producing linear history with new SHAs). You learned the rule of thumb: rebase your own unpushed branches; merge into shared branches; never rebase shared history. You met `force-push` and the safer `--force-with-lease`. You ran a sandbox where you saw the same two-branch situation produce two different DAG layouts depending on the choice.
 
 **Key concepts you can now name:**
 

@@ -194,9 +194,9 @@ You turned the API from *one big shared kingdom database* into *each user sees o
 
 Sooner or later, two branches change the same lines and git can't auto-merge. You'll see a message: *"Conflicts must be resolved."*
 
-In VS Code: open the conflicted file. Each conflicted hunk shows inline buttons — *Accept Current Change*, *Accept Incoming Change*, *Accept Both Changes*, *Compare Changes*. Click whichever applies for each hunk. Once every conflict is resolved, the file is no longer marked conflicted. Stage it, commit (the commit message is pre-filled with *"Merge branch ..."*), push.
+In VS Code: open the conflicted file. Each conflicted *hunk* (a contiguous block of changed lines) shows inline buttons — *Accept Current Change*, *Accept Incoming Change*, *Accept Both Changes*, *Compare Changes*. Click whichever applies for each hunk. Once every conflict is resolved, the file is no longer marked conflicted. Stage it, commit (the commit message is pre-filled with *"Merge branch ..."*), push.
 
-> **In the terminal**, conflicts appear as `<<<<<<<` / `=======` / `>>>>>>>` markers in the file. Edit the file by hand to keep the right version, remove the markers, run `git add <file>`, then `git commit` (or `git rebase --continue`).
+> **Same move, in the terminal:** conflicts appear as `<<<<<<<` / `=======` / `>>>>>>>` markers in the file. Edit the file by hand to keep the right version, remove the markers, run `git add <file>`, then `git commit` (or `git rebase --continue`).
 
 The discipline: **read both versions before picking.** Auto-accepting without reading is how silent bugs get merged.
 

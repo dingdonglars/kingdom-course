@@ -188,7 +188,7 @@ Your `kingdom` repo already has a `.gitignore` from the day-1 kit — open it at
 
 If you're confused why VS Code isn't offering a file you expected: check `.gitignore`. Most *"git is being weird about this file"* moments are this.
 
-> **In the terminal:** `git status --ignored` lists what git is currently ignoring — useful when you want to be sure.
+> **Same move, in the terminal:** `git status --ignored` lists what git is currently ignoring — useful when you want to be sure.
 
 ## Quiz
 

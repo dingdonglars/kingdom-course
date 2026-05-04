@@ -174,7 +174,7 @@ You've been opening pull requests by clicking around on github.com. The `gh` CLI
 
 After install, run `gh auth login` once to connect it to your GitHub account.
 
-> **This whole flow is CLI — `gh` is a command-line tool by design:**
+> **This one's CLI-only — the panel doesn't have a button for it.** `gh` is a command-line tool by design:
 >
 > ```powershell
 > gh pr create --title "M4 — Web API" --body "..."

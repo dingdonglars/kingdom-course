@@ -107,11 +107,11 @@ Pick a commit in the graph and click it — the right-side panel shows the messa
 > git show <hash>                               # one commit's diff
 > ```
 >
-> Same shape, same data; the panel is just a clearer rendering. Many B3 readers prefer the CLI for raw inspection — `git log --graph` is fast, scriptable, and works over SSH. Use both.
+> Same picture, same data; the panel is just a clearer rendering. Many B3 readers prefer the CLI for raw inspection — `git log --graph` is fast, scriptable, and works over SSH. Use both.
 
 ## Tinker
 
-Run `git cat-file -p HEAD`. This is the raw stored commit object — author, parent SHA, tree SHA, message. Git's underneath the hood is *just text files*.
+Run `git cat-file -p HEAD`. This is the raw stored commit object — author, parent SHA, tree SHA, message. Underneath, git is *just text files*.
 
 Run `git cat-file -p <tree-SHA>` (using the tree SHA from above). Trees list the files and folders in the snapshot. Drill in further with `git cat-file -p <file-blob-SHA>` and you'll see the file content itself. The whole model is just commits → trees → blobs, all keyed by SHA.
 

@@ -90,7 +90,7 @@ The rhythm is the rhythm of working developers. Picking it up now means you don'
 
 ## Where to start
 
-Open `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md`. That's day one. Two hours from now you'll have shipped your first program to GitHub and posted your first `#wins`.
+Open `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md`. That's day one. About three hours from now you'll have shipped your first program to GitHub and posted your first `#wins`.
 
 A few other docs you'll want to know exist, but don't have to read in order:
 

@@ -73,7 +73,7 @@ git switch -c rescue <SHA-from-reflog>     # if you'd rather create a branch
 git cherry-pick <SHA-from-reflog>          # if you only want one of the commits back
 ```
 
-The rescue works because the commits were never actually deleted — only orphaned. `reflog` showed you the SHA; everything else is moving a pointer.
+The rescue works because the commits were never actually deleted — only *orphaned* (no branch or tag pointing at them anymore). `reflog` showed you the SHA; everything else is moving a pointer.
 
 ## Step 3 — when the safety net runs out
 
