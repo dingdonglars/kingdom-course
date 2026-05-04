@@ -6,6 +6,8 @@ Daqui a um ano, você vai mandar um link de Roblox para os seus amigos e eles v�
 
 Antes dessa versão Roblox, você terá construído o mesmo jogo de quatro outras formas: como uma coisa que roda no seu terminal, como uma coisa que se salva num banco de dados para sobreviver entre sessões, como um site que seus amigos podem visitar numa URL pública real com login do Google, e como um jogo jogável em qualquer navegador. **Cinco versões funcionando da mesma ideia.** Cada uma te ensina um pedaço de como software de verdade é feito. Quando você chegar na versão Roblox, a engenharia já não vai ser a parte difícil — vai ser só tradução.
 
+Tem uma verdade que aparece por baixo de tudo isso. As habilidades não são brinquedo — são o que desenvolvedores de verdade usam para construir o software que você usa todo dia. No fim do ano, o que você entregou pode ser suficiente para conseguir uma vaga de desenvolvedor júnior: empresas pequenas regularmente contratam por portfólio, e o seu vai ser um portfólio real. Ou se você for para a faculdade ou um curso técnico, vai chegar lá com chão de verdade debaixo dos pés — o que torna a escolha do caminho mais fácil, e o sucesso depois mais provável. De qualquer jeito, você vai estar escolhendo de uma posição de força, não no chute.
+
 É assim que o ano se parece.
 
 ---

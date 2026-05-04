@@ -6,6 +6,8 @@ A year from now, you'll send a Roblox link to your friends and they'll play your
 
 Before that Roblox version, you'll have built the same game four other ways: as a thing that runs in your terminal, as a thing that saves itself to a database so it survives between sessions, as a website your friends can visit on a real public URL with their Google sign-in, and as a game playable in any browser. **Five working versions of the same idea.** Each one teaches you a chunk of how real software gets built. By the time you reach the Roblox version, the engineering is no longer the hard part — it's just translation.
 
+Here's what's quietly true about all of this. The skills aren't toys — they're what working developers actually use to build the software you use every day. By the end of the year, the work you've shipped could be enough to land you a junior developer job: small companies regularly hire on portfolio, and yours will be a real one. Or if you head into university or a technical course instead, you'll arrive with real ground already under your feet — which makes choosing the right path easier, and succeeding once you're on it more likely. Either way, you'll be choosing from a position of strength, not guessing.
+
 This is what the year looks like.
 
 ---
