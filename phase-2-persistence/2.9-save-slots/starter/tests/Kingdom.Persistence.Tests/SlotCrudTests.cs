@@ -34,7 +34,7 @@ public class SlotCrudTests
         {
             var store = new KingdomEfStore(path);
             var k = new global::Kingdom.Engine.Kingdom("X");
-            k.AddCitizen(new Citizens.Citizen("A"));
+            k.AddCitizen(new Kingdom.Engine.Citizens.Citizen("A"));
             var id = store.Save(k);
             for (int i = 0; i < 10; i++) k.AdvanceDay();
             store.Update(id, k);
