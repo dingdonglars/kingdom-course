@@ -46,6 +46,8 @@ No fim de qualquer fase, você pode decidir que terminou. Sem rancor, sem fracas
 
 As habilidades não são decorativas. Quando terminar, você vai genuinamente saber:
 
+> **Aviso — as palavras abaixo provavelmente parecem nada com nada agora.** *commit, branch, SQL, Web API, deploy, prompt…* — é normal. Você não precisa saber o que nenhuma delas significa ainda. Cada uma aparece na sua própria aula com a explicação ali do lado. Você aprende elas *usando*, não decorando glossário. Só dá uma olhada na lista — é o destino, não uma prova.
+
 - **Usar git do jeito que desenvolvedores usam** — commit, branch, push, ler um diff, sair de uma bagunça. Principalmente pelo painel Source Control do VS Code (a superfície do dia a dia), com o terminal nas suas mãos para as operações que o painel não tem botão. O mesmo git que sustenta todo projeto de software no planeta.
 - **Escrever testes, e confiar neles.** Quando você muda algo e os testes continuam passando, você *sabe* que não quebrou nada. É uma relação diferente com o seu código do que *"acho que tá funcionando"*.
 - **Usar um banco de dados de verdade** — escrever SQL na mão, depois usar uma biblioteca que conversa com ele por você. O mesmo padrão que toda aplicação web que você já usou depende.

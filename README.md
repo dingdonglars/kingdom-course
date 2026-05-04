@@ -46,6 +46,8 @@ At the end of any phase, you can decide you're done. No harsh feelings, no failu
 
 The skills are not decorative. By the time you finish, you'll genuinely know how to:
 
+> **Heads up — the words below probably look like nonsense right now.** *commit, branch, SQL, web API, deploy, prompt…* — that's normal. You don't need to know what any of them mean yet. Each one shows up in its own lesson with the explanation right there. You learn them by *using* them, not by memorising a glossary. Just glance at the list — it's the destination, not a quiz.
+
 - **Use git the way working developers use it** — commit, branch, push, read a diff, recover from a mess. Mostly through VS Code's Source Control panel (the daily surface), with the terminal under your fingers for the moves the panel doesn't have a button for. Same git that backs every software project on Earth.
 - **Write tests, and trust them.** When you change something and the tests still pass, you actually know you didn't break anything. That's a different relationship to your code than "I think it works."
 - **Use a real database** — write SQL by hand, then use a code library that talks to it for you. Same pattern every web app you've ever used relies on.
