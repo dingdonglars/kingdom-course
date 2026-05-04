@@ -46,7 +46,7 @@ At the end of any phase, you can decide you're done. No harsh feelings, no failu
 
 The skills are not decorative. By the time you finish, you'll genuinely know how to:
 
-- **Use git the way working developers use it** — commit, branch, push, read a diff, recover from a mess. Mostly through VS Code's Source Control panel (the daily surface), with the terminal under your fingers for the moves the panel doesn't expose. Same git that backs every software project on Earth.
+- **Use git the way working developers use it** — commit, branch, push, read a diff, recover from a mess. Mostly through VS Code's Source Control panel (the daily surface), with the terminal under your fingers for the moves the panel doesn't have a button for. Same git that backs every software project on Earth.
 - **Write tests, and trust them.** When you change something and the tests still pass, you actually know you didn't break anything. That's a different relationship to your code than "I think it works."
 - **Use a real database** — write SQL by hand, then use a code library that talks to it for you. Same pattern every web app you've ever used relies on.
 - **Build a web API** — your code, accessible by URL, called by other programs over the internet.

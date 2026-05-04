@@ -2,7 +2,7 @@
 
 You've spent a year using VS Code's Source Control panel as your daily git surface. By now you've also met enough CLI to know when each is the right tool. Today's lesson goes deeper on the panel + GitLens (the extension you installed back at M1.6), and tours the dedicated GUI clients people reach for when they want even more.
 
-The headline: keep what you've been doing. The Source Control panel for daily work, the CLI for the moves the panel doesn't expose (`reflog`, `cherry-pick`, `rebase -i`, scripts, CI, server work). Reach for a dedicated GUI (Fork, GitKraken, etc.) only if you find yourself wanting one; many seasoned developers never do.
+The headline: keep what you've been doing. The Source Control panel for daily work, the CLI for the moves the panel doesn't have a button for (`reflog`, `cherry-pick`, `rebase -i`, scripts, CI, server work). Reach for a dedicated GUI (Fork, GitKraken, etc.) only if you find yourself wanting one; many seasoned developers never do.
 
 > **Words to watch**
 >
@@ -113,7 +113,7 @@ Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning i
 
 B3 is done. You went from typing git commands you'd half-memorised to reasoning about git as a *DAG of commits with movable pointers*. You named the trade-off between merge and rebase. You met the safety net — `reflog` and the commits that were never actually lost. You hooked the model into the visual tools that show it. The commands you've been typing all year haven't changed; what's changed is the picture they paint in your head when you type them.
 
-Tag the bonus complete:
+Tag the bonus complete. **This one's CLI-only — the panel doesn't have a button for tags:**
 
 ```powershell
 git tag b3-git-properly-complete

@@ -284,9 +284,9 @@ You met LINQ — about ten methods that cover almost every "ask the list a quest
 
 ## Git move of the week — see your history as a graph
 
-Your commit log is starting to have shape. Want to see it?
+Your commit log is getting long enough to picture. Want to see it?
 
-In VS Code, install the **GitLens** extension if you haven't (Extensions sidebar, search *"GitLens"*). Then `Ctrl + Shift + P` → *"GitLens: Show Commit Graph"*. The graph view opens — every commit you've made, parent links drawn, branches as coloured lanes. Reading your own DAG is the first step toward reasoning about it.
+In VS Code, install the **GitLens** extension if you haven't (Extensions sidebar, search *"GitLens"*). Then `Ctrl + Shift + P` → *"GitLens: Show Commit Graph"*. The graph view opens — every commit you've made, parent links drawn, branches as coloured lanes. Reading your own commit graph is the first step toward reasoning about it.
 
 > **Same move, in the terminal:** `git log --oneline --graph --decorate --all`.
 
