@@ -312,3 +312,24 @@
 ## Y
 
 ## Z
+
+---
+
+## Block 7 (Roblox / Luau) — appended
+
+- **`BindToClose`** — Roblox server shutdown hook; ~30s to flush state. *Module 5.7.*
+- **`ClickDetector`** — Roblox helper; child of a Part, fires server-side click events. *Module 5.6.*
+- **DataStore** — Roblox's k/v persistence; server-only. *Module 5.7.*
+- **Instance.new(class, parent)** — create a runtime Roblox object. *Module 5.6.*
+- **Lua / Luau** — Roblox's scripting language; Lua + types. *Module 5.2.*
+- **metatable** — table-of-behavior; Lua's OOP mechanism via `__index`. *Module 5.3.*
+- **ModuleScript** — Roblox's importable code unit; loaded with `require`. *Module 5.3.*
+- **Part** — Roblox's basic 3D building block; visible in Workspace. *Module 5.6.*
+- **`pcall(fn)`** — Lua's protected call (try/catch). *Module 5.7.*
+- **RemoteEvent** — async one-way client↔server message in Roblox. *Module 5.4.*
+- **`require(...)`** — load a ModuleScript; cached. *Module 5.3.*
+- **Roblox Studio** — Roblox's editor; free Windows/Mac. *Module 5.1.*
+- **`ServerScriptService`** — server-only script home in Studio Explorer. *Module 5.1 / 5.4.*
+- **`setmetatable(t, mt)`** — attach a metatable to a table. *Module 5.3.*
+- **`task.wait(seconds)`** — Roblox's lightweight pause; per-coroutine. *Module 5.5.*
+- **Workspace** — Roblox's live 3D scene; replicated to clients. *Module 5.1.*
