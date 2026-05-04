@@ -1,0 +1,113 @@
+# Kingdom — Um Curso de Programação
+
+> 🇬🇧 [Read in English](./README.md)
+
+Daqui a um ano, você vai mandar um link de Roblox para os seus amigos e eles vão jogar o seu jogo. Vão fazer login, construir fazendas numa grade, ver os recursos subirem, competir num placar de líderes. O mundo do jogo onde eles estão jogando — as regras de como funciona, o jeito como cresce, a parte que faz ele ser *divertido* — foi escrito por você, em código, do zero.
+
+Antes dessa versão Roblox, você terá construído o mesmo jogo de quatro outras formas: como uma coisa que roda no seu terminal, como uma coisa que se salva num banco de dados para sobreviver entre sessões, como um site que seus amigos podem visitar numa URL pública real com login do Google, e como um jogo jogável em qualquer navegador. **Cinco versões funcionando da mesma ideia.** Cada uma te ensina um pedaço de como software de verdade é feito. Quando você chegar na versão Roblox, a engenharia já não vai ser a parte difícil — vai ser só tradução.
+
+É assim que o ano se parece.
+
+---
+
+## Para quem é isso
+
+Alguém com uns quinze anos, sem experiência prévia com código, à vontade no computador, que joga, com quatro a seis horas por semana. Especificamente: você. O curso não pressupõe nenhuma base de programação. Ele *pressupõe* que você vai aparecer, escrever as coisas, e entregar o trabalho mesmo quando ficar desconfortável. Vai ficar desconfortável. É parte do acordo.
+
+---
+
+## O que isso precisa de você
+
+Doze meses é muito tempo. O curso funciona porque os dois lados aparecem.
+
+**O que você se compromete a fazer:** aparecer. Investir as horas. Ler o que está na tela antes de me chamar. Anotar as coisas mesmo quando não der vontade. Não desistir na primeira vez que doer. Nada disso precisa ser heroico — quatro a seis horas por semana, toda semana — mas precisa ser *de verdade*. As partes desconfortáveis são as partes onde o aprendizado acontece.
+
+**O que eu me comprometo a fazer:** quando você está nessa, eu também estou. O encontro semanal. Revisões de PR dentro dos prazos. Respostas no `#help` que você pode contar com elas. Mas isso depende de você estar nessa. Se você parar de aparecer, eu vou parar também — quietamente, não como punição, só porque não funciona do outro jeito. Previsibilidade acima de disponibilidade, dos dois lados.
+
+O acordo numa frase: *engajado dos dois lados, ou de nenhum.*
+
+### Se você quiser parar
+
+No fim de qualquer fase, você pode decidir que terminou. Sem rancor, sem fracasso — *"fui até a Fase 3 e foi o suficiente"* é uma resposta completa. O curso é construído de modo que cada fase termine com algo real que você guarda, não com algo que só vem depois de mais doze meses. Se você chegar num final de fase e o ano deixar de fazer sentido, fala. A gente fecha direito.
+
+---
+
+## O que você vai realmente conseguir fazer
+
+As habilidades não são decorativas. Quando terminar, você vai genuinamente saber:
+
+- **Usar git do jeito que desenvolvedores usam** — commit, branch, push, ler um diff, sair de uma bagunça. O mesmo git que sustenta todo projeto de software no planeta.
+- **Escrever testes, e confiar neles.** Quando você muda algo e os testes continuam passando, você *sabe* que não quebrou nada. É uma relação diferente com o seu código do que *"acho que tá funcionando"*.
+- **Usar um banco de dados de verdade** — escrever SQL na mão, depois usar uma biblioteca que conversa com ele por você. O mesmo padrão que toda aplicação web que você já usou depende.
+- **Construir uma Web API** — seu código, acessível por URL, chamado por outros programas pela internet.
+- **Fazer deploy na nuvem** — uma URL pública real que qualquer pessoa pode acessar, com auto-deploy a cada push.
+- **Trabalhar com um assistente de IA do jeito certo** — fazer engenharia de contexto nos seus prompts, ler a saída com olho crítico, e explicar cada linha que você entrega.
+- **Ler o código dos outros.** A habilidade mais subestimada. A maior parte da programação é leitura.
+
+Tudo isso transfere. Você pode usar num emprego, num projeto pessoal, na escola, em qualquer lugar. A maioria é exatamente o que um desenvolvedor júnior faz no primeiro dia.
+
+---
+
+## O que você vai construir, em ordem
+
+O curso é organizado em sete fases — cinco principais, duas opcionais — caminhando até o final em Roblox.
+
+**Fase 0 — Spark Week + Fundamentos.** Seu primeiro mês. Quatro brinquedinhos (um gerador de zoeira, um jogo de adivinhação, uma aventura curtinha, um pequeno utilitário de linha de comando). O ponto é se acostumar com o ritmo: escrever, rodar, comitar, fazer push, comemorar no `#wins`. No fim do mês você está confortável com os movimentos no teclado.
+
+**Fase 1 — Console Kingdom.** A primeira versão real do Kingdom — construções, cidadãos, recursos, dias que avançam. Tudo acontece no seu terminal. Totalmente testado. No fim você tem uma engine de verdade rodando, e aprendeu a regra que sustenta o resto do curso: a *engine* (as regras do reino) é separada do *shell* (a forma como você interage com ela).
+
+**Fase 2 — Persistence.** Seu reino aprende a se lembrar entre execuções. Primeiro como um arquivo de texto, depois JSON, depois um banco SQL real com vários slots de save. No fim dessa fase um jogador pode fechar o programa e voltar amanhã para encontrar o reino exatamente onde deixou.
+
+**Fase 3 — Web API.** O mesmo reino, agora numa URL real da internet. Os amigos fazem login com a conta Google deles. Seu código, hospedado numa plataforma de nuvem real, redeployando a cada push. No meio dessa fase você chega no momento do **AI Unlock** — o ponto onde as regras sobre código gerado por IA expandem. Você ganha esse direito.
+
+**Fase 4 — Browser Kingdom.** Seus amigos abrem uma página, veem o seu reino, clicam, jogam. Você aprende HTML, CSS, JavaScript e TypeScript pelo caminho. A mesma engine que rodou no terminal na Fase 1 agora alimenta uma experiência no navegador.
+
+**Fase 5 — Roblox Kingdom.** *(Final opcional.)* Você porta a engine de novo — agora para Luau, a linguagem do Roblox — e publica um lugar onde os amigos podem jogar *no próprio Roblox*. O motivo de ser opcional e não pulável: quando você termina a Fase 4, já conquistou tudo que o curso se propôs a ensinar. A Fase 5 é o orgulho.
+
+**Fase 6 — Bônus.** Três bônus curtos se você quiser. Um troca o seu banco de dados por outro completamente diferente em três linhas, só pra você sentir como a separação engine/shell é limpa de verdade. Um aprofunda no trabalho com um assistente de IA — a habilidade nomeada de *engenharia de contexto*. Um aprofunda em git de verdade — o modelo por baixo dos comandos que você vem digitando o ano todo.
+
+---
+
+## Como uma semana típica funciona
+
+Na maioria das semanas você vai fazer um ou dois **módulos**. Um módulo é uma aula independente — ler, fazer, quiz, comitar. Tem uma pasta para cada um. Lá dentro você encontra um `lesson.md` (a aula), uma pasta `starter/` (o esqueleto de código de onde você parte), e um `quiz.md` (umas perguntas para fixar o que acabou de chegar).
+
+A cada poucas semanas você atravessa um **marco** (M0 até M6). Um marco é o ponto *digno de orgulho* — o lugar onde você tem algo real para mostrar. Cada marco termina com uma entrada no diário de vitórias, um post no Slack, e uma sessão presencial de revisão com Lars.
+
+O ritmo é o ritmo de desenvolvedores trabalhando. Pegar isso agora significa não ter que pegar depois sob pressão.
+
+---
+
+## Por onde começar
+
+Abra `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md`. É o dia um. Daqui a duas horas você vai ter mandado seu primeiro programa para o GitHub e postado seu primeiro `#wins`.
+
+Outros documentos que vale saber que existem, mas você não precisa ler em ordem:
+
+- **`MENTOR-PROTOCOL.md`** — como Lars e você trabalham juntos: quando me chamar, como pedir ajuda, o que esperar de volta. Leia antes do módulo 0.0.
+- **`ai-tools.md`** — como usar o Claude (seu assistente de IA) durante o curso.
+- **`vscode-tips.md`** — os dez hábitos que transformam o VS Code de "parede de menus" numa ferramenta que você pilota. Dá uma olhada depois do Módulo 0.0.
+- **`STYLE.md`** — como cada aula é estruturada, pra você saber o que esperar.
+- **`STANDARDS.md`** — as convenções de código, nomeação e PR usadas em todo o curso.
+- **`ENGLISH-NOTES.md`** — por que o curso é em inglês, e o pequeno apoio quando uma palavra te trava.
+- **`GLOSSARY.md`** — todo termo que o curso ensina, em ordem alfabética.
+
+---
+
+## Onde pedir ajuda
+
+**Lars** é seu mentor. O protocolo completo *como trabalhamos juntos* mora no `MENTOR-PROTOCOL.md` na raiz desse repo — descreve quando me chamar, como pedir ajuda, e o que esperar de volta. Leia antes do módulo 0.0.
+
+**Claude** é seu assistente de IA. Na primeira metade do curso, o Claude ajuda com fricção (uma mensagem de erro confusa, uma bagunça no git). Depois do AI Unlock, o Claude também pode te ajudar a *escrever* código — sob a regra de que *você tem que conseguir explicar cada linha que mantiver*. A história completa está no `ai-tools.md`.
+
+---
+
+## Uma nota sobre o que NÃO está nesse repo
+
+O **Kingdom de referência** — a versão funcional do projeto que Lars escreveu como exemplo finalizado — vive num repo separado. **Não abra até a sua fase estar pronta.** O ponto não é copiar a versão dele; é escrever a sua, depois comparar. Sua fase só conta como terminada quando você construiu sozinho e *aí* deu uma espiada.
+
+Seu **próprio trabalho** vive no seu próprio repo, que você cria no primeiro dia a partir do `starter-template/`.
+
+---
+
+Bem-vindo ao Kingdom. Vamos construir alguma coisa.

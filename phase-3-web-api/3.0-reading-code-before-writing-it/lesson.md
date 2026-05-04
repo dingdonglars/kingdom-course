@@ -1,6 +1,6 @@
 # Module 3.0 — Reading Code Before Writing It
 
-Every module so far has been *write code*. Today is *read* code — somebody else's. Before we write our first ASP.NET endpoint, you'll spend about thirty minutes reading two real ones and saying out loud what they do. The artefact you produce is a journal entry, not a program. That's the whole module: read, take notes, commit your notes.
+Every module so far has been *write code*. Today is *read* code — somebody else's. Before we write our first ASP.NET endpoint, you'll spend about thirty minutes reading two real ones and saying out loud what they do. What you produce is a journal entry, not a program. That's the whole module: read, take notes, commit your notes.
 
 Reading is the skill nobody teaches and everyone needs. The senior on a team reads roughly five times more code than they write. They know which file to open first, they scan rather than parse, they notice the *missing* things. None of that is innate — it's a habit you build by doing it on purpose, weekly, even when you're not chasing a bug.
 
@@ -57,7 +57,7 @@ This module is reading plus a journal entry. The starter folder ships:
 
 - `journal/3.0-reading.md` — a template with the five questions to fill in for each file
 
-No code. No tests. The artefact is your written notes.
+No code. No tests. What you keep is your written notes.
 
 The template:
 
@@ -98,7 +98,7 @@ Commit your `journal/3.0-reading.md` to your repo. Reading-and-noting is real wo
 
 ## Reading as a deliverable
 
-The notes you write today are the artefact for this module. Coming sessions will refer back to them — *"compare the surprise you wrote down to what we just learned."* The journal is the through-line; treat it like any other commit.
+The notes you write today are what you keep for this module. Coming sessions will refer back to them — *"compare the surprise you wrote down to what we just learned."* The journal is the through-line; treat it like any other commit.
 
 ## What you just did
 

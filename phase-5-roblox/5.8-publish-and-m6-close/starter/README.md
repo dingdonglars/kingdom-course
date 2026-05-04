@@ -1,6 +1,6 @@
 # Module 5.8 starter — publish + M6 close
 
-No code in the starter — the artefact of this module is the published place itself, plus the journal entries you write at the end.
+No code in the starter — what you produce in this module is the published place itself, plus the journal entries you write at the end.
 
 ## What's in here
 

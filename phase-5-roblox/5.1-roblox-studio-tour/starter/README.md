@@ -1,6 +1,6 @@
 # Module 5.1 starter — Roblox Studio tour
 
-This module has no real code. The artefact is your `journal/5.1-studio-tour.md` notes from clicking around Studio for the first time.
+This module has no real code. What you keep is your `journal/5.1-studio-tour.md` notes from clicking around Studio for the first time.
 
 ## What's in here
 

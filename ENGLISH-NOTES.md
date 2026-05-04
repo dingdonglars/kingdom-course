@@ -32,7 +32,7 @@ We don't drill English at you. We just keep everything in English so you grow in
 - **Your `journal/wins.md`** entries.
 - **Your own notes** if you keep them in your repo.
 
-These are the artefacts a future employer or collaborator sees. Producing English is non-negotiable. *Receiving* English has a lot of scaffolding. *Producing* English stays English-only.
+These are the things a future employer or collaborator sees. Producing English is non-negotiable. *Receiving* English has a lot of scaffolding. *Producing* English stays English-only.
 
 ## When in doubt
 

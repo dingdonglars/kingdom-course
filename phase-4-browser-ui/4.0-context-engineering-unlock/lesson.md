@@ -148,7 +148,7 @@ Audit the AI's output for invented APIs. When it's over-confident, it makes thin
 
 ## What you just did
 
-You named the discipline you'll be using for the rest of the course. **Context engineering** is choosing what the AI sees before it answers — and the four-step frame (goal, where, conventions, traps) is the move you'll repeat. You wrote a short `ARCHITECTURE.md` so the AI starts from your project, not from a generic tutorial. You installed an `/implementation-help` slash command so the next code request has a structured prompt instead of a free-form ask. You also met the post-Unlock rule that drives everything from here: you can ship AI-assisted code, *and* you can explain every line you ship. Two artefacts on disk; one rule in your head.
+You named the discipline you'll be using for the rest of the course. **Context engineering** is choosing what the AI sees before it answers — and the four-step frame (goal, where, conventions, traps) is the move you'll repeat. You wrote a short `ARCHITECTURE.md` so the AI starts from your project, not from a generic tutorial. You installed an `/implementation-help` slash command so the next code request has a structured prompt instead of a free-form ask. You also met the post-Unlock rule that drives everything from here: you can ship AI-assisted code, *and* you can explain every line you ship. Two things on disk; one rule in your head.
 
 **Key concepts you can now name:**
 

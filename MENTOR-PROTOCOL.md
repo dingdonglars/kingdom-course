@@ -40,7 +40,7 @@ Same problem. Wildly different ease of helping. The good version names the error
 
 There are six different kinds of conversation we have during the year. Knowing which one you're in keeps both of us sane.
 
-**1. Wins.** When something works — the first kingdom that ran for thirty days without crashing, the first endpoint that returned real JSON, the first time you fixed a bug without help — drop a line in Slack `#wins`. Screenshot or output snippet, one sentence of context. Lars doesn't need to reply. The point is the trail. By month twelve, `#wins` is its own artefact and reading it back is the proof you grew.
+**1. Wins.** When something works — the first kingdom that ran for thirty days without crashing, the first endpoint that returned real JSON, the first time you fixed a bug without help — drop a line in Slack `#wins`. Screenshot or output snippet, one sentence of context. Lars doesn't need to reply. The point is the trail. By month twelve, `#wins` is its own track record — read it back and it's the proof you grew.
 
 **2. Async questions.** When you're stuck and the 20-minute rule says ping, post in Slack `#help`. Lars replies within 24–48 hours, usually faster. Don't break his work by texting him — `#help` is the channel. He'll see it. If something is on fire and 48 hours is too slow, see Tier 5 below.
 

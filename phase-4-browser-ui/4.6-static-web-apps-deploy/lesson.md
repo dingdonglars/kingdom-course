@@ -6,7 +6,7 @@ The browser kingdom goes live today. **Azure Static Web Apps** hosts your Vite b
 >
 > - **Static Web Apps (Azure)** — managed hosting for static frontends; integrates with GitHub.
 > - **CDN** — Content Delivery Network; serves your files from the edge server nearest each user.
-> - **build artefact** — what Vite produces in `dist/`; the deploy uploads this.
+> - **build output** — what Vite produces in `dist/`; the deploy uploads this.
 > - **same-origin / cross-origin** — your frontend at one domain calling your API at another (back to CORS).
 
 ---
@@ -111,7 +111,7 @@ The frontend is on the internet. You created a Static Web App in Azure (free tie
 **Key concepts you can now name:**
 
 - **Static Web Apps** — Azure's free static hosting plus GitHub integration
-- **build artefact (`dist/`)** — what Vite outputs; what Azure deploys
+- **build output (`dist/`)** — what Vite outputs; what Azure deploys
 - **`import.meta.env.VITE_*`** — Vite's compile-time env vars
 - **`AllowCredentials()`** — CORS flag needed for cookie auth; incompatible with `AllowAnyOrigin()`
 - **two services, one architecture** — frontend and backend deploy independently

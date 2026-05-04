@@ -163,7 +163,7 @@ Run `git log --oneline --graph --decorate -20`. You'll see your last twenty comm
 
 ## The through-line
 
-The through-line in this module: **the repo is the artefact**. Polish the code, polish the README, polish the commit log. The kingdom you can show your future self in a year is the one that's organised, not just functional.
+The through-line in this module: **the repo is what you keep**. Polish the code, polish the README, polish the commit log. The kingdom you can show your future self in a year is the one that's organised, not just functional.
 
 ## What you just did
 

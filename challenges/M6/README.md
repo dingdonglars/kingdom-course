@@ -2,7 +2,7 @@
 
 Wraps **Phase 5 — Roblox Kingdom**. This is the year-end milestone — the moment you send your friends a Roblox link and they actually play.
 
-> **No automated runtime tests for the Roblox place itself.** Roblox publishes outside the .NET tooling chain, and verifying a published place programmatically would need Roblox's API and auth tokens — out of scope for this repo. The artefact *is* the public Roblox URL, and the proof is your friends playing it.
+> **No automated runtime tests for the Roblox place itself.** Roblox publishes outside the .NET tooling chain, and verifying a published place programmatically would need Roblox's API and auth tokens — out of scope for this repo. What you keep *is* the public Roblox URL, and the proof is your friends playing it.
 
 ## What this verifies
 
@@ -26,6 +26,6 @@ From your repo root:
 dotnet test path\to\challenges\M6\M6.Tests.csproj
 ```
 
-The .NET test verifies the artefacts: folder structure, wins entry, looking-back entry. The actual *play* is the human check.
+The .NET test verifies the files: folder structure, wins entry, looking-back entry. The actual *play* is the human check.
 
 Green = M6 met. Mentor signs off the year.

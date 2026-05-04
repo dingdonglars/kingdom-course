@@ -25,7 +25,7 @@
 
 ## 4. The lesson says "you're a programmer." What is the proof?
 
-- **a.** You shipped five different versions of one engine, in two languages, across two runtimes, with persistence, auth, multiplayer, and deploy. The artefact is the proof.
+- **a.** You shipped five different versions of one engine, in two languages, across two runtimes, with persistence, auth, multiplayer, and deploy. What's on disk is the proof.
 - **b.** You finished the curriculum and the certificate is the proof
 - **c.** Lars says so at the M6 viva
 - **d.** Roblox grants the title once a place is published

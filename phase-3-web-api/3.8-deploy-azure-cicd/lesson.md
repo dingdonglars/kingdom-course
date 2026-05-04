@@ -19,7 +19,7 @@ This is also the module where we slow down on **production hygiene** for a momen
 Three reasons:
 
 1. **Free F1 tier** — $0/month. Limits: 1 GB RAM, shared CPU, sleeps after 20 minutes idle, 60 minutes of compute per day. Plenty for a learning project.
-2. **Native .NET hosting** — no Docker container needed for the simplest path; just push the build artefact.
+2. **Native .NET hosting** — no Docker container needed for the simplest path; just push the build output.
 3. **GitHub integration** — Azure has a one-click *deploy from GitHub* wizard that sets up the action for you.
 
 Alternatives: Azure Container Apps, Render, Fly.io, AWS App Runner. Same patterns, different consoles.
@@ -110,8 +110,8 @@ jobs:
 Read what this does:
 
 - **`on: push: branches: [main]`** — runs on every push to `main`
-- **Job 1 (`build`)** — restore, build, test, publish to a `publish/` directory; upload as an artifact
-- **Job 2 (`deploy`)** — download the artifact; deploy to Azure
+- **Job 1 (`build`)** — restore, build, test, publish to a `publish/` directory; upload as a build output
+- **Job 2 (`deploy`)** — download the build output; deploy to Azure
 - **Tests run before deploy.** A failing test fails the deploy. **CI is the guard.**
 
 Commit and push the workflow:

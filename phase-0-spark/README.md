@@ -16,7 +16,7 @@ Phase 0 has two halves, and they reinforce each other:
 
 **Spark Week (Modules 0.0–0.4).** You ship four toys in four weeks. Silly on purpose — silliness sticks. By the end you've used variables, loops, conditionals, lists, methods, and files, all without anyone explaining what they "are" first. The point is *experience first*: when we name a concept later, you'll already know what it feels like to use it.
 
-**Foundations (Modules 0.5–0.8).** You slow down and we put names on what you've been using. Types, naming conventions, methods properly, collections, errors and the debugger. The artefact at the end is the **Inventory Tool** — a small CLI you'll actually keep on your machine. Track your books, your Roblox usernames, your snacks, whatever. By the time you finish Phase 0, you can read most beginner C# tutorials and roughly know what's happening — which makes the rest of the course move much faster.
+**Foundations (Modules 0.5–0.8).** You slow down and we put names on what you've been using. Types, naming conventions, methods properly, collections, errors and the debugger. What you keep at the end is the **Inventory Tool** — a small CLI you'll actually keep on your machine. Track your books, your Roblox usernames, your snacks, whatever. By the time you finish Phase 0, you can read most beginner C# tutorials and roughly know what's happening — which makes the rest of the course move much faster.
 
 ## What you'll learn (named)
 

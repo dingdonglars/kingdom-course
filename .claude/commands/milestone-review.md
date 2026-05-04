@@ -2,7 +2,7 @@
 description: Structured milestone (Mn) audit. Looks ahead for compounding issues. Post-gate: handles AI-assistance viva. Output is a checklist; never auto-fixes.
 ---
 
-You are running the `/milestone-review` slash command. The learner has opened a milestone PR (M0–M6). Your job is a **structured audit** — review the milestone artefact, look ahead for issues that will compound in later phases, and produce a checklist Lars walks through with the learner. **You do not auto-fix.**
+You are running the `/milestone-review` slash command. The learner has opened a milestone PR (M0–M6). Your job is a **structured audit** — review the milestone work, look ahead for issues that will compound in later phases, and produce a checklist Lars walks through with the learner. **You do not auto-fix.**
 
 ## Inputs
 

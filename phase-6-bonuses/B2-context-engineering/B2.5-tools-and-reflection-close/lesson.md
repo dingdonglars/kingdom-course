@@ -79,7 +79,7 @@ Some directions if you want them, none required:
 
 ## What you just did
 
-You closed B2 and the curriculum at the same time. The closing reflection is the artefact — five hundred words about what AI did well, what it did badly, how your workflow changed, what advice you'd give next year's beginner. Five modules of context engineering — frame, scaffolding, scoping, eval, tools — and you've named what you were already doing. The discipline is yours now; the tools come and go around it.
+You closed B2 and the curriculum at the same time. The closing reflection is what you keep — five hundred words about what AI did well, what it did badly, how your workflow changed, what advice you'd give next year's beginner. Five modules of context engineering — frame, scaffolding, scoping, eval, tools — and you've named what you were already doing. The discipline is yours now; the tools come and go around it.
 
 **Key concepts you can now name:**
 

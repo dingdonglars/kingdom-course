@@ -17,7 +17,7 @@ M4 is the milestone where the kingdom leaves your machine. The challenge can't v
 
 ## What this skips
 
-- Whether the deploy actually worked — impossible to verify locally. The workflow file's presence is the proof of intent; the live URL is the brag-worthy artefact you show a friend.
+- Whether the deploy actually worked — impossible to verify locally. The workflow file's presence is the proof of intent; the live URL is the brag-worthy thing you show a friend.
 - The exact set of endpoint paths — your API can have whatever routes make sense.
 - That OAuth is wired end-to-end — that would require a real Google flow. The auth check just confirms protected routes return `401` when unauthenticated.
 

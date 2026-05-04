@@ -177,7 +177,7 @@ Phase openers (`phase-N-name/README.md`) describe what's coming for the phase. T
 
 > <One-line pitch — the brag, in plain language>
 
-**What you'll have at the end:** <The artefact — concrete, demonstrable, friend-shareable>
+**What you'll have at the end:** <The thing — concrete, demonstrable, friend-shareable>
 
 **Estimated effort:** <N weeks at 4–6 hrs/week>  ·  **Wraps:** <Milestone, e.g. M4>
 

@@ -113,7 +113,7 @@ The next time you (or any teammate, or any AI agent) opens any of these projects
 
 ## What stays the same
 
-- **Hard rules unchanged:** no first names in learner artefacts, English only, no school/family inference.
+- **Hard rules unchanged:** no first names in your visible work, English only, no school/family inference.
 - **Three buckets unchanged:** the boundary between yellow and red moved; the buckets themselves did not.
 - **Mentor protocol unchanged:** 20-minute rule, weekly sync, milestone PR review.
 - **Per-milestone ritual unchanged:** wins log, Slack post, before/after.

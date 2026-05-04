@@ -10,7 +10,7 @@
 
 ## Why this phase?
 
-Some lessons don't fit cleanly inside a phase but are too good to drop. Phase 6 is where they live. All three bonuses are optional — finish them if you want; skip them if life pulls you elsewhere. Each one stands alone and ships its own small artefact.
+Some lessons don't fit cleanly inside a phase but are too good to drop. Phase 6 is where they live. All three bonuses are optional — finish them if you want; skip them if life pulls you elsewhere. Each one stands alone and ships its own small thing.
 
 ## The three bonuses
 

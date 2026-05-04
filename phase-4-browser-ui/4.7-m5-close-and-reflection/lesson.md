@@ -16,7 +16,7 @@ Open your Phase 0 code. The first toys you wrote — `RoastOMatic`, `NumberGuess
 
 Pick *one* of those toys (the worst, ideally) and spend thirty minutes refactoring with current eyes. Don't add features — clean up. Look for variables that should have been constants. Methods that should be split. Names that don't pull weight. Comments that have rotted. Magic numbers. The thing you'd do *completely differently* now.
 
-Save the diff. Commit with `[refactor] phase-0 <toy> — applying lessons from phases 1-4`. The commit *is* the artefact — proof that you can see the gap.
+Save the diff. Commit with `[refactor] phase-0 <toy> — applying lessons from phases 1-4`. The commit *is* the proof that you can see the gap.
 
 Don't refactor *all* of Phase 0 — that's busywork. One toy is the experiment. The point is *seeing the gap*.
 

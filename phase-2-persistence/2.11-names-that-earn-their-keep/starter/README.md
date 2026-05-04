@@ -1,6 +1,6 @@
 # Module 2.11 starter — names that earn their keep
 
-No code delta. Two artefacts:
+No code delta. Two things:
 
 - `M3-rename-checklist.md` — a checkbox list to walk during the rename party
 - `wins.md.append.md` — a one-paragraph M3 entry to append to your `wins.md`

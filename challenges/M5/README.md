@@ -2,7 +2,7 @@
 
 Wraps **Phase 4 — Browser Kingdom**.
 
-M5 confirms the frontend is real: a Vite + TypeScript project that builds, has its own tests, and ships to a real public URL via a static-web-apps workflow. The test runner can't open a browser, so it checks the artefacts that prove the rest.
+M5 confirms the frontend is real: a Vite + TypeScript project that builds, has its own tests, and ships to a real public URL via a static-web-apps workflow. The test runner can't open a browser, so it checks the files that prove the rest.
 
 ## What this verifies
 

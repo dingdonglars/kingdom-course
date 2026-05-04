@@ -31,7 +31,7 @@ git tag b1-engine-vs-shell-on-the-database-complete
 git push origin b1-engine-vs-shell-on-the-database-complete
 ```
 
-There's no milestone PR for B1 — it's a self-contained bonus. The reflection paragraph is the artefact, and the tag is the marker.
+There's no milestone PR for B1 — it's a self-contained bonus. The reflection paragraph is what you keep, and the tag is the marker.
 
 ## What's optional next
 
@@ -43,7 +43,7 @@ If B1 felt good, here are some natural follow-ups (none required):
 
 ## What you just did
 
-You finished a small, sharp bonus. The whole arc was: install LocalDB, change three lines of config, watch every test pass, install SSMS to look at the result, write down what it meant. Each step was deliberately small, because the bonus's whole point was to make the engine-vs-shell rule cash out as something you could see and touch — not just a thing said in lectures back in Phase 1. The reflection paragraph in your journal is the artefact you keep.
+You finished a small, sharp bonus. The whole arc was: install LocalDB, change three lines of config, watch every test pass, install SSMS to look at the result, write down what it meant. Each step was deliberately small, because the bonus's whole point was to make the engine-vs-shell rule cash out as something you could see and touch — not just a thing said in lectures back in Phase 1. The reflection paragraph in your journal is what you keep.
 
 **Key concepts you can now name:**
 

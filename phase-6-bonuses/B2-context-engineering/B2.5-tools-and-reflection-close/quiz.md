@@ -32,7 +32,7 @@
 
 ## 5. The last sentence of the curriculum reads...
 
-- **a.** *"You're a programmer."* — past tense, future tense, both; the artefact is the proof
+- **a.** *"You're a programmer."* — past tense, future tense, both; what you've shipped is the proof
 - **b.** *"The end."*
 - **c.** *"Goodbye and good luck."*
 - **d.** *"Press F5 to continue."*

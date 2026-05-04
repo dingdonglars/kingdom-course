@@ -139,6 +139,7 @@ These words add cost without earning their keep. Don't use them in lesson prose.
 - *carve-out* — say "exception" or "special case"
 - *bright-line* — say "clear" or "simple" or rewrite
 - *bar* (as in "the bar is...") — say "standard", "requirement", "target"
+- *artefact* / *artifact* — say "the thing you keep", "the file", "the result", or whatever the specific thing is. *(Note: in the Privacy and Language rule sections of this STANDARDS file the word is allowed because it's defining curriculum-side policy, not lesson prose. Don't propagate it into lessons.)*
 
 ### Explain on first use, then OK (principle, not a closed list)
 

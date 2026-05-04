@@ -1,5 +1,7 @@
 # Kingdom — A Programming Course
 
+> 🇧🇷 [Leia em português](./README.pt.md)
+
 A year from now, you'll send a Roblox link to your friends and they'll play your game. They'll sign in, build farms on a grid, watch their resources tick up, race each other on a leaderboard. The game world they're playing in — the rules of how it works, the way it grows, the bit that makes it *fun* — was written by you, in code, from scratch.
 
 Before that Roblox version, you'll have built the same game four other ways: as a thing that runs in your terminal, as a thing that saves itself to a database so it survives between sessions, as a website your friends can visit on a real public URL with their Google sign-in, and as a game playable in any browser. **Five working versions of the same idea.** Each one teaches you a chunk of how real software gets built. By the time you reach the Roblox version, the engineering is no longer the hard part — it's just translation.

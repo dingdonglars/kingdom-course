@@ -45,7 +45,7 @@ OAuth setup has a manual side (Google Cloud Console) and a code side (NuGet pack
 - **NEW:** `Kingdom.Api/appsettings.Development.json` — placeholder for `Google:ClientId` and `Google:ClientSecret`
 - **NEW:** `journal/3.5-google-setup.md` — your notes from the Google Cloud Console setup
 
-The biggest artefact for this module is the Google Cloud Console setup, which you do by hand once.
+The biggest thing for this module is the Google Cloud Console setup, which you do by hand once.
 
 ## Step 0 — Google Cloud Console
 
