@@ -18,10 +18,11 @@ The mental model is simple. Each scaffold file is bytes the AI reads on every se
 
 Open your repo. You should see most of these:
 
+- `CLAUDE.md` (root) — auto-loaded by Claude Code; imports `ai-context/CLAUDE.md`
 - `STANDARDS.md` — code, naming, file conventions
 - `ai-context/CLAUDE.md` — AI-specific rules (mode flag plus behaviours)
 - `ai-tools.md` — learner-facing notes on AI tooling
-- `ai-context/prompts/` — prompt templates from M4.0
+- `.claude/commands/` — slash commands you can type in Claude Code (`/explain-this-concept`, `/code-review`, `/stuck-on-error`, `/walk-through-code`, `/implementation-help`, `/lesson-review`, `/milestone-review`)
 - `GLOSSARY.md` — project-specific vocabulary
 - `ARCHITECTURE.md` — projects and data flow (added at M4.0)
 

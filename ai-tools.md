@@ -1,6 +1,6 @@
 # AI tools — for you
 
-This file is the plain-English version of how AI fits into the course. The machine-side version (the one Claude itself reads as a system prompt) is at `ai-context/CLAUDE.md` — same rules, written for the AI to enforce.
+This file is the plain-English version of how AI fits into the course. The machine-side version (the one Claude itself reads as a system prompt) is at `ai-context/CLAUDE.md` — same rules, written for the AI to enforce. Your repo's root `CLAUDE.md` imports it automatically when you run Claude Code, so the rules apply without you having to ask.
 
 ## What you'll be using
 
@@ -69,6 +69,19 @@ The unlock splits the difference: get good at the basics first, *then* learn to 
 This is a non-AI rule, but it lives next to AI use, so name it now: before pinging Lars in `#help`, try yourself for 20 minutes. *Then* ask Claude. If Claude can't help, *then* ping Lars — and show what you tried.
 
 This is universal developer culture. The full thing is in the Mentor Protocol Lars gives you separately. The short version: Lars's time is precious; Claude's is not; your time spent struggling at the keyboard is the time when learning happens fastest.
+
+## Slash commands you have on day 1
+
+Your repo ships with six Claude Code slash commands. Type `/` in the Claude Code prompt to list them; the four most useful in daily work:
+
+- **`/explain-this-concept`** — beginner-level walkthrough of a concept, calibrated to what you already know.
+- **`/code-review`** — Claude points out issues in code you wrote. Yellow bucket: **does not write the fix.**
+- **`/stuck-on-error`** — diagnose an error after the 20-minute rule. Hint, not a complete fix.
+- **`/walk-through-code`** — line-by-line explanation in plain English; stops at the bits that are likely to surprise a beginner.
+
+The other two — `/lesson-review` and `/milestone-review` — you'll meet in the lessons that introduce them.
+
+These are the same patterns the previous version of this course used to deliver as paste-the-prompt files. The slash command form is just easier — type `/<name>`, fill in the gap when Claude asks, done.
 
 ## When in doubt
 

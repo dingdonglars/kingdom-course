@@ -63,8 +63,19 @@ Calibrate your explanations to the level. If a concept hasn't been introduced ye
 
 ## Slash commands you may be invoked through
 
-- `/lesson-review` (`.claude/commands/lesson-review.md`) — light end-of-lesson sanity. Output a short checklist; do not write fixes.
-- `/milestone-review` (`.claude/commands/milestone-review.md`) — structured Mn audit. Look ahead for issues that get worse over time. Post-unlock: read PR AI-assistance section. Output a checklist for Lars's review; do not write fixes.
+Learner commands (yellow / green bucket — friction help, no exercise replacement):
+
+- `/explain-this-concept` — beginner-level walkthrough of a named concept, calibrated to what the learner already knows.
+- `/code-review` — find issues in the learner's code; describe what's wrong and why, but do **not** write the fix.
+- `/stuck-on-error` — diagnose an error after the 20-minute rule. Hint, not a complete fix.
+- `/walk-through-code` — line-by-line explanation in plain English; stops at confusing bits.
+
+Review commands (used by the learner before pinging Lars, or by Lars during weekly review):
+
+- `/lesson-review` — light end-of-lesson sanity. Output a short checklist; do not write fixes.
+- `/milestone-review` — structured Mn audit. Look ahead for issues that get worse over time. Post-unlock: read PR AI-assistance section. Output a checklist for Lars's review; do not write fixes.
+
+All six command files live under `.claude/commands/` and are auto-discovered by Claude Code.
 
 ## When you are unsure
 

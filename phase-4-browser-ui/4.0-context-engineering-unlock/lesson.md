@@ -42,18 +42,17 @@ A failure mode worth a name: **invented APIs.** When the AI is over-confident, i
 Curate a small folder the AI reads before it answers. The course already gives you most of it:
 
 - `STANDARDS.md` — your conventions
-- `ai-context/CLAUDE.md` — the AI's machine-side rules
-- `ai-context/prompts/` — pre-written templates for common asks
+- `ai-context/CLAUDE.md` — the AI's machine-side rules (auto-loaded via the root `CLAUDE.md` import)
+- `.claude/commands/` — your slash commands (`/explain-this-concept`, `/code-review`, `/stuck-on-error`, `/walk-through-code`, plus `/lesson-review` and `/milestone-review`)
 - `GLOSSARY.md` — terms used in your project
 - A short `ARCHITECTURE.md` — what's in each project, how data flows (you'll write this in Step 3 below)
 
-When using Claude Code or a similar agent, point it at the folder; it reads automatically. When using a chat UI, paste the most relevant two or three files at the start of the conversation.
+When using Claude Code, the root `CLAUDE.md` and the slash commands load automatically. When using a chat UI instead, paste the most relevant two or three files at the start of the conversation.
 
 ## What changes in this module
 
 - **NEW:** `ARCHITECTURE.md` (you write yours in Step 3)
-- **MODIFIED:** `ai-context/prompts/README.md` — add an "Implementation requests" section
-- **NEW:** `ai-context/prompts/implementation-help.md` — a fill-in template for code requests
+- **NEW:** `.claude/commands/implementation-help.md` — a slash command for code requests (you install yours in Step 4)
 
 No code changes today. This module is about the tools around the AI, not the AI's output.
 
@@ -113,32 +112,31 @@ HTTP request → cookie auth → `OwnerSub` extracted → `KingdomEfStore` (scop
 
 Commit it. The AI now reads this on session start, and so does future-you.
 
-## Step 4 — install the implementation prompt
+## Step 4 — install the implementation slash command
 
-`ai-context/prompts/implementation-help.md`:
+Drop this into `.claude/commands/implementation-help.md` in your repo:
 
 ```markdown
-# Implementation help (post-Unlock)
+---
+description: Post-Unlock implementation help. Asks for goal/where/conventions/traps before writing code.
+---
 
-Use when asking Claude to write non-trivial code.
+You are being invoked via `/implementation-help`. The learner is past the AI Unlock and is asking you to write non-trivial code. Read `ai-context/CLAUDE.md` and `STANDARDS.md` first.
 
-## Fill in:
+If the learner already pasted the goal in `$ARGUMENTS`, use it. Otherwise ask for these in one combined message:
 
-**Goal (one sentence):**
+1. **Goal** — one sentence on what the code needs to do.
+2. **Where** — file path + a snippet of the surrounding code.
+3. **Existing patterns to match** — one or two small snippets from nearby methods.
+4. **Conventions to follow** — relevant `STANDARDS.md` sections plus any project-specific quirks (link to them).
+5. **Traps** — what *not* to do (e.g. *"don't use `new Random()` — use `IRandom`"*).
 
-**File path + surrounding context:**
+Once you have all five, write the implementation. Match the style. Stay inside the named conventions. Don't invent APIs that aren't visible in the code the learner showed you.
 
-**Relevant existing code (paste 1-3 small snippets):**
-
-**Conventions to follow:**
-- (link to STANDARDS.md sections)
-- (any project-specific quirks)
-
-**What you should NOT do:**
-- (traps: e.g., "Don't use `new Random()` — use `IRandom`.")
-
-**My understanding:** I'll be asked to explain each line you write. End your response with the explanation prompt per `ai-context/CLAUDE.md`.
+End your response with: *"Before you keep this, walk me through what each line does. If you can't explain a line, ask me about it instead of keeping it."*
 ```
+
+Restart Claude Code (or run *"Reload Window"* in VS Code), then `/` should list your new command.
 
 ## Tinker
 
@@ -150,7 +148,7 @@ Audit the AI's output for invented APIs. When it's over-confident, it makes thin
 
 ## What you just did
 
-You named the discipline you'll be using for the rest of the course. **Context engineering** is choosing what the AI sees before it answers — and the four-step frame (goal, where, conventions, traps) is the move you'll repeat. You wrote a short `ARCHITECTURE.md` so the AI starts from your project, not from a generic tutorial. You installed an `implementation-help.md` prompt template so the next code request has a layout to fill in. You also met the post-Unlock rule that drives everything from here: you can ship AI-assisted code, *and* you can explain every line you ship. Two artefacts on disk; one rule in your head.
+You named the discipline you'll be using for the rest of the course. **Context engineering** is choosing what the AI sees before it answers — and the four-step frame (goal, where, conventions, traps) is the move you'll repeat. You wrote a short `ARCHITECTURE.md` so the AI starts from your project, not from a generic tutorial. You installed an `/implementation-help` slash command so the next code request has a structured prompt instead of a free-form ask. You also met the post-Unlock rule that drives everything from here: you can ship AI-assisted code, *and* you can explain every line you ship. Two artefacts on disk; one rule in your head.
 
 **Key concepts you can now name:**
 
