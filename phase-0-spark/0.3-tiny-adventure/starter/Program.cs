@@ -12,7 +12,7 @@ void Hallway()
     Console.WriteLine();
     Console.WriteLine("You stand in a dim hallway. There's a door north and a door east.");
     Console.Write("> ");
-    var choice = Console.ReadLine()?.Trim().ToLower();
+    var choice = Console.ReadLine().Trim().ToLower();
 
     if (choice == "north") Kitchen();
     else if (choice == "east") Library();
@@ -28,7 +28,7 @@ void Kitchen()
     Console.WriteLine();
     Console.WriteLine("A kitchen, smells of stew. There's a knife on the counter.");
     Console.Write("> ");
-    var choice = Console.ReadLine()?.Trim().ToLower();
+    var choice = Console.ReadLine().Trim().ToLower();
 
     if (choice == "take knife")
     {
@@ -52,7 +52,7 @@ void Library()
     Console.WriteLine();
     Console.WriteLine("A library, dust motes in the air. A book lies open on the table.");
     Console.Write("> ");
-    var choice = Console.ReadLine()?.Trim().ToLower();
+    var choice = Console.ReadLine().Trim().ToLower();
 
     if (choice == "read book")
     {

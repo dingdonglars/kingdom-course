@@ -16,10 +16,10 @@ Console.ResetColor();
 Console.Write("Your name, hero: ");
 var name = Console.ReadLine();
 Console.ForegroundColor = ConsoleColor.Cyan;
-Console.WriteLine($"Welcome to your kingdom, {name?.ToUpper()}.");
+Console.WriteLine($"Welcome to your kingdom, {name.ToUpper()}.");
 Console.ResetColor();
 
-File.WriteAllText("hero.txt", name ?? "");
+File.WriteAllText("hero.txt", name);
 
 if (File.Exists("hero.txt"))
 {

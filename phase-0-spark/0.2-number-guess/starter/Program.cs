@@ -10,7 +10,7 @@ while (true)
 {
     Console.Write("> ");
     var input = Console.ReadLine();
-    var guess = int.Parse(input ?? "0");
+    var guess = int.Parse(input);
     guesses++;
 
     if (guess < secret)

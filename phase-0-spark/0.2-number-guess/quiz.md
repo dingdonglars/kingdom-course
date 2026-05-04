@@ -1,39 +1,41 @@
 # Quiz — Module 0.2
 
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+
 ## 1. What does `while (true) { ... }` do?
 
-a. Runs the code inside once
-b. Runs the code inside zero times (since `true` is suspicious)
-c. Runs the code inside repeatedly, forever, until `break` is reached
-d. Runs the code inside until the user presses Enter
+- **a.** Runs the code inside exactly once, then moves on
+- **b.** Runs the code inside zero times, since `true` is treated as a special case
+- **c.** Runs the code inside repeatedly, forever, until a `break` is reached
+- **d.** Runs the code inside once per Enter key the user presses
 
 ## 2. What does `random.Next(1, 101)` give you?
 
-a. A random number between 1 and 100 (inclusive)
-b. A random number between 1 and 101 (inclusive)
-c. A random number between 1 and 100 (random says hi)
-d. The number 101
+- **a.** A random number between 1 and 100 inclusive (upper bound excluded)
+- **b.** A random number between 1 and 101 inclusive (both bounds included)
+- **c.** A random number between 0 and 101 (the bounds are starting hints)
+- **d.** Always the literal number 101 (the upper bound)
 
-## 3. In an `if / else if / else` chain, how many branches run?
+## 3. In an `if / else if / else` chain, which branches run?
 
-a. All of them
-b. None of them
-c. Exactly one
-d. The first one that's true
+- **a.** All branches whose condition is true, in order
+- **b.** None of them — the chain only checks; it doesn't execute
+- **c.** Only the first branch whose condition is true, then the chain stops
+- **d.** Only the `else` branch, after every condition is checked
 
-## 4. What does `int.Parse("42")` give you?
+## 4. What does `int.Parse("42")` return?
 
-a. The string `"42"`
-b. The number `42`
-c. An error (`"42"` isn't a number)
-d. The number `42.0`
+- **a.** The string `"42"` unchanged, since you can't convert a string to a number
+- **b.** The integer `42`, ready to be used in arithmetic
+- **c.** An error, because `"42"` is not in a numeric format C# recognises
+- **d.** The decimal `42.0`, since C# defaults numeric input to floating-point
 
-## 5. Why does the program use `int.Parse(input ?? "0")` instead of just `int.Parse(input)`?
+## 5. What does the `break` keyword do inside the loop?
 
-a. Because `0` is funnier than the user's actual input
-b. Because `Console.ReadLine()` returns `string?` (a string that *might* be `null`), and `int.Parse` can't handle `null` — `?? "0"` says "use the input if it's not null; otherwise use the string '0'"
-c. To start counting from zero
-d. There's no good reason; it's a habit
+- **a.** Pauses the program for a moment before continuing the loop
+- **b.** Jumps out of the loop entirely, so the code after the loop runs next
+- **c.** Skips the rest of the current iteration but stays in the loop
+- **d.** Throws an error that stops the whole program
 
 ---
 

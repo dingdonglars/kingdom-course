@@ -1,39 +1,41 @@
 # Quiz — Module 0.1
 
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+
 ## 1. What does `Console.ReadLine()` do?
 
-a. Reads a line from a file
-b. Waits for the user to type something and press Enter, then gives you back what they typed
-c. Reads the next line in your code
-d. Reads someone's mind
+- **a.** Reads the next line of source code in your program
+- **b.** Pauses your program, waits for the user to type a line, and gives back what they typed
+- **c.** Reads the first line of a file in the current folder
+- **d.** Returns whatever line of code last printed to the console
 
 ## 2. What's the difference between `Console.Write` and `Console.WriteLine`?
 
-a. They're identical
-b. `Write` is for input, `WriteLine` is for output
-c. `WriteLine` adds a newline at the end; `Write` doesn't
-d. `Write` is the older name; `WriteLine` is preferred
+- **a.** `Write` is the older name; `WriteLine` is the new preferred form
+- **b.** `Write` is for input; `WriteLine` is for output
+- **c.** `WriteLine` adds a newline at the end; `Write` leaves the cursor on the same line
+- **d.** They behave identically; the names are interchangeable
 
-## 3. What does `var name = Console.ReadLine();` do?
+## 3. What does `var name = Console.ReadLine();` actually do?
 
-a. Creates a variable called `name` and stores whatever the user typed in it
-b. Renames the program to whatever the user typed
-c. Tells C# the user's name is "name"
-d. Crashes the program
+- **a.** Tells C# the user's name is the literal word "name"
+- **b.** Declares a variable called `name` and stores the user's input in it
+- **c.** Renames the running program to whatever the user types
+- **d.** Crashes the program because `var` needs an explicit type
 
 ## 4. What does the `$` mean in `$"Hey {name}"`?
 
-a. It's a typo
-b. It marks the string as needing variable substitution (string interpolation)
-c. It tells C# this is a price
-d. It makes the string longer
+- **a.** It marks the string as needing variable substitution (string interpolation)
+- **b.** It tells C# this string represents a price or amount of money
+- **c.** It's an old-style way to escape special characters inside the string
+- **d.** It makes the string render in bold when printed
 
-## 5. What gets printed by `Console.WriteLine($"Hey {name?.ToUpper()}");` if `name` is `"alice"`?
+## 5. After `var name = Console.ReadLine();`, the variable `name` holds...
 
-a. `Hey alice`
-b. `Hey ALICE`
-c. `Hey null`
-d. An error
+- **a.** A copy of the entire program's source code
+- **b.** Whatever line of text the user typed before pressing Enter
+- **c.** The number of characters in the user's input
+- **d.** A method that the program can call later to read input
 
 ---
 

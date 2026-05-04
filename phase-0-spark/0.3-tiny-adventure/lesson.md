@@ -1,8 +1,9 @@
 # Module 0.3 — Tiny Adventure
 
-> **Hook:** today you build a 3-room text adventure. *"You stand in a dim hallway. There's a door north and a door east. > "* The world is yours; we just give you the bones.
+Today you build a three-room text adventure. *"You stand in a dim hallway. There's a door north and a door east. >"* The world is yours; the bones come from this lesson. Two new ideas land along the way: a *list* (how the player carries items between rooms) and writing your own *methods* (a method per room, calling each other as the player walks around).
 
 > **Words to watch**
+>
 > - **list** — an ordered collection of things you can add to, remove from, and loop through
 > - **`List<string>`** — a list specifically of strings (text items)
 > - **method (defined)** — until now you've only *called* methods (`Console.WriteLine(...)`); today you *write* one
@@ -10,7 +11,7 @@
 
 ---
 
-## Do it
+## Step 1 — make a new project
 
 ```powershell
 cd ..
@@ -18,7 +19,7 @@ dotnet new console -n TinyAdventure
 cd TinyAdventure
 ```
 
-Open `Program.cs`. Replace with:
+Open `Program.cs` and replace the contents:
 
 ```csharp
 var inventory = new List<string>();
@@ -30,7 +31,7 @@ void Hallway()
     Console.WriteLine();
     Console.WriteLine("You stand in a dim hallway. There's a door north and a door east.");
     Console.Write("> ");
-    var choice = Console.ReadLine()?.Trim().ToLower();
+    var choice = Console.ReadLine().Trim().ToLower();
 
     if (choice == "north") Kitchen();
     else if (choice == "east") Library();
@@ -46,7 +47,7 @@ void Kitchen()
     Console.WriteLine();
     Console.WriteLine("A kitchen, smells of stew. There's a knife on the counter.");
     Console.Write("> ");
-    var choice = Console.ReadLine()?.Trim().ToLower();
+    var choice = Console.ReadLine().Trim().ToLower();
 
     if (choice == "take knife")
     {
@@ -70,7 +71,7 @@ void Library()
     Console.WriteLine();
     Console.WriteLine("A library, dust motes in the air. A book lies open on the table.");
     Console.Write("> ");
-    var choice = Console.ReadLine()?.Trim().ToLower();
+    var choice = Console.ReadLine().Trim().ToLower();
 
     if (choice == "read book")
     {
@@ -97,31 +98,52 @@ void Library()
 }
 ```
 
-Run:
+There are two new ideas in this code worth pausing on. The first line creates a `List<string>` — a list that holds text items, starting empty. Each method (`Hallway`, `Kitchen`, `Library`) is one room. When the player chooses a direction, the current room's method calls the next room's method directly. The methods call each other; that's how the player walks around.
+
+The other small thing to notice: `Console.ReadLine().Trim().ToLower()` reads a line, removes any spaces around the edges (`Trim`), and converts it to lowercase (`ToLower`). That way `"NORTH"`, `" north "`, and `"North"` all match `"north"`.
+
+Run it:
 
 ```powershell
 dotnet run
 ```
 
-Walk around. Try every command.
+Walk around. Try every command. Try the win condition (take the knife, read the book).
 
 ## Tinker
 
-- Add a fourth room (a **basement**? a **garden**?) and connect it to one of the existing rooms.
-- Add an item the player can pick up in your new room.
-- Add a **second** win condition that needs the new item.
-- Make the rooms talk to the player about what's in their `inventory` if they type `look` or `inventory`.
+Add a fourth room — a basement, a garden, a tower — and connect it to one of the existing rooms.
+
+Add an item the player can pick up in your new room. Maybe a key, a candle, an old letter.
+
+Add a second win condition that needs the new item. Now the game has two ways to win.
+
+Make the rooms talk to the player about what's in their `inventory` if they type `look` or `inventory`. You'll need a small loop to print each item.
 
 ## Name it
 
-- **List.** `List<string>` is C#'s flexible ordered collection. You created an empty one with `new List<string>()`. You added to it with `inventory.Add(...)`. You checked membership with `inventory.Contains(...)`. You can loop through it, sort it, find things in it. The `<string>` part says *"this is a list of strings"* — you'll see `<int>`, `<Building>`, etc. soon.
-- **Methods (defined).** You just wrote three methods: `Hallway()`, `Kitchen()`, `Library()`. Each one is a named chunk of code. They *call each other* — `Hallway` calls `Kitchen` if the user goes north, `Kitchen` calls `Hallway` if the user goes back. The whole game is methods calling each other.
-- **Organisation.** Splitting code into methods *organises* it. Imagine the same game written as one giant `if` chain — unreadable. With each room as a method, the structure of the game maps to the structure of the code.
+A **list** is an ordered collection. `List<string>` is C#'s flexible list type, specifically holding strings. You created an empty one with `new List<string>()`. You added to it with `inventory.Add(...)`. You checked membership with `inventory.Contains(...)`. The `<string>` part says *"this is a list of strings"* — you'll see `<int>`, `<Building>`, and others later. The angle brackets are how you tell a generic class what type it works with.
 
-## Quiz / challenge
+A **method (defined)** is one you write yourself. You wrote three today: `Hallway()`, `Kitchen()`, `Library()`. The `void` keyword in front says the method doesn't give back a value — it just *does* something. The body runs when the method is called. When the body finishes, control returns to the line that called it.
 
-Open `quiz.md`.
+**Organisation** is what splitting code into methods buys you. Imagine the same game written as one giant `if/else` chain — three rooms, three sets of choices, all jammed together. Unreadable. With each room as a method, the structure of the game maps to the structure of the code. That mapping is the whole point.
 
-## Connect
+## What you just did
 
-Your Kingdom is going to have buildings, citizens, events, items — collections of things. `List<>` (and its cousin `Dictionary<>`) is how those collections live in code. And methods are how you'll structure the engine: `Building.Upgrade()`, `Citizen.AssignJob(...)`, `Kingdom.AdvanceTurn()`.
+You wrote a real game with state — an inventory the player carries between rooms — and you wrote your own methods for the first time. Three rooms, each its own method, calling each other as the player walks around. You met `List<string>` for storing items, and you saw what `void` methods look like when *you* write them rather than just calling them. The whole adventure is about ninety lines of code, split into four named pieces that each do one thing.
+
+**Key concepts you can now name:**
+
+- **`List<T>`** — generic ordered collection
+- **`Add` and `Contains`** — append item, check membership
+- **method definition** — `void Name() { ... }` you wrote
+- **organisation** — split code so structure mirrors problem
+- **`void` return** — method that does, doesn't give back
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 0.4 is a polish day. You pick your favourite of the three programs from this week, dress it up, and ship it. End of Spark Week.

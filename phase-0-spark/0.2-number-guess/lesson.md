@@ -1,24 +1,30 @@
 # Module 0.2 — Number Guess
 
-> **Hook:** the computer picks a number between 1 and 100. You guess. It tells you if you're too high, too low, or right — and it's *snarky* about it.
+The computer picks a number between 1 and 100. You guess. It tells you if you're too high, too low, or right — and it's snarky about it. Today is your first program with a *loop*: code that runs over and over until something tells it to stop. By the end you'll have a real little game, and you'll know three new ideas — loops, conditionals, and how to turn typed text into a number.
 
 > **Words to watch**
+>
 > - **loop** — a chunk of code that runs repeatedly until you tell it to stop
-> - **`while`** — the C# keyword that starts a "keep doing this until something is false" loop
+> - **`while`** — the C# keyword that starts a "keep doing this until something changes" loop
 > - **conditional** — `if` / `else` — a fork in your code based on whether something is true or false
 > - **`int.Parse(...)`** — the method that turns a string of digits into a real `int`
+> - **`break`** — the C# keyword that jumps straight out of the loop you're in
 
 ---
 
-## Do it
+## Step 1 — make a new project
 
-Make a new folder *next to* `RoastOMatic` (in your repo root). In PowerShell:
+Make a new folder next to `RoastOMatic`, in your repo root. In PowerShell:
 
 ```powershell
 cd ..
 dotnet new console -n NumberGuess
 cd NumberGuess
 ```
+
+You now have two console projects living side by side in the same repo. They don't know about each other; they're independent little programs.
+
+## Step 2 — write the game
 
 Open `Program.cs` in VS Code. Replace its content with:
 
@@ -33,7 +39,7 @@ while (true)
 {
     Console.Write("> ");
     var input = Console.ReadLine();
-    var guess = int.Parse(input ?? "0");
+    var guess = int.Parse(input);
     guesses++;
 
     if (guess < secret)
@@ -52,6 +58,12 @@ while (true)
 }
 ```
 
+A lot is happening in those thirty lines. The first three set up the game: a random-number generator, the secret number it picked, and a counter for how many guesses the player has used.
+
+The `while (true) { ... }` block is your first **loop** — it runs the code inside over and over, forever, until something tells it to stop. Inside the loop, the program prompts, reads the input, turns the typed string into an integer with `int.Parse`, and bumps the counter.
+
+The `if / else if / else` chain is a **conditional** — a fork in the road. Only one of the three branches runs each time through the loop, depending on which condition is true. When the player finally guesses right, the `else` branch prints the win message and the `break` keyword jumps out of the loop, ending the program.
+
 Run it:
 
 ```powershell
@@ -62,21 +74,38 @@ Guess until you get it right.
 
 ## Tinker
 
-- Make the messages even snarkier.
-- Track the number of guesses and rate the player at the end (*"1 guess: are you cheating? 5 guesses: acceptable. 50 guesses: have you considered a different hobby?"*).
-- Add a "give up" option — if the user types `quit`, reveal the number and exit.
-- Make the range a variable (e.g., 1..1000). Hint: pull the `1` and `101` into named variables at the top.
+Make the messages even snarkier — the program is yours, lean into it.
+
+Track the number of guesses and rate the player at the end. *"1 guess: are you cheating? 5 guesses: acceptable. 50 guesses: have you considered a different hobby?"*
+
+Add a give-up option — if the user types `quit`, reveal the number and exit. You'll need an extra `if` before the `int.Parse` line, since `quit` isn't a number.
+
+Make the range a variable. Pull `1` and `101` out into named integers at the top, so you can change the difficulty by editing one place instead of two.
 
 ## Name it
 
-- **Loop.** The `while (true) { ... }` block runs over and over, forever, until something inside it tells it to stop. The thing that tells it to stop is `break;`.
-- **Conditional.** `if (...) { } else if (...) { } else { }` is a fork in the road. Only one branch runs, depending on which condition is true.
-- **`Random`.** The `Random` *class* knows how to make pseudo-random numbers. You created one with `new Random()`. Then you asked it for a number with `random.Next(1, 101)` — a method call. (Yes, `Next(1, 101)` includes 1 but excludes 101 — Microsoft's choice. We'll call out that quirk again later.)
+A **loop** is code that runs repeatedly. The `while (condition) { ... }` form keeps running while the condition is true; `while (true)` runs forever, until a `break;` inside the body jumps out.
 
-## Quiz / challenge
+A **conditional** is the `if (...) { } else if (...) { } else { }` form. The conditions are tested top to bottom; the first one that's true runs its block, and the rest are skipped.
 
-Open `quiz.md`.
+The **`Random` class** knows how to make pseudo-random numbers. You created one with `new Random()`, which gives you a `Random` object stored in the `random` variable. Then you asked it for a number with `random.Next(1, 101)` — a method call on that object. The number is from 1 to 100 inclusive — the lower bound is included, the upper bound is excluded. That's Microsoft's choice and it trips up nearly everyone the first time.
 
-## Connect
+## What you just did
 
-Your Kingdom is going to be full of random events — bandit raids, lucky harvests, festival days. The same `Random` you used here will pick which event happens. The same `if/else` you used here will decide what the event does to your gold pile.
+You wrote a real game. The program picks a number, you guess, it gives you feedback, you guess again — that loop is the heartbeat of every program that does more than print once and quit. You met three named ideas: loops (`while`), conditionals (`if`/`else if`/`else`), and number parsing (`int.Parse`). The whole game is about thirty lines of code, and one of those is a comment.
+
+**Key concepts you can now name:**
+
+- **`while` loop** — repeat until something changes
+- **`break`** — jump out of the current loop
+- **conditional** — `if`/`else if`/`else` branching
+- **`int.Parse`** — turn a string of digits into an `int`
+- **`Random.Next(min, max)`** — random number, upper bound excluded
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 0.3 turns this into a tiny adventure — multiple rooms, choices that matter, your first text game. Same loops and conditionals; bigger story.
