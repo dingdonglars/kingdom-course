@@ -1,8 +1,31 @@
 # VS Code — startup tips
 
 > A short list of things that make VS Code feel like home, not like a wall of menus. Skim this once after Module 0.0. Come back to it whenever something feels clunky.
+>
+> **Setup assumed below:** Windows + Portuguese (Brazil) keyboard layout (ABNT2). All shortcuts use the keys you actually have.
 
 VS Code is your main tool for the whole year. Like any tool, the difference between "it kind of works" and "it feels like an extension of your hands" is about ten small habits. Here they are.
+
+## A note on the Portuguese keyboard
+
+Your Portuguese (Brazil / ABNT2) keyboard is a small but real complication for VS Code defaults — almost every coding tutorial assumes a US English keyboard. The differences that actually matter for this course:
+
+| Symbol | US keyboard | Your keyboard (Portuguese ABNT2) |
+|---|---|---|
+| `\` (backslash) | one key, top right | `AltGr + Q` (or use the dedicated key right of the right-shift, which is `\` + `|`) |
+| `[` | one key | `AltGr + 8` |
+| `]` | one key | `AltGr + 9` |
+| `{` | `Shift + [` | `AltGr + Shift + 8` (or simpler: hold `AltGr` and press `8` then `9` for `[]`, then type the contents) |
+| `}` | `Shift + ]` | `AltGr + Shift + 9` |
+| `` ` `` (backtick) | one key, top-left | dead key — press `` ` `` then space, OR `AltGr + ’` depending on your specific layout |
+| `~` (tilde) | `Shift + ` ` (top-left) | dead key — press `~` then space |
+| `@` | `Shift + 2` | `AltGr + 2` |
+| `/` | one key | `Shift + 7` (the `/` and `7` share a key) |
+| `?` | `Shift + /` | `Shift + W` location? — actually it's `Shift + Q` on ABNT2 |
+
+You'll write `{`, `}`, `[`, `]`, `\`, and `` ` `` constantly in code. **The `AltGr` key (right of the spacebar) becomes your best friend.** Practise the four bracket combinations now until your fingers know them — it removes 90% of the "where is that symbol again?" friction in the first month.
+
+If a key combination involves `` ` `` (backtick) and yours is a dead key, the easiest workaround is to press `` ` `` and then immediately press `Space` — that gives you a single backtick character.
 
 ## The four shortcuts you'll use a hundred times a day
 
@@ -12,12 +35,10 @@ These are worth memorising on day one. Every other shortcut can wait.
 |---|---|
 | `Ctrl + P` | Open any file by name. Just start typing. |
 | `Ctrl + Shift + P` | Open the **Command Palette** — every command in VS Code is in here. Forgot how to do something? Ctrl+Shift+P, type a few letters. |
-| `Ctrl + ` ` | Open the terminal at the bottom (the backtick key, top-left of the keyboard) |
+| `Ctrl + ’` (apostrophe key) | Open the terminal at the bottom. *(VS Code's default is `Ctrl + ` `, but on ABNT2 the backtick is a dead key — VS Code on Windows treats `Ctrl + ’` as the same shortcut. If neither works, see "Make the terminal shortcut sane" below.)* |
 | `Ctrl + B` | Show or hide the file tree on the left. Big screen feel from a small screen. |
 
 `Ctrl + Shift + P` is the one. If you remember nothing else, remember that one. Anything VS Code can do, you can find by typing into the Command Palette.
-
-> **On a Mac:** swap `Ctrl` for `Cmd` everywhere on this page.
 
 ## Two more that pay back instantly
 
@@ -61,11 +82,27 @@ If it's still broken after all three, *then* it's a real problem and worth pingi
 
 ## The terminal lives inside the editor
 
-`` Ctrl + ` `` opens a terminal at the bottom of the window. Same shell, same folder, no Alt-Tab to a separate window. Run `dotnet build`, `dotnet test`, `git status` right there.
+The terminal panel opens at the bottom of the window with the shortcut above (or via *View → Terminal* in the menu). Same shell, same folder, no Alt-Tab to a separate window. Run `dotnet build`, `dotnet test`, `git status` right there.
 
 You can open multiple terminals (the `+` icon in the terminal panel) — handy when one is running a server and you want to keep typing in another.
 
 You can also resize the panel by dragging its top edge. If the terminal is hogging too much screen, drag it down. If you need to see more output, drag it up.
+
+### Make the terminal shortcut sane
+
+If the default `` Ctrl + ` `` doesn't work for you (the dead-key problem above), rebind it to something your fingers can hit reliably. Recommendation: `Ctrl + Ç` — Athos's keyboard has a real `Ç` key right where US keyboards put `;`, and nothing in VS Code uses it.
+
+How:
+
+1. `Ctrl + Shift + P` → *"Preferences: Open Keyboard Shortcuts"*.
+2. Search: *"Toggle Terminal"*.
+3. Click the pencil icon next to the matching command, press your new combination, hit Enter.
+
+The same trick fixes any other shortcut whose default involves a dead key on your layout.
+
+### Make sure PowerShell is the default shell
+
+The course gives commands in PowerShell (the Windows shell). Inside the VS Code terminal, check the dropdown at the top-right of the terminal panel — it should say **PowerShell**. If it says **Command Prompt** or **Git Bash**, click the dropdown arrow → *"Select Default Profile"* → **PowerShell**. Restart the terminal.
 
 ## Settings worth flipping early
 
@@ -77,6 +114,16 @@ Open Settings (Ctrl+,) and search for these. All of them are quality-of-life:
 - **Editor: Tab Size** → `4`. C# convention. (Some other languages use 2 — VS Code can do per-language settings if you ever care.)
 
 You can change any of these later. They're defaults that work for almost everyone starting out.
+
+## When VS Code's UI shows up in Portuguese
+
+VS Code auto-detects your Windows display language. If it's running in Portuguese and you'd rather have it in English (so its menus match every tutorial and screenshot in this course):
+
+1. `Ctrl + Shift + P` → *"Configure Display Language"*.
+2. Pick `en` (English). VS Code will prompt you to install the language pack if needed.
+3. Restart VS Code.
+
+If you'd rather keep it in Portuguese, that's fine too — it's your tool. But the lessons will say "Open the Command Palette" not *"Abra a Paleta de Comandos"*, so be ready to translate menu names mentally.
 
 ## The thing it took everyone too long to learn
 
