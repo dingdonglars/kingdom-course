@@ -1,44 +1,45 @@
 # Bonus B2.2 — Scaffolding (Persistent Context)
 
-> **Hook:** scaffolding is the *files* and *snippets* that make every AI interaction better, automatically. You set them up once; they pay back forever. Today: audit and tighten yours.
+Scaffolding is the *files* and *snippets* that make every AI interaction better, automatically. You set them up once, and they pay back every time you talk to the AI from that day on. You already have a decent scaffold — you've been adding to it since `ARCHITECTURE.md` landed at Module 4.0. Today's lesson is about auditing what you have, tightening it, and adding a couple of new pieces that earn their cost.
+
+The mental model is simple. Each scaffold file is bytes the AI reads on every session. The cheaper the bytes (short, current, accurate), the better the output. The padding hurts twice — you pay tokens for it, and the AI has to read past it to get to the useful bits.
 
 > **Words to watch**
-> - **scaffold file** — a project-level doc the AI reads on session start
+>
+> - **scaffold file** — a project-level doc the AI reads at the start of a session
 > - **`CLAUDE.md` / `AGENTS.md`** — convention files for AI tools to read first
-> - **example file** — a curated "look here for the pattern" snippet
-> - **type file (`types.ts`)** — single source of truth for data shapes
-> - **architecture doc** — one-pager describing the projects + data flow
+> - **example file** — a curated *"look here for the pattern"* snippet
+> - **type file** — a single source of truth for data shapes (DTOs, types, schemas)
+> - **architecture doc** — a one-pager describing your projects and how data flows between them
 
 ---
 
-## What you already have
+## Step 1 — audit what you have
 
-Open your repo. You should see:
+Open your repo. You should see most of these:
 
-- `STANDARDS.md` — conventions
-- `ai-context/CLAUDE.md` — AI rules (mode flag + behaviors)
-- `ai-tools.md` — learner-facing
-- `ai-context/prompts/` — prompt templates
+- `STANDARDS.md` — code, naming, file conventions
+- `ai-context/CLAUDE.md` — AI-specific rules (mode flag plus behaviours)
+- `ai-tools.md` — learner-facing notes on AI tooling
+- `ai-context/prompts/` — prompt templates from M4.0
 - `GLOSSARY.md` — project-specific vocabulary
-- `ARCHITECTURE.md` — projects + data flow (added at M4.0)
+- `ARCHITECTURE.md` — projects and data flow (added at M4.0)
 
-**That's already a good scaffold.** B2.2 is about tightening it.
+That's already a real scaffold. The audit isn't *"do you have the files?"* — you do. The audit is *"are they earning their cost?"*
 
-## The audit
+For each file, ask three questions:
 
-For each scaffold file, ask:
+1. **Does it answer the AI's most-likely first question?** (*"What conventions does this project use?"* → STANDARDS. *"How are the projects connected?"* → ARCHITECTURE.) If a file doesn't answer a real first-question, it's filler.
+2. **Is it short enough to be cheap context?** Each line is read every session. ARCHITECTURE.md should be 30–60 lines; STANDARDS.md around 100. Anything more is bloat.
+3. **Is it current?** A scaffold file that lies wastes tokens *and* sends the AI confidently to the wrong answer. Update after every phase.
 
-1. **Does it answer the AI's most-likely first question?** ("What conventions does this project use?" → STANDARDS. "How are the projects connected?" → ARCHITECTURE.)
-2. **Is it short enough to be cheap context?** Each file is bytes the AI reads. ARCHITECTURE.md should be 30-60 lines; STANDARDS.md ~100. Padding hurts.
-3. **Is it current?** A scaffold doc that lies wastes tokens *and* misleads. Update it after every block.
+## Step 2 — add example files
 
-## Add: example files
+A pattern that's worth adopting: keep small, hand-curated example files the AI can reference.
 
-A new pattern: keep small, hand-curated example files the AI can reference.
+Create `ai-context/examples/01-store-method.md`:
 
-`ai-context/examples/01-store-method.md`:
-
-```markdown
+````markdown
 # Example: a store method
 
 Pattern used in `KingdomEfStore`:
@@ -47,7 +48,8 @@ Pattern used in `KingdomEfStore`:
 public IReadOnlyList<KingdomSlotInfo> ListSlots(string ownerSub)
 {
     using var ctx = new KingdomDbContext(_dbPath);
-    return ctx.Kingdoms.AsNoTracking()
+    return ctx.Kingdoms
+        .AsNoTracking()
         .Where(k => k.OwnerSub == ownerSub)
         .OrderBy(k => k.Id)
         .Select(k => new KingdomSlotInfo(k.Id, k.Name, k.Day))
@@ -56,52 +58,61 @@ public IReadOnlyList<KingdomSlotInfo> ListSlots(string ownerSub)
 ```
 
 Notes:
-- `ownerSub` is *required* (security)
+- `ownerSub` is required for security
 - `using var ctx` for disposal
-- `AsNoTracking` for read-only
+- `AsNoTracking` for read-only queries
 - Project to a small DTO with `.Select`
-```
+````
 
-When you ask Claude to write a *similar* method, point it at this file: *"Match the style of `examples/01-store-method.md`."* The output snaps to your pattern instantly.
+When you ask the AI to write a *similar* method, point it at this file: *"match the style of `examples/01-store-method.md`."* The output snaps to your pattern instantly. You spent ten minutes curating one example; you'll re-use it dozens of times.
 
-## Add: type files
+Three to five examples cover most of what you'll ask for. Don't try to be exhaustive — pick the patterns you find yourself re-explaining.
 
-For TypeScript projects, a single `types.ts` is doing context engineering for you. Same idea in C#: keep DTOs in one folder (`Dtos/`) with no other code. The AI reads them and knows your wire shapes.
+## Step 3 — keep type files in one place
 
-## Add: a "you are here" header
+Where data shapes live, the AI can find them and stop guessing. In TypeScript projects, a single `types.ts` does this for you. In C#, the equivalent is keeping DTOs in one folder (`Dtos/`) with no other code in it. The AI reads the folder, knows your wire formats, and stops inventing fields.
 
-Some teams put a comment at the top of long files:
+This isn't a new file you write — it's a discipline about *where* you put things. Once the DTOs cluster in one place, the AI uses them right.
+
+## Step 4 — add a "you are here" header to long files
+
+Some teams put a short comment at the top of long files:
 
 ```csharp
 // File: KingdomEfStore.cs
-// Role: EF Core implementation of the kingdom store; CRUD + slot listing
+// Role: EF Core implementation of the kingdom store; CRUD plus slot listing
 // Conventions: every method takes string ownerSub first; returns IReadOnly* for read methods
 // See also: KingdomEntity, KingdomDbContext, ARCHITECTURE.md
 ```
 
-5 lines; massive context hint to anyone (human or AI) opening the file mid-task.
+Five lines, written once, doing context work for anyone — human or AI — who opens the file mid-task. Without it, the reader has to scroll and infer. With it, the reader knows the role before they read the first method.
+
+This is optional, but useful for files over 200 lines or that mix several concerns.
 
 ## Tinker
 
-- Audit your `ARCHITECTURE.md`. Is it current? Update one line.
-- Add a `ai-context/examples/` folder with 2-3 hand-picked snippets.
-- Try a real prompt with + without the example file. Compare outputs.
+Audit your `ARCHITECTURE.md` right now. Open it. Is it current? If anything in there has drifted since M4.0, update one line. *"Stale scaffolds are worse than no scaffolds"* — this is the discipline that prevents that.
 
-## Name it
+Add an `ai-context/examples/` folder with two or three hand-picked snippets. Pick patterns you've explained more than once.
 
-- **Scaffold file** — project doc the AI reads.
-- **Example file** — hand-curated snippet showing the pattern.
-- **Type file** — single source of truth for data shapes.
-- **"You are here" header** — top-of-file orientation comment.
+Try a real prompt with and without the example file. Compare outputs. The difference is the value of the example.
 
-## The rule of the through-line
+## What you just did
 
-> **Cheap context now. Expensive misunderstanding later.** The 20 minutes you spend curating scaffolding pay back in every AI interaction for the lifetime of the project.
+You audited your scaffold (the persistent context the AI reads on every session), tightened any stale or padded files, and added two new pieces: an `examples/` folder with hand-picked snippets, and (optionally) a top-of-file orientation header on longer files. Each piece pays back forever — once it's in the repo, every future AI interaction benefits without you doing anything per-prompt. Roughly 20 minutes of curation; pays back across the lifetime of the project.
 
-## Quiz / challenge
+**Key concepts you can now name:**
 
-Open `quiz.md`.
+- **scaffold file** — project doc the AI reads at session start
+- **example file** — hand-curated snippet showing your pattern
+- **type file** — single source of truth for data shapes
+- **"you are here" header** — top-of-file orientation comment
+- **stale scaffolds are worse than none** — audit and update each phase
 
-## Connect
+## Quiz
 
-B2.3 is **scoping** — per-task framing. The other half of context engineering: what you say *for this specific request* on top of the scaffolding.
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+B2.3 covers **scoping** — per-task framing. The other half of context engineering: what you say *for this specific request* on top of the scaffolding.

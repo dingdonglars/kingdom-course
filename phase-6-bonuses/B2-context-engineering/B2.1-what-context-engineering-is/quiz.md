@@ -1,39 +1,41 @@
-# Quiz — B2.1
+# Quiz — Bonus B2.1
+
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
 
 ## 1. The four-step frame for an AI interaction is...
 
-a. Prompt → context → output → eval
-b. Question → answer → done
-c. Code → test → ship → done
-d. Plan → write → review → ship
+- **a.** Prompt → context → output → eval
+- **b.** Question → answer → review → done
+- **c.** Code → test → ship → forget
+- **d.** Plan → write → review → ship
 
-## 2. What three failure modes should you watch for in AI output?
+## 2. Which three failure modes account for almost every bad AI output?
 
-a. Generic-tutorial output, invented APIs, drift from style
-b. Slow, expensive, biased
-c. Wrong language, wrong file, wrong syntax
-d. None — AI is reliable
+- **a.** Generic-tutorial output, invented APIs, drift from style
+- **b.** Slow generation, expensive tokens, biased training data
+- **c.** Wrong language, wrong file path, wrong syntax version
+- **d.** None — modern AI is reliable enough that you can accept defaults
 
-## 3. The lesson says "you don't control the AI; you control its context." What does that mean?
+## 3. The lesson says "you don't control the AI; you control its context." What does that mean in practice?
 
-a. The AI's generation is a black box. The bits you can shape are the prompt, the scaffolding, the scoping, and your eval. Optimise those.
-b. AI is broken
-c. Performance only
-d. Tradition
+- **a.** The actual generation step is opaque, but the prompt, the scaffolding, the scoping, and your eval are all yours — so spend effort there
+- **b.** AI output is fundamentally broken and should be treated with suspicion at all times
+- **c.** Performance is the main concern; context engineering optimises for speed
+- **d.** Tradition — older developers prefer it this way
 
-## 4. What's the difference between *scaffolding* and *scoping*?
+## 4. What's the difference between scaffolding and scoping?
 
-a. They're identical
-b. Scaffolding = persistent background (ARCHITECTURE, STANDARDS, examples). Scoping = per-task framing (goal + traps + style pointer).
-c. Scoping is cheaper
-d. Scaffolding is required
+- **a.** They're the same thing under two different names
+- **b.** Scaffolding is persistent background (ARCHITECTURE, STANDARDS, examples). Scoping is per-task framing (goal, traps, style pointer for *this* request).
+- **c.** Scoping is faster to set up than scaffolding
+- **d.** Scaffolding is required by Claude; scoping is optional
 
-## 5. What's the *eval* step?
+## 5. What's the eval step?
 
-a. Your judgement on whether the output is right *for your project* — not the AI's self-assessment
-b. Performance benchmark
-c. A test framework
-d. AI's self-evaluation
+- **a.** Your judgement on whether the output is right *for your project* — the AI doesn't know your standards, you do
+- **b.** A performance benchmark run after every AI response
+- **c.** A test framework that ships with most AI tools
+- **d.** The AI's own self-assessment of its output
 
 ---
 

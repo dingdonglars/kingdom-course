@@ -1,39 +1,41 @@
-# Quiz — B1.1
+# Quiz — Bonus B1.1
 
-## 1. What's LocalDB?
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
 
-a. A NoSQL DB
-b. A free, lightweight, single-user developer edition of SQL Server; instance per user, no service
-c. A SQLite competitor
-d. A logging tool
+## 1. What is LocalDB?
 
-## 2. The lesson says the result will be "anticlimactic." Why is that the lesson?
+- **a.** A NoSQL database for storing JSON documents on a single machine
+- **b.** The developer edition of SQL Server — single-user, one instance per user, no service to manage
+- **c.** A drop-in replacement for SQLite written by Microsoft for cross-platform use
+- **d.** A logging tool that captures queries against a remote SQL Server
 
-a. Anticlimactic = "the engine-vs-shell rule predicts the swap will be small. If we're right, it IS small. The boredom is the proof."
-b. Setup is hard
-c. To save time
-d. Performance
+## 2. Why is the swap from SQLite to SQL Server set up as the lesson at all?
 
-## 3. The connection string format for LocalDB is...
+- **a.** Because SQLite is unsuitable for production and we have to switch off it before shipping
+- **b.** Because the engine-vs-shell rule predicts the swap will be small — and proving it small is the whole point
+- **c.** Because LocalDB is faster than SQLite for the kingdom workload
+- **d.** Because Microsoft pays better than the SQLite team for tutorials
 
-a. `(localdb)\MSSQLLocalDB`
-b. `localhost:5432`
-c. `Data Source=:memory:`
-d. `mongodb://...`
+## 3. The connection string for LocalDB starts with...
+
+- **a.** `Server=(localdb)\MSSQLLocalDB;Database=...`
+- **b.** `Server=localhost:5432;Database=...`
+- **c.** `Data Source=:memory:;Mode=Shared`
+- **d.** `mongodb://localhost:27017/kingdom`
 
 ## 4. Why is LocalDB Windows-only?
 
-a. Microsoft hasn't built it for other platforms; on macOS/Linux use SQL Server in Docker
-b. Performance only
-c. Tradition
-d. License restriction
+- **a.** Microsoft hasn't ported it; on macOS or Linux you run the SQL Server Docker image instead
+- **b.** Performance reasons — the codebase relies on a Windows-specific kernel feature
+- **c.** It's a license restriction; Microsoft sells the macOS edition separately
+- **d.** Tradition; nobody has asked Microsoft for a port
 
-## 5. What's `sqllocaldb info`?
+## 5. What does `sqllocaldb info` do?
 
-a. Show LocalDB version
-b. List instances on this machine
-c. Performance test
-d. Required at install time
+- **a.** Prints the LocalDB version number for the installed package
+- **b.** Lists the LocalDB instances on this machine (default instance is `MSSQLLocalDB`)
+- **c.** Runs a small performance test against the default instance
+- **d.** Required at install time; sets up the system tables
 
 ---
 

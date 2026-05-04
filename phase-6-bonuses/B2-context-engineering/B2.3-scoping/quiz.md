@@ -1,39 +1,41 @@
-# Quiz — B2.3
+# Quiz — Bonus B2.3
 
-## 1. What's *scoping*?
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
 
-a. Per-task framing — what you say for *this specific request* (goal + non-goals + traps + success criteria)
-b. A C# concept
-c. Required for any prompt
-d. Performance optimization
+## 1. What's scoping?
 
-## 2. The lesson's "3-sentence prompt" pattern is...
+- **a.** Per-task framing — what you say for *this specific request* (goal, non-goals, traps, success criteria)
+- **b.** A C# concept about variable visibility, applied to AI prompts
+- **c.** A required header that has to start every prompt for the AI to respond
+- **d.** A performance technique that limits how much code the AI can generate
 
-a. In `<file>`, add `<signature>` that does `<one sentence>`. Match style of `<example>`. Don't `<known trap>`.
-b. Question, context, code
-c. Title, body, footer
-d. None of the above
+## 2. The three-sentence prompt pattern is...
 
-## 3. Why include *non-goals* in a prompt?
+- **a.** In `<file>`, add `<signature>` that does `<one sentence>`. Match style of `<example>`. Don't `<known trap>`.
+- **b.** Question, context, code — pick one and stick with it
+- **c.** Title, body, footer
+- **d.** None of the above; only the full template works
 
-a. Without them the AI guesses your boundaries — often refactoring surrounding code, adding features you didn't ask for, etc. Stating non-goals prevents this.
-b. Performance
-c. Required by Claude
-d. Tradition
+## 3. Why include non-goals in a prompt?
 
-## 4. Why is "success criterion" worth adding?
+- **a.** Without them the AI guesses your boundaries — often refactoring surrounding code, adding validation, expanding scope. Stating non-goals prevents this.
+- **b.** Performance — non-goals make the AI run faster
+- **c.** Required by Claude as part of the API contract
+- **d.** Tradition; older AI tools needed this format
 
-a. Concrete done. You can check the output against the list. The AI knows what "done" looks like and can self-check.
-b. Style
-c. Required for tests
-d. To pad the prompt
+## 4. Why is "success criterion" worth adding to a prompt?
 
-## 5. The lesson says "the prompt is a contract." What does that mean?
+- **a.** Concrete done — you can check the output against the list, and the AI can self-check while writing
+- **b.** Style; success criteria look more professional in a prompt
+- **c.** Required for any prompt that involves writing tests
+- **d.** Padding — they make the prompt look more thorough
 
-a. State goal, limits, and proof-of-done. The AI delivers against the contract you wrote. Vague contract → vague delivery.
-b. Legal jargon
-c. Required by AI vendors
-d. Style preference
+## 5. The lesson says "the prompt is a contract." What's the meaning?
+
+- **a.** State goal, limits, and proof-of-done. The AI delivers against the contract you wrote — a vague contract produces vague delivery.
+- **b.** Legal jargon; AI vendors require contract-style prompts
+- **c.** Commercial agreement that binds you to use the AI's output
+- **d.** Style preference imposed by enterprise AI tooling
 
 ---
 
