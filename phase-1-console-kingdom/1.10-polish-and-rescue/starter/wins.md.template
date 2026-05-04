@@ -17,7 +17,7 @@
 
 ---
 
-## M2 — Block 3 — Console Kingdom
+## M2 — Phase 1 — Console Kingdom
 
 - 35 tests passing, deterministic with `IRandom`/`IClock` + FakeItEasy
 - Engine vs shell pattern internalised — same engine will run in 4 different hosts

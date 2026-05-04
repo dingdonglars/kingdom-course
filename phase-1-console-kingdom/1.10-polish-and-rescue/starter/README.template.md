@@ -1,6 +1,6 @@
 # Kingdom
 
-A console kingdom-management game. Block 3 of the [Kingdom Curriculum](https://github.com/<your-org>/kingdom-course).
+A console kingdom-management game. Phase 1 of the [Kingdom Curriculum](https://github.com/<your-org>/kingdom-course).
 
 ## Run it
 

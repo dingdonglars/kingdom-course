@@ -1,20 +1,24 @@
 # Module 1.6 — LINQ on the Kingdom
 
-> **Hook:** today, almost no new lines of code, but a big change in how you *think*. The kingdom has lists — buildings, citizens. So far, every time you wanted to know something about them ("how many farms?", "highest-level building?"), you'd write a `for` loop. Today you stop. **LINQ** lets you describe the answer rather than the loop.
+Today is almost no new lines of code, but a real change in how you *think*. The kingdom has lists — buildings, citizens. So far, every time you wanted to know something about them ("how many farms?", "highest-level building?"), you'd write a `for` loop. Today you stop. **LINQ** lets you describe the answer instead of the loop.
+
+LINQ stands for *Language Integrated Query*. It's a pile of helper methods (`Where`, `Select`, `Count`, `Sum`, `Any`, `OrderBy`, `First`, and friends) that work on every collection in C#. It's built into the language — no install needed, just `using System.Linq;` (often brought in for you already). Once you know about twenty of these methods, you almost never write a loop just to count or filter again.
 
 > **Words to watch**
-> - **LINQ** — Language Integrated Query. A pile of helper methods (`Where`, `Select`, `Sum`, `Count`, `Any`, `OrderBy`, `First`) that work on every collection.
-> - **predicate** — a function that returns `bool`. LINQ's `Where(b => b.Level > 1)` takes a predicate.
+>
+> - **LINQ** (Language Integrated Query) — a set of methods (`Where`, `Select`, `Sum`, `Count`, `Any`, `OrderBy`, `First`) that work on any collection
+> - **predicate** — a function that returns `bool`. `Where(b => b.Level > 1)` takes a predicate.
 > - **lambda** — the `x => ...` syntax. A throwaway function written inline.
 > - **deferred execution** — LINQ doesn't run immediately. It builds a recipe; the recipe runs when you ask for results.
+> - **extension method** — a static method whose first parameter has `this`, called like an instance method
 
 ---
 
 ## Why LINQ
 
-Suppose Athos asks: *"How many farms does my kingdom have?"*
+Suppose you ask: *"How many farms does my kingdom have?"*
 
-The before-LINQ way:
+Without LINQ:
 
 ```csharp
 int farmCount = 0;
@@ -22,30 +26,19 @@ foreach (var b in kingdom.Buildings)
     if (b is Farm) farmCount++;
 ```
 
-Three lines. Easy to write. Easy to read once. But you'll write *fifty* of these in this kingdom, and they all blur together.
+Three lines. Easy to write. Easy to read once. But you'll write fifty of these in a kingdom this size, and they all blur together.
 
-The LINQ way:
+With LINQ:
 
 ```csharp
 int farmCount = kingdom.Buildings.OfType<Farm>().Count();
 ```
 
-One line. Reads as *"of the buildings, the ones that are farms, count."* Once you know LINQ's twenty-or-so methods, you almost never write a loop just to count or filter.
-
-LINQ is built into C# — no install needed, just `using System.Linq;` (often already there).
-
-## Delta starter
-
-This module changes only `Program.cs` and adds one test file. Engine classes don't change.
-
-- **MODIFIED:** `Kingdom.Console/Program.cs` (uses LINQ for the report)
-- **NEW:** `tests/Kingdom.Engine.Tests/LinqTests.cs`
-
-Optionally, drop a tiny `Stats` helper into the engine — see Step 3.
+One line. Reads as *"of the buildings, the ones that are farms — count."*
 
 ## Step 1 — six methods to know
 
-Type these into the C# REPL or a scratch file to feel them.
+Type these into a scratch file to feel them.
 
 ```csharp
 using System.Linq;
@@ -71,16 +64,21 @@ nums.Any(n => n > 4);                // true (at least one)
 nums.All(n => n > 0);                // true (every one)
 
 // First / FirstOrDefault — get one item
-nums.First(n => n > 3);              // 4 (throws if none)
-nums.FirstOrDefault(n => n > 100);   // 0 (returns default if none)
+nums.First(n => n > 3);              // 4 (throws if no match)
+nums.FirstOrDefault(n => n > 100);   // 0 (returns default if no match)
 
 // OrderBy / OrderByDescending — sort
 nums.OrderByDescending(n => n);      // 5, 4, 3, 2, 1
 ```
 
-That's 90% of the LINQ you'll ever use.
+That's about 90% of the LINQ you'll ever use.
 
 ## Step 2 — apply to the kingdom
+
+This module changes only `Program.cs` and adds one test file. Engine classes don't change.
+
+- **MODIFIED:** `Kingdom.Console/Program.cs` (uses LINQ for the report)
+- **NEW:** `tests/Kingdom.Engine.Tests/LinqTests.cs`
 
 Update `Program.cs` to print a richer summary using LINQ:
 
@@ -112,7 +110,9 @@ void PrintReport(Kingdom.Engine.Kingdom k)
     var lumberyards = k.Buildings.OfType<Lumberyard>().Count();
     var mines = k.Buildings.OfType<Mine>().Count();
     var totalLevels = k.Buildings.Sum(b => b.Level);
-    var topBuilding = k.Buildings.OrderByDescending(b => b.Level).First();
+    var topBuilding = k.Buildings
+        .OrderByDescending(b => b.Level)
+        .First();
 
     Console.WriteLine($"Buildings: {k.Buildings.Count} ({farms} farm, {lumberyards} lumberyard, {mines} mine) — total levels {totalLevels}");
     Console.WriteLine($"Top building: {topBuilding.GetType().Name} '{topBuilding.Name}' (level {topBuilding.Level})");
@@ -128,30 +128,24 @@ void PrintReport(Kingdom.Engine.Kingdom k)
 }
 ```
 
-A lot of LINQ in one method. Read each line slowly:
+Read each LINQ line slowly. `OfType<Farm>()` keeps the items that are farms. `.Count()` returns how many. `Sum(b => b.Level)` adds up `b.Level` across every building. The `topBuilding` chain sorts by level descending and takes the top one. The food-per-day line says *"sum of (level × 5) across the farms, minus the number of citizens."*
 
-- `OfType<Farm>()` — *"the buildings that are farms"*
-- `.Count()` — *"how many"*
-- `Sum(b => b.Level)` — *"add up `b.Level` across every building"*
-- `OrderByDescending(b => b.Level).First()` — *"sort by level descending, take the top one"*
-- `Sum(f => 5 * f.Level) - k.Citizens.Count` — daily food production minus daily food consumption
+`{foodPerDay:+0;-0;0}` is a format string for the printout — positive numbers get `+`, negatives stay `-`, zero stays `0`. A small thing that makes the output read better.
 
-`{foodPerDay:+0;-0;0}` is a format string: positive numbers get `+`, negatives stay `-`, zero stays `0`. A small thing but it makes the report read better.
-
-Build + run:
+Build and run:
 
 ```powershell
 dotnet build
 dotnet run --project Kingdom.Console
 ```
 
-Day 1 you'll see "Food net per day: +7" (2 farms × 5 = 10, minus 3 citizens = 7).
+Day 1 you'll see something like *"Food net per day: +7"* — two farms times five gives ten, minus three citizens gives seven.
 
-## Step 3 — (optional) extract a `Stats` helper
+## Step 3 — a `KingdomStats` helper (optional)
 
-If `Program.cs` is starting to look heavy, push the LINQ into the engine:
+If `Program.cs` is starting to look heavy, push the LINQ into the engine.
 
-`Kingdom.Engine/KingdomStats.cs` (new):
+`Kingdom.Engine/KingdomStats.cs`:
 
 ```csharp
 namespace Kingdom.Engine;
@@ -163,19 +157,21 @@ public static class KingdomStats
     public static int MineCount(this Kingdom k) => k.Buildings.OfType<Mine>().Count();
     public static int TotalBuildingLevels(this Kingdom k) => k.Buildings.Sum(b => b.Level);
     public static Building? TopBuilding(this Kingdom k) =>
-        k.Buildings.OrderByDescending(b => b.Level).FirstOrDefault();
+        k.Buildings
+            .OrderByDescending(b => b.Level)
+            .FirstOrDefault();
     public static int DailyFoodNet(this Kingdom k) =>
         k.Buildings.OfType<Farm>().Sum(f => 5 * f.Level) - k.Citizens.Count;
 }
 ```
 
-Notice **`this Kingdom k`** — the `this` keyword in the first parameter makes these *extension methods*. They're static methods that *look* like instance methods at the call site:
+Notice the `this Kingdom k` in the first parameter. The `this` keyword turns each of these into an **extension method** — a static method that *looks like* an instance method when you call it:
 
 ```csharp
 kingdom.FarmCount();   // really KingdomStats.FarmCount(kingdom)
 ```
 
-Extension methods are LINQ's secret weapon — `Where`, `Select`, etc. are themselves extension methods on `IEnumerable<T>`.
+Extension methods are how LINQ itself works. `Where`, `Select`, and friends are all extension methods on `IEnumerable<T>` — that's why every collection in C# has them automatically.
 
 ## Step 4 — test it
 
@@ -222,7 +218,11 @@ public class LinqTests
         k.AddBuilding(top);
         k.AddBuilding(new Lumberyard("L1"));
 
-        k.Buildings.OrderByDescending(b => b.Level).First().Name.ShouldBe("Big Mine");
+        k.Buildings
+            .OrderByDescending(b => b.Level)
+            .First()
+            .Name
+            .ShouldBe("Big Mine");
     }
 
     [Fact]
@@ -250,33 +250,42 @@ Run:
 dotnet test
 ```
 
-Expect `Passed: 27` (22 + 5).
+You should see `Passed: 27` (22 plus 5 new ones).
 
 ## Tinker
 
-- Replace `OfType<Farm>().Count()` with `Count(b => b is Farm)`. Both work — the second uses the `is` keyword inline. Pick the one you find easier to read.
-- Sort buildings *ascending* (cheapest first) with `OrderBy(b => b.Level)`. Print them. The output looks like a ranked list.
-- Get the second-most-leveled building: `.OrderByDescending(b => b.Level).Skip(1).First()`. `Skip` is one of the rarer methods, but useful.
-- Try `kingdom.Buildings.Where(b => b.Level > 5).First()` when no buildings have level > 5. **It throws.** Switch to `FirstOrDefault()`. Returns `null`. *That's the difference.*
+Replace `OfType<Farm>().Count()` with `Count(b => b is Farm)`. Both work — the second uses the `is` keyword inline. Pick the one you find easier to read.
 
-## Name it
+Sort buildings ascending (cheapest first) with `OrderBy(b => b.Level)`. Print the result. The output looks like a ranked list.
 
-- **LINQ.** Language Integrated Query. ~50 methods on `IEnumerable<T>`.
-- **Predicate.** A function returning `bool`. `b => b.Level > 1` is a predicate. LINQ uses them everywhere — `Where`, `Any`, `All`, `Count`, `First`.
-- **Lambda.** The `x => expr` syntax. Reads as *"x goes to expr."* It's a method literal. The compiler cooks up a real method behind the scenes.
-- **Extension method.** A static method whose first parameter has `this` — looks like an instance method at the call site. LINQ is built on extension methods.
-- **Deferred execution.** `Where(...)` doesn't run yet — it returns a query object. The work happens when you call `.ToList()`, `.Count()`, `.First()`, or iterate with `foreach`. (Subtle. We'll meet this fully if it bites.)
+Get the second-highest-leveled building with `.OrderByDescending(b => b.Level).Skip(1).First()`. `Skip` is one of the rarer methods, but it's useful when you do reach for it.
 
-## The rule of the through-line
+Try `kingdom.Buildings.Where(b => b.Level > 5).First()` when no buildings have level > 5. It throws. Switch to `FirstOrDefault()`. It returns `null`. That's the difference — `First` says *"this had better be there"* and `FirstOrDefault` says *"if it's not there, that's fine."*
 
-> **Describe results, not loops.** When you want to *say what you want from a collection*, reach for LINQ. When you want to *do something with side effects*, a `foreach` is fine.
+## A note on deferred execution
 
-Every `for` you write in this codebase from now on is worth a second look — could LINQ say it more clearly?
+`Where(...)` doesn't actually filter the list when you call it. It returns a *recipe* — a query object that knows how to filter, but hasn't run yet. The work happens when you call `.ToList()`, `.Count()`, `.First()`, or iterate with `foreach`. This is called **deferred execution**. Subtle, but worth knowing — if you store a `Where(...)` result in a variable and then change the source list, the next time you iterate, you get the new filtered result, not the old one. We'll mention it again if it bites; for now, just be aware that LINQ is lazy by default.
 
-## Quiz / challenge
+## The through-line
 
-Open `quiz.md`.
+The through-line in this module: **describe the result, not the loop**. When you want to *say what you want* from a collection, reach for LINQ. When you want to *do something with side effects* (print, save, modify), a `foreach` is fine. From here on, every `for` you write in this codebase is worth a second look — could LINQ say it more clearly?
 
-## Connect
+## What you just did
 
-Module 1.7 introduces **events** — when a citizen dies, a building burns down, a trader visits. Events are stored in a list, and LINQ will be exactly the right tool for "show me all the events from the last 7 days."
+You met LINQ — about ten methods that cover almost every "ask the list a question" you'll write this year. You used them to print a richer kingdom report, and you wrote five tests that prove the queries do what you said. You also met *extension methods*, which is the trick that makes LINQ feel built-in (every collection has these methods because someone declared them on `IEnumerable<T>` once). Twenty-seven passing tests now.
+
+**Key concepts you can now name:**
+
+- **LINQ** — query methods that work on any collection
+- **predicate** — function returning bool, fed to `Where`/`Any`/`All`
+- **lambda** — `x => expr`, a one-line inline function
+- **extension method** — static method, `this` first parameter, called like instance
+- **deferred execution** — LINQ runs lazily, when results are asked for
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 1.7 introduces **events** — a citizen falls ill, a building burns down, a trader visits. Each event becomes a record stored in a list, and LINQ will be exactly the right tool for *"show me the events from the last seven days."*

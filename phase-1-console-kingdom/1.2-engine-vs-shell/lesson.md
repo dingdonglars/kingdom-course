@@ -1,49 +1,47 @@
 # Module 1.2 — Engine vs Shell
 
-> **Hook:** today is the lesson the rest of the course is named after. You take the Kingdom you wrote in 1.1 — all in one project — and split it into a *class library* (the engine: data + logic) and a *console app* (the shell: input + output). The engine never knows about the console. The console depends on the engine. Same code, completely different shape.
+This is the lesson the rest of the course is named after. You take the kingdom you wrote in 1.1 — all in one project — and split it into two. The kingdom's *rules* (buildings, resources, the math) move into a class library called `Kingdom.Engine`. The program that prints things to the terminal becomes a small `Kingdom.Console` project that *uses* the engine. Same code in the end; completely different layout. The point of today is to feel why that layout matters before any of the later phases ask you to live with it.
+
+We're using a piece of vocabulary you'll meet a lot from here on: **shell**. A shell is whatever talks to the outside world — the console here, a web page later in the year, Roblox after that. The engine never talks to the outside. The shell does. The engine just knows about the kingdom; the shell knows about humans.
 
 > **Words to watch**
-> - **class library** — a project that compiles to a `.dll`, not an executable. Has no `Main`. Used by other projects.
-> - **engine** — the part of your code that's about the *domain* (the kingdom, its rules)
-> - **shell** — the part that talks to the outside world (console, files, network, UI)
-> - **project reference** — one project saying "I depend on this other project"
-> - **solution** (`.slnx` or `.sln`) — a file that groups multiple related projects so you can build them together
+>
+> - **class library** — a project that compiles to a `.dll`, not an `.exe`. No `Main`. Other projects use it.
+> - **engine** — the part of the code that's about the kingdom and its rules
+> - **shell** — the part that talks to the outside world (console, files, network, browser, Roblox)
+> - **project reference** — one project saying *"I depend on this other project"*
+> - **solution** (`.slnx` or `.sln`) — a file that groups related projects so they build together
 
 ---
 
 ## Why split
 
-In 1.1 your `Building`, `Resource`, `Kingdom`, and `Citizen` classes lived in the same project as `Program.cs`. That works for now. But ask yourself: *if you wanted the same Kingdom on a website later (Phase 4), what would you do?* You can't reuse `Program.cs` — websites don't have console output. You'd have to copy the kingdom classes out.
+In Module 1.1 your `Building`, `Resource`, `Kingdom`, and `Citizen` classes lived in the same project as `Program.cs`. That works for now. But ask yourself: if you wanted the same kingdom on a website later in the year, what would you do? You can't reuse `Program.cs` — websites don't have a console to print to. You'd be copying the kingdom classes out of one project and into another. The split today prevents that copy. The engine becomes the kingdom's logic; the console becomes one way of *playing* it. Phase 4's browser version will be a different way of playing the same logic. Phase 5's Roblox port will translate the same logic into Luau. The engine is the bet.
 
-The split prevents that copy. **The engine is the kingdom's logic; the shell is just one way to interact with it.** Tomorrow's web shell will use the same engine. Phase 5's Roblox port will be a Luau translation of the same engine. The engine is the bet.
-
-## Do it — refactor
+## Step 1 — create the new layout
 
 You have a `KingdomConsole` project from 1.1. We'll restructure into two:
 
 ```
 your-repo/
-├─ Kingdom.Engine/      ← class library (no Main, no Console)
+├─ Kingdom.Engine/                  ← class library (no Main, no Console)
 │   ├─ Kingdom.cs
 │   ├─ Building.cs
 │   ├─ Citizen.cs
 │   ├─ Resource.cs
-│   ├─ ResourceLedger.cs        ← new — wraps the dict
+│   ├─ ResourceLedger.cs            ← new — wraps the dictionary
 │   └─ Kingdom.Engine.csproj
-├─ Kingdom.Console/     ← console app (no game logic, just input/output)
+├─ Kingdom.Console/                 ← console app (no game logic)
 │   ├─ Program.cs
 │   └─ Kingdom.Console.csproj
-└─ Kingdom.slnx         ← ties them together
+└─ Kingdom.slnx                     ← ties them together
 ```
-
-### Step 1: create the new project layout
 
 ```powershell
 cd <your-repo-root>
-# Backup your 1.1 folder
+# Back up your 1.1 folder so you can compare later
 Rename-Item KingdomConsole KingdomConsole-v1-backup
 
-# Create new structure
 dotnet new sln -n Kingdom
 dotnet new classlib -n Kingdom.Engine
 dotnet new console -n Kingdom.Console
@@ -51,15 +49,15 @@ dotnet sln add Kingdom.Engine Kingdom.Console
 dotnet add Kingdom.Console reference Kingdom.Engine
 ```
 
-The last line is **critical** — it says *"the Console project depends on the Engine project."*
+The last line is the important one. It writes a `<ProjectReference>` into `Kingdom.Console.csproj` that says *"the console project depends on the engine project."* The build system uses that line to compile the engine first, then the console with the engine's `.dll` available.
 
-### Step 2: move the classes into Engine
+## Step 2 — move the classes into Engine
 
-Move `Building.cs`, `Citizen.cs`, `Resource.cs`, `Kingdom.cs` from your backup into `Kingdom.Engine/`. Change their namespaces from `KingdomConsole` to `Kingdom.Engine`.
+Move `Building.cs`, `Citizen.cs`, `Resource.cs`, `Kingdom.cs` from your backup folder into `Kingdom.Engine/`. Open each one and change the namespace from `KingdomConsole` to `Kingdom.Engine`. The convention is namespaces match folders — same idea you'll meet again in Module 1.9.
 
-### Step 3: introduce `ResourceLedger`
+## Step 3 — introduce `ResourceLedger`
 
-Replace the `Dictionary<Resource, int> Resources` in `Kingdom.cs` with a `ResourceLedger`:
+The dictionary on `Kingdom` is going to grow logic over the next few modules — refusing to spend more than you have, refusing negative amounts, and so on. That's class-shaped behaviour, not dictionary-shaped. Wrap it now while it's small.
 
 `Kingdom.Engine/ResourceLedger.cs`:
 
@@ -96,6 +94,8 @@ public class ResourceLedger
 }
 ```
 
+The dictionary is `private readonly` — outside code can't reach it. The only way to change it is through `Add` and `Spend`, both of which check their inputs. `Snapshot()` returns it as `IReadOnlyDictionary` — outside code can read all four amounts in a loop, but it can't write.
+
 Update `Kingdom.cs`:
 
 ```csharp
@@ -122,7 +122,7 @@ public class Kingdom
 }
 ```
 
-### Step 4: rewrite `Program.cs` to use the engine
+## Step 4 — rewrite `Program.cs`
 
 `Kingdom.Console/Program.cs`:
 
@@ -151,40 +151,47 @@ void PrintKingdom(Kingdom.Engine.Kingdom k)
 }
 ```
 
-### Step 5: build + run
+Notice the type is `Kingdom.Engine.Kingdom` — the full name, because `Kingdom` is also the name of a namespace and C# wants to know which one you mean. (You'll meet this same situation again in M1.4 with the `global::` prefix in tests; same family of compiler-confusion.)
+
+## Step 5 — build and run
 
 ```powershell
 dotnet build
 dotnet run --project Kingdom.Console
 ```
 
-Same output as 1.1. **But the shape is completely different.**
+Same output as 1.1. But the layout is completely different.
 
 ## Tinker
 
-- Open `Kingdom.Engine/Kingdom.Engine.csproj`. Notice it has no `<OutputType>Exe</OutputType>` — that's why it's a library. Try adding it. **The build fails** because the engine has no `Main`. *Why is this good?*
-- In `Kingdom.Engine/Kingdom.cs`, try adding `Console.WriteLine("hello");`. **It compiles, but you've broken the rule.** The engine should not write to the console. Comment it out. Discuss with Lars why.
-- Try changing `_amounts` in `ResourceLedger` from `private` to `public`. The compiler still likes it. Now external code could mess with it directly. *Why is this bad?* (Encapsulation. The ledger should control its own state.)
+Open `Kingdom.Engine/Kingdom.Engine.csproj`. There's no `<OutputType>Exe</OutputType>` line — that's why it's a library, not an executable. Try adding one. The build fails because the engine has no `Main` method. Take the line back out. The engine has nothing to *run*; it's a thing other projects use.
 
-## Name it
+Try adding `Console.WriteLine("hello");` to a method on `Kingdom`. It compiles, but you've broken the rule. The engine is not allowed to print. If something inside the engine wants to communicate, it returns a value; the shell decides what to do with it.
 
-- **Class library.** `dotnet new classlib` makes a project with no `Main`. It compiles to a `.dll`. Other projects reference it with `dotnet add <project> reference <library>`.
-- **Engine vs shell.** *Engine* = domain logic. Doesn't know about IO, networks, UI. *Shell* = the IO. Console is one shell; later you'll have an HTTP API shell, a browser shell, a Roblox shell. **Engines outlive their shells.**
-- **Project reference.** A `.csproj` line that says "I depend on this project." `dotnet add reference` adds it for you.
-- **Solution.** A `.slnx` (or older `.sln`) file that groups projects. `dotnet build` at the solution level builds them all, in dependency order.
+Try changing `_amounts` in `ResourceLedger` from `private` to `public`. The compiler still likes it. Now external code could reach in and write whatever it likes. Why is that bad? Because the ledger is supposed to refuse negative amounts and refuse overspending — `_amounts.Add(...)` directly skips both checks. Make it private again.
 
-## The rule of the through-line
+## The through-line
 
-> **The engine never references the shell. The shell references the engine.**
+The course has a single rule we keep coming back to — the **through-line**. It shows up in different flavours per module, but the underlying idea stays the same. This module's flavour: **the engine never references the shell. The shell references the engine.** If you ever find yourself wanting to call `Console.WriteLine` from inside the engine, that's the engine asking to be coupled to the console. The fix is always the same — the engine returns a value, and the shell decides what to print.
 
-If you ever find yourself wanting to call `Console.WriteLine` from the engine — that's a sign the engine should *return* a string and let the shell decide what to do with it. The engine should not assume how it's used.
+You'll see this rule grow as the course goes. In Phase 2 the engine returns save data and the persistence shell writes it to a file. In Phase 3 the engine returns a result and the web shell wraps it in JSON. The engine never knows how it's being used. That ignorance is what lets the same engine work in five different runtimes.
 
-## Quiz / challenge
+## What you just did
 
-Open `quiz.md`.
+You took a single project and split it into two — an engine that holds the kingdom's rules and a console that talks to a human. You introduced `ResourceLedger`, the first class whose whole job is to *protect* a dictionary from being misused. You wrote a project reference in one direction (console depends on engine) and never the other way, which is the whole point — the engine is the part you'll keep, the console is the part you'll replace four times this year. Same output as 1.1, but the codebase has been rearranged, and that rearrangement is the entire bet of the course.
 
-## Connect
+**Key concepts you can now name:**
 
-This refactor is the bet of the entire course. Phase 2 will add a *persistence shell* (file/SQLite). Phase 3 will add a *web API shell*. Phase 4 will add a *browser shell*. Phase 5 will port the engine to *Luau*. Through all five — same engine, different shell.
+- **engine vs shell** — rules vs everything that talks outside
+- **class library** — `.dll` project, no `Main`, used by others
+- **project reference** — one-way dependency arrow between projects
+- **solution** — file that groups projects to build together
+- **read-only wrapping** — class around a dictionary, controlled access
 
-Module 1.3 introduces unit testing — and tests are fundamentally about the engine, not the shell.
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 1.3 introduces unit testing. Tests are about the engine, not the shell — and now that the engine is a project of its own, a test project can reference it without dragging the console along. The split you did today is what makes the next lesson possible.

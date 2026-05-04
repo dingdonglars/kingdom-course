@@ -1,29 +1,28 @@
 # Module 1.5 — Inheritance: Specialised Buildings
 
-> **Hook:** yesterday `Tick()` did nothing. Today we make three kinds of building: `Farm` produces food, `Lumberyard` produces wood, `Mine` produces stone. Each one is a `Building` (same name, level, upgrade) — they just produce different things. This is **inheritance** — the OOP feature that says *"Farm is a kind of Building."*
+Yesterday `Tick()` did nothing. Today we make three specific kinds of building — `Farm` produces food, `Lumberyard` produces wood, `Mine` produces stone. Each one *is* a building (same name, same level, same upgrade) but each ticks differently. The OOP feature that lets you say *"a farm is a kind of building"* is called **inheritance**, and that's the lesson today.
+
+The alternative would be three separate classes — `Farm`, `Lumberyard`, `Mine` — each with its own `Name`, `Level`, `Upgrade`, and `Tick`. Every change to one would have to be made three times. Inheritance lets you write `Building` once, then say *"Farm is a Building, and here's the bit that's specific to farms."* Farm gets all the rest for free.
 
 > **Words to watch**
-> - **inheritance** — when one class (the *child*) gets all the fields and methods of another (the *parent*) and can add its own
+>
+> - **inheritance** — when one class (the *child*) gets all the fields and methods of another (the *parent*) and can add or replace its own
 > - **subclass** (or *child class*) — `Farm`, `Lumberyard`, `Mine`
 > - **base class** (or *parent class*) — `Building`
-> - **`override`** — the keyword that says "I'm replacing the parent's `virtual` method"
-> - **`base(...)`** — call the parent constructor from the child
+> - **`override`** — the keyword that says *"I'm replacing the parent's `virtual` method"*
+> - **`base(...)`** — calls the parent's constructor from inside the child's
 
 ---
 
-## Why inheritance
+## Why inheritance, and where it gets dangerous
 
-Right now every `Building` is the same — a name and a level. Not very interesting. We want **three kinds**: farm, lumberyard, mine. Each ticks differently. Each has the same `Name` and `Level` though. We have two options:
+Inheritance is one of the older ideas in object-oriented programming, and it's easy to overuse. A common modern guideline is *"prefer composition over inheritance"* — meaning, when one thing wants to use another, it's often cleaner for it to *contain* the other rather than *inherit* from it. Long inheritance chains (five or six levels deep) become rigid: a change near the top ripples through every descendant.
 
-**Option A — duplicate.** Three separate classes (`Farm`, `Lumberyard`, `Mine`), each with its own `Name`, `Level`, `Upgrade`. Every change has to be made three times. **Bad.**
+For one level deep, though — `Building` → `Farm`, `Lumberyard`, `Mine` — inheritance is the right tool. Three classes, three things they really do share, no chain. We'll meet composition properly when it earns its place.
 
-**Option B — inheritance.** Define `Building` once with `Name`, `Level`, `Upgrade`, `Tick`. Then say *"`Farm` is a `Building`, plus it overrides `Tick` to produce food."* `Farm` inherits the rest for free. **This is what OOP is for.**
+## Step 1 — three subclasses
 
-Inheritance has limits — it's easy to overuse and end up with confusing class trees (inheritance chains 5-deep). A common modern guideline is *"prefer composition over inheritance"* (we'll meet composition in Module 1.7). For *one level deep* — Building → Farm/Lumberyard/Mine — inheritance is exactly the right tool.
-
-## Delta starter
-
-This module's `starter/` adds three new subclass files and updates `Program.cs`:
+This module's `starter/` adds three new files and updates `Program.cs`:
 
 - **NEW:** `Kingdom.Engine/Farm.cs`
 - **NEW:** `Kingdom.Engine/Lumberyard.cs`
@@ -33,9 +32,7 @@ This module's `starter/` adds three new subclass files and updates `Program.cs`:
 
 `Building.cs`, `Kingdom.cs`, and the existing tests are unchanged from 1.4.
 
-## Step 1 — three subclasses
-
-Open `Farm.cs`:
+`Farm.cs`:
 
 ```csharp
 namespace Kingdom.Engine;
@@ -52,13 +49,9 @@ public class Farm : Building
 }
 ```
 
-Three things to read carefully:
+Three things to read carefully. The `: Building` after `class Farm` means *"inherit from Building."* `Farm` now has `Name`, `Level`, `Upgrade`, and `Tick` for free. The `: base(name)` in the constructor passes the `name` parameter up to `Building`'s constructor — the parent class still does the work of setting `Name`; the child only adds anything new (which here is nothing). And `override void Tick(...)` replaces the empty default from the parent. The compiler insists you write `override` when you replace a `virtual` method, so you can never replace one by accident.
 
-1. **`: Building`** — this colon, in a class declaration, means *"inherit from."* `Farm` now has `Name`, `Level`, `Upgrade`, and `Tick` for free.
-2. **`: base(name)`** — in the constructor, this passes `name` up to `Building`'s constructor. The base class still does the work of setting `Name`. The child only adds anything *new*.
-3. **`override void Tick(...)`** — this replaces the empty default. The parameter `ledger` is the same `ResourceLedger` that `Kingdom.AdvanceDay` passes in. The farm reaches into the ledger and adds food.
-
-The same pattern for `Lumberyard.cs`:
+`Lumberyard.cs`:
 
 ```csharp
 namespace Kingdom.Engine;
@@ -74,7 +67,7 @@ public class Lumberyard : Building
 }
 ```
 
-And `Mine.cs`:
+`Mine.cs`:
 
 ```csharp
 namespace Kingdom.Engine;
@@ -90,7 +83,7 @@ public class Mine : Building
 }
 ```
 
-Three almost-identical classes — that *feels* like duplication. It is, a little. The discipline question: *would each of these grow differently over time?* A future `Farm` might add a `Crop` enum; a future `Mine` might track `OreVein`. Yes, they would. So the classes are worth keeping separate. (When two classes really would never diverge, fold them into one. Don't make a class for every word in the design doc.)
+Three almost-identical classes. That feels like duplication, and it is, a little. The question worth asking is *"would each of these grow differently over time?"* A future `Farm` might add a `Crop` enum; a future `Mine` might track an `OreVein`. Yes, they probably would. So separate classes are worth it. When two classes really would never split apart, fold them into one — don't make a class for every word in the design doc.
 
 ## Step 2 — use the subclasses in `Program.cs`
 
@@ -127,16 +120,16 @@ void PrintKingdom(Kingdom.Engine.Kingdom k)
 }
 ```
 
-Notice `b.GetType().Name`. **`GetType()`** is a method every object has — it returns the *runtime type*. `.Name` gives the type's short name as a string (`"Farm"`, `"Lumberyard"`, `"Mine"`). That's how the same loop can show different building kinds without us writing a switch statement.
+Notice `b.GetType().Name`. **`GetType()`** is a method every object has — it returns the type the object actually is at runtime. `.Name` gives the type's short name as a string (`"Farm"`, `"Lumberyard"`, `"Mine"`). That's how the same loop can show different building kinds without us writing a `switch` statement. The list holds `Building` references, but each item *runs* its own `Tick`, because each item is really a `Farm` or `Lumberyard` or `Mine`. The technical name for that is **polymorphism** — same type at the surface, different behaviour at the implementation.
 
-Build + run:
+Build and run:
 
 ```powershell
 dotnet build
 dotnet run --project Kingdom.Console
 ```
 
-You should see Day 1 → Day 6, with food *climbing* (5 from farm, minus 2 for citizens = +3/day), wood +3/day, stone +2/day. The resources actually move now.
+You should see Day 1 through Day 6, with food climbing (5 from the farm, minus 2 for the citizens equals net +3 a day), wood +3 a day, stone +2 a day. The resources actually move now.
 
 ## Step 3 — test the subclasses
 
@@ -222,32 +215,34 @@ Run:
 dotnet test
 ```
 
-Expect `Passed: 22` (16 + 6).
+You should see `Passed: 22` — sixteen from earlier modules, six new ones.
 
 ## Tinker
 
-- Add a `Quarry` (think marble for fancy buildings) — copy `Mine.cs`, change the name and the resource produced. Add a test. ~5 minutes.
-- Try making `Building` `abstract` (`public abstract class Building`). The compiler now refuses `new Building("Generic")` anywhere. Does that break Module 1.3's tests? (Yes — `BuildingTests` uses `new Building("Farm")`.) Revert. Note: `abstract` is the next step we *could* take. We'll meet it when needed.
-- Reverse the constructor: write `Building(string name) : this("default") { }` — what happens? (Stack overflow — recursive constructor calls. A real-world gotcha worth seeing once.)
-- Add a method to `Building` called `Describe()` that returns `$"{GetType().Name} {Name} (level {Level})"`. Call it from `Program.cs`. Same pattern, less typing.
+Add a `Quarry` (think marble for fancy buildings later). Copy `Mine.cs`, change the class name and the resource produced. Add a test for it. About five minutes of work.
 
-## Name it
+Try making `Building` `abstract` (`public abstract class Building`). The compiler will refuse `new Building("Generic")` anywhere — abstract classes can only be inherited from, not instantiated directly. Does that break Module 1.3's tests? It does — `BuildingTests` uses `new Building("Farm")`. Take it back out. `abstract` is the next step we *could* take, and we'll meet it when we need it.
 
-- **Inheritance.** A class declares it inherits from another with `:` — gets all of its fields and methods, can add more, can override `virtual` ones.
-- **`override`.** The keyword for replacing a `virtual` method. The C# compiler insists you write it (so you can't override by accident).
-- **`base(...)`.** Calls the parent's constructor from the child's. Almost every child class does this for at least one field.
-- **`GetType().Name`.** Gives the runtime type's short name. Useful for logging and debugging.
+Reverse the constructor: write `Building(string name) : this("default") { }`. Run the program. You'll get a stack overflow — the constructor is calling itself recursively. Worth seeing once, never to forget.
 
-## The rule of the through-line
+Add a method to `Building` called `Describe()` that returns `$"{GetType().Name} {Name} (level {Level})"`. Call it from `Program.cs` instead of building the string by hand. Same output, less typing, and the engine owns the format string.
 
-> **Inherit when a child genuinely *is a* parent.** If `Farm` is a `Building`, fine. If `LogManager` is a `Building`, that's a stretch — don't.
+## What you just did
 
-Inheritance is one tool, not the whole toolbox. You'll see *composition* (Module 1.7) and *interfaces* (Module 1.8) — both alternatives that often fit better.
+Three subclasses extend `Building` — `Farm`, `Lumberyard`, `Mine` — and each replaces the empty `Tick` with its own production rule. The same `foreach` loop in `Kingdom.AdvanceDay` ticks all three correctly, because each list item *runs as the type it really is*, not as the type the list says it holds. That's polymorphism in one paragraph. You also met `: base(...)` for chaining to a parent constructor, and you saw the compiler insist on `override` so you can't replace a `virtual` method by accident. Six new tests passed; twenty-two total now.
 
-## Quiz / challenge
+**Key concepts you can now name:**
 
-Open `quiz.md`.
+- **inheritance** — child class gets parent's methods and fields
+- **`override`** — explicit replacement of a `virtual` method
+- **`: base(...)`** — calls parent's constructor from child's
+- **`GetType().Name`** — runtime type name, useful for logging
+- **polymorphism** — same surface type, different behaviour per subclass
 
-## Connect
+## Quiz
 
-Module 1.6 introduces **LINQ** — the query methods (`Where`, `Select`, `Sum`, `OrderBy`) that make working with the `Buildings` and `Citizens` lists much more pleasant than writing manual `for` loops.
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 1.6 introduces **LINQ** — the query methods (`Where`, `Select`, `Sum`, `OrderBy`) that turn manual `for` loops into one-line questions about the kingdom's lists. You'll use them every day for the rest of the course.

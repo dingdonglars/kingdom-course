@@ -1,39 +1,41 @@
 # Quiz — Module 1.6
 
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+
 ## 1. What does `.Where(b => b.Level > 1)` return?
 
-a. A `bool`
-b. A *new* sequence containing only the items whose `Level > 1`
-c. The first item with `Level > 1`
-d. `null`
+- **a.** A `bool` saying whether any item matched the predicate
+- **b.** A new sequence holding only the items whose `Level > 1`
+- **c.** The first item with `Level > 1`, or `null` if none
+- **d.** `null` always; `Where` is a side-effect method
 
 ## 2. What's the difference between `.First(...)` and `.FirstOrDefault(...)`?
 
-a. They're identical
-b. `First` throws if no item matches; `FirstOrDefault` returns `default(T)` (e.g., `null` for reference types, `0` for `int`)
-c. `First` is faster
-d. `FirstOrDefault` doesn't accept a predicate
+- **a.** They behave identically; the second name is just a deprecated alias
+- **b.** `First` throws if no item matches; `FirstOrDefault` returns `default(T)` (e.g. `null`, `0`)
+- **c.** `First` is faster on big lists; `FirstOrDefault` is slower
+- **d.** `FirstOrDefault` doesn't accept a predicate; `First` does
 
 ## 3. What is a *predicate*?
 
-a. A class
-b. A function that returns `bool`
-c. A keyword
-d. A namespace
+- **a.** A class that holds rules about a collection
+- **b.** A function that returns `bool` — the kind of function `Where` and `Any` accept
+- **c.** A C# keyword reserved for query expressions
+- **d.** A namespace that contains the LINQ methods
 
 ## 4. The `b => b.Level > 1` syntax is called a...
 
-a. Lambda expression — a throwaway function written inline
-b. Generic constraint
-c. Anonymous class
-d. Async method
+- **a.** Lambda expression — a function written inline, no name needed
+- **b.** Generic constraint that limits which types can be passed
+- **c.** Anonymous class with one method on it
+- **d.** Async method declared with the arrow syntax
 
-## 5. Why is `.OfType<Farm>()` cleaner than `.Where(b => b is Farm)`?
+## 5. Why is `.OfType<Farm>()` often nicer than `.Where(b => b is Farm)`?
 
-a. It's not — they're equivalent in behavior, but `OfType<Farm>` *also* returns the items typed as `Farm` (not `Building`), so you can call Farm-specific methods without a cast
-b. It's faster
-c. `Where` is deprecated
-d. They produce different results
+- **a.** They're equivalent in result, but `OfType<Farm>` returns the items typed as `Farm`, so you can use Farm-only members without a cast
+- **b.** `OfType<Farm>` is faster at runtime; `Where(b is Farm)` walks the list twice
+- **c.** `Where` is deprecated and should be avoided
+- **d.** They produce different results — `OfType<Farm>` includes subclasses of Farm; `Where(b is Farm)` doesn't
 
 ---
 

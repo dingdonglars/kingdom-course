@@ -1,21 +1,19 @@
 # Module 1.9 — Code Organisation
 
-> **Hook:** `Kingdom.Engine/` now has 14 files. They all live in a single flat folder. It's already getting hard to scan. Today we **don't add features.** We move things. Folders by topic, sub-namespaces, and a small naming pass. The kingdom *behaves* identically; the *codebase* feels twice the size in the right way and half the size to read.
+`Kingdom.Engine/` now has fourteen files in a single flat folder. It's already getting hard to scan. Today we don't add features — we move things. Folders by topic, sub-namespaces, and a small naming pass. The kingdom *behaves* identically; the *codebase* feels twice the size in the right way and half the size to read.
+
+The reason to organise *now*, before the engine is huge, is the same reason to tidy a desk before it becomes a disaster: cheap when small, expensive when large. A practical rule: once a folder has more than about seven files, it's time to think about subfolders. A flat structure is fine until it isn't.
 
 > **Words to watch**
+>
 > - **sub-namespace** — `Kingdom.Engine.Events` is a sub-namespace of `Kingdom.Engine`. Same project, different bucket.
-> - **using directive** — the `using Kingdom.Engine.Events;` line that brings names from a namespace into scope.
-> - **folder** — pure organisation; the compiler doesn't care about folders, only namespaces. (We use both, in lockstep, by convention.)
+> - **using directive** — the `using Kingdom.Engine.Events;` line that brings names from a namespace into scope
+> - **folder** — pure organisation; the compiler doesn't care about folders, only namespaces. We line them up by hand, by convention.
+> - **aggregate root** — the class that owns everything else in a model. `Kingdom` owns its buildings, citizens, resources. *(First use: this lesson.)*
 
 ---
 
-## Why now
-
-You can build a 14-file engine without folders. You can build a 50-file one without folders. **You'll regret it both times.** The reason to organise *now* is the same reason to organise a desk before it's a disaster: cheap when small, expensive when large.
-
-A practical rule: **once a folder has more than ~7 files, it's time to think about sub-folders.** A flatter structure is fine until it isn't.
-
-## The new shape
+## The new layout
 
 ```
 Kingdom.Engine/
@@ -32,7 +30,7 @@ Kingdom.Engine/
 │   ├─ Resource.cs
 │   └─ ResourceLedger.cs
 ├─ Events/
-│   ├─ KingdomEvent.cs     (and the 3 subclass records)
+│   ├─ KingdomEvent.cs     (and the three subclass records)
 │   └─ EventEngine.cs
 └─ Infrastructure/
     ├─ IRandom.cs
@@ -41,7 +39,7 @@ Kingdom.Engine/
     └─ SystemClock.cs
 ```
 
-`Kingdom.cs` stays at the top because it's the *aggregate root* — the class that ties everything together. The five subfolders are *areas of concern*: buildings, citizens, resources, events, infrastructure (boring plumbing).
+`Kingdom.cs` stays at the top because it's the **aggregate root** — the class that ties everything together and owns the others. (You'll meet this term in design vocabulary too: the aggregate root is the entry point through which all changes to the model flow.) The five subfolders are areas of concern: buildings, citizens, resources, events, and infrastructure (the boring plumbing).
 
 ## Sub-namespaces
 
@@ -64,24 +62,21 @@ using Kingdom.Engine.Citizens;
 public class EventEngine { ... }
 ```
 
-Two effects:
+Two effects. First, **discoverability** — typing `Kingdom.Engine.B` in the editor immediately suggests `Buildings.Farm`, `Buildings.Lumberyard`, `Buildings.Mine`. Without sub-namespaces, you'd see all fourteen types at once. Second, **intent** — a class declared in `Kingdom.Engine.Infrastructure` is signalling *"this is plumbing, not domain."* Anyone reading the engine knows where to look for what.
 
-1. **Discoverability.** Typing `Kingdom.Engine.B` in the editor immediately suggests `Buildings.Farm`, `Buildings.Lumberyard`, `Buildings.Mine`. Without sub-namespaces, you'd see all 14 types at once.
-2. **Intent.** A class declared in `Kingdom.Engine.Infrastructure` is *signalling* — *"this is plumbing, not domain."* Anyone reading the engine knows where to look for what.
+## The cost
 
-## Cost of sub-namespaces
-
-Every file that crosses a boundary needs a `using` line. `EventEngine` now needs `using Kingdom.Engine.Buildings;` and `using Kingdom.Engine.Citizens;` and `using Kingdom.Engine.Infrastructure;`. That's three new lines. **Pay this cost when your engine is mid-sized.** Don't pre-emptively sub-namespace a 4-file project.
+Every file that crosses a boundary needs a `using` line. `EventEngine` now needs `using Kingdom.Engine.Buildings;`, `using Kingdom.Engine.Citizens;`, and `using Kingdom.Engine.Infrastructure;`. That's three new lines. Pay this cost when your engine is mid-sized; don't pre-emptively split a four-file project.
 
 ## Step 1 — apply the move
 
-You have two options. Both produce identical end state.
+Two options, same end state.
 
 **Option A — copy from this module's `starter/`.** This module's starter is a *full snapshot*, not a delta. Replace your entire `Kingdom.Engine/` folder with the one in `starter/Kingdom.Engine/`. Same for the test project (only the `using` lines change).
 
-**Option B — do the move yourself.** In your IDE: select each file, right-click → Move to folder, pick the target. Then update each file's `namespace` line. Then add `using` directives wherever needed (the compiler will tell you with red squiggles). This is closer to how moves happen in real codebases — practice it.
+**Option B — do the move yourself.** In your IDE, select each file, right-click → Move to folder, pick the target. Then update each file's `namespace` line. Then add `using` directives wherever needed (the compiler tells you with red squiggles). This is closer to how moves happen in real codebases — practice it.
 
-Either way, do not change *behavior*. Same buildings, same events, same tests.
+Either way, do not change *behaviour*. Same buildings, same events, same tests.
 
 ## Step 2 — update `Kingdom.cs`
 
@@ -130,51 +125,59 @@ using Kingdom.Engine.Infrastructure;
 using Shouldly;
 ```
 
-Lots of usings. That's the cost of the structure. The benefit is each file's `using` block is now a *map* — *"this code touches buildings, citizens, events, infrastructure."*
+Lots of usings. That's the cost of the structure. The benefit is that each file's `using` block is now a *map* — *"this code touches buildings, citizens, events, infrastructure."*
 
 ## Step 5 — verify
 
-Nothing has changed semantically. Run:
+Nothing has changed about behaviour. Run:
 
 ```powershell
 dotnet build
 dotnet test
 ```
 
-Expect 35 passing — same as before. **If anything fails, you reorganised wrong, not "the code broke."** Read the error: typically a missing `using`.
+You should still see 35 passing — same as before. If anything fails, you reorganised wrong, not "the code broke." Read the error: typically a missing `using`.
 
 ## Tinker
 
-- **Global usings.** Add a file `Kingdom.Engine/GlobalUsings.cs` with:
-  ```csharp
-  global using Kingdom.Engine.Buildings;
-  global using Kingdom.Engine.Citizens;
-  global using Kingdom.Engine.Resources;
-  global using Kingdom.Engine.Infrastructure;
-  global using Kingdom.Engine.Events;
-  ```
-  Now files inside `Kingdom.Engine` don't need to repeat the usings — they're brought in everywhere. Cuts the noise. **Use sparingly** — global usings hide where types come from. Good for a project's own sub-namespaces; bad for third-party libraries.
-- **Try moving `Kingdom.cs` *into* `Buildings/`.** Bad smell — `Kingdom` is the root, not a building. Move it back. The folder shape encodes the model.
-- **Make `EventEngine` `internal`** instead of `public`. The compiler is fine — it's only used inside the engine. **Now external code can't poke at it.** That's encapsulation at the assembly level.
-- **Try making the `_eventEngine` field on `Kingdom` `protected` instead of `private`.** Compiler accepts it, but anyone subclassing `Kingdom` could now mess with the engine. Keep it `private`.
+**Global usings.** Add a file `Kingdom.Engine/GlobalUsings.cs` with:
 
-## Name it
+```csharp
+global using Kingdom.Engine.Buildings;
+global using Kingdom.Engine.Citizens;
+global using Kingdom.Engine.Resources;
+global using Kingdom.Engine.Infrastructure;
+global using Kingdom.Engine.Events;
+```
 
-- **Sub-namespace.** Same project, deeper namespace path. Use to group related types when a project gets large.
-- **Folder ↔ namespace convention.** Folders are organisation; namespaces are scope. We line them up by hand — the compiler doesn't enforce it, but every team does.
-- **Global using.** A `global using` directive applies to every file in the project. Tames sub-namespace noise.
-- **`internal` vs `public`.** `internal` types are visible inside the same assembly only. Use it for "this is implementation, not API."
+Now files inside `Kingdom.Engine` don't need to repeat those usings — they're brought in everywhere. Cuts the noise. Use sparingly, though — global usings hide where types come from. Good for a project's own sub-namespaces; bad for third-party libraries.
 
-## The rule of the through-line
+Try moving `Kingdom.cs` *into* `Buildings/`. The compiler's fine, but it's a bad smell — `Kingdom` isn't a building. Move it back. The folder layout encodes the model.
 
-> **Folders by intent, not by type.** Group `Farm`, `Lumberyard`, `Mine`, `Building` together (all "buildings"); not `Farm.cs`, `FarmTests.cs`, `FarmDocs.md` together. The reader cares about the *concept* — the rest is supporting cast.
+Make `EventEngine` `internal` instead of `public`. The compiler is happy because `EventEngine` is only used from inside the engine. Now external code (the console, the tests) can't poke at it directly. That's encapsulation at the assembly level — `internal` types are visible inside the same project only.
 
-You'll see this rule scaled up in Phase 3 (`Server/Controllers/`, `Server/Services/`) and Phase 4 (`Web/Components/Buildings/`, `Web/Components/Citizens/`).
+Try making the `_eventEngine` field on `Kingdom` `protected` instead of `private`. The compiler accepts it, but anyone subclassing `Kingdom` could now reach in. Keep it `private` — `Kingdom` doesn't have subclasses today, and won't.
 
-## Quiz / challenge
+## The through-line
 
-Open `quiz.md`.
+The through-line in this module: **folders by intent, not by type**. Group `Farm`, `Lumberyard`, `Mine`, `Building` together (all "buildings"), not `Farm.cs`, `FarmTests.cs`, `FarmDocs.md` together. The reader cares about the *concept*; the rest is supporting cast. You'll see this rule scaled up in Phase 3 (`Server/Controllers/`, `Server/Services/`) and Phase 4 (`Web/Components/Buildings/`, `Web/Components/Citizens/`).
 
-## Connect
+## What you just did
 
-Module 1.10 is the **polish + repo rescue** module — README, comments, naming pass, plus the "if your repo is wrecked, rescue it from a known-good snapshot" workflow. Closing Block 3.
+You moved fourteen files into five subfolders, gave each subfolder a matching sub-namespace, and added the `using` directives that crossed the boundaries. Nothing about the kingdom changed; everything about how the codebase reads did. You met the **aggregate root** idea (the class at the top of an owned model — Kingdom, here) and the **internal** access modifier (visible inside the same project only). All thirty-five tests still passed at the end, which was the only proof that mattered.
+
+**Key concepts you can now name:**
+
+- **sub-namespace** — same project, deeper namespace path
+- **folder = namespace** — convention, lined up by hand
+- **`global using`** — directive applied to every file in the project
+- **`internal` vs `public`** — visible to project vs visible everywhere
+- **aggregate root** — top class that owns the model
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 1.10 is the **polish + repo rescue** module — README, comments, naming pass, plus the *"if your repo is wrecked, rescue it from a known-good state"* workflow. M2 closes there.
