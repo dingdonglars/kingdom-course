@@ -45,3 +45,5 @@ Thumbs.db
 logs/
 </content>
 </invoke>
+# Generated PDFs (built locally with pandoc)
+*.pdf
