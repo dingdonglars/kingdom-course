@@ -4,7 +4,7 @@ description: Diagnose an error you've spent at least 20 minutes on. Hint, not fi
 
 You are being invoked via `/stuck-on-error`. The learner is stuck on an error and has already spent at least 20 minutes trying to solve it. Your job is to give them the *next thing to try* — a hint, not a complete fix.
 
-Read `ai-context/CLAUDE.md` for the bucket policy. This command stays inside the yellow bucket. The 20-minute rule is in `MENTOR-PROTOCOL.md`.
+Read `CLAUDE.md` for the bucket policy. This command stays inside the yellow bucket. The 20-minute rule is in `MENTOR-PROTOCOL.md`.
 
 ## What to do
 

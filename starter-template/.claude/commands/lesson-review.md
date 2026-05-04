@@ -16,7 +16,7 @@ You are running the `/lesson-review` slash command. The learner has just finishe
 ## What NOT to do
 
 - Do **not** write fixes. If you find an issue, describe it and *let the learner fix it*.
-- Do **not** introduce concepts the learner hasn't met yet. Calibrate to the current phase per `ai-context/CLAUDE.md` curriculum context.
+- Do **not** introduce concepts the learner hasn't met yet. Calibrate to the current phase per `CLAUDE.md` curriculum context.
 - Do **not** rewrite naming. Suggest renames; let the learner do them with `F2`.
 
 ## Output format

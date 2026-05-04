@@ -33,4 +33,4 @@ Green = M4 met. Then the milestone ritual.
 
 ## AI Unlock
 
-M4 also fires the **AI Unlock**. After the challenge passes, flip `Current mode: pre-unlock` → `post-unlock` in `ai-context/CLAUDE.md`. The rules around AI-assisted code change at this point — read `ai-tools.md` to see what's different.
+M4 also fires the **AI Unlock**. After the challenge passes, flip `Current mode: pre-unlock` → `post-unlock` in `CLAUDE.md`. The rules around AI-assisted code change at this point — read `ai-tools.md` to see what's different.

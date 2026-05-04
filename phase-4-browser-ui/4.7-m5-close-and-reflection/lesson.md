@@ -58,7 +58,7 @@ Compare your `KingdomCard.ts` from M4.4 to your Phase 0 `Program.cs`. One file i
 
 Re-read `STANDARDS.md`. Does anything in there now feel obvious that didn't last year? That's mastery.
 
-Re-read `ai-context/CLAUDE.md`. Notice the mode is `post-unlock`. Has your AI use changed since Phase 4 started? What works? What doesn't? Jot two sentences in `journal/wins.md` if anything stands out.
+Re-read `CLAUDE.md`. Notice the mode is `post-unlock`. Has your AI use changed since Phase 4 started? What works? What doesn't? Jot two sentences in `journal/wins.md` if anything stands out.
 
 Take a screenshot of your kingdom-on-browser and use it as the first commit message of Phase 5 (Roblox). Phase 4 → Phase 5 transition.
 

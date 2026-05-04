@@ -4,7 +4,7 @@
 
 ## 1. What's a scaffold file?
 
-- **a.** A project-level doc the AI reads at session start (e.g. `ARCHITECTURE.md`, `STANDARDS.md`, `ai-context/CLAUDE.md`)
+- **a.** A project-level doc the AI reads at session start (e.g. `ARCHITECTURE.md`, `STANDARDS.md`, `CLAUDE.md`)
 - **b.** A new C# project type used for AI-related work
 - **c.** A test fixture file required by AI integration testing
 - **d.** Any file that has the word "scaffold" in its name
@@ -16,7 +16,7 @@
 - **c.** Required by Claude; longer files are rejected
 - **d.** Personal style preference, not a real constraint
 
-## 3. What does an example file in `ai-context/examples/` give you?
+## 3. What does an example file in `.claude/examples/` give you?
 
 - **a.** A hand-picked, in-style snippet you can point the AI at — *"match the style of this example"*
 - **b.** A set of test cases the AI can run against your code

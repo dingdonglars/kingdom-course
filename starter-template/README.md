@@ -11,7 +11,8 @@ You're going to build all of it yourself. Lars mentors. Claude assists (within t
 ## What's in here on Day 1
 
 - `STANDARDS.md` — the code, naming, and PR conventions you'll follow. Synced from the course repo; do not edit.
-- `ai-context/` — the AI configuration. Read `ai-tools.md` first.
+- `CLAUDE.md` — the AI's machine-side rules. Auto-loaded by Claude Code. Read `ai-tools.md` for the plain-English version.
+- `.claude/commands/` — your slash commands (`/explain-this-concept`, `/code-review`, `/stuck-on-error`, `/walk-through-code`, `/lesson-review`, `/milestone-review`). Type `/` in Claude Code to list them.
 - `.editorconfig`, `.gitignore` — the boring foundations.
 - `.github/PULL_REQUEST_TEMPLATE.md` — what your PR bodies look like.
 - `journal/wins.md` — write here every time you finish a milestone.

@@ -7,10 +7,10 @@
 - [ ] Tag locally: `git tag m4-phase-3-complete && git push origin m4-phase-3-complete`
 
 ## AI Unlock (THE BIG ONE)
-- [ ] Edit `ai-context/CLAUDE.md` line 7 in **your repo** — change `pre-unlock` → `post-unlock`
+- [ ] Edit `CLAUDE.md` line 7 in **your repo** — change `pre-unlock` → `post-unlock`
 - [ ] Commit: `git commit -am "[M4] AI Unlock — flip mode pre-unlock → post-unlock"`
 - [ ] Push
-- [ ] Re-read your own `ai-context/CLAUDE.md` end-to-end with the new mode in mind
+- [ ] Re-read your own `CLAUDE.md` end-to-end with the new mode in mind
 - [ ] Update your PR template (or copy from the post-unlock template in `STANDARDS.md`) to include the AI-assistance section
 
 ## Mentor PR

@@ -4,7 +4,7 @@ description: Find issues in your code, but don't write the fix. Yellow bucket.
 
 You are being invoked via `/code-review`. The learner wants you to review their code — point out issues, but **do not write the fix**. The reviewing IS the lesson.
 
-Read `ai-context/CLAUDE.md` for the bucket policy and the project's `STANDARDS.md`. This command stays inside the yellow bucket: friction help, not learning replacement.
+Read `CLAUDE.md` for the bucket policy and the project's `STANDARDS.md`. This command stays inside the yellow bucket: friction help, not learning replacement.
 
 ## What to do
 

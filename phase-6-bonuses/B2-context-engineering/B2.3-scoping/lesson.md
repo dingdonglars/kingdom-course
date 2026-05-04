@@ -91,7 +91,7 @@ Take a recent vague prompt you used. Rewrite it as a scoped prompt. Send both â€
 
 Pick the worst output you've gotten in the last month. Diagnose: was it scaffolding, scoping, or eval that failed? Often it's scoping â€” the prompt didn't say what was in or out, and the AI filled the silence with assumptions.
 
-Add two more example files to `ai-context/examples/`. Reference them in your next five scoped prompts. Watch how often the AI snaps to the example.
+Add two more example files to `.claude/examples/`. Reference them in your next five scoped prompts. Watch how often the AI snaps to the example.
 
 ## What you just did
 

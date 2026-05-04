@@ -42,7 +42,7 @@ A failure mode worth a name: **invented APIs.** When the AI is over-confident, i
 Curate a small folder the AI reads before it answers. The course already gives you most of it:
 
 - `STANDARDS.md` — your conventions
-- `ai-context/CLAUDE.md` — the AI's machine-side rules (auto-loaded via the root `CLAUDE.md` import)
+- `CLAUDE.md` — the AI's machine-side rules (auto-loaded via the root `CLAUDE.md` import)
 - `.claude/commands/` — your slash commands (`/explain-this-concept`, `/code-review`, `/stuck-on-error`, `/walk-through-code`, plus `/lesson-review` and `/milestone-review`)
 - `GLOSSARY.md` — terms used in your project
 - A short `ARCHITECTURE.md` — what's in each project, how data flows (you'll write this in Step 3 below)
@@ -58,7 +58,7 @@ No code changes today. This module is about the tools around the AI, not the AI'
 
 ## Step 1 — read the post-Unlock `CLAUDE.md`
 
-Open `ai-context/CLAUDE.md`. Notice:
+Open `CLAUDE.md`. Notice:
 
 - The mode flag now reads `post-unlock`.
 - The post-Unlock behaviour section applies.
@@ -121,7 +121,7 @@ Drop this into `.claude/commands/implementation-help.md` in your repo:
 description: Post-Unlock implementation help. Asks for goal/where/conventions/traps before writing code.
 ---
 
-You are being invoked via `/implementation-help`. The learner is past the AI Unlock and is asking you to write non-trivial code. Read `ai-context/CLAUDE.md` and `STANDARDS.md` first.
+You are being invoked via `/implementation-help`. The learner is past the AI Unlock and is asking you to write non-trivial code. Read `CLAUDE.md` and `STANDARDS.md` first.
 
 If the learner already pasted the goal in `$ARGUMENTS`, use it. Otherwise ask for these in one combined message:
 

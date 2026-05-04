@@ -1,6 +1,6 @@
 # AI tools — for you
 
-This file is the plain-English version of how AI fits into the course. The machine-side version (the one Claude itself reads as a system prompt) is at `ai-context/CLAUDE.md` — same rules, written for the AI to enforce. Your repo's root `CLAUDE.md` imports it automatically when you run Claude Code, so the rules apply without you having to ask.
+This file is the plain-English version of how AI fits into the course. The machine-side version (the one Claude itself reads as a system prompt) is at `CLAUDE.md` — same rules, written for the AI to enforce. Your repo's root `CLAUDE.md` imports it automatically when you run Claude Code, so the rules apply without you having to ask.
 
 ## What you'll be using
 

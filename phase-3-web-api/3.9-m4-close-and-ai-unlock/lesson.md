@@ -7,7 +7,7 @@ This is the most important transition in the year. Up to now, the AI has been de
 > **Words to watch**
 >
 > - **AI Unlock** — the curriculum's named transition: AI from "friction-only" to "real collaborator"
-> - **mode flag** — a single line in `ai-context/CLAUDE.md` that the AI reads to decide its behaviour
+> - **mode flag** — a single line in `CLAUDE.md` that the AI reads to decide its behaviour
 > - **viva** (vee-vah) — a one-on-one oral defense of your code; mentor (Lars) asks "explain this line" at random
 > - **AI-assistance section** — required block in every post-unlock PR description: which lines did the AI write, which did you?
 
@@ -50,7 +50,7 @@ Same pattern as M2 and M3 — but louder, because M4 is the milestone where the 
 
 ## The AI Unlock
 
-Until now, the AI has been deliberately limited. The rules in `ai-context/CLAUDE.md`:
+Until now, the AI has been deliberately limited. The rules in `CLAUDE.md`:
 
 - **Don't:** write course exercise code, solve quizzes, refactor for you
 - **OK when asked (limited):** friction (git messes, env setup, error messages you've already tried), concept explanations *after* you've tried, routine boilerplate
@@ -89,19 +89,19 @@ Every post-unlock PR description includes an AI-assistance section:
 
 ## Flipping the mode flag — manual step
 
-In **three** repos, find `ai-context/CLAUDE.md` and change line 7:
+In **three** repos, find the `Current mode:` line in the CLAUDE rules file and change it:
 
 ```diff
 -**Current mode: `pre-unlock`.**
 +**Current mode: `post-unlock`.**
 ```
 
-The three repos:
+The three repos and the file in each:
 
-- Workshop: `D:\Athos\kingdom-curriculum\ai-context\CLAUDE.md`
-- Course: `D:\Athos\kingdom-course\ai-context\CLAUDE.md`
-- Starter-template: `D:\Athos\kingdom-course\starter-template\ai-context\CLAUDE.md`
-- (The reference repo has no `ai-context/`)
+- Course: `D:\Athos\kingdom-course\CLAUDE.md`
+- Starter-template: `D:\Athos\kingdom-course\starter-template\CLAUDE.md`
+- Workshop: `D:\Athos\kingdom-curriculum\learner-CLAUDE.md` *(in the curriculum repo only, the file is named `learner-CLAUDE.md` because the workshop's root `CLAUDE.md` is reserved for OpenWolf — same content, different filename)*
+- (The reference repo has no CLAUDE rules file — it's pure code, no AI rules apply there)
 
 Commit each:
 
@@ -122,7 +122,7 @@ The next time you (or any teammate, or any AI agent) opens any of these projects
 
 Compare the same prompt before and after the flip. Ask Claude *"write me a function that converts a Kingdom to a JSON string."* Pre-unlock: it pushes back. Post-unlock: it writes the function and asks you to explain each line.
 
-Read `ai-context/CLAUDE.md` end-to-end one more time. You'll come back to it many times this year.
+Read `CLAUDE.md` end-to-end one more time. You'll come back to it many times this year.
 
 Browse some "AI helped me" PRs in well-run open source projects. Notice the pattern: small commits, careful per-file review, the human author still owns the mental model. The AI helps; the author still understands the code.
 
@@ -132,7 +132,7 @@ The AI is a power tool, not an autopilot. Power tools require respect. The disci
 
 ## What you just did
 
-You closed M4 — the most important milestone of the year. Your kingdom is on the internet, friends can sign in and play, and CI/CD redeploys on every push. Eighty-plus tests pass across three projects. You also flipped the AI Unlock: the mode flag in `ai-context/CLAUDE.md` moved from `pre-unlock` to `post-unlock` in three repos, which means every AI agent that opens those projects from now on operates under the new rules. The hard rule stands: you must be able to explain every line of AI-generated code before merging it. Phase 4 begins with the AI on as a real collaborator — and with the discipline you've spent six months building, ready to make that change safe.
+You closed M4 — the most important milestone of the year. Your kingdom is on the internet, friends can sign in and play, and CI/CD redeploys on every push. Eighty-plus tests pass across three projects. You also flipped the AI Unlock: the mode flag in `CLAUDE.md` moved from `pre-unlock` to `post-unlock` in three repos, which means every AI agent that opens those projects from now on operates under the new rules. The hard rule stands: you must be able to explain every line of AI-generated code before merging it. Phase 4 begins with the AI on as a real collaborator — and with the discipline you've spent six months building, ready to make that change safe.
 
 **Key concepts you can now name:**
 

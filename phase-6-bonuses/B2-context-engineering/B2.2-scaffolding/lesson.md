@@ -18,9 +18,9 @@ The mental model is simple. Each scaffold file is bytes the AI reads on every se
 
 Open your repo. You should see most of these:
 
-- `CLAUDE.md` (root) — auto-loaded by Claude Code; imports `ai-context/CLAUDE.md`
+- `CLAUDE.md` (root) — auto-loaded by Claude Code; imports `CLAUDE.md`
 - `STANDARDS.md` — code, naming, file conventions
-- `ai-context/CLAUDE.md` — AI-specific rules (mode flag plus behaviours)
+- `CLAUDE.md` — AI-specific rules (mode flag plus behaviours)
 - `ai-tools.md` — learner-facing notes on AI tooling
 - `.claude/commands/` — slash commands you can type in Claude Code (`/explain-this-concept`, `/code-review`, `/stuck-on-error`, `/walk-through-code`, `/implementation-help`, `/lesson-review`, `/milestone-review`)
 - `GLOSSARY.md` — project-specific vocabulary
@@ -38,7 +38,7 @@ For each file, ask three questions:
 
 A pattern that's worth adopting: keep small, hand-curated example files the AI can reference.
 
-Create `ai-context/examples/01-store-method.md`:
+Create `.claude/examples/01-store-method.md`:
 
 ````markdown
 # Example: a store method
@@ -94,7 +94,7 @@ This is optional, but useful for files over 200 lines or that mix several concer
 
 Audit your `ARCHITECTURE.md` right now. Open it. Is it current? If anything in there has drifted since M4.0, update one line. *"Stale scaffolds are worse than no scaffolds"* — this is the discipline that prevents that.
 
-Add an `ai-context/examples/` folder with two or three hand-picked snippets. Pick patterns you've explained more than once.
+Add a `.claude/examples/` folder with two or three hand-picked snippets. Pick patterns you've explained more than once.
 
 Try a real prompt with and without the example file. Compare outputs. The difference is the value of the example.
 

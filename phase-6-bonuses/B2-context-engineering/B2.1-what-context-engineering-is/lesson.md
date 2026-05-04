@@ -57,7 +57,7 @@ Look back at three AI conversations from the last week or two. For each, classif
 
 Pick a tiny task — something five lines long. Try it twice. Once with no context (just the goal in one sentence), once with the full M4.0 recipe. Compare the outputs. The gap between them is the value of context engineering.
 
-Read your `ai-context/CLAUDE.md` end to end. Notice how often the AI has been steered by it without you doing anything per-prompt. The file is doing context engineering for you in the background.
+Read your `CLAUDE.md` end to end. Notice how often the AI has been steered by it without you doing anything per-prompt. The file is doing context engineering for you in the background.
 
 ## What you just did
 

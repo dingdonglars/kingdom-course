@@ -19,7 +19,7 @@
 ## 3. The mode flag flips by editing...
 
 - **a.** A row in a database table somewhere
-- **b.** A single line (`Current mode: pre-unlock` → `post-unlock`) in `ai-context/CLAUDE.md` — in workshop, course, and starter-template
+- **b.** A single line (`Current mode: pre-unlock` → `post-unlock`) in `CLAUDE.md` — in workshop, course, and starter-template
 - **c.** A C# constant in `Program.cs` and recompiling
 - **d.** A configuration UI in the IDE
 

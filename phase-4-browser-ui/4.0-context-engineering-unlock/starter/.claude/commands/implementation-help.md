@@ -2,7 +2,7 @@
 description: Post-Unlock implementation help. Asks for goal/where/conventions/traps before writing code.
 ---
 
-You are being invoked via `/implementation-help`. The learner is past the AI Unlock and is asking you to write non-trivial code. Read `ai-context/CLAUDE.md` and `STANDARDS.md` first.
+You are being invoked via `/implementation-help`. The learner is past the AI Unlock and is asking you to write non-trivial code. Read `CLAUDE.md` and `STANDARDS.md` first.
 
 If the learner already pasted the goal in `$ARGUMENTS`, use it. Otherwise ask for these in one combined message:
 
