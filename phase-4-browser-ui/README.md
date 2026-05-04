@@ -1,44 +1,42 @@
-# Block 6 — Browser Kingdom
+# Phase 4 — Browser Kingdom
 
-> **Your game runs in any browser, no install.**
+> **Your kingdom plays in any browser. Click a link, the game loads, no install.**
 
-**What you'll have at the end:** A version of your Kingdom your friends can play in their browser by clicking a link. Same engine, same API, new shell — now the shell is a webpage. Plus you've earned **the AI Unlock** — the moment in this course when AI-assisted implementation becomes part of your toolkit.
+**What you'll have at the end:** A version of your Kingdom your friends play in a browser tab. Same engine that's been ticking since Phase 1 — same API from Phase 3 — but now the screen is a webpage. You also pass the **AI Unlock**: from Module 4.0 onward you can ask Claude to help write code, under one rule (you can explain every line you ship).
 
-**Estimated effort:** 11 weeks at 4–6 hrs/week  ·  **Wraps:** M5 *Kingdom v4 — Browser-Playable*
+**Estimated effort:** 11 weeks at 4–6 hrs/week  ·  **Wraps:** **M5** *Kingdom v4 — Browser-Playable*
 
 ---
 
-## Why this block?
+## Why this phase?
 
-Block 5 made your game a URL. Block 6 makes the URL *play* in a browser. You'll learn HTML, CSS, JavaScript, TypeScript, and the modern frontend tooling (Vite). The choice to teach **vanilla TypeScript** (not React or Blazor) is deliberate: this block's pedagogical job is to teach **the browser as a runtime** — DOM, fetch, events. Frameworks abstract exactly that.
+Phase 3 turned your kingdom into a URL. Phase 4 makes that URL *play*. You'll learn HTML, CSS, JavaScript, TypeScript, and the modern frontend toolchain (Vite). The choice to teach **plain TypeScript** — not React, not Blazor — is on purpose: the job of this phase is to teach you what the browser actually does. DOM, fetch, events. Frameworks hide exactly that. You can pick one up later in a weekend; the foundation is what's hard to back-fill.
 
-This block also begins with **Module 4.0 — the AI Unlock Ceremony.** From this module forward, you can ask Claude for implementation help — under one hard rule. The skill being taught is **context engineering**.
+Phase 4 also opens with **Module 4.0 — the AI Unlock.** From that module forward, you can ask Claude for implementation help. The skill the module names is **context engineering**: how you set up the AI's view of your project so the code it writes actually fits.
 
 ## What you'll learn (named)
 
-- **Context engineering** — the AI Unlock skill
+- Context engineering — the post-Unlock skill
 - HTML and CSS fundamentals
-- The browser as a runtime — DevTools, the DOM, the network tab
-- JavaScript essentials — async, fetch
-- TypeScript — types come back
-- Vite — modern frontend tooling
-- Componentised UIs in vanilla TypeScript
-- A small dose of frontend testing (Vitest)
-- Frontend deploy (Azure Static Web Apps)
-- *(Optional)* a Svelte taster — your first framework
+- The browser as a runtime — DevTools, the DOM, the network panel
+- JavaScript essentials — async, fetch, modules
+- TypeScript — types, but in the browser
+- Vite — the modern frontend dev server and bundler
+- Components in plain TypeScript — the idea every framework copies
+- Frontend testing with Vitest
+- Frontend deploy on Azure Static Web Apps
 
 ## What you'll build (the climb)
 
-- **Week 32:** AI Unlock ceremony + HTML/CSS fundamentals.
-- **Weeks 33–34:** browser as runtime, JS essentials, first JS Kingdom.
-- **Weeks 35–37:** TypeScript, Vite, componentised UI.
-- **Weeks 38–40:** frontend testing, deploy, polish, share.
-- **Week 41:** reflection — re-read your Phase 0 code; refactor *one* old toy.
-- **Week 42:** *(optional)* Svelte taster.
+- **Week 32:** the AI Unlock module + the smallest useful HTML and CSS.
+- **Weeks 33–34:** the browser as a runtime; first JavaScript that calls your live API.
+- **Weeks 35–37:** TypeScript and Vite arrive together; the project starts to feel real.
+- **Weeks 38–39:** components, frontend tests, deploy.
+- **Week 40:** the M5 close — and a quiet exercise where you re-read your Phase 0 code with new eyes.
 
 ## Brag-worthy outcome
 
-A URL friends click. The Kingdom loads as a webpage. They play it. Same engine that's been running since Block 3 — three shells now: console, API, browser.
+A URL friends click. The kingdom loads in their browser tab. They play it. The same engine that's been running since Phase 1 — three shells now: console, web API, browser.
 
 ---
 

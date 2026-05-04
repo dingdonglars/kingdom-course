@@ -1,39 +1,36 @@
 # Module 4.3 — TypeScript + Vite + JS Modules
 
-> **Hook:** today the browser code grows up. **TypeScript** brings the type-safety you've had in C# all year. **Vite** brings the modern toolchain — hot-reload, modules, fast builds. **ES modules** replace the global `<script src=...>` style. The web project starts to feel like a real codebase.
+The browser code grows up today. Two new tools join: **TypeScript** brings the type-checking you've had in C# all year — same `slot.day is a number` discipline, written in a JavaScript file. **Vite** brings the modern toolchain — a dev server with hot-reload, real module support, fast builds. The third change is quieter but matters: `import` and `export` between files replace the old `<script src=...>` global-namespace style. The web project starts to feel like a real codebase.
+
+This is also the first time you'll meet TypeScript and Vite by name, so a one-line introduction for each. **TypeScript** is JavaScript with a type system bolted on; the compiler turns it into ordinary JavaScript the browser runs. **Vite** (pronounced *"veet"* — French for *fast*) is a frontend dev server and bundler. It's replaced webpack as the default modern starter; one command sets up the whole project.
 
 > **Words to watch**
-> - **TypeScript (TS)** — JavaScript + types. Compiles to JS the browser actually runs.
-> - **Vite** — modern frontend dev server + build tool. Fast.
-> - **ES modules** — `import` / `export` between JS files
-> - **`tsconfig.json`** — TypeScript compiler config
-> - **HMR** — Hot Module Replacement; edit code, page updates without losing state
+>
+> - **TypeScript (TS)** — JavaScript with types. Compiles to plain JS the browser actually runs.
+> - **Vite** — modern frontend dev server and bundler. Pronounced *"veet"*.
+> - **ES modules** — `import` / `export` between JavaScript files; the modern way.
+> - **`tsconfig.json`** — TypeScript compiler config.
+> - **HMR** — Hot Module Replacement. Edit a file, save, the browser updates without losing state.
 
 ---
 
 ## Why TypeScript
 
-Plain JS lets `slot.naem` typo through without warning. Three months later, a refactor renames `name` → `kingdomName` and you don't notice — until the field is just empty in the UI. **Same class of bug C# catches at compile time.**
+Plain JavaScript lets `slot.naem` typo through without warning. Three months later, a refactor renames `name` → `kingdomName` and you don't notice — until the field is just empty in the UI. The same class of bug C# catches at compile time.
 
-TypeScript adds types: `interface KingdomSlot { id: number; name: string; day: number; }`. Editor + compiler now refuse `slot.naem`. Same JS underneath; richer authoring.
+TypeScript adds types: `interface KingdomSlot { id: number; name: string; day: number; }`. Editor and compiler now refuse `slot.naem`. The same JavaScript runs underneath — TypeScript is just a richer authoring layer that gets stripped away at build time.
 
-You'll keep using plain JS for tiny scripts; reach for TS as soon as a project has 3+ files or shapes anyone else needs to know.
+You'll keep using plain JavaScript for tiny scripts. Reach for TypeScript as soon as a project has three or more files, or interfaces anyone else needs to know.
 
 ## Why Vite
 
-`<script src="kingdom.js">` only scales so far. Real frontends:
-- Use *modules* (`import { x } from './y.ts'`) — but browsers' module support has quirks
-- Compile TS → JS — needs a build step
-- Want hot-reload (edit code; browser updates without manual refresh)
-- Want to bundle for production (many small files → one minified)
+`<script src="kingdom.js">` only scales so far. Real frontends want modules (`import { x } from './y.ts'`), need a build step to compile TypeScript, want hot-reload while editing, and want bundling for production (many small files into a few minified ones). Vite does all of that with one-line setup and near-zero config. It's the default modern choice.
 
-Vite does all of that. **One-line setup, near-zero config.** It's replaced webpack/rollup as the default modern choice.
+## What changes in this module
 
-## Delta starter
+You're switching from the raw `web/` folder (HTML and JavaScript) to a Vite project.
 
-Switch from `web/` (raw HTML/JS) to a Vite project:
-
-- **NEW project:** `web-vite/` (created via `npm create vite@latest`)
+- **NEW:** `web-vite/` — created via `npm create vite@latest`
 - **PORTED:** the `kingdom.js` logic into `web-vite/src/main.ts` with TypeScript
 - **MODIFIED:** the API project's CORS to allow Vite's dev server (default `http://localhost:5173`)
 
@@ -46,13 +43,13 @@ npm install
 npm run dev
 ```
 
-Vite scaffolds, installs ~20 small packages, starts a dev server. Open `http://localhost:5173`. Default Vite welcome page.
+Vite scaffolds the project, installs about twenty small packages, and starts a dev server. Open `http://localhost:5173`. You'll see Vite's default welcome page.
 
-`vanilla-ts` is the template for "TypeScript, no framework." We'll layer Svelte/React/anything later if you want — for now, vanilla TS is enough.
+`vanilla-ts` is the template name for "TypeScript, no framework." We're sticking with plain TypeScript for this phase; a framework can layer on later if you want.
 
 ## Step 2 — types for the API
 
-`web-vite/src/types.ts`:
+Create `web-vite/src/types.ts`:
 
 ```ts
 export interface KingdomSlot {
@@ -62,7 +59,7 @@ export interface KingdomSlot {
 }
 ```
 
-Single source of truth for what the slot looks like.
+One source of truth for what a slot looks like. Anywhere in the project that handles a slot imports this interface; if you change the layout, every usage is checked.
 
 ## Step 3 — port `kingdom.js` to `main.ts`
 
@@ -95,19 +92,14 @@ function render(slot: KingdomSlot | null) {
   `;
 }
 
-loadKingdom().then(render).catch(err => {
-  document.querySelector<HTMLDivElement>('#app')!.textContent = `Error: ${err.message}`;
-});
+loadKingdom()
+    .then(render)
+    .catch(err => {
+        document.querySelector<HTMLDivElement>('#app')!.textContent = `Error: ${err.message}`;
+    });
 ```
 
-Read what's new:
-
-- **`import './style.css';`** — Vite knows what to do with this; bundles CSS automatically.
-- **`import type { KingdomSlot }`** — type-only import; erased at compile time.
-- **`Promise<KingdomSlot | null>`** — return type. The compiler checks every usage.
-- **`document.querySelector<HTMLDivElement>(...)`** — generic version returns the typed element.
-- **`!`** (the non-null assertion) — *"trust me, this is not null"*. Use sparingly.
-- **`as KingdomSlot[]`** — type cast for the parsed JSON; the compiler doesn't know the API shape until you tell it.
+A few things in that file are new and worth naming. `import './style.css'` works because Vite knows how to bundle CSS imports. `import type { KingdomSlot }` is a type-only import — erased at compile time. `Promise<KingdomSlot | null>` is the function's return type; the compiler checks every caller. `document.querySelector<HTMLDivElement>(...)` is the typed version of `querySelector` — passing the element type means you don't have to cast the result. The `!` after the call is the non-null assertion: *"trust me, this isn't null."* Use it sparingly. The `as KingdomSlot[]` cast on the parsed JSON is your assertion that the API returns the layout you've declared — TypeScript can't verify the runtime layout, so you tell it.
 
 ## Step 4 — try it
 
@@ -115,41 +107,44 @@ Read what's new:
 npm run dev
 ```
 
-Visit `http://localhost:5173`. The page renders. Edit `main.ts` — change a heading. **Save. The browser updates without refresh.** That's HMR.
+Visit `http://localhost:5173`. The page renders. Now edit `main.ts` — change a heading. Save. The browser updates without a full reload, and any state you had on the page survives. That's HMR. Multiplied across thousands of edits, it's hours saved.
 
-The terminal shows TypeScript errors as you save (`error TS2322: Type 'string' is not assignable to type 'number'`). **Fix at compile time, not at runtime.**
+The terminal shows TypeScript errors as you save (`error TS2322: Type 'string' is not assignable to type 'number'`). Caught at compile time, not at runtime — same win you've had in C# all year.
 
-## Step 5 — production build
+## Step 5 — the production build
 
 ```powershell
 npm run build
 ```
 
-Outputs `dist/` — minified JS, hashed filenames, ready to deploy. The next step would be `npm run preview` to test the production build locally, then deploy to Static Web Apps (M4.7).
+Outputs a `dist/` folder — minified JavaScript, hashed filenames, ready to deploy. The next step would be `npm run preview` to test the production build locally, then deploy to Static Web Apps in M4.6.
 
 ## Tinker
 
-- Add a typo: `slot.naem`. **The editor squiggles immediately.** TypeScript catches what JS lets through.
-- Add a number/string mismatch: `const day: number = "twelve";`. Same — caught at editor time.
-- Try `import` of a CSS module (`import styles from './stuff.module.css'`). Vite supports it natively. Class names are scoped automatically.
-- Set up `tsconfig.json`'s `"strict": true`. Re-build. **Lots of errors surface** — opportunity to tighten the code.
+Add a typo: `slot.naem`. The editor squiggles immediately. TypeScript catches what JavaScript would let through.
 
-## Name it
+Add a number-to-string mismatch: `const day: number = "twelve";`. Same — flagged in the editor before you've saved.
 
-- **TypeScript** — JS with types. Compiles to JS.
-- **Vite** — fast modern frontend dev tool + bundler.
-- **ES modules** — `import` / `export` between files; the modern way.
-- **HMR** — Hot Module Replacement; edit, save, see — no manual refresh.
-- **`tsconfig.json`** — TS compiler settings.
+Try importing a CSS module: `import styles from './stuff.module.css'`. Vite supports it natively, and class names get scoped to the file automatically.
 
-## The rule of the through-line
+Set `"strict": true` in `tsconfig.json` and re-build. Plenty of warnings will surface — that's the opportunity to tighten the code while it's still small.
 
-> **Types at every boundary.** You used DTOs at the C# JSON/API boundary. TypeScript brings the same discipline to the browser side. The shape is defined once, in `types.ts`, and the rest of the code stays honest.
+## What you just did
 
-## Quiz / challenge
+The project upgraded. You scaffolded a Vite project (`web-vite/`), defined a `KingdomSlot` interface in `types.ts`, and ported the kingdom-loading code into `main.ts` as TypeScript. The compiler now refuses typos and type mismatches; HMR means edits show up in the browser without losing the page state. A production build is one command (`npm run build`) and outputs a deployable `dist/` folder. The TypeScript file is about twenty lines longer than the JavaScript version it replaced — that overhead pays back the first time a refactor catches a mistake at compile time.
 
-Open `quiz.md`.
+**Key concepts you can now name:**
 
-## Connect
+- **TypeScript** — JavaScript with types; compiles to plain JS
+- **Vite** — modern frontend dev server and bundler
+- **ES modules** — `import` and `export` between files
+- **HMR** — edit, save, browser updates without losing state
+- **types at every boundary** — the same DTO discipline, in the browser
 
-Module 4.4 builds the **componentised UI** — extracting reusable pieces (a `<KingdomCard>`, a `<ResourceList>`) so adding new screens stays cheap.
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 4.4 builds the **componentised UI** — extracting reusable pieces (a `KingdomCard`, a `ResourceList`) so adding a new screen stays cheap.

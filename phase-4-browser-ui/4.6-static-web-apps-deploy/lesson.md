@@ -1,42 +1,42 @@
 # Module 4.6 — Deploy the Frontend (Azure Static Web Apps)
 
-> **Hook:** today the browser kingdom goes live. **Azure Static Web Apps** hosts your Vite build for free, with auto-SSL, global CDN, and the same-style GitHub Actions auto-deploy you set up for the API. Two URLs: `kingdom-api-yourname.azurewebsites.net` (back end) + `kingdom-yourname.azurestaticapps.net` (front end).
+The browser kingdom goes live today. **Azure Static Web Apps** hosts your Vite build for free, with auto-SSL, a global content delivery network, and the same kind of GitHub Actions auto-deploy you set up for the API in Phase 3. Two URLs at the end of the day: one for the back end (`kingdom-api-yourname.azurewebsites.net`) and one for the front end (`kingdom-yourname.azurestaticapps.net`).
 
 > **Words to watch**
-> - **Static Web Apps (Azure)** — managed hosting for static frontends; integrates with GitHub
-> - **CDN** — Content Delivery Network; serves your files from the edge nearest each user
-> - **build artifact** — what Vite produces in `dist/`; the deploy uploads this
-> - **same-origin / cross-origin** — your frontend at one domain calling your API at another (back to CORS)
+>
+> - **Static Web Apps (Azure)** — managed hosting for static frontends; integrates with GitHub.
+> - **CDN** — Content Delivery Network; serves your files from the edge server nearest each user.
+> - **build artefact** — what Vite produces in `dist/`; the deploy uploads this.
+> - **same-origin / cross-origin** — your frontend at one domain calling your API at another (back to CORS).
 
 ---
 
 ## Why Static Web Apps
 
-Static Web Apps is Azure's "free + managed" answer for hobby frontends:
+Static Web Apps is Azure's free, managed answer for hobby frontends. The free tier gives 100GB of bandwidth a month, custom-domain support, free SSL — generous for a project like this. It integrates natively with GitHub, so connecting a repo, branch, and build folder makes every push auto-deploy. A global CDN means the page loads quickly from anywhere. Built-in auth and password protection are optional extras.
 
-- Free tier: 100GB bandwidth/month, custom domain, free SSL — generous
-- Native GitHub integration: connect a repo + branch + the build folder; auto-deploys on push
-- Global CDN: fast loads from anywhere
-- Optional: built-in auth, API integration, password protection
+(Alternatives exist: Cloudflare Pages, Netlify, Vercel, GitHub Pages. Same patterns, same outcome.)
 
-(Alternatives: Cloudflare Pages, Netlify, Vercel, GitHub Pages. Same patterns; same outcome.)
+## Step 1 — create the Static Web App
 
-## The deploy in 4 steps
+In the Azure Portal:
 
-1. **Create the Static Web App** in Azure Portal:
-   - Name: `kingdom-yourname`
-   - Plan: **Free**
-   - Source: GitHub → pick your repo + branch
-   - Build presets: Custom
-   - App location: `web-vite/`
-   - Output location: `dist/`
-2. **Wait** ~2 minutes — Azure creates the resource AND commits a workflow file to your repo (`.github/workflows/azure-static-web-apps-*.yml`).
-3. **Pull** the change to your local repo (`git pull`).
-4. **Done** — your frontend is live at `kingdom-yourname.azurestaticapps.net`.
+- Name: `kingdom-yourname`
+- Plan: **Free**
+- Source: GitHub → pick your repo and branch
+- Build presets: Custom
+- App location: `web-vite/`
+- Output location: `dist/`
 
-The Azure-generated workflow knows how to find the Vite build (because you told it `dist/`). Every push to `main` builds + deploys.
+Wait about two minutes. Azure creates the resource and commits a workflow file to your repo at `.github/workflows/azure-static-web-apps-*.yml`. Pull the change locally:
 
-## Update CORS on the API
+```powershell
+git pull
+```
+
+That's the deploy. Your frontend is live at `kingdom-yourname.azurestaticapps.net`. The Azure-generated workflow knows how to find the Vite build (because you told it `dist/`), and every push to `main` rebuilds and redeploys.
+
+## Step 2 — update CORS on the API
 
 Your API now needs to allow the Static Web Apps origin:
 
@@ -51,17 +51,17 @@ app.UseCors(p => p
     .AllowCredentials());                                // for the auth cookie
 ```
 
-`AllowCredentials()` is needed because cookie auth requires it — `AllowAnyOrigin()` is *incompatible* with `AllowCredentials()` (browser security). You must list specific origins.
+`AllowCredentials()` is needed because cookie auth requires it. There's a CORS rule worth knowing: `AllowAnyOrigin()` is *incompatible* with `AllowCredentials()`. The browser refuses the combination because it would let any website on the internet send authenticated requests to your API on behalf of your user. You have to list specific origins.
 
-## Update the OAuth redirect URI
+## Step 3 — the OAuth redirect URI (no change today)
 
-In Google Cloud Console: add the Static Web App callback. *But wait* — the auth flow happens on the API, not the frontend. So no new redirect URI needed there. The frontend redirects to `https://kingdom-api-yourname.azurewebsites.net/login` (which then redirects to Google, etc.). Same OAuth dance as before; the new origin is just a different page that initiates it.
+In Google Cloud Console you'd usually add the new origin's callback. *Wait* — the auth flow happens on the API, not the frontend. The frontend redirects to `https://kingdom-api-yourname.azurewebsites.net/login`, which then redirects to Google. So no new redirect URI is needed in Google's console; the new origin is just a different page that initiates the same dance.
 
-## Update the frontend's `API` constant for prod
+## Step 4 — point the frontend at the prod API
 
-Two options:
+Two options. Pick one.
 
-**A. Hard-code per environment:**
+**Option A — hard-code per environment:**
 
 ```ts
 const API = import.meta.env.PROD
@@ -69,9 +69,9 @@ const API = import.meta.env.PROD
   : 'https://localhost:5xxx';
 ```
 
-`import.meta.env.PROD` is `true` in `npm run build` output, `false` in `npm run dev`.
+`import.meta.env.PROD` is `true` in `npm run build` output and `false` in `npm run dev`.
 
-**B. Vite env vars:**
+**Option B — Vite env vars (cleaner):**
 
 `.env.production`:
 
@@ -85,37 +85,41 @@ VITE_API_URL=https://kingdom-api-yourname.azurewebsites.net
 VITE_API_URL=https://localhost:5xxx
 ```
 
-In code: `const API = import.meta.env.VITE_API_URL;`. Cleaner; harder to misconfigure.
+In code: `const API = import.meta.env.VITE_API_URL;`. Cleaner, harder to misconfigure.
 
-## Delta starter
+## What changes in this module
 
-- **NEW:** `web-vite/.env.development` + `.env.production`
+- **NEW:** `web-vite/.env.development` and `web-vite/.env.production`
 - **MODIFIED:** `web-vite/src/main.ts` — uses `import.meta.env.VITE_API_URL`
 - **MODIFIED:** `Kingdom.Api/Program.cs` — CORS allow-list with credentials
 - **NEW:** `journal/4.6-deploy-frontend.md` — your Azure setup notes
 
 ## Tinker
 
-- Open `https://kingdom-yourname.azurestaticapps.net` in an incognito window. **You can play through.**
-- `npm run build` locally + `npm run preview` → tests the prod build before deploy. Catches "works in dev, breaks in prod" issues early.
-- Add a `404.html` for SPA routing (when a deep URL is hit). Static Web Apps handles this via `staticwebapp.config.json`.
-- Check the GitHub Actions tab — every push triggers a build + deploy. ~3 minutes from push to live.
+Open `https://kingdom-yourname.azurestaticapps.net` in an incognito window. You can play through. Show a friend; they don't even need to install anything.
 
-## Name it
+Run `npm run build` locally, then `npm run preview`. That tests the production build before deploy and catches "works in dev, breaks in prod" issues early.
 
-- **Static Web Apps** — Azure's free static hosting + GitHub integration.
-- **Build artifact (`dist/`)** — what Vite outputs; what Azure deploys.
-- **`import.meta.env.VITE_*`** — Vite's compile-time env vars.
-- **`AllowCredentials()`** — CORS flag needed for cookie auth; incompatible with `AllowAnyOrigin()`.
+Add a `staticwebapp.config.json` for SPA routing — when a deep URL is hit, the file tells Static Web Apps to fall back to `index.html`.
 
-## The rule of the through-line
+Check the GitHub Actions tab. Every push triggers a build and deploy. About three minutes from push to live.
 
-> **Two services, one architecture.** Frontend (Static Web Apps) + backend (App Service) is the standard production shape. Each scales independently; each deploys independently. The CORS dance is the necessary friction.
+## What you just did
 
-## Quiz / challenge
+The frontend is on the internet. You created a Static Web App in Azure (free tier), let it generate the GitHub Actions workflow, pulled the workflow file locally, and your Vite project now builds and deploys on every push to `main`. You added the production origin to the API's CORS allow-list and learned why `AllowAnyOrigin()` and `AllowCredentials()` can't coexist. The frontend reads `import.meta.env.VITE_API_URL` so dev and prod point at different APIs without any code change. Two services live side by side now: the API at one URL, the frontend at another. Standard production layout.
 
-Open `quiz.md`.
+**Key concepts you can now name:**
 
-## Connect
+- **Static Web Apps** — Azure's free static hosting plus GitHub integration
+- **build artefact (`dist/`)** — what Vite outputs; what Azure deploys
+- **`import.meta.env.VITE_*`** — Vite's compile-time env vars
+- **`AllowCredentials()`** — CORS flag needed for cookie auth; incompatible with `AllowAnyOrigin()`
+- **two services, one architecture** — frontend and backend deploy independently
 
-Module 4.7 closes Block 6: **M5 milestone close + reflection.** Re-read your Phase 0 code (Spark Week toys) — notice how far you've come.
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 4.7 closes Phase 4: the M5 milestone ritual plus the Phase 0 reflection — re-read your Spark Week code with new eyes and notice how far you've come.

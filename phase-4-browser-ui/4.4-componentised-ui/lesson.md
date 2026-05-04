@@ -1,25 +1,29 @@
 # Module 4.4 — Componentised UI
 
-> **Hook:** today the page splits into reusable parts. A `KingdomCard` renders one slot. `ResourceList` renders the resources. The main file becomes a small orchestrator. **Same idea as classes vs script in Block 1.1 — extract reusable units, the rest of the code reads cleaner.**
+The page splits into reusable parts today. A `KingdomCard` renders one slot. A `ResourceList` renders the resources. The main file becomes a small orchestrator that loads data and dispatches to the components. The same idea as splitting a script into classes back in M1.1 — extract reusable units and the rest of the code reads cleaner.
+
+You're not using a framework yet. These components are plain TypeScript functions: data goes in, HTML or DOM comes out. The mental model transfers cleanly to React (`function Component({ slot })`), Vue, Svelte, anything. Frameworks add change-detection on top of this idea; the idea itself is the same.
 
 > **Words to watch**
-> - **component** — a reusable unit that renders a piece of UI from data
-> - **template literal** — backticks `` `...${x}...` `` — JS's string interpolation
-> - **render function** — a function that takes data + returns DOM (or an HTML string)
-> - **event listener** — `el.addEventListener('click', fn)` — react to user interaction
-> - **delegation** — listen on a parent for events bubbling from many children
+>
+> - **component** — a reusable function that turns data into UI.
+> - **template literal** — a backtick string that lets you interpolate values: `` `Day ${slot.day}` ``.
+> - **render function** — a function that takes data and returns DOM (or an HTML string).
+> - **event listener** — `el.addEventListener('click', fn)` — react to user interaction.
+> - **delegation** — listen on a parent element for events bubbling from many children.
+> - **XSS** — Cross-Site Scripting. The bug class where unescaped user input runs as script.
 
 ---
 
 ## Why componentise
 
-When `main.ts` grows past 100 lines, you start to lose track of what's wired to what. **Components are folders for code.** A `KingdomCard.ts` file owns one specific rendering job. `main.ts` becomes "load data, dispatch to components."
+When `main.ts` grows past a hundred lines, you start to lose track of what's wired to what. Components are folders for code — each one owns one rendering job. `KingdomCard.ts` knows how to draw one slot. `main.ts` becomes *load data, dispatch to components, done*.
 
-You're not using a framework yet — these are just plain TS functions. The mental model transfers cleanly to React (`function Component({ slot })`), Vue, Svelte, anything later.
+## Two component styles
 
-## Two component shapes
+There are two common ways to write a render function. Pick one per project and stick with it.
 
-**Render-as-string** (simpler, slower for big trees):
+The first is **render-as-string** — return an HTML string and let the parent set it as `innerHTML`:
 
 ```ts
 export function KingdomCard(slot: KingdomSlot): string {
@@ -32,7 +36,9 @@ export function KingdomCard(slot: KingdomSlot): string {
 }
 ```
 
-**Render-as-DOM** (faster, more flexible):
+Simple to read and write. Fine at small scale; slower for big trees because every render rebuilds and the browser re-parses.
+
+The second is **render-as-DOM** — build elements directly and return them:
 
 ```ts
 export function KingdomCard(slot: KingdomSlot): HTMLElement {
@@ -51,14 +57,18 @@ export function KingdomCard(slot: KingdomSlot): HTMLElement {
 }
 ```
 
-Pick one style and stick with it per project. **Render-as-string + `escapeHtml` is fine for our scale**; render-as-DOM scales better.
+More verbose. Faster for big trees, and `textContent` automatically escapes user input — so no XSS risk by accident.
 
-> ⚠ **`innerHTML` + user input is a security bug** (XSS — Cross-Site Scripting). Either use `textContent`/`appendChild` (DOM-mode), or escape every interpolated string. **Never paste raw user data into `innerHTML`.**
+For the kingdom UI, render-as-string with an `escapeHtml` helper is plenty. We'll use that.
 
-## Delta starter
+## The XSS trap
+
+> ⚠ **`innerHTML` plus user input is a security bug.** The class is called **XSS** — Cross-Site Scripting. If a kingdom name is `<script>alert(1)</script>` and you paste it raw into HTML, the script runs in every viewer's browser. Either use `textContent` and `appendChild` (the DOM-mode option), or escape every interpolated string. Never paste raw user data into `innerHTML`.
+
+## What changes in this module
 
 - **NEW:** `web-vite/src/components/KingdomCard.ts`
-- **NEW:** `web-vite/src/components/escape.ts` (the HTML escape helper)
+- **NEW:** `web-vite/src/components/escape.ts` — the HTML escape helper
 - **MODIFIED:** `web-vite/src/main.ts` — uses the components
 
 `web-vite/src/components/escape.ts`:
@@ -66,11 +76,11 @@ Pick one style and stick with it per project. **Render-as-string + `escapeHtml` 
 ```ts
 export function escapeHtml(s: string): string {
   return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
 }
 ```
 
@@ -119,11 +129,11 @@ async function main() {
 main();
 ```
 
-`slots.map(KingdomCard)` — the component is just a function. `.join('')` concatenates the strings. **One line of orchestration per component.**
+`slots.map(KingdomCard)` — the component is just a function, so `map` over the slots and you get an array of HTML strings. `.join('')` glues them into one string. One line of orchestration per component.
 
-## Event delegation (light intro)
+## Event delegation
 
-When you have 100 cards, attaching a click handler to each is wasteful. Listen on the parent + check the target:
+When you have many cards, attaching a click handler to each is wasteful. Listen on the parent and check the target instead:
 
 ```ts
 root.addEventListener('click', (e) => {
@@ -133,31 +143,34 @@ root.addEventListener('click', (e) => {
 });
 ```
 
-`closest` walks up from the target until it finds a matching ancestor. Pattern works for any "many similar items" UI.
+`closest` walks up from the click target until it finds a matching ancestor. The pattern works for any "many similar items" UI — one handler scales to thousands of cards.
 
 ## Tinker
 
-- Add a `ResourceList` component that takes a `Map<string, number>` and renders an `<ul>`. Use it in main.
-- Add a Tick button per card; on click, POST to `/kingdoms/{id}/tick` and re-render.
-- Add CSS to `.card` — border, padding, shadow. **The same render function gets nicer-looking instantly.**
-- Try forgetting `escapeHtml`. Insert a kingdom with name `<script>alert(1)</script>` via the API. **The script runs.** That's XSS. Restore the escape.
+Add a `ResourceList` component that takes a `Map<string, number>` and renders a `<ul>`. Use it in `main`.
 
-## Name it
+Add a Tick button per card; on click, POST to `/kingdoms/{id}/tick` and re-render.
 
-- **Component** — a reusable function that turns data into UI.
-- **`escapeHtml`** — make user input safe for `innerHTML` interpolation.
-- **XSS** — Cross-Site Scripting; injecting JS via unescaped strings.
-- **Event delegation** — listen on a parent, dispatch by `e.target`. Scales to many children.
-- **Render function** — `(data) => HTML` (or DOM). The shape every UI framework copies.
+Add CSS to `.card` — a border, padding, a small drop-shadow. The same render function gets nicer-looking instantly; that's the win of having a render function in the first place.
 
-## The rule of the through-line
+Try forgetting `escapeHtml` once. Insert a kingdom with the name `<script>alert(1)</script>` via the API. The script runs. That's XSS in the wild. Restore the escape; the alert disappears.
 
-> **Components for the same reason classes are useful: reusable units with one job.** Every framework you'll ever use is built on this idea. Vanilla functions teach the shape; frameworks just add change-detection on top.
+## What you just did
 
-## Quiz / challenge
+You split the page into components. `KingdomCard` is a function from `KingdomSlot` to HTML; `escapeHtml` keeps user input safe inside `innerHTML`; `main.ts` just loads data and calls `slots.map(KingdomCard).join('')`. You also met **XSS** — the bug class where unescaped strings run as script — and the `escapeHtml` helper that prevents it. About forty lines of TypeScript across three files; the pattern carries straight through to React, Vue, or any framework you'll meet later.
 
-Open `quiz.md`.
+**Key concepts you can now name:**
 
-## Connect
+- **component** — a reusable function from data to UI
+- **`escapeHtml`** — make user input safe for `innerHTML` interpolation
+- **XSS** — Cross-Site Scripting; injection via unescaped strings
+- **event delegation** — listen on a parent; dispatch by `e.target`
+- **render function** — `(data) => HTML`; the idea every framework copies
 
-Module 4.5 introduces **Vitest** — the test runner for browser code. Same xUnit instinct, JS-flavored. Catches the bugs your TypeScript types can't.
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 4.5 introduces **Vitest** — the test runner for browser code. Same xUnit instinct, JavaScript-flavored. It catches the bugs your TypeScript types can't.

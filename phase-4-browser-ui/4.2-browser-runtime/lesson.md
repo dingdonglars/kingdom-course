@@ -1,34 +1,37 @@
 # Module 4.2 — The Browser as a Runtime: DOM, DevTools, fetch
 
-> **Hook:** today the page comes alive. JavaScript reads from the live `https://localhost:5xxx/kingdom` API and writes the result into the page. **Same engine across the wire as the one we built in Block 3.** Plus the browser's three-tab developer toolkit: Elements (the DOM), Console (run JS live), Network (see every request).
+Today the page comes alive. JavaScript reads from the live `https://localhost:5xxx/kingdoms` API and writes the result into the page. The same engine that's been ticking since Phase 1, the same JSON your `curl` saw in Phase 3 — now flowing into a browser tab and rendering as HTML you can see. Plus you'll meet the browser's three-tab developer toolkit: Elements (the DOM), Console (run JavaScript live), Network (every request).
 
 > **Words to watch**
-> - **DOM** — Document Object Model — the in-memory tree of your page; mutate it from JS
-> - **`document.querySelector`** — find an element by CSS selector
-> - **`fetch(url)`** — modern way to make HTTP requests from the browser
-> - **`async` / `await`** — JavaScript's way of writing async code that *reads* synchronous
-> - **CORS** — Cross-Origin Resource Sharing — browser security around API calls
+>
+> - **DOM** — Document Object Model. The in-memory tree of your page; JavaScript reads and mutates it.
+> - **`document.querySelector`** — find one element by CSS selector.
+> - **`fetch(url)`** — modern way to make HTTP requests from the browser.
+> - **`async` / `await`** — JavaScript's way of writing async code that *reads* synchronous.
+> - **CORS** — Cross-Origin Resource Sharing — pronounced *"kors"*. Browser security around API calls. First time we name it; once-per-term explanation lives below.
 
 ---
 
-## DevTools, in 30 seconds
+## Step 1 — open DevTools
 
-Open browser DevTools (F12 in most browsers). Three tabs you'll live in:
+Press F12 in most browsers (Cmd+Option+I on Mac). Three tabs you'll live in:
 
-- **Elements** — the live DOM. Click any node; expand attributes; edit attributes inline.
-- **Console** — run JavaScript live. Type `2 + 2`, hit Enter. Type `document.querySelector('h1')`, see the H1.
-- **Network** — every HTTP request the page makes. Click any to see its headers, response body, timing.
+- **Elements** — the live DOM. Click any node, expand it, edit attributes inline. The page updates as you edit.
+- **Console** — run JavaScript live. Type `2 + 2` and press Enter. Type `document.querySelector('h1')`, see the H1 element printed back.
+- **Network** — every HTTP request the page makes. Click any one to see its headers, response body, and timing.
 
-**Open DevTools every time you work on a page.** Hides nothing.
+Open DevTools every time you work on a page. There's nothing it hides; closing it is flying blind.
 
-## DOM basics
+## Step 2 — DOM basics
+
+The DOM has a small vocabulary that does most of the work. Here it is, in five lines:
 
 ```js
 // Find one element
 const h1 = document.querySelector('h1');
 h1.textContent = "Eldoria, the Brave";
 
-// Find a list element by id
+// Find an element by id
 const dayEl = document.getElementById('day');
 dayEl.textContent = "12";
 
@@ -39,9 +42,11 @@ li.textContent = "Gold: 100";
 ul.appendChild(li);
 ```
 
-That's the entire vocabulary you need today: `querySelector`, `getElementById`, `textContent`, `createElement`, `appendChild`. **Every browser app does most of its work with these.**
+`querySelector`, `getElementById`, `textContent`, `createElement`, `appendChild`. Every browser app does most of its work with these five. The longer your file is, the more these five appear.
 
-## fetch + async
+## Step 3 — `fetch` and `await`
+
+`fetch(url)` is how JavaScript makes HTTP requests in the modern browser. It returns a *promise* — a value that arrives later. The `await` keyword unwraps the promise into the value once it shows up. The function has to be marked `async` for `await` to be allowed inside it.
 
 ```js
 async function loadKingdom() {
@@ -55,15 +60,15 @@ async function loadKingdom() {
 }
 ```
 
-`fetch(url)` returns a *promise* — a value that arrives later. `await` unwraps it. Add `async` to the function so `await` is allowed.
+Two `await`s is the standard pattern. The first waits for the response headers to arrive. The second waits for the body to parse as JSON. Both are network round-trips; both are worth waiting for.
 
-**Async errors are a class of bug** — forgetting `await` returns a Promise object instead of the value, then you call `.json()` on it, then you call `.name` on `undefined`. **Read DevTools' console output religiously when working with `fetch`.**
+Async errors are a class of bug. Forget the `await` and you'll be calling `.json()` on a Promise object, then `.name` on `undefined`, then chasing the wrong stack trace. Read DevTools' console output religiously when working with `fetch`.
 
-## CORS heads-up
+## Step 4 — the CORS heads-up
 
-When your page (`http://localhost:5500`) calls your API (`https://localhost:5xxx`), the browser checks the API's `Access-Control-Allow-Origin` header. If your API doesn't say "this origin is allowed," **the browser refuses to even *show* the response to your JS** — security feature called CORS.
+When your page lives at `http://localhost:5500` and your API lives at `https://localhost:5xxx`, those count as two different origins. The browser checks the API's `Access-Control-Allow-Origin` header. If your API doesn't say *"this origin is allowed,"* the browser refuses to even let your JavaScript see the response. The security feature is called **CORS** (pronounced *"kors"*) — Cross-Origin Resource Sharing. It exists so a malicious page can't silently call another site's API while pretending to be you.
 
-Two-line fix in `Kingdom.Api/Program.cs`:
+A two-line fix in `Kingdom.Api/Program.cs`:
 
 ```csharp
 builder.Services.AddCors();
@@ -71,14 +76,14 @@ builder.Services.AddCors();
 app.UseCors(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 ```
 
-(For production, replace `AllowAnyOrigin` with the specific frontend origin.)
+For production, replace `AllowAnyOrigin` with the specific frontend origin. We'll do that in M4.6 when the frontend deploys.
 
-## Delta starter
+## Step 5 — the delta starter
 
 - **MODIFIED:** `web/kingdom.js` — fetch + DOM update
 - **MODIFIED:** `Kingdom.Api/Program.cs` — adds CORS
 
-## `web/kingdom.js`
+`web/kingdom.js`:
 
 ```js
 const API = 'https://localhost:5xxx';   // CHANGE to your API port
@@ -107,31 +112,34 @@ function renderSummary(slot) {
 loadKingdom();
 ```
 
-Open `web/index.html` in the browser. **The page loads, calls your API, and renders the live kingdom data.** First end-to-end browser-API call.
+Open `web/index.html` in the browser. The page loads, calls your API, and renders the live kingdom data. First end-to-end browser-to-API call.
 
 ## Tinker
 
-- Open DevTools → Network → reload. Find the `/kingdoms` request. Click it. Read the response panel. **Same JSON your `curl` saw in Block 5.**
-- Forget the `await` (delete it once). Look at the console error. **That's the most common async bug.**
-- Add `console.log(slots)` in your handler. **DevTools logs are the friendly debugger** for this kind of code.
-- Try `fetch` to a wrong port. Notice the CORS error message vs network error message — different messages tell you different things.
+Open DevTools, switch to the Network tab, reload the page. Find the `/kingdoms` request. Click it. Read the response panel. Same JSON your `curl` saw in Phase 3 — same engine, new shell.
 
-## Name it
+Forget the `await` once on purpose. Look at the console error. That's the most common async bug you'll see this year; learn to recognise it now.
 
-- **DOM** — the live tree of your page; manipulable from JS.
-- **`document.querySelector(selector)`** — find element by CSS selector.
-- **`fetch(url)`** — modern HTTP request from JS.
-- **`async` / `await`** — write async code that *reads* synchronous.
-- **CORS** — browser security around cross-origin requests; configure your API to allow your page.
+Add a `console.log(slots)` line in your handler. DevTools logs are the friendly way to inspect what's actually flowing through your code.
 
-## The rule of the through-line
+Try `fetch` to a wrong port. Notice how a CORS error message looks different from a network error message — they tell you different things. The difference matters when you're debugging.
 
-> **The browser is just another shell.** Your engine + API don't change. The browser fetches JSON; the JS turns it into DOM. Same engine, fourth host.
+## What you just did
 
-## Quiz / challenge
+The kingdom now loads in a browser tab. JavaScript called your live API, got JSON back, and wrote the values into the DOM — `slot.name` became the page title, `slot.day` filled the day counter. You met the five DOM functions you'll use most (`querySelector`, `getElementById`, `textContent`, `createElement`, `appendChild`), the `fetch` plus `async` / `await` pattern, and **CORS** — the browser security rule that requires the server to say "this origin is allowed" before your JavaScript can read the response. About thirty lines of JavaScript; a complete browser-to-API loop.
 
-Open `quiz.md`.
+**Key concepts you can now name:**
 
-## Connect
+- **DOM** — the live tree of your page; JavaScript reads and mutates it
+- **`querySelector` / `textContent` / `createElement` / `appendChild`** — the small vocabulary that does most of the work
+- **`fetch(url)`** — modern HTTP request from JavaScript
+- **`async` / `await`** — write async code that reads synchronous
+- **CORS** — the server must allow your origin before the browser shows you the response
 
-Module 4.3 introduces **TypeScript** and the modern frontend toolchain (Vite). Types come back; build tooling brings hot-reload, modules, and the rest of professional JS dev experience.
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 4.3 introduces TypeScript and Vite. Types come back; build tooling brings hot-reload, modules, and the rest of the modern frontend dev experience.
