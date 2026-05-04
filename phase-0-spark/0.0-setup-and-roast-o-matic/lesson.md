@@ -36,6 +36,8 @@ You should see three version numbers. If any of them say "not found", flag it fo
 
 A *repo* is short for repository — a folder of code that git tracks for you. GitHub stores a copy on the internet so you don't lose it.
 
+> **What git really is, in five sentences.** Git is a tool that takes *snapshots* of your code — every time you commit, it saves the whole state of the folder under a label so you can come back to it later. The snapshots live on your computer (the *local* copy) and on GitHub (the *remote* copy); pushing copies new snapshots up, and you can pull them down on any other machine. A *commit* is one labelled snapshot with a short message saying what changed; a *push* is shipping those commits to the internet. You'll be doing dozens of these in the first week and they'll feel weird before they feel normal — that's fine. The big idea: your code is never just *the file as it is now*; it's the whole history of how it got there, and git remembers the whole thing.
+
 1. Go to [github.com/new](https://github.com/new).
 2. **Name your repo.** This is where your year of work lives. Pick a name you like (you can rename later, but most people don't).
 3. **Set it Public.** Don't worry — there's nothing in it yet.

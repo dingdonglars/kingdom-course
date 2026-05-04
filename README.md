@@ -6,9 +6,29 @@ Before that Roblox version, you'll have built the same game four other ways: as 
 
 This is what the year looks like.
 
+---
+
 ## Who this is for
 
 Someone fifteen-ish, no prior code experience, comfortable on a computer, plays games, has four to six hours a week. Specifically: you. The course assumes nothing about prior programming background. It does assume you'll show up, write things down, and ship the work even when it gets uncomfortable. It will get uncomfortable. That's the deal.
+
+---
+
+## What this needs from you
+
+Twelve months is a long time. The course works because both of us show up.
+
+**What you commit to:** showing up. Putting hours in. Reading what's on screen before pinging. Writing the things down even when you don't feel like it. Not bailing the first time it stings. None of this needs to be heroic — four to six hours a week, every week — but it needs to be *real*. The uncomfortable parts are the parts where the learning lives.
+
+**What I commit to:** when you're in it, I'm in it. The weekly sync. PR reviews inside the windows. Replies in `#help` you can count on. But that depends on you being in it. If you stop showing up, I'll quietly stop too — not as punishment, just because it doesn't work the other way around. Predictability over availability, both ways.
+
+The deal in one sentence: *engaged on both sides, or neither side.*
+
+### If you want out
+
+At the end of any phase, you can decide you're done. No harsh feelings, no failure — *"I gave it Phase 3 and that was enough"* is a complete answer. The course is built so each phase ends with something real you keep, not something you only get after twelve more months. If you reach a phase boundary and the year stops feeling like the right shape, say so. We close it cleanly.
+
+---
 
 ## What you'll actually be able to do
 
@@ -23,6 +43,8 @@ The skills are not decorative. By the time you finish, you'll genuinely know how
 - **Read other people's code.** The most underrated skill. Most of programming is reading.
 
 These transfer. You can use them on a job, in a side project, in school, anywhere. Most are exactly what a working junior developer does on day one.
+
+---
 
 ## What you'll build, in order
 
@@ -40,7 +62,9 @@ The course is laid out as seven phases — five core, two bonus — building tow
 
 **Phase 5 — Roblox Kingdom.** *(Optional finale.)* You port the engine again — this time to Luau, Roblox's language — and publish a place your friends can play *on Roblox itself*. The reason this is optional and not skippable: by the time you finish Phase 4 you've earned everything the course set out to teach. Phase 5 is the brag.
 
-**Phase 6 — Bonuses.** Two short bonuses if you want them. One swaps your database for a totally different one in three lines, just to feel how clean the engine/shell separation actually is. The other goes deep on working with an AI assistant — the named skill of *context engineering*.
+**Phase 6 — Bonuses.** Three short bonuses if you want them. One swaps your database for a totally different one in three lines, just to feel how clean the engine/shell separation actually is. One goes deep on working with an AI assistant — the named skill of *context engineering*. One goes properly into git — the model underneath the commands you've been typing all year.
+
+---
 
 ## How a typical week works
 
@@ -49,6 +73,8 @@ Most weeks you'll do one or two **modules**. A module is a single self-contained
 Every few weeks you cross a **milestone** (M0 through M6). A milestone is the *brag-worthy* point — the place where you have something real to show off. Each milestone ends with a wins-log entry, a Slack post, and a sit-down review with Lars.
 
 The rhythm is the rhythm of working developers. Picking it up now means you don't have to pick it up later under pressure.
+
+---
 
 ## Where to start
 
@@ -64,11 +90,15 @@ A few other docs you'll want to know exist, but don't have to read in order:
 - **`ENGLISH-NOTES.md`** — why the course is in English, and the small scaffolding that helps when a word stalls you.
 - **`GLOSSARY.md`** — every term the course teaches, in alphabetical order.
 
+---
+
 ## Where to ask for help
 
 **Lars** is your mentor. The full *how we work together* protocol lives in `MENTOR-PROTOCOL.md` at the root of this repo — it describes when to ping him, how to ask, and what to expect back. Read it before module 0.0.
 
 **Claude** is your AI assistant. The first half of the course, Claude helps with friction (a confused error message, a git mess). After the AI Unlock, Claude can also help you write code — under the rule that *you have to be able to explain every line you keep*. The full story is in `ai-tools.md`.
+
+---
 
 ## A note on what's not in this repo
 
