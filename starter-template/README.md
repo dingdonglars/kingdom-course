@@ -27,6 +27,6 @@ Open the course repo. Open `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md`
 
 ## Help
 
-Read `MENTOR-PROTOCOL.md` (Lars gives you this — it doesn't live in any repo). Use Slack `#help`. Use Claude per the bucket rules.
+Read `MENTOR-PROTOCOL.md` at the root of the course repo. Use Slack `#help`. Use Claude per the bucket rules in `ai-tools.md`.
 
 Welcome to the Kingdom.

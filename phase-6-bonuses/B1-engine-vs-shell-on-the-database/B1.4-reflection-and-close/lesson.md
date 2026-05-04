@@ -41,7 +41,7 @@ If B1 felt good, here are some natural follow-ups (none required):
 - Try **PostgreSQL** for the trifecta. Different vendor entirely, same three-line pattern.
 - Read one chapter of *Designing Data-Intensive Applications* by Martin Kleppmann. Best book on this whole layer.
 
-## Wrap up
+## What you just did
 
 You finished a small, sharp bonus. The whole arc was: install LocalDB, change three lines of config, watch every test pass, install SSMS to look at the result, write down what it meant. Each step was deliberately small, because the bonus's whole point was to make the engine-vs-shell rule cash out as something you could see and touch — not just a thing said in lectures back in Phase 1. The reflection paragraph in your journal is the artefact you keep.
 
