@@ -1,0 +1,20 @@
+# Architecture
+
+## Projects
+- `Kingdom.Engine/` — domain logic. No IO. No frameworks. Subnamespaces: Buildings, Citizens, Resources, Events, Infrastructure (interfaces), Snapshots.
+- `Kingdom.Persistence/` — JSON store + SQLite (raw `SqliteConnection` for demos) + EF Core. `KingdomEfStore` is the canonical persistence.
+- `Kingdom.Console/` — interactive console shell (`SaveSlotUI` menu loop).
+- `Kingdom.Api/` — minimal API. Auth via Google OAuth + cookies. Multi-user via `OwnerSub` claim. OpenAPI at `/openapi/v1.json`.
+- `tests/Kingdom.*.Tests/` — xUnit + Shouldly + FakeItEasy. Integration tests use `WebApplicationFactory<Program>`.
+
+## Data flow
+HTTP request → cookie auth → `OwnerSub` extracted → `KingdomEfStore` (scoped query) → engine via `Kingdom.LoadFrom(snapshot, rng, clock)`.
+
+## Conventions
+- See `STANDARDS.md` for naming, commits, branches, tests.
+- DTOs at every boundary (JSON store, EF entities, API request/response).
+- Engine takes `IRandom` + `IClock` via constructor — never `new Random()`.
+- All store methods take `ownerSub` first; never optional.
+
+## What's deliberately not here yet
+- (fill in your own deliberate gaps)
