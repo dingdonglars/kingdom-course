@@ -34,3 +34,7 @@ a. SQLite has a CLI shell
 b. Persistence is a shell concern, not an engine concern. The engine is unchanged when storage moves from JSON to SQLite — same model, different runtime.
 c. SQL runs in a shell environment
 d. Nothing significant
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

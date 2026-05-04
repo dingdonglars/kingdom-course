@@ -34,3 +34,7 @@ a. Future-proofing — when something breaks, you want the diagnostic tool alrea
 b. Required by .NET
 c. To pass the M3 challenge
 d. To impress reviewers
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -34,3 +34,7 @@ a. Back to wherever called `Hallway()`
 b. Back into `Hallway()` right after the call to `Kitchen()`
 c. To the start of the program
 d. It depends
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

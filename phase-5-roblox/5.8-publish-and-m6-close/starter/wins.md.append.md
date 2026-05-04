@@ -12,5 +12,5 @@ Posted to `#wins` on YYYY-MM-DD.
 
 ---
 
-> **Capstone reflection in `journal/capstone.md`.**
+> **Capstone reflection in `journal/m6-looking-back.md`.**
 > One year. Five shells. One engine. M6.

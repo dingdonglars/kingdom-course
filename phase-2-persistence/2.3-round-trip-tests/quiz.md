@@ -34,3 +34,7 @@ a. Multiple inheritance
 b. Property-based testing — assert that some *property* (e.g., "round-trip preserves state") holds across many inputs, not just one
 c. Mocking
 d. Integration testing
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

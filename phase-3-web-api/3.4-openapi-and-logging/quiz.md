@@ -34,3 +34,7 @@ a. AI can read C# anyway
 b. The spec is a small, complete description of *what your API does* — an AI can call the right endpoints from it without reading every handler. Saves tokens and avoids guesses.
 c. AI doesn't need OpenAPI
 d. It enforces typing
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

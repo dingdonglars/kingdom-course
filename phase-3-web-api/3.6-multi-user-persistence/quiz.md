@@ -34,3 +34,7 @@ a. EF requires it
 b. Every list query is `WHERE OwnerSub = ?`. Without an index, the DB scans the whole table — slow as data grows. With an index, it's a direct lookup.
 c. For security
 d. Style preference
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -34,3 +34,7 @@ a. It's a Microsoft tradition with no real reason
 b. To distinguish them from local variables and parameters at a glance
 c. To make them harder to read
 d. Required by the compiler
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

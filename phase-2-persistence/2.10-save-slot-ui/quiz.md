@@ -34,3 +34,7 @@ a. The shell does interaction; the engine does logic; the store does persistence
 b. Smaller `Program.cs` runs faster
 c. Tradition
 d. Required by .NET
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

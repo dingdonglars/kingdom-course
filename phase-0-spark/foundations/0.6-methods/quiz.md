@@ -34,3 +34,7 @@ a. Yes — the `=>` syntax is shorthand for `{ return ...; }`
 b. No — the first one runs faster
 c. No — the first is "expression-bodied"; the second is "block-bodied"; they behave the same way
 d. Both (a) and (c) are correct
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

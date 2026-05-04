@@ -34,3 +34,7 @@ a. SQL injection
 b. The state where the database schema diverges from the code's model — the bug migrations exist to prevent
 c. A type of error
 d. Nothing — just a name
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

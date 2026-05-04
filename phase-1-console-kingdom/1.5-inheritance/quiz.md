@@ -34,3 +34,7 @@ a. Composition is faster
 b. Inheritance is forbidden in modern C#
 c. Deep inheritance trees become rigid and hard to refactor; composition (a class *contains* another) is more flexible. For one level deep (like `Building → Farm`), inheritance is fine.
 d. Composition uses less memory
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

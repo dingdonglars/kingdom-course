@@ -34,3 +34,7 @@ a. Build semantic HTML that works with no CSS or JS; *then* style it; *then* add
 b. Required by web standards
 c. Faster
 d. SEO requires it
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -34,3 +34,7 @@ a. Nothing — it's just a name
 b. Method (`Spend`), scenario (insufficient funds), expected behavior (returns false). The convention from `STANDARDS.md`.
 c. The test will spend something
 d. The test was written by someone named "Spend"
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

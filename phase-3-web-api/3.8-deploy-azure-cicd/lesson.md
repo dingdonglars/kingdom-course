@@ -23,7 +23,7 @@ Three reasons:
 
 ## The deploy in 5 manual steps (one-time)
 
-> **Heads up — real cloud setup. These steps are best followed with the Azure portal open. Document each step in `journal/3.8-deploy.md`.**
+> **Heads up — real cloud setup. These steps are best followed with the Azure portal open. Document each step in `journal/3.8-deploy-api.md`.**
 
 1. **Create an App Service**
    - portal.azure.com → Create resource → Web App

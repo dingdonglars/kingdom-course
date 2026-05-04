@@ -34,3 +34,7 @@ a. Faster code
 b. The same engine can run in console, web API, browser, Roblox — each shell wires its own implementations. Tests can swap fakes for real implementations. Easier to reason about.
 c. Smaller binaries
 d. It's a style preference with no real benefit
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -42,7 +42,7 @@ When in doubt: chat-style for thinking, inline for typing, agentic for doing.
 
 ## The reflection
 
-Open `journal/B2-reflection.md`. Three to five paragraphs.
+Open `journal/B2-what-i-learned.md`. Three to five paragraphs.
 
 Prompts (pick the ones that resonate):
 

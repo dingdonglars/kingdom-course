@@ -34,3 +34,7 @@ a. Top-of-file 5-line comment naming the file's role + conventions + related fil
 b. Required by Visual Studio
 c. SEO
 d. Nothing special
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -34,3 +34,7 @@ a. So tests don't interfere with each other or your dev DB. Each fixture gets a 
 b. Performance
 c. Required by EF
 d. To save bandwidth
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

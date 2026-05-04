@@ -9,7 +9,7 @@ Wraps **Block 7 (Roblox Kingdom)**.
 - A `roblox-kingdom/` (or similarly named) folder exists with at least the engine ModuleScripts ported to Luau (`Building.lua`, `Farm.lua`, `Lumberyard.lua`, `Mine.lua`, `Kingdom.lua`, `ResourceLedger.lua`, `Citizen.lua`)
 - A live Roblox place URL exists and 3 friends have visited it (provide screenshots)
 - `journal/wins.md` has an M6 entry mentioning M6 / Block 7 / Roblox + the place URL
-- `journal/capstone.md` exists and is filled in (~the four prompts from M5.8)
+- `journal/m6-looking-back.md` exists and is filled in (~the four prompts from M5.8)
 
 ## What this does NOT check
 

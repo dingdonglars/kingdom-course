@@ -34,3 +34,7 @@ a. Boundaries are where shape mistakes happen — wire format, file format, API 
 b. Required by TypeScript
 c. SEO
 d. Performance
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

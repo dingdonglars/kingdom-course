@@ -42,9 +42,9 @@ public class RobloxArtefactTests
     [Fact]
     public void Journal_HasCapstoneFile()
     {
-        var capstonePath = Path.Combine(RepoRoot, "journal", "capstone.md");
-        Assert.True(File.Exists(capstonePath), $"Expected journal/capstone.md filled in.");
+        var capstonePath = Path.Combine(RepoRoot, "journal", "m6-looking-back.md");
+        Assert.True(File.Exists(capstonePath), $"Expected journal/m6-looking-back.md filled in.");
         var content = File.ReadAllText(capstonePath);
-        Assert.True(content.Length > 500, "capstone.md exists but is too short. The reflection is the artefact.");
+        Assert.True(content.Length > 500, "m6-looking-back.md exists but is too short. The reflection is the artefact.");
     }
 }

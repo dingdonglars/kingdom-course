@@ -34,3 +34,7 @@ a. The shell is the place untrusted input enters. Reject bad input there so the 
 b. Boundary validation runs faster
 c. Required by HTTP
 d. Style preference
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

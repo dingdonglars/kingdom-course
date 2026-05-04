@@ -34,3 +34,7 @@ a. `git push tag M5`
 b. `git tag m5-block-6-complete && git push origin m5-block-6-complete`
 c. `git tag --milestone 5`
 d. There isn't one
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

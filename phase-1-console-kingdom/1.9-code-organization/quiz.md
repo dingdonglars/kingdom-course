@@ -34,3 +34,7 @@ a. Sub-namespaces have a runtime cost
 b. They add `using` lines and discoverability friction. Worth it for mid/large projects, overkill for tiny ones.
 c. The compiler emits warnings
 d. Pre-emptive sub-namespacing is forbidden
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

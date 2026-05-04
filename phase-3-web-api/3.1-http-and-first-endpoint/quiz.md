@@ -34,3 +34,7 @@ a. ASP.NET runs in a shell
 b. HTTP is just one more way to talk to the engine; the engine doesn't change. Same as Console (M1.10), Persistence (Block 4), now Web API.
 c. The shell is the operating system
 d. It's a metaphor with no real meaning
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

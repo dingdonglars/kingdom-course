@@ -34,3 +34,7 @@ a. `email` can change (user updates Gmail address); `sub` is permanent and uniqu
 b. `sub` is shorter
 c. Required by Google
 d. They're identical
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

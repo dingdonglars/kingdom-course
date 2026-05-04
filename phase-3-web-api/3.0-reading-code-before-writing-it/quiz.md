@@ -34,3 +34,7 @@ a. Reading-and-noting is real work; making it visible in your git log treats it 
 b. To pass the M4 challenge
 c. Optional decoration
 d. Required by GitHub
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

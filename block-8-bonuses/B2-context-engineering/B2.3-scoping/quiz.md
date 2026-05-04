@@ -34,3 +34,7 @@ a. State goal, limits, and proof-of-done. The AI delivers against the contract y
 b. Legal jargon
 c. Required by AI vendors
 d. Style preference
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -34,3 +34,7 @@ a. Each has one job. The engine doesn't depend on EF; the database doesn't depen
 b. Tradition
 c. Required by .NET
 d. Performance optimization
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

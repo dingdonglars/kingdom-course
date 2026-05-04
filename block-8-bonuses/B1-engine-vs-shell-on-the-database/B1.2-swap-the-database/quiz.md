@@ -34,3 +34,7 @@ a. Tests verify behavior, not implementation. If they pass after the swap, the e
 b. Required by the lesson
 c. Performance
 d. Style
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

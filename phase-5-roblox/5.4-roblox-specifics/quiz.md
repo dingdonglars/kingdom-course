@@ -34,3 +34,7 @@ a. Multiplayer games need exactly one source of truth (server). Clients render t
 b. Performance only
 c. Tradition
 d. Required by .NET
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -34,3 +34,7 @@ a. Each scales independently, deploys independently, can be replaced independent
 b. Required by Azure
 c. Performance
 d. Tradition
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

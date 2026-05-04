@@ -34,3 +34,7 @@ a. Manual deploys are slow
 b. The first manual deploy is fine; the second one means you should automate. Automation makes deploys boring → frequent → small changes → fast iteration.
 c. Manual deploys are forbidden
 d. Required by Azure
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

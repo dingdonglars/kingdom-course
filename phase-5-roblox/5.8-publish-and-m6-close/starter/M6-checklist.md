@@ -22,7 +22,7 @@
 - [ ] M6 mentor PR opened (with AI-assistance section)
 
 ## Capstone reflection
-- [ ] Filled in `journal/capstone.md` (~1 hour, one sitting)
+- [ ] Filled in `journal/m6-looking-back.md` (~1 hour, one sitting)
 - [ ] Re-read `journal/wins.md` from M0 to M6 in order
 - [ ] Decided what's next (or that there's deliberately no next thing)
 

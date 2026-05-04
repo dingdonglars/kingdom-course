@@ -34,3 +34,7 @@ a. Power tools require respect — the discipline you've built (engine vs shell,
 b. They're identical metaphors
 c. AI is dangerous
 d. Tradition
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

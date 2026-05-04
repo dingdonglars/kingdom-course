@@ -5,7 +5,7 @@ Mostly Azure Portal work. The starter ships:
 - `web-vite/.env.development` + `.env.production` — env-driven API URL
 - `web-vite/src/main.ts` — uses `import.meta.env.VITE_API_URL`
 - `Kingdom.Api/Program.cs.snippet` — CORS allow-list update
-- `journal/4.6-deploy.md` — your Azure setup notes
+- `journal/4.6-deploy-frontend.md` — your Azure setup notes
 
 **Manual:**
 1. Create Static Web App (Free) → connect GitHub repo, app location `web-vite/`, output location `dist/`

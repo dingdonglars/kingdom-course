@@ -34,3 +34,7 @@ a. They're required
 b. Brevity — without aliases you'd repeat `kingdoms.name`, `buildings.kingdom_id` everywhere; aliases keep the query readable
 c. To hide the table names
 d. Performance
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

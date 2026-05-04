@@ -34,3 +34,7 @@ a. Tradition
 b. Elements (DOM tree), Console (live JS), Network (every request) — three views into what's actually happening. Hiding them means flying blind.
 c. Required by browsers
 d. To impress reviewers
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

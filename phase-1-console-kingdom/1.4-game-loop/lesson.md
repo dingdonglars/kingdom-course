@@ -1,40 +1,34 @@
 # Module 1.4 — The Game Loop
 
-> **Hook:** until now your kingdom is a static photograph. You build it, you print it, the program ends. Today it starts to **tick**. Each day, every farm makes food, every lumberyard makes wood, every mine makes stone. Citizens eat. Numbers move. The kingdom is alive.
+Right now your kingdom is a photograph. You build it, you print it, the program ends and nothing has changed. Today the kingdom learns to *move*. Each day, every farm makes a bit of food, every mine makes a bit of stone, citizens eat. Numbers go up; numbers go down. By the end of this module the program runs five days and shows you what happened.
+
+We need one new word for the day. **Tick.** A tick is one step of game time. In a fast game like a shooter, a tick might happen sixty times a second. In a slow game like ours — a kingdom you run for many days — a tick is once per *day*. The exact length doesn't matter; what matters is that the engine has a method that means *"move time forward by one step."* That method will be called `AdvanceDay`. Once it exists, anything that wants to push time forward — the console today, a button on a webpage in a few months, a Roblox game later in the year — calls the same method. Same engine, many shells.
 
 > **Words to watch**
-> - **tick** — one step of game time. In our kingdom, one tick = one day.
-> - **game loop** — the loop that advances the world one tick at a time and prints the new state
-> - **side effect** — when a method changes state somewhere (vs. just returning a value)
-> - **delta** — the change since last time (today's gold − yesterday's gold)
+>
+> - **tick** — one step of game time. In our kingdom, one tick is one day.
+> - **game loop** — the loop that calls `AdvanceDay` over and over and shows the result each time.
+> - **side effect** — when a method changes something instead of (or in addition to) returning a value.
+> - **subclass** — a more specific kind of class built on top of another (we meet these properly in Module 1.5).
 
 ---
 
-## Why a tick
+## What you're building
 
-Real-time games tick many times per second. Turn-based games tick once per turn. A management game like ours ticks once per *day*. The exact unit doesn't matter — what matters is **the engine has a verb that means "move time forward."**
+Three small changes to the engine, plus a console loop and tests:
 
-Once you have `AdvanceDay()`, three doors open at once:
-- The console can call it in a loop and print the result (today)
-- The web API can expose it as `POST /tick` (Phase 3)
-- The browser/Roblox client can call it on a button click (Phase 4-5)
+| File | Change |
+| --- | --- |
+| `Kingdom.Engine/Building.cs` | Gains a `Tick(ResourceLedger)` method. Empty for now. |
+| `Kingdom.Engine/Kingdom.cs` | Gains a `Day` property and an `AdvanceDay()` method. |
+| `Kingdom.Console/Program.cs` | Runs the kingdom for five days and prints each day. |
+| `tests/Kingdom.Engine.Tests/KingdomTickTests.cs` | New test file. |
 
-Same engine, three triggers. That's the through-line again.
+The starter for this module ships only those four files. Drop them on top of your Module 1.3 working folder.
 
-## Delta starter
+## Step 1 — give `Building` a `Tick` method
 
-This module's `starter/` only has the **new and changed files**. Open your 1.3 code, copy these on top:
-
-- `Kingdom.Engine/Building.cs` — gains a virtual `Tick(ResourceLedger)` method
-- `Kingdom.Engine/Kingdom.cs` — gains `AdvanceDay()` and `Day` property
-- `Kingdom.Console/Program.cs` — runs a 5-day loop and prints the deltas
-- `tests/Kingdom.Engine.Tests/KingdomTickTests.cs` — new test file
-
-If you'd rather start fresh, copy your 1.3 `starter/` into a new working folder and apply the changes manually as you read.
-
-## Step 1 — `Building.Tick`
-
-Open `Building.cs`. Right now it's just a holder for `Name` and `Level`. Today it gets a verb:
+Open `Building.cs`. Right now it just holds a `Name` and a `Level`. Today we add a method that says *"a tick of game time happened — do whatever you do."*
 
 ```csharp
 namespace Kingdom.Engine;
@@ -48,18 +42,17 @@ public class Building
 
     public void Upgrade() => Level++;
 
-    // NEW: each subclass will override this. Default does nothing.
+    // New today. The default does nothing.
+    // Specific kinds of building (Farm, Mine, ...) will fill this in tomorrow.
     public virtual void Tick(ResourceLedger ledger) { }
 }
 ```
 
-The keyword is **`virtual`**. It says: *"subclasses are allowed to replace this method."* In Module 1.5 we'll add `Farm`, `Lumberyard`, and `Mine` subclasses that each override `Tick` to produce a different resource. Today the base class has an empty default — buildings tick but produce nothing.
+The new keyword is **`virtual`**. It marks a method as *replaceable* — tomorrow's `Farm` and `Mine` (the *subclasses*) will write their own version of `Tick` and the engine will use those instead of this empty default. Today the default is empty on purpose: the rest of the system can run end-to-end before the specific kinds exist. We add the *shape* now and the *behaviour* tomorrow.
 
-> **Why empty?** Because today we don't have subclasses yet. The empty default means "the system runs end-to-end before the subclasses exist." We'll fill it in tomorrow.
+## Step 2 — give `Kingdom` a `Day` and an `AdvanceDay`
 
-## Step 2 — `Kingdom.AdvanceDay` and `Day`
-
-Open `Kingdom.cs`. Add a `Day` property and an `AdvanceDay` method:
+Open `Kingdom.cs`. Two things go in:
 
 ```csharp
 namespace Kingdom.Engine;
@@ -86,27 +79,28 @@ public class Kingdom
 
     public void AdvanceDay()
     {
-        // 1. Every building ticks
+        // 1. Every building ticks.
         foreach (var b in Buildings)
             b.Tick(Resources);
 
-        // 2. Every citizen eats one food (no food = nothing happens, for now)
+        // 2. Every citizen eats one food. If there's none left, Spend
+        //    just returns false and the day continues — nobody starves yet.
         foreach (var _ in Citizens)
             Resources.Spend(Resource.Food, 1);
 
-        // 3. Day counter advances
+        // 3. Time moves forward.
         Day++;
     }
 }
 ```
 
-Three things happen each tick: buildings produce, citizens consume, day counter ticks. Order matters — buildings produce first, *then* citizens eat. (If you flipped them, on day 1 citizens would eat food that hasn't been produced yet.)
+Three things happen in a tick: buildings produce, citizens eat, the day counter ticks up. **The order matters.** Buildings have to produce *before* citizens eat — otherwise on Day 1 you'd be eating food that the farms haven't grown yet. It's a small thing on Day 1; it's a confusing bug on Day 50. Get the order right now.
 
-> **Side effects.** `AdvanceDay()` returns `void` — but it changes the ledger, the day counter, and (eventually) building state. That's a *side effect*. Methods that "do things" rather than "return things" are common in engines. The downside: harder to reason about. The upside: the call site is clean (`k.AdvanceDay()` reads like English).
+`AdvanceDay()` returns `void` — it doesn't *give back* a value. Instead, it changes the ledger, the day counter, and (soon) building state. Doing-things-to-state is what we call a **side effect**. Engines lean on side effects because the alternative — returning a brand-new copy of the kingdom every tick — would mean copying everything every time. The trade-off is honest: more powerful, slightly harder to reason about. The wins.md tradition is to write down the rules you're building on; this is one of them.
 
-## Step 3 — the console loop
+## Step 3 — run it from the console
 
-Open `Program.cs`. Today's shell runs **5 days** and prints the kingdom each day:
+Open `Program.cs`. The console shell now does two things: build a kingdom, then push five days through it.
 
 ```csharp
 using Kingdom.Engine;
@@ -138,20 +132,20 @@ void PrintKingdom(Kingdom.Engine.Kingdom k)
 }
 ```
 
-Build + run:
+Build and run it:
 
 ```powershell
 dotnet build
 dotnet run --project Kingdom.Console
 ```
 
-You should see Day 1 → Day 6, with food going down by 2 each day (two citizens, one food each). The other resources don't move yet — that's tomorrow.
+You should see Day 1 through Day 6 printed, and food going down by 2 each day — two citizens, one bite each. The other resources don't move yet. That's tomorrow's job; today's job was to make the world tick at all.
 
-## Step 4 — test the loop
+## Step 4 — write the tests
 
-> **Heads up — small C# quirk.** Inside the test namespace `Kingdom.Engine.Tests`, the unqualified word `Kingdom` is ambiguous: it could mean the outer `Kingdom` *namespace*, or the `Kingdom` *class*. The compiler picks the namespace and the test won't compile. Workaround: write `global::Kingdom.Engine.Kingdom` — the `global::` prefix says *"start at the top of the namespace tree."* You'll see this once or twice; that's it.
+> **A small C# corner you'll meet here.** The test file lives in the namespace `Kingdom.Engine.Tests`. Inside that namespace, if you write the unqualified word `Kingdom`, the C# compiler isn't sure whether you mean the outer `Kingdom` *namespace* or the `Kingdom` *class* — so it picks the namespace, and the test won't compile. The fix is to write `global::Kingdom.Engine.Kingdom` — the `global::` prefix tells the compiler *"start at the very top of the namespace tree, then come down."* You'll see this once or twice in the next few modules; that's it.
 
-Open `tests/Kingdom.Engine.Tests/KingdomTickTests.cs`:
+`tests/Kingdom.Engine.Tests/KingdomTickTests.cs`:
 
 ```csharp
 using Kingdom.Engine;
@@ -192,7 +186,7 @@ public class KingdomTickTests
     {
         var k = new global::Kingdom.Engine.Kingdom("Test");
         k.AddCitizen(new Citizen("A"));
-        // Drain food
+        // Drain food to zero first.
         k.Resources.Spend(Resource.Food, k.Resources.Get(Resource.Food));
         Should.NotThrow(() => k.AdvanceDay());
     }
@@ -207,38 +201,48 @@ public class KingdomTickTests
 }
 ```
 
-Run:
-
 ```powershell
 dotnet test
 ```
 
-Expect `Passed: 16` (11 from 1.3 + 5 new).
+You should see `Passed: 16` — eleven from Module 1.3 plus five new ones.
 
 ## Tinker
 
-- Change the loop length from 5 to 100 days. Watch food go negative? It shouldn't — `Spend` returns false rather than going negative. Confirm by `Get(Resource.Food)` after the loop.
-- Add a third citizen. Now food drops 3/day instead of 2.
-- Try calling `AdvanceDay()` 1000 times. How long does it take? (Should be instant — engines should be fast.)
-- Move the `Day++` line to the *top* of `AdvanceDay()` instead of the bottom. Does anything visibly break? (Subtle — first day's tick now runs on Day 2. Shows why ordering matters.)
+Try changing the loop length from 5 to 100 days. Will food go negative? It shouldn't — `Spend` refuses to take more than the ledger has and returns `false`. Check by reading `Get(Resource.Food)` after the loop and seeing whether it sits at zero or below.
 
-## Name it
+Add a third citizen. Food now drops by 3 per day instead of 2.
 
-- **Tick.** A single step of game time. The engine's heartbeat. Every game has one — fast for action games, slow for management games.
-- **Game loop.** A loop that calls `Tick` over and over. Today's loop is `for (5 days)`. Phase 4's browser version will be `setInterval(() => kingdom.tick(), 1000)`. Phase 5's Roblox version will be `RunService.Heartbeat:Connect(...)`. Same loop pattern, three runtimes.
-- **Side effect.** When a method changes state (vs. just returning a value). `AdvanceDay()` is one big side effect.
-- **`virtual`.** A method that subclasses can override. The base class provides a default (here: empty). Tomorrow's `Farm.Tick` will override it to add food.
+Call `AdvanceDay()` a thousand times in a row. How long does it take? If your engine is honest, it's near-instant — engines should be fast.
+
+Move the `Day++` line to the *top* of `AdvanceDay` instead of the bottom. The program still runs but the meaning shifts: the very first call now ticks buildings on "Day 2." Subtle, easy to miss, exactly the kind of bug that ships and then confuses you a week later.
 
 ## The rule of the through-line
 
-> **The engine ticks. The shell decides when.**
+The *through-line* of this course is a single rule we keep coming back to: the engine never decides *when* it ticks — that's the shell's job. Today the console runs five ticks in a `for` loop. Later this year the same engine will tick once per click in a browser, once per heartbeat in Roblox, or whenever a player calls a web endpoint. The engine just exposes `AdvanceDay()` and waits to be called.
 
-The engine doesn't know how often `AdvanceDay` gets called — that's the shell's choice. Today: 5 times in a `for` loop. Tomorrow: every time a button is clicked. Engine doesn't care.
+## What you just did
 
-## Quiz / challenge
+The kingdom went from a one-shot photograph to a thing that *moves*. You added a method on `Building` called `Tick` — empty for now, but ready for tomorrow's farms and mines to fill in. You added `Day` and `AdvanceDay` to `Kingdom`, and the console pushed the world through five days in a `for` loop. Along the way you met two ideas worth keeping: a **side effect** (a method that changes state instead of returning a value), and **`virtual`** (a method that more specific classes are allowed to replace). You also met the through-line of the course in concrete form: the engine knows *how* to tick; the shell decides *when*. Five new tests passed; sixteen total now.
 
-Open `quiz.md`.
+**Key concepts you can now name:**
 
-## Connect
+- a *tick* and a *game loop* — the engine's heartbeat
+- *side effects* — methods that change state instead of returning values
+- *`virtual`* — a method more specific classes are allowed to replace
+- the through-line — engine knows *how*; shell decides *when*
 
-Module 1.5 introduces inheritance — `Farm`, `Lumberyard`, `Mine` will all override `Tick`. Then `AdvanceDay` will start moving *all* the resources, not just food.
+## Words to add to the glossary
+
+- **tick** — one step of game time.
+- **game loop** — a loop that calls the engine's tick method and shows the result.
+- **side effect** — a method that changes something rather than (or as well as) returning a value.
+- **`virtual`** — a method marked as replaceable by a more specific class.
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same shape as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 1.5 introduces those *more specific kinds* — `Farm`, `Lumberyard`, `Mine`. Each will fill in `Tick` so it produces a different resource. After tomorrow, all four resources move every day, not just food.

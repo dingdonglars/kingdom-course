@@ -34,3 +34,7 @@ a. Vanity
 b. The before/after one-liner is what your future self reads in a year — proof you grew. The Discord post is the public commitment.
 c. Required by the curriculum
 d. To signal availability for code review
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -61,7 +61,7 @@ Same shape as M2/M3/M4/M5 — bigger:
 
 ## The capstone reflection (one sitting, ~1 hour)
 
-Open `journal/capstone.md`. Answer freely:
+Open `journal/m6-looking-back.md`. Answer freely:
 
 1. **What's the one thing you'd want to teach someone else?** Pick the lesson that surprised you most. Write it as a 2-paragraph blog post you'd send a friend who's about to start.
 2. **What's the engine, in one paragraph?** Explain the through-line — engine vs shell — to a smart person who's never coded. Not what you built; what you *learned*.

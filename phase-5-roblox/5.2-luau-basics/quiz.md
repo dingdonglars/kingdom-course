@@ -34,3 +34,7 @@ a. Compile-time type-checking inside Studio — squiggle if a function is called
 b. Performance
 c. Required by Roblox
 d. Style preference
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

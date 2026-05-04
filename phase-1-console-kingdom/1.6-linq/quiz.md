@@ -34,3 +34,7 @@ a. It's not — they're equivalent in behavior, but `OfType<Farm>` *also* return
 b. It's faster
 c. `Where` is deprecated
 d. They produce different results
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

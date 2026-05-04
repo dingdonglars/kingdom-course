@@ -34,3 +34,7 @@ a. There's nothing meaningful to return — the resource is gone. 204 says "succ
 b. Required by the framework
 c. 200 doesn't work for DELETE
 d. Tradition
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

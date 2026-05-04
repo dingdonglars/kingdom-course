@@ -34,3 +34,7 @@ a. They're equivalent
 b. To track counts naturally — same item added twice becomes count 2, not two entries
 c. Dictionaries are always faster
 d. To avoid duplicates entirely
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

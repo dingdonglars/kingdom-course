@@ -92,7 +92,7 @@ In code: `const API = import.meta.env.VITE_API_URL;`. Cleaner; harder to misconf
 - **NEW:** `web-vite/.env.development` + `.env.production`
 - **MODIFIED:** `web-vite/src/main.ts` — uses `import.meta.env.VITE_API_URL`
 - **MODIFIED:** `Kingdom.Api/Program.cs` — CORS allow-list with credentials
-- **NEW:** `journal/4.6-deploy.md` — your Azure setup notes
+- **NEW:** `journal/4.6-deploy-frontend.md` — your Azure setup notes
 
 ## Tinker
 

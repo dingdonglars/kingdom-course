@@ -34,3 +34,7 @@ a. `Hey alice`
 b. `Hey ALICE`
 c. `Hey null`
 d. An error
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

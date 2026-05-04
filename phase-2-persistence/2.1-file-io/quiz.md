@@ -34,3 +34,7 @@ a. It proves the engine-vs-shell discipline works — disk is a shell concern
 b. It saves typing
 c. It's coincidence
 d. Tests would otherwise break
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

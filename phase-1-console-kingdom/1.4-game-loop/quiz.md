@@ -34,3 +34,7 @@ a. To verify the code doesn't crash when `Spend` is asked to take more than the 
 b. Padding the test count
 c. To test `Spend`'s return value
 d. To check `Add`
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

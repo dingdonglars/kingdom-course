@@ -34,3 +34,7 @@ a. `Exe`
 b. `Library` (a .dll)
 c. `WinExe`
 d. The build fails
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -34,3 +34,7 @@ a. CPU cycles
 b. The reader has to learn it. Every name has weight in the reader's head; weak names earn less than they cost.
 c. Compile time
 d. Disk space
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -100,6 +100,14 @@ Course-content prose targets approximately **CEFR B1–B2** — short sentences,
   - Example: `> 💬 **Idiom — "rubber duck debugging":** explain your code aloud to an inanimate object. The act of explaining surfaces the bug.`
 - **Pronunciation footnotes.** First time an unguessable term appears, give the pronunciation: *OAuth (oh-auth)*, *Kubernetes (koo-ber-net-eez)*, *queue (kyoo)*. Once per term, never again.
 - **"Words to watch" sidebar.** Each lesson that introduces new terms includes a sidebar at the top — three to eight items, one line each. Every entry sources into `course/GLOSSARY.md`.
+- **`## What you just did` recap section.** Every lesson ends with this section before the glossary block. One narrative paragraph (~5 sentences) tying the lesson's promise to the concepts it landed and the through-line, with a numeric proof point if one fits (test count, line count, etc.). Followed by `**Key concepts you can now name:**` — a 3-5 bullet list of phrase-style entries (no full sentences; no commas mid-phrase). Bullets pair the named concept with its 5-word essence; they don't repeat the glossary section's definitions. For lessons without a quiz, the section name stays `## What you just did` and no `## Quiz` follows.
+
+## Quiz answers
+
+- **Quiz answers live in `kingdom-curriculum/quiz-answers/<mirrored-path>/quiz-answers.md`** — never in the course repo. The course repo holds the quizzes; the curriculum repo holds the answer keys. Mirror the lesson path exactly so navigation is intuitive.
+- **Athos jots his answers in `journal/quiz-notes.md`** in his own repo — one rolling file, dated entries per quiz, one letter + one sentence of reasoning per question. Same convention as `journal/wins.md`.
+- **Validation happens at the weekly sync (Tier 4 in MENTOR-PROTOCOL.md).** Mentor reads the answer key from `kingdom-curriculum/quiz-answers/` before sync; together they walk through whichever questions Athos flagged.
+- **Closing line** on every quiz file: *"When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync."*
 
 ## Vocabulary in course prose (evolving list)
 
@@ -127,6 +135,10 @@ These words add cost without earning their keep. Don't use them in lesson prose.
 - *the payoff* — say "what you get" or "the result"
 - *idiom* (when used to mean a coding pattern) — say "the common way"
 - *leverage* — say "useful" or rewrite
+- *shape* — say "layout", "form", "pattern", "the way it's set up", or rewrite
+- *carve-out* — say "exception" or "special case"
+- *bright-line* — say "clear" or "simple" or rewrite
+- *bar* (as in "the bar is...") — say "standard", "requirement", "target"
 
 ### Explain on first use, then OK (principle, not a closed list)
 

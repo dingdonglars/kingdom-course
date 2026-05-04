@@ -34,3 +34,7 @@ a. The two bonus arcs (B1 — DB engine internals, B2 — context engineering) O
 b. Take a break only
 c. Restart from M0
 d. Begin a new framework
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

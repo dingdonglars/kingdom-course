@@ -34,3 +34,7 @@ a. Show LocalDB version
 b. List instances on this machine
 c. Performance test
 d. Required at install time
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

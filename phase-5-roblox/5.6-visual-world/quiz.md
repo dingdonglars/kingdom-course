@@ -34,3 +34,7 @@ a. The engine decides what's true (the kingdom's building list); the visual foll
 b. They're independent
 c. The visual is authoritative
 d. They're always equal
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

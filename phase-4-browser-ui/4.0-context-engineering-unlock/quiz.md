@@ -34,3 +34,7 @@ a. Five sentences of project-specific context turn the AI from generic-tutorial-
 b. Leverage is a financial term
 c. Context = bytes; more bytes = more output
 d. Tradition
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

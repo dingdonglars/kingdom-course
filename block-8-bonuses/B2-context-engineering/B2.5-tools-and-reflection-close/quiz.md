@@ -34,3 +34,7 @@ a. "You're a programmer." (past tense, future tense, both — the artefact is th
 b. "The end."
 c. "Goodbye."
 d. "Press F5 to continue."
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

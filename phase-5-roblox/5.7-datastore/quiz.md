@@ -34,3 +34,7 @@ a. Snapshot the engine state, write it somewhere, read it back, rehydrate. Same 
 b. They're all SQL
 c. They're all JSON
 d. They're not the same
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

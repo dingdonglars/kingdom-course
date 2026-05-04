@@ -6,7 +6,7 @@
 
 ## Write the paragraph
 
-Open `journal/B1-reflection.md`. Three sentences:
+Open `journal/B1-what-i-learned.md`. Three sentences:
 
 1. **What did the swap take?**
 2. **What does that prove?**

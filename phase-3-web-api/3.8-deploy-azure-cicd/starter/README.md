@@ -3,7 +3,7 @@
 The bulk of this module is portal/console work. The starter ships:
 
 - **NEW:** `.github/workflows/deploy.yml` — the GitHub Actions workflow
-- **NEW:** `journal/3.8-deploy.md` — your notes from the Azure setup
+- **NEW:** `journal/3.8-deploy-api.md` — your notes from the Azure setup
 
 **Manual setup before the workflow can run:**
 - Create App Service (Free F1 tier)

@@ -34,3 +34,7 @@ a. OOP = grouping data + methods + inheritance. Lua delivers it via tables + met
 b. C# is wrong
 c. Lua doesn't have OOP
 d. Style preference
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

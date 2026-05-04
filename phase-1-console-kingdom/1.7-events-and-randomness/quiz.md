@@ -34,3 +34,7 @@ a. They were lazy
 b. The engine is non-deterministic — we can't make precise assertions, only loose ones. Module 1.8 introduces `IRandom` to fix this.
 c. The test framework is limited
 d. xUnit doesn't support specific assertions
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

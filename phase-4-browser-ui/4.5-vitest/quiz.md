@@ -34,3 +34,7 @@ a. Coverage chasing produces bad tests (testing trivial getters, mocking everyth
 b. 100% is impossible
 c. Performance
 d. Required by Vitest
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

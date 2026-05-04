@@ -34,3 +34,7 @@ a. Forgot to add it
 b. The summary is intentionally lossy — only the fields we care about for the demo. Future modules will design a fuller snapshot.
 c. JSON can't serialise lists
 d. EventLog is private
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

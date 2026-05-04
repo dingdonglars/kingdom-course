@@ -34,3 +34,7 @@ a. Performance
 b. Exporting schema (and optionally data) as a `.sql` file — useful for backups, sharing, version control
 c. Hashing
 d. Required at install
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

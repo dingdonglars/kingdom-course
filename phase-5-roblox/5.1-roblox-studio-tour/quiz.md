@@ -34,3 +34,7 @@ a. It's actually small
 b. The work is the same loop as VS Code: find file, edit, run, read output. The 3D viewport is one panel; the rest is recognisable.
 c. Tradition
 d. Required by Roblox
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

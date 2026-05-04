@@ -34,3 +34,7 @@ a. Slower for big trees (every render rebuilds + the browser re-parses); fine at
 b. They don't work
 c. They have type issues
 d. None — they're better in every way
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

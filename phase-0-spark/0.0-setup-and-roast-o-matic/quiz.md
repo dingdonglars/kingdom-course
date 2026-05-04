@@ -22,3 +22,7 @@ a. Not yet — you need a degree
 b. Not yet — you need to know more languages
 c. Yes — programmers are people who write programs
 d. Only on weekends
+
+---
+
+When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
