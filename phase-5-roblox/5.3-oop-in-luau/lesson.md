@@ -1,26 +1,27 @@
 # Module 5.3 — OOP in Luau (Tables-as-Classes, Metatables)
 
-> **Hook:** Lua doesn't have classes. It has *tables* and *metatables* — and that's enough to build classes by hand. Every Lua codebase you'll read uses some variant of this pattern. Today we port `Building` and `Farm` from Block 3 — same shape, smaller language.
+Lua doesn't have classes. It has tables and one extra mechanism called *metatables*, and that turns out to be enough to build classes by hand. Every Lua codebase you'll ever read uses some flavour of the same recipe. Today we port the Phase 1 `Building` and `Farm` to Luau using that recipe — same idea, smaller language, a bit more typing.
 
 > **Words to watch**
-> - **metatable** — a table that defines behavior (operators, lookup) for *another* table
-> - **`__index`** — a metatable hook: "if a key isn't found here, look in this other table"
-> - **method-call syntax `:`** — `obj:method()` is sugar for `obj.method(obj)`
-> - **`setmetatable(t, mt)`** — attach a metatable to a table
-> - **module pattern** — return a table from a `ModuleScript`; `require` returns it
+>
+> - **metatable** — a table that defines extra behaviour for *another* table (operators, lookup, comparison).
+> - **`__index`** — a metatable entry that says "if a key isn't found here, look in this other table." This is what turns a table into a class.
+> - **method-call syntax `:`** — `obj:method()` is shorthand for `obj.method(obj)`. The colon is what passes `self`.
+> - **`setmetatable(t, mt)`** — attach a metatable to a table.
+> - **module pattern** — return a table from a `ModuleScript`; `require` returns it. Roblox's import system.
 
 ---
 
 ## The OOP-via-tables recipe
 
-Lua has one container (table) and one trick (metatables). The recipe everyone uses:
+Lua has one container (the table) and one trick (metatables). Every Lua codebase uses some variant of this recipe to fake classes.
 
 ```lua
--- Define the "class"
+-- The "class" is just a table.
 local Building = {}
-Building.__index = Building          -- methods looked up on Building
+Building.__index = Building          -- methods are looked up on Building
 
--- Constructor
+-- Constructor.
 function Building.new(name: string)
     local self = setmetatable({}, Building)
     self.name = name
@@ -28,7 +29,7 @@ function Building.new(name: string)
     return self
 end
 
--- Method
+-- Method.
 function Building:upgrade()
     self.level = self.level + 1
 end
@@ -40,19 +41,19 @@ end
 return Building
 ```
 
-Read line-by-line:
+Read it line by line:
 
-- `local Building = {}` — the table representing the class.
-- `Building.__index = Building` — when looking up a key on an *instance*, fall back to `Building`. **This is how methods get found.**
-- `Building.new(name)` — constructor. Creates a new table, sets its metatable to `Building`, fills fields, returns it.
-- `function Building:upgrade()` — the colon `:` means "implicit `self` parameter." Equivalent to `Building.upgrade = function(self) ... end`.
-- `setmetatable(t, mt)` — attach `mt` as `t`'s metatable.
+- `local Building = {}` — the table that represents the class.
+- `Building.__index = Building` — when you look up a key on an *instance* and don't find it, fall back to the `Building` table. **This is how methods get found.**
+- `Building.new(name)` is the constructor. It creates a new table, attaches `Building` as its metatable, fills the fields, returns it.
+- `function Building:upgrade()` — the colon means *implicit `self` parameter*. It's equivalent to writing `Building.upgrade = function(self) ... end`.
+- `setmetatable(t, mt)` attaches `mt` as `t`'s metatable.
 
-You'll write this same recipe for every "class" in your engine. **It's verbose, but mechanical** — you can fingertips-type it after the third one.
+You'll write this same recipe for every "class" in your engine. It's a bit verbose, but mechanical — by the third one your fingers know it.
 
 ## Inheritance
 
-Subclass = same recipe + set the parent as the `__index`:
+A subclass is the same recipe with one extra step: set the parent class as the subclass's `__index`.
 
 ```lua
 local Building = require(script.Parent.Building)
@@ -61,33 +62,32 @@ local Farm = setmetatable({}, { __index = Building })   -- inherit
 Farm.__index = Farm
 
 function Farm.new(name: string)
-    local self = Building.new(name)                     -- call parent ctor
+    local self = Building.new(name)                     -- call parent constructor
     setmetatable(self, Farm)                            -- re-parent the instance
     return self
 end
 
 function Farm:tick(ledger: any)
-    ledger:add("Food", 5 * self.level)                  -- override
+    ledger:add("Food", 5 * self.level)                  -- override the default tick
 end
 
 return Farm
 ```
 
-The pattern is `Farm` "is a" `Building` (parent's `__index`), plus its own methods.
+`Farm` "is a" `Building` because the parent sits in `Farm`'s `__index`, and instances of `Farm` get re-parented in the constructor. Method dispatch then walks the chain: an instance method falls back to `Farm`, then to `Building`.
 
 ## Module pattern (Roblox-specific)
 
-In Roblox, scripts come in three flavors:
+Scripts in Roblox come in three flavours:
 
 - **Script** — runs on the server when the place starts.
-- **LocalScript** — runs on a client (player's machine) when they join.
-- **ModuleScript** — defines a module; doesn't auto-run; another script `require`s it.
+- **LocalScript** — runs on a client (a player's machine) when they join.
+- **ModuleScript** — defines a module. It doesn't run on its own; another script calls `require` on it.
 
-Engine code goes in **ModuleScripts** in `ReplicatedStorage` (so server + client can both `require` it). Top of the file: `local Building = {}`. Bottom: `return Building`.
-
-Consumer:
+Engine code lives in **ModuleScripts** under `ReplicatedStorage`, so both server and client scripts can import it. Every module file has the same layout: declare a table at the top, attach functions to it, return it at the bottom.
 
 ```lua
+-- consumer
 local Building = require(game.ReplicatedStorage.Engine.Building)
 
 local farm = Building.new("Main Farm")
@@ -95,48 +95,42 @@ farm:upgrade()
 print(farm.level)          -- 2
 ```
 
-`require` caches — calling `require(game...Building)` 100 times returns the same table. Modules are effectively singletons.
-
-## Delta starter
-
-Mini-port of Block 3's engine:
-
-- `roblox-kingdom/Engine/Building.lua` (ModuleScript)
-- `roblox-kingdom/Engine/Farm.lua` (ModuleScript)
-- `roblox-kingdom/Engine/Lumberyard.lua`, `Mine.lua`
-- `roblox-kingdom/scripts/test-engine.lua` (Script that requires + uses them)
-
-In Studio's Explorer:
-- Insert a `Folder` in `ReplicatedStorage` named `Engine`.
-- Inside it, insert four `ModuleScript`s named `Building`, `Farm`, `Lumberyard`, `Mine`.
-- Paste each `.lua` source.
-- Insert a `Script` in `ServerScriptService` and paste `test-engine.lua`.
-- Hit Play. Output shows the smoke test.
+`require` caches the module — calling it a hundred times returns the same table, not a hundred copies. Modules are effectively singletons.
 
 ## Tinker
 
-- Add a `Mine.lua` mirroring `Farm.lua` but adding to `"Stone"`. Standard subclass pattern.
-- Try `farm.upgrade()` (with `.` instead of `:`). **Errors** — `self` is missing. The colon matters.
-- Print `getmetatable(farm)` — shows the Farm class table. **The metatable IS the class.**
-- Add a `Building:describe()` method returning `string`. Override in `Farm`. Watch dispatch happen.
+Add a `Mine.lua` that mirrors `Farm.lua` but adds to `"Stone"` instead of `"Food"`. The pattern is identical; you're rehearsing the recipe.
 
-## Name it
+Try `farm.upgrade()` (with a dot instead of a colon). It throws an error — `self` is missing because the dot doesn't pass it. The colon vs the dot is one of the two or three Luau details you'll trip on early; let it bite you once so the rule sticks.
 
-- **Metatable** — table-of-behavior attached to another table.
-- **`__index`** — fallback lookup hook; the heart of class behavior.
-- **`setmetatable(t, mt)`** — attach.
-- **Method syntax `:`** — implicit `self`.
-- **ModuleScript** — Roblox's importable code unit.
-- **`require(...)`** — import a ModuleScript; cached.
+Print `getmetatable(farm)`. The output is the `Farm` class table — proof that the metatable *is* the class.
 
-## The rule of the through-line
+Add a `Building:describe()` method that returns a string. Override it in `Farm`. Call `farm:describe()` and watch dispatch find the `Farm` version first, falling back to `Building`'s if you delete the override.
 
-> **OOP isn't `class` keywords. It's *grouping data + methods + inheritance*. Lua does it with tables. Roblox accepts the recipe as standard.** The pattern is verbose; the value is the same.
+## What you just did
 
-## Quiz / challenge
+You met Lua's idea of object-oriented programming, which is a recipe rather than a keyword. A class is a table; a method is a function attached to that table; an instance is a fresh table whose metatable points at the class; `__index` is the rule that makes method lookup work. Inheritance is the same recipe with one more step. The whole recipe is mechanical, and it's the same one every Lua codebase uses — once you've written `Building` and `Farm` you can read `Mine`, `Lumberyard`, and the next twenty classes without thinking. You also met Roblox's three script flavours: ordinary Scripts that run on the server, LocalScripts that run on a player's machine, and ModuleScripts that hold engine code that other scripts `require`.
 
-Open `quiz.md`.
+**Key concepts you can now name:**
 
-## Connect
+- *metatable* — table-of-behaviour attached to another table
+- *`__index`* — the fallback-lookup rule that makes method dispatch work
+- *colon vs dot* — `:` passes `self` automatically; `.` doesn't
+- *ModuleScript* — Roblox's importable code unit, returned by `require`
+- *module pattern* — declare a table, attach functions, return it
 
-Module 5.4 introduces **Roblox-specific concepts** — Workspace, RemoteEvents, server vs client. The runtime context the engine plugs into.
+## Words to add to the glossary
+
+- **metatable** — a table attached to another table that defines extra behaviour.
+- **`__index`** — a metatable entry that says "if a key isn't found here, look there."
+- **`setmetatable`** — the function that attaches a metatable.
+- **ModuleScript** — Roblox's importable code unit; returned by `require`.
+- **module pattern** — declare a table, attach functions to it, return it.
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 5.4 introduces the **Roblox-specific concepts** — Workspace, RemoteEvents, server vs client. The runtime context the engine plugs into.

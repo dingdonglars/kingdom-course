@@ -1,7 +1,7 @@
-## M6 — Block 7 — Roblox-Published Kingdom
+## M6 — Phase 5 — Roblox-Published Kingdom
 
 - **Public Roblox URL:** roblox.com/games/_______/_______
-- 5 shells, one engine: console / file+JSON+SQL / web API / browser / Roblox
+- 5 shells, one engine: console / file with JSON and SQLite / web API / browser / Roblox
 - Engine ported from C# to Luau
 - DataStore persistence; multiplayer-ready; friends played
 
@@ -12,5 +12,5 @@ Posted to `#wins` on YYYY-MM-DD.
 
 ---
 
-> **Capstone reflection in `journal/m6-looking-back.md`.**
+> **Final reflection in `journal/m6-looking-back.md`.**
 > One year. Five shells. One engine. M6.

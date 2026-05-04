@@ -1,39 +1,41 @@
 # Quiz — Module 5.1
 
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+
 ## 1. Where do server-side scripts live in Roblox?
 
-a. `Workspace`
-b. `ServerScriptService`
-c. `Lighting`
-d. `StarterPack`
+- **a.** `Workspace`
+- **b.** `ServerScriptService`
+- **c.** `Lighting`
+- **d.** `StarterPack`
 
-## 2. What's the Output panel for?
+## 2. What is the Output panel for?
 
-a. Building output
-b. The console — `print(...)` and runtime errors land here
-c. Audio
-d. The 3D viewport
+- **a.** Showing the build progress of a place
+- **b.** The console — `print(...)` calls and runtime errors land here
+- **c.** Audio mixing for the place's sounds
+- **d.** A second view of the 3D viewport
 
-## 3. The 4 main panels in Studio are...
+## 3. The four main panels in Roblox Studio are...
 
-a. Code, Build, Run, Debug
-b. Viewport, Explorer, Properties, Output
-c. Scene, Hierarchy, Inspector, Console
-d. Files, Edit, Run, Help
+- **a.** Code, Build, Run, Debug
+- **b.** Viewport, Explorer, Properties, Output
+- **c.** Scene, Hierarchy, Inspector, Console
+- **d.** Files, Edit, Run, Help
 
-## 4. What's a Place in Roblox?
+## 4. What is a *Place* in Roblox?
 
-a. A real-world location
-b. One Roblox world; what gets published
-c. A user account
-d. A folder
+- **a.** A real-world location stored in the game's metadata
+- **b.** One Roblox world — what gets published and given a URL
+- **c.** A user account on the Roblox platform
+- **d.** A folder in `ReplicatedStorage`
 
-## 5. The lesson says don't get intimidated by Studio's visual interface. Why?
+## 5. The lesson says don't get put off by Studio's visual interface. Why?
 
-a. It's actually small
-b. The work is the same loop as VS Code: find file, edit, run, read output. The 3D viewport is one panel; the rest is recognisable.
-c. Tradition
-d. Required by Roblox
+- **a.** The interface is actually quite small once you ignore the toolbar
+- **b.** The work is the same loop you already know — find the file, edit it, run it, read the output. The 3D Viewport is one panel; the rest is recognisable.
+- **c.** It's a Roblox tradition that the editor looks busier than it is
+- **d.** Roblox requires the visual interface to be present at all times
 
 ---
 

@@ -1,25 +1,26 @@
 # Module 5.6 — The Visual World
 
-> **Hook:** today the kingdom *appears in the world.* A grid of tiles in Workspace; click a tile, build a farm; a 3D model spawns. **The engine drives the appearance** — same kingdom that prints to the console, now showing as Parts.
+Today the kingdom appears in the world. A grid of tiles in `Workspace`; click a tile, build a farm; a 3D model spawns on top. The engine drives the appearance — same kingdom that printed to the console in Phase 1, now showing as Parts in Roblox.
 
 > **Words to watch**
-> - **Part** — the basic 3D building block (`workspace:Part`); shape, position, color
-> - **Model** — a folder of Parts grouped together
-> - **CFrame** — a Roblox value combining position + orientation; what you set to move things
-> - **`ClickDetector`** — child of a Part that fires when clicked
-> - **`Instance.new(class, parent)`** — create a runtime object
+>
+> - **Part** — the basic 3D building block. Has a shape, a position, a colour, a material.
+> - **Model** — a folder of Parts grouped together so they move and select as one.
+> - **CFrame** — a Roblox value combining position and orientation. What you set to move and rotate a thing.
+> - **`ClickDetector`** — a child you parent to a Part to make it react to mouse clicks.
+> - **`Instance.new(class, parent)`** — create a runtime object of the given class and parent it.
+> - **`Vector3` / `Color3`** — the 3D vector and RGB colour types.
 
 ---
 
 ## The pattern
 
-Visual game objects in Roblox are **just data** — Parts in Workspace. Server scripts create them at runtime; Roblox replicates to clients automatically.
+Visual game objects in Roblox are just data — Parts in `Workspace`. Server scripts create them at runtime; Roblox replicates them to every connected client automatically. So the recipe for a clickable kingdom is short:
 
-For the kingdom:
-1. Lay out a grid of empty tiles (or have them appear on a build action).
+1. Lay out a grid of empty tiles, either on place start or when the player asks for one.
 2. Each tile has a `ClickDetector` listening for clicks.
-3. On click → server checks if the player can afford a Farm (engine call) → spawns a Part on top of the tile.
-4. The kingdom's resources tick on the server every N seconds; the player's UI shows the result.
+3. On click, the server checks whether the player can afford a Farm (an engine call) and spawns a Part on top of the tile.
+4. The kingdom's resources tick on the server every few seconds; the player's UI shows the result.
 
 ## Spawning a tile from code
 
@@ -43,18 +44,17 @@ for x = 1, 5 do
 end
 ```
 
-Five lines per tile + the loop. Run once on server start; every player sees the grid.
+Five lines per tile plus the loop. The script runs once on server start and every connected player sees the grid appear.
 
 ## Click handling
 
 ```lua
 local function onTileClicked(tile: Part, player: Player)
     print(player.Name, "clicked", tile.Position)
-    -- Engine call: check resources, deduct, spawn farm model
-    -- (RemoteEvent would be the cleaner pattern; for click in Workspace we can stay server-side)
+    -- engine call: check resources, deduct, spawn farm model
 end
 
--- Attach to every tile
+-- Attach a ClickDetector to a tile
 local detector = Instance.new("ClickDetector")
 detector.Parent = tile
 detector.MouseClick:Connect(function(player)
@@ -62,7 +62,7 @@ detector.MouseClick:Connect(function(player)
 end)
 ```
 
-`ClickDetector` works because it's a child of a Part. Server-side connection means the handler runs on the server (no RemoteEvent needed for in-world clicks).
+`ClickDetector` works because it's a child of a Part. The connection is made on the server, so the handler runs on the server — no RemoteEvent needed for in-world clicks.
 
 ## Spawning a building model
 
@@ -73,12 +73,12 @@ local function spawnFarm(tile: Part)
     farm.Size = Vector3.new(6, 4, 6)
     farm.Color = Color3.fromRGB(150, 100, 50)   -- brown
     farm.Material = Enum.Material.Wood
-    farm.Position = tile.Position + Vector3.new(0, 2.5, 0)   -- on top of tile
+    farm.Position = tile.Position + Vector3.new(0, 2.5, 0)   -- on top of the tile
     farm.Parent = workspace
 end
 ```
 
-A real farm would be a `Model` of multiple Parts, possibly using one of Roblox's free assets from Toolbox (3D models you can drag in). For learning, a single brown box reads as "a farm."
+A real farm would be a `Model` made of several Parts, possibly using one of Roblox's free models from the Toolbox (3D models you drag in). For learning, a single brown box reads as "a farm" and gets out of the way.
 
 ## Tying engine to visuals
 
@@ -91,7 +91,7 @@ local tileToBuilding = {}    -- map tile Part → engine Building reference
 
 local function tileClicked(tile, player)
     if tileToBuilding[tile] then return end          -- already built
-    if not kingdom.resources:spend("Wood", 10) then  -- can the player afford?
+    if not kingdom.resources:spend("Wood", 10) then  -- can the player afford it?
         print(player.Name, "can't afford a farm")
         return
     end
@@ -103,39 +103,42 @@ local function tileClicked(tile, player)
 end
 ```
 
-The engine and the visual are kept in sync via `tileToBuilding` map. **The engine is the source of truth.** The visual is the projection.
-
-## Delta starter
-
-- `roblox-kingdom/scripts/server/world.lua` — grid + click + spawn
-- `roblox-kingdom/scripts/server/main.lua` — extended to integrate
-
-(Roblox 3D scenes are visual-first — there's no .lua-only way to ship the appearance. The starter scripts produce the visuals at runtime.)
+The engine and the visuals stay in sync via the `tileToBuilding` map. **The engine is the source of truth.** The visual is a projection of the engine's state; if the engine doesn't have a building, the world shouldn't show one.
 
 ## Tinker
 
-- Make tiles glow on hover: `ClickDetector.MouseHoverEnter:Connect(...)`. Standard UX feedback.
-- Add a `Sound` instance to the Workspace; play it on each click (`sound:Play()`). Audio for free.
-- Replace the brown box with a free model from Toolbox (View → Toolbox → search "farm"). Drag in; insert as child of `ServerStorage.Templates`; `:Clone()` per spawn.
-- Add a `BillboardGui` showing current resources floating over the kingdom. UI in 3D space.
+Make the tiles glow on hover by listening to `ClickDetector.MouseHoverEnter`. Standard UX feedback.
 
-## Name it
+Add a `Sound` instance under `Workspace` and call `sound:Play()` on each click. Audio for free.
 
-- **Part** — the 3D atom.
-- **Model** — group of Parts.
-- **CFrame** — position + orientation.
-- **`Instance.new(class, parent)`** — create a runtime object.
-- **`ClickDetector`** — fires server-side click events.
-- **Vector3 / Color3** — 3D vector + RGB color types.
+Replace the brown box with a free model from the Toolbox (`View → Toolbox`, search "farm"). Drag it in, parent it to `ServerStorage.Templates`, and `:Clone()` it on each spawn instead of using `Instance.new("Part")`.
 
-## The rule of the through-line
+Add a `BillboardGui` showing the current resource totals floating above the kingdom. UI in 3D space.
 
-> **The engine is the source of truth; the visual is its projection.** Same engine that ran the console prints, the JSON serialiser, the API, the browser cards — now spawns Parts. The shape of "given engine state, show this" never changes.
+## What you just did
 
-## Quiz / challenge
+You wired the engine to a 3D world. Server code laid out a five-by-five grid of tiles in `Workspace`, gave each tile a `ClickDetector`, and built farms on click — all driven through the engine's `:spend` and `:addBuilding` methods. The `tileToBuilding` map kept the engine and the visible world in sync, with the engine as the authoritative side. The pattern is the lesson: the engine is the source of truth; the visual is the projection. Same engine that printed to the console, that wrote JSON, that served HTTP, that drove the browser DOM — now spawning Parts in Workspace.
 
-Open `quiz.md`.
+**Key concepts you can now name:**
 
-## Connect
+- *Part* — the 3D atom in Roblox; size, position, colour, material
+- *Model* — a folder of Parts that select and move as one
+- *`Instance.new(class, parent)`* — create a runtime object and place it
+- *`ClickDetector`* — child of a Part that fires server-side click events
+- *engine as source of truth* — the visual follows; never the other way around
 
-Module 5.7 introduces **Roblox DataStore** — the platform's way to persist player data across sessions. Save the kingdom; reload it on next visit.
+## Words to add to the glossary
+
+- **Part** — the basic 3D building block in Roblox.
+- **Model** — a folder of Parts grouped together.
+- **CFrame** — a Roblox value combining position and orientation.
+- **`Instance.new`** — create a runtime object of a given class.
+- **`ClickDetector`** — child of a Part that fires server-side click events.
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 5.7 introduces **Roblox DataStore** — Roblox's built-in way to persist player data across sessions. Save the kingdom; reload it on next visit.

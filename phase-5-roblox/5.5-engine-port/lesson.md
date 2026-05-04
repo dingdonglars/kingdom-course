@@ -1,25 +1,29 @@
 # Module 5.5 — Engine Port: ResourceLedger, Citizen, Kingdom, Tick
 
-> **Hook:** today the engine reaches feature parity with Block 3. `ResourceLedger`, `Citizen`, the `Kingdom` aggregate, the day-tick loop — all in Luau. Same shape; smaller language. **By the end of this module, the engine works exactly the same in both runtimes.**
+Today the engine reaches feature parity with Phase 1 — but in Luau, on a Roblox server. `ResourceLedger`, `Citizen`, the `Kingdom` aggregate, the day-tick loop. Same idea, smaller language, a different runtime. By the end of this module the engine works the same way in both worlds.
 
 > **Words to watch**
-> - **port** — translate code into another language while preserving behavior
-> - **`task.wait(seconds)`** — Roblox's `setTimeout` / `Thread.Sleep` equivalent; pauses without blocking other code
-> - **`game:GetService("RunService")`** — Roblox's per-frame heartbeat, used for game loops
+>
+> - **port** — translate code into another language while keeping its meaning.
+> - **`task.wait(seconds)`** — Roblox's pause-this-script-for-a-while function. Doesn't block other scripts.
+> - **`game:GetService("RunService")`** — the per-frame heartbeat service, used for game loops that need a frame-rate tick.
+> - **coroutine** — a function that can pause itself and be resumed later. Roblox runs every script in one of these, which is why `task.wait` doesn't freeze the place.
 
 ---
 
-## Engine port plan
+## The port plan
 
-| Block 3 (C#) | Roblox (Luau) | Notes |
-|---|---|---|
-| `Resource.cs` (enum) | string keys ("Gold", "Wood", ...) | Lua doesn't have enums; strings are the idiom |
-| `ResourceLedger.cs` | `ResourceLedger.lua` (ModuleScript) | Same get/add/spend/snapshot |
-| `Citizen.cs` | `Citizen.lua` (ModuleScript) | Same |
-| `Building.cs` + subclasses | done in M5.3 | already ported |
-| `Kingdom.cs` (aggregate) | `Kingdom.lua` (ModuleScript) | Owns lists; calls `:tick(ledger)` |
-| `EventEngine.cs` | `EventEngine.lua` | Uses Lua's `math.random` (or pass an injected fn) |
-| Console/file shells | n/a | Server-side game loop replaces them |
+Reading the C# version next to the Luau version is the fastest way to internalise the translation:
+
+| Phase 1 (C#) | Roblox (Luau) | Note |
+| --- | --- | --- |
+| `Resource.cs` (enum) | string keys (`"Gold"`, `"Wood"`, ...) | Lua doesn't have enums; strings are the standard. |
+| `ResourceLedger.cs` | `ResourceLedger.lua` (ModuleScript) | Same get / add / spend / snapshot. |
+| `Citizen.cs` | `Citizen.lua` (ModuleScript) | Same. |
+| `Building.cs` and subclasses | done in M5.3 | Already ported. |
+| `Kingdom.cs` (aggregate) | `Kingdom.lua` (ModuleScript) | Owns the lists; calls `:tick(ledger)`. |
+| `EventEngine.cs` | `EventEngine.lua` | Uses Lua's `math.random`, or pass an injected function to keep tests deterministic. |
+| Console / file shells | not applicable | Server-side game loop replaces them. |
 
 ## `ResourceLedger.lua`
 
@@ -59,7 +63,7 @@ end
 return ResourceLedger
 ```
 
-Same five methods as the C# version. `error(...)` is Lua's `throw`.
+The same five methods as the C# version. `error(...)` is Lua's `throw`.
 
 ## `Citizen.lua`
 
@@ -76,7 +80,7 @@ end
 return Citizen
 ```
 
-Even smaller than C# — just a name (matching Block 1's minimal `Citizen`).
+Even smaller than the C# version — just a name. Matches the minimal Phase 1 `Citizen`.
 
 ## `Kingdom.lua`
 
@@ -125,9 +129,9 @@ end
 return Kingdom
 ```
 
-The whole engine, in one file. Reads identical to the C# `Kingdom.cs`.
+The whole engine in one file. Read it next to the C# `Kingdom.cs` and you'll see the same lines, just shorter.
 
-## The game loop (server)
+## The game loop, server-side
 
 ```lua
 -- ServerScriptService/Script
@@ -143,7 +147,7 @@ kingdom:addBuilding(Farm.new("Main Farm"))
 kingdom:addBuilding(Mine.new("Old Mine"))
 kingdom:addCitizen(Citizen.new("Lyra"))
 
--- Tick every 5 seconds (5 days/min — slow but visible)
+-- Tick every 5 seconds (5 days a minute — slow but visible)
 while true do
     task.wait(5)
     kingdom:advanceDay()
@@ -157,43 +161,43 @@ while true do
 end
 ```
 
-`task.wait(5)` pauses the script for 5 seconds. **Doesn't block other scripts** — Roblox runs each in its own coroutine.
+`task.wait(5)` pauses *this script* for five seconds. It doesn't block other scripts — Roblox runs each script in its own coroutine. A *coroutine* is a function that can pause itself and be resumed later; the runtime quietly switches between them while one is sleeping. Worth knowing the word; you'll see it in the docs.
 
-For a real game, the loop would tick faster (every second, every 0.1 second), use `RunService.Heartbeat:Connect(function(dt) ... end)` for frame-rate sync, etc. **For learning, `task.wait` is enough.**
-
-## Delta starter
-
-- `roblox-kingdom/Engine/ResourceLedger.lua`
-- `roblox-kingdom/Engine/Citizen.lua`
-- `roblox-kingdom/Engine/Kingdom.lua`
-- `roblox-kingdom/scripts/server/main.lua` — the game loop
-
-Insert into Studio under `ReplicatedStorage/Engine/` (ModuleScripts) and `ServerScriptService/Script` (the loop). Hit Play; watch the kingdom tick in Output.
+For a real game, the loop would tick faster (every second, or every 0.1 second), and you'd hook into `RunService.Heartbeat:Connect(function(dt) ... end)` to sync with the frame rate. For learning, `task.wait` is enough.
 
 ## Tinker
 
-- Increase the tick rate to `task.wait(1)`. Watch the resources change every second.
-- Add a third `Lumberyard.new("Eastern Lumberyard")`. Wood starts climbing.
-- Replace the `while true do` with `RunService.Heartbeat:Connect(function() ... end)` and tick every N frames. **Same engine; different scheduler.**
-- Compare the Luau `Kingdom.lua` to the C# `Kingdom.cs`. **Same shape, smaller text.**
+Increase the tick rate to `task.wait(1)`. The resources change every second now; the place feels noticeably more alive.
 
-## Name it
+Add a third `Lumberyard.new("Eastern Lumberyard")` to the kingdom. Wood starts climbing.
 
-- **Port** — translate to another language while preserving meaning.
-- **String keys instead of enums** — Lua idiom for closed sets.
-- **`task.wait(seconds)`** — pause; doesn't block other coroutines.
-- **`RunService.Heartbeat`** — frame-rate game loop (covered as you scale).
+Replace the `while true do` with `RunService.Heartbeat:Connect(function() ... end)` and tick every N frames. Same engine, different scheduler — one of the more satisfying small ports you'll write this year.
 
-## The rule of the through-line
+Open the C# `Kingdom.cs` and the Luau `Kingdom.lua` side by side in two windows. Read them top to bottom and notice how few lines actually changed.
 
-> **The engine doesn't care what runtime it's in.** Same buildings, same ledger, same kingdom, same advance-day. C# in Block 3, Luau in Block 7. The model is forever; the runtime is a detail.
+## What you just did
 
-> **You have lived this lesson now five times: console (Block 3), file/JSON/SQLite (Block 4), web API (Block 5), browser (Block 6), Roblox (Block 7). Five shells, one engine.** The point of the curriculum lands.
+You took the engine you wrote in Phase 1 and translated it into Luau on a Roblox server. `ResourceLedger`, `Citizen`, and `Kingdom` are now ModuleScripts under `ReplicatedStorage`; a server Script in `ServerScriptService` calls `kingdom:advanceDay()` every five seconds and prints the result. The ports come out shorter than the C# versions because Luau has less ceremony — no namespaces, no `using` directives, no public/private modifiers. The pattern is the proof: the engine doesn't care what runtime it sits in. **Five times now: console, file with JSON and SQLite, web API, browser, Roblox. Five different runtimes; one engine.** That is the point of the whole curriculum, in your hands.
 
-## Quiz / challenge
+**Key concepts you can now name:**
 
-Open `quiz.md`.
+- *port* — translate to another language while preserving meaning
+- *string keys instead of enums* — the Lua idiom for closed sets
+- *`task.wait(seconds)`* — pauses one script; doesn't block others
+- *coroutine* — a function that can pause and resume; Roblox runs scripts in these
+- *`RunService.Heartbeat`* — frame-rate-synced game loop hook
 
-## Connect
+## Words to add to the glossary
 
-Module 5.6 introduces **the visual world** — building a 3D representation of the kingdom in Workspace. Click a tile, build a farm; the engine drives the appearance.
+- **port** — translate code from one language or runtime into another while keeping its meaning.
+- **`task.wait`** — pause the current script for N seconds; other scripts keep running.
+- **coroutine** — a function that can pause and be resumed later; the unit Roblox runs scripts in.
+- **`RunService.Heartbeat`** — Roblox event that fires every frame; used for frame-rate-synced loops.
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 5.6 builds **the visual world** — a 3D representation of the kingdom in `Workspace`. Click a tile, build a farm; the engine drives the appearance.

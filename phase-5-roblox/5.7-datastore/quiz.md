@@ -1,39 +1,41 @@
 # Quiz — Module 5.7
 
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+
 ## 1. Where can you call DataStore from?
 
-a. Server scripts only — DataStoreService is server-only by design (security)
-b. Anywhere
-c. LocalScripts only
-d. ReplicatedStorage
+- **a.** Server scripts only — `DataStoreService` is server-only by design, for security
+- **b.** Anywhere — server, client, ModuleScripts called from either
+- **c.** LocalScripts only — DataStore is a client-side store
+- **d.** From `ReplicatedStorage` scripts only
 
 ## 2. What does `pcall(fn)` do?
 
-a. Calls the function async
-b. Lua's protected-call (try/catch); returns `(true, result)` on success or `(false, error)` on throw
-c. Performance call
-d. Required for DataStore
+- **a.** Calls the function asynchronously, returning a promise-like object
+- **b.** Lua's protected call — returns `(true, result)` if the function ran cleanly, `(false, error)` if it threw
+- **c.** A performance optimisation that compiles the function before running it
+- **d.** A required wrapper for any DataStore call to avoid syntax errors
 
 ## 3. Why is `BindToClose` important?
 
-a. When the server shuts down (e.g., for maintenance), Roblox gives you ~30 seconds. `BindToClose` is your final chance to save unsaved player data before the process dies.
-b. It's optional decoration
-c. Required for any script
-d. Performance
+- **a.** When the server shuts down (for maintenance, redeploy, or migration), Roblox gives you about thirty seconds. `BindToClose` is your final chance to flush unsaved player data before the process dies.
+- **b.** It's optional decoration that some Roblox developers add for style
+- **c.** Required on every script in the place; the runtime warns without it
+- **d.** A performance hint to the runtime about expected close time
 
-## 4. What's the rule about saving frequency?
+## 4. What is the rule about saving frequency?
 
-a. Every tick — losing data is unacceptable
-b. Don't save on every tick (DataStore quota; cost). Save on player leave + every ~5 minutes for safety.
-c. Once per session
-d. Whenever convenient
+- **a.** Save on every tick — losing data is unacceptable in a multiplayer game
+- **b.** Don't save on every tick. The DataStore quota and the per-call cost both punish that. Save on player leave plus every five minutes or so for safety.
+- **c.** Save once per session, on shutdown only
+- **d.** Save whenever convenient; quotas don't apply to small payloads
 
-## 5. The lesson cites M2.1 → M2.2 → M2.4 → M2.6 → M5.7 as the same shape. What is it?
+## 5. The lesson cites M2.1, M2.2, M2.4, M2.6, and M5.7 as the same pattern. What is it?
 
-a. Snapshot the engine state, write it somewhere, read it back, rehydrate. Same discipline; different medium.
-b. They're all SQL
-c. They're all JSON
-d. They're not the same
+- **a.** Snapshot the engine state, write it somewhere, read it back, rehydrate. Same discipline; different medium each time.
+- **b.** They are all SQL-based persistence at heart
+- **c.** They are all JSON-based persistence at heart
+- **d.** They are not really the same — only the lesson framing makes them look alike
 
 ---
 

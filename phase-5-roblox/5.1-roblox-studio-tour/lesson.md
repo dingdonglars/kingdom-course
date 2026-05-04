@@ -1,109 +1,109 @@
 # Module 5.1 — Roblox Studio Tour
 
-> **Hook:** Roblox is the third-largest game platform on Earth. Your friends are already there. **Roblox Studio** is the editor — free, downloads in 2 minutes. Today we install it, open the default world, click around, and run our first script. **No code yet** — just the tour, so the next 8 modules have a frame.
+Roblox is one of the largest game platforms in the world, and your friends are already there. **Roblox Studio** is the editor for it — free, downloads in a couple of minutes. Today we install it, open the default world, click around the panels, and run our first script. No real code yet — the goal is to know where things live, so the next seven modules don't waste their first ten minutes on the geography.
 
 > **Words to watch**
-> - **Roblox Studio** — the editor (Windows/Mac); free
-> - **Place** — one Roblox world; what you publish
-> - **Workspace** — the 3D scene; everything you can see + touch
-> - **Explorer** — Studio's tree view of every object in the place
-> - **Properties panel** — inspector for the selected object
-> - **Output panel** — Studio's console; print statements + errors land here
+>
+> - **Roblox Studio** — the editor. Windows or Mac, free.
+> - **Place** — one Roblox world. What you publish.
+> - **Workspace** — the live 3D scene. Everything visible and touchable.
+> - **Explorer** — Studio's tree view of every object in the place.
+> - **Properties panel** — the inspector for whatever you've selected.
+> - **Output panel** — Studio's console. `print(...)` and runtime errors land here.
 
 ---
 
-## Install
+## Step 1 — install
 
-1. Go to <https://create.roblox.com/>
-2. Click "Start Creating" → it'll prompt to install Roblox Studio (~150MB).
-3. Sign in with your Roblox account (create one if needed).
-4. Once installed, double-click "Studio" to launch.
+Go to <https://create.roblox.com/> and click *Start Creating*. The page prompts you to install Roblox Studio (about 150 MB). Sign in with your Roblox account, or create one. Once it's installed, double-click *Studio* to launch.
 
-## The 4-tab layout
+## Step 2 — open the Baseplate
 
-Open the **Baseplate** template. You see:
+When Studio starts you pick a template. Choose **Baseplate** — the simplest one, a flat green plate floating in the air. Once it's open, you should see four areas of the screen:
 
-- **Viewport** (center): the 3D world. Default = a flat green plate.
-- **Explorer** (right): the tree of every object — `Workspace`, `Players`, `Lighting`, `ReplicatedStorage`, `ServerScriptService`, etc.
-- **Properties** (right, below Explorer): selected object's properties — Name, Size, Material, etc.
-- **Output** (bottom, may need to be opened from View menu): the console.
+- The **Viewport** in the centre — the 3D world, with the green plate sitting in it.
+- The **Explorer** on the right — a tree of every object in the place: `Workspace`, `Players`, `Lighting`, `ReplicatedStorage`, `ServerScriptService`, and a handful more.
+- The **Properties panel** below Explorer — when you click an object, its fields show here. Name, Size, Material, Color.
+- The **Output panel** at the bottom — Studio's console. If it isn't visible, open it from *View → Output*.
 
-**Open Output before doing anything else.** It's where errors and `print(...)` calls land.
+Open the Output panel before you do anything else. Errors and `print` calls land there, and you'll want it visible the moment something runs.
 
-## Your first script (no code, just where it lives)
+## Step 3 — your first script
 
-In Explorer:
-1. Right-click `ServerScriptService` → Insert Object → Script.
-2. The new `Script` opens in a tab. Default content:
-   ```lua
-   print("Hello world!")
-   ```
-3. Click the green **Play** button at the top.
-4. The output panel shows: `Hello world!`.
+In the Explorer, right-click `ServerScriptService` and choose *Insert Object → Script*. A new tab opens with one line:
 
-That's the one-line sanity check. Studio plays your code in a simulated session; no publishing needed.
+```lua
+print("Hello world!")
+```
 
-## What lives where
+Click the green **Play** button at the top of Studio. The Output panel shows:
 
-Just memorise this for now:
+```
+Hello world!
+```
 
-- **`Workspace`** — 3D parts/models the player sees + touches.
-- **`Players`** — runtime: every connected player.
-- **`ServerScriptService`** — server-side scripts (run once on the game server; not visible to clients).
-- **`ReplicatedStorage`** — shared between server + client; data + modules both can use.
+That's the one-line sanity check. Studio runs your code in a simulated session — no publishing, no upload, just a local test of what would happen if a player joined. Click *Stop* when you've seen the output.
+
+## What lives where (memorise this much)
+
+Roblox places have a lot of folders. The ones that matter for the next seven modules:
+
+- **`Workspace`** — the 3D parts and models the player sees and touches.
+- **`Players`** — the runtime list of every connected player.
+- **`ServerScriptService`** — server-side scripts. They run once on the game server when the place starts. Not visible to clients.
+- **`ReplicatedStorage`** — shared between server and client. Engine modules go here so both halves can use them.
 - **`StarterPlayerScripts`** — scripts that run on every player's machine when they join.
 - **`StarterPack`** — items every player gets in their backpack on spawn.
 
-Server vs client is huge in Roblox — a deeper module covers it (5.4). For today: scripts in `ServerScriptService` run on the server.
+The split between server and client is the single biggest idea in Roblox, and it gets its own module (5.4). Today's working knowledge: scripts in `ServerScriptService` run on the server.
 
 ## Studio shortcuts you'll use daily
 
-| Shortcut | Effect |
-|---|---|
-| Right-click Explorer object → Insert | Add child |
-| F (with object selected in Viewport) | Focus camera |
-| W/A/S/D + mouse | Fly camera (when right-click held) |
-| Ctrl+S | Save place locally |
-| Play button | Test in Studio |
-| Stop button | End test |
-
-## Publish path (later, M5.9)
-
-`File → Publish to Roblox` creates a place ID. Friends visit `roblox.com/games/<id>/<name>` and play. Save a draft today; we'll publish at M5.9.
-
-## Delta starter
-
-This module ships:
-
-- `roblox-kingdom/README.md` — placeholder for your Roblox project setup notes
-- `journal/5.1-studio-tour.md` — your notes from clicking around
-
-No code in the curriculum-side starter; the actual Studio file (`.rbxl`) lives in your local Roblox install.
+| Shortcut | What it does |
+| --- | --- |
+| Right-click an Explorer object → Insert | Add a child object |
+| F (with a part selected in the Viewport) | Focus the camera on it |
+| Right-click held + WASD + mouse | Fly the camera around |
+| Ctrl+S | Save the place locally |
+| Play button | Test inside Studio |
+| Stop button | End the test |
 
 ## Tinker
 
-- Insert a `Part` in Workspace. Drag it around. Change its `Size`, `Color`, `Material`.
-- Right-click a Part → Group as Model. **Models are folders for parts.** Useful when you have a "house" of 20 parts.
-- Press F5 (Test in player). The character spawns; walk around.
-- Use the Output panel — type `print("test")` in the Output's command line and hit Enter.
+Insert a Part into Workspace from the Explorer. Drag it around the green plate. Open the Properties panel and change its `Size`, `Color`, and `Material` and watch the Part change in the Viewport. Right-click the Part and choose *Group as Model* — a Model is just a folder of Parts grouped together, useful when you have a building made of twenty pieces and want to move them as one.
 
-## Name it
+Press F5 to run a player test. A character spawns and you can walk around with WASD. While the test is running, type `print("test")` directly into the Output panel's command line at the bottom and hit Enter.
 
-- **Studio** — the editor. Free. Windows/Mac.
-- **Place** — one Roblox world.
-- **Workspace** — the live 3D scene.
-- **Explorer** — the tree of all objects.
-- **`ServerScriptService`** — server-side script home.
-- **Output panel** — console.
+The four-panel layout is what every Roblox tutorial assumes you can find. Spend ten minutes clicking around until the words *Viewport, Explorer, Properties, Output* are reflexes.
 
-## The rule of the through-line
+## Publishing comes later
 
-> **Same instinct, different tool.** Visual Studio Code → Roblox Studio is a new editor; the work is still "find the file, edit it, run it, read the output." Don't get intimidated by the visual interface — it's the same loop.
+`File → Publish to Roblox` is how a place becomes a URL your friends can visit. We're not pressing that button today — M5.8 is the publishing module. For now, a saved local draft is enough.
 
-## Quiz / challenge
+## What you just did
 
-Open `quiz.md`.
+You installed Roblox Studio and ran your first script in it. You met the four panels every Roblox tutorial assumes you can find — Viewport, Explorer, Properties, Output — and saw a one-line script print into the console. You also met the folder geography that the next seven modules build on: `Workspace` for the 3D scene, `ServerScriptService` for server code, `ReplicatedStorage` for code that both sides can read, and a couple of others. Nothing today required typing real Luau; that starts tomorrow. The point of today was to make Studio feel familiar before the lessons start asking you to do real work in it.
 
-## Connect
+**Key concepts you can now name:**
 
-Module 5.2 introduces **Luau** — Lua-with-types. Looks like JavaScript and Python had a child. Your engine port begins here.
+- *Roblox Studio* — the free editor for Roblox places
+- *the four panels* — Viewport, Explorer, Properties, Output
+- *`ServerScriptService`* — where server-side scripts live
+- *`ReplicatedStorage`* — shared code home for server and client
+- *Place* — one Roblox world; what gets published
+
+## Words to add to the glossary
+
+- **Roblox Studio** — the free editor for building Roblox places.
+- **Place** — a single Roblox game world.
+- **Workspace** — the live 3D scene every player sees.
+- **Explorer** — Studio's tree view of every object in the place.
+- **Output panel** — Studio's console; `print` and errors land here.
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 5.2 introduces **Luau** — Lua with optional types. It looks like JavaScript and Python had a child. Your engine port begins there.

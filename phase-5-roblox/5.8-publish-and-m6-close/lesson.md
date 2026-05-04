@@ -1,51 +1,54 @@
-# Module 5.8 — Publish + M6 Capstone Close
+# Module 5.8 — Publish + M6 Close
 
-> **Hook:** the last technical step is one button click — `File → Publish to Roblox`. Then a URL. Then friends play. **One year. Five shells. One engine. M6.**
+The last technical step of the year is one button: *File → Publish to Roblox*. After that, a URL. After that, friends play. **One year. Five shells. One engine. M6.**
 
 > **Words to watch**
-> - **Publish** — upload your local `.rbxl` to Roblox; produces a place ID
-> - **Place ID** — the unique URL of your game (`roblox.com/games/<id>/<name>`)
-> - **Capstone** — the final reflection; the year wraps
-> - **M6** — the last numbered milestone; you're a programmer who shipped five different versions of one engine
+>
+> - **Publish** — upload your local `.rbxl` to Roblox. Produces a place ID.
+> - **Place ID** — the unique URL of your game (`roblox.com/games/<id>/<name>`).
+> - **Final reflection** — the sit-down you do with `journal/m6-looking-back.md`. About an hour. Quiet.
+> - **M6** — the last numbered milestone of the year. You're a programmer who shipped five different versions of one engine.
 
 ---
 
-## Publish
+## Step 1 — publish
 
-In Studio: `File → Publish to Roblox` → "Create New" → name your place → save.
+In Studio: *File → Publish to Roblox* → *Create New* → name your place → save.
 
-You'll see the place's URL: `roblox.com/games/<id>/<your-place-name>`. Anyone can visit. **By default it's public + free to play.**
+Once it's saved, you'll see the place's URL: `roblox.com/games/<id>/<your-place-name>`. Anyone with the link can visit. By default, the place is public and free to play.
 
-If you want to keep it private while you polish: `Game Settings → Permissions → Friends only` (or unlisted).
+If you want to keep it private while you polish: *Game Settings → Permissions → Friends only*, or set it to unlisted. You can flip it back to public when you're ready.
 
 ## Pre-publish checklist
 
-- [ ] Server scripts work in Studio play test (no errors in Output)
-- [ ] DataStore enabled in Game Settings → Security
-- [ ] Test with "Test → Local Server → 2 players" — ensure multiplayer works
-- [ ] Worth playing for at least 60 seconds without your friend giving up
-- [ ] Visual: tiles render, building click works, day counter ticks
-- [ ] Resources stay non-negative; no out-of-bounds bugs
-- [ ] Save on player leave; rejoin restores state
-- [ ] No personal info in scripts (Athos's family, school, etc — per the standards rule)
+Before you press the button, walk through this list once:
 
-## Send the URL
+- [ ] Server scripts work in a Studio play test with no errors in Output.
+- [ ] DataStore enabled in *Game Settings → Security*.
+- [ ] Tested with *Test → Local Server → 2 players* — multiplayer works.
+- [ ] Worth playing for at least sixty seconds without your friend giving up.
+- [ ] Visual: tiles render, building click works, day counter ticks.
+- [ ] Resources stay non-negative; no out-of-bounds bugs.
+- [ ] Save on player leave; rejoin restores the saved state.
+- [ ] No personal info in scripts (per the standards rule).
+
+## Step 2 — send the URL
 
 Pick three friends. Send them the URL with one sentence: *"I built this. Try it."*
 
-**Sit with whatever happens.** They'll find bugs. They'll suggest features. They'll stop playing after 5 minutes. They'll keep playing for an hour. Whatever happens, your code touched another human's day. **That's the bar all of this was for.**
+Then sit with whatever happens. They might find a bug. They might suggest features. They might stop playing after five minutes. They might keep playing for an hour. Whatever happens, your code touched another human's day. **That's the standard all of this was for.**
 
-## M6 ritual (the capstone)
+## The M6 ritual
 
-Same shape as M2/M3/M4/M5 — bigger:
+Same pattern as the previous milestones — bigger:
 
 1. Open `journal/wins.md`. Write the M6 entry:
 
    ```markdown
-   ## M6 — Block 7 — Roblox-Published Kingdom
+   ## M6 — Phase 5 — Roblox-Published Kingdom
 
    - **Public Roblox URL:** roblox.com/games/<id>/<name>
-   - 5 shells, one engine: console / file+JSON+SQL / web API / browser / Roblox
+   - 5 shells, one engine: console / file with JSON and SQLite / web API / browser / Roblox
    - Engine ported from C# to Luau
    - DataStore persistence; multiplayer-ready; friends played
 
@@ -55,53 +58,60 @@ Same shape as M2/M3/M4/M5 — bigger:
    Posted to `#wins` on YYYY-MM-DD.
    ```
 
-2. Tag locally: `git tag m6-block-7-complete && git push origin m6-block-7-complete`
-3. Open the M6 milestone PR. **AI-assistance section in the description.**
-4. Final viva with Lars — random-line explanation across the engine *and* a "tell me the story of one year" walk-through.
+2. Tag locally: `git tag m6-phase-5-complete && git push origin m6-phase-5-complete`.
+3. Open the M6 milestone PR. Include the AI-assistance section in the description.
+4. Final viva with Lars — random-line walkthrough across the engine, plus a "tell me the story of one year" conversation.
 
-## The capstone reflection (one sitting, ~1 hour)
+## The final reflection (one sitting, about an hour)
 
 Open `journal/m6-looking-back.md`. Answer freely:
 
-1. **What's the one thing you'd want to teach someone else?** Pick the lesson that surprised you most. Write it as a 2-paragraph blog post you'd send a friend who's about to start.
+1. **What's the one thing you'd want to teach someone else?** Pick the lesson that surprised you most. Write it as a two-paragraph blog post you'd send a friend who's about to start.
 2. **What's the engine, in one paragraph?** Explain the through-line — engine vs shell — to a smart person who's never coded. Not what you built; what you *learned*.
-3. **What's a project you'd start next?** Now that you have the toolset, what calls you? It doesn't have to be related to Kingdom. List 3 ideas; pick one; sketch a Phase-0-style "smallest interesting version."
-4. **Re-read your Spark Week code.** Read `journal/wins.md` from M0 to M6 in order. **Sit with it.** Notice what's different about the way you think.
+3. **What's a project you'd start next?** Now that you have the toolset, what calls you? It doesn't have to be related to Kingdom. List three ideas; pick one; sketch a Phase-0-style "smallest interesting version."
+4. **Re-read your Spark Week code.** Read `journal/wins.md` from M0 to M6 in order. Sit with it. Notice what's different about the way you think now.
 
-## Tinker (optional — these are *for fun* now)
+## Tinker (these are *for fun* now)
 
-- Add a leaderboard via Roblox's built-in `leaderstats` — every player sees the top kingdoms.
+- Add a leaderboard via Roblox's built-in `leaderstats` so every player sees the top kingdoms.
 - Add a chat command (`/build farm`) — terminal nostalgia inside Roblox.
-- Add a simple progression: at 100 gold, unlock Lumberyard. At 500, unlock Mine.
-- Convert one of the modules from M5.5 to use `RunService.Heartbeat` for faster ticking. Gameplay feels different.
-- **Learn one new thing on your own.** Pick anything. The course gave you the tools to learn anything next.
+- Add a small progression: at 100 gold, unlock Lumberyard; at 500, unlock Mine.
+- Convert one of the modules from M5.5 to use `RunService.Heartbeat` for a faster tick. Gameplay feels different.
+- Learn one new thing on your own. Pick anything. The course gave you the tools to learn anything next.
 
-## Name it
+## What you just did
 
-- **Publish** — `File → Publish to Roblox`; produces a place ID.
-- **Capstone** — the final reflection.
-- **M6** — last numbered milestone; one engine, five shells, one year.
+You took the engine you wrote in Phase 1 and shipped it as a public Roblox place. The pre-publish checklist proved the place was actually playable; the publish click turned it into a URL anyone could click; the three messages turned the URL into a thing other people experienced. **One year. Five shells. One engine.** Console, file with JSON and SQLite, web API, browser, Roblox. Two languages, two runtimes, one model that didn't change. The point of the curriculum landed in your hands when you sent that URL.
 
-## The rule of the through-line — one last time
+**Key concepts you can now name:**
+
+- *publish* — `File → Publish to Roblox`; produces a place ID
+- *place ID* — the URL friends click to play your game
+- *the M6 ritual* — wins entry, tag, milestone PR, viva
+- *final reflection* — the hour-long sit-down with `m6-looking-back.md`
+- *the through-line, lived* — five shells, one engine, two languages
+
+## The rule of the through-line, one last time
 
 > **The model is forever. The runtime is a detail.**
 >
-> You proved it five times: console, persistence, web API, browser, Roblox. The same `Building`, the same `ResourceLedger`, the same `Kingdom.AdvanceDay`. Different runtimes. Different shells. The shape carries.
+> You proved it five times — console, persistence, web API, browser, Roblox. The same `Building`, the same `ResourceLedger`, the same `Kingdom.AdvanceDay`. Different runtimes. Different shells. The pattern carries.
 >
 > **You're a programmer.** Past tense; future tense; both.
 
-## Quiz / challenge
+## Quiz
 
-Open `quiz.md`. The last one.
+Open `quiz.md`. The last one. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
 
-## Connect
+## Next
 
 There's no next mandatory module. **You finished.**
 
 If you want bonus arcs:
-- **Phase 6 / B1** — DB engine internals (build a tiny DB from scratch). 10 weeks.
-- **Phase 6 / B2** — context engineering (deep practical guide to AI-assisted coding). 10 weeks.
 
-If you want to start your *own* project: Phase 0 of anything works. Smallest interesting version → ship → iterate. You know the loop now.
+- **Phase 6 / B1** — DB engine internals (build a tiny database from scratch). Roughly ten weeks.
+- **Phase 6 / B2** — context engineering (a deep, practical guide to AI-assisted coding). Roughly ten weeks.
+
+If you want to start your own project: Phase 0 of anything works. Smallest interesting version, ship it, iterate. You know the loop now.
 
 Either way: well done.
