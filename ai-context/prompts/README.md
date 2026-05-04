@@ -2,7 +2,7 @@
 
 A growing library of *good* prompts for working with Claude. Each one is a starting point — copy, adapt, paste.
 
-These prompts honor the three-bucket policy (`ai-context/for-you.md`). Each lives in its own file so you can find them by name.
+These prompts honor the three-bucket policy (`../ai-tools.md`). Each lives in its own file so you can find them by name.
 
 ## Current prompts
 

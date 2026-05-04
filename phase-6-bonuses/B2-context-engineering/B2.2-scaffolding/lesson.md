@@ -17,7 +17,7 @@ Open your repo. You should see:
 
 - `STANDARDS.md` — conventions
 - `ai-context/CLAUDE.md` — AI rules (mode flag + behaviors)
-- `ai-context/for-you.md` — learner-facing
+- `ai-tools.md` — learner-facing
 - `ai-context/prompts/` — prompt templates
 - `GLOSSARY.md` — project-specific vocabulary
 - `ARCHITECTURE.md` — projects + data flow (added at M4.0)

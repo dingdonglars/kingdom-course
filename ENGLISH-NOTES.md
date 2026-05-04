@@ -6,7 +6,7 @@
 
 The course is in English because **your English is comfortable**, and reading a year of code, lessons, and developer documentation in English is one of the most valuable secondary skills you'll come out with. It's not a test; it's an exposure dose.
 
-We don't drill English at you. We just keep the substrate English so you grow in it naturally.
+We don't drill English at you. We just keep everything in English so you grow into it naturally over twelve months — without anyone calling that growth *learning English*.
 
 ## What we do to make it easier
 

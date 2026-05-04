@@ -56,7 +56,7 @@ Open `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md`. That's day one. Two 
 
 A few other docs you'll want to know exist, but don't have to read in order:
 
-- **`for-you.md`** — how to use Claude (your AI assistant) during the course.
+- **`ai-tools.md`** — how to use Claude (your AI assistant) during the course.
 - **`STYLE.md`** — what every lesson looks like, so you know what to expect.
 - **`STANDARDS.md`** — the code, naming, and PR conventions used throughout.
 - **`ENGLISH-NOTES.md`** — why the course is in English, and the small scaffolding that helps when a word stalls you.
@@ -66,7 +66,7 @@ A few other docs you'll want to know exist, but don't have to read in order:
 
 **Lars** is your mentor. There's a *Mentor Protocol* document Lars gives you separately that describes when to ping him, how to ask, and what to expect back. Read it before module 0.0.
 
-**Claude** is your AI assistant. The first half of the course, Claude helps with friction (a confused error message, a git mess). After the AI Unlock, Claude can also help you write code — under the rule that *you have to be able to explain every line you keep*. The full story is in `for-you.md`.
+**Claude** is your AI assistant. The first half of the course, Claude helps with friction (a confused error message, a git mess). After the AI Unlock, Claude can also help you write code — under the rule that *you have to be able to explain every line you keep*. The full story is in `ai-tools.md`.
 
 ## A note on what's not in this repo
 
