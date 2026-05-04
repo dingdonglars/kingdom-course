@@ -1,4 +1,4 @@
-# Block 8 — Bonuses *(Container)*
+# Phase 6 — Bonuses *(Container)*
 
 > **Capstone bonuses. Each is its own brag.**
 
@@ -10,7 +10,7 @@
 
 ## Why this block?
 
-Some lessons are too good to leave out, but they don't fit *inside* a phase without breaking it. Block 8 is the standing container — anything we want you to do *after* the main arc lands here. Each bonus is small, focused, and brag-worthy on its own.
+Some lessons are too good to leave out, but they don't fit *inside* a phase without breaking it. Phase 6 is the standing container — anything we want you to do *after* the main arc lands here. Each bonus is small, focused, and brag-worthy on its own.
 
 The bonuses currently here are:
 

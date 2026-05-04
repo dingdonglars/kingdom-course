@@ -99,8 +99,8 @@ Open `quiz.md`. The last one.
 There's no next mandatory module. **You finished.**
 
 If you want bonus arcs:
-- **Block 8 / B1** — DB engine internals (build a tiny DB from scratch). 10 weeks.
-- **Block 8 / B2** — context engineering (deep practical guide to AI-assisted coding). 10 weeks.
+- **Phase 6 / B1** — DB engine internals (build a tiny DB from scratch). 10 weeks.
+- **Phase 6 / B2** — context engineering (deep practical guide to AI-assisted coding). 10 weeks.
 
 If you want to start your *own* project: Phase 0 of anything works. Smallest interesting version → ship → iterate. You know the loop now.
 

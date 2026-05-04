@@ -1,6 +1,6 @@
 # Module 0.0 — Setup + Roast-O-Matic
 
-> **Hook:** by the end of today, you have a real program on your computer that prints customisable roasts to your friends — and it's on the internet, in your own GitHub repo. Two hours from now you'll have done what most people think takes weeks.
+By the end of today you have a real program on your computer that prints roasts you wrote — and it's on the internet, in your own GitHub repo. Two hours from now you'll have done what most people think takes weeks. We're going to install some tools, write a tiny program, and push it where the world can see it.
 
 ## What you need first
 
@@ -135,12 +135,43 @@ Now go to your repo on github.com in the browser. **Refresh.** Your code is ther
 
 ---
 
-## Quiz / challenge
+## Part 5 — Join Slack, post your first win (about 15 minutes)
 
-Open `quiz.md` for a (very celebratory) quiz.
+Lars sends you an invite link to a Slack workspace called **`kingdom-hq`**. Open it, accept, set a display name, add a profile picture if you feel like it.
 
-## Connect
+There are four channels:
 
-You did, today, what every working developer in the world does every day: wrote code, committed it, pushed it. The rest is just learning what to write.
+| Channel | What it's for |
+|---|---|
+| `#general` | Scheduling, plans, anything that doesn't fit elsewhere |
+| `#wins` | Things you shipped. One post per real win. No reply expected. |
+| `#help` | Stuck? Ask here. The channel topic is *"Show what you tried."* |
+| `#milestones` | The big seven moments — M0 through M6 |
+
+Now do the very first one. In `#wins`, post:
+
+> 🎉 Roast-O-Matic shipped — *(link to your GitHub repo)*
+
+That's it. Lars probably won't reply (that's the rule for `#wins` — no reply expected). The post is the trail. By the end of the year, scrolling back through `#wins` is the proof you did the work.
+
+---
+
+## What you just did
+
+You installed the tools every working developer uses every day, made your own GitHub repo, wrote a program in C#, ran it on your machine, edited it to do something *you* wanted (your own roasts), pushed the result onto the internet, and posted your first win. Most of the year is exactly this — write code, run it, commit it, push it, share the win — just with bigger ideas.
+
+**Key things you can now name:**
+
+- a *repo* — a folder of code that git tracks, with a copy on GitHub
+- *git commit* — saving a snapshot of your work
+- *git push* — sending your snapshot up to GitHub
+- *`dotnet run`* — build the C# code and run the result
+- the four Slack channels — `#general`, `#wins`, `#help`, `#milestones`
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
 
 Welcome to programming. See you in Module 0.1.

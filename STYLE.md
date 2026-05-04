@@ -65,7 +65,7 @@ Course prose targets approximately **CEFR B1–B2** — short sentences, present
 - **Phase 0** voice is highest-energy, most casual. Spark Week is meant to be fun.
 - **Phases 1–4** maintain warmth and humour but introduce more vocabulary and rigour as the learner can handle it.
 - **Phase 5** — capstone tone. Reflective, *"look how far you've come."*
-- **Block 8 bonuses** — short, punchy. *"This should feel anticlimactic — that IS the lesson."*
+- **Phase 6 bonuses** — short, punchy. *"This should feel anticlimactic — that IS the lesson."*
 
 ## Per-milestone ritual
 
