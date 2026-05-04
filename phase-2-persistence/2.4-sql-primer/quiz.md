@@ -1,39 +1,41 @@
 # Quiz — Module 2.4
 
+> Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+
 ## 1. SQLite is best described as...
 
-a. A web service
-b. A database server like PostgreSQL or MySQL
-c. A library + a single-file database — no server, no install
-d. A backup tool
+- **a.** A web service you connect to over HTTPS
+- **b.** A database server like PostgreSQL or MySQL, but lighter
+- **c.** A library plus a single-file database — no server, no install
+- **d.** A backup tool for moving SQL between systems
 
 ## 2. Why use parameters (`$name`) instead of string concatenation in SQL?
 
-a. Parameters are faster
-b. To prevent SQL injection — concatenated user input lets attackers run arbitrary SQL
-c. The compiler enforces it
-d. Required by SQLite
+- **a.** Parameters perform faster on the database side
+- **b.** To prevent SQL injection — pasted user input lets an attacker run arbitrary SQL
+- **c.** The C# compiler refuses concatenated SQL strings
+- **d.** SQLite throws an error on concatenated commands
 
-## 3. Which of these CREATE / INSERT / SELECT / UPDATE / DELETE returns rows?
+## 3. Which of `CREATE` / `INSERT` / `SELECT` / `UPDATE` / `DELETE` returns rows?
 
-a. INSERT
-b. UPDATE
-c. SELECT
-d. CREATE
+- **a.** `INSERT` — returns the rows it just inserted
+- **b.** `UPDATE` — returns the rows it modified
+- **c.** `SELECT` — returns the rows that match the query
+- **d.** `CREATE` — returns the structure of the new table
 
 ## 4. Why is `using var conn = new SqliteConnection(...)` important?
 
-a. It opens the connection automatically
-b. It ensures `Dispose` runs (which closes the connection) even if an exception is thrown — no leaked handles
-c. It enables async support
-d. It's optional decoration
+- **a.** It opens the connection automatically when execution reaches the line
+- **b.** It guarantees `Dispose` runs (closing the connection) even if an exception is thrown
+- **c.** It enables async query support without extra setup
+- **d.** It is purely cosmetic and could be omitted
 
-## 5. The lesson says "the database is a shell." What does that mean here?
+## 5. The lesson says *"the database is a runtime."* What does that mean here?
 
-a. SQLite has a CLI shell
-b. Persistence is a shell concern, not an engine concern. The engine is unchanged when storage moves from JSON to SQLite — same model, different runtime.
-c. SQL runs in a shell environment
-d. Nothing significant
+- **a.** SQLite ships with its own command-line shell program
+- **b.** Saving is a runtime concern, not an engine one — same engine, different storage backend
+- **c.** SQL queries run inside an embedded scripting environment
+- **d.** Nothing significant; just terminology
 
 ---
 

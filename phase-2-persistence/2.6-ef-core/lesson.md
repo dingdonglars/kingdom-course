@@ -1,14 +1,15 @@
 # Module 2.6 — EF Core (Code-First)
 
-> **Hook:** raw SQL is fine for one query. Twenty queries — each with its own connection/command/reader boilerplate — gets old fast. Today we meet **Entity Framework Core**, the .NET *ORM* (Object-Relational Mapper). You define C# classes; EF turns them into tables. You write `db.Kingdoms.Add(k); db.SaveChanges();` and the SQL writes itself.
+Raw SQL is fine for one query. Twenty queries — each with its own `using` block for connection, command, and reader — gets old fast. Today we meet **Entity Framework Core**, the .NET *ORM*. An ORM is a library that maps classes to database rows: you define C# classes; EF turns them into tables. You write `db.Kingdoms.Add(k); db.SaveChanges();` and the SQL writes itself.
 
 > **Words to watch**
-> - **ORM** — *Object-Relational Mapper*. Translates between objects in memory and rows in a database.
+>
+> - **ORM** *(oh-arr-em)* — *Object-Relational Mapper*. A library that maps classes to database rows.
 > - **Entity** — a class EF maps to a table.
 > - **DbContext** — your gateway to the database; a class with `DbSet<T>` properties (one per table).
-> - **DbSet<T>** — represents a table; supports LINQ queries (`db.Kingdoms.Where(...)`).
+> - **`DbSet<T>`** — represents a table; supports LINQ queries (`db.Kingdoms.Where(...)`).
 > - **Code-first** — define the schema in C# code; EF generates the SQL.
-> - **Database-first** — opposite — generate C# from an existing schema. We're not doing that.
+> - **Database-first** — the opposite — generate C# from an existing schema. We're not doing that.
 
 ---
 
@@ -22,21 +23,21 @@ Once you've written `using var conn / cmd / reader` thirty times, you'll notice 
 | `SELECT * FROM kingdoms WHERE name = $n` | `db.Kingdoms.Single(k => k.Name == n)` |
 | Manual mapping rows → objects | `Kingdom` is the type |
 
-**EF is LINQ over a database.** The same `Where`/`Select`/`OrderBy` you learned in Module 1.6 — the LINQ provider translates them to SQL behind the scenes.
+EF is LINQ over a database. The same `Where`/`Select`/`OrderBy` you learned in Module 1.6 — the LINQ provider translates them to SQL behind the scenes.
 
 When *not* to use an ORM: when you need a hand-tuned query for performance, or when the SQL is genuinely simpler than the EF expression. That's rare in normal code.
 
 ## Persistence entity vs engine model
 
-We **don't** map `Kingdom.Engine.Kingdom` directly to a table — that class has interfaces, private fields, and a constructor with `IRandom`/`IClock`. EF can't reflect on that cleanly.
+We **don't** map `Kingdom.Engine.Kingdom` directly to a table — that class has interfaces, private fields, and a constructor with `IRandom`/`IClock`. EF can't read those cleanly.
 
-Instead, we add **entity classes** in `Kingdom.Persistence` — flat C# classes with public properties, designed for EF. Conversion between engine model and entities is the persistence layer's job (just like the JSON DTO in Module 2.2).
+Instead, we add **entity classes** in `Kingdom.Persistence` — flat C# classes with public properties, designed for EF. Conversion between the engine model and the entities is the persistence layer's job (just like the JSON DTO in Module 2.2).
 
 ```
 Kingdom.Engine.Kingdom   <─ToEntity / FromEntity─>   KingdomEntity (EF)   <─EF─>   kingdoms (table)
 ```
 
-Three layers, each with one job. **The engine never imports `Microsoft.EntityFrameworkCore`.**
+Three layers, each with one job. The engine never imports `Microsoft.EntityFrameworkCore`.
 
 ## Delta starter
 
@@ -95,7 +96,8 @@ public class BuildingEntity
 }
 ```
 
-EF conventions:
+EF's conventions:
+
 - A property called `Id` is automatically the primary key.
 - A `List<X>` on entity A + an `int AId` + `A? A` on entity X = a one-to-many relationship. EF figures it out.
 - Properties with `set;` are required for EF to populate them when reading.
@@ -123,7 +125,7 @@ public class KingdomDbContext : DbContext
 }
 ```
 
-`DbSet<KingdomEntity> Kingdoms` — that's the `kingdoms` table. The default name is the type name pluralised; EF figures that out. Same pattern: `DbSet<BuildingEntity> Buildings` = `buildings` table.
+`DbSet<KingdomEntity> Kingdoms` is the `kingdoms` table. The default name is the type name pluralised; EF figures that out. Same pattern: `DbSet<BuildingEntity> Buildings` = `buildings` table.
 
 `OnConfiguring` tells EF *"use SQLite at this path."* Production apps usually configure the connection string elsewhere (DI container) — for our learning context, this inline form is fine.
 
@@ -207,17 +209,20 @@ public class KingdomEfStore
     public IReadOnlyList<KingdomEntity> ListAll()
     {
         using var ctx = new KingdomDbContext(_dbPath);
-        return ctx.Kingdoms.AsNoTracking().OrderBy(k => k.Id).ToList();
+        return ctx.Kingdoms
+            .AsNoTracking()
+            .OrderBy(k => k.Id)
+            .ToList();
     }
 }
 ```
 
 Things to read carefully:
 
-- `ctx.Database.EnsureCreated()` — creates the database file + tables if they don't exist. Convenient for learning; we'll switch to **migrations** in Module 2.7 (the proper way).
-- `ctx.Kingdoms.Add(entity); ctx.SaveChanges()` — **two lines, one INSERT statement** (well, several, but EF batches them). The `Buildings` list is auto-saved too because EF tracks the relationship.
-- `Include(k => k.Buildings)` — by default EF doesn't load navigation properties (lazy-loading is off). `Include` says "also fetch the buildings."
-- `AsNoTracking()` — for read-only queries. Faster + safer when you don't intend to modify the results.
+- `ctx.Database.EnsureCreated()` — creates the database file + tables if they don't exist. Convenient for learning; we'll switch to *migrations* in Module 2.7 (the proper way).
+- `ctx.Kingdoms.Add(entity); ctx.SaveChanges()` — two lines, one INSERT statement (well, several, but EF batches them). The `Buildings` list is auto-saved too because EF tracks the relationship.
+- `Include(k => k.Buildings)` — by default EF doesn't load navigation properties (lazy-loading is off). `Include` says *"also fetch the buildings."*
+- `AsNoTracking()` — for read-only queries. Faster and safer when you don't intend to modify the results.
 
 ## Step 4 — call from console
 
@@ -243,7 +248,7 @@ foreach (var e in all)
     Console.WriteLine($"  #{e.Id}  {e.Name}  day {e.Day}");
 ```
 
-Build + run.
+Build and run.
 
 ## Step 5 — tests
 
@@ -326,33 +331,30 @@ Expect `Passed: 60` (57 + 3).
 
 ## Tinker
 
-- Open `bin/Debug/net10.0/saves/kingdoms-ef.db` in DB Browser for SQLite. The schema EF created is *exactly* what we'd have written by hand. **No magic.**
-- Add a property to `KingdomEntity`: `public DateTime SavedAt { get; set; }`. Re-run. **It crashes** — the existing schema doesn't have that column. That's the migrations problem (Module 2.7).
-- Switch `EnsureCreated()` to log SQL: in `OnConfiguring` add `.LogTo(Console.WriteLine, LogLevel.Information)`. Re-run. **You'll see the actual SQL EF is generating.** Demystifies the ORM.
-- `db.Kingdoms.Where(k => k.Gold > 100).ToList()` — same LINQ as `List<T>.Where`, translated to SQL. Try `OrderByDescending`, `Count`, `Sum`. They all work.
+Open `bin/Debug/net10.0/saves/kingdoms-ef.db` in DB Browser for SQLite. The schema EF created is *exactly* what we'd have written by hand. No magic.
 
-## Name it
+Add a property to `KingdomEntity`: `public DateTime SavedAt { get; set; }`. Re-run. It crashes — the existing schema doesn't have that column. That's the migrations problem (Module 2.7).
 
-- **ORM.** Object-Relational Mapper. Translates between objects (in memory) and rows (in a database).
-- **`DbContext`.** Your handle to the database. One per *connection lifetime* — created, used, disposed.
-- **`DbSet<T>`.** Represents a table. Supports LINQ queries.
-- **Entity.** A class EF maps to a table.
-- **Code-first.** You define entities in C#; EF creates the schema. Opposite of database-first.
-- **`Add` + `SaveChanges`.** EF's INSERT pattern.
-- **`Include`.** Eager-load a navigation property (a related table).
-- **`AsNoTracking`.** For read-only queries — skip change-tracking, ~faster.
-- **Migration.** A versioned schema change. Coming in Module 2.7.
+Switch `EnsureCreated()` to log SQL: in `OnConfiguring` add `.LogTo(Console.WriteLine, LogLevel.Information)`. Re-run. You'll see the actual SQL EF is generating. Reading it makes the ORM less mysterious.
 
-## The rule of the through-line
+`db.Kingdoms.Where(k => k.Gold > 100).ToList()` — same LINQ as `List<T>.Where`, translated to SQL. Try `OrderByDescending`, `Count`, `Sum`. They all work.
 
-> **The persistence layer maps two ways: engine ↔ entity ↔ database.** The middle (entity) exists so the engine doesn't depend on EF, and the database doesn't depend on engine quirks.
+## What you just did
 
-Three layers feels like a lot — and it is, for a 100-line program. But for any real app, **this separation is the difference between "we can change databases" and "we're stuck with this stack forever."**
+You replaced raw SQL with C# objects and let EF Core do the translation. Two entity classes, one `DbContext`, and a small store give you save, load, and list — three new tests proving it works (60 total). You also met the three-layer pattern that holds the rest of this phase together: engine model on one side, database on the other, an *entity* in the middle that exists so the engine doesn't import `Microsoft.EntityFrameworkCore`. That separation feels like extra work in a small project — and it is — but it's the difference between *"we can swap the database one day"* and *"we're stuck with this stack forever."*
 
-## Quiz / challenge
+**Key concepts you can now name:**
 
-Open `quiz.md`.
+- **ORM** — class-to-row translation library
+- **`DbContext`** — your gateway to the database
+- **`DbSet<T>`** — represents a table; LINQ-queryable
+- **`Add` + `SaveChanges`** — EF's INSERT pattern
+- **`Include`** — eager-load a related collection
 
-## Connect
+## Quiz
 
-Module 2.7 introduces **migrations** — the proper way to evolve the schema after the first deploy. `EnsureCreated` works for "fresh DB"; migrations work for "DB has data, schema needs to change."
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 2.7 introduces **migrations** — the proper way to evolve the schema after the first deploy. `EnsureCreated` works for *fresh DB*; migrations work for *DB has data, schema needs to change*.

@@ -1,31 +1,33 @@
 # Module 2.11 — Names That Earn Their Keep (M3 close)
 
-> **Hook:** the kingdom now has 35-engine-tests, JSON, SQLite, EF Core, migrations, save slots, an interactive UI. **The mechanics work.** Today is the deeper craft: a deliberate naming pass over everything you've written across Block 4. The thing that turns "code that works" into "code anyone can read in six months — including future-you."
+The kingdom now has 35-engine-tests, JSON, SQLite, EF Core, migrations, save slots, and an interactive UI. The mechanics work. Today is the deeper craft: a deliberate naming pass over everything you've written across this phase. The thing that turns *"code that works"* into *"code anyone can read in six months — including future-you."*
 
 > **Words to watch**
+>
 > - **rename party** — a focused session that does *only* renames, nothing else
-> - **scope of a name** — local (5 lines) → method (50) → class (500) → module → repo → the whole world. Bigger scope = name does more work.
+> - **scope of a name** — local (5 lines) → method (50) → class (500) → module → repo → the whole world. Bigger scope means the name has to do more work.
 > - **noise word** — generic words like `Manager`, `Helper`, `Util`, `Data`, `Info` that don't tell you what the thing actually is
-> - **earn its keep** — every name you keep should be doing real work for the reader
+> - **earns its keep** — every name you keep should be doing real work for the reader
 
 ---
 
 ## Why a separate module for naming
 
-Names are the documentation. They're what a reader sees first. **A great name makes the surrounding code obvious; a weak name forces you to read the body to understand the call site.** And bad names compound — every caller of `ProcessData(d)` learns nothing from the call.
+Names are the documentation. They're what a reader sees first. A great name makes the surrounding code obvious; a weak name forces you to read the body to understand the place where it's used. Bad names compound — every line that calls `ProcessData(d)` learns nothing from the call.
 
 A *rename party* — doing only renames in one focused session — works because:
+
 - Modern IDEs make renames safe (Refactor → Rename, F2 in VS / Rider).
-- A pure-rename PR is easy to review (no logic changes).
+- A pure-rename PR is easy to review (no logic changes mixed in).
 - One sitting catches related names that should change together (`KingdomData` → `KingdomEntity` plus `ToData()` → `ToEntity()`).
 
-You'll do this exercise once per major arc. After 3-4 rounds, your default names start landing right the first time.
+You'll do this exercise once per major arc. After three or four rounds, your default names start landing right the first time.
 
 ## The five questions
 
 For every public name in your engine + persistence + console, ask:
 
-1. **Does it say what the thing *is*, not what it *does* to memory?** `Buffer` (does what?) vs `KingdomSnapshotJson` (a JSON-serialised snapshot of a kingdom).
+1. **Does it say what the thing *is*, not what it does to memory?** `Buffer` (does what?) vs `KingdomSnapshotJson` (a JSON-serialised snapshot of a kingdom).
 2. **Could a fresh reader guess what it does, given just the name?** `ToSummary()` vs `Convert()`.
 3. **Is the scope right?** A 3-letter name is fine for a 5-line method (`b` for building); a class deserves the long form (`KingdomEntity`).
 4. **Is there a noise word?** `KingdomManager` — manager of *what*? Drop or replace.
@@ -44,25 +46,26 @@ public IReadOnlyList<KingdomEntity> ListAll();
 public IReadOnlyList<KingdomSlotInfo> ListSlots();
 ```
 
-Six methods. Read it again with the questions:
+Six methods. Read them again with the questions:
 
-- `Save` / `Load` / `Update` / `Delete` — the standard CRUD vocabulary. Match.
-- `ListAll` *vs* `ListSlots` — *both list*. The first returns full entities; the second returns lightweight info. **Both names start with `List` — confusing — and `ListAll` is dishonest** (it doesn't list everything; it doesn't load relations). Better:
+- `Save` / `Load` / `Update` / `Delete` — the standard CRUD vocabulary. They match.
+- `ListAll` *vs* `ListSlots` — *both list*. The first returns full entities; the second returns lightweight info. Both names start with `List` (confusing), and `ListAll` is dishonest (it doesn't actually return everything; it doesn't load relations). Better:
   - `ListSlots()` stays.
   - `ListAll()` → either delete (it's only used for tests; can be replaced by `using var ctx; ctx.Kingdoms.ToList();`) or rename to `ListAllEntities()` to be honest about what it returns.
 
-**Decision time:** drop `ListAll`. The tests don't really need it; `ListSlots` covers the public API.
+Decision time: drop `ListAll`. The tests don't really need it; `ListSlots` covers the public API.
 
 That's a real, motivated rename — not "for style." The codebase is *one fewer noun* afterward.
 
 ## Walkthrough — second example
 
 Look at `KingdomEntity`. Consider:
+
 - `KingdomEntity.cs` and `BuildingEntity.cs` — clear: these are EF entities (DTOs).
 - `KingdomSnapshot.cs` (in engine) and `BuildingSnapshot.cs` — both entities-for-data. Why two names?
-  - `*Snapshot` is the engine's data shape (used by JSON in M2.3).
-  - `*Entity` is EF's data shape (used by SQLite in M2.6+).
-  - **They're not the same thing** — the snapshot has `Kind` and `Citizens[]`; the entity has navigation properties. Different shapes for different stores. **Both names earn their keep.**
+  - `*Snapshot` is the engine's data form (used by JSON in M2.3).
+  - `*Entity` is EF's data form (used by SQLite in M2.6+).
+  - **They're not the same thing** — the snapshot has `Kind` and `Citizens[]`; the entity has navigation properties. Different forms for different stores. Both names earn their keep.
 
 Sometimes the right answer is *no rename*.
 
@@ -73,18 +76,20 @@ In one focused 30-minute sitting:
 1. Open the engine project. Walk every public type + method. Apply the five questions.
 2. Same for persistence.
 3. Same for console.
-4. Use the IDE's **Rename refactoring** (F2 in VS / Rider; Ctrl+Shift+R in some others). It updates all call sites + tests + comments + XML doc references in one shot. **Never search-and-replace by hand for renames** — you'll miss a usage.
+4. Use the IDE's **Rename refactoring** (F2 in VS / Rider; Ctrl+Shift+R in some others). It updates all places where the name is used + tests + comments + XML doc references in one shot. Never search-and-replace by hand for renames — you'll miss a usage.
 5. After each rename: `dotnet build` (must still be 0 errors) + `dotnet test` (must still be 71 passing).
 6. Commit at *each* rename, with prefix `[M3-rename]`:
+
    ```
    git commit -am "[M3-rename] drop KingdomEfStore.ListAll (callers used ListSlots; redundant)"
    ```
+
    Small commits. Easy to review. Easy to revert if a rename was wrong.
 
 ## Common renames you might do
 
 - `_eventEngine` → `_events` (private field; shorter is fine for short scope)
-- `KingdomDbContext.Kingdoms` → fine; conventional EF DbSet pluralised name
+- `KingdomDbContext.Kingdoms` → fine; conventional EF DbSet plural
 - `KingdomEfStore.EnsureCreated()` → fine name even though it now `.Migrate()`s; the *contract* hasn't changed
 - `KingdomSummary.BuildingCount` → fine; explicit
 - Any class ending in `Manager`, `Helper`, `Util`, `Data` — review hard
@@ -105,40 +110,53 @@ There is no code change to ship — the renames you do are **specific to your co
 2. `dotnet build` — 0 errors.
 3. `dotnet test` — still 71 passing.
 4. Append the M3 entry to `wins.md`.
-5. Post your before/after to `#wins` on Discord.
-6. Tag locally: `git tag m3-block-4-complete` (then `git push origin m3-block-4-complete` if your remote is set up).
+5. Post your before/after to `#wins` on Slack.
+6. Tag locally: `git tag m3-phase-2-complete` (then `git push origin m3-phase-2-complete` if your remote is set up).
 
 ## Tinker
 
-- Read your most recent commit message. Is it specific? *"refactor"* is a noise word; *"drop ListAll, keep ListSlots — same callers, less surface"* tells the story.
-- Pick the worst-named thing in your repo (you'll know which one). Rename it. Notice the read-fluency improvement at every call site.
-- Try the opposite — rename `Kingdom` to `K` everywhere. **Save in a branch.** Read your code with that name. Notice how much harder it is. *Long names earn their keep when scope is large.*
-- Read [`Naming Things`](https://en.wikipedia.org/wiki/Naming_(parameter)) on your own time. The classic essays compound for years.
+Read your most recent commit message. Is it specific? *"refactor"* says nothing; *"drop ListAll, keep ListSlots — same callers, less surface"* tells the story.
 
-## Name it (the meta-name-it)
+Pick the worst-named thing in your repo (you'll know which one). Rename it. Notice the read-fluency improvement at every place where it's used.
 
-- **Rename party.** A focused session of *only* renames. One sitting, lots of small commits.
-- **Scope of a name.** Local (5-line) names can be terse; class/module/repo names earn their keep at length.
-- **Noise word.** Words like `Manager`, `Helper`, `Util`, `Data`, `Info` that say "thing" in a fancy hat. Replace with what the thing actually is.
-- **Vocabulary discipline.** `Save`/`Load`/`Update`/`Delete`/`List` together. Don't mix `Save`/`Read`/`Modify`/`Remove`.
+Try the opposite — rename `Kingdom` to `K` everywhere. Save in a branch. Read your code with that name. Notice how much harder it is. Long names earn their keep when scope is large.
 
-## The rule of the through-line
+Read [`Naming Things`](https://en.wikipedia.org/wiki/Naming_(parameter)) on your own time. The classic essays compound for years.
 
-> **Every name pays a cost (the reader has to learn it) and earns a benefit (it tells the reader what the thing is). Drop the names whose benefit is less than their cost. Improve the names whose benefit could be much higher.**
+## What you just did
 
-Naming is the cheapest cleanup with the highest reader return. Do it now while the codebase is small and you remember why.
+You sat with the codebase and tightened every public name. Some you renamed; some you dropped; some you left alone with new respect. The code didn't get smarter — but a future reader will hit half as many surprises. You also closed M3: tests still 71 passing, persistence works across four runtimes (text, JSON, SQLite, EF Core), the kingdom remembers itself across sessions. That's the milestone. Don't skip the ritual that follows.
 
-## Quiz / challenge
+**Key concepts you can now name:**
 
-Open `quiz.md`. (Lighter than usual — naming-themed.)
+- **rename party** — a focused session of only renames
+- **scope of a name** — short for short scope; long for long scope
+- **noise word** — `Manager`/`Helper`/`Util`/`Info` to review hard
+- **vocabulary discipline** — pick `Save`/`Load`/`Delete`, not a mix
+- **IDE Rename** — the only safe way to change a name everywhere
 
-## Block 4 wins log
+## Quiz
+
+Open `quiz.md`. (Lighter than usual — naming-themed.) When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+---
+
+> **You just shipped M3.** Time for the ritual:
+>
+> 1. **`journal/wins.md` entry** — a paragraph in your own words about what changed between M2 and M3. Include the test count, the four save backends, the slot picker.
+> 2. **`#wins` Slack post** — link to the PR + a short screenshot or terminal capture, and one line: *"Kingdom v2 — Persisted. Save it, quit, reopen, still there."*
+> 3. **Before/after one-liner** — *"A few weeks ago my kingdom died on close. Today it survives across sessions, with save slots."*
+> 4. **Tag it** — `git tag m3-phase-2-complete`.
+>
+> Then take the rest of the day off.
+
+## Phase 2 wins log entry (template)
 
 ```markdown
-## M3 — Block 4 — Persistence
+## M3 — Phase 2 — Persistence
 
 - 71 tests, deterministic, across engine + persistence
-- Same engine now savable in 4 ways: text file, JSON, raw SQLite, EF Core
+- Same engine now savable in four ways: text file, JSON, raw SQLite, EF Core
 - Real save-slot UI; you can play across sessions
 
 Before: `Console.WriteLine($"Day {kingdom.Day}");` and the kingdom dies on close
@@ -147,6 +165,6 @@ After:  Save, quit, reopen days later — your kingdom is exactly where you left
 Posted to #wins on YYYY-MM-DD.
 ```
 
-## Connect
+## Next
 
-**Phase 3 begins.** Block 5 introduces the **web API** — your engine, served over HTTP. Same engine again, fourth shell. The browser will follow in Phase 4; the AI Unlock fires at the end of Block 5.
+**Phase 3 begins.** It introduces the **web API** — your engine, served over HTTP. Same engine again, fourth runtime. The browser will follow in Phase 4; the AI Unlock fires at the end of Phase 3.

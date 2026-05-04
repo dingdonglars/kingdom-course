@@ -1,8 +1,9 @@
 # Module 2.8 — DB Tooling
 
-> **Hook:** you can write the perfect schema, the cleanest migrations, the tightest queries — and still lose hours when something feels wrong because *you can't see what's in the database*. Today is short and tool-focused: three ways to *look at* your SQLite file, plus the EF script trick that makes "what would this migration do" answerable in 10 seconds.
+You can write the perfect schema, the cleanest migrations, the tightest queries — and still lose hours when something feels wrong because you can't see what's in the database. Today is short and tool-focused: three ways to *look at* your SQLite file, plus the EF script trick that makes *"what would this migration do"* answerable in ten seconds.
 
 > **Words to watch**
+>
 > - **DB Browser** — a free GUI for SQLite — open the `.db` file, browse tables, run queries
 > - **`sqlite3`** — the official command-line tool — same power, no GUI
 > - **VS Code SQLTools** — an extension that lets you query the DB inside your editor
@@ -12,7 +13,7 @@
 
 ## Why this module exists
 
-A database is opaque until you have a window into it. **The right tool turns "the persistence is broken somehow" into "row 47 has `gold = -1`, here's why."** The fix is then trivial. Without the tool you spend an hour adding `Console.WriteLine` statements.
+A database is opaque until you have a window into it. The right tool turns *"the persistence is broken somehow"* into *"row 47 has `gold = -1`, here's why."* The fix is then trivial. Without the tool you spend an hour adding `Console.WriteLine` statements.
 
 Every developer carries one or two go-to DB tools. Today we tour three; pick whichever feels least friction.
 
@@ -24,10 +25,10 @@ The friendliest. Free. Cross-platform.
 
 - Download: <https://sqlitebrowser.org/>
 - Open it, File → Open Database → pick `bin/Debug/net10.0/saves/kingdoms-ef.db`
-- "Browse Data" tab — see every row in every table
-- "Execute SQL" tab — write SQL, hit run, see the result grid
+- *Browse Data* tab — see every row in every table
+- *Execute SQL* tab — write SQL, hit run, see the result grid
 
-When to use: 90% of the time. Click around. The data is *right there*.
+When to use: 90% of the time. Click around. The data is right there.
 
 ---
 
@@ -50,7 +51,7 @@ SELECT * FROM kingdoms;       # query
 .quit                         # exit
 ```
 
-When to use: scripting, CI scripts, any context where opening a GUI is overkill. *Way* faster for one-shot queries once you're used to it.
+When to use: scripting, CI scripts, any context where opening a GUI is overkill. Way faster for one-shot queries once you're used to it.
 
 ---
 
@@ -59,17 +60,17 @@ When to use: scripting, CI scripts, any context where opening a GUI is overkill.
 If you live in VS Code:
 
 1. Install extensions: `SQLTools` and `SQLTools SQLite`.
-2. Open Command Palette → "SQLTools: Add new connection" → SQLite → point at the `.db` file.
-3. The Connections sidebar now shows your tables. Right-click → "Open Table".
+2. Open Command Palette → *"SQLTools: Add new connection"* → SQLite → point at the `.db` file.
+3. The Connections sidebar now shows your tables. Right-click → *"Open Table"*.
 4. Open a `.sql` file, write a query, hit Ctrl+E twice to execute.
 
-When to use: if your workflow is "everything in VS Code, never alt-tab," this beats the others by integrating tightly.
+When to use: if your workflow is *"everything in VS Code, never alt-tab,"* this beats the others by integrating tightly.
 
 ---
 
 ## EF tool — `migrations script`
 
-The single most useful EF tool you don't get told about:
+The single most useful EF tool nobody mentions:
 
 ```powershell
 dotnet ef migrations script --project Kingdom.Persistence --startup-project Kingdom.Console
@@ -86,7 +87,7 @@ dotnet ef migrations script PreviousName CurrentName --project Kingdom.Persisten
 When to use:
 
 - You want to know what a migration *will* do before running it. Especially in production.
-- You want to share the SQL with a teammate / DBA / human reviewer.
+- You want to share the SQL with a teammate, a DBA, or a human reviewer.
 - You're doing the schema review for a code change.
 
 ---
@@ -96,7 +97,7 @@ When to use:
 This module is purely text-and-tools. The starter contains:
 
 - `tools/sqlite-tour.md` — a one-page cheatsheet of the commands above
-- `tools/sample-queries.sql` — 5 ready-to-copy queries for the kingdoms DB
+- `tools/sample-queries.sql` — five ready-to-copy queries for the kingdoms DB
 
 No engine or persistence changes; no new tests.
 
@@ -132,26 +133,30 @@ SELECT * FROM __EFMigrationsHistory;
 
 ## Tinker
 
-- Run query #1 against a database with three saves — see how `LEFT JOIN` plus `GROUP BY` answers a real question in one line.
-- Edit the data directly in DB Browser (set a kingdom's gold to 9999), save, run the program again — the change persists.
-- In `sqlite3`: `.import data.csv kingdoms` to bulk-import. Useful when you have 1000 test rows you'd rather not generate by hand.
-- Run `dotnet ef migrations script -i` (idempotent) — the SQL guards each migration with an `IF NOT EXISTS`-style check, so it's safe to apply multiple times.
+Run query #1 against a database with three saves — see how `LEFT JOIN` plus `GROUP BY` answers a real question in one line.
 
-## Name it
+Edit the data directly in DB Browser (set a kingdom's gold to 9999), save, run the program again — the change persists.
 
-- **DB Browser for SQLite** — free GUI tool. Always your first stop.
-- **`sqlite3` CLI** — official command-line tool. Power user route.
-- **SQLTools (VS Code)** — extension that brings the database inside the editor.
-- **`dotnet ef migrations script`** — preview the SQL a migration will run, without running it.
+In `sqlite3`: `.import data.csv kingdoms` to bulk-import. Useful when you have 1000 test rows you'd rather not generate by hand.
 
-## The rule of the through-line
+Run `dotnet ef migrations script -i` (idempotent) — the SQL guards each migration with an `IF NOT EXISTS`-style check, so it's safe to apply multiple times.
 
-> **Have a window into your database before you need one.** Install the tool now; you'll thank yourself in 6 months when the first weird bug lands.
+## What you just did
 
-## Quiz / challenge
+You picked up three windows into your database: DB Browser (the friendly GUI), the `sqlite3` CLI (the no-frills shell), and the VS Code SQLTools extension (in-editor). Plus one EF trick — `migrations script` — that prints the SQL a migration *would* run without actually running it. None of these change your code. They change how fast you can answer *"what does the database actually contain right now?"* — which, six months from now, will be the difference between a five-minute fix and a five-hour chase.
 
-Open `quiz.md`.
+**Key concepts you can now name:**
 
-## Connect
+- **DB Browser** — friendly free GUI for SQLite
+- **`sqlite3` CLI** — official command-line tool
+- **SQLTools (VS Code)** — DB queries inside the editor
+- **`dotnet ef migrations script`** — preview SQL without applying
+- **`__EFMigrationsHistory`** — visible in any of the tools above
+
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
 
 Module 2.9 — **save slots** — uses everything we have. Multiple kingdoms in one DB, list them, load any of them. Real save-slot UX.

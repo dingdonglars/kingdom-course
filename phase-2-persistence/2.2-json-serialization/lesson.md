@@ -1,22 +1,25 @@
 # Module 2.2 — JSON Serialisation
 
-> **Hook:** today the kingdom learns to write itself as **JSON** — the `{ "Name": "Eldoria", "Day": 11, ... }` format that powers ~every API on the internet. We add a brand-new project — `Kingdom.Persistence` — to keep the JSON code separate from both engine and console. Same kingdom, third shell.
+Yesterday you wrote five lines of human-readable text to disk. Today the kingdom learns to write itself as **JSON** — the `{ "Name": "Eldoria", "Day": 11, ... }` format that powers almost every API on the internet. You'll also add a brand new project — `Kingdom.Persistence` — to keep the JSON code separate from both engine and console. Same kingdom, third runtime.
+
+JSON is also where you meet a small but important pattern: the **DTO** (a *Data Transfer Object* — a small data-only record purpose-built for moving data across a boundary like disk or the network). You'll meet DTOs again every phase from here on. We're introducing them properly today.
 
 > **Words to watch**
-> - **JSON** — *JavaScript Object Notation*. Plain text in `{ "key": value, ... }` shape. Universally readable.
+>
+> - **JSON** *(jay-son)* — *JavaScript Object Notation*. Plain text in `{ "key": value, ... }` form. Universally readable.
 > - **serialise** — turn an object into a string (or bytes). *Deserialise* is the reverse.
-> - **`System.Text.Json`** — the modern .NET JSON library. Built in. Use this, not the older Newtonsoft.
+> - **`System.Text.Json`** — the modern .NET JSON library. Built in. Use this rather than the older Newtonsoft.
 > - **DTO** — *Data Transfer Object*. A small data-only record purpose-built for crossing a boundary (disk, network, etc.).
 
 ---
 
 ## Why JSON, why a new project
 
-Block 3's events were a great sign that *small immutable records* are how we model data. JSON is what records become when they leave the program — for disk, for network, for another language entirely. **A `record` in C# round-trips cleanly to JSON; almost no plumbing needed.**
+Phase 1's events were a great sign that *small immutable records* are how we model data. JSON is what records become when they leave the program — for disk, for the network, for another language entirely. A `record` in C# round-trips cleanly to JSON; almost no extra plumbing needed.
 
-The new project — `Kingdom.Persistence` — exists for one reason: **the engine should not know about JSON.** If we put JSON code in `Kingdom.Engine`, every shell ever built would drag JSON along, even when it doesn't need it (Roblox doesn't use JSON; the database shell uses SQL not JSON). By giving JSON its own project, every shell can pick whether to depend on it.
+The new project — `Kingdom.Persistence` — exists for one reason: the engine should not know about JSON. If we put JSON code in `Kingdom.Engine`, every runtime ever built on top of it would drag JSON along, even when it doesn't need it (Roblox doesn't use JSON; the database runtime uses SQL, not JSON). By giving JSON its own project, every runtime can pick whether to depend on it.
 
-The dependency direction is:
+The dependency direction looks like this:
 
 ```
 Kingdom.Console  ──┐
@@ -72,9 +75,7 @@ public record KingdomSummary(
 );
 ```
 
-**Why a separate record and not just save `Kingdom` directly?**
-
-JSON serialisation reflects on properties. `Kingdom` has interfaces, private fields, and a constructor that requires `IRandom` + `IClock`. `JsonSerializer` doesn't know what to do with any of that. A purpose-built DTO is *much* simpler — it has only what we care about, in the shape we want.
+Why a separate record and not just save `Kingdom` directly? JSON serialisation reads from properties. `Kingdom` has interfaces, private fields, and a constructor that requires `IRandom` + `IClock`. `JsonSerializer` doesn't know what to do with any of that. A purpose-built DTO is much simpler — it has only what we care about, in the form we want.
 
 This is the **DTO pattern.** You'll see it everywhere: APIs, message queues, file formats. Always a separate small record at the boundary.
 
@@ -124,9 +125,9 @@ public class KingdomJsonStore
 }
 ```
 
-`JsonSerializer.Serialize(value, options)` — turns the record into JSON. `Deserialize<T>(json)` — turns JSON back into `T`. **For a `record`, that's everything.** No attributes, no manual mapping.
+`JsonSerializer.Serialize(value, options)` turns the record into JSON. `Deserialize<T>(json)` turns JSON back into `T`. For a `record`, that's everything — no attributes, no manual mapping.
 
-`WriteIndented = true` produces multi-line, human-readable JSON. Toggle to `false` once you stop reading the file by hand.
+`WriteIndented = true` gives you multi-line, human-readable JSON. Flip it to `false` once you stop reading the file by hand.
 
 ## Step 4 — use it from the console
 
@@ -164,21 +165,21 @@ Console.WriteLine($"  Buildings: {loaded.BuildingCount}, Citizens: {loaded.Citiz
 Console.WriteLine($"  Gold: {loaded.Gold}, Wood: {loaded.Wood}, Stone: {loaded.Stone}, Food: {loaded.Food}");
 ```
 
-Build + run:
+Build and run:
 
 ```powershell
 dotnet build
 dotnet run --project Kingdom.Console
 ```
 
-Open `bin/Debug/net10.0/saves/kingdom.json` — beautiful, indented JSON. Notice you can **edit it by hand** in Notepad and it'll load back. That's the magic of plain text formats.
+Open `bin/Debug/net10.0/saves/kingdom.json` — beautiful, indented JSON. Notice you can edit it by hand in Notepad and it'll load back. That's the magic of plain text formats.
 
 ## Step 5 — tests
 
 Decision time: do persistence tests live in the existing `Kingdom.Engine.Tests` project, or in a new `Kingdom.Persistence.Tests`?
 
 - **Add to existing:** simpler. Tests reference both Engine and Persistence projects.
-- **New project:** more proper — each library has its own tests. Mirrors what bigger codebases do.
+- **New project:** more proper — each library gets its own tests. Mirrors what bigger codebases do.
 
 We'll go with **new project** — it teaches the right pattern. From the repo root:
 
@@ -282,29 +283,30 @@ Expect `Passed: 43` (38 from M2.1 + 5 new in the persistence test project).
 
 ## Tinker
 
-- Set `WriteIndented = false`. Save a kingdom. The JSON is now one line. **Same data, much smaller** — that's what gets sent over the network.
-- Add a property to `KingdomSummary` — e.g., `int FarmCount`. Run the test that loads an old JSON file (without `FarmCount`). It loads cleanly with `FarmCount = 0` (the default). **JSON tolerates missing fields.**
-- Add `[JsonPropertyName("name")]` above `Name` in the record. Now JSON output is lowercase `"name"`. Useful when matching an existing API.
-- Try saving 1000 kingdoms in a loop with different names. Filesystem starts to feel slow. **That's the boundary where you reach for a database.**
+Set `WriteIndented = false`. Save a kingdom. The JSON is now one line — same data, much smaller. That's the form that gets sent over the network.
 
-## Name it
+Add a property to `KingdomSummary` — say, `int FarmCount`. Run the test that loads an old JSON file (without `FarmCount`). It loads cleanly with `FarmCount = 0` (the default). JSON is forgiving about missing fields.
 
-- **JSON.** Plain text format using `{}` and `[]`. Universal cross-language data format.
-- **`System.Text.Json`.** Modern .NET JSON library. Use this; the older `Newtonsoft.Json` is fine but not the default any more.
-- **`JsonSerializer.Serialize` / `Deserialize<T>`.** Two static methods. That's the API.
-- **DTO (Data Transfer Object).** A small purpose-built record for crossing a boundary. Separate from your domain model on purpose.
-- **`WriteIndented`.** `JsonSerializerOptions` flag for human-readable vs compact JSON.
+Add `[JsonPropertyName("name")]` above `Name` in the record. Now JSON output is lowercase `"name"`. Useful when matching an existing API.
 
-## The rule of the through-line
+Try saving a thousand kingdoms in a loop with different names. The filesystem starts to feel slow. That's the point where you reach for a database.
 
-> **Use a DTO at the boundary.** Don't serialise your domain model directly. The shape on the wire/disk and the shape in memory are *different concerns* — let them differ.
+## What you just did
 
-This rule will repeat in Phase 3 (HTTP request/response DTOs distinct from the engine), Phase 4 (browser-side TypeScript types distinct from C#), and Phase 5 (Roblox tables distinct from the C# engine).
+You shipped your first real save format. Same kingdom from yesterday, but now it serialises to JSON and reloads cleanly — five tests prove it (43 passing total). Along the way you stood up a third project, `Kingdom.Persistence`, so the engine doesn't drag JSON along to runtimes that don't want it. You also met the **DTO** pattern, which you'll see in every phase from here on: a small data-only record purpose-built for crossing a boundary, kept separate from the engine's model. The engine project still has zero changes — that's two modules in a row.
 
-## Quiz / challenge
+**Key concepts you can now name:**
 
-Open `quiz.md`.
+- **JSON** — universal plain-text data format
+- **serialise / deserialise** — object-to-text, text-to-object
+- **`JsonSerializer`** — `Serialize(value, opts)`, `Deserialize<T>(json)`
+- **DTO** — small data-only record at a boundary
+- **`WriteIndented`** — readable vs compact JSON output
 
-## Connect
+## Quiz
 
-Module 2.3 — **round-trip tests** — generalises: any kingdom we save should equal itself when loaded. We'll write the *full* snapshot (not just the summary) and prove the engine state can be reconstructed exactly.
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 2.3 — **round-trip tests** — generalises today's pattern: any kingdom you save should equal itself when you load it back. We'll write the *full* snapshot (not just the summary) and prove the engine state can be reconstructed exactly.

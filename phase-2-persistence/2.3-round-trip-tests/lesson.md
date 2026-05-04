@@ -1,40 +1,43 @@
 # Module 2.3 — Round-Trip Tests
 
-> **Hook:** yesterday we saved a *summary* of the kingdom. Today we save the *whole thing* and load it back. The discipline that lets us prove it works: a **round-trip test** — *"any kingdom I save will equal itself when I load it back."* Adding load support also forces a small redesign of the engine — and you'll learn why **persistence is the most honest pressure on a domain model.**
+Yesterday we saved a *summary* of the kingdom. Today we save the *whole thing* and load it back. The discipline that lets us prove it works is a **round-trip test** — *"any kingdom I save will equal itself when I load it back."*
+
+Adding load support also forces a small redesign of the engine. That's not a bug, it's the lesson: saving real state often pushes you to fix things in the model that were *almost* fine before. Persistence is one of the most honest pressures a domain model ever feels.
 
 > **Words to watch**
-> - **round-trip** — save then load; the loaded result should equal the original
+>
+> - **round-trip** — save, then load; the loaded result should equal the original
 > - **snapshot** — a complete data picture of the kingdom at a moment in time
-> - **factory method** — a static method that returns an instance, instead of a constructor (e.g., `Kingdom.LoadFrom(snap, ...)`)
-> - **property-based testing** — write *one* test that says "this should be true for *any* input." We'll do a light version with a loop.
+> - **factory method** — a static method that returns an instance, used in place of (or alongside) a constructor; e.g. `Kingdom.LoadFrom(snap, ...)`
+> - **property-based testing** — write *one* test that asserts something is true for *any* input; we'll do a light version with a loop.
 
 ---
 
 ## Why round-trip
 
-Serialisation bugs are sneaky. The save looks fine in Notepad. The load returns *some* kingdom. But subtle things go wrong: a building's `Level` resets to 1, a citizen's job is lost, the resource ordering shifts. You don't notice until the player loads a save 3 weeks later and complains.
+Saving bugs are sneaky. The save looks fine in Notepad. The load returns *some* kingdom. But subtle things go wrong: a building's `Level` resets to 1, a citizen's job is lost, the resource ordering shifts. You don't notice until the player loads a save three weeks later and complains.
 
-The cure: a test that says **"save *this* kingdom; load it back; everything equal."** Run it on dozens of randomised kingdoms; if any fails, the JSON shape is wrong. **One test, infinite confidence.**
+The cure: a test that says *"save this kingdom; load it back; everything equal."* Run it on dozens of randomised kingdoms; if any fail, the JSON form is wrong. One test pattern, lots of confidence.
 
-## Persistence forces design
+## Saving forces design
 
 To round-trip a kingdom, we need to *reconstruct* it from data. Today's `Kingdom` constructor takes `(name, IRandom, IClock)` and lets you `AddBuilding(...)`, `AddCitizen(...)`. But `Day` has only a `private set;` — there's no way to load `Day = 47`. Same for `Building.Level`. Same for `Resources` (you can `Add` but the snapshot might say `Gold = 250`).
 
 We have three options:
 
-**A.** Make those setters public. *Unsafe* — anyone could now mess with state in production.
-**B.** Add a `LoadFrom` static factory that knows how to set them. *Cleaner.*
-**C.** Use reflection at load time to bypass setters. *Magical, fragile.*
+**A.** Make those setters public. Unsafe — anyone could now mess with state in production.
+**B.** Add a `LoadFrom` static factory method that knows how to set them. Cleaner.
+**C.** Use reflection at load time to bypass setters. Magical, fragile.
 
-Option B is the standard answer. We add a small **factory method** on `Kingdom` that takes a snapshot record and returns a fully-loaded `Kingdom`.
+Option B is the standard answer. We add a small *factory method* (a static method that returns an instance) on `Kingdom` that takes a snapshot record and returns a fully-loaded `Kingdom`.
 
-> **Lesson within a lesson:** *adding persistence often pushes you to redesign the model.* That's a feature, not a bug. The model that "looks right" sometimes only looks right for one runtime. Persistence forces you to confront the data shape.
+> **Lesson within a lesson:** adding load support often pushes you to redesign the model. That's a feature, not a problem. The model that "looks right" sometimes only looks right for one runtime. Persistence forces you to confront the data form.
 
 ## Delta starter
 
 - **NEW:** `Kingdom.Engine/Snapshots/KingdomSnapshot.cs` (records: `KingdomSnapshot`, `BuildingSnapshot`, `CitizenSnapshot`)
 - **MODIFIED:** `Kingdom.Engine/Kingdom.cs` (adds `ToSnapshot()`, `static LoadFrom(snap, rng, clock)`)
-- **MODIFIED:** `Kingdom.Engine/Buildings/Building.cs` (adds protected constructor `(string name, int level)` for load)
+- **MODIFIED:** `Kingdom.Engine/Buildings/Building.cs` (adds `protected` constructor `(string name, int level)` for load)
 - **MODIFIED:** `Kingdom.Engine/Buildings/Farm.cs`, `Lumberyard.cs`, `Mine.cs` (load constructor each)
 - **MODIFIED:** `Kingdom.Persistence/KingdomJsonStore.cs` (gains `SaveFull` / `LoadFull` returning a `Kingdom`)
 - **NEW:** `tests/Kingdom.Persistence.Tests/RoundTripTests.cs`
@@ -59,7 +62,7 @@ public record BuildingSnapshot(string Kind, string Name, int Level);
 public record CitizenSnapshot(string Name);
 ```
 
-A flat shape — arrays of small records. Easy for JSON, easy to read.
+A flat layout — arrays of small records. Easy for JSON, easy to read.
 
 `Kind` is a string: `"Farm"`, `"Lumberyard"`, `"Mine"`. We'll switch on it during load.
 
@@ -86,7 +89,7 @@ public class Building
 }
 ```
 
-`protected` — only the subclasses can use this constructor. Keeps the *normal* construction path the same (start at level 1).
+`protected` — only the subclasses can use this constructor. The normal construction path stays the same (start at level 1).
 
 `Farm.cs`, `Lumberyard.cs`, `Mine.cs` each get a matching constructor:
 
@@ -99,7 +102,7 @@ public class Farm : Building
 }
 ```
 
-(Same shape for Lumberyard and Mine.)
+(Same arrangement for Lumberyard and Mine.)
 
 ## Step 3 — `Kingdom.ToSnapshot()` and `Kingdom.LoadFrom(...)`
 
@@ -158,6 +161,7 @@ public static Kingdom LoadFrom(KingdomSnapshot snap, IRandom rng, IClock clock)
 ## Step 4 — `Kingdom.Day` becomes a backing field
 
 To set Day from a static method that received an instance, we need to write to it. Options:
+
 - Make `Day` setter `internal` (visible inside the engine).
 - Add a private `_day` field that the property reads.
 
@@ -314,7 +318,7 @@ public class RoundTripTests
 }
 ```
 
-The `[Theory]` test runs 4 times — each `[InlineData]` is one run. **All four pass = the round-trip works for that whole family of kingdoms.** That's the seed of property-based testing.
+The `[Theory]` test runs four times — each `[InlineData]` is one run. All four pass means the round trip works for that whole family of kingdoms. That's the seed of property-based testing.
 
 Run:
 
@@ -326,29 +330,30 @@ Expect `Passed: 51` (43 + 8: 5 round-trip facts + the 1 theory expanding to 4 ca
 
 ## Tinker
 
-- Add a fifth `[InlineData]` — `999`. Runs in <1 second. Round-trip is *fast*.
-- Edit a saved JSON file by hand: change `"Gold": 100` to `"Gold": 999999`. Reload. The kingdom now has 999999 gold. **JSON is honest** — whatever's in the file becomes the state.
-- Delete the `Kind` field from a snapshot building. Reload. **Throws** at the `switch` — *"Unknown building kind ''."* That's a good failure: explicit and immediate.
-- Add a fourth building subclass (`Quarry`?). Add it to the `switch`. **Watch the round-trip test pass without changes** — exactly because the test loops over whatever the kingdom contains.
+Add a fifth `[InlineData]` — `999`. Runs in under a second. Round-trip is fast.
 
-## Name it
+Edit a saved JSON file by hand: change `"Gold": 100` to `"Gold": 999999`. Reload. The kingdom now has 999999 gold. JSON is honest — whatever's in the file becomes the state.
 
-- **Round-trip.** Save then load; assert equal.
-- **Snapshot.** Complete data shape of the model at a moment.
-- **Factory method.** A static method returning an instance, used in place of a constructor. Common for "build from data" scenarios.
-- **`protected` constructor.** Only subclasses can call it. Useful for "internal" ways of constructing without exposing them publicly.
-- **Property-based testing (light).** Instead of testing one specific case, test a *property* that should hold across many cases — using `[Theory] + [InlineData]` or a real property library like FsCheck.
+Delete the `Kind` field from a snapshot building. Reload. It throws at the `switch` — *"Unknown building kind ''."* That's a good failure: explicit and immediate.
 
-## The rule of the through-line
+Add a fourth building subclass (`Quarry`?). Add it to the `switch`. The round-trip test passes without changes — exactly because the test loops over whatever the kingdom contains.
 
-> **Persistence is the most honest pressure on a model.** When you can't load it back exactly, the model itself usually has the bug — not the persistence code.
+## What you just did
 
-The `Day` field redesign in this module wasn't *because* of JSON; it was already a flaw waiting to happen. JSON just made it visible.
+You proved a save-and-load cycle preserves the whole kingdom — five round-trip facts plus a `[Theory]` running four day-counts each (51 tests total, eight new today). To get there, you redesigned three small parts of the engine: a `protected` constructor on `Building`, a backing field for `Day`, and a `SetTo` on `ResourceLedger`. None of those were *wrong* before, but they were under-exposed — the kind of design crack persistence is good at finding. You also met the **factory method** pattern (`Kingdom.LoadFrom`) and the seed of property-based testing (`[Theory] + [InlineData]`).
 
-## Quiz / challenge
+**Key concepts you can now name:**
 
-Open `quiz.md`.
+- **round-trip** — save, load, assert equal
+- **snapshot** — full data form of the model at a moment
+- **factory method** — `static` returning an instance
+- **`protected` constructor** — only subclasses can call it
+- **property-based testing (light)** — one assertion across many inputs
 
-## Connect
+## Quiz
 
-Module 2.4 introduces **SQL** — the language databases speak. We'll set up SQLite (a self-contained file database) and write our first `INSERT` and `SELECT`. JSON files are great for "one save"; databases are great for "every save your player ever made, queryable in any direction."
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 2.4 introduces **SQL** — the language databases speak. We'll set up SQLite (a self-contained file database) and write our first `INSERT` and `SELECT`. JSON files are great for *one* save; databases are great for *every save your player ever made, queryable in any direction*.

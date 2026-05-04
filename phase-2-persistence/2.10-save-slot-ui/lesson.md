@@ -1,24 +1,25 @@
 # Module 2.10 — Save-Slot UI (Interactive Console)
 
-> **Hook:** the demo `Program.cs` does the right things, but it's a script — *open program → it runs → done*. Real games loop. Today we wrap the CRUD operations from 2.9 in an interactive menu — *"1. New, 2. Load, 3. Delete, 4. Quit"* — and finally have something playable.
+The demo `Program.cs` does the right things, but it's a script — *open program → it runs → done*. Real games loop. Today we wrap the CRUD operations from Module 2.9 in an interactive menu — *"1. New, 2. Load, 3. Delete, 4. Quit"* — and finally have something playable.
 
 > **Words to watch**
+>
 > - **menu loop** — print options, read input, dispatch, repeat
 > - **`Console.ReadLine`** — read a line of input from the user
-> - **input validation** — handle the time the user types `"banana"` instead of a number
+> - **input validation** — handle the moment the user types `"banana"` instead of a number
 > - **`switch` statement** (vs expression) — useful when each branch *does something* rather than returning a value
 
 ---
 
 ## Why a real loop matters
 
-A script `Program.cs` is fine for testing your code. But a *user* — even an audience of one (Athos) — needs to *interact*. Today's loop is your first interactive shell. The pattern repeats at every layer:
+A script `Program.cs` is fine for testing your code. But a *user* — even an audience of one (you) — needs to *interact*. Today's loop is your first interactive runtime. The pattern repeats at every layer:
 
 - Console: `while (true) { print menu; read input; act; }`
 - Web API: `while (true) { receive request; route; act; respond; }`
 - Browser: `eventListener('click', () => act())` (event-driven; same idea)
 
-The shape changes; the heart is the same.
+The form changes; the heart is the same.
 
 ## Delta starter
 
@@ -140,9 +141,9 @@ public static class SaveSlotUI
 }
 ```
 
-Read this carefully. **Every method does one thing.** The dispatching `switch` in `Run` is the central nervous system. The handlers call out to the store and back.
+Read this carefully. Every method does one thing. The dispatching `switch` in `Run` is the central nervous system. The handlers call out to the store and back.
 
-`System.Console.WriteLine` (vs just `Console.WriteLine`) is a workaround — our class lives in `namespace Kingdom.Console`, which collides with the `System.Console` type name. Use the explicit `System.Console`.
+`System.Console.WriteLine` (instead of just `Console.WriteLine`) is a workaround — our class lives in `namespace Kingdom.Console`, which collides with the `System.Console` type name. Use the explicit `System.Console`.
 
 ## Step 2 — `Program.cs` becomes a one-liner
 
@@ -164,16 +165,16 @@ var store = new KingdomEfStore(dbPath);
 SaveSlotUI.Run(store, rng, clock);
 ```
 
-That's the whole shell. Read input, dispatch, persist. Engine and persistence do the actual work.
+That's the whole runtime. Read input, dispatch, save. Engine and persistence do the actual work.
 
-Build + run:
+Build and run:
 
 ```powershell
 dotnet build
 dotnet run --project Kingdom.Console
 ```
 
-You're now in your kingdom's *first real game loop*. New a kingdom, advance some days, save, quit, restart, load. **The kingdom has memory.**
+You're now in your kingdom's first real game loop. New a kingdom, advance some days, save, quit, restart, load. The kingdom has memory.
 
 ## Step 3 — testing an interactive UI
 
@@ -273,11 +274,12 @@ public class SaveSlotUITests
 ```
 
 The tests don't try to be exhaustive — they're *sanity* tests. Three things you really want to know:
+
 - Quit works
 - A full create → play → save → quit cycle persists
 - Bad input doesn't crash the loop
 
-(The first test asserts "Quit" appears in output; this works because `4` simply returns from `Run` — but if you want stronger evidence, assert that the menu doesn't appear *twice*.)
+(The first test asserts *"Quit"* appears in output; this works because `4` simply returns from `Run` — but if you want stronger evidence, assert that the menu doesn't appear *twice*.)
 
 Run:
 
@@ -289,29 +291,30 @@ Expect `Passed: 71` (68 + 3).
 
 ## Tinker
 
-- Add a `5. Quick stats` menu option that prints total saves, oldest, richest. **One LINQ query inside the handler.**
-- Add a renaming option to the play loop — read a new name, `k.Name = newName`... wait, `Name` is read-only. **Add a method `Rename(string)` to the engine.** Persistence forced a model change in 2.3; UX forces another one here.
-- Try running the program with redirected input from a file: `dotnet run --project Kingdom.Console < script.txt`. Whatever's in `script.txt` becomes the input. **Any console UI is automatable that way.**
-- `string.IsNullOrWhiteSpace(name)` — replace `IsNullOrEmpty`. Now `"   "` also fails validation. *Always* check for whitespace, not just empty.
+Add a `5. Quick stats` menu option that prints total saves, oldest, richest. One LINQ query inside the handler.
 
-## Name it
+Add a renaming option to the play loop — read a new name, `k.Name = newName`... wait, `Name` is read-only. Add a method `Rename(string)` to the engine. Saving forced a model change in Module 2.3; UX forces another one here.
 
-- **Menu loop.** `while (true) { print menu; read input; dispatch; }`. The pattern of every interactive shell.
-- **`Console.ReadLine`** — reads a line of user input. Returns `null` at EOF (input redirected from a file that ran out).
-- **`int.TryParse(raw, out var id)`.** *"Try* to parse, return `bool` for success, write the value to `id` if successful." Use this when input might be invalid; use `int.Parse` when you're sure.
-- **`Console.SetIn` / `SetOut`.** Redirect the console — invaluable for testing UIs that read/write to it.
-- **EOF handling.** A `null` return from `ReadLine` means the input stream ended. Always return cleanly when you see it; otherwise the loop spins forever in tests with redirected input.
+Try running the program with input redirected from a file: `dotnet run --project Kingdom.Console < script.txt`. Whatever's in `script.txt` becomes the input. Any console UI is automatable that way.
 
-## The rule of the through-line
+`string.IsNullOrWhiteSpace(name)` — replace `IsNullOrEmpty`. Now `"   "` also fails validation. Always check for whitespace, not just empty.
 
-> **The shell's job is *interaction* — read input, call the engine + store, render output. No game logic in the shell. No I/O in the engine.**
+## What you just did
 
-Compare today's `Program.cs` (5 lines) with the engine + store (~500 lines of "what does the kingdom *do*"). That ratio is healthy.
+You wrapped your save-slot CRUD in a real interactive menu. `Program.cs` collapsed from a long demo script to about five lines — set up the store, hand control to `SaveSlotUI.Run`. The UI loop reads input, dispatches to handlers, and the handlers do exactly what you'd expect. Three new tests script the input through `Console.SetIn`/`SetOut` (71 passing total): quit-works, full-cycle-persists, bad-input-recovers. From here on, the kingdom is something you can actually sit down and play across sessions.
 
-## Quiz / challenge
+**Key concepts you can now name:**
 
-Open `quiz.md`.
+- **menu loop** — print, read, dispatch, repeat
+- **`Console.ReadLine`** — read a line, returns `null` at EOF
+- **`int.TryParse`** — safe number parsing without exceptions
+- **`Console.SetIn` / `SetOut`** — script and capture in tests
+- **EOF handling** — return cleanly when input runs out
 
-## Connect
+## Quiz
 
-Module 2.11 closes Block 4: **Names That Earn Their Keep** — a deliberate naming pass over everything we've built across persistence. The thing that turns "good code" into "good code anyone can read in 6 months."
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
+
+Module 2.11 closes Phase 2: **Names That Earn Their Keep** — a deliberate naming pass over everything we've built across this phase. The thing that turns *"good code"* into *"good code anyone can read in six months."*

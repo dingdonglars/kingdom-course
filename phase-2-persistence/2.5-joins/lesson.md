@@ -1,8 +1,9 @@
 # Module 2.5 — JOINs
 
-> **Hook:** in 2.4 we had one table. Real apps have ten or fifty. Today we add a `buildings` table that *belongs to* the `kingdoms` table — and learn how to ask *"give me each kingdom along with all its buildings"* in one query. **This is what makes a database *relational*.**
+In Module 2.4 we had one table. Real apps have ten or fifty. Today we add a `buildings` table that *belongs to* the `kingdoms` table — and learn how to ask *"give me each kingdom along with all its buildings"* in one query. This is what makes a database *relational*.
 
 > **Words to watch**
+>
 > - **foreign key** — a column whose value is the `id` of a row in *another* table
 > - **JOIN** — combine rows from two tables on a matching condition
 > - **`INNER JOIN`** — only rows that exist on *both* sides
@@ -13,7 +14,7 @@
 
 ## Why two tables
 
-Storing buildings inside the `kingdoms` table is awkward. How would you fit a list of buildings into one cell? You'd have to JSON-encode them — which works, but you can't *query inside* JSON cleanly. **Each entity gets its own table; relationships are foreign keys.**
+Storing buildings inside the `kingdoms` table is awkward. How would you fit a list of buildings into one cell? You'd have to JSON-encode them — which works, but you can't query *inside* JSON cleanly. Each entity gets its own table; relationships are foreign keys.
 
 ```
 kingdoms                 buildings
@@ -162,9 +163,9 @@ public static class SqliteJoinsDemo
 }
 ```
 
-Notice the helpers (`Exec`, `Read<T>`, `InsertKingdom`, `InsertBuilding`). They're not magic — just small reductions of the boilerplate. **Once you write SQL three times, extract a helper.**
+Notice the helpers (`Exec`, `Read<T>`, `InsertKingdom`, `InsertBuilding`). They're not magic — just small reductions of the boilerplate. Once you write SQL three times, extract a helper.
 
-`last_insert_rowid()` is a SQLite function that returns the autoincrement id of the last `INSERT`. Standard pattern for "I just inserted; what's its id?"
+`last_insert_rowid()` is a SQLite function that returns the autoincrement id of the last `INSERT`. The standard pattern for *"I just inserted; what's its id?"*
 
 ## Step 2 — call from console
 
@@ -191,7 +192,7 @@ foreach (var c in counts)
 
 `Stoneholt` shows up with `0` because `LEFT JOIN` keeps it; `INNER JOIN` would have dropped it.
 
-Run + look at the output.
+Run it and look at the output.
 
 ## Step 3 — tests
 
@@ -260,32 +261,30 @@ Expect `Passed: 57` (54 + 3).
 
 ## Tinker
 
-- Switch the LEFT JOIN to INNER JOIN in the counts query. **Stoneholt disappears.** That's the difference visualised.
-- Add a `WHERE k.name LIKE 'B%'` clause. Only Briarholm. **`LIKE` + `%` is SQL's wildcard.**
-- Try `SELECT k.name, b.kind, AVG(b.level) FROM kingdoms k JOIN buildings b ON b.kingdom_id = k.id GROUP BY k.id, b.kind`. Aggregate by *two* dimensions.
-- Drop the foreign key reference: `kingdom_id INTEGER NOT NULL` (without `REFERENCES kingdoms(id)`). Insert a building with `kingdom_id = 999`. **It works** — by default, SQLite doesn't enforce foreign keys (a quirk). Run `PRAGMA foreign_keys = ON;` first to enforce them.
+Switch the LEFT JOIN to INNER JOIN in the counts query. Stoneholt disappears. That's the difference made visible.
 
-## Name it
+Add a `WHERE k.name LIKE 'B%'` clause. Only Briarholm shows up. `LIKE` + `%` is SQL's wildcard.
 
-- **Foreign key.** A column whose value matches an `id` in another table.
-- **`JOIN`.** Combine rows from two tables on a condition.
-- **`INNER JOIN`.** Only matched rows. (The default if you just write `JOIN`.)
-- **`LEFT JOIN`.** All rows from the left table; matching from the right or `NULL`.
-- **`GROUP BY`** + **aggregate**. `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`. One result row per group.
-- **Alias (`k`, `b`).** A short name for a table in a query.
-- **`last_insert_rowid()`.** SQLite function: id of the row I just inserted.
-- **`PRAGMA foreign_keys = ON`.** SQLite-specific opt-in to enforce foreign keys.
+Try `SELECT k.name, b.kind, AVG(b.level) FROM kingdoms k JOIN buildings b ON b.kingdom_id = k.id GROUP BY k.id, b.kind`. Aggregate by *two* dimensions at once.
 
-## The rule of the through-line
+Drop the foreign key reference: `kingdom_id INTEGER NOT NULL` (without `REFERENCES kingdoms(id)`). Insert a building with `kingdom_id = 999`. It works — by default, SQLite doesn't enforce foreign keys (a quirk). Run `PRAGMA foreign_keys = ON;` first to enforce them.
 
-> **Each entity gets its own table.** Don't pack lists into a column. Use a child table with a foreign key. The schema becomes more queryable, and your queries become readable English.
+## What you just did
 
-This is the same instinct as *"each class has one responsibility"* — applied to data shape.
+You went from one table to two and from one query to four. Buildings now belong to kingdoms via a foreign key, and you can ask the database real questions about both at once: every building with its kingdom (`INNER JOIN`), every kingdom *even if it has no buildings* (`LEFT JOIN`), and the count of buildings per kingdom (`GROUP BY` + `COUNT`). Three new tests prove the queries return what you expect — 57 passing total. You also met `last_insert_rowid()`, the standard SQLite trick for getting the id of the row you just inserted.
 
-## Quiz / challenge
+**Key concepts you can now name:**
 
-Open `quiz.md`.
+- **foreign key** — a column pointing at another table's id
+- **`INNER JOIN`** — only rows that match on both sides
+- **`LEFT JOIN`** — every row from the left, even unmatched
+- **`GROUP BY` + aggregate** — `COUNT`/`SUM`/`AVG`, one row per group
+- **table alias** — `k` for `kingdoms`; readability win
 
-## Connect
+## Quiz
+
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+
+## Next
 
 Module 2.6 introduces **EF Core** — the .NET ORM (object-relational mapper) that maps `class Kingdom { }` to a row in a table, and lets you write `dbContext.Kingdoms.Add(kingdom)` instead of raw SQL. Same database underneath; less ceremony on top.
