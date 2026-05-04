@@ -112,13 +112,22 @@ You now have:
 
 In your **repo root** (next to all four folders), create a `README.md` and write it yourself using the four-section anatomy above. Each toy gets two sentences: one *what*, one *how to run*. Then a "what I learned" section across all four (one paragraph). Then "what's next" — what would you add next?
 
-Commit. Push.
+## Commit your work
 
-```powershell
-git add .
-git commit -m "M0: The Joke Toolbox - four toys + README"
-git push
-```
+In VS Code's Source Control panel (`Ctrl + Shift + G G`):
+
+1. Stage your changes — hover **Changes** and click `+`.
+2. Commit message: *"M0: The Joke Toolbox - four toys + README"*.
+3. Click the blue **checkmark** to commit.
+4. Click **Sync Changes** to push to GitHub.
+
+> **Same move, in the terminal:**
+>
+> ```powershell
+> git add .
+> git commit -m "M0: The Joke Toolbox - four toys + README"
+> git push
+> ```
 
 ## What you just did
 
@@ -139,7 +148,7 @@ You just shipped M0. Time for the ritual.
 1. **`journal/wins.md`** — open it in your repo and write one paragraph about M0 in your own words. What's in The Joke Toolbox, what was hardest, what surprised you.
 2. **`#wins` Slack post** — paste the link to your repo plus a screenshot of one toy running. One-line caption like *"M0 shipped — The Joke Toolbox."*
 3. **Before/after one-liner** — *"Four weeks ago I'd never written code. Today I shipped four programs."* Say it out loud. Mean it.
-4. **Tag the milestone locally:**
+4. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags:
 
    ```powershell
    git tag m0-spark-week-complete

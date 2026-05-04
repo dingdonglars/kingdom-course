@@ -213,13 +213,24 @@ Run the M1 challenge:
 dotnet test path\to\challenges\M1\M1.Tests.csproj
 ```
 
-Green means M1 met. Commit and push.
+Green means M1 met.
 
-```powershell
-git add .
-git commit -m "M1: Inventory Tool v2 — hardened + debugged"
-git push
-```
+## Commit your work
+
+In VS Code's Source Control panel (`Ctrl + Shift + G G`):
+
+1. Stage your changes — hover **Changes** and click `+`.
+2. Commit message: *"M1: Inventory Tool v2 — hardened + debugged"*.
+3. Click the blue **checkmark** to commit.
+4. Click **Sync Changes** to push to GitHub.
+
+> **Same move, in the terminal:**
+>
+> ```powershell
+> git add .
+> git commit -m "M1: Inventory Tool v2 — hardened + debugged"
+> git push
+> ```
 
 ## What you just did
 
@@ -241,7 +252,7 @@ You just shipped M1. Time for the ritual.
 1. **`journal/wins.md`** — open it in your repo and write one paragraph about M1 in your own words. What the Inventory Tool does, what was harder than expected, what you trust about it now that you didn't trust about v1.
 2. **`#wins` Slack post** — paste the link to your repo plus a screenshot of the tool running. One-line caption like *"M1 shipped — Inventory Tool v2."*
 3. **Before/after one-liner** — *"Six weeks ago I'd never written a line of code. Today I shipped a tool I'll actually use."* Say it out loud.
-4. **Tag the milestone locally:**
+4. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags:
 
    ```powershell
    git tag m1-inventory-tool-complete

@@ -59,7 +59,7 @@ Aim for ~500 words total. The exercise isn't literary polish — it's thinking a
 
 ## Step — tag the bonus
 
-Once your reflection is written and committed:
+Once your reflection is written and committed, tag the bonus. This one's CLI-only — the panel doesn't have a button for tags:
 
 ```powershell
 git tag b2-context-engineering-complete

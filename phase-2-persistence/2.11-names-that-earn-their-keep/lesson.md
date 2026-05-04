@@ -78,13 +78,7 @@ In one focused 30-minute sitting:
 3. Same for console.
 4. Use the IDE's **Rename refactoring** (F2 in VS / Rider; Ctrl+Shift+R in some others). It updates all places where the name is used + tests + comments + XML doc references in one shot. Never search-and-replace by hand for renames — you'll miss a usage.
 5. After each rename: `dotnet build` (must still be 0 errors) + `dotnet test` (must still be 71 passing).
-6. Commit at *each* rename, with prefix `[M3-rename]`:
-
-   ```
-   git commit -am "[M3-rename] drop KingdomEfStore.ListAll (callers used ListSlots; redundant)"
-   ```
-
-   Small commits. Easy to review. Easy to revert if a rename was wrong.
+6. **Commit at *each* rename**, with prefix `[M3-rename]` — for example, *"[M3-rename] drop KingdomEfStore.ListAll (callers used ListSlots; redundant)"*. (Source Control panel → stage → commit → Sync. Or CLI: `git commit -am "[M3-rename] ..." && git push`.) Small commits. Easy to review. Easy to revert if a rename was wrong.
 
 ## Common renames you might do
 
@@ -111,7 +105,12 @@ There is no code change to ship — the renames you do are **specific to your co
 3. `dotnet test` — still 71 passing.
 4. Append the M3 entry to `wins.md`.
 5. Post your before/after to `#wins` on Slack.
-6. Tag locally: `git tag m3-phase-2-complete` (then `git push origin m3-phase-2-complete` if your remote is set up).
+6. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags:
+
+   ```powershell
+   git tag m3-phase-2-complete
+   git push origin m3-phase-2-complete
+   ```
 
 ## Tinker
 
@@ -146,7 +145,7 @@ Open `quiz.md`. (Lighter than usual — naming-themed.) When you're done, jot yo
 > 1. **`journal/wins.md` entry** — a paragraph in your own words about what changed between M2 and M3. Include the test count, the four save backends, the slot picker.
 > 2. **`#wins` Slack post** — link to the PR + a short screenshot or terminal capture, and one line: *"Kingdom v2 — Persisted. Save it, quit, reopen, still there."*
 > 3. **Before/after one-liner** — *"A few weeks ago my kingdom died on close. Today it survives across sessions, with save slots."*
-> 4. **Tag it** — `git tag m3-phase-2-complete`.
+> 4. **Tag it** — `git tag m3-phase-2-complete` then `git push origin m3-phase-2-complete`. (CLI-only — the panel doesn't have a button for tags.)
 >
 > Then take the rest of the day off.
 

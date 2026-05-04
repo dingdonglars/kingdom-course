@@ -24,7 +24,7 @@ The model answer is ~110 words. That's roughly the size you're aiming for — *n
 
 ## Step 2 — tag the bonus
 
-Once your paragraph is written and committed to your journal, tag the bonus complete:
+Once your paragraph is written and committed to your journal, tag the bonus complete. This one's CLI-only — the panel doesn't have a button for tags:
 
 ```powershell
 git tag b1-engine-vs-shell-on-the-database-complete

@@ -45,7 +45,7 @@ Same pattern as M2 and M3 — but louder, because M4 is the milestone where the 
    ```
 
 3. Take a screenshot of your live URL plus the Scalar UI. Post in `#wins`.
-4. Tag locally: `git tag m4-phase-3-complete && git push origin m4-phase-3-complete`
+4. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags: `git tag m4-phase-3-complete && git push origin m4-phase-3-complete`
 5. Open the milestone PR (your code → mentor for the M4 review). Per the post-unlock template (next section), include the AI-assistance section even though it's empty for this PR.
 
 ## The AI Unlock
@@ -89,25 +89,18 @@ Every post-unlock PR description includes an AI-assistance section:
 
 ## Flipping the mode flag — manual step
 
-In **three** repos, find the `Current mode:` line in the CLAUDE rules file and change it:
+Open `CLAUDE.md` at the root of your kingdom repo (`C:\code\kingdom\CLAUDE.md`). Find the line:
 
 ```diff
 -**Current mode: `pre-unlock`.**
 +**Current mode: `post-unlock`.**
 ```
 
-The three repos and the file in each:
+Change it. Save.
 
-- Course: `D:\Athos\kingdom-course\CLAUDE.md`
-- Starter-template: `D:\Athos\kingdom-course\starter-template\CLAUDE.md`
-- Workshop: `D:\Athos\kingdom-curriculum\learner-CLAUDE.md` *(in the curriculum repo only, the file is named `learner-CLAUDE.md` because the workshop's root `CLAUDE.md` is reserved for OpenWolf — same content, different filename)*
-- (The reference repo has no CLAUDE rules file — it's pure code, no AI rules apply there)
+The next time you (or any AI agent) opens this project, the AI reads the new mode and behaves accordingly. **No code change required in the AI's prompt — the file flag is the contract.**
 
-Commit each:
-
-```powershell
-git commit -am "[M4] AI Unlock — flip mode flag pre-unlock → post-unlock"
-```
+**Commit it.** *"[M4] AI Unlock — flip mode flag pre-unlock → post-unlock"*. (Source Control panel → stage → commit → Sync. Or CLI: `git add . && git commit -m "[M4] AI Unlock — flip mode flag pre-unlock → post-unlock" && git push`.)
 
 The next time you (or any teammate, or any AI agent) opens any of these projects, the AI reads the new mode and behaves accordingly. **No code change required in the AI's prompt — the file flag is the contract.**
 

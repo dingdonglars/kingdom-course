@@ -114,13 +114,20 @@ Read what this does:
 - **Job 2 (`deploy`)** — download the build output; deploy to Azure
 - **Tests run before deploy.** A failing test fails the deploy. **CI is the guard.**
 
-Commit and push the workflow:
+**Commit and push the workflow.** In VS Code's Source Control panel (`Ctrl + Shift + G G`):
 
-```powershell
-git add .github/workflows/deploy.yml
-git commit -m "[infra] add deploy-to-Azure workflow"
-git push
-```
+1. Stage `.github/workflows/deploy.yml` — click `+` next to it.
+2. Commit message: *"[infra] add deploy-to-Azure workflow"*.
+3. Click the blue **checkmark** to commit.
+4. Click **Sync Changes** to push to GitHub.
+
+> **Same move, in the terminal:**
+>
+> ```powershell
+> git add .github/workflows/deploy.yml
+> git commit -m "[infra] add deploy-to-Azure workflow"
+> git push
+> ```
 
 GitHub → Actions tab → watch the workflow run. About three minutes later, your site is live.
 

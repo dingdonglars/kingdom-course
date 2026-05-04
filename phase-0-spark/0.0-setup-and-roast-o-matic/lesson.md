@@ -1,11 +1,11 @@
 # Module 0.0 — Setup + Roast-O-Matic
 
-By the end of today you have a real program on your computer that prints roasts you wrote — and it's on the internet, in your own GitHub repo. Two hours from now you'll have done what most people think takes weeks. We're going to install some tools, write a tiny program, and push it where the world can see it.
+By the end of today you have a real program on your computer that prints roasts you wrote — and it's on the internet, in your own GitHub repo. Two and a half hours from now you'll have done what most people think takes weeks. We're going to install some tools, set up the folder where your year of work lives, write a tiny program, and push it where the world can see it.
 
 ## What you need first
 
 - A Windows PC (you have this).
-- About two hours uninterrupted.
+- About two and a half hours uninterrupted.
 - Lars sitting next to you for the install part. The fun starts after that.
 
 ---
@@ -32,35 +32,115 @@ You should see three version numbers. If any of them say "not found", flag it fo
 
 ---
 
-## Part 2 — Your first repo (about 10 minutes; you drive)
+## Part 2 — Set up your work folder (about 15 minutes; you drive)
 
-A *repo* is short for repository — a folder of code that git tracks for you. GitHub stores a copy on the internet so you don't lose it.
+Before any code, set up the folder where everything for this course lives.
 
 > **What git really is, in five sentences.** Git is a tool that takes *snapshots* of your code — every time you commit, it saves the whole state of the folder under a label so you can come back to it later. The snapshots live on your computer (the *local* copy) and on GitHub (the *remote* copy); pushing copies new snapshots up, and you can pull them down on any other machine. A *commit* is one labelled snapshot with a short message saying what changed; a *push* is shipping those commits to the internet. You'll be doing dozens of these in the first week and they'll feel weird before they feel normal — that's fine. The big idea: your code is never just *the file as it is now*; it's the whole history of how it got there, and git remembers the whole thing.
 
-1. Go to [github.com/new](https://github.com/new).
-2. **Name your repo.** This is where your year of work lives. Pick a name you like (you can rename later, but most people don't).
-3. **Set it Public.** Don't worry — there's nothing in it yet.
-4. **Tick "Add a README file."**
-5. Click **Create repository**.
+### A home for your code
 
-Now copy the repo URL from GitHub. In PowerShell:
+Pick one folder on your computer where all your course work will live. Don't put it under `Documents` (Windows tends to sync that to OneDrive, which interferes with git). The simplest, cleanest choice — open PowerShell and type:
 
 ```powershell
-cd $HOME
-git clone <the-url-you-just-copied>
-cd <your-repo-name>
+mkdir C:\code
 ```
 
-You now have a folder on your PC that's connected to GitHub. Anything you commit and push here goes to the internet.
+From now on, anything related to this course goes inside `C:\code\`.
+
+### Get the course onto your computer
+
+You're reading this on GitHub right now. From now on, you'll read lessons from your own machine — faster, available offline, and the same files include the starter kit you'll need in a few minutes. In PowerShell:
+
+```powershell
+cd C:\code
+git clone https://github.com/dingdonglars/kingdom-course
+```
+
+You now have `C:\code\kingdom-course\` — every lesson, the glossary, and the starter kit, all on disk.
+
+### Make YOUR repo on GitHub
+
+This is the repo for *your* year of work — separate from the course repo. Go to [github.com/new](https://github.com/new).
+
+1. **Name your repo `kingdom`.** *(Lessons refer to `kingdom`; pick differently and just substitute.)*
+2. **Set it Public.**
+3. **Don't tick "Add a README file"** — we'll bring in the starter README from the day-1 kit in Part 3.
+4. Click **Create repository**.
+
+Copy the repo URL from the green **Code** button.
+
+### Clone YOUR repo into `C:\code\`
+
+In VS Code:
+
+1. Open VS Code.
+2. `Ctrl + Shift + P` to open the Command Palette → type *"Git: Clone"* → Enter.
+3. Paste the repo URL.
+4. **When the file picker opens, navigate to `C:\code\` and click _Select Repository Location_.** The picker often defaults to your home folder or `Documents` — make sure the path bar shows `C:\code\` before you click. Otherwise the repo lands in the wrong place.
+5. When VS Code asks *"Would you like to open the cloned repository?"*, click **Open**.
+
+You now have `C:\code\kingdom\` on your PC, connected to GitHub, open in VS Code.
+
+> **From tomorrow on**, two ways to come back here: in VS Code, *File → Open Recent → kingdom*. Or in PowerShell: `cd C:\code\kingdom` then `code .` — the dot means *"this folder."* Either way, VS Code opens on the kingdom folder.
+
+> **Same move, in the terminal.** If you ever want to do this from PowerShell instead — useful when you're away from VS Code, or following a tutorial that assumes the terminal:
+>
+> ```powershell
+> cd C:\code
+> git clone <the-url-you-just-copied>
+> cd kingdom
+> ```
+>
+> Both ways do the same thing. Through the year you'll mostly use VS Code's git buttons; the terminal stays available for when it's faster.
 
 ---
 
-## Part 3 — Roast-O-Matic (about 75 minutes; you drive)
+## Part 3 — Drop in the day-1 kit (about 10 minutes)
 
-Inside your repo folder, run:
+Your `kingdom` repo is empty. Time to drop in the foundation — the conventions, the AI rules, the journal skeleton, all the files lessons will reference later. The course repo's `starter-template/` folder has them ready.
+
+### Copy the starter files into your repo
+
+In PowerShell:
 
 ```powershell
+Copy-Item -Recurse C:\code\kingdom-course\starter-template\* C:\code\kingdom\
+```
+
+That brings in `STANDARDS.md`, `CLAUDE.md` (the AI rules), `.claude/commands/` (your slash commands), `journal/` (where wins and reflections live), `.github/PULL_REQUEST_TEMPLATE.md`, `.editorconfig`, `.gitignore`, and a starter `README.md` you'll personalise later.
+
+### Commit the foundation — your first time using the Source Control panel
+
+Switch back to VS Code (the kingdom folder is still open from Part 2). The git workflow lives in the **Source Control** panel:
+
+1. Click the **Source Control** icon in the left sidebar — third icon down, looks like a branch with a fork. (Shortcut: `Ctrl + Shift + G` then `G`.)
+2. You'll see a list of new files under *Changes*. Hover the word **Changes** and click the `+` icon to stage them all.
+3. In the box at the top, type a commit message: *"day-1 kit"*.
+4. Click the blue **checkmark** to commit. The commit is on your computer.
+5. Click **Sync Changes** at the bottom of the panel (or the `...` menu → **Push**) to send it to GitHub. (If GitHub asks you to sign in, follow the prompts. Lars helps.)
+
+Refresh your repo on github.com — the foundation is now live.
+
+> **Same move, in the terminal:**
+>
+> ```powershell
+> cd C:\code\kingdom
+> git add .
+> git commit -m "day-1 kit"
+> git push
+> ```
+>
+> The buttons in VS Code do exactly these four steps for you. Through the year you'll mostly use the buttons; the terminal stays useful for when something is faster typed than clicked.
+
+---
+
+## Part 4 — Roast-O-Matic (about 60 minutes; you drive)
+
+Inside your `kingdom` repo, you'll create a small console project. Open PowerShell:
+
+```powershell
+cd C:\code\kingdom
 dotnet new console -n RoastOMatic
 cd RoastOMatic
 dotnet run
@@ -76,15 +156,7 @@ Hello, World!
 
 ### Do it — make it print roasts
 
-Open the `RoastOMatic` folder in VS Code:
-
-```powershell
-code .
-```
-
-(If `code` isn't recognised, open VS Code by hand and use *File → Open Folder*.)
-
-Open `Program.cs`. You'll see one line: `Console.WriteLine("Hello, World!");`. Replace it with the canonical demo (copy from `starter/Program.cs`):
+Open `Program.cs` in VS Code (it should already be visible in the file tree on the left). You'll see one line: `Console.WriteLine("Hello, World!");`. Replace it with the canonical demo (copy from `starter/Program.cs` in the course repo):
 
 ```csharp
 string[] roasts = {
@@ -120,24 +192,32 @@ Six weeks from now, you'll laugh at how simple this seemed. Right now: it should
 
 ---
 
-## Part 4 — Push it to GitHub (about 10 minutes)
+## Part 5 — Push the toy to GitHub (about 10 minutes)
 
-Back in PowerShell, in the `RoastOMatic` folder:
+Time to ship the roasts you wrote. You've already done this once (the day-1 kit in Part 3) — same panel, same five clicks.
 
-```powershell
-cd ..
-git add .
-git commit -m "first roasts of my own"
-git push
-```
+In VS Code's Source Control panel:
 
-(If `git push` asks for credentials, follow the prompts. Lars helps.)
+1. Open the **Source Control** panel (`Ctrl + Shift + G G` if it isn't visible).
+2. You'll see your changed files under *Changes* — including the new `RoastOMatic/` folder and its contents. Hover **Changes** → click `+` to stage all.
+3. Commit message: *"first roasts of my own"*.
+4. Click the blue checkmark to commit.
+5. Click **Sync Changes** to push to GitHub.
 
 Now go to your repo on github.com in the browser. **Refresh.** Your code is there. It's on the internet.
 
+> **Same move, in the terminal:**
+>
+> ```powershell
+> cd C:\code\kingdom
+> git add .
+> git commit -m "first roasts of my own"
+> git push
+> ```
+
 ---
 
-## Part 5 — Join Slack, post your first win (about 15 minutes)
+## Part 6 — Join Slack, post your first win (about 15 minutes)
 
 Lars sends you an invite link to a Slack workspace called **`kingdom-hq`**. Open it, accept, set a display name, add a profile picture if you feel like it.
 
@@ -160,13 +240,14 @@ That's it. Lars probably won't reply (that's the rule for `#wins` — no reply e
 
 ## What you just did
 
-You installed the tools every working developer uses every day, made your own GitHub repo, wrote a program in C#, ran it on your machine, edited it to do something *you* wanted (your own roasts), pushed the result onto the internet, and posted your first win. Most of the year is exactly this — write code, run it, commit it, push it, share the win — just with bigger ideas.
+You installed the tools every working developer uses every day, set up a clean folder for your year of work, cloned the course onto your computer, made your own GitHub repo, dropped in the day-1 foundation, wrote a program in C#, ran it on your machine, edited it to do something *you* wanted (your own roasts), pushed it to the internet, and posted your first win. Most of the year is exactly this rhythm — write code, run it, commit it, push it, share the win — just with bigger ideas.
 
 **Key concepts you can now name:**
 
 - a *repo* — a folder of code that git tracks, with a copy on GitHub
-- *git commit* — saving a snapshot of your work
-- *git push* — sending your snapshot up to GitHub
+- *commit* — saving a snapshot of your work, with a message
+- *push* — sending your snapshots up to GitHub
+- the **Source Control panel** in VS Code — the buttons that do `add`, `commit`, `push` for you
 - *`dotnet run`* — build the C# code and run the result
 - the four Slack channels — `#general`, `#wins`, `#help`, `#milestones`
 

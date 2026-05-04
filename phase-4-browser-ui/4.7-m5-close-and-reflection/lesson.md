@@ -43,7 +43,7 @@ Posted to `#wins` on YYYY-MM-DD.
 
 Second, take a screenshot of your live URL plus the kingdom rendering, and post to `#wins` in Slack.
 
-Third, tag the milestone locally and push the tag:
+Third, tag the milestone. This one's CLI-only — the panel doesn't have a button for tags:
 
 ```powershell
 git tag m5-phase-4-complete

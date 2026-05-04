@@ -58,7 +58,7 @@ Same pattern as the previous milestones — bigger:
    Posted to `#wins` on YYYY-MM-DD.
    ```
 
-2. Tag locally: `git tag m6-phase-5-complete && git push origin m6-phase-5-complete`.
+2. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags: `git tag m6-phase-5-complete && git push origin m6-phase-5-complete`.
 3. Open the M6 milestone PR. Include the AI-assistance section in the description.
 4. Final viva with Lars — random-line walkthrough across the engine, plus a "tell me the story of one year" conversation.
 

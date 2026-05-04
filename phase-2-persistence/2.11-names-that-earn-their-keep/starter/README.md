@@ -9,4 +9,4 @@ After the rename party:
 
 - `dotnet build` — still 0 errors
 - `dotnet test` — still 71 passing
-- Tag locally + push: `git tag m3-block-4-complete && git push origin m3-block-4-complete`
+- Tag the milestone (CLI-only — the panel doesn't have a button for tags): `git tag m3-phase-2-complete && git push origin m3-phase-2-complete`

@@ -8,4 +8,4 @@ What you produce for this module is your filled-in journal entry. Commit it to y
 
 After completing:
 - `journal/3.0-reading.md` populated for both files
-- `git add journal/3.0-reading.md && git commit -m "[M3.0] reading notes — MvcSandbox + TodoApi"`
+- Commit *"[M3.0] reading notes — MvcSandbox + TodoApi"* via the Source Control panel (or CLI: `git add journal/3.0-reading.md && git commit -m "[M3.0] reading notes — MvcSandbox + TodoApi" && git push`)

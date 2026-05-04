@@ -28,11 +28,7 @@ In the Azure Portal:
 - App location: `web-vite/`
 - Output location: `dist/`
 
-Wait about two minutes. Azure creates the resource and commits a workflow file to your repo at `.github/workflows/azure-static-web-apps-*.yml`. Pull the change locally:
-
-```powershell
-git pull
-```
+Wait about two minutes. Azure creates the resource and commits a workflow file to your repo at `.github/workflows/azure-static-web-apps-*.yml`. Pull the change locally — in VS Code's Source Control panel, click the `...` menu → **Pull**. (Or in the terminal: `git pull`.)
 
 That's the deploy. Your frontend is live at `kingdom-yourname.azurestaticapps.net`. The Azure-generated workflow knows how to find the Vite build (because you told it `dist/`), and every push to `main` rebuilds and redeploys.
 

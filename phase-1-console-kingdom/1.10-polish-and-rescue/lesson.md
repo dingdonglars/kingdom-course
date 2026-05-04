@@ -151,7 +151,7 @@ There's no new code today. Walk through *your* repo:
 2. Add `<summary>` doc comments to `Kingdom`, `IRandom`, `IClock`, `EventEngine` (the four most "public" types). Skip the rest.
 3. `dotnet build` — must still be 0 errors.
 4. `dotnet test` — must still be 35 passing.
-5. Commit the polish: `git commit -am "[M2] polish: README + doc comments"`.
+5. **Commit the polish.** *"[M2] polish: README + doc comments"*. (Source Control panel → stage → commit → Sync. Or CLI: `git add . && git commit -m "[M2] polish: README + doc comments" && git push`.)
 
 ## Tinker
 

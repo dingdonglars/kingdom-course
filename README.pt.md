@@ -1,5 +1,13 @@
 # Kingdom — Um Curso de Programação
 
+```
+   _  _____ _   _  ____ ____   ___  __  __
+  | |/ /_ _| \ | |/ ___|  _ \ / _ \|  \/  |
+  | ' / | ||  \| | |  _| | | | | | | |\/| |
+  | . \ | || |\  | |_| | |_| | |_| | |  | |
+  |_|\_\___|_| \_|\____|____/ \___/|_|  |_|
+```
+
 > 🇬🇧 [Read in English](./README.md)
 
 Daqui a um ano, você vai mandar um link de Roblox para os seus amigos e eles vão jogar o seu jogo. Vão fazer login, construir fazendas numa grade, ver os recursos subirem, competir num placar de líderes. O mundo do jogo onde eles estão jogando — as regras de como funciona, o jeito como cresce, a parte que faz ele ser *divertido* — foi escrito por você, em código, do zero.
