@@ -32,8 +32,8 @@ if (app.Environment.IsDevelopment())
 var dbPath = Path.Combine(AppContext.BaseDirectory, "kingdoms.db");
 var store = new KingdomEfStore(dbPath);
 store.EnsureCreated();
-IRandom rng = new SystemRandom();
-IClock clock = new SystemClock();
+IRandom rng = new Kingdom.Engine.Infrastructure.SystemRandom();
+IClock clock = new Kingdom.Engine.Infrastructure.SystemClock();
 
 // auth endpoints
 app.MapGet("/login", () => Results.Challenge(new()

@@ -81,6 +81,8 @@ Secrets land in `%APPDATA%/Microsoft/UserSecrets/<id>/secrets.json` — outside 
 
 For deployment, the environment variables `Google__ClientId` / `Google__ClientSecret` work the same way (Azure App Service, container envs, etc.).
 
+> **Heads up — name collision.** `Microsoft.AspNetCore.Authentication` ships its own `SystemClock`, which clashes with our `Kingdom.Engine.Infrastructure.SystemClock`. Fully qualify ours: `new Kingdom.Engine.Infrastructure.SystemClock()`. Same family of issue as Module 1.4's `global::Kingdom.Engine.Kingdom`.
+
 ## Step 3 — wire auth in `Program.cs`
 
 ```csharp
