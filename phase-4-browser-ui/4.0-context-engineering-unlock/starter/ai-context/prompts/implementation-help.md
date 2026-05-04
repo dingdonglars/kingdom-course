@@ -1,4 +1,4 @@
-# Implementation help (post-gate)
+# Implementation help (post-unlock)
 
 Use when asking Claude to write non-trivial code.
 

@@ -50,7 +50,7 @@ Same shape as M2/M3/M4:
 2. Take a screenshot of your live URL + the kingdom rendering.
 3. Post to `#wins`.
 4. Tag locally: `git tag m5-block-6-complete && git push origin m5-block-6-complete`
-5. Open the milestone PR (your branch → mentor review). The PR description includes the AI-assistance section per post-gate template.
+5. Open the milestone PR (your branch → mentor review). The PR description includes the AI-assistance section per post-unlock template.
 
 ## Stretch — the optional Svelte taster
 
@@ -67,7 +67,7 @@ It's a one-page mental model shift. Most learners decide they like Svelte; some 
 
 - Compare your `KingdomCard.ts` (M4.4) to your Phase 0 `Program.cs`. **One file is 20 lines of clean TS; the other is hundreds of lines doing one thing**. The improvement is real.
 - Re-read `STANDARDS.md`. Does anything in there *now feel obvious*? That's mastery.
-- Re-read `ai-context/CLAUDE.md`. Notice you're now on `post-gate`. Has your AI use changed? What works? What doesn't?
+- Re-read `ai-context/CLAUDE.md`. Notice you're now on `post-unlock`. Has your AI use changed? What works? What doesn't?
 - Take a screenshot of your kingdom-on-browser + post it as your first commit message of Phase 5 (Roblox). Block 6 → Block 7 transition.
 
 ## Name it

@@ -1,12 +1,12 @@
-# Module 3.9 — M4 Close + the AI Unlock Gate
+# Module 3.9 — M4 Close + the AI Unlock
 
-> **Hook:** the kingdom is on the internet. Friends sign in with Google, save, play. **Block 5 is done.** This module is two things at once: the **M4 milestone close** (wins log, before/after, the per-milestone ritual) — and the **AI Unlock Gate**, the moment the rules around AI-assisted code change. From now on, you can ask the AI for *implementation* — provided you can explain every line you merge.
+> **Hook:** the kingdom is on the internet. Friends sign in with Google, save, play. **Block 5 is done.** This module is two things at once: the **M4 milestone close** (wins log, before/after, the per-milestone ritual) — and the **AI Unlock**, the moment the rules around AI-assisted code change. From now on, you can ask the AI for *implementation* — provided you can explain every line you merge.
 
 > **Words to watch**
-> - **AI Unlock Gate** — the curriculum's named transition: AI from "friction-only" to "real collaborator"
+> - **AI Unlock** — the curriculum's named transition: AI from "friction-only" to "real collaborator"
 > - **mode flag** — a single line in `ai-context/CLAUDE.md` that the AI reads to decide its behavior
 > - **viva** — a 1:1 oral defense of your code; mentor (Lars) asks "explain this line" — at random
-> - **AI-assistance section** — required block in every post-gate PR description: which lines did the AI write, and which did you?
+> - **AI-assistance section** — required block in every post-unlock PR description: which lines did the AI write, and which did you?
 
 ---
 
@@ -43,9 +43,9 @@ Same shape as M2, M3 — but louder, because M4 is the *gate*:
 
 3. Take a screenshot of your live URL + Scalar UI. Post in `#wins`.
 4. Tag locally: `git tag m4-block-5-complete && git push origin m4-block-5-complete`
-5. Open the milestone PR (your code → mentor for the M4 review). Per the post-gate template (next section), include the AI-assistance section even though it's empty for this PR.
+5. Open the milestone PR (your code → mentor for the M4 review). Per the post-unlock template (next section), include the AI-assistance section even though it's empty for this PR.
 
-## The AI Unlock Gate
+## The AI Unlock
 
 Until now, the AI was deliberately limited. The rules in `ai-context/CLAUDE.md`:
 
@@ -53,13 +53,13 @@ Until now, the AI was deliberately limited. The rules in `ai-context/CLAUDE.md`:
 - **🟨 OK when asked (limited)**: friction (git messes, env setup, error messages you've tried) · concept explanations *after* you've tried · routine boilerplate
 - **🟩 Always fine**: syntax lookups · naming suggestions · "is this good practice?"
 
-The AI reads its `Current mode: pre-gate` and pushes back when you ask for implementation. **From M4 onwards, the mode flips.** The new picture:
+The AI reads its `Current mode: pre-unlock` and pushes back when you ask for implementation. **From M4 onwards, the mode flips.** The new picture:
 
 - 🟥 still off-limits — but the bar is *"don't lose the lesson"* not *"don't write code"*
 - 🟨 expanded — implementation help is allowed, with a strict rule
 - 🟩 unchanged
 
-### The post-gate hard rule
+### The post-unlock hard rule
 
 > **You must be able to explain every line of AI-generated code before you merge it.**
 
@@ -71,7 +71,7 @@ This is the discipline that prevents *AI-rot* — the failure mode where you shi
 
 ### The PR template grows a section
 
-Every post-gate PR description includes an AI-assistance section:
+Every post-unlock PR description includes an AI-assistance section:
 
 ```markdown
 ## AI assistance
@@ -89,8 +89,8 @@ Every post-gate PR description includes an AI-assistance section:
 In **three** repos, find `ai-context/CLAUDE.md` and change line 7:
 
 ```diff
--**Current mode: `pre-gate`.**
-+**Current mode: `post-gate`.**
+-**Current mode: `pre-unlock`.**
++**Current mode: `post-unlock`.**
 ```
 
 The three repos:
@@ -102,7 +102,7 @@ The three repos:
 Commit each:
 
 ```powershell
-git commit -am "[M4] AI Unlock Gate — flip mode flag pre-gate → post-gate"
+git commit -am "[M4] AI Unlock — flip mode flag pre-unlock → post-unlock"
 ```
 
 The next time you (or any teammate, or AI agent) opens any of these projects, the AI reads the new mode and behaves accordingly. **No code change required in the AI's prompt — the file flag is the contract.**
@@ -116,16 +116,16 @@ The next time you (or any teammate, or AI agent) opens any of these projects, th
 
 ## Tinker
 
-- Compare the same prompt in pre-gate vs post-gate: ask Claude *"write me a function that converts a Kingdom to a JSON string."* Pre-gate: it pushes back. Post-gate: it writes the function and asks you to explain each line.
+- Compare the same prompt in pre-unlock vs post-unlock: ask Claude *"write me a function that converts a Kingdom to a JSON string."* Pre-gate: it pushes back. Post-gate: it writes the function and asks you to explain each line.
 - Read `ai-context/CLAUDE.md` end-to-end one more time. **You'll be back to it many times.**
 - Browse some "AI helped me" PRs in well-run open source projects. Notice the pattern: small commits, careful per-file review, the human author still owns the mental model.
 
 ## Name it
 
-- **AI Unlock Gate** — the named transition. M4. *Today.*
+- **AI Unlock** — the named transition. M4. *Today.*
 - **Mode flag** — single line in `CLAUDE.md` that controls AI behavior. Editable, gitable.
 - **Viva** — 1:1 oral defense at milestones. Random-line explanation tests.
-- **AI-assistance PR section** — required post-gate; "what I wrote vs what AI wrote vs what I'm unsure about."
+- **AI-assistance PR section** — required post-unlock; "what I wrote vs what AI wrote vs what I'm unsure about."
 - **Explanation as merge gate** — you can't ship code you can't explain.
 
 ## The rule of the through-line

@@ -1,4 +1,4 @@
-# Module 3.9 starter — M4 close + AI Unlock Gate
+# Module 3.9 starter — M4 close + AI Unlock
 
 No code delta. The starter ships:
 
@@ -10,4 +10,4 @@ No code delta. The starter ships:
 - course (`kingdom-course`)
 - starter-template (`kingdom-course/starter-template`)
 
-Change `pre-gate` → `post-gate`. Commit each. Push. **From now on, the AI will help with implementation, with the explanation-as-merge-gate rule.**
+Change `pre-unlock` → `post-unlock`. Commit each. Push. **From now on, the AI will help with implementation, with the explanation-as-merge-gate rule.**

@@ -12,7 +12,7 @@
 
 This is the block that converts your Kingdom from *a thing on your computer* to *a thing on the internet*. Same engine, new shell — now the shell is HTTP. Other people can hit your URL.
 
-This block also opens with **Module 3.0 — Reading Code Before Writing It** (a small read-someone-else's-API-code lesson before you write your own), and closes with the **AI Unlock Gate** at the milestone PR — after M4, the rules around AI-assisted implementation expand.
+This block also opens with **Module 3.0 — Reading Code Before Writing It** (a small read-someone-else's-API-code lesson before you write your own), and closes with the **AI Unlock** at the milestone PR — after M4, the rules around AI-assisted implementation expand.
 
 ## What you'll learn (named)
 

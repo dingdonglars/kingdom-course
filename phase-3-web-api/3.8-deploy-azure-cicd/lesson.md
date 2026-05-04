@@ -157,4 +157,4 @@ Open `quiz.md`.
 
 ## Connect
 
-Module 3.9 closes Block 5: **M4 milestone close + AI Unlock Gate**. The big one — after M4, the AI mode flag flips from `pre-gate` (friction-only) to `post-gate` (real assistance). Everything you build from Phase 4 onwards has the AI on as a real collaborator.
+Module 3.9 closes Block 5: **M4 milestone close + AI Unlock**. The big one — after M4, the AI mode flag flips from `pre-unlock` (friction-only) to `post-unlock` (real assistance). Everything you build from Phase 4 onwards has the AI on as a real collaborator.

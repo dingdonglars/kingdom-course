@@ -12,4 +12,4 @@ Posted to `#wins` on YYYY-MM-DD.
 
 ---
 
-> **Note:** this milestone also fires the **AI Unlock Gate**. The AI mode flag in `ai-context/CLAUDE.md` flipped from `pre-gate` to `post-gate` in the workshop, course, and starter-template. From now on, AI may help with implementation — provided I can explain every line I merge.
+> **Note:** this milestone also fires the **AI Unlock**. The AI mode flag in `ai-context/CLAUDE.md` flipped from `pre-unlock` to `post-unlock` in the workshop, course, and starter-template. From now on, AI may help with implementation — provided I can explain every line I merge.

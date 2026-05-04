@@ -169,4 +169,4 @@ Open `quiz.md`.
 
 ## Connect
 
-Module 3.8 is the last *content* module of Block 5: **deploy to Azure App Service + GitHub Actions CI/CD**. After that, Module 3.9 closes Block 5 with the **AI Unlock Gate** trigger and the M4 milestone.
+Module 3.8 is the last *content* module of Block 5: **deploy to Azure App Service + GitHub Actions CI/CD**. After that, Module 3.9 closes Block 5 with the **AI Unlock** trigger and the M4 milestone.

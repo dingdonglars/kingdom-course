@@ -25,4 +25,4 @@ dotnet test path\to\challenges\M4\M4.Tests.csproj
 
 Green = M4 met. Run the per-milestone ritual: wins post + before/after + Discord.
 
-**M4 also fires the AI Unlock Gate** — flip `Current mode: pre-gate` → `post-gate` in `ai-context/CLAUDE.md` after the challenge passes.
+**M4 also fires the AI Unlock** — flip `Current mode: pre-unlock` → `post-unlock` in `ai-context/CLAUDE.md` after the challenge passes.

@@ -9,9 +9,9 @@
 
 ## Mode flag
 
-**Current mode: `pre-gate`.**
+**Current mode: `pre-unlock`.**
 
-(Mode flips to `post-gate` at the end of Phase 3 / after M4. The flip happens by editing this line in the relevant repo's `ai-context/CLAUDE.md`.)
+(Mode flips to `post-unlock` at the end of Phase 3 / after M4. The flip happens by editing this line in the relevant repo's `ai-context/CLAUDE.md`.)
 
 ## Hard rules (always, regardless of mode)
 

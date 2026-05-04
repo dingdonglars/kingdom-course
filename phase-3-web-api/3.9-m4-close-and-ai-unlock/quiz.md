@@ -1,13 +1,13 @@
 # Quiz — Module 3.9 (gate-themed)
 
-## 1. The AI Unlock Gate happens at...
+## 1. The AI Unlock happens at...
 
 a. The end of Block 1 (Spark Week)
 b. The end of Block 5 (Web API) — after M4. From then on, AI may help with implementation.
 c. The start of the curriculum
 d. Any time you choose
 
-## 2. The post-gate hard rule is...
+## 2. The post-unlock hard rule is...
 
 a. AI must always write the code
 b. The learner must be able to explain every line of AI-generated code before merging — explanation is the merge gate
@@ -17,11 +17,11 @@ d. There's no rule
 ## 3. The mode flag flips by editing...
 
 a. A database table
-b. A single line (`Current mode: pre-gate` → `post-gate`) in `ai-context/CLAUDE.md` — in workshop, course, and starter-template
+b. A single line (`Current mode: pre-unlock` → `post-unlock`) in `ai-context/CLAUDE.md` — in workshop, course, and starter-template
 c. A code constant
 d. A configuration UI
 
-## 4. The post-gate PR template adds an "AI assistance" section. What's in it?
+## 4. The post-unlock PR template adds an "AI assistance" section. What's in it?
 
 a. The AI's name only
 b. Bot used + which lines you wrote vs which the AI wrote + anything you're unsure about

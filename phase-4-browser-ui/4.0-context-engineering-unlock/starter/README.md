@@ -8,4 +8,4 @@ The bulk is reading + writing your `ARCHITECTURE.md`. The starter ships:
 After applying:
 - `ARCHITECTURE.md` lives at your repo root, populated for *your* project
 - `ai-context/prompts/` has the new implementation-help template
-- Re-read `ai-context/CLAUDE.md` (which is now in `post-gate` mode after M4)
+- Re-read `ai-context/CLAUDE.md` (which is now in `post-unlock` mode after M4)

@@ -70,11 +70,11 @@ Examples:
 
 - **Imperative title.**
 - **Body answers *what* and *why*.**
-- **Post-gate (after M4):** body also includes an AI-assistance section (see "Post-gate AI-assistance section" below).
+- **Post-unlock (after M4):** body also includes an AI-assistance section (see "Post-unlock AI-assistance section" below).
 
-### Post-gate AI-assistance section (PR template addition)
+### Post-unlock AI-assistance section (PR template addition)
 
-After the AI Unlock Gate (end of M4 / Block 5), every PR includes:
+After the AI Unlock (end of M4 / Phase 3), every PR includes:
 
 ```markdown
 ## AI assistance
@@ -165,9 +165,19 @@ A few representative examples of terms the curriculum introduces:
 
 Words that *look* fancy but are unambiguous and have been taught in earlier modules: *engine, runtime, framework, library, package, repository, branch, commit, module, class, method, property, parameter, argument, return value, scope* (when used in the precise compiler sense), and any concept name explicitly taught (*interface, inheritance, polymorphism*).
 
-### Workshop / journal / `STANDARDS.md` itself
+### Words to mentally rephrase before saying out loud to Athos
 
-Internal docs (workshop, journal, this file) may use the full jargon. The discipline is for the **Athos-facing** files: course lessons, course quizzes, course glossary, course READMEs, starter READMEs.
+Some words are fine *in writing* in mentor-side files (answer keys, journal, this file) — Lars understands them — but land badly *spoken* during the weekly sync. Different discipline; same family.
+
+When the answer file uses one of these, mentor mentally rephrases before reading it out:
+
+- *credential* — say "a piece of paper" or "a qualification"
+
+This list grows as words surface during real syncs. Add to it when one bites mid-conversation.
+
+### Internal docs (curriculum, journal, `STANDARDS.md` itself)
+
+Internal docs may use the full jargon. The discipline is for the **Athos-facing** files: course lessons, course quizzes, course glossary, course READMEs, starter READMEs.
 
 ## Mechanical enforcement
 

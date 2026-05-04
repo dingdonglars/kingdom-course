@@ -149,4 +149,4 @@ Posted to #wins on YYYY-MM-DD.
 
 ## Connect
 
-**Phase 3 begins.** Block 5 introduces the **web API** — your engine, served over HTTP. Same engine again, fourth shell. The browser will follow in Phase 4; the AI Unlock Gate fires at the end of Block 5.
+**Phase 3 begins.** Block 5 introduces the **web API** — your engine, served over HTTP. Same engine again, fourth shell. The browser will follow in Phase 4; the AI Unlock fires at the end of Block 5.

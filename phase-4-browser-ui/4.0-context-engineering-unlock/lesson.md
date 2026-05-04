@@ -1,13 +1,13 @@
 # Module 4.0 — Context Engineering Unlock
 
-> **Hook:** the AI Unlock Gate fired at M4. Today we use it intentionally for the first time. **Context engineering** is the meta-skill: how you set up the AI's view of your project so it can write code that actually fits — instead of generic tutorial code that breaks against your style. The discipline you build today carries through Phases 4, 5, and the bonus arc.
+> **Hook:** the AI Unlock fired at M4. Today we use it intentionally for the first time. **Context engineering** is the meta-skill: how you set up the AI's view of your project so it can write code that actually fits — instead of generic tutorial code that breaks against your style. The discipline you build today carries through Phases 4, 5, and the bonus arc.
 
 > **Words to watch**
 > - **context window** — the slice of text the AI can read at once. Limited.
 > - **context engineering** — the practice of choosing what goes into the window
 > - **prompt** — what you say to the AI; the *frame* around your question
 > - **reference set** — the files and notes the AI can lean on (yours; project-specific)
-> - **explanation gate** — the post-gate rule: you must be able to explain every line you merge
+> - **explanation gate** — the post-unlock rule: you must be able to explain every line you merge
 
 ---
 
@@ -44,17 +44,17 @@ When using Claude Code or similar, point it at the folder; it reads automaticall
 ## Delta starter
 
 - **NEW:** `ARCHITECTURE.md` (write yours in Step 3)
-- **MODIFIED:** `ai-context/prompts/README.md` — add an "Implementation requests (post-gate)" section
+- **MODIFIED:** `ai-context/prompts/README.md` — add an "Implementation requests (post-unlock)" section
 - **NEW:** `ai-context/prompts/implementation-help.md` — a fill-in template for code requests
 
 No code changes; this module is about your tooling around the AI.
 
-## Step 1 — read the post-gate `CLAUDE.md`
+## Step 1 — read the post-unlock `CLAUDE.md`
 
 Open `ai-context/CLAUDE.md`. Notice:
 
-- Mode flag: `post-gate`
-- The "post-gate behavior" section now applies
+- Mode flag: `post-unlock`
+- The "post-unlock behavior" section now applies
 - The PR template's AI-assistance section is in force
 
 Read it end-to-end. **You'll be back to it many times.**
@@ -112,7 +112,7 @@ Commit it. **The AI now reads this on session start; so does future-you.**
 `ai-context/prompts/implementation-help.md`:
 
 ```markdown
-# Implementation help (post-gate)
+# Implementation help (post-unlock)
 
 Use when asking Claude to write non-trivial code.
 
