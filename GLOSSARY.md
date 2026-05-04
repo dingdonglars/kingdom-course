@@ -16,6 +16,8 @@
 - **authentication** — *who are you* (sign-in). *Module 3.5.*
 - **authorisation** — *what are you allowed to do* (per-resource scoping). *Module 3.6.*
 - **alias** — a short name for a table in a SQL query (`SELECT k.name FROM kingdoms k`). *Module 2.5.*
+- **`AllowCredentials`** — CORS flag needed for cookie auth; incompatible with `AllowAnyOrigin`. *Module 4.6.*
+- **`async` / `await`** — JS syntax for code that pauses at `await` until a Promise resolves. *Module 4.2.*
 - **argument** — the actual value you pass when calling a method (the *parameter* is the name in the definition; the *argument* is the value). *Module 0.6.*
 - **arrange / act / assert** — the conventional 3-section structure of a unit test. *Module 1.3.*
 - **`AsNoTracking`** — EF Core method for read-only queries; skips change-tracking, faster + safer. *Module 2.6.*
@@ -31,7 +33,11 @@
 
 ## C
 
+- **CDN** — Content Delivery Network; static assets served from the edge nearest each user. *Module 4.6.*
 - **CI/CD** — Continuous Integration / Continuous Deployment; auto-build + test + deploy on every push. *Module 3.8.*
+- **component** — a reusable function (or class) that turns data into UI. *Module 4.4.*
+- **context engineering** — choosing what goes into the AI's context window so its output fits the project. *Module 4.0.*
+- **CORS** — Cross-Origin Resource Sharing; browser security around cross-origin API calls. *Module 4.2.*
 - **claim** — a key/value an identity provider asserts about a user (`email`, `name`, `sub`). *Module 3.5.*
 - **client ID / client secret** — credentials your app gets from an OAuth provider (Google) identifying it as a registered app. *Module 3.5.*
 - **cookie auth** — server sets a session cookie after sign-in; browser sends it on every subsequent request. *Module 3.5.*
@@ -54,6 +60,8 @@
 ## D
 
 - **database** — a structured store of data, queryable. *Module 2.4.*
+- **DOM** — Document Object Model; the live in-memory tree of an HTML page; manipulable from JS. *Module 4.2.*
+- **DevTools** — browser developer tools (Elements / Console / Network); F12 in most browsers. *Module 4.2.*
 - **`DateTime`** — a date *and* a time, together. *Module 0.5.*
 - **DB Browser for SQLite** — free GUI tool for opening + querying SQLite files. *Module 2.8.*
 - **`DbContext`** — EF Core's gateway to the database; one per connection lifetime. *Module 2.6.*
@@ -71,6 +79,9 @@
 
 ## E
 
+- **`escapeHtml`** — encode the five HTML-special characters (`<`, `>`, `&`, `"`, `'`); prevents XSS when interpolating user input into `innerHTML`. *Module 4.4.*
+- **ES modules** — `import` / `export` between JS files; the modern way to share code. *Module 4.3.*
+- **event delegation** — listen on a parent for events bubbling from many children; scales to many items without per-child handlers. *Module 4.4.*
 - **EF Core** — Entity Framework Core; .NET's standard ORM. *Module 2.6.*
 - **`EnsureCreated`** — EF method that creates the database file + tables from the current model. Doesn't use migrations; only suitable for fresh DBs. *Module 2.6.*
 - **`__EFMigrationsHistory`** — EF's bookkeeping table tracking which migrations have been applied. *Module 2.7.*
@@ -88,6 +99,7 @@
 ## F
 
 - **`[Fact]`** — xUnit attribute marking a single unit test method. *Module 1.3.*
+- **`fetch(url)`** — modern JS way to make HTTP requests from the browser; returns a Promise. *Module 4.2.*
 - **factory method** — a static method returning an instance, used in place of a constructor (`Kingdom.LoadFrom(snap, ...)`). *Module 2.3.*
 - **fake** (a.k.a. *mock*, *stub*) — a test-time stand-in for a real collaborator. *Module 1.8.*
 - **FakeItEasy** — the .NET library we use for one-line fakes (`A.Fake<IRandom>()`). *Module 1.8.*
@@ -111,6 +123,9 @@
 
 ## H
 
+- **`happy-dom`** — fast fake DOM environment for tests that need `document` without a real browser. *Module 4.5.*
+- **HMR** — Hot Module Replacement; edit code, save, browser updates without losing state. *Module 4.3.*
+- **HTML** — markup language describing page structure. *Module 4.1.*
 - **HTTP** — Hypertext Transfer Protocol; client→server request and response. *Module 3.1.*
 - **HTTPS-only** — App Service setting requiring TLS for all requests; necessary for cookie-based auth. *Module 3.8.*
 
@@ -135,6 +150,7 @@
 
 ## J
 
+- **JavaScript** — the browser's runtime language; what TypeScript compiles to. *Module 4.2.*
 - **JOIN** — combine rows from two tables on a matching condition. *Module 2.5.*
 - **JSON** — JavaScript Object Notation; the universal text data format. *Module 2.2.*
 - **`JsonSerializer`** — `System.Text.Json`'s API. `Serialize` (object → string), `Deserialize<T>` (string → T). *Module 2.2.*
@@ -214,6 +230,8 @@
 ## S
 
 - **`save slot`** — one row in the kingdoms table; one save the player can pick from a list. *Module 2.9.*
+- **Static Web Apps (Azure)** — managed hosting for static frontends; free tier with CDN + SSL + GitHub auto-deploy. *Module 4.6.*
+- **semantic markup** — `<header>`/`<main>`/`<nav>` rather than `<div>` everywhere; carries meaning for screen readers and SEO. *Module 4.1.*
 - **Scalar** — modern lightweight alternative to Swagger UI; renders OpenAPI specs as interactive HTML. *Module 3.4.*
 - **scoped query** — every read/write filters by owner (`WHERE OwnerSub = ?`). *Module 3.6.*
 - **status code** — 3-digit HTTP response number (200, 404, 500, ...). *Module 3.1.*
@@ -248,6 +266,8 @@
 ## T
 
 - **table** — a grid of rows and columns; the unit of storage in a relational DB. *Module 2.4.*
+- **template literal** — JS backticks `` `Day ${day}` `` for string interpolation. *Module 4.4.*
+- **TypeScript** — JavaScript + types; compiles to JS. *Module 4.3.*
 - **`[Theory]` + `[InlineData]`** — xUnit attributes for parameterised tests: same logic, different inputs. *Module 1.3.*
 - **`this` parameter** — the keyword on the first parameter of a static method that turns it into an extension method. *Module 1.6.*
 - **`throw`** — the keyword for raising an exception. *Module 0.8.*
@@ -267,6 +287,9 @@
 ## V
 
 - **variable** — a named place to store a piece of data so you can use it later. *Module 0.1.*
+- **Vite** — modern frontend dev server + bundler; fast HMR, TS support, near-zero config. *Module 4.3.*
+- **Vitest** — Vite-native test runner; xUnit-equivalent for JS/TS. *Module 4.5.*
+- **`VITE_*` env vars** — Vite's compile-time environment variables (`import.meta.env.VITE_API_URL`). *Module 4.6.*
 - **verb (HTTP)** — `GET`, `POST`, `PUT`, `PATCH`, `DELETE` — what the client wants to do. *Module 3.1.*
 - **viva** — 1:1 oral defense at milestones; mentor asks "explain this AI-written line" at random. *Module 3.9.*
 - **`virtual`** — a method that subclasses are *allowed* to override. The base class provides a default. *Module 1.4.*
@@ -284,6 +307,7 @@
 ## X
 
 - **XML doc comment** — `///` comment above a public type or method; the IDE shows it as a tooltip / IntelliSense entry. *Module 1.10.*
+- **XSS** — Cross-Site Scripting; injecting JS via unescaped strings into `innerHTML`. *Module 4.4.*
 
 ## Y
 
