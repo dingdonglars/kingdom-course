@@ -1,0 +1,12 @@
+// Update CORS in Program.cs:
+
+builder.Services.AddCors();
+
+app.UseCors(p => p
+    .WithOrigins(
+        "https://localhost:5173",                       // Vite dev
+        "https://kingdom-yourname.azurestaticapps.net"  // CHANGE — your prod SWA URL
+    )
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials());                                // for the auth cookie
