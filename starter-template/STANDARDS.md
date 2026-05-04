@@ -13,6 +13,28 @@ Microsoft's official conventions, adopted as-is:
 - **`Async` suffix** on async methods (`SaveAsync`).
 - **Namespaces match folders.** `Kingdom.Engine/Buildings/Farm.cs` → `namespace Kingdom.Engine.Buildings;`.
 
+### Fluent / LINQ chains
+
+Break before the dot when a chain has 3+ method calls, OR when a single line goes past ~80 characters. One method per line, dot leading, 4-space hanging indent. Reads like a story; easy to scan; easy to comment out a single step while debugging.
+
+```csharp
+// fine — short
+var first = items.First();
+
+// fine — two calls, fits a line
+var top = items.OrderBy(i => i.Score).First();
+
+// break it — three+ calls
+return ctx.Kingdoms
+    .AsNoTracking()
+    .Where(k => k.OwnerSub == ownerSub)
+    .OrderBy(k => k.Id)
+    .Select(k => new KingdomSlotInfo(k.Id, k.Name, k.Day))
+    .ToList();
+```
+
+Same rule applies to TypeScript Promise chains and other fluent APIs.
+
 ## Test names
 
 Format: `Method_Scenario_ExpectedBehavior`.
@@ -78,6 +100,62 @@ Course-content prose targets approximately **CEFR B1–B2** — short sentences,
   - Example: `> 💬 **Idiom — "rubber duck debugging":** explain your code aloud to an inanimate object. The act of explaining surfaces the bug.`
 - **Pronunciation footnotes.** First time an unguessable term appears, give the pronunciation: *OAuth (oh-auth)*, *Kubernetes (koo-ber-net-eez)*, *queue (kyoo)*. Once per term, never again.
 - **"Words to watch" sidebar.** Each lesson that introduces new terms includes a sidebar at the top — three to eight items, one line each. Every entry sources into `course/GLOSSARY.md`.
+
+## Vocabulary in course prose (evolving list)
+
+Athos is fifteen, bright, and new to programming. He is not used to industry jargon or AI-product vocabulary. The list below evolves while we author the course — add to it whenever a word feels too fancy and you find a simpler one.
+
+### Avoid (use a plainer word, or rewrite)
+
+These words add cost without earning their keep. Don't use them in lesson prose.
+
+- *substrate* — say "what it runs on" or "underneath"
+- *brevity* — say "keeping it short" or rewrite
+- *capstone* — say "final" or "the last one" or describe what it actually is
+- *gate* (as a noun for a milestone or unlock) — say "milestone" or "checkpoint" or describe
+- *call site* — say "where it's called from" or "where you use it"
+- *hook* (as in "the hook of the lesson") — never name it. If a lesson opens well, it does the work without announcing itself.
+- *auto value-equality* — say "two records with the same fields are equal automatically"
+- *anti-climax* — say "boring on purpose" or just describe the feeling
+- *engineerable* — say "you can shape" or "you can change"
+- *meta-cognition* — say "thinking about how you think"
+- *AI-rot* — say "code you don't understand piles up"
+- *under the hood* — say "underneath" or "behind the scenes"
+- *battle-tested* — say "well-tested" or "used by lots of projects"
+- *in lockstep* — say "together" or "matching"
+- *compounding* — say "builds up over time"
+- *the payoff* — say "what you get" or "the result"
+- *idiom* (when used to mean a coding pattern) — say "the common way"
+- *leverage* — say "useful" or rewrite
+
+### Explain on first use, then OK (principle, not a closed list)
+
+Words from the developer profession are allowed — that's the vocabulary Athos is here to learn. **The rule: explain in one sentence the first time the word appears in lesson prose, not just in the sidebar.** After that, use freely.
+
+This applies to *every* developer-profession term, not only the examples below. The list isn't exhaustive and never will be — when you reach for a term you haven't introduced yet, that's the explanation moment.
+
+A few representative examples of terms the curriculum introduces:
+
+- *shell* (as in engine vs shell) — first use in Module 1.2
+- *DTO* — first use in Module 2.2 ("a small data-only record for moving data across a boundary")
+- *ORM* — first use in Module 2.6 ("a library that maps classes to database rows")
+- *migration* (as in DB schema) — first use in Module 2.7
+- *CORS* — first use in Module 4.2
+- *idempotent* — first use in Module 3.1
+- *aggregate root* — first use in Module 1.9
+- *factory method* — first use in Module 2.3
+- *coroutine* — first use in Module 5.5
+- *MCP* (Model Context Protocol) — first use in Bonus B2.5
+
+(Many more — every block introduces ten to twenty such terms. The discipline is the explain-on-first-use; the list above is illustration.)
+
+### Fine to use freely
+
+Words that *look* fancy but are unambiguous and have been taught in earlier modules: *engine, runtime, framework, library, package, repository, branch, commit, module, class, method, property, parameter, argument, return value, scope* (when used in the precise compiler sense), and any concept name explicitly taught (*interface, inheritance, polymorphism*).
+
+### Workshop / journal / `STANDARDS.md` itself
+
+Internal docs (workshop, journal, this file) may use the full jargon. The discipline is for the **Athos-facing** files: course lessons, course quizzes, course glossary, course READMEs, starter READMEs.
 
 ## Mechanical enforcement
 
