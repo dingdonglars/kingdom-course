@@ -160,7 +160,7 @@ That's it. Lars probably won't reply (that's the rule for `#wins` — no reply e
 
 You installed the tools every working developer uses every day, made your own GitHub repo, wrote a program in C#, ran it on your machine, edited it to do something *you* wanted (your own roasts), pushed the result onto the internet, and posted your first win. Most of the year is exactly this — write code, run it, commit it, push it, share the win — just with bigger ideas.
 
-**Key things you can now name:**
+**Key concepts you can now name:**
 
 - a *repo* — a folder of code that git tracks, with a copy on GitHub
 - *git commit* — saving a snapshot of your work

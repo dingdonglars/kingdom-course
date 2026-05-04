@@ -1,6 +1,6 @@
 # Module 4.4 — Componentised UI
 
-The page splits into reusable parts today. A `KingdomCard` renders one slot. A `ResourceList` renders the resources. The main file becomes a small orchestrator that loads data and dispatches to the components. The same idea as splitting a script into classes back in M1.1 — extract reusable units and the rest of the code reads cleaner.
+The page splits into reusable parts today. A `KingdomCard` renders one slot. A `ResourceList` renders the resources. The main file becomes a small *orchestrator* — the file that loads the data and tells each component what to do, like a conductor in front of a band. The same idea as splitting a script into classes back in M1.1 — extract reusable units and the rest of the code reads cleaner.
 
 You're not using a framework yet. These components are plain TypeScript functions: data goes in, HTML or DOM comes out. The mental model transfers cleanly to React (`function Component({ slot })`), Vue, Svelte, anything. Frameworks add change-detection on top of this idea; the idea itself is the same.
 

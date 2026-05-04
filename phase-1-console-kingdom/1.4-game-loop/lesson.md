@@ -48,7 +48,7 @@ public class Building
 }
 ```
 
-The new keyword is **`virtual`**. It marks a method as *replaceable* — tomorrow's `Farm` and `Mine` (the *subclasses*) will write their own version of `Tick` and the engine will use those instead of this empty default. Today the default is empty on purpose: the rest of the system can run end-to-end before the specific kinds exist. We add the *shape* now and the *behaviour* tomorrow.
+The new keyword is **`virtual`**. It marks a method as *replaceable* — tomorrow's `Farm` and `Mine` (the *subclasses*) will write their own version of `Tick` and the engine will use those instead of this empty default. Today the default is empty on purpose: the rest of the system can run end-to-end before the specific kinds exist. We add the *outline* now and the *behaviour* tomorrow.
 
 ## Step 2 — give `Kingdom` a `Day` and an `AdvanceDay`
 
@@ -217,7 +217,7 @@ Call `AdvanceDay()` a thousand times in a row. How long does it take? If your en
 
 Move the `Day++` line to the *top* of `AdvanceDay` instead of the bottom. The program still runs but the meaning shifts: the very first call now ticks buildings on "Day 2." Subtle, easy to miss, exactly the kind of bug that ships and then confuses you a week later.
 
-## The rule of the through-line
+## The through-line
 
 The *through-line* of this course is a single rule we keep coming back to: the engine never decides *when* it ticks — that's the shell's job. Today the console runs five ticks in a `for` loop. Later this year the same engine will tick once per click in a browser, once per heartbeat in Roblox, or whenever a player calls a web endpoint. The engine just exposes `AdvanceDay()` and waits to be called.
 
@@ -232,16 +232,9 @@ The kingdom went from a one-shot photograph to a thing that *moves*. You added a
 - *`virtual`* — a method more specific classes are allowed to replace
 - the through-line — engine knows *how*; shell decides *when*
 
-## Words to add to the glossary
-
-- **tick** — one step of game time.
-- **game loop** — a loop that calls the engine's tick method and shows the result.
-- **side effect** — a method that changes something rather than (or as well as) returning a value.
-- **`virtual`** — a method marked as replaceable by a more specific class.
-
 ## Quiz
 
-Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same shape as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
 
 ## Next
 

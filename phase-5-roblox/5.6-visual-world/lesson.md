@@ -15,7 +15,7 @@ Today the kingdom appears in the world. A grid of tiles in `Workspace`; click a 
 
 ## The pattern
 
-Visual game objects in Roblox are just data — Parts in `Workspace`. Server scripts create them at runtime; Roblox replicates them to every connected client automatically. So the recipe for a clickable kingdom is short:
+Visual game objects in Roblox are just data — Parts in `Workspace`. Server scripts create them at runtime; Roblox automatically *replicates* them — copies them out to every player's screen — so you don't have to send anything by hand. The recipe for a clickable kingdom is short:
 
 1. Lay out a grid of empty tiles, either on place start or when the player asks for one.
 2. Each tile has a `ClickDetector` listening for clicks.
@@ -63,6 +63,8 @@ end)
 ```
 
 `ClickDetector` works because it's a child of a Part. The connection is made on the server, so the handler runs on the server — no RemoteEvent needed for in-world clicks.
+
+> **One detail in that snippet.** The function passed to `:Connect(...)` is a *closure* — when the click happens later, the function still remembers the `tile` variable from the surrounding `for` loop. Lua captures it automatically. (You'll see this same trick everywhere in event-driven code: define the handler now; the variables it uses are still there when it runs.)
 
 ## Spawning a building model
 

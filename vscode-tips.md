@@ -12,18 +12,18 @@ Your Portuguese (Brazil / ABNT2) keyboard is a small but real complication for V
 
 | Symbol | US keyboard | Your keyboard (Portuguese ABNT2) |
 |---|---|---|
-| `\` (backslash) | one key, top right | `AltGr + Q` (or use the dedicated key right of the right-shift, which is `\` + `|`) |
-| `[` | one key | `AltGr + 8` |
-| `]` | one key | `AltGr + 9` |
-| `{` | `Shift + [` | `AltGr + Shift + 8` (or simpler: hold `AltGr` and press `8` then `9` for `[]`, then type the contents) |
-| `}` | `Shift + ]` | `AltGr + Shift + 9` |
-| `` ` `` (backtick) | one key, top-left | dead key — press `` ` `` then space, OR `AltGr + ’` depending on your specific layout |
-| `~` (tilde) | `Shift + ` ` (top-left) | dead key — press `~` then space |
-| `@` | `Shift + 2` | `AltGr + 2` |
-| `/` | one key | `Shift + 7` (the `/` and `7` share a key) |
-| `?` | `Shift + /` | `Shift + W` location? — actually it's `Shift + Q` on ABNT2 |
+| `\` (backslash) | one key, top right | Dedicated `\|` key, between left Shift and `Z` |
+| `[` | one key | `AltGr + ´` (the dead-acute key, right of `P`) |
+| `]` | one key | `AltGr + [` (the dead-grave key, two right of `P`) |
+| `{` | `Shift + [` | `AltGr + Shift + ´` |
+| `}` | `Shift + ]` | `AltGr + Shift + [` |
+| `` ` `` (backtick) | one key, top-left | Dead key — press the unshifted dead-grave key (two right of `P`), then `Space` |
+| `~` (tilde) | `Shift + ` ` | Dead key — press `~` (left of `´`), then `Space` |
+| `@` | `Shift + 2` | `Shift + 2` (same as US) |
+| `/` | one key | Dedicated `/?` key, right of right-Shift, unshifted |
+| `?` | `Shift + /` | `Shift +` the same `/?` key, right of right-Shift |
 
-You'll write `{`, `}`, `[`, `]`, `\`, and `` ` `` constantly in code. **The `AltGr` key (right of the spacebar) becomes your best friend.** Practise the four bracket combinations now until your fingers know them — it removes 90% of the "where is that symbol again?" friction in the first month.
+You'll write `{`, `}`, `[`, `]`, `\`, and `` ` `` constantly in code. The two dead-key keys right of `P` (`´` and `[`) are your bracket family — `AltGr` turns them into `[ ]`, `AltGr + Shift` into `{ }`. Practise those four combinations now until your fingers know them — it removes 90% of the "where is that symbol again?" friction in the first month.
 
 If a key combination involves `` ` `` (backtick) and yours is a dead key, the easiest workaround is to press `` ` `` and then immediately press `Space` — that gives you a single backtick character.
 
@@ -35,7 +35,7 @@ These are worth memorising on day one. Every other shortcut can wait.
 |---|---|
 | `Ctrl + P` | Open any file by name. Just start typing. |
 | `Ctrl + Shift + P` | Open the **Command Palette** — every command in VS Code is in here. Forgot how to do something? Ctrl+Shift+P, type a few letters. |
-| `Ctrl + ’` (apostrophe key) | Open the terminal at the bottom. *(VS Code's default is `Ctrl + ` `, but on ABNT2 the backtick is a dead key — VS Code on Windows treats `Ctrl + ’` as the same shortcut. If neither works, see "Make the terminal shortcut sane" below.)* |
+| Open terminal | Open the terminal at the bottom. *(VS Code's default is `Ctrl + ` `, but on ABNT2 the backtick is a dead key, so the default may not fire. If it doesn't, see "Make the terminal shortcut sane" below and rebind it — recommended `Ctrl + Ç`.)* |
 | `Ctrl + B` | Show or hide the file tree on the left. Big screen feel from a small screen. |
 
 `Ctrl + Shift + P` is the one. If you remember nothing else, remember that one. Anything VS Code can do, you can find by typing into the Command Palette.
@@ -75,7 +75,7 @@ If the explanation is too dense, paste it into Claude. *"What does this C# error
 When VS Code itself feels broken (red squiggles on code you didn't change, IntelliSense stopped working, files look stale), try these in order. Each is harmless.
 
 1. **Reload Window.** Ctrl+Shift+P → *"Developer: Reload Window"*. Restarts VS Code's brain without closing the project. Fixes maybe half of weird states.
-2. **Restart the C# language server.** Ctrl+Shift+P → *"OmniSharp: Restart"* or *".NET: Restart Language Server"*. Fixes most of the rest.
+2. **Restart the C# language server.** Ctrl+Shift+P → *".NET: Restart Language Server"*. Fixes most of the rest. (Microsoft suggests trying *"Reload Window"* above first, because restarting the language server alone can occasionally lose project info.)
 3. **Close and reopen VS Code.** The full nuclear restart. Almost always fixes the residual cases.
 
 If it's still broken after all three, *then* it's a real problem and worth pinging `#help`. But the first three resolve maybe 90% of "VS Code is being weird" moments.

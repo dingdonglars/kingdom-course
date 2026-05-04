@@ -62,6 +62,11 @@ public void Update(int id, Kingdom.Engine.Kingdom kingdom)
 
     ctx.SaveChanges();
 }
+```
+
+> **One detail in that snippet.** `b.GetType().Name` returns the class name as a string — `"Farm"`, `"Lumberyard"`, `"Mine"`. Every C# object knows its own type at runtime; `GetType()` gives you the type, and `.Name` reads the short name off it. Useful trick when you're persisting "what kind of thing is this?" to a database column.
+
+```csharp
 
 public void Delete(int id)
 {

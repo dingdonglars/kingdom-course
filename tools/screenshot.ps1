@@ -1,6 +1,6 @@
 # screenshot.ps1 — capture browser screenshots from kingdom-reference at a tag
 #
-# STATUS: skeleton — filled in during p006 (Block 6 authoring).
+# STATUS: skeleton — filled in during p006 (Phase 4 authoring).
 # See tools/README.md for target usage.
 
 [CmdletBinding()]

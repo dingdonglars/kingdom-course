@@ -113,11 +113,15 @@ public class Endpoints_Integration_Tests : IClassFixture<IntegrationFixture>
     [Fact]
     public async Task Login_RedirectsToGoogle()
     {
-        // The /login challenge should redirect to accounts.google.com
-        // Disable redirect-following on this client so we can inspect the redirect itself
-        var noFollow = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });
-        // ...
-        // (Concrete implementation skipped here. The test is "Status is 302 and Location starts with https://accounts.google.com".)
+        // The /login challenge should redirect to accounts.google.com.
+        // Disable auto-redirect so we can inspect the 302 itself instead of following it.
+        var handler = new HttpClientHandler { AllowAutoRedirect = false };
+        using var noFollow = _factory.CreateDefaultClient(handler);
+
+        var resp = await noFollow.GetAsync("/login");
+
+        ((int)resp.StatusCode).ShouldBe(302);
+        resp.Headers.Location!.ToString().ShouldStartWith("https://accounts.google.com");
     }
 }
 ```

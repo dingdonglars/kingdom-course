@@ -91,7 +91,7 @@ You took the engine you wrote in Phase 1 and shipped it as a public Roblox place
 - *final reflection* — the hour-long sit-down with `m6-looking-back.md`
 - *the through-line, lived* — five shells, one engine, two languages
 
-## The rule of the through-line, one last time
+## The through-line, one last time
 
 > **The model is forever. The runtime is a detail.**
 >

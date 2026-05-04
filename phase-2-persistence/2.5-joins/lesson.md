@@ -165,6 +165,8 @@ public static class SqliteJoinsDemo
 
 Notice the helpers (`Exec`, `Read<T>`, `InsertKingdom`, `InsertBuilding`). They're not magic — just small reductions of the boilerplate. Once you write SQL three times, extract a helper.
 
+> **Don't worry about the angle brackets yet.** `Read<T>` and `Func<SqliteDataReader, T>` use a feature called *generics* — a way to write one helper that works for any type `T`. We'll formally meet generics later; for now, read `T` as *"whatever type the caller asks for"* and the helper will fill in. The fact that it works is enough.
+
 `last_insert_rowid()` is a SQLite function that returns the autoincrement id of the last `INSERT`. The standard pattern for *"I just inserted; what's its id?"*
 
 ## Step 2 — call from console

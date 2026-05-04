@@ -315,7 +315,7 @@
 
 ---
 
-## Block 7 (Roblox / Luau) — appended
+## Phase 5 (Roblox / Luau) — appended
 
 - **`BindToClose`** — Roblox server shutdown hook; ~30s to flush state. *Module 5.7.*
 - **`ClickDetector`** — Roblox helper; child of a Part, fires server-side click events. *Module 5.6.*

@@ -30,7 +30,7 @@ Good ask:
 > JsonReaderException: Unexpected character encountered while parsing value
 > ```
 >
-> *I checked — the file is empty. I deleted it and ran again, but now I get FileNotFoundException. I tried wrapping the load in try/catch and returning a fresh `Kingdom()` but it feels wrong. What's the idiomatic pattern for 'load if exists, else start fresh'?"*
+> *I checked — the file is empty. I deleted it and ran again, but now I get FileNotFoundException. I tried wrapping the load in try/catch and returning a fresh `Kingdom()` but it feels wrong. What's the standard pattern for 'load if exists, else start fresh'?"*
 
 Same problem. Wildly different ease of helping. The good version names the error, names the attempt, asks a specific question. Build the muscle now.
 
@@ -50,7 +50,7 @@ There are six different kinds of conversation we have during the year. Knowing w
 
 **5. Rescue.** For when you're *really* stuck — not "this test won't pass," but "I think I broke my repo and I'm scared to git anything." Knock on Lars's door (or call him). Same-day, best-effort. This should be rare by design — it's an emergency channel, not a default.
 
-**6. Regroup.** Some weeks the code itself isn't the problem; the problem is *momentum*. You're tired, the lesson feels boring, the kingdom feels like a slog. Coffee, walk, "let's just chat" — no agenda. Lower bar than rescue. Doesn't have to be about the course at all. Best-effort within a few days.
+**6. Regroup.** Some weeks the code itself isn't the problem; the problem is *momentum*. You're tired, the lesson feels boring, the kingdom feels like a slog. Coffee, walk, "let's just chat" — no agenda. Easier to invoke than rescue. Doesn't have to be about the course at all. Best-effort within a few days.
 
 ## Both sides of the deal
 
@@ -96,7 +96,7 @@ The ASCII trophies in the lessons are fun. The trail in `wins.md` is the *durabl
 
 ## What every quiz ends with
 
-Every lesson ends with a small quiz — five questions, multiple choice. They're for *you*, not for Lars. Their job is to surface what you half-understood so you can poke at it before it ossifies into a misconception.
+Every lesson ends with a small quiz — five questions, multiple choice. They're for *you*, not for Lars. Their job is to surface what you half-understood so you can poke at it before it hardens into a wrong idea.
 
 After taking the quiz, write your answers in `journal/quiz-notes.md`. One letter per question, one sentence saying *why* you picked that letter. Same habit as `wins.md`, just smaller cadence.
 

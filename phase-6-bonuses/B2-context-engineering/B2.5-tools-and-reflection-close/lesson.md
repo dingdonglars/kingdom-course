@@ -89,7 +89,7 @@ You closed B2 and the curriculum at the same time. The closing reflection is the
 - **MCP** — Model Context Protocol; emerging tool-talking standard
 - **your picked stack** — one chat-style tool, one inline tool, optionally one agent
 
-## The rule of the through-line — for the last time
+## The through-line — for the last time
 
 > **The discipline is yours. The tools come and go. The thing you take with you is the way you think.**
 >
