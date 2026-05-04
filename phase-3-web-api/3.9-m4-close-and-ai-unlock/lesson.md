@@ -102,8 +102,6 @@ The next time you (or any AI agent) opens this project, the AI reads the new mod
 
 **Commit it.** *"[M4] AI Unlock — flip mode flag pre-unlock → post-unlock"*. (Source Control panel → stage → commit → Sync. Or CLI: `git add . && git commit -m "[M4] AI Unlock — flip mode flag pre-unlock → post-unlock" && git push`.)
 
-The next time you (or any teammate, or any AI agent) opens any of these projects, the AI reads the new mode and behaves accordingly. **No code change required in the AI's prompt — the file flag is the contract.**
-
 ## What stays the same
 
 - **Hard rules unchanged:** no first names in your visible work, English only, no school/family inference.
