@@ -370,7 +370,7 @@ On the phone: tap the workspace name → *Notifications* → tap each channel.
 
 | Channel | What it's for |
 |---|---|
-| `#all-kingdom-hq` | Scheduling, plans, anything that doesn't fit elsewhere. The **MENTOR-PROTOCOL canvas** is pinned here — one click whenever you want to re-read the rules. |
+| `#all-kingdom-hq` | Scheduling, plans, anything that doesn't fit elsewhere. **MENTOR-PROTOCOL** is bookmarked at the top of the channel — one click whenever you want to re-read the rules. |
 | `#wins` | Things you shipped. One post per real win. No reply expected. |
 | `#help` | Stuck? Ask here. The channel topic is *"Show what you tried."* The 20-minute rule applies. |
 | `#milestones` | The big seven moments — M0 through M6 — and PR links |
