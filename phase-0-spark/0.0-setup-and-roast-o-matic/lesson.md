@@ -7,7 +7,8 @@ By the end of today you have a real program on your computer that prints roasts 
 - A Windows PC (you have this).
 - About three to four hours uninterrupted. (Could be less; could be more if downloads are slow.)
 - Lars sitting next to you for the install part and the Claude setup. The fun starts after that.
-- **You've already read `MENTOR-PROTOCOL.md`** at the root of the course repo. If you haven't, do that first — it's the *how-we-work-together* doc, twenty minutes of reading, and the rest of the year assumes you know what's in it.
+
+> **Heads up — the *how-we-work-together* doc.** `MENTOR-PROTOCOL.md` is the two-way agreement on how Lars and you run the year (the 20-minute rule, the four channels, the weekly sync, the off-ramp). You'll read it during the first week — either from your cloned course repo (`C:\code\kingdom-course\MENTOR-PROTOCOL.md` after Part 2) or from the link pinned in Slack `#all-kingdom-hq` (after Part 7). Bring it to the first weekly sync.
 
 ---
 
