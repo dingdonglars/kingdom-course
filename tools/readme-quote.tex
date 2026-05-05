@@ -1,0 +1,17 @@
+% Pandoc → xelatex header for the Athos READMEs.
+% Renders Markdown blockquotes as a light-gray callout box with a thin border.
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\definecolor{kingdomQuoteBg}{HTML}{F2F2F2}
+\definecolor{kingdomQuoteBorder}{HTML}{C7C7C7}
+
+\renewenvironment{quote}
+  {\begin{tcolorbox}[
+      colback=kingdomQuoteBg,
+      colframe=kingdomQuoteBorder,
+      boxrule=0.5pt,
+      arc=2pt,
+      left=8pt,right=8pt,top=6pt,bottom=6pt,
+      breakable]}
+  {\end{tcolorbox}}

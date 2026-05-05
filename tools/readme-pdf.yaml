@@ -1,0 +1,11 @@
+## Pandoc defaults for the Athos-facing READMEs.
+## Used by tools/build-readme-pdfs.ps1; can also be invoked directly:
+##   pandoc README.md -o README.pdf --defaults=tools/readme-pdf.yaml
+pdf-engine: xelatex
+include-in-header:
+  - tools/readme-quote.tex
+variables:
+  geometry:
+    - margin=1in
+  mainfont: Segoe UI
+  monofont: Consolas
