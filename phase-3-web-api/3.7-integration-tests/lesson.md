@@ -84,14 +84,21 @@ Real Google auth would require a real OAuth flow — out of scope for tests. We 
 `Endpoints_Integration_Tests.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc.Testing;
 using Shouldly;
 
 namespace Kingdom.Api.Tests;
 
 public class Endpoints_Integration_Tests : IClassFixture<IntegrationFixture>
 {
+    private readonly IntegrationFixture _factory;
     private readonly HttpClient _client;
-    public Endpoints_Integration_Tests(IntegrationFixture f) => _client = f.CreateClient();
+
+    public Endpoints_Integration_Tests(IntegrationFixture f)
+    {
+        _factory = f;
+        _client = f.CreateClient();
+    }
 
     [Fact]
     public async Task OpenApi_Spec_IsServed()
@@ -115,8 +122,10 @@ public class Endpoints_Integration_Tests : IClassFixture<IntegrationFixture>
     {
         // The /login challenge should redirect to accounts.google.com.
         // Disable auto-redirect so we can inspect the 302 itself instead of following it.
-        var handler = new HttpClientHandler { AllowAutoRedirect = false };
-        using var noFollow = _factory.CreateDefaultClient(handler);
+        using var noFollow = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
 
         var resp = await noFollow.GetAsync("/login");
 

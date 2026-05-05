@@ -45,6 +45,7 @@ Walk your engine, persistence, and console projects with the **five questions** 
 - [ ] Commit: `git commit -am "[M3-rename] <what + why>"`
 
 ## When done
+- [ ] **Refresh the README at the repo root** — re-walk the four sections from M0.4 (*what / how to run / what I learned / what's next*). The kingdom now persists across four backends; the *How to run* and *What I learned* sections both need a paragraph that didn't exist at M2 close.
 - [ ] Append to `wins.md`
 - [ ] Post to `#wins`
 - [ ] Tag: `git tag m3-block-4-complete`

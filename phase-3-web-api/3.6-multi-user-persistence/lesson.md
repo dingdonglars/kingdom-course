@@ -114,12 +114,12 @@ group.MapGet("/", (HttpContext ctx) => store.ListSlots(GetOwnerSub(ctx)));
 
 group.MapPost("/", (CreateKingdomRequest req, HttpContext ctx, ILogger<Program> log) =>
 {
-    var sub = GetOwnerSub(ctx);
     if (string.IsNullOrWhiteSpace(req.Name))
         return Results.BadRequest(new { error = "Name is required." });
+    var ownerSub = GetOwnerSub(ctx);
     var k = new Kingdom.Engine.Kingdom(req.Name.Trim(), rng, clock);
-    var id = store.Save(sub, k);
-    log.LogInformation("Created kingdom {KingdomId} for {OwnerSub}", id, sub);
+    var id = store.Save(ownerSub, k);
+    log.LogInformation("Created kingdom {KingdomId} '{KingdomName}' for {OwnerSub}", id, k.Name, ownerSub);
     return Results.Created($"/kingdoms/{id}", new KingdomCreated(id, k.Name));
 });
 

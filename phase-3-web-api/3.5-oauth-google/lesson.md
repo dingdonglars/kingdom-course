@@ -89,6 +89,8 @@ For deployment, the environment variables `Google__ClientId` and `Google__Client
 ## Step 3 — wire auth in `Program.cs`
 
 ```csharp
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 
@@ -112,10 +114,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Login + logout
-app.MapGet("/login", () => Results.Challenge(new()
-{
-    RedirectUri = "/"
-}, [GoogleDefaults.AuthenticationScheme]));
+app.MapGet("/login", () => Results.Challenge(
+    new AuthenticationProperties { RedirectUri = "/" },
+    [GoogleDefaults.AuthenticationScheme]));
 
 app.MapPost("/logout", async (HttpContext ctx) =>
 {
@@ -129,9 +130,12 @@ app.MapGet("/me", (HttpContext ctx) =>
         return Results.Unauthorized();
     return Results.Ok(new
     {
-        Email = ctx.User.FindFirst("email")?.Value,
-        Name  = ctx.User.FindFirst("name")?.Value,
-        Sub   = ctx.User.FindFirst("sub")?.Value      // stable Google user id
+        // ASP.NET's Google handler maps each Google claim to the matching
+        // `ClaimTypes` constant. Try the short name first, fall back to the
+        // mapped one — different middleware versions surface different keys.
+        Email = ctx.User.FindFirst("email")?.Value ?? ctx.User.FindFirst(ClaimTypes.Email)?.Value,
+        Name  = ctx.User.FindFirst("name")?.Value  ?? ctx.User.FindFirst(ClaimTypes.Name)?.Value,
+        Sub   = ctx.User.FindFirst("sub")?.Value   ?? ctx.User.FindFirst(ClaimTypes.NameIdentifier)?.Value
     });
 });
 

@@ -17,6 +17,8 @@ There's no big new code in this lesson. It's a quiet day on purpose. Quiet compe
 
 ### 1. README at the repo root
 
+The README is the front door to the repo. It's the first thing a stranger reads on GitHub — and it's the first thing *you* read six months from now when you've forgotten how this project runs. A good README answers four questions before anyone has to ask: *what is this, how do I run it, what was learned building it, what's next.* Four short sections beat one long paragraph; future-you will thank present-you.
+
 Four sections, in this order:
 
 ```markdown

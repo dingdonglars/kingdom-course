@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Kingdom.Api.Dtos;
 using Kingdom.Engine.Infrastructure;
 using Kingdom.Persistence;
@@ -14,7 +15,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie()
     .AddGoogle(options =>
     {
-        options.ClientId     = builder.Configuration["Google:ClientId"]!;
+        options.ClientId = builder.Configuration["Google:ClientId"]!;
         options.ClientSecret = builder.Configuration["Google:ClientSecret"]!;
     });
 
@@ -32,14 +33,16 @@ if (app.Environment.IsDevelopment())
 var dbPath = Path.Combine(AppContext.BaseDirectory, "kingdoms.db");
 var store = new KingdomEfStore(dbPath);
 store.EnsureCreated();
-IRandom rng = new Kingdom.Engine.Infrastructure.SystemRandom();
+
+// SystemClock collision: Microsoft.AspNetCore.Authentication ships its own
+// SystemClock, so the engine one must be fully qualified here.
+IRandom rng = new SystemRandom();
 IClock clock = new Kingdom.Engine.Infrastructure.SystemClock();
 
-// auth endpoints
-app.MapGet("/login", () => Results.Challenge(new()
-{
-    RedirectUri = "/"
-}, [GoogleDefaults.AuthenticationScheme]));
+// Auth endpoints
+app.MapGet("/login", () => Results.Challenge(
+    new AuthenticationProperties { RedirectUri = "/" },
+    [GoogleDefaults.AuthenticationScheme]));
 
 app.MapPost("/logout", async (HttpContext ctx) =>
 {
@@ -53,18 +56,18 @@ app.MapGet("/me", (HttpContext ctx) =>
         return Results.Unauthorized();
     return Results.Ok(new
     {
-        Email = ctx.User.FindFirst("email")?.Value ?? ctx.User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value,
-        Name  = ctx.User.FindFirst("name")?.Value  ?? ctx.User.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value,
-        Sub   = ctx.User.FindFirst("sub")?.Value   ?? ctx.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
+        Email = ctx.User.FindFirst("email")?.Value ?? ctx.User.FindFirst(ClaimTypes.Email)?.Value,
+        Name  = ctx.User.FindFirst("name")?.Value  ?? ctx.User.FindFirst(ClaimTypes.Name)?.Value,
+        Sub   = ctx.User.FindFirst("sub")?.Value   ?? ctx.User.FindFirst(ClaimTypes.NameIdentifier)?.Value
     });
 });
 
-// kingdom endpoints (now auth-required)
+// Kingdom endpoints — auth required, scoped to the signed-in user (M3.6 adds OwnerSub)
 var group = app.MapGroup("/kingdoms").RequireAuthorization();
 
 group.MapGet("/", () => store.ListSlots());
 
-group.MapGet("/{id:int}", (int id, ILogger<Program> log) =>
+group.MapGet("/{id:int}", (int id) =>
 {
     try { return Results.Ok(KingdomJsonStore.ToSummary(store.Load(id, rng, clock))); }
     catch (InvalidOperationException) { return Results.NotFound(new { error = $"No kingdom with id {id}." }); }

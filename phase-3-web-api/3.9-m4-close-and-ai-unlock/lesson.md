@@ -27,8 +27,9 @@ By the count of repos: four milestones reached, roughly twelve weeks of curricul
 
 Same pattern as M2 and M3 — but louder, because M4 is the milestone where the AI Unlock takes effect:
 
-1. Open `journal/wins.md`.
-2. Write the M4 entry:
+1. **Refresh the README** at the repo root — re-walk the four sections from M0.4. *How to run* now needs the live URL plus the `dotnet user-secrets` step; *What I learned* gets a Phase 3 paragraph (HTTP, OpenAPI, OAuth, multi-user persistence, App Service deploy). Every milestone close circles back to the README — the discipline that started in M2 close is the discipline now.
+2. Open `journal/wins.md`.
+3. Write the M4 entry:
 
    ```markdown
    ## M4 — Phase 3 — Live API
@@ -44,9 +45,9 @@ Same pattern as M2 and M3 — but louder, because M4 is the milestone where the 
    Posted to `#wins` on YYYY-MM-DD.
    ```
 
-3. Take a screenshot of your live URL plus the Scalar UI. Post in `#wins`.
-4. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags: `git tag m4-phase-3-complete && git push origin m4-phase-3-complete`
-5. Open the milestone PR (your code → mentor for the M4 review). Per the post-unlock template (next section), include the AI-assistance section even though it's empty for this PR.
+4. Take a screenshot of your live URL plus the Scalar UI. Post in `#wins`.
+5. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags: `git tag m4-phase-3-complete && git push origin m4-phase-3-complete`
+6. Open the milestone PR (your code → mentor for the M4 review). Per the post-unlock template (next section), include the AI-assistance section even though it's empty for this PR.
 
 ## The AI Unlock
 
@@ -137,7 +138,7 @@ You closed M4 — the most important milestone of the year. Your kingdom is on t
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
 
-> *You just shipped M4. Time for the ritual: `wins.md` entry, `#wins` post, before/after one-liner. Then take the rest of the day off.*
+> *You just shipped M4. Time for the ritual: README refresh, `wins.md` entry, `#wins` post, before/after one-liner. Then take the rest of the day off.*
 
 ## Next
 

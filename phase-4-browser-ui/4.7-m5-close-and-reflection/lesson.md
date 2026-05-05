@@ -22,9 +22,11 @@ Don't refactor *all* of Phase 0 — that's busywork. One toy is the experiment. 
 
 ## M5 milestone ritual
 
-Same pattern as M2, M3, and M4. Three things, in order.
+Same pattern as M2, M3, and M4. The README refresh comes first — that's the discipline; everything else follows.
 
-First, open `journal/wins.md` and write the M5 entry:
+First, **refresh the README** at the repo root. Re-walk the four sections from M0.4. *How to run* now needs the `vite dev` step alongside the API; *What I learned* gets a Phase 4 paragraph (the browser as a runtime, vanilla TS, fetch + render). Don't skip this — every milestone close circles back here.
+
+Second, open `journal/wins.md` and write the M5 entry:
 
 ```markdown
 ## M5 — Phase 4 — Browser-Playable Kingdom
@@ -41,16 +43,16 @@ First, open `journal/wins.md` and write the M5 entry:
 Posted to `#wins` on YYYY-MM-DD.
 ```
 
-Second, take a screenshot of your live URL plus the kingdom rendering, and post to `#wins` in Slack.
+Third, take a screenshot of your live URL plus the kingdom rendering, and post to `#wins` in Slack.
 
-Third, tag the milestone. This one's CLI-only — the panel doesn't have a button for tags:
+Fourth, tag the milestone. This one's CLI-only — the panel doesn't have a button for tags:
 
 ```powershell
 git tag m5-phase-4-complete
 git push origin m5-phase-4-complete
 ```
 
-Fourth, open the milestone PR (your branch → mentor review). The PR description includes the AI-assistance section per the post-Unlock template. Lars reads it before the weekly sync.
+Fifth, open the milestone PR (your branch → mentor review). The PR description includes the AI-assistance section per the post-Unlock template. Lars reads it before the weekly sync.
 
 ## Tinker
 

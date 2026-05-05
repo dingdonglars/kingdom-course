@@ -40,9 +40,10 @@ Then sit with whatever happens. They might find a bug. They might suggest featur
 
 ## The M6 ritual
 
-Same pattern as the previous milestones — bigger:
+Same pattern as the previous milestones — bigger, and final:
 
-1. Open `journal/wins.md`. Write the M6 entry:
+1. **Refresh the README at the repo root one last time.** Re-walk the four sections from M0.4. The repo now spans five shells — *How to run* documents all of them; *What I learned* is a year-end paragraph; *What's next* is honest about whether you're continuing or stopping. This is the version someone clicks through to from the live game URL.
+2. Open `journal/wins.md`. Write the M6 entry:
 
    ```markdown
    ## M6 — Phase 5 — Roblox-Published Kingdom
@@ -58,9 +59,9 @@ Same pattern as the previous milestones — bigger:
    Posted to `#wins` on YYYY-MM-DD.
    ```
 
-2. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags: `git tag m6-phase-5-complete && git push origin m6-phase-5-complete`.
-3. Open the M6 milestone PR. Include the AI-assistance section in the description.
-4. Final viva with Lars — random-line walkthrough across the engine, plus a "tell me the story of one year" conversation.
+3. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags: `git tag m6-phase-5-complete && git push origin m6-phase-5-complete`.
+4. Open the M6 milestone PR. Include the AI-assistance section in the description.
+5. Final viva with Lars — random-line walkthrough across the engine, plus a "tell me the story of one year" conversation.
 
 ## The final reflection (one sitting, about an hour)
 

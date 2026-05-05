@@ -178,7 +178,7 @@ The two you'll use most this year:
 - **Type names — `PascalCase`.** First letter capital, no underscores, no spaces. `Building`, `ResourceLedger`, `KingdomDbContext`.
 - **Variables — `camelCase`.** First letter lowercase, then capitals at word starts. `goldCount`, `firstName`, `currentDay`.
 
-Match what you see in the code around you. When in doubt, the IDE will tell you.
+Match what you see in the code around you. When in doubt, your **IDE** (*Integrated Development Environment* — the editor you write code in; for this course, that's VS Code) will tell you with a red squiggle under the wrong-cased name.
 
 ## What you just did
 
