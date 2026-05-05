@@ -99,7 +99,23 @@ builder.Services.AddOpenApi();
 
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie()
+    .AddCookie(options =>
+    {
+        // We're a JSON API. Cookie auth defaults to *redirecting* the browser to a
+        // login page on auth failure (302 to /Account/Login). That's right for an
+        // MVC site; for an API, every unauth request should return a clean 401, not
+        // a redirect to a path that doesn't exist. Override both events.
+        options.Events.OnRedirectToLogin = ctx =>
+        {
+            ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            return Task.CompletedTask;
+        };
+        options.Events.OnRedirectToAccessDenied = ctx =>
+        {
+            ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
+            return Task.CompletedTask;
+        };
+    })
     .AddGoogle(options =>
     {
         options.ClientId     = builder.Configuration["Google:ClientId"]!;
