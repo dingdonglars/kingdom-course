@@ -16,12 +16,14 @@ By the end of today you have a real program on your computer that prints roasts 
 
 You install six tools, add one VS Code extension, set up a styled terminal prompt, and tell git who you are. Lars sits with you. Each install is mostly *next, next, next*. None of them are scary.
 
-1. **Git for Windows** — the tool every developer in the world uses to save their work. [Download here](https://git-scm.com/download/win). Default options.
-2. **VS Code** — the editor you write code in for the next year. [Download here](https://code.visualstudio.com/). Default options.
-3. **.NET SDK 10** — the toolkit for building C# applications. [Download here](https://dotnet.microsoft.com/download/dotnet/10.0). Default options.
-4. **Node.js LTS** — needed later (Phase 4) for the browser version. [Download here](https://nodejs.org/). LTS version, default options.
+Install **VS Code first** — that way the Git installer can set VS Code as the default editor instead of Vim, which you do not want to meet today.
+
+1. **VS Code** — the editor you write code in for the next year. Download from <https://code.visualstudio.com/>. Default options. Make sure *"Add to PATH"* is ticked (it is by default).
+2. **Git for Windows** — the tool every developer in the world uses to save their work. Download from <https://git-scm.com/download/win>. Default options **except one screen**: when the installer asks *"Choosing the default editor used by Git"*, pick **Use Visual Studio Code as Git's default editor** (it's in the dropdown — VS Code is already installed from step 1, so it shows up). Vim is the silent factory default; you don't need it today.
+3. **.NET SDK 10** — the toolkit for building C# applications. Download from <https://dotnet.microsoft.com/download/dotnet/10.0>. Default options.
+4. **Node.js LTS** — needed later (Phase 4) for the browser version. Download from <https://nodejs.org/>. LTS version, default options.
 5. **Windows Terminal** — the modern terminal app. Better fonts, multiple tabs, transparency, the works. From the Start menu open **Microsoft Store**, search **Windows Terminal**, click **Get**. (On Windows 11 it's often pre-installed — search for it; if it's there, skip the install.)
-6. **A GitHub account** — your home on the internet for code. [Sign up here](https://github.com). You pick the username; this becomes part of your developer identity.
+6. **A GitHub account** — your home on the internet for code. Sign up at <https://github.com>. You pick the username; this becomes part of your developer identity.
 
 ### Verify the installs
 
@@ -52,7 +54,7 @@ Default PowerShell prompt is one line of useless: `PS C:\code\kingdom>`. Real de
 
 **Install a font that has the icons.** Oh-my-posh uses small symbols (a branch icon, a folder icon, a `±` for unstaged changes) that come from a *Nerd Font*. Without one, you'll see boxes where icons should be.
 
-1. Go to [nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads).
+1. Go to <https://www.nerdfonts.com/font-downloads>.
 2. Find **CaskaydiaCove Nerd Font** (it's a tweaked version of Cascadia Code, the default Windows Terminal font). Download.
 3. Unzip. Right-click the `CaskaydiaCoveNerdFont-Regular.ttf` file → **Install for all users**.
 
@@ -131,7 +133,7 @@ You now have `C:\code\kingdom-course\` — every lesson, the glossary, and the s
 
 ### Make YOUR repo on GitHub
 
-This is the repo for *your* year of work — separate from the course repo. Go to [github.com/new](https://github.com/new).
+This is the repo for *your* year of work — separate from the course repo. Go to <https://github.com/new>.
 
 1. **Name your repo `kingdom`.** *(Lessons refer to `kingdom`; pick differently and just substitute.)*
 2. **Set it Public.**
@@ -313,7 +315,7 @@ You should see a version number.
 
 The account is in **your name and your email**; you pick the password and only you know it. Lars puts in the payment card — the subscription is on his card, but the account, the history, and the password belong to you.
 
-In a browser, go to [console.anthropic.com](https://console.anthropic.com). Sign up with your email; pick a password; complete the email confirmation. Lars enters the card details for the subscription tier he picked. You're now the owner of an Anthropic account that Lars pays for.
+In a browser, go to <https://console.anthropic.com>. Sign up with your email; pick a password; complete the email confirmation. Lars enters the card details for the subscription tier he picked. You're now the owner of an Anthropic account that Lars pays for.
 
 Then, in Windows Terminal:
 
@@ -350,7 +352,7 @@ Lars sends you a link to a workspace called **`kingdom-hq`**. Open it.
 
 ### 2. Install Slack on your laptop
 
-The browser version works, but the desktop app is faster and gets notifications properly. [Download here](https://slack.com/downloads). Sign in with the same email. Pick the `kingdom-hq` workspace.
+The browser version works, but the desktop app is faster and gets notifications properly. Download from <https://slack.com/downloads>. Sign in with the same email. Pick the `kingdom-hq` workspace.
 
 ### 3. Install Slack on your phone
 
