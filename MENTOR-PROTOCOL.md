@@ -75,12 +75,12 @@ We use Slack, not WhatsApp, for the course. Slack lets us have separate channels
 
 The four channels:
 
-- **`#general`** — meta. Scheduling, plans, "I'm going to be away next Tuesday."
+- **`#all-kingdom-hq`** — meta. Scheduling, plans, "I'm going to be away next Tuesday."
 - **`#wins`** — Tier 1. Celebrate stuff. No reply needed.
 - **`#help`** — Tier 2. Stuck-and-unstuck-yourself questions. Channel topic: *Show what you tried.*
 - **`#milestones`** — Tier 3. Drop your PR link here, plus the GitHub Slack app posts updates.
 
-If you can't decide which channel to use, use `#general`. Lars will move it.
+If you can't decide which channel to use, use `#all-kingdom-hq`. Lars will move it.
 
 ## What every milestone ends with
 

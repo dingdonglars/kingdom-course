@@ -362,7 +362,7 @@ Default Slack pings on every message. For two-person Slack that's about right, b
 - `#wins` → notifications **on**. You'll want to know when Lars posts a win for *you* (it happens).
 - `#help` → notifications **on**. When Lars replies, you want to see it fast.
 - `#milestones` → notifications **on**. Same reason.
-- `#general` → notifications **on mention only**. Scheduling chatter doesn't need a buzz.
+- `#all-kingdom-hq` → notifications **on mention only**. Scheduling chatter doesn't need a buzz.
 
 On the phone: tap the workspace name → *Notifications* → tap each channel.
 
@@ -370,7 +370,7 @@ On the phone: tap the workspace name → *Notifications* → tap each channel.
 
 | Channel | What it's for |
 |---|---|
-| `#general` | Scheduling, plans, anything that doesn't fit elsewhere |
+| `#all-kingdom-hq` | Scheduling, plans, anything that doesn't fit elsewhere |
 | `#wins` | Things you shipped. One post per real win. No reply expected. |
 | `#help` | Stuck? Ask here. The channel topic is *"Show what you tried."* The 20-minute rule applies. |
 | `#milestones` | The big seven moments — M0 through M6 — and PR links |
@@ -409,7 +409,7 @@ You installed the tools every working developer uses every day, told git who you
 - the **Source Control panel** in VS Code — the buttons that do `add`, `commit`, `push` for you
 - *`dotnet run`* — build the C# code and run the result
 - *Claude Code* — your AI assistant in the terminal; rules in `ai-tools.md`
-- the four Slack channels — `#general`, `#wins`, `#help`, `#milestones`
+- the four Slack channels — `#all-kingdom-hq`, `#wins`, `#help`, `#milestones`
 
 ## Quiz
 
