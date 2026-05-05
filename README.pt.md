@@ -78,6 +78,8 @@ O curso é organizado em sete fases — cinco principais, duas opcionais — cam
 
 **Fase 6 — Bônus.** Três bônus curtos se você quiser. Um troca o seu banco de dados por outro completamente diferente em três linhas, só pra você sentir como a separação engine/shell é limpa de verdade. Um aprofunda no trabalho com um assistente de IA — a habilidade nomeada de *engenharia de contexto*. Um aprofunda em git de verdade — o modelo por baixo dos comandos que você vem digitando o ano todo.
 
+> **E quando o ano fechar** — depois que M6 entregar e seu jogo no Roblox estiver no ar — tem um **diploma** impresso com seu nome. O Lars assina; você emoldura se quiser. Não é uma medalhinha digital, não é um sticker. É uma página de verdade que nomeia a engenharia que você realmente fez: commits, milestone pull requests, code reviews, testes, deploy contínuo, a disciplina de explicar cada linha de código que você entrega. O diploma é a entrega do ano.
+
 ---
 
 ## Como uma semana típica funciona

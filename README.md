@@ -78,6 +78,8 @@ The course is laid out as seven phases — five core, two bonus — building tow
 
 **Phase 6 — Bonuses.** Three short bonuses if you want them. One swaps your database for a totally different one in three lines, just to feel how clean the engine/shell separation actually is. One goes deep on working with an AI assistant — the named skill of *context engineering*. One goes properly into git — the model underneath the commands you've been typing all year.
 
+> **And when the year closes** — after M6 ships and your Roblox game is live — there's a printed **diploma** with your name on it. Lars signs it; you frame it if you want. Not a digital badge, not a sticker. A real page that names the engineering you actually did: commits, milestone pull requests, code reviews, tests, continuous deployment, the discipline of explaining every line of code you ship. The diploma is the year's hand-over.
+
 ---
 
 ## How a typical week works
