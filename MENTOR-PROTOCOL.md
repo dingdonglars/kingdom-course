@@ -1,4 +1,4 @@
-# How we work — Athos & Lars
+# How we work — you & Lars
 
 > A two-way agreement on how we run the year together. This file lives in the course repo because both of us need to read it, not just Lars. Read it once now. Come back to it whenever something feels off.
 
