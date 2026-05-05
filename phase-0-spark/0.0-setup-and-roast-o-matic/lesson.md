@@ -344,7 +344,7 @@ Slack is where everything async happens this year — wins, help requests, miles
 Lars sends you a link to a workspace called **`kingdom-hq`**. Open it.
 
 - Sign up with your **personal email** (not a school email — schools sometimes block external sign-ins).
-- **Display name:** something simple and lowercase, like your first name. Athos sees this; it's a private workspace.
+- **Display name:** something simple and lowercase, like your first name. Lars sees this; it's a private workspace.
 - Profile picture if you feel like it. A photo or an avatar — anything that makes it obvious it's you.
 
 ### 2. Install Slack on your laptop
