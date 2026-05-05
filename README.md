@@ -10,11 +10,11 @@
 
 > 🇧🇷 [Leia em português](./README.pt.md)
 
-A year from now, you'll send a Roblox link to your friends and they'll play your game. They'll sign in, build farms on a grid, watch their resources tick up, race each other on a leaderboard. The game world they're playing in — the rules of how it works, the way it grows, the bit that makes it *fun* — was written by you, in code, from scratch.
+A year from now, you'll send a Roblox link to your friends and they'll play your game. They'll sign in, build farms on a grid, watch their resources climb, race each other on a leaderboard. The game world they're playing in — the rules of how it works, the way it grows, the bit that makes it *fun* — was written by you, in code, from scratch.
 
 Before that Roblox version, you'll have built the same game four other ways: as a thing that runs in your terminal, as a thing that saves itself to a database so it survives between sessions, as a website your friends can visit on a real public URL with their Google sign-in, and as a game playable in any browser. **Five working versions of the same idea.** Each one teaches you a chunk of how real software gets built. By the time you reach the Roblox version, the engineering is no longer the hard part — it's just translation.
 
-Here's what's quietly true about all of this. The skills aren't toys — they're what working developers actually use to build the software you use every day. By the end of the year, the work you've shipped could be enough to land you a junior developer job: small companies regularly hire on portfolio, and yours will be a real one. Or if you head into university or a technical course instead, you'll arrive with real ground already under your feet — which makes choosing the right path easier, and succeeding once you're on it more likely. Either way, you'll be choosing from a position of strength, not guessing.
+Here's what's worth knowing. The skills aren't toys — they're what working developers actually use to build the software you use every day. By the end of the year, the work you've shipped could be enough to land you a junior developer job: small companies regularly hire on portfolio, and yours will be a real one. Or if you head into university or a technical course instead, you'll arrive already knowing how this works — which makes choosing the right path easier, and succeeding once you're on it more likely. Either way, you'll be choosing from a position of strength, not guessing.
 
 This is what the year looks like.
 
@@ -30,15 +30,17 @@ Someone fifteen-ish, no prior code experience, comfortable on a computer, plays 
 
 Twelve months is a long time. The course works because both of us show up.
 
-**What you commit to:** showing up. Putting hours in. Reading what's on screen before pinging. Writing the things down even when you don't feel like it. Not bailing the first time it stings. None of this needs to be heroic — four to six hours a week, every week — but it needs to be *real*. The uncomfortable parts are the parts where the learning lives.
+> **Twelve months is how long you've got, not how hard it is.** It's set up that way on purpose — to leave room for school, family, friends, everything else. Four to six hours a week is light; it's not a lot of work. If you're enjoying it and want to go faster, you can. The same modules at eight or ten hours a week finish in about half the time. Take the year if you need it; finish sooner if you'd rather.
+
+**What you commit to:** showing up. Putting hours in. Reading what's on screen before pinging. Writing the things down even when you don't feel like it. Not bailing the first time it stings. None of this needs to be heroic — four to six hours a week, every week — but it needs to be *real*. The uncomfortable parts are the parts where you actually learn it.
 
 **What I commit to:** when you're in it, I'm in it. The weekly sync. PR reviews inside the windows. Replies in `#help` you can count on. But that depends on you being in it. If you stop showing up, I'll quietly stop too — not as punishment, just because it doesn't work the other way around. Predictability over availability, both ways.
 
-The deal in one sentence: *engaged on both sides, or neither side.*
+The deal in one sentence: *we're both in, or neither of us is.*
 
 ### If you want out
 
-At the end of any phase, you can decide you're done. No harsh feelings, no failure — *"I gave it Phase 3 and that was enough"* is a complete answer. The course is built so each phase ends with something real you keep, not something you only get after twelve more months. If you reach a phase boundary and the year stops feeling like the right shape, say so. We close it cleanly.
+At the end of any phase, you can decide you're done. No harsh feelings, no failure — *"I gave it Phase 3 and that was enough"* is a complete answer. The course is built so each phase ends with something real you keep, not something you only get after twelve more months. If you reach a phase boundary and the year stops feeling right, say so. We close it cleanly.
 
 ---
 
@@ -64,7 +66,7 @@ These transfer. You can use them on a job, in a side project, in school, anywher
 
 The course is laid out as seven phases — five core, two bonus — building toward the Roblox finale.
 
-**Phase 0 — Spark Week + Foundations.** Your first month. Four small toys (a roast generator, a guessing game, a tiny adventure, a polished little CLI tool). The point is to get used to the rhythm: write, run, commit, push, brag in `#wins`. By the end of the month you're comfortable with the keyboard moves.
+**Phase 0 — Spark Week + Foundations.** Your first month. Four small toys (a roast generator, a guessing game, a tiny adventure, a polished little command-line tool). The point is to get used to the rhythm: write, run, commit, push, brag in `#wins`. By the end of the month you're comfortable with the keyboard moves.
 
 **Phase 1 — Console Kingdom.** The first real version of the Kingdom — buildings, citizens, resources, days that tick. Everything happens in your terminal. Fully tested. By the end you have a real engine running, and you've learned the rule the rest of the course rests on: the *engine* (the rules of the kingdom) is separate from the *shell* (the way you interact with it).
 
@@ -78,7 +80,7 @@ The course is laid out as seven phases — five core, two bonus — building tow
 
 **Phase 6 — Bonuses.** Three short bonuses if you want them. One swaps your database for a totally different one in three lines, just to feel how clean the engine/shell separation actually is. One goes deep on working with an AI assistant — the named skill of *context engineering*. One goes properly into git — the model underneath the commands you've been typing all year.
 
-> **And when the year closes** — after M6 ships and your Roblox game is live — there's a printed **diploma** with your name on it. Lars signs it; you frame it if you want. Not a digital badge, not a sticker. A real page that names the engineering you actually did: commits, milestone pull requests, code reviews, tests, continuous deployment, the discipline of explaining every line of code you ship. The diploma is the year's hand-over.
+> **And when the year closes** — after M6 ships and your Roblox game is live — there's a printed **diploma** with your name on it. Lars signs it; you frame it if you want. Not a digital badge, not a sticker. A real page that names the engineering you actually did: commits, milestone pull requests, code reviews, tests, continuous deployment, the discipline of explaining every line of code you ship. The diploma is what you walk away with.
 
 ---
 
@@ -103,7 +105,7 @@ A few other docs you'll want to know exist, but don't have to read in order:
 - **`vscode-tips.md`** — the ten habits that turn VS Code from "wall of menus" into a tool you can fly. Skim once after Module 0.0.
 - **`STYLE.md`** — what every lesson looks like, so you know what to expect.
 - **`STANDARDS.md`** — the code, naming, and PR conventions used throughout.
-- **`ENGLISH-NOTES.md`** — why the course is in English, and the small scaffolding that helps when a word stalls you.
+- **`ENGLISH-NOTES.md`** — why the course is in English, and the small extra help when a word stalls you.
 - **`GLOSSARY.md`** — every term the course teaches, in alphabetical order.
 
 ---
@@ -112,7 +114,7 @@ A few other docs you'll want to know exist, but don't have to read in order:
 
 **Lars** is your mentor. The full *how we work together* protocol lives in `MENTOR-PROTOCOL.md` at the root of this repo — it describes when to ping him, how to ask, and what to expect back. Read it before module 0.0.
 
-**Claude** is your AI assistant. The first half of the course, Claude helps with friction (a confused error message, a git mess). After the AI Unlock, Claude can also help you write code — under the rule that *you have to be able to explain every line you keep*. The full story is in `ai-tools.md`.
+**Claude** is your AI assistant. The first half of the course, Claude helps you when you're stuck (a confused error message, a git mess). After the AI Unlock, Claude can also help you write code — under the rule that *you have to be able to explain every line you keep*. The full story is in `ai-tools.md`.
 
 ---
 

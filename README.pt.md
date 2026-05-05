@@ -14,7 +14,7 @@ Daqui a um ano, você vai mandar um link de Roblox para os seus amigos e eles v�
 
 Antes dessa versão Roblox, você terá construído o mesmo jogo de quatro outras formas: como uma coisa que roda no seu terminal, como uma coisa que se salva num banco de dados para sobreviver entre sessões, como um site que seus amigos podem visitar numa URL pública real com login do Google, e como um jogo jogável em qualquer navegador. **Cinco versões funcionando da mesma ideia.** Cada uma te ensina um pedaço de como software de verdade é feito. Quando você chegar na versão Roblox, a engenharia já não vai ser a parte difícil — vai ser só tradução.
 
-Tem uma verdade que aparece por baixo de tudo isso. As habilidades não são brinquedo — são o que desenvolvedores de verdade usam para construir o software que você usa todo dia. No fim do ano, o que você entregou pode ser suficiente para conseguir uma vaga de desenvolvedor júnior: empresas pequenas regularmente contratam por portfólio, e o seu vai ser um portfólio real. Ou se você for para a faculdade ou um curso técnico, vai chegar lá com chão de verdade debaixo dos pés — o que torna a escolha do caminho mais fácil, e o sucesso depois mais provável. De qualquer jeito, você vai estar escolhendo de uma posição de força, não no chute.
+Vale dizer uma coisa. As habilidades não são brinquedo — são o que desenvolvedores de verdade usam para construir o software que você usa todo dia. No fim do ano, o que você entregou pode ser suficiente para conseguir uma vaga de desenvolvedor júnior: empresas pequenas regularmente contratam por portfólio, e o seu vai ser um portfólio real. Ou se você for para a faculdade ou um curso técnico, você chega já sabendo como isso funciona — o que torna a escolha do caminho mais fácil, e o sucesso depois mais provável. De qualquer jeito, você vai estar escolhendo de uma posição de força, não no chute.
 
 É assim que o ano se parece.
 
@@ -30,11 +30,13 @@ Alguém com uns quinze anos, sem experiência prévia com código, à vontade no
 
 Doze meses é muito tempo. O curso funciona porque os dois lados aparecem.
 
+> **Doze meses é o tempo que você tem, não o tanto de trabalho que tem pela frente.** Foi feito assim de propósito — pra deixar espaço pra escola, família, amigos, o resto da sua vida. Quatro a seis horas por semana é pouco; não é muito trabalho. Se você estiver curtindo e quiser acelerar, dá. Os mesmos módulos com oito ou dez horas por semana fecham em mais ou menos metade do tempo. Pega o ano todo se precisar; termina antes se preferir.
+
 **O que você se compromete a fazer:** aparecer. Investir as horas. Ler o que está na tela antes de me chamar. Anotar as coisas mesmo quando não der vontade. Não desistir na primeira vez que doer. Nada disso precisa ser heroico — quatro a seis horas por semana, toda semana — mas precisa ser *de verdade*. As partes desconfortáveis são as partes onde o aprendizado acontece.
 
 **O que eu me comprometo a fazer:** quando você está nessa, eu também estou. O encontro semanal. Revisões de PR dentro dos prazos. Respostas no `#help` que você pode contar com elas. Mas isso depende de você estar nessa. Se você parar de aparecer, eu vou parar também — quietamente, não como punição, só porque não funciona do outro jeito. Previsibilidade acima de disponibilidade, dos dois lados.
 
-O acordo numa frase: *engajado dos dois lados, ou de nenhum.*
+O acordo numa frase: *os dois dentro, ou nenhum.*
 
 ### Se você quiser parar
 
@@ -78,7 +80,7 @@ O curso é organizado em sete fases — cinco principais, duas opcionais — cam
 
 **Fase 6 — Bônus.** Três bônus curtos se você quiser. Um troca o seu banco de dados por outro completamente diferente em três linhas, só pra você sentir como a separação engine/shell é limpa de verdade. Um aprofunda no trabalho com um assistente de IA — a habilidade nomeada de *engenharia de contexto*. Um aprofunda em git de verdade — o modelo por baixo dos comandos que você vem digitando o ano todo.
 
-> **E quando o ano fechar** — depois que M6 entregar e seu jogo no Roblox estiver no ar — tem um **diploma** impresso com seu nome. O Lars assina; você emoldura se quiser. Não é uma medalhinha digital, não é um sticker. É uma página de verdade que nomeia a engenharia que você realmente fez: commits, milestone pull requests, code reviews, testes, deploy contínuo, a disciplina de explicar cada linha de código que você entrega. O diploma é a entrega do ano.
+> **E quando o ano fechar** — depois que M6 entregar e seu jogo no Roblox estiver no ar — tem um **diploma** impresso com seu nome. O Lars assina; você emoldura se quiser. Não é uma medalhinha digital, não é um sticker. É uma página de verdade que nomeia a engenharia que você realmente fez: commits, milestone pull requests, code reviews, testes, deploy contínuo, a disciplina de explicar cada linha de código que você entrega. O diploma é o que você leva no fim.
 
 ---
 
@@ -112,7 +114,7 @@ Outros documentos que vale saber que existem, mas você não precisa ler em orde
 
 **Lars** é seu mentor. O protocolo completo *como trabalhamos juntos* mora no `MENTOR-PROTOCOL.md` na raiz desse repo — descreve quando me chamar, como pedir ajuda, e o que esperar de volta. Leia antes do módulo 0.0.
 
-**Claude** é seu assistente de IA. Na primeira metade do curso, o Claude ajuda com fricção (uma mensagem de erro confusa, uma bagunça no git). Depois do AI Unlock, o Claude também pode te ajudar a *escrever* código — sob a regra de que *você tem que conseguir explicar cada linha que mantiver*. A história completa está no `ai-tools.md`.
+**Claude** é seu assistente de IA. Na primeira metade do curso, o Claude te ajuda quando você empaca (uma mensagem de erro confusa, uma bagunça no git). Depois do AI Unlock, o Claude também pode te ajudar a *escrever* código — sob a regra de que *você tem que conseguir explicar cada linha que mantiver*. A história completa está no `ai-tools.md`.
 
 ---
 
