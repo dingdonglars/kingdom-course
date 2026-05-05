@@ -308,14 +308,20 @@ claude --version
 
 You should see a version number.
 
-### 2. Sign in (Lars's account)
+### 2. Create your Anthropic account, together with Lars
+
+The account is in **your name and your email**; you pick the password and only you know it. Lars puts in the payment card — the subscription is on his card, but the account, the history, and the password belong to you.
+
+In a browser, go to [console.anthropic.com](https://console.anthropic.com). Sign up with your email; pick a password; complete the email confirmation. Lars enters the card details for the subscription tier he picked. You're now the owner of an Anthropic account that Lars pays for.
+
+Then, in Windows Terminal:
 
 ```powershell
 cd C:\code\kingdom
 claude
 ```
 
-The first launch pops a browser to sign in to Anthropic. **Lars's email + password** — the subscription is on his card, the access is yours. After sign-in, the browser closes, the terminal shows a prompt, and Claude is alive in your kingdom folder.
+The first launch pops a browser to sign in to Anthropic. Sign in with the account you just created. After sign-in, the browser closes, the terminal shows a prompt, and Claude is alive in your kingdom folder.
 
 ### 3. Try one slash command
 
