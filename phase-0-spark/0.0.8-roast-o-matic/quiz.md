@@ -1,4 +1,4 @@
-# Quiz — Module 0.0
+# Quiz — Module 0.0.8
 
 > Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
 

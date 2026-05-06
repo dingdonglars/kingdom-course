@@ -1,6 +1,6 @@
 # starter/
 
-The canonical Roast-O-Matic demo from Module 0.0. Run it with:
+The canonical Roast-O-Matic demo from Module 0.0.8. Run it with:
 
 ```powershell
 dotnet run

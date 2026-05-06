@@ -22,6 +22,6 @@ If you're genuinely stuck on a question mid-week (you've tried for 20 minutes, a
 
 ---
 
-## Module 0.0 — date
+## Module 0.0.5 — date
 
-(your first entry will land here)
+(Your first entry goes here. Module 0.0 has no quiz, so the primer at 0.0.5 is the first one — you wrote those answers on paper or in a notes app. Move them in here once you've copied the day-1 kit into your repo during 0.0.8.)

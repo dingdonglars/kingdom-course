@@ -45,4 +45,4 @@ After Foundations: a small CLI you'll actually keep on your machine, plus enough
 
 ---
 
-[**→ Start Module 0.0 — Setup + Roast-O-Matic**](./0.0-setup-and-roast-o-matic/lesson.md)
+[**→ Start Module 0.0 — Setup**](./0.0-setup/lesson.md)

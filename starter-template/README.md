@@ -24,7 +24,7 @@ Code. You'll add that.
 
 ## How to start
 
-Open the course repo. Open `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md`. Begin.
+Open the course repo. Open `phase-0-spark/0.0-setup/lesson.md`. Begin.
 
 ## Help
 

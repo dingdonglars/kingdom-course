@@ -1,4 +1,4 @@
-// Roast-O-Matic — the canonical demo for Module 0.0
+// Roast-O-Matic — the canonical demo for Module 0.0.8
 //
 // Replace the roasts in this list with your own. Run it. Watch it pick one
 // at random. That's the whole program. We'll add things to it in Module 0.1.

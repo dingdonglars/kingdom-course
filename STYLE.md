@@ -1,7 +1,7 @@
 # STYLE.md — Voice & Lesson Template
 
 > The voice and structure every lesson follows. Author against this. Reviewer (Lars or `/lesson-review`) checks against this.
-> The two pilot lessons are the working examples: `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md` and `phase-1-console-kingdom/1.4-game-loop/lesson.md`.
+> The two pilot lessons are the working examples: `phase-0-spark/0.0.8-roast-o-matic/lesson.md` and `phase-1-console-kingdom/1.4-game-loop/lesson.md`.
 
 ## Voice
 
@@ -19,8 +19,7 @@
 phase-N-name/N.M-module-slug/
 ├── lesson.md            # The lesson — see structure below
 ├── starter/             # Code to paste or build from (optional)
-├── quiz.md              # 3-7 MCQs in bullet format
-└── screenshots/         # Per-type rules in spec §20 (optional)
+└── quiz.md              # 3-7 MCQs in bullet format
 ```
 
 **Quiz answers do NOT live in the course repo.** They go in `kingdom-curriculum/quiz-answers/<mirrored-path>/quiz-answers.md`. Mentor-side only.

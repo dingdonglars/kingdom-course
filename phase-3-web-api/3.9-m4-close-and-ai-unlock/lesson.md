@@ -1,8 +1,8 @@
 # Module 3.9 — M4 Close + the AI Unlock
 
-The kingdom is on the internet. Friends sign in with Google, save their progress, and play. Phase 3 is done. This module is two things at once: the **M4 milestone close** (wins log, before/after, the per-milestone ritual) — and the **AI Unlock**, the moment the rules around AI-assisted code change. From now on, you can ask the AI for *implementation* — provided you can explain every line you merge.
+The kingdom is on the internet. Friends sign in with Google, save their progress, and play. Phase 3 is done. This module is three things at once: the **M4 milestone close** (wins log, before/after, the per-milestone ritual), **Claude Code's arrival** (account + install), and the **AI Unlock** (the moment the rules around AI-assisted code change). Until today you've worked without an AI assistant — Lars has been the friction-helper via Slack `#help`, under the 20-minute rule. Today Claude arrives, and on the same day the rules expand: you can ask the AI for *implementation* — provided you can explain every line you merge.
 
-This is the most important transition in the year. Up to now, the AI has been deliberately limited: it helps with friction (git messes, error messages) but won't write your exercise code. After today, that limit moves. The discipline you've built across Phases 0 through 3 — the engine-vs-shell rule, deterministic tests, reading-before-writing, naming things on purpose — is what makes the change safe.
+This is the most important transition in the year. The discipline you've built across Phases 0 through 3 — the engine-vs-shell rule, deterministic tests, reading-before-writing, naming things on purpose — is what makes today safe. AI with implementation rights is a power tool that only works if the discipline is already there. You've earned this.
 
 > **Words to watch**
 >
@@ -87,6 +87,53 @@ Every post-unlock PR description includes an AI-assistance section:
 ```
 
 `/milestone-review` reads this section and prepares the viva from it. **You'll be asked to explain a random AI-written line.** If you can't, the merge gets pushed back — not as punishment but as a *"you're missing something; let's close that gap before it builds up over time."*
+
+## Set up Claude Code — install + account
+
+Before flipping the mode flag, Claude Code has to exist on your machine and be signed in to an account. Lars sits with you for this part — he puts his card on the subscription, but the account is in **your name and your email**, with a password only you know.
+
+### 1. Create your Anthropic account, together with Lars
+
+In a browser, go to <https://console.anthropic.com>. Sign up with your email; pick a password (only you know it); complete the email confirmation. Lars enters the card details for the subscription tier he picked. You're now the owner of an Anthropic account that Lars pays for.
+
+### 2. Install Claude Code
+
+Claude Code is the CLI form — a chat that runs in your terminal, in the same folder as your repo, with your code in context. Install it:
+
+```powershell
+npm install -g @anthropic-ai/claude-code
+```
+
+Verify:
+
+```powershell
+claude --version
+```
+
+You should see a version number.
+
+### 3. Sign in
+
+In Windows Terminal:
+
+```powershell
+cd C:\code\kingdom
+claude
+```
+
+The first launch pops a browser to sign in to Anthropic. Sign in with the account you just created. After sign-in, the browser closes, the terminal shows a prompt, and Claude is alive in your kingdom folder.
+
+### 4. Try one slash command
+
+Type `/` in the Claude prompt. You'll see a list including `/explain-this-concept`, `/code-review`, `/stuck-on-error`, `/walk-through-code`. These came in with the day-1 kit (in `.claude/commands/`) and have been waiting for Claude to arrive.
+
+Pick one. *"explain what `git push` actually does, briefly"* — `/explain-this-concept` is the right shape for that. Read what comes back. Type `/exit` (or `Ctrl + C`) to leave.
+
+The full rules — what to ask, what not to ask, the three buckets — are in `ai-tools.md`. Read it tonight; you'll come back to it through the rest of the year.
+
+> **Why Claude and not Copilot or ChatGPT?** Claude is what Lars uses, so it's what Lars can guide you on. Copilot and Cursor and ChatGPT are fine tools too — once you know the patterns the course teaches with Claude, the patterns transfer. The full *why* is in `ai-tools.md`.
+
+---
 
 ## Flipping the mode flag — manual step
 

@@ -1,6 +1,6 @@
 # Module 0.1 — Tinker (Roast-O-Matic v2)
 
-Yesterday Roast-O-Matic shouted the same three roasts at nobody in particular. Today it asks for your friend's name and roasts them by name. *"Hey BOB — your password is 'password'."* Same code as yesterday, two new lines. The point of today is small: you're going to learn how to ask the user a question, store what they typed, and stitch it into a string.
+Last time, Roast-O-Matic shouted the same three roasts at nobody in particular. Today it asks for your friend's name and roasts them by name. *"Hey BOB — your password is 'password'."* Same code as last time, two new lines. The point of today is small: you're going to learn how to ask the user a question, store what they typed, and stitch it into a string.
 
 > **Words to watch**
 >

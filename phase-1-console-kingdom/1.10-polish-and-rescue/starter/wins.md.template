@@ -23,7 +23,7 @@
 - Engine vs shell pattern internalised — same engine will run in 4 different hosts
 - Repo organised by area (`Buildings/`, `Events/`, `Infrastructure/`)
 
-**Before:** Module 0.0 — `Console.WriteLine("Hello, kingdom!");`
+**Before:** Module 0.0.8 — `Console.WriteLine("Hello, kingdom!");`
 **After:**  Module 1.10 — A 14-file engine with a deterministic event log
 
 Posted to `#wins` on YYYY-MM-DD.

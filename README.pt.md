@@ -96,7 +96,7 @@ O ritmo é o ritmo de desenvolvedores trabalhando. Pegar isso agora significa n�
 
 ## Por onde começar
 
-Abra `phase-0-spark/0.0-setup-and-roast-o-matic/lesson.md`. É o dia um. Daqui a umas três horas você vai ter mandado seu primeiro programa para o GitHub e postado seu primeiro `#wins`.
+Abra `phase-0-spark/0.0-setup/lesson.md`. É o dia um — instalações e o seu primeiro `git clone`, presencial com o Lars. A partir daí, sozinho: um primer curto (`0.0.5`) sobre o que está de fato no seu computador, depois o seu primeiro programa em `0.0.8` (Roast-O-Matic). Cerca de uma semana depois, você vai ter mandado esse primeiro programa para o GitHub e postado seu primeiro `#wins`.
 
 Outros documentos que vale saber que existem, mas você não precisa ler em ordem:
 
@@ -114,7 +114,7 @@ Outros documentos que vale saber que existem, mas você não precisa ler em orde
 
 **Lars** é seu mentor. O protocolo completo *como trabalhamos juntos* mora no `MENTOR-PROTOCOL.md` na raiz desse repo — descreve quando me chamar, como pedir ajuda, e o que esperar de volta. Leia antes do módulo 0.0.
 
-**Claude** é seu assistente de IA. Na primeira metade do curso, o Claude te ajuda quando você empaca (uma mensagem de erro confusa, uma bagunça no git). Depois do AI Unlock, o Claude também pode te ajudar a *escrever* código — sob a regra de que *você tem que conseguir explicar cada linha que mantiver*. A história completa está no `ai-tools.md`.
+**Claude** é seu assistente de IA — mas ele chega no AI Unlock (M3.9, mais ou menos na metade do ano), não no Dia 1. Até lá, quando você empaca (uma mensagem de erro confusa, uma bagunça no git) você me chama no `#help` sob a regra de 20 minutos do `MENTOR-PROTOCOL.md`. Depois do AI Unlock, o Claude entra como colaborador de verdade — pode te ajudar a *escrever* código também, sob a regra de que *você tem que conseguir explicar cada linha que mantiver*. A história completa está no `ai-tools.md`; você volta nele depois que o Claude estiver instalado.
 
 ---
 
