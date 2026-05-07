@@ -18,26 +18,26 @@ The big idea this lesson is **classes**. A class is a blueprint — it describes
 
 ## Phase opener — make a branch for Phase 1's work
 
-Before any code, a one-line git move. From now on, each new phase gets its own *branch* — a separate line of work that ends with a *pull request* (PR) back to `main`. Phase 1's branch is `phase-1`.
-
-In Windows Terminal, from inside your kingdom repo:
+Run this first, before any code:
 
 ```powershell
 cd C:\code\kingdom
 git switch -c phase-1
 ```
 
-`git switch -c phase-1` creates a new branch called `phase-1` and moves you onto it (`-c` is short for *create*). Every commit you make from now until Phase 1 closes lands on this branch, not on `main`. At the end of Phase 1 (Module 1.10), you'll open a *pull request* — the formal review surface on GitHub — to bring `phase-1` back into `main`. Lars reviews it, approves, and you merge.
+You're now on a *branch* called `phase-1`. A branch is a separate line of work in git: your commits from now through the end of Phase 1 land on `phase-1` instead of `main`. At Module 1.10 (the close of Phase 1), you'll bring all that work back into `main` through a **pull request** — the formal review surface on GitHub. Lars reviews, approves, you merge. The reason: `main` stays the *"good, reviewed work"* line, and the phase-end PR shows your whole phase as one reviewable chunk — the way working teams ship changes.
 
-Why a branch at all? Two reasons. First, it keeps `main` clean — `main` is the *"good, reviewed work"* line; everything in-progress lives on its own branch. Second, the phase-end PR shows the whole phase as one reviewable chunk, the way real teams review changes. You're learning the rhythm now; every phase from here on starts with the same one-line move (`git switch -c phase-2`, `git switch -c phase-3`, and so on).
+**If "branch" and "pull request" feel fuzzy right now, that's expected.** It's the first time you've met them. The *mechanic* is small — `git switch -c phase-N` at the start of each phase, open a PR at the end — and that's all you need to do today. The deeper *sense* of what branches and PRs really are builds across the next ten modules. Module 1.8 comes back to branches once you've already lived with one for a few weeks. Module 1.10 walks the PR end-to-end. Bonus B3 (much later) is the full git-internals deep dive if you ever want it.
 
-Confirm you're on the new branch:
+For now: run the command, confirm you're on the new branch, and move on. The concept lands by *using* it.
+
+Confirm:
 
 ```powershell
 git status
 ```
 
-The first line should say *"On branch phase-1"*. Good. Now the actual lesson.
+The first line should say *"On branch phase-1"*. Now the actual lesson.
 
 ---
 
