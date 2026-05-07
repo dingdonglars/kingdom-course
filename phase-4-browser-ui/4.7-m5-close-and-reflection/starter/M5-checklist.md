@@ -9,7 +9,9 @@
 - [ ] Screenshot of live URL + browser kingdom rendering
 - [ ] Post to `#wins`
 - [ ] Tag locally: `git tag m5-phase-4-complete && git push origin m5-phase-4-complete`
-- [ ] Open mentor PR with AI-assistance section
+- [ ] Open the M5 PR (`phase-4 → main`) on github.com — title `M5 — Phase 4 — Browser-Playable Kingdom`; body has wins bullets + the AI-assistance section + `**Reviewer:** @dingdonglars`
+- [ ] Lars Approves → you Merge → delete the `phase-4` branch
+- [ ] Locally: `git switch main && git pull`
 
 ## Optional Svelte taster (Week 42)
 - [ ] Port `KingdomCard.ts` to a `KingdomCard.svelte`

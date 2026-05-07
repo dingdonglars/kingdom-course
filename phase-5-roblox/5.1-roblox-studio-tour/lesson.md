@@ -13,6 +13,19 @@ Roblox is one of the largest game platforms in the world, and your friends are a
 
 ---
 
+## Phase opener — `phase-5` branch
+
+Before any code (the why is in Module 1.1):
+
+```powershell
+cd C:\code\kingdom
+git switch -c phase-5
+```
+
+Every commit this phase lands on `phase-5`. At Module 5.8 (M6 close + capstone), you'll PR it back to `main`.
+
+---
+
 ## Step 1 — install
 
 Go to <https://create.roblox.com/> and click *Start Creating*. The page prompts you to install Roblox Studio (about 150 MB). Sign in with your Roblox account, or create one. Once it's installed, double-click *Studio* to launch.

@@ -185,13 +185,37 @@ Open `quiz.md`. (Lighter than usual — milestone-themed.) When you're done, jot
 
 ---
 
+## Open the milestone PR
+
+You've been committing to the `phase-1` branch since Module 1.1. Time to send the whole phase to Lars as a *pull request* — the formal review surface — and merge it into `main`.
+
+On github.com, open your `kingdom` repo. A yellow banner near the top says something like *"phase-1 had recent pushes — Compare & pull request"*. Click **Compare & pull request**. (Banner missing? *Pull requests* tab → *New pull request* → base: `main`, compare: `phase-1`.)
+
+Fill in:
+
+- **Title:** `M2 — Phase 1 — Console Kingdom`
+- **Body:** the four `wins.md` bullet points + a line `**Reviewer:** @dingdonglars`
+
+Click **Create pull request**. GitHub notifies Lars; he reviews on the *Files changed* tab, leaves comments or clicks **Approve**. If he asks for changes, push more commits to `phase-1` — they appear on the PR automatically. When the review is **Approved**, click **Merge pull request** → **Confirm merge**. GitHub offers to delete the `phase-1` branch — accept; the merged history lives on `main` from now on.
+
+Switch back locally:
+
+```powershell
+git switch main
+git pull
+```
+
+You're back on `main` with Phase 1 merged in. Phase 2 begins in Module 2.1 with a fresh `phase-2` branch.
+
+---
+
 ## Milestone ritual — M2
 
 You just shipped **M2 — Kingdom v1, Console**. Time for the ritual:
 
 1. **`journal/wins.md` entry.** Open `wins.md` (in your repo's `journal/` folder) and add a paragraph in your own words about what M2 felt like. Keep it short.
 
-2. **`#wins` Slack post.** Drop a screenshot of the running kingdom + a link to the PR + a one-line caption.
+2. **`#wins` Slack post.** Drop a screenshot of the running kingdom + a link to the merged PR + a one-line caption.
 
 3. **Before/after one-liner.** Pick the thing you couldn't do six weeks ago and the thing you can do today, and put them in one sentence. Save it in `wins.md`. Future-you will thank present-you.
 

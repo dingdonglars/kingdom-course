@@ -112,6 +112,8 @@ There is no code change to ship — the renames you do are **specific to your co
    git push origin m3-phase-2-complete
    ```
 
+7. **Open the M3 PR.** On github.com → your `kingdom` repo → banner *"phase-2 had recent pushes — Compare & pull request"* (or *Pull requests → New pull request*, base `main`, compare `phase-2`). Title: `M3 — Phase 2 — Persistence`. Body: this milestone's `wins.md` bullets + `**Reviewer:** @dingdonglars`. Lars reviews → Approves → you Merge → delete the `phase-2` branch on the prompt. Locally: `git switch main && git pull`. (Full walkthrough: Module 1.10.)
+
 ## Tinker
 
 Read your most recent commit message. Is it specific? *"refactor"* says nothing; *"drop ListAll, keep ListSlots — same callers, less surface"* tells the story.

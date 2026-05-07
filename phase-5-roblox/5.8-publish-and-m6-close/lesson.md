@@ -60,7 +60,7 @@ Same pattern as the previous milestones — bigger, and final:
    ```
 
 3. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags: `git tag m6-phase-5-complete && git push origin m6-phase-5-complete`.
-4. Open the M6 milestone PR. Include the AI-assistance section in the description.
+4. **Open the M6 PR.** On github.com → your `kingdom` repo → banner *"phase-5 had recent pushes — Compare & pull request"* (or *Pull requests → New pull request*, base `main`, compare `phase-5`). Title: `M6 — Phase 5 — Roblox-Published Kingdom`. Body: this milestone's `wins.md` bullets + `**Reviewer:** @dingdonglars` + the AI-assistance section per the post-Unlock template. This is the final PR; after Lars Approves and you've done the viva (next step), you Merge → delete the `phase-5` branch. (Full walkthrough: Module 1.10.)
 5. Final viva with Lars — random-line walkthrough across the engine, plus a "tell me the story of one year" conversation.
 
 ## The final reflection (one sitting, about an hour)

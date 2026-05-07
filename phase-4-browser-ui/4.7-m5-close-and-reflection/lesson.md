@@ -52,7 +52,7 @@ git tag m5-phase-4-complete
 git push origin m5-phase-4-complete
 ```
 
-Fifth, open the milestone PR (your branch → mentor review). The PR description includes the AI-assistance section per the post-Unlock template. Lars reads it before the weekly sync.
+Fifth, **open the M5 PR.** On github.com → your `kingdom` repo → banner *"phase-4 had recent pushes — Compare & pull request"* (or *Pull requests → New pull request*, base `main`, compare `phase-4`). Title: `M5 — Phase 4 — Browser-Playable Kingdom`. Body: this milestone's `wins.md` bullets + `**Reviewer:** @dingdonglars` + the AI-assistance section per the post-Unlock template. Lars reads it before the weekly sync, Approves, you Merge → delete the `phase-4` branch. Locally: `git switch main && git pull`. (Full walkthrough: Module 1.10.)
 
 ## Tinker
 

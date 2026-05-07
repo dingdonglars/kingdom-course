@@ -33,6 +33,17 @@ Mental model: think of the filesystem as a tree turned on its head — the drive
 
 > **The folder you're in matters.** Most things in this course act on *the folder you're currently in*. Run a command in the wrong folder, you get a confusing error. Whenever something doesn't work, your first check is *"am I in the right folder?"*
 
+### Two folders, two roles
+
+Your `C:\code\` has exactly two folders right now, and they're not the same kind of thing.
+
+- `kingdom-course/` — **the course textbook**. Lessons, starter kit, glossary. You read from it; you never edit it. When the course updates, you pull the changes down with `git pull` from inside the folder. Think of it as a library book.
+- `kingdom/` — **your repo**. Everything you write goes here. You commit, push, and one day a real PR review happens here. This is the folder with your name on it.
+
+**The rule:** never edit anything inside `kingdom-course/`. Not the lessons, not the starter files, not a typo you spot. If something's wrong, post in `#help` — Lars fixes it in the source and you `git pull` the fix. Editing your local copy makes your next `git pull` fail with merge conflicts; small problem becomes a big confusing one fast.
+
+**Working with both in VS Code.** Open each as its own window: *File → Open Folder* → `C:\code\kingdom`, then in a fresh VS Code window, *File → Open Folder* → `C:\code\kingdom-course`. Two VS Code icons in the taskbar, one per repo, title bar shows which is which. Don't merge them into one workspace — keeping them as two windows means you're physically less likely to type into the wrong one.
+
 ## Step 2 — File extensions: how programs know what you've got
 
 Every file has a name and (usually) an *extension* — the bit after the dot. The extension tells programs what kind of content the file holds. It's not magic; it's a convention everyone agrees to.

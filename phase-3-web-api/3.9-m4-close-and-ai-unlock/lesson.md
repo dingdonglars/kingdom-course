@@ -47,7 +47,7 @@ Same pattern as M2 and M3 — but louder, because M4 is the milestone where the 
 
 4. Take a screenshot of your live URL plus the Scalar UI. Post in `#wins`.
 5. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags: `git tag m4-phase-3-complete && git push origin m4-phase-3-complete`
-6. Open the milestone PR (your code → mentor for the M4 review). Per the post-unlock template (next section), include the AI-assistance section even though it's empty for this PR.
+6. **Open the M4 PR.** On github.com → your `kingdom` repo → banner *"phase-3 had recent pushes — Compare & pull request"* (or *Pull requests → New pull request*, base `main`, compare `phase-3`). Title: `M4 — Phase 3 — Live API`. Body: this milestone's `wins.md` bullets + `**Reviewer:** @dingdonglars` + the AI-assistance section per the post-unlock template (empty for this PR — Phase 3 was pre-unlock — but the section's presence marks that the new world starts now). Lars reviews → Approves → you Merge → delete the `phase-3` branch. Locally: `git switch main && git pull`. (Full walkthrough: Module 1.10.)
 
 ## The AI Unlock
 

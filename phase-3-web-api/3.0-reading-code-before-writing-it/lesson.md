@@ -12,6 +12,19 @@ Reading is the skill nobody teaches and everyone needs. The senior on a team rea
 
 ---
 
+## Phase opener — `phase-3` branch
+
+Before any code (the why is in Module 1.1):
+
+```powershell
+cd C:\code\kingdom
+git switch -c phase-3
+```
+
+Every commit this phase lands on `phase-3`. At Module 3.9 (M4 close + AI Unlock), you'll PR it back to `main`.
+
+---
+
 ## Why read first
 
 The default learning loop most people use is *read tutorial → write thing → break → fix*. It works for syntax. It does not work for *judgement* — knowing why one way of structuring code is better than another. Judgement comes from reading lots of code and asking *"what does this person know that I don't?"*

@@ -49,3 +49,6 @@ Walk your engine, persistence, and console projects with the **five questions** 
 - [ ] Append to `wins.md`
 - [ ] Post to `#wins`
 - [ ] Tag: `git tag m3-block-4-complete`
+- [ ] Open the M3 PR (`phase-2 → main`) on github.com — title `M3 — Phase 2 — Persistence`; body has wins bullets + `**Reviewer:** @dingdonglars`
+- [ ] Lars Approves → you Merge → delete the `phase-2` branch
+- [ ] Locally: `git switch main && git pull`

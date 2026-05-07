@@ -14,6 +14,19 @@ This module names the discipline. It's called **context engineering** — choosi
 
 ---
 
+## Phase opener — `phase-4` branch
+
+Before any code (the why is in Module 1.1):
+
+```powershell
+cd C:\code\kingdom
+git switch -c phase-4
+```
+
+Every commit this phase lands on `phase-4`. At Module 4.7 (M5 close), you'll PR it back to `main`.
+
+---
+
 ## The four-step frame
 
 When you ask the AI to write something non-trivial, give it four things in order. Goal first, then where it goes, then your conventions, then the traps. The full version adds a fifth — one similar example from your own code — but the four-step version is the one to learn first.

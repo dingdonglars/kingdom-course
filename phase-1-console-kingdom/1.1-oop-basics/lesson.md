@@ -16,6 +16,31 @@ The big idea this lesson is **classes**. A class is a blueprint — it describes
 
 ---
 
+## Phase opener — make a branch for Phase 1's work
+
+Before any code, a one-line git move. From now on, each new phase gets its own *branch* — a separate line of work that ends with a *pull request* (PR) back to `main`. Phase 1's branch is `phase-1`.
+
+In Windows Terminal, from inside your kingdom repo:
+
+```powershell
+cd C:\code\kingdom
+git switch -c phase-1
+```
+
+`git switch -c phase-1` creates a new branch called `phase-1` and moves you onto it (`-c` is short for *create*). Every commit you make from now until Phase 1 closes lands on this branch, not on `main`. At the end of Phase 1 (Module 1.10), you'll open a *pull request* — the formal review surface on GitHub — to bring `phase-1` back into `main`. Lars reviews it, approves, and you merge.
+
+Why a branch at all? Two reasons. First, it keeps `main` clean — `main` is the *"good, reviewed work"* line; everything in-progress lives on its own branch. Second, the phase-end PR shows the whole phase as one reviewable chunk, the way real teams review changes. You're learning the rhythm now; every phase from here on starts with the same one-line move (`git switch -c phase-2`, `git switch -c phase-3`, and so on).
+
+Confirm you're on the new branch:
+
+```powershell
+git status
+```
+
+The first line should say *"On branch phase-1"*. Good. Now the actual lesson.
+
+---
+
 ## Step 1 — start a fresh project
 
 Make a new project for the Kingdom:

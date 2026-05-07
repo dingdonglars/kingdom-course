@@ -13,6 +13,19 @@ Along the way you'll meet the small but very specific way Windows deals with pat
 
 ---
 
+## Phase opener — `phase-2` branch
+
+Before any code (the why is in Module 1.1):
+
+```powershell
+cd C:\code\kingdom
+git switch -c phase-2
+```
+
+Every commit this phase lands on `phase-2`. At Module 2.11 (M3 close), you'll PR it back to `main`.
+
+---
+
 ## Why a file first
 
 Files are the simplest way to save: open, write a string, close. Nothing is faster to add and nothing is more familiar to debug — you can open the file in Notepad and read what's inside. JSON (Module 2.2) and SQLite (Module 2.4) are layers on top of *"write some bytes to disk."* So we start with the raw thing.

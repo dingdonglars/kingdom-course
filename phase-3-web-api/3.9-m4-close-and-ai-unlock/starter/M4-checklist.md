@@ -15,9 +15,11 @@
 - [ ] Update your PR template (or copy from the post-unlock template in `STANDARDS.md`) to include the AI-assistance section
 
 ## Mentor PR
-- [ ] Open the M4 milestone PR (your branch → mentor review)
-- [ ] Description includes the AI-assistance section (empty for this PR — first post-unlock PR is symbolic)
-- [ ] Mentor reviews; viva session scheduled
+- [ ] Open the M4 PR (`phase-3 → main`) on github.com — banner *"Compare & pull request"* (or *Pull requests → New pull request*)
+- [ ] Title: `M4 — Phase 3 — Live API`; body has wins bullets + the AI-assistance section (empty for this PR — first post-unlock PR is symbolic) + `**Reviewer:** @dingdonglars`
+- [ ] Mentor reviews → Approves → you Merge → delete the `phase-3` branch
+- [ ] Locally: `git switch main && git pull`
+- [ ] Viva session scheduled
 
 ## Mentally
 - [ ] Pause for 10 minutes. You shipped real software to the internet. **That is a legitimately big deal.**

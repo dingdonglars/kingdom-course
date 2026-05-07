@@ -145,6 +145,12 @@ This is the repo for *your* year of work — separate from the course repo. Go t
 
 Copy the repo URL from the green **Code** button.
 
+### Add Lars as a collaborator
+
+So Lars can review your pull requests later in the year, give him access to the repo right now while you're still on github.com. On your repo's page, click **Settings** (top-right of the repo, in the row of tabs) → **Collaborators** (left sidebar) → **Add people**. Type `dingdonglars`, pick him from the dropdown, choose **Read** access, click **Add to repository**.
+
+Lars gets an email invite and accepts on his side. From then on he can leave PR reviews with the formal *Approve* badge — Read access is review-only; he can't push or merge anything to your repo.
+
 ### Clone YOUR repo into `C:\code\`
 
 In VS Code:

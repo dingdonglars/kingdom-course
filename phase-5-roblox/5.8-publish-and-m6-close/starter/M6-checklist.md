@@ -23,7 +23,9 @@
 - [ ] Sat with whatever happened (five minutes; no defending; just listen)
 - [ ] Wrote the M6 entry in `journal/wins.md`
 - [ ] Tag locally and pushed: `git tag m6-phase-5-complete && git push origin m6-phase-5-complete`
-- [ ] M6 mentor PR opened (with AI-assistance section)
+- [ ] Open the M6 PR (`phase-5 → main`) on github.com — title `M6 — Phase 5 — Roblox-Published Kingdom`; body has wins bullets + the AI-assistance section + `**Reviewer:** @dingdonglars`
+- [ ] Lars Approves → viva → you Merge → delete the `phase-5` branch
+- [ ] Locally: `git switch main && git pull`
 
 ## Final reflection
 
