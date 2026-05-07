@@ -55,7 +55,7 @@ Open `journal/B2-what-i-learned.md`. The template has five prompts. Pick the one
 4. **One concrete piece of advice for someone starting next year?** Three sentences max.
 5. **Where will you use AI more next year? Where less?**
 
-Aim for ~500 words total. The exercise isn't literary polish — it's thinking about how you think (which is what the M5.8 reflection touched on too). Naming what you've been doing is what turns a bunch of habits into a transferable skill.
+Aim for ~500 words total. The exercise isn't literary polish — it's thinking about how you think (which is what the Module 5.8 reflection touched on too). Naming what you've been doing is what turns a bunch of habits into a transferable skill.
 
 ## Step — tag the bonus
 

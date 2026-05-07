@@ -114,7 +114,7 @@ A few other docs you'll want to know exist, but don't have to read in order:
 
 **Lars** is your mentor. The full *how we work together* protocol lives in `MENTOR-PROTOCOL.md` at the root of this repo — it describes when to ping him, how to ask, and what to expect back. Read it before module 0.0.
 
-**Claude** is your AI assistant — but it arrives at the AI Unlock (M3.9, roughly halfway through the year), not on Day 1. Until then, when you're stuck (a confused error message, a git mess) you ping Lars in `#help` under the 20-minute rule from `MENTOR-PROTOCOL.md`. After the AI Unlock, Claude joins as a real collaborator — implementation help allowed, under the rule that *you have to be able to explain every line you keep*. The full story is in `ai-tools.md`; you'll come back to it once Claude is set up.
+**Claude** is your AI assistant — but it arrives at the AI Unlock (Module 3.9, roughly halfway through the year), not on Day 1. Until then, when you're stuck (a confused error message, a git mess) you ping Lars in `#help` under the 20-minute rule from `MENTOR-PROTOCOL.md`. After the AI Unlock, Claude joins as a real collaborator — implementation help allowed, under the rule that *you have to be able to explain every line you keep*. The full story is in `ai-tools.md`; you'll come back to it once Claude is set up.
 
 ---
 

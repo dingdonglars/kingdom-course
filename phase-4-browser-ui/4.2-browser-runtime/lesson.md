@@ -76,7 +76,7 @@ builder.Services.AddCors();
 app.UseCors(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 ```
 
-For production, replace `AllowAnyOrigin` with the specific frontend origin. We'll do that in M4.6 when the frontend deploys.
+For production, replace `AllowAnyOrigin` with the specific frontend origin. We'll do that in Module 4.6 when the frontend deploys.
 
 ## Step 5 — the delta starter
 

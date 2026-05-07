@@ -15,4 +15,4 @@ This module has no real code. What you keep is your `journal/5.1-studio-tour.md`
 
 ## Common gotcha
 
-If you save the place inside Studio (`File → Save to File`), the resulting `.rbxl` is large and binary. Don't `git add` those — keep them on your machine. When you reach M5.1's "publish" cousin (M5.8), the place will live on Roblox's servers under a URL, not in this folder.
+If you save the place inside Studio (`File → Save to File`), the resulting `.rbxl` is large and binary. Don't `git add` those — keep them on your machine. When you reach Module 5.1's "publish" cousin (Module 5.8), the place will live on Roblox's servers under a URL, not in this folder.

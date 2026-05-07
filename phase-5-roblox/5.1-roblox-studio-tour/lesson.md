@@ -91,7 +91,7 @@ The four-panel layout is what every Roblox tutorial assumes you can find. Spend 
 
 ## Publishing comes later
 
-`File → Publish to Roblox` is how a place becomes a URL your friends can visit. We're not pressing that button today — M5.8 is the publishing module. For now, a saved local draft is enough.
+`File → Publish to Roblox` is how a place becomes a URL your friends can visit. We're not pressing that button today — Module 5.8 is the publishing module. For now, a saved local draft is enough.
 
 ## What you just did
 

@@ -6,9 +6,9 @@ This file is the plain-English version of how AI fits into the course. The machi
 
 You'll have your own personal Claude subscription, but **not from Day 1.** Claude arrives at **Module 3.9 — the AI Unlock**, roughly halfway through the year. Lars sets up the account with you that day; the tier is whatever Lars picks (he'll tell you).
 
-**Until M3.9:** you work without an AI assistant. When you're stuck, you post in Slack `#help` under the 20-minute rule from `MENTOR-PROTOCOL.md`. Lars is your friction-helper. The slash commands sitting in your `.claude/commands/` folder don't do anything yet — they start working once Claude is installed.
+**Until Module 3.9:** you work without an AI assistant. When you're stuck, you post in Slack `#help` under the 20-minute rule from `MENTOR-PROTOCOL.md`. Lars is your friction-helper. The slash commands sitting in your `.claude/commands/` folder don't do anything yet — they start working once Claude is installed.
 
-**From M3.9 on:** **Claude is your default AI assistant for the year.** Most weeks you'll talk to it through Claude Code in your terminal, occasionally through claude.ai in the browser.
+**From Module 3.9 on:** **Claude is your default AI assistant for the year.** Most weeks you'll talk to it through Claude Code in your terminal, occasionally through claude.ai in the browser.
 
 The reason for the wait: the work you put in across Phases 0-3 — without an AI alongside — is what makes AI safe to add later. Code you wrote and understood lets you check what Claude writes for you. Code you never wrote yourself first is harder to check. So we earn the AI by writing the basics ourselves.
 
@@ -16,11 +16,11 @@ You don't have to use Claude exclusively. If you end up working somewhere later 
 
 What the course does *not* teach you to use: AI as an autopilot. You will write code in this course. AI helps; AI doesn't replace you.
 
-## The three buckets (active from M3.9)
+## The three buckets (active from Module 3.9)
 
-There are three categories of AI use in the course. Read these before M3.9 if you want to know what's coming; they're the rules you'll live by from Phase 4 onwards.
+There are three categories of AI use in the course. Read these before Module 3.9 if you want to know what's coming; they're the rules you'll live by from Phase 4 onwards.
 
-The middle bucket has **two phases inside it** — `pre-unlock` and `post-unlock`. Claude's `CLAUDE.md` file carries a mode flag that switches between them. **The flag flips from `pre-unlock` to `post-unlock` at M3.9.** Since Claude only arrives at M3.9, you experience post-unlock mode almost immediately after install — but Claude reads pre-unlock rules briefly between install and flip, so they're worth knowing about.
+The middle bucket has **two phases inside it** — `pre-unlock` and `post-unlock`. Claude's `CLAUDE.md` file carries a mode flag that switches between them. **The flag flips from `pre-unlock` to `post-unlock` at Module 3.9.** Since Claude only arrives at Module 3.9, you experience post-unlock mode almost immediately after install — but Claude reads pre-unlock rules briefly between install and flip, so they're worth knowing about.
 
 ### 🟥 Don't ask AI for — ever
 
@@ -38,7 +38,7 @@ If you ask Claude for these, Claude will push back: *"this looks like a course e
 
 This bucket has the most rules; it's the one that **expands at the AI Unlock.**
 
-**Pre-unlock rules** (active for the few minutes between Claude install and mode-flag flip at M3.9):
+**Pre-unlock rules** (active for the few minutes between Claude install and mode-flag flip at Module 3.9):
 
 - Get out of git messes — yes, ask Claude to fix your detached HEAD
 - Environment setup, install errors, *"why won't this build?"*
@@ -66,7 +66,7 @@ That's the whole rule. It exists so you don't end up shipping code you don't und
 
 The rule is **honor system**. Lars cannot read your mind. But the rule lives inside the milestone reviews — when you open a post-unlock milestone PR, you fill in an "AI assistance" section (which files were AI-helped). At the milestone review, Lars walks you through some of those lines and asks *"explain this one to me."* Honest disclosure that turns out you don't understand a line is a learning moment, not a strike. Hiding AI use to avoid the conversation is the failure.
 
-## Why the unlock exists at M3.9
+## Why the unlock exists at Module 3.9
 
 By the time you graduate from this course, your peers in any junior developer job will be using AI assistants every day. If the course taught you without AI, you'd graduate into a museum piece. If the course let you use AI for everything from day one, you'd graduate as someone who types prompts but can't read his own code.
 
@@ -76,15 +76,15 @@ The unlock splits the difference: get good at the basics first (Phases 0-3, no A
 
 This is a non-AI rule, but it lives next to AI use, so name it now: before pinging Lars in `#help`, try yourself for 20 minutes.
 
-**Until M3.9:** if 20 minutes hasn't cracked it, post in `#help` and show what you tried. Lars is your friction-helper.
+**Until Module 3.9:** if 20 minutes hasn't cracked it, post in `#help` and show what you tried. Lars is your friction-helper.
 
-**From M3.9 on:** try Claude after the 20 minutes (it's faster than waiting for Lars). If Claude can't help, *then* ping Lars in `#help` — show what you tried and what Claude said.
+**From Module 3.9 on:** try Claude after the 20 minutes (it's faster than waiting for Lars). If Claude can't help, *then* ping Lars in `#help` — show what you tried and what Claude said.
 
 Lars's time is precious; Claude's is not; your time spent struggling at the keyboard is the time when learning happens fastest.
 
 ## Slash commands waiting in your repo
 
-Your repo ships (from the 0.0.8 day-1 kit copy) with six Claude Code slash commands. They don't do anything until Claude arrives at M3.9 — once you have Claude Code installed, type `/` in its prompt to list them. The four most useful in daily work:
+Your repo ships (from the 0.0.8 day-1 kit copy) with six Claude Code slash commands. They don't do anything until Claude arrives at Module 3.9 — once you have Claude Code installed, type `/` in its prompt to list them. The four most useful in daily work:
 
 - **`/explain-this-concept`** — beginner-level walkthrough of a concept, calibrated to what you already know.
 - **`/code-review`** — Claude points out issues in code you wrote. Yellow bucket: **does not write the fix.**

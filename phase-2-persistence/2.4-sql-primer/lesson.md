@@ -151,7 +151,7 @@ Three things to read carefully:
 `Kingdom.Console/Program.cs` — append at the bottom:
 
 ```csharp
-// SQLite demo (M2.4)
+// SQLite demo (Module 2.4)
 var dbPath = Path.Combine(saveFolder, "kingdoms.db");
 if (File.Exists(dbPath)) File.Delete(dbPath);   // start fresh each run
 var rows = SqliteDemo.RunDemo(dbPath);

@@ -110,4 +110,4 @@ Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning i
 
 ## Next
 
-Module 5.5 starts the **engine port** properly — `ResourceLedger`, `Citizen`, `Kingdom` — translated into Luau. Server-side. With the test from M5.3 as the smoke check.
+Module 5.5 starts the **engine port** properly — `ResourceLedger`, `Citizen`, `Kingdom` — translated into Luau. Server-side. With the test from Module 5.3 as the smoke check.

@@ -279,7 +279,7 @@ Run all tests across both projects:
 dotnet test
 ```
 
-Expect `Passed: 43` (38 from M2.1 + 5 new in the persistence test project).
+Expect `Passed: 43` (38 from Module 2.1 + 5 new in the persistence test project).
 
 ## Tinker
 

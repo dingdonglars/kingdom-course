@@ -27,7 +27,7 @@ By the count of repos: four milestones reached, roughly twelve weeks of curricul
 
 Same pattern as M2 and M3 — but louder, because M4 is the milestone where the AI Unlock takes effect:
 
-1. **Refresh the README** at the repo root — re-walk the four sections from M0.4. *How to run* now needs the live URL plus the `dotnet user-secrets` step; *What I learned* gets a Phase 3 paragraph (HTTP, OpenAPI, OAuth, multi-user persistence, App Service deploy). Every milestone close circles back to the README — the discipline that started in M2 close is the discipline now.
+1. **Refresh the README** at the repo root — re-walk the four sections from Module 0.4. *How to run* now needs the live URL plus the `dotnet user-secrets` step; *What I learned* gets a Phase 3 paragraph (HTTP, OpenAPI, OAuth, multi-user persistence, App Service deploy). Every milestone close circles back to the README — the discipline that started in M2 close is the discipline now.
 2. Open `journal/wins.md`.
 3. Write the M4 entry:
 

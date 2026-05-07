@@ -151,7 +151,7 @@ void PrintKingdom(Kingdom.Engine.Kingdom k)
 }
 ```
 
-Notice the type is `Kingdom.Engine.Kingdom` — the full name, because `Kingdom` is also the name of a namespace and C# wants to know which one you mean. (You'll meet this same situation again in M1.4 with the `global::` prefix in tests; same family of compiler-confusion.)
+Notice the type is `Kingdom.Engine.Kingdom` — the full name, because `Kingdom` is also the name of a namespace and C# wants to know which one you mean. (You'll meet this same situation again in Module 1.4 with the `global::` prefix in tests; same family of compiler-confusion.)
 
 ## Step 5 — build and run
 

@@ -1,6 +1,6 @@
 # Module 2.6 starter — EF Core (code-first)
 
-Delta from M2.5:
+Delta from Module 2.5:
 
 - **MODIFIED:** `Kingdom.Persistence/Kingdom.Persistence.csproj` (adds EF Core + EF Core SQLite packages)
 - **NEW:** `Kingdom.Persistence/EfCore/KingdomEntity.cs`

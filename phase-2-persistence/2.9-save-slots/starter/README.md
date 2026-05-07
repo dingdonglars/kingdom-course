@@ -1,6 +1,6 @@
 # Module 2.9 starter — save slots (CRUD)
 
-Delta from M2.7:
+Delta from Module 2.7:
 
 - **NEW:** `Kingdom.Persistence/EfCore/KingdomSlotInfo.cs` — DTO for the slot list
 - **MODIFIED:** `Kingdom.Persistence/EfCore/KingdomEfStore.cs` — adds `Update(id, kingdom)`, `Delete(id)`, `ListSlots()`

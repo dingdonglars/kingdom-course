@@ -1,7 +1,7 @@
 # M4 milestone checklist
 
 ## Wins ritual
-- [ ] **Refresh the README at the repo root** — re-walk the four sections from M0.4. The repo is now a deployed web API with OAuth and multi-user persistence; the *How to run* section needs the live URL + the `dotnet user-secrets` step, and *What I learned* gets a Phase 3 paragraph.
+- [ ] **Refresh the README at the repo root** — re-walk the four sections from Module 0.4. The repo is now a deployed web API with OAuth and multi-user persistence; the *How to run* section needs the live URL + the `dotnet user-secrets` step, and *What I learned* gets a Phase 3 paragraph.
 - [ ] Write the M4 entry in `journal/wins.md`
 - [ ] Take a screenshot of your live URL + Scalar (`/scalar/v1`)
 - [ ] Post the screenshot + before/after one-liner to `#wins`

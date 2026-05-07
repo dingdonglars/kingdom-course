@@ -31,7 +31,7 @@ Today the API switches from *one in-memory kingdom* to *many kingdoms, persisted
 
 - **NEW:** `Kingdom.Api/Dtos/CreateKingdomRequest.cs` and `KingdomCreated.cs`
 - **MODIFIED:** `Kingdom.Api/Program.cs` — uses `KingdomEfStore` plus `MapGroup("/kingdoms")` and five endpoints
-- **MODIFIED:** `Kingdom.Api/Kingdom.Api.csproj` — already references Persistence (from M3.1)
+- **MODIFIED:** `Kingdom.Api/Kingdom.Api.csproj` — already references Persistence (from Module 3.1)
 
 ## Step 1 — request and response DTOs
 
@@ -133,7 +133,7 @@ Five things to read carefully:
 2. **`{id:int}`** — a route parameter with a *type constraint*. `/kingdoms/abc` won't match (no int parsing); `/kingdoms/5` does, with `id = 5`.
 3. **`Results.Created(uri, value)`** — the right answer for a successful `POST`. Sets status 201 *and* the `Location: /kingdoms/5` header so the client knows the URL of the new thing.
 4. **`Results.NoContent()`** — 204 — the operation succeeded, there's nothing to return. Standard for `DELETE`.
-5. **`try/catch (InvalidOperationException)`** — `store.Load` throws if the record is missing; we translate that to a 404. This is *not great* — it's exception-as-control-flow. M3.4 will introduce a `TryLoad` to handle the missing-record case without exceptions.
+5. **`try/catch (InvalidOperationException)`** — `store.Load` throws if the record is missing; we translate that to a 404. This is *not great* — it's exception-as-control-flow. Module 3.4 will introduce a `TryLoad` to handle the missing-record case without exceptions.
 
 ## Step 3 — try it all
 
@@ -168,7 +168,7 @@ Status codes are part of your API. Returning the wrong one isn't a minor detail;
 
 ## What you just did
 
-You moved the API from one-kingdom-in-memory to many-kingdoms-in-the-database, with a full set of CRUD endpoints. You used `MapGroup("/kingdoms")` to share a path prefix across five handlers, route constraints (`{id:int}`) to reject malformed URLs at the framework layer, and `Results.Created`, `Results.NoContent`, `Results.NotFound` and `Results.BadRequest` to return the right status codes for the right reasons. You also met your first code smell — exception-as-control-flow in the missing-record case — and named it as something M3.4 will clean up.
+You moved the API from one-kingdom-in-memory to many-kingdoms-in-the-database, with a full set of CRUD endpoints. You used `MapGroup("/kingdoms")` to share a path prefix across five handlers, route constraints (`{id:int}`) to reject malformed URLs at the framework layer, and `Results.Created`, `Results.NoContent`, `Results.NotFound` and `Results.BadRequest` to return the right status codes for the right reasons. You also met your first code smell — exception-as-control-flow in the missing-record case — and named it as something Module 3.4 will clean up.
 
 **Key concepts you can now name:**
 

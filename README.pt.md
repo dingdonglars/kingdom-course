@@ -114,7 +114,7 @@ Outros documentos que vale saber que existem, mas você não precisa ler em orde
 
 **Lars** é seu mentor. O protocolo completo *como trabalhamos juntos* mora no `MENTOR-PROTOCOL.md` na raiz desse repo — descreve quando me chamar, como pedir ajuda, e o que esperar de volta. Leia antes do módulo 0.0.
 
-**Claude** é seu assistente de IA — mas ele chega no AI Unlock (M3.9, mais ou menos na metade do ano), não no Dia 1. Até lá, quando você empaca (uma mensagem de erro confusa, uma bagunça no git) você me chama no `#help` sob a regra de 20 minutos do `MENTOR-PROTOCOL.md`. Depois do AI Unlock, o Claude entra como colaborador de verdade — pode te ajudar a *escrever* código também, sob a regra de que *você tem que conseguir explicar cada linha que mantiver*. A história completa está no `ai-tools.md`; você volta nele depois que o Claude estiver instalado.
+**Claude** é seu assistente de IA — mas ele chega no AI Unlock (Module 3.9, mais ou menos na metade do ano), não no Dia 1. Até lá, quando você empaca (uma mensagem de erro confusa, uma bagunça no git) você me chama no `#help` sob a regra de 20 minutos do `MENTOR-PROTOCOL.md`. Depois do AI Unlock, o Claude entra como colaborador de verdade — pode te ajudar a *escrever* código também, sob a regra de que *você tem que conseguir explicar cada linha que mantiver*. A história completa está no `ai-tools.md`; você volta nele depois que o Claude estiver instalado.
 
 ---
 

@@ -1,6 +1,6 @@
 # Module 3.7 starter — integration tests
 
-Delta from M3.6:
+Delta from Module 3.6:
 
 - **MODIFIED:** `tests/Kingdom.Api.Tests/Kingdom.Api.Tests.csproj` — adds `Microsoft.AspNetCore.Mvc.Testing` + `Shouldly` + project reference to `Kingdom.Api`
 - **NEW:** `tests/Kingdom.Api.Tests/IntegrationFixture.cs`

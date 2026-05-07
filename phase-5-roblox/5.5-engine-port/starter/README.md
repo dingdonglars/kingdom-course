@@ -11,7 +11,7 @@ The engine reaches feature parity with Phase 1, this time on a Roblox server. `R
 
 ## How to use it
 
-In Studio, with the M5.3 setup already in place (`Building`, `Farm`, `Lumberyard`, `Mine` already as ModuleScripts under `ReplicatedStorage/Engine`):
+In Studio, with the Module 5.3 setup already in place (`Building`, `Farm`, `Lumberyard`, `Mine` already as ModuleScripts under `ReplicatedStorage/Engine`):
 
 1. Add three new ModuleScripts under `ReplicatedStorage/Engine`: `ResourceLedger`, `Citizen`, `Kingdom`. Paste each `.lua` into the matching ModuleScript.
 2. Insert a `Script` under `ServerScriptService` named `MainLoop`. Paste `scripts/server/main.lua` into it.

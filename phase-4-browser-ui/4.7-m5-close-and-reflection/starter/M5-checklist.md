@@ -1,6 +1,6 @@
 # M5 milestone checklist
 
-- [ ] **Refresh the README at the repo root** — re-walk the four sections from M0.4. The kingdom is now playable in a browser; *How to run* needs the `vite dev` command alongside the API, *What I learned* gets a Phase 4 paragraph (the browser as a runtime, vanilla TS, fetch + render).
+- [ ] **Refresh the README at the repo root** — re-walk the four sections from Module 0.4. The kingdom is now playable in a browser; *How to run* needs the `vite dev` command alongside the API, *What I learned* gets a Phase 4 paragraph (the browser as a runtime, vanilla TS, fetch + render).
 - [ ] Pick one Phase 0 / Spark Week toy
 - [ ] Read it slowly. List 5 things you'd change.
 - [ ] Spend 30 minutes refactoring (no new features). Save the diff.

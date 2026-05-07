@@ -75,7 +75,7 @@ app.MapGet("/me", (HttpContext ctx) =>
     });
 });
 
-// Kingdom endpoints — auth required, scoped to the signed-in user (M3.6 adds OwnerSub)
+// Kingdom endpoints — auth required, scoped to the signed-in user (Module 3.6 adds OwnerSub)
 var group = app.MapGroup("/kingdoms").RequireAuthorization();
 
 group.MapGet("/", () => store.ListSlots());

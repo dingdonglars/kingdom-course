@@ -229,7 +229,7 @@ Things to read carefully:
 In `Program.cs`, append:
 
 ```csharp
-// EF Core demo (M2.6)
+// EF Core demo (Module 2.6)
 var efDb = Path.Combine(saveFolder, "kingdoms-ef.db");
 if (File.Exists(efDb)) File.Delete(efDb);
 

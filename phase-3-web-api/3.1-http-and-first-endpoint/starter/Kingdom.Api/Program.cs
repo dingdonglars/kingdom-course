@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 // Build a one-off in-memory kingdom for the demo.
-// (M3.5 will switch to a per-request, persisted kingdom.)
+// (Module 3.5 will switch to a per-request, persisted kingdom.)
 IRandom rng = new SystemRandom(seed: 42);
 var kingdom = new Kingdom.Engine.Kingdom("Eldoria", rng, new SystemClock());
 kingdom.AddBuilding(new Farm("Main Farm"));

@@ -1,6 +1,6 @@
 # Module 3.6 starter — multi-user persistence
 
-Delta from M3.5:
+Delta from Module 3.5:
 
 - **MODIFIED:** `Kingdom.Persistence/EfCore/KingdomEntity.cs` — adds `string OwnerSub`
 - **MODIFIED:** `Kingdom.Persistence/EfCore/KingdomDbContext.cs` — adds `HasIndex(k => k.OwnerSub)`

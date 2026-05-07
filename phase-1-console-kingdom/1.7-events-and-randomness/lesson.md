@@ -80,7 +80,7 @@ public class EventEngine
 }
 ```
 
-Three things to notice. First, the **switch expression** — modern C# pattern: `pick switch { 0 => ..., 1 => ..., _ => default }`. The underscore means *"anything else."* It's cleaner than a stack of `if`/`else if`. Second, **pattern matching with `when`**: `1 when k.Citizens.Count > 0` says *"case 1, but only if there are citizens."* If there are none, the next pattern is checked. Third, the trader event doesn't actually add the gold to the ledger here — events are informational for now. We'll wire that up properly in M1.10's polish.
+Three things to notice. First, the **switch expression** — modern C# pattern: `pick switch { 0 => ..., 1 => ..., _ => default }`. The underscore means *"anything else."* It's cleaner than a stack of `if`/`else if`. Second, **pattern matching with `when`**: `1 when k.Citizens.Count > 0` says *"case 1, but only if there are citizens."* If there are none, the next pattern is checked. Third, the trader event doesn't actually add the gold to the ledger here — events are informational for now. We'll wire that up properly in Module 1.10's polish.
 
 ## Step 3 — wire it into `Kingdom`
 

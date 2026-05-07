@@ -15,20 +15,20 @@ While we're here, we'll formalise the rule we first met in Phase 2: **the data g
 
 ## Why DTOs again
 
-We met DTOs in M2.2 (JSON persistence). The same logic applies at the API boundary, doubled. The wire layout needs to:
+We met DTOs in Module 2.2 (JSON persistence). The same logic applies at the API boundary, doubled. The wire layout needs to:
 
 - Turn into JSON cleanly — no constructors that need an `IRandom`, no virtual methods
 - Stay *stable* even when the engine changes — adding a private field shouldn't break a client
 - Stay *small* — return only what the client actually needs (saves bytes)
 - Stay *explicit* — every property visible at the boundary should be intentional
 
-`KingdomSummary` (from M2.2) already fits the bill for `GET /kingdom`. Today we add `TickResponse` for the new endpoint.
+`KingdomSummary` (from Module 2.2) already fits the bill for `GET /kingdom`. Today we add `TickResponse` for the new endpoint.
 
 ## What ships in the starter
 
 - **NEW:** `Kingdom.Api/Dtos/TickResponse.cs`
 - **MODIFIED:** `Kingdom.Api/Program.cs` — adds `POST /kingdom/tick` and the optional days-to-advance parameter
-- **NEW:** `tests/Kingdom.Api.Tests/Endpoint_GET_Kingdom_Tests.cs` — smoke test; real integration tests come in M3.7
+- **NEW:** `tests/Kingdom.Api.Tests/Endpoint_GET_Kingdom_Tests.cs` — smoke test; real integration tests come in Module 3.7
 
 ## Step 1 — the `TickResponse` DTO
 

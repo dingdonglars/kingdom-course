@@ -69,7 +69,7 @@ A new project — `Kingdom.Api` — plus a placeholder test project. The earlier
 - **NEW:** `Kingdom.Api/` (ASP.NET Core minimal API)
 - **NEW:** `Kingdom.Api/Program.cs` — sets up the host and the first endpoint
 - **MODIFIED:** `Kingdom.slnx` — adds the new project to the solution
-- **NEW:** `tests/Kingdom.Api.Tests/` — placeholder; real integration tests come in M3.7
+- **NEW:** `tests/Kingdom.Api.Tests/` — placeholder; real integration tests come in Module 3.7
 
 For this module the API has one endpoint: `GET /kingdom` returns a `KingdomSummary`.
 

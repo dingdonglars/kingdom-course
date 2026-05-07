@@ -14,7 +14,7 @@ Look at where you started. Phase 0 was a program that printed roasts. Phase 1 ad
 
 Roblox is also where the audience already is. The previous phases earned you a working game that you could show someone if they sat next to you. Phase 5 ends with a URL you send. They click it. They play. That's the difference this phase is designed to land.
 
-The phase is also a wrap-up. You'll feel it in the writing — the tone gets a little quieter, the lessons reach back to earlier modules and tie threads together. M5.8 is the last numbered module of the year.
+The phase is also a wrap-up. You'll feel it in the writing — the tone gets a little quieter, the lessons reach back to earlier modules and tie threads together. Module 5.8 is the last numbered module of the year.
 
 ## What you'll learn (named)
 

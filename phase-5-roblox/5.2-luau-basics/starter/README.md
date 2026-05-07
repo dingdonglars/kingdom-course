@@ -9,7 +9,7 @@ A small Luau playground that exercises every syntax point from the lesson — va
 
 ## How to use it
 
-1. Open Studio and load the place you started in M5.1.
+1. Open Studio and load the place you started in Module 5.1.
 2. In the Explorer, right-click `ServerScriptService` and choose *Insert Object → Script*.
 3. Open `luau-basics.lua` from this folder, copy the whole contents, and paste it into the new Script.
 4. Hit Play. Read the Output panel from top to bottom and match each `print` to the section of the lesson it came from.

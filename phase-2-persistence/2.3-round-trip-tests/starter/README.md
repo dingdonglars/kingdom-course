@@ -18,5 +18,5 @@ Delta from Module 2.2. The engine grows a load surface (the meaningful redesign)
 After applying:
 
 - `dotnet build` — 0 errors
-- `dotnet test` — 51 passing (43 from M2.2 + 8 new round-trip tests)
+- `dotnet test` — 51 passing (43 from Module 2.2 + 8 new round-trip tests)
 - All 35 engine tests still pass — the engine API is *additive*, no breaking changes

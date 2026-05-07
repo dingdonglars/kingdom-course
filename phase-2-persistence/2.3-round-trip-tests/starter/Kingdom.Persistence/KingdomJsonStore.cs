@@ -12,7 +12,7 @@ public class KingdomJsonStore
         WriteIndented = true
     };
 
-    // ----- summary (M2.2) -----
+    // ----- summary (Module 2.2) -----
 
     public void Save(Kingdom.Engine.Kingdom kingdom, string path)
     {
@@ -39,7 +39,7 @@ public class KingdomJsonStore
             k.Resources.Get(Resource.Food)
         );
 
-    // ----- full snapshot (M2.3) -----
+    // ----- full snapshot (Module 2.3) -----
 
     public void SaveFull(Kingdom.Engine.Kingdom kingdom, string path)
     {

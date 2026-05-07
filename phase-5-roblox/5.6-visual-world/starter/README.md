@@ -5,11 +5,11 @@ A click-to-build five-by-five grid on a Roblox server. Tiles spawn from code; cl
 ## What's in here
 
 - `roblox-kingdom/scripts/server/world.lua` — generates the grid, attaches `ClickDetector`s, spawns farms on click. Uses the `tileToBuilding` map to keep engine and visuals in sync.
-- The script extends the M5.5 `main.lua` setup; both are server-side.
+- The script extends the Module 5.5 `main.lua` setup; both are server-side.
 
 ## How to use it
 
-In Studio, with the M5.5 setup already in place:
+In Studio, with the Module 5.5 setup already in place:
 
 1. Insert a `Script` under `ServerScriptService` named `World`. Paste `scripts/server/world.lua` into it.
 2. Hit Play. The Viewport shows a five-by-five grid of green tiles on the baseplate.

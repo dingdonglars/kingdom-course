@@ -42,7 +42,7 @@ Then sit with whatever happens. They might find a bug. They might suggest featur
 
 Same pattern as the previous milestones — bigger, and final:
 
-1. **Refresh the README at the repo root one last time.** Re-walk the four sections from M0.4. The repo now spans five shells — *How to run* documents all of them; *What I learned* is a year-end paragraph; *What's next* is honest about whether you're continuing or stopping. This is the version someone clicks through to from the live game URL.
+1. **Refresh the README at the repo root one last time.** Re-walk the four sections from Module 0.4. The repo now spans five shells — *How to run* documents all of them; *What I learned* is a year-end paragraph; *What's next* is honest about whether you're continuing or stopping. This is the version someone clicks through to from the live game URL.
 2. Open `journal/wins.md`. Write the M6 entry:
 
    ```markdown
@@ -77,7 +77,7 @@ Open `journal/m6-looking-back.md`. Answer freely:
 - Add a leaderboard via Roblox's built-in `leaderstats` so every player sees the top kingdoms.
 - Add a chat command (`/build farm`) — terminal nostalgia inside Roblox.
 - Add a small progression: at 100 gold, unlock Lumberyard; at 500, unlock Mine.
-- Convert one of the modules from M5.5 to use `RunService.Heartbeat` for a faster tick. Gameplay feels different.
+- Convert one of the modules from Module 5.5 to use `RunService.Heartbeat` for a faster tick. Gameplay feels different.
 - Learn one new thing on your own. Pick anything. The course gave you the tools to learn anything next.
 
 ## What you just did

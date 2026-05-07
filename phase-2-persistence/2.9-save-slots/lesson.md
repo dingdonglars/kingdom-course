@@ -100,7 +100,7 @@ A few notes:
 In `Program.cs`, append:
 
 ```csharp
-// Save slots demo (M2.9)
+// Save slots demo (Module 2.9)
 Console.WriteLine();
 Console.WriteLine("=== Save slots demo ===");
 

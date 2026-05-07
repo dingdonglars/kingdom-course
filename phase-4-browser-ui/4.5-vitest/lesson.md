@@ -1,6 +1,6 @@
 # Module 4.5 — Vitest (Frontend Testing)
 
-The browser code gets unit tests today. **Vitest** is xUnit's JavaScript-flavoured cousin — fast, Vite-aware, the same `expect(x).toBe(y)` discipline you've been using all year. We'll test the components from M4.4: given a `KingdomSlot`, the `KingdomCard` renders the expected HTML; given a string with angle brackets, `escapeHtml` returns escaped output.
+The browser code gets unit tests today. **Vitest** is xUnit's JavaScript-flavoured cousin — fast, Vite-aware, the same `expect(x).toBe(y)` discipline you've been using all year. We'll test the components from Module 4.4: given a `KingdomSlot`, the `KingdomCard` renders the expected HTML; given a string with angle brackets, `escapeHtml` returns escaped output.
 
 > **Words to watch**
 >
@@ -133,7 +133,7 @@ Add a snapshot test: `expect(KingdomCard(slot)).toMatchSnapshot()`. Vitest write
 
 ## What you just did
 
-The browser code now has tests. You wired Vitest into the Vite project, set the test environment to `happy-dom`, and wrote four tests across two files: `escapeHtml` covers the five characters and the no-op case, and `KingdomCard` covers both the happy path and the security path (proving the escape is wired through). About sixty lines of test code; one command (`npm test`) runs them all in under a second. The same testing instinct you've been building since M1.3 — *if it can break, write a test* — now reaches into the browser.
+The browser code now has tests. You wired Vitest into the Vite project, set the test environment to `happy-dom`, and wrote four tests across two files: `escapeHtml` covers the five characters and the no-op case, and `KingdomCard` covers both the happy path and the security path (proving the escape is wired through). About sixty lines of test code; one command (`npm test`) runs them all in under a second. The same testing instinct you've been building since Module 1.3 — *if it can break, write a test* — now reaches into the browser.
 
 **Key concepts you can now name:**
 
@@ -149,4 +149,4 @@ Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning i
 
 ## Next
 
-Module 4.6 is the last technical module of Phase 4: deploy the frontend to Azure Static Web Apps with GitHub Actions. Then M4.7 closes Phase 4 with M5 and a quiet exercise where you re-read your Phase 0 code.
+Module 4.6 is the last technical module of Phase 4: deploy the frontend to Azure Static Web Apps with GitHub Actions. Then Module 4.7 closes Phase 4 with M5 and a quiet exercise where you re-read your Phase 0 code.

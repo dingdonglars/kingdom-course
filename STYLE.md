@@ -41,7 +41,7 @@ Each lesson runs through these sections, in this order:
    For lessons without a quiz, use `## Wrap up` instead of `## Quiz` and no closing line.
 8. **`## Next`** — one or two sentences pointing at the next module, naming what it builds on.
 
-For milestone-closing lessons (M0.4, M0.8, M1.10, M2.11, M3.9, M4.7, M5.8, B1.4, B2.5), step 7 also includes the per-milestone ritual block (see "Per-milestone ritual" below).
+For milestone-closing lessons (Module 0.4, Module 0.8, Module 1.10, Module 2.11, Module 3.9, Module 4.7, Module 5.8, B1.4, B2.5), step 7 also includes the per-milestone ritual block (see "Per-milestone ritual" below).
 
 ## Quiz file structure
 

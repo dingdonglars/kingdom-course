@@ -116,7 +116,7 @@ Three reasons.
 
 ## What you just did
 
-You took the methods you wrote in M0.3 and gave the parts proper names. A method has parameters (the names in the parens), receives arguments (the values you pass), and may return a value (the type before the method name) or nothing (`void`). You learned that two methods can share a name as long as their parameter types differ — that's overloading — and you saw why our methods live on a `static class` rather than as local functions. Five named ideas land in this lesson; every method you write from here on uses some combination of them.
+You took the methods you wrote in Module 0.3 and gave the parts proper names. A method has parameters (the names in the parens), receives arguments (the values you pass), and may return a value (the type before the method name) or nothing (`void`). You learned that two methods can share a name as long as their parameter types differ — that's overloading — and you saw why our methods live on a `static class` rather than as local functions. Five named ideas land in this lesson; every method you write from here on uses some combination of them.
 
 **Key concepts you can now name:**
 
@@ -132,4 +132,4 @@ Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning i
 
 ## Next
 
-Module 0.7 is collections — `List<T>`, arrays, `Dictionary<TKey, TValue>` — the boxes you put many things into. You met one already in M0.3; tomorrow we name the rest and see when to use which.
+Module 0.7 is collections — `List<T>`, arrays, `Dictionary<TKey, TValue>` — the boxes you put many things into. You met one already in Module 0.3; tomorrow we name the rest and see when to use which.

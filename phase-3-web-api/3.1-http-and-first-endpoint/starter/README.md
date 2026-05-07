@@ -1,6 +1,6 @@
 # Module 3.1 starter — first HTTP endpoint
 
-Delta from M2.10:
+Delta from Module 2.10:
 
 - **NEW project:** `Kingdom.Api/` — minimal API
 - **NEW:** `Kingdom.Api/Program.cs` (one `GET /kingdom` endpoint)

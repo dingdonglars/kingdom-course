@@ -117,7 +117,7 @@ The terminal shows TypeScript errors as you save (`error TS2322: Type 'string' i
 npm run build
 ```
 
-Outputs a `dist/` folder — minified JavaScript, hashed filenames, ready to deploy. The next step would be `npm run preview` to test the production build locally, then deploy to Static Web Apps in M4.6.
+Outputs a `dist/` folder — minified JavaScript, hashed filenames, ready to deploy. The next step would be `npm run preview` to test the production build locally, then deploy to Static Web Apps in Module 4.6.
 
 ## Tinker
 

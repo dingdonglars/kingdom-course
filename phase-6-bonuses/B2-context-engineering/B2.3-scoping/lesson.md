@@ -27,7 +27,7 @@ A scoped prompt prevents all four by stating goal, non-goals, format expectation
 
 ## The scoping template
 
-You already have this from M4.0 — it lives as the `/implementation-help` slash command at `.claude/commands/implementation-help.md`. The five slots it asks for are:
+You already have this from Module 4.0 — it lives as the `/implementation-help` slash command at `.claude/commands/implementation-help.md`. The five slots it asks for are:
 
 ```markdown
 **Goal (one sentence):**

@@ -15,12 +15,12 @@ for (int i = 0; i < 10; i++) kingdom.AdvanceDay();
 var saveFolder = Path.Combine(AppContext.BaseDirectory, "saves");
 Directory.CreateDirectory(saveFolder);
 
-// JSON save (M2.2/2.3)
+// JSON save (Module 2.2/2.3)
 var savePath = Path.Combine(saveFolder, "kingdom.json");
 new KingdomJsonStore().SaveFull(kingdom, savePath);
 Console.WriteLine($"Saved JSON to {savePath}");
 
-// SQLite single-table demo (M2.4)
+// SQLite single-table demo (Module 2.4)
 var dbPath = Path.Combine(saveFolder, "kingdoms.db");
 if (File.Exists(dbPath)) File.Delete(dbPath);
 var rows = SqliteDemo.RunDemo(dbPath);
@@ -29,7 +29,7 @@ Console.WriteLine($"=== SQLite single-table demo — {rows.Count} row(s) in {dbP
 foreach (var (id, name, day, gold) in rows)
     Console.WriteLine($"  #{id}  {name}, day {day}, gold {gold}");
 
-// SQLite JOINs demo (M2.5)
+// SQLite JOINs demo (Module 2.5)
 var joinsDb = Path.Combine(saveFolder, "kingdoms-joins.db");
 if (File.Exists(joinsDb)) File.Delete(joinsDb);
 var (kingdomRows, joinedBuildings, counts) = SqliteJoinsDemo.RunDemo(joinsDb);

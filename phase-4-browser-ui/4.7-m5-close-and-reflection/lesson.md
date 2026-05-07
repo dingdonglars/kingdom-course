@@ -24,7 +24,7 @@ Don't refactor *all* of Phase 0 — that's busywork. One toy is the experiment. 
 
 Same pattern as M2, M3, and M4. The README refresh comes first — that's the discipline; everything else follows.
 
-First, **refresh the README** at the repo root. Re-walk the four sections from M0.4. *How to run* now needs the `vite dev` step alongside the API; *What I learned* gets a Phase 4 paragraph (the browser as a runtime, vanilla TS, fetch + render). Don't skip this — every milestone close circles back here.
+First, **refresh the README** at the repo root. Re-walk the four sections from Module 0.4. *How to run* now needs the `vite dev` step alongside the API; *What I learned* gets a Phase 4 paragraph (the browser as a runtime, vanilla TS, fetch + render). Don't skip this — every milestone close circles back here.
 
 Second, open `journal/wins.md` and write the M5 entry:
 
@@ -56,7 +56,7 @@ Fifth, **open the M5 PR.** On github.com → your `kingdom` repo → banner *"ph
 
 ## Tinker
 
-Compare your `KingdomCard.ts` from M4.4 to your Phase 0 `Program.cs`. One file is twenty lines of clean TypeScript; the other is hundreds of lines doing one thing. The growth is real and visible.
+Compare your `KingdomCard.ts` from Module 4.4 to your Phase 0 `Program.cs`. One file is twenty lines of clean TypeScript; the other is hundreds of lines doing one thing. The growth is real and visible.
 
 Re-read `STANDARDS.md`. Does anything in there now feel obvious that didn't last year? That's mastery.
 

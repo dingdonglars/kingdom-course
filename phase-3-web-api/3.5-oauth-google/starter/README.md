@@ -1,6 +1,6 @@
 # Module 3.5 starter — OAuth (Sign In With Google)
 
-Delta from M3.4:
+Delta from Module 3.4:
 
 - **MODIFIED:** `Kingdom.Api/Kingdom.Api.csproj` — adds Google + Cookie auth packages
 - **MODIFIED:** `Kingdom.Api/Program.cs` — wires auth, adds `/login`, `/logout`, `/me`, guards `/kingdoms/*` with `.RequireAuthorization()`

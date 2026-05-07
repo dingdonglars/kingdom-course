@@ -133,7 +133,7 @@ GitHub → Actions tab → watch the workflow run. About three minutes later, yo
 
 ## Production hygiene checklist
 
-- [x] **Secrets**: in env vars / Key Vault, never the repo (M3.5 + this module)
+- [x] **Secrets**: in env vars / Key Vault, never the repo (Module 3.5 + this module)
 - [x] **HTTPS only**: App Service → TLS/SSL settings → "HTTPS Only = On"
 - [x] **OAuth redirect**: prod URL added to Google client
 - [x] **Logging**: structured logs visible in App Service → Log stream

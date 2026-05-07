@@ -63,8 +63,8 @@ Look at `KingdomEntity`. Consider:
 
 - `KingdomEntity.cs` and `BuildingEntity.cs` — clear: these are EF entities (DTOs).
 - `KingdomSnapshot.cs` (in engine) and `BuildingSnapshot.cs` — both entities-for-data. Why two names?
-  - `*Snapshot` is the engine's data form (used by JSON in M2.3).
-  - `*Entity` is EF's data form (used by SQLite in M2.6+).
+  - `*Snapshot` is the engine's data form (used by JSON in Module 2.3).
+  - `*Entity` is EF's data form (used by SQLite in Module 2.6+).
   - **They're not the same thing** — the snapshot has `Kind` and `Citizens[]`; the entity has navigation properties. Different forms for different stores. Both names earn their keep.
 
 Sometimes the right answer is *no rename*.
@@ -144,7 +144,7 @@ Open `quiz.md`. (Lighter than usual — naming-themed.) When you're done, jot yo
 
 > **You just shipped M3.** Time for the ritual:
 >
-> 1. **README refresh** — re-walk the four sections from M0.4 (*what / how to run / what I learned / what's next*). Since M2 close, you added persistence in four backends and a save-slot picker; *How to run* and *What I learned* both need a paragraph that didn't exist before. Polishing the README is a milestone discipline — every milestone close from here on circles back to it.
+> 1. **README refresh** — re-walk the four sections from Module 0.4 (*what / how to run / what I learned / what's next*). Since M2 close, you added persistence in four backends and a save-slot picker; *How to run* and *What I learned* both need a paragraph that didn't exist before. Polishing the README is a milestone discipline — every milestone close from here on circles back to it.
 > 2. **`journal/wins.md` entry** — a paragraph in your own words about what changed between M2 and M3. Include the test count, the four save backends, the slot picker.
 > 3. **`#wins` Slack post** — link to the PR + a short screenshot or terminal capture, and one line: *"Kingdom v2 — Persisted. Save it, quit, reopen, still there."*
 > 4. **Before/after one-liner** — *"A few weeks ago my kingdom died on close. Today it survives across sessions, with save slots."*

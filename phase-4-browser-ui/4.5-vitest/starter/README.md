@@ -1,6 +1,6 @@
 # Module 4.5 starter — Vitest
 
-Delta from M4.4:
+Delta from Module 4.4:
 
 - **MODIFIED:** `web-vite/package.json` — adds `vitest` + `happy-dom`
 - **MODIFIED:** `web-vite/vite.config.ts` — wires Vitest config (happy-dom env)

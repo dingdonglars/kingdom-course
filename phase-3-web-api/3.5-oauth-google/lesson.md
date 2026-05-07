@@ -155,7 +155,7 @@ app.MapGet("/me", (HttpContext ctx) =>
     });
 });
 
-// ... rest of /kingdoms endpoints from M3.4 ...
+// ... rest of /kingdoms endpoints from Module 3.4 ...
 // Add .RequireAuthorization() to each:
 // group.MapGet("/", () => store.ListSlots()).RequireAuthorization();
 // (etc.)
@@ -196,7 +196,7 @@ Two rules, side by side: **never commit secrets, never roll your own auth.** Tog
 
 ## What you just did
 
-You added real authentication to your API without writing a single password-handling line. Five lines of `AddAuthentication / AddCookie / AddGoogle` config wired Google's full OAuth flow into your app. Your endpoints can now know *which Google account* sent each request via the `sub` claim. Secrets live outside the repo — in `dotnet user-secrets` for dev, environment variables for prod. You also met your second name-collision teaching point: `Microsoft.AspNetCore.Authentication.SystemClock` and `Kingdom.Engine.Infrastructure.SystemClock` look identical to the compiler unless you fully qualify yours. Same family of issue as the `global::Kingdom.Engine.Kingdom` quirk in M1.4.
+You added real authentication to your API without writing a single password-handling line. Five lines of `AddAuthentication / AddCookie / AddGoogle` config wired Google's full OAuth flow into your app. Your endpoints can now know *which Google account* sent each request via the `sub` claim. Secrets live outside the repo — in `dotnet user-secrets` for dev, environment variables for prod. You also met your second name-collision teaching point: `Microsoft.AspNetCore.Authentication.SystemClock` and `Kingdom.Engine.Infrastructure.SystemClock` look identical to the compiler unless you fully qualify yours. Same family of issue as the `global::Kingdom.Engine.Kingdom` quirk in Module 1.4.
 
 **Key concepts you can now name:**
 

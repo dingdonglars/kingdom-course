@@ -243,7 +243,7 @@ This is your first quiz, so a quick word on how these work — once, here. Futur
 
 **Don't write answers in `quiz.md` itself.** Keep that file clean. You might want to come back in a month or two and try the quiz again — a quiz with the answers already on it isn't really a quiz any more.
 
-**If you're stuck on a question.** Try for twenty minutes. Re-read the part of the lesson the question is about. If it still won't come together, post in Slack `#help` (it's been live since M0.0). The 20-minute rule from `MENTOR-PROTOCOL.md` is for exactly this — there's a difference between *trying-and-getting-somewhere* and *staring-at-it-going-in-circles*.
+**If you're stuck on a question.** Try for twenty minutes. Re-read the part of the lesson the question is about. If it still won't come together, post in Slack `#help` (it's been live since Module 0.0). The 20-minute rule from `MENTOR-PROTOCOL.md` is for exactly this — there's a difference between *trying-and-getting-somewhere* and *staring-at-it-going-in-circles*.
 
 **Then bring whichever question you were least sure about to the next weekly sync.** That's the rhythm: read the lesson, do the quiz, write the answers, talk through the shaky bits at the sync. Every module from here on follows this.
 

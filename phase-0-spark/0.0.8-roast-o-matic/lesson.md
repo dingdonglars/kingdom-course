@@ -25,11 +25,11 @@ In Windows Terminal:
 Copy-Item -Recurse C:\code\kingdom-course\starter-template\* C:\code\kingdom\
 ```
 
-That brings in `STANDARDS.md`, `CLAUDE.md` (the AI's rules — won't do anything until Claude arrives at M3.9), `.claude/commands/` (slash commands, also waiting for M3.9), `journal/` (where wins and reflections live), `.github/PULL_REQUEST_TEMPLATE.md`, `.editorconfig`, `.gitignore`, and a starter `README.md` you'll personalise later.
+That brings in `STANDARDS.md`, `CLAUDE.md` (the AI's rules — won't do anything until Claude arrives at Module 3.9), `.claude/commands/` (slash commands, also waiting for Module 3.9), `journal/` (where wins and reflections live), `.github/PULL_REQUEST_TEMPLATE.md`, `.editorconfig`, `.gitignore`, and a starter `README.md` you'll personalise later.
 
 ### Commit the foundation — your first time using the Source Control panel
 
-Switch to VS Code (the kingdom folder is open from M0.0 Part 2). The git workflow lives in the **Source Control** panel:
+Switch to VS Code (the kingdom folder is open from Module 0.0 Part 2). The git workflow lives in the **Source Control** panel:
 
 1. Click the **Source Control** icon in the left sidebar — third icon down, looks like a branch with a fork. (Shortcut: `Ctrl + Shift + G` then `G`.)
 2. You'll see a list of new files under *Changes*. Hover the word **Changes** and click the `+` icon to stage them all.
@@ -124,17 +124,17 @@ Now go to your repo on github.com in the browser. **Refresh.** Your code is ther
 
 ## Step 4 — Post your first win
 
-Slack has been up since M0.0; time to use it. Two places your wins live, both matter.
+Slack has been up since Module 0.0; time to use it. Two places your wins live, both matter.
 
 **First, `journal/wins.md` in your repo.** Open the file (it came in with the day-1 kit). Add an entry under today's date:
 
 ```markdown
-## YYYY-MM-DD — M0.0.8 — Roast-O-Matic shipped
+## YYYY-MM-DD — Module 0.0.8 — Roast-O-Matic shipped
 
 First commit, first push, first program of my own. The repo is live.
 ```
 
-Save. Commit. Push. (You know how — Source Control panel, message *"M0.0.8 wins entry"*, sync.) `wins.md` is your in-repo trail; you'll add to it every milestone for the rest of the year.
+Save. Commit. Push. (You know how — Source Control panel, message *"Module 0.0.8 wins entry"*, sync.) `wins.md` is your in-repo trail; you'll add to it every milestone for the rest of the year.
 
 **Then, in Slack `#wins`:**
 

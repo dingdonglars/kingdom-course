@@ -114,7 +114,7 @@ public class Endpoints_Integration_Tests : IClassFixture<IntegrationFixture>
     public async Task UnauthenticatedKingdomsList_Returns401()
     {
         var resp = await _client.GetAsync("/kingdoms");
-        ((int)resp.StatusCode).ShouldBe(401);   // requires auth (M3.5)
+        ((int)resp.StatusCode).ShouldBe(401);   // requires auth (Module 3.5)
     }
 
     [Fact]

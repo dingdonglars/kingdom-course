@@ -107,7 +107,7 @@ Pick a third file from the `dotnet/aspnetcore` repo — anything that catches yo
 
 Compare the two files you read. How do their styles differ? `MvcSandbox` is a one-screen demo; `TodoApi` is a real application. Both are written by people who know the framework deeply. Neither is wrong. Style varies by purpose, and noticing that is itself a step forward.
 
-**Commit** your `journal/3.0-reading.md` to your repo. *"M3.0 reading notes"* is a fine message. (Source Control panel → stage → commit → Sync. Or CLI: `git add . && git commit -m "M3.0 reading notes" && git push`.) Reading-and-noting is real work, and a real commit makes it visible in your git log. Future-you scrolling through commits in three months will see *"yep, that was the day I started reading other people's code on purpose."*
+**Commit** your `journal/3.0-reading.md` to your repo. *"Module 3.0 reading notes"* is a fine message. (Source Control panel → stage → commit → Sync. Or CLI: `git add . && git commit -m "Module 3.0 reading notes" && git push`.) Reading-and-noting is real work, and a real commit makes it visible in your git log. Future-you scrolling through commits in three months will see *"yep, that was the day I started reading other people's code on purpose."*
 
 ## Reading as a deliverable
 

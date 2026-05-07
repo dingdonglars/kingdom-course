@@ -30,7 +30,7 @@
 - **c.** Save once per session, on shutdown only
 - **d.** Save whenever convenient; quotas don't apply to small payloads
 
-## 5. The lesson cites M2.1, M2.2, M2.4, M2.6, and M5.7 as the same pattern. What is it?
+## 5. The lesson cites Module 2.1, Module 2.2, Module 2.4, Module 2.6, and Module 5.7 as the same pattern. What is it?
 
 - **a.** Snapshot the engine state, write it somewhere, read it back, rehydrate. Same discipline; different medium each time.
 - **b.** They are all SQL-based persistence at heart

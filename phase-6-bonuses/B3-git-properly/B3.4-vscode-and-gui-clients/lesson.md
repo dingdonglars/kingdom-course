@@ -1,6 +1,6 @@
 # Bonus B3.4 — Tools — git inside VS Code (and other clients)
 
-You've spent a year using VS Code's Source Control panel as your daily git surface. By now you've also met enough CLI to know when each is the right tool. Today's lesson goes deeper on the panel + GitLens (the extension you installed back at M1.6), and tours the dedicated GUI clients people reach for when they want even more.
+You've spent a year using VS Code's Source Control panel as your daily git surface. By now you've also met enough CLI to know when each is the right tool. Today's lesson goes deeper on the panel + GitLens (the extension you installed back at Module 1.6), and tours the dedicated GUI clients people reach for when they want even more.
 
 The headline: keep what you've been doing. The Source Control panel for daily work, the CLI for the moves the panel doesn't have a button for (`reflog`, `cherry-pick`, `rebase -i`, scripts, CI, server work). Reach for a dedicated GUI (Fork, GitKraken, etc.) only if you find yourself wanting one; many seasoned developers never do.
 
@@ -16,7 +16,7 @@ The headline: keep what you've been doing. The Source Control panel for daily wo
 
 ## Step 1 — install (mostly nothing)
 
-Git itself is already installed (you set it up on day 1, M0.0). VS Code already has a Source Control panel — there's nothing new to install for the basics.
+Git itself is already installed (you set it up on day 1, Module 0.0). VS Code already has a Source Control panel — there's nothing new to install for the basics.
 
 The one extension that genuinely earns its place: **GitLens**. Install it now if you haven't.
 

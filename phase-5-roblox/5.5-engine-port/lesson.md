@@ -20,7 +20,7 @@ Reading the C# version next to the Luau version is the fastest way to internalis
 | `Resource.cs` (enum) | string keys (`"Gold"`, `"Wood"`, ...) | Lua doesn't have enums; strings are the standard. |
 | `ResourceLedger.cs` | `ResourceLedger.lua` (ModuleScript) | Same get / add / spend / snapshot. |
 | `Citizen.cs` | `Citizen.lua` (ModuleScript) | Same. |
-| `Building.cs` and subclasses | done in M5.3 | Already ported. |
+| `Building.cs` and subclasses | done in Module 5.3 | Already ported. |
 | `Kingdom.cs` (aggregate) | `Kingdom.lua` (ModuleScript) | Owns the lists; calls `:tick(ledger)`. |
 | `EventEngine.cs` | `EventEngine.lua` | Uses Lua's `math.random`, or pass an injected function to keep tests deterministic. |
 | Console / file shells | not applicable | Server-side game loop replaces them. |

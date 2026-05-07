@@ -24,7 +24,7 @@ Open your repo. You should see most of these:
 - `ai-tools.md` — learner-facing notes on AI tooling
 - `.claude/commands/` — slash commands you can type in Claude Code (`/explain-this-concept`, `/code-review`, `/stuck-on-error`, `/walk-through-code`, `/implementation-help`, `/lesson-review`, `/milestone-review`)
 - `GLOSSARY.md` — project-specific vocabulary
-- `ARCHITECTURE.md` — projects and data flow (added at M4.0)
+- `ARCHITECTURE.md` — projects and data flow (added at Module 4.0)
 
 That's already a real scaffold. The audit isn't *"do you have the files?"* — you do. The audit is *"are they earning their cost?"*
 
@@ -92,7 +92,7 @@ This is optional, but useful for files over 200 lines or that mix several concer
 
 ## Tinker
 
-Audit your `ARCHITECTURE.md` right now. Open it. Is it current? If anything in there has drifted since M4.0, update one line. *"Stale scaffolds are worse than no scaffolds"* — this is the discipline that prevents that.
+Audit your `ARCHITECTURE.md` right now. Open it. Is it current? If anything in there has drifted since Module 4.0, update one line. *"Stale scaffolds are worse than no scaffolds"* — this is the discipline that prevents that.
 
 Add a `.claude/examples/` folder with two or three hand-picked snippets. Pick patterns you've explained more than once.
 

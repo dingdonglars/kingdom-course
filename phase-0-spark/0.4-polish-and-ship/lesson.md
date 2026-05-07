@@ -105,7 +105,7 @@ That's it. Four sections. About 30 to 50 lines total. Most READMEs aren't this s
 
 You now have:
 
-- `RoastOMatic/` (and v2 from M0.1)
+- `RoastOMatic/` (and v2 from Module 0.1)
 - `NumberGuess/`
 - `TinyAdventure/`
 - `Polish/`

@@ -8,7 +8,7 @@ If you've never written HTML before, the model is simpler than it looks. **HTML*
 >
 > - **HTML** — markup language. Describes structure: headings, lists, sections, links.
 > - **CSS** — style language. Describes appearance: colours, spacing, fonts, layout.
-> - **DOM** — the in-memory tree the browser builds from your HTML. JavaScript will mutate this in M4.2.
+> - **DOM** — the in-memory tree the browser builds from your HTML. JavaScript will mutate this in Module 4.2.
 > - **semantic markup** — using `<header>`, `<main>`, `<nav>` instead of `<div>` for everything.
 
 ---
@@ -83,7 +83,7 @@ Refresh the page. It already looks like a real page.
 
 A short list, so you know where the limits are.
 
-JavaScript is in M4.2 and M4.3 — today the page is static. Frameworks like React or Svelte come later, optionally. Build tooling (Vite) lands in M4.3. Real CSS layout — Grid, Flexbox — is its own world; the basics here are enough for the kingdom shell, and you can read deeper on your own when you need them.
+JavaScript is in Module 4.2 and Module 4.3 — today the page is static. Frameworks like React or Svelte come later, optionally. Build tooling (Vite) lands in Module 4.3. Real CSS layout — Grid, Flexbox — is its own world; the basics here are enough for the kingdom shell, and you can read deeper on your own when you need them.
 
 This module is the floor. The next five build up.
 
@@ -91,9 +91,9 @@ This module is the floor. The next five build up.
 
 - **NEW:** `web/index.html`
 - **NEW:** `web/styles.css`
-- **NEW:** `web/kingdom.js` — empty placeholder; we fill it in M4.2.
+- **NEW:** `web/kingdom.js` — empty placeholder; we fill it in Module 4.2.
 
-Create the empty `kingdom.js` so the `<script>` tag has something to load. One line is fine: `// kingdom.js — populated in M4.2`.
+Create the empty `kingdom.js` so the `<script>` tag has something to load. One line is fine: `// kingdom.js — populated in Module 4.2`.
 
 ## Tinker
 

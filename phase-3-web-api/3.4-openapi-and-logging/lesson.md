@@ -88,7 +88,7 @@ group.MapPost("/", (CreateKingdomRequest req, ILogger<Program> log) =>
     if (string.IsNullOrWhiteSpace(req.Name))
     {
         log.LogWarning("CreateKingdom called with empty name from {RemoteIP}",
-            "(unknown)");   // M3.6 will inject the real IP
+            "(unknown)");   // Module 3.6 will inject the real IP
         return Results.BadRequest(new { error = "Name is required." });
     }
 

@@ -16,7 +16,7 @@ dotnet sln Kingdom.slnx add Kingdom.Persistence
 dotnet sln Kingdom.slnx add tests/Kingdom.Persistence.Tests
 dotnet build       # 0 errors
 dotnet run --project Kingdom.Console
-dotnet test        # 43 passing (38 from M2.1 + 5 new persistence tests)
+dotnet test        # 43 passing (38 from Module 2.1 + 5 new persistence tests)
 ```
 
 `saves/kingdom.json` lands as nicely indented multi-line JSON — open it in any editor.

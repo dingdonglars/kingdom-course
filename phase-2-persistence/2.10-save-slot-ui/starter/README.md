@@ -1,6 +1,6 @@
 # Module 2.10 starter — interactive save-slot UI
 
-Delta from M2.9:
+Delta from Module 2.9:
 
 - **NEW:** `Kingdom.Console/SaveSlotUI.cs` — menu loop, handlers
 - **MODIFIED:** `Kingdom.Console/Program.cs` — calls `SaveSlotUI.Run(...)`

@@ -1,6 +1,6 @@
 # Module 2.7 starter — migrations
 
-Delta from M2.6:
+Delta from Module 2.6:
 
 - **MODIFIED:** `Kingdom.Persistence/Kingdom.Persistence.csproj` (adds `Microsoft.EntityFrameworkCore.Design` package)
 - **MODIFIED:** `Kingdom.Persistence/EfCore/KingdomEfStore.cs` — `EnsureCreated()` now calls `Database.Migrate()` instead of `EnsureCreated()`

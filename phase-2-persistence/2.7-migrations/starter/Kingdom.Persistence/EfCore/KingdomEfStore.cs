@@ -10,7 +10,7 @@ public class KingdomEfStore
     private readonly string _dbPath;
     public KingdomEfStore(string dbPath) { _dbPath = dbPath; }
 
-    /// <summary>Apply any pending migrations. Replaces M2.6's EnsureCreated().</summary>
+    /// <summary>Apply any pending migrations. Replaces Module 2.6's EnsureCreated().</summary>
     public void EnsureCreated()
     {
         using var ctx = new KingdomDbContext(_dbPath);

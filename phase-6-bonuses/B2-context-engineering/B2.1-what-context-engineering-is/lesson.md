@@ -18,7 +18,7 @@ The skill itself is shaped a lot like editing. Most of the value sits in two pla
 
 You unlocked AI implementation help at Module 4.0. By the time you get here at the end of Phase 5, that's been months of accumulated practice — across code, content, debugging, even drafting wins entries. B2 collects what you've learned so far and sharpens it. Naming the skill makes you better at it.
 
-The AI Unlock at M4.0 set the rule (you write the first version yourself, then bring AI in for the second). B2 is about *how* the bringing-in happens — what you hand to the AI and how you read what comes back.
+The AI Unlock at Module 4.0 set the rule (you write the first version yourself, then bring AI in for the second). B2 is about *how* the bringing-in happens — what you hand to the AI and how you read what comes back.
 
 ## The four-step frame
 
@@ -55,7 +55,7 @@ These three account for almost every bad AI output you'll get. The rest of B2 tu
 
 Look back at three AI conversations from the last week or two. For each, classify the output as good, mid, or bad. For the bad ones, ask: *what context was missing?* Was it scaffolding (the AI didn't know your project), scoping (you didn't say what was in or out), or eval (you accepted something you shouldn't have)?
 
-Pick a tiny task — something five lines long. Try it twice. Once with no context (just the goal in one sentence), once with the full M4.0 recipe. Compare the outputs. The gap between them is the value of context engineering.
+Pick a tiny task — something five lines long. Try it twice. Once with no context (just the goal in one sentence), once with the full Module 4.0 recipe. Compare the outputs. The gap between them is the value of context engineering.
 
 Read your `CLAUDE.md` end to end. Notice how often the AI has been steered by it without you doing anything per-prompt. The file is doing context engineering for you in the background.
 

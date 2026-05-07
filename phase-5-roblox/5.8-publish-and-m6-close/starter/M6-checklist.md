@@ -18,7 +18,7 @@
 
 ## Ritual
 
-- [ ] **Refresh the README at the repo root one last time** — re-walk the four sections from M0.4. The repo now spans a console, a web API, a browser UI, and a Roblox port; *How to run* documents all four; *What I learned* is a year-end paragraph; *What's next* is honest about whether you're continuing or stopping. This is the version someone clicks through to from your live game.
+- [ ] **Refresh the README at the repo root one last time** — re-walk the four sections from Module 0.4. The repo now spans a console, a web API, a browser UI, and a Roblox port; *How to run* documents all four; *What I learned* is a year-end paragraph; *What's next* is honest about whether you're continuing or stopping. This is the version someone clicks through to from your live game.
 - [ ] Sent the URL to three friends
 - [ ] Sat with whatever happened (five minutes; no defending; just listen)
 - [ ] Wrote the M6 entry in `journal/wins.md`

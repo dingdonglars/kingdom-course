@@ -17,24 +17,24 @@ for (int i = 0; i < 10; i++) kingdom.AdvanceDay();
 var saveFolder = Path.Combine(AppContext.BaseDirectory, "saves");
 Directory.CreateDirectory(saveFolder);
 
-// JSON save (M2.2/2.3)
+// JSON save (Module 2.2/2.3)
 var savePath = Path.Combine(saveFolder, "kingdom.json");
 new KingdomJsonStore().SaveFull(kingdom, savePath);
 Console.WriteLine($"Saved JSON to {savePath}");
 
-// SQLite single-table demo (M2.4)
+// SQLite single-table demo (Module 2.4)
 var dbPath = Path.Combine(saveFolder, "kingdoms.db");
 if (File.Exists(dbPath)) File.Delete(dbPath);
 SqliteDemo.RunDemo(dbPath);
 Console.WriteLine($"Ran single-table SQLite demo against {dbPath}");
 
-// SQLite JOINs demo (M2.5)
+// SQLite JOINs demo (Module 2.5)
 var joinsDb = Path.Combine(saveFolder, "kingdoms-joins.db");
 if (File.Exists(joinsDb)) File.Delete(joinsDb);
 SqliteJoinsDemo.RunDemo(joinsDb);
 Console.WriteLine($"Ran JOINs demo against {joinsDb}");
 
-// EF Core demo (M2.6)
+// EF Core demo (Module 2.6)
 var efDb = Path.Combine(saveFolder, "kingdoms-ef.db");
 if (File.Exists(efDb)) File.Delete(efDb);
 

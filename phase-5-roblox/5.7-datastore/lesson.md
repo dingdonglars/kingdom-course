@@ -163,7 +163,7 @@ Notice the parallel with the EF Core migrations table from Phase 2: in DataStore
 
 ## What you just did
 
-You taught the kingdom to survive across sessions on Roblox. `Players.PlayerAdded` loads the player's snapshot from DataStore on join; `Players.PlayerRemoving` saves it on leave; `game:BindToClose` flushes everyone when the server itself shuts down. `pcall` wraps the network calls so a transient blip doesn't kill the script. The `Kingdom:toSnapshot` and `Kingdom.fromSnapshot` methods live on the engine itself, mirroring the Phase 2 design — the engine knows how to describe itself, and the persistence layer just moves bytes. **The same pattern five times now: file (M2.1), JSON (M2.2), SQLite (M2.4), EF Core (M2.6), DataStore (M5.7).** The medium changes; the discipline doesn't.
+You taught the kingdom to survive across sessions on Roblox. `Players.PlayerAdded` loads the player's snapshot from DataStore on join; `Players.PlayerRemoving` saves it on leave; `game:BindToClose` flushes everyone when the server itself shuts down. `pcall` wraps the network calls so a transient blip doesn't kill the script. The `Kingdom:toSnapshot` and `Kingdom.fromSnapshot` methods live on the engine itself, mirroring the Phase 2 design — the engine knows how to describe itself, and the persistence layer just moves bytes. **The same pattern five times now: file (Module 2.1), JSON (Module 2.2), SQLite (Module 2.4), EF Core (Module 2.6), DataStore (Module 5.7).** The medium changes; the discipline doesn't.
 
 **Key concepts you can now name:**
 

@@ -1,6 +1,6 @@
 # Module 3.4 starter — OpenAPI + logging
 
-Delta from M3.3:
+Delta from Module 3.3:
 
 - **MODIFIED:** `Kingdom.Api/Kingdom.Api.csproj` — adds `Microsoft.AspNetCore.OpenApi` + `Scalar.AspNetCore`
 - **MODIFIED:** `Kingdom.Api/Program.cs` — wires OpenAPI + Scalar + adds `ILogger<Program>` to the create handler

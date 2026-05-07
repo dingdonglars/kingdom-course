@@ -1,10 +1,10 @@
 # Module 3.2 starter — DTOs + POST tick
 
-Delta from M3.1:
+Delta from Module 3.1:
 
 - **NEW:** `Kingdom.Api/Dtos/TickResponse.cs`
 - **MODIFIED:** `Kingdom.Api/Program.cs` — `POST /kingdom/tick?days=N`
-- **NEW:** `tests/Kingdom.Api.Tests/Endpoint_GET_Kingdom_Tests.cs` (smoke; real integration in M3.7)
+- **NEW:** `tests/Kingdom.Api.Tests/Endpoint_GET_Kingdom_Tests.cs` (smoke; real integration in Module 3.7)
 
 ```powershell
 dotnet build

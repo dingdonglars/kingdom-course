@@ -174,7 +174,7 @@ Notice the helpers (`Exec`, `Read<T>`, `InsertKingdom`, `InsertBuilding`). They'
 In `Program.cs`, append:
 
 ```csharp
-// Joins demo (M2.5)
+// Joins demo (Module 2.5)
 var joinsDb = Path.Combine(saveFolder, "kingdoms-joins.db");
 if (File.Exists(joinsDb)) File.Delete(joinsDb);
 var (kingdomRows, joinedBuildings, counts) = SqliteJoinsDemo.RunDemo(joinsDb);

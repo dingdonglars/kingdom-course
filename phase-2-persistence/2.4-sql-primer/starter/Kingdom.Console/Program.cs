@@ -15,13 +15,13 @@ for (int i = 0; i < 10; i++) kingdom.AdvanceDay();
 var saveFolder = Path.Combine(AppContext.BaseDirectory, "saves");
 Directory.CreateDirectory(saveFolder);
 
-// JSON save (M2.2/2.3)
+// JSON save (Module 2.2/2.3)
 var savePath = Path.Combine(saveFolder, "kingdom.json");
 var store = new KingdomJsonStore();
 store.SaveFull(kingdom, savePath);
 Console.WriteLine($"Saved JSON to {savePath}");
 
-// SQLite demo (M2.4)
+// SQLite demo (Module 2.4)
 var dbPath = Path.Combine(saveFolder, "kingdoms.db");
 if (File.Exists(dbPath)) File.Delete(dbPath);
 var rows = SqliteDemo.RunDemo(dbPath);

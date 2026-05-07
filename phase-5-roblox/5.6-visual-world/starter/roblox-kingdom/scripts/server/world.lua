@@ -53,7 +53,7 @@ for x = 1, 5 do
     end
 end
 
--- Tick loop (same as M5.5)
+-- Tick loop (same as Module 5.5)
 while true do
     task.wait(5)
     kingdom:advanceDay()
