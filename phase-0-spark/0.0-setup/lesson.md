@@ -78,12 +78,14 @@ notepad $PROFILE
 If Notepad asks whether to create the file, say yes. Paste this single line, save, close:
 
 ```powershell
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/atomic.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:LOCALAPPDATA\Programs\oh-my-posh\themes\paradox.omp.json" | Invoke-Expression
 ```
 
-Open a fresh Windows Terminal tab. Your prompt is now coloured, shows the folder, and — once you're inside a git repo — the branch name plus a `±` mark when you have uncommitted changes. Try a few themes later via `Get-PoshThemes`; pick whatever you like.
+That's the full path to a clean theme called *paradox*. Other tutorials online use a shorter `$env:POSH_THEMES_PATH/...` form — that env var doesn't always resolve in fresh shells right after install, so the full path here is bulletproof.
 
-> **If something looks wrong** — boxes instead of icons mean the font isn't actually being used (recheck the Settings step); a slow first prompt is normal (oh-my-posh warms up on first call); a red error from `notepad $PROFILE` usually means PowerShell's execution policy blocks scripts. Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once, type `Y`, and you're fine.
+Open a fresh Windows Terminal tab. Your prompt is now coloured, shows the folder, and — once you're inside a git repo — the branch name plus a `±` mark when you have uncommitted changes. Try a few themes later via `Get-PoshThemes`; if you find one you prefer, swap `paradox.omp.json` in your `$PROFILE` for `<that-theme-name>.omp.json`.
+
+> **If something looks wrong** — boxes instead of icons mean the font isn't actually being used (recheck the Settings step); a slow first prompt is normal (oh-my-posh warms up on first call); a red error from `notepad $PROFILE` usually means PowerShell's execution policy blocks scripts (run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once, type `Y`, and you're fine); if the prompt shows `CONFIG_NOT_FOUND`, the theme path didn't resolve — check the `$PROFILE` line spells the path exactly as above.
 
 ### Tell git who you are
 
