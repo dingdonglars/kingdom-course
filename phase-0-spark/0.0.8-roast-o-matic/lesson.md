@@ -17,7 +17,7 @@ The shape of today: drop the day-1 kit into your repo, push it to GitHub for the
 
 ## Step 1 — Drop in the day-1 kit
 
-Your `kingdom` repo is empty. Time to drop in the foundation — the conventions, the AI rules, the journal skeleton, all the files lessons will reference later. The course repo's `starter-template/` folder has them ready.
+Your `kingdom` repo is empty. Time to drop in the foundation — the conventions, the AI rules (waiting for Claude later in the year), the journal skeleton, all the files lessons will reference later. The course repo's `starter-template/` folder has them ready.
 
 In Windows Terminal:
 
@@ -25,7 +25,7 @@ In Windows Terminal:
 Copy-Item -Recurse C:\code\kingdom-course\starter-template\* C:\code\kingdom\
 ```
 
-That brings in `STANDARDS.md`, `CLAUDE.md` (the AI rules), `.claude/commands/` (your slash commands), `journal/` (where wins and reflections live), `.github/PULL_REQUEST_TEMPLATE.md`, `.editorconfig`, `.gitignore`, and a starter `README.md` you'll personalise later.
+That brings in `STANDARDS.md`, `CLAUDE.md` (the AI's rules — won't do anything until Claude arrives at M3.9), `.claude/commands/` (slash commands, also waiting for M3.9), `journal/` (where wins and reflections live), `.github/PULL_REQUEST_TEMPLATE.md`, `.editorconfig`, `.gitignore`, and a starter `README.md` you'll personalise later.
 
 ### Commit the foundation — your first time using the Source Control panel
 

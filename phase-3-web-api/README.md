@@ -14,7 +14,7 @@ Until now your kingdom has lived on your computer. This phase moves it onto the 
 
 This phase also opens with something a little different. Module 3.0 isn't a coding module; it's a *reading* module. Before you write your first endpoint, you spend half an hour reading two real ones written by the people who built ASP.NET. Reading code is the senior skill that nobody teaches and everyone needs, and we start the habit early.
 
-The phase closes with **M4 — the AI Unlock**. Up to this point, the AI has been deliberately limited: it helps with friction (git messes, error messages) but won't write your exercise code. After M4, that boundary moves. You can ask the AI for implementation, with one strict rule: you must be able to explain every line you merge. The discipline you've built across Phases 0 through 3 is what makes that change safe.
+The phase closes with **M4 — the AI Unlock**. Up to this point, you've been working without an AI assistant — Lars is your friction-helper via Slack `#help`. M4 is the day Claude joins your terminal, and the rules unlock for *implementation* help: the AI can write code with you, under one strict rule — you must be able to explain every line you merge. The work you've put in across Phases 0 through 3 is what makes that change safe.
 
 ## What you'll learn (named)
 

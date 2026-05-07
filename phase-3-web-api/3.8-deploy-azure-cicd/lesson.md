@@ -191,4 +191,4 @@ Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning i
 
 ## Next
 
-Module 3.9 closes Phase 3: **the M4 milestone close plus the AI Unlock**. The big one — after M4, the AI mode flag flips from `pre-unlock` (friction-only) to `post-unlock` (real assistance). Everything you build from Phase 4 onwards has the AI on as a real collaborator.
+Module 3.9 closes Phase 3: **the M4 milestone close plus the AI Unlock**. The big one — you set up Claude Code for the first time, and the AI mode flag flips from `pre-unlock` (Claude's brief default) to `post-unlock` (real assistance). Everything you build from Phase 4 onwards has Claude on as a real collaborator.

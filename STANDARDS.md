@@ -145,6 +145,7 @@ These words add cost without earning their keep. Don't use them in lesson prose.
 - *wrinkle* (as in "small first-time wrinkle") — say "small thing to know about" or rewrite
 - *lands* (as in "the file lands in your repo", "MENTOR-PROTOCOL lands on his disk") — say "appears", "shows up", or "you'll add it" / "is added by ..."
 - *"Same move, in the terminal"* (as a callout heading for CLI alternatives) — say *"Or in the terminal"* — clearer to a beginner; "same move" is hedged and feels AI-generated
+- *dormant* (as in "the file sits dormant until M3.9") — say "doesn't do anything until ..." or "starts working when ..." or "waits for ..."
 
 ### Explain on first use, then OK (principle, not a closed list)
 

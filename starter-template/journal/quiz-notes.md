@@ -18,7 +18,7 @@ After each lesson's quiz, add a section here:
 
 One letter, one short sentence on why. Bring whichever ones you're least sure about to the next weekly sync; we'll talk through them.
 
-If you're genuinely stuck on a question mid-week (you've tried for 20 minutes, asked Claude, and you're still stuck), ping `#help` in Slack. Quizzes aren't meant to block your week.
+If you're genuinely stuck on a question mid-week (you've tried for 20 minutes), post in `#help` in Slack. Quizzes aren't meant to block your week. (From M3.9 onwards, you'll try Claude before pinging — see `ai-tools.md`.)
 
 ---
 

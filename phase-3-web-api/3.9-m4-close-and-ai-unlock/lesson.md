@@ -51,13 +51,13 @@ Same pattern as M2 and M3 — but louder, because M4 is the milestone where the 
 
 ## The AI Unlock
 
-Until now, the AI has been deliberately limited. The rules in `CLAUDE.md`:
+Claude arrived in `pre-unlock` mode (its default — what it reads from `CLAUDE.md` when first installed). The pre-unlock rules:
 
 - **Don't:** write course exercise code, solve quizzes, refactor for you
 - **OK when asked (limited):** friction (git messes, env setup, error messages you've already tried), concept explanations *after* you've tried, routine boilerplate
 - **Always fine:** syntax lookups, naming suggestions, *"is this good practice?"*
 
-The AI reads its `Current mode: pre-unlock` and pushes back when you ask for implementation. **From M4 onwards, the mode flips.** The new picture:
+Claude reads `Current mode: pre-unlock` and pushes back when you ask for implementation. **Today, you flip the flag to `post-unlock`.** The new picture:
 
 - *Don't* still applies — but the line is *"don't lose the lesson,"* not *"don't write code"*
 - *OK when asked* expands — implementation help is allowed, with a strict rule attached
