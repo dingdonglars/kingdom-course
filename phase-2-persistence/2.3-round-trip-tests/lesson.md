@@ -356,7 +356,7 @@ You started a change. Halfway through, something else came up — a quick fix, a
 
 In VS Code's Source Control panel: `...` menu (top right of the panel) → *Stash → Stash*. Type a description, hit Enter. Your changes disappear from *Changes*. To get them back: `...` menu → *Stash → Pop Latest Stash*.
 
-> **Same move, in the terminal:**
+> **Or in the terminal:**
 >
 > ```powershell
 > git stash push -m "halfway through the round-trip test"

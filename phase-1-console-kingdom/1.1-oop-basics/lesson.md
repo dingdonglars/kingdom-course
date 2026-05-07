@@ -27,7 +27,7 @@ git switch -c phase-1
 
 You're now on a *branch* called `phase-1`. A branch is a separate line of work in git: your commits from now through the end of Phase 1 land on `phase-1` instead of `main`. At Module 1.10 (the close of Phase 1), you'll bring all that work back into `main` through a **pull request** — the formal review surface on GitHub. Lars reviews, approves, you merge. The reason: `main` stays the *"good, reviewed work"* line, and the phase-end PR shows your whole phase as one reviewable chunk — the way working teams ship changes.
 
-**If "branch" and "pull request" feel fuzzy right now, that's expected.** It's the first time you've met them. The *mechanic* is small — `git switch -c phase-N` at the start of each phase, open a PR at the end — and that's all you need to do today. The deeper *sense* of what branches and PRs really are builds across the next ten modules. Module 1.8 comes back to branches once you've already lived with one for a few weeks. Module 1.10 walks the PR end-to-end. Bonus B3 (much later) is the full git-internals deep dive if you ever want it.
+**If "branch" and "pull request" feel fuzzy right now, that's expected.** It's the first time you've met them. What you actually have to do is small: one command at the start of each phase (`git switch -c phase-N`), open a PR on github.com at the end. That's it for today. The proper *sense* of what branches and pull requests really are builds across the next ten modules. Module 1.8 comes back to branches once you've already lived with one for a few weeks. Module 1.10 walks the PR end-to-end. Bonus B3 (much later) is the full git-internals deep dive if you ever want it.
 
 For now: run the command, confirm you're on the new branch, and move on. The concept lands by *using* it.
 

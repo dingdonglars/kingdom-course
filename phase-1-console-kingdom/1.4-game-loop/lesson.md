@@ -240,7 +240,7 @@ In VS Code's Source Control panel, click any modified file under *Changes* — t
 
 The discipline catches accidents — a `Console.WriteLine` left in, a half-edited comment, a file you didn't mean to touch. Two seconds of reading saves the kind of small bug that takes ten minutes to find later.
 
-> **Same move, in the terminal:** `git diff` (unstaged changes), or `git diff --staged` (what's queued for the next commit).
+> **Or in the terminal:** `git diff` (unstaged changes), or `git diff --staged` (what's queued for the next commit).
 
 ## Quiz
 

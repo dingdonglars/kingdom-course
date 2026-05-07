@@ -224,7 +224,7 @@ In VS Code's Source Control panel (`Ctrl + Shift + G G`):
 3. Click the blue **checkmark** to commit.
 4. Click **Sync Changes** to push to GitHub.
 
-> **Same move, in the terminal:**
+> **Or in the terminal:**
 >
 > ```powershell
 > git add .

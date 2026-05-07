@@ -378,7 +378,7 @@ In VS Code: click the branch name in the bottom-left status bar (it says `main`)
 
 To switch back: same place, pick `main`.
 
-> **Same move, in the terminal:**
+> **Or in the terminal:**
 >
 > ```powershell
 > git switch -c feature/event-engine    # create + switch

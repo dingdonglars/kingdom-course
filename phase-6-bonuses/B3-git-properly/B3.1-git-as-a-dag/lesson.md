@@ -100,7 +100,7 @@ Open your kingdom repo. The visual you want is the GitLens **Commit Graph** — 
 
 Pick a commit in the graph and click it — the right-side panel shows the message, parent, author, and the diff against the parent. Notice the diff is *not* the whole snapshot — it's the *change*, computed from this commit's snapshot and the parent's. You're looking at the model.
 
-> **Same move, in the terminal:**
+> **Or in the terminal:**
 >
 > ```powershell
 > git log --oneline --graph --decorate --all   # the graph

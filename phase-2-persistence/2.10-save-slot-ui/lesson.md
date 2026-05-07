@@ -320,7 +320,7 @@ By now your `git log` is thick with commits. Two ways to combine work from one b
 
 In VS Code's Source Control panel: `...` menu → *Branch → Merge from* (or *Rebase from*). Pick the source branch.
 
-> **Same move, in the terminal:**
+> **Or in the terminal:**
 >
 > ```powershell
 > git switch main && git merge feature/save-slots     # merge

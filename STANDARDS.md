@@ -141,6 +141,10 @@ These words add cost without earning their keep. Don't use them in lesson prose.
 - *bar* (as in "the bar is...") — say "standard", "requirement", "target"
 - *artefact* / *artifact* — say "the thing you keep", "the file", "the result", or whatever the specific thing is. *(Note: in the Privacy and Language rule sections of this STANDARDS file the word is allowed because it's defining curriculum-side policy, not lesson prose. Don't propagate it into lessons.)*
 - *surface* (as a verb — "the panel surfaces it") — say "the panel shows it" or "the panel has a button for it" (or, for the negative case, "the panel doesn't have a button for it")
+- *mechanic* (as in "the mechanic of the lesson", "the mechanic is small") — say "the move", "what you actually do", or rewrite
+- *wrinkle* (as in "small first-time wrinkle") — say "small thing to know about" or rewrite
+- *lands* (as in "the file lands in your repo", "MENTOR-PROTOCOL lands on his disk") — say "appears", "shows up", or "you'll add it" / "is added by ..."
+- *"Same move, in the terminal"* (as a callout heading for CLI alternatives) — say *"Or in the terminal"* — clearer to a beginner; "same move" is hedged and feels AI-generated
 
 ### Explain on first use, then OK (principle, not a closed list)
 

@@ -39,7 +39,7 @@ Switch to VS Code (the kingdom folder is open from M0.0 Part 2). The git workflo
 
 Refresh your repo on github.com — the foundation is now live.
 
-> **Same move, in the terminal:**
+> **Or in the terminal:**
 >
 > ```powershell
 > cd C:\code\kingdom
@@ -111,7 +111,7 @@ In VS Code's Source Control panel:
 
 Now go to your repo on github.com in the browser. **Refresh.** Your code is there. It's on the internet.
 
-> **Same move, in the terminal:**
+> **Or in the terminal:**
 >
 > ```powershell
 > cd C:\code\kingdom

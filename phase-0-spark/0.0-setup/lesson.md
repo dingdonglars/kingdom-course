@@ -165,7 +165,7 @@ You now have `C:\code\kingdom\` on your PC, connected to GitHub, open in VS Code
 
 > **From tomorrow on**, two ways to come back here: in VS Code, *File → Open Recent → kingdom*. Or in Windows Terminal: `cd C:\code\kingdom` then `code .` — the dot means *"this folder."* Either way, VS Code opens on the kingdom folder.
 
-> **Same move, in the terminal.** If you ever want to do this from PowerShell instead — useful when you're away from VS Code, or following a tutorial that assumes the terminal:
+> **Or in the terminal.** If you ever want to do this from PowerShell instead — useful when you're away from VS Code, or following a tutorial that assumes the terminal:
 >
 > ```powershell
 > cd C:\code

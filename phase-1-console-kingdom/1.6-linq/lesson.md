@@ -288,7 +288,7 @@ Your commit log is getting long enough to picture. Want to see it?
 
 In VS Code, install the **GitLens** extension if you haven't (Extensions sidebar, search *"GitLens"*). Then `Ctrl + Shift + P` → *"GitLens: Show Commit Graph"*. The graph view opens — every commit you've made, parent links drawn, branches as coloured lanes. Reading your own commit graph is the first step toward reasoning about it.
 
-> **Same move, in the terminal:** `git log --oneline --graph --decorate --all`.
+> **Or in the terminal:** `git log --oneline --graph --decorate --all`.
 
 We go properly into the model behind this graph in B3.1 if you take that bonus.
 

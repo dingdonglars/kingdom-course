@@ -359,7 +359,7 @@ In VS Code's Source Control panel: click any file under *Changes* to open the si
 
 To read someone else's diff (a teammate's PR, your own old commit): in the GitLens Commit Graph, click any commit; the panel on the right shows the same hunk-by-hunk view.
 
-> **Same move, in the terminal:** `git show <commit-hash>` shows a single commit's diff. `git log -p` shows every commit's diff in your history.
+> **Or in the terminal:** `git show <commit-hash>` shows a single commit's diff. `git log -p` shows every commit's diff in your history.
 
 ## Quiz
 
