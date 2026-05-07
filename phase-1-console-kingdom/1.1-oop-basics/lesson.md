@@ -29,7 +29,7 @@ You're now on a *branch* called `phase-1`. A branch is a separate line of work i
 
 **If "branch" and "pull request" feel fuzzy right now, that's expected.** It's the first time you've met them. What you actually have to do is small: one command at the start of each phase (`git switch -c phase-N`), open a PR on github.com at the end. That's it for today. The proper *sense* of what branches and pull requests really are builds across the next ten modules. Module 1.8 comes back to branches once you've already lived with one for a few weeks. Module 1.10 walks the PR end-to-end. Bonus B3 (much later) is the full git-internals deep dive if you ever want it.
 
-For now: run the command, confirm you're on the new branch, and move on. The concept lands by *using* it.
+For now: run the command, confirm you're on the new branch, and move on. After a few weeks of using branches, the idea stops feeling fuzzy.
 
 Confirm:
 

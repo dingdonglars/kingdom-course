@@ -147,6 +147,7 @@ These words add cost without earning their keep. Don't use them in lesson prose.
 - *"Same move, in the terminal"* (as a callout heading for CLI alternatives) — say *"Or in the terminal"* — clearer to a beginner; "same move" is hedged and feels AI-generated
 - *dormant* (as in "the file sits dormant until Module 3.9") — say "doesn't do anything until ..." or "starts working when ..." or "waits for ..."
 - `M3.9` / `M0.0` / `M2.11` etc. (M-prefix on a module ID) — say `Module 3.9` / `Module 0.0` / `Module 2.11` (or bare `3.9` / `0.0` when surrounding prose makes "module" clear). The `M` prefix is reserved for **milestones** (`M0` through `M6`); using it on a module ID conflates two distinct things — milestones are the seven brag-worthy waypoints, modules are individual lessons.
+- *"the concept lands by using it"* / *"X lands by ..."* (abstract framing where the subject is the concept itself) — say what *Athos* does instead: "after a few weeks of using it, the idea stops feeling fuzzy" / "you'll get the hang of it by ..." Concrete subject + concrete action; no "the concept" doing things on its own.
 
 ### Explain on first use, then OK (principle, not a closed list)
 
