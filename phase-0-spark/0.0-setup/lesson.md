@@ -1,21 +1,21 @@
 # Module 0.0 — Setup
 
-By the end of this session your computer is ready, your code home is set up, and you're in Slack. Editor, compiler, terminal, git, a GitHub account, a styled prompt, the two folders where every line of code from this year will live, and the workspace where everything async happens. You do this with Lars beside you; everything from the next module on you do solo. About two and a half hours, often less.
+By the end of this session your computer is ready, your code home is set up, and you're in Slack. Editor, compiler, terminal, git, a GitHub account, the two folders where every line of code from this year will live, and the workspace where everything async happens. You do this with Lars beside you; everything from the next module on you do solo. About two hours, often less.
 
 ## What you need first
 
 - A Windows PC (you have this).
 - **Your phone**, charged. You'll install Slack on it during Part 3.
 - Lars sitting next to you. A few installer dialogs are easier with someone who's been here before; the GitHub account, the Slack invite, and the mobile-install sanity-check all pair better when the person paying for the year is in the room.
-- About two and a half hours uninterrupted.
+- About two hours uninterrupted.
 
 > **After today — read the mentor protocol.** `MENTOR-PROTOCOL.md` is the two-way agreement on how Lars and you run the year (the 20-minute rule, the four channels, the weekly sync, the off-ramp). Two ways to find it: `C:\code\kingdom-course\MENTOR-PROTOCOL.md` on your disk (cloned in Part 2), or pinned in `#all-kingdom-hq` once you join Slack in Part 3. Read it during the first week and bring it to the first weekly sync.
 
 ---
 
-## Part 1 — Tools (Lars walks you through this; about 70 minutes)
+## Part 1 — Tools (Lars walks you through this; about 50 minutes)
 
-You install six tools, add one VS Code extension, set up a styled terminal prompt, and tell git who you are. Lars sits with you. Each install is mostly *next, next, next*. None of them are scary.
+You install six tools, add one VS Code extension, and tell git who you are. Lars sits with you. Each install is mostly *next, next, next*. None of them are scary.
 
 Install **VS Code first** — that way the Git installer can set VS Code as the default editor instead of Vim, which you do not want to meet today.
 
@@ -48,44 +48,6 @@ Without this, `.cs` files have no IntelliSense, no debugger, no syntax colours.
 4. Click **Install**. It pulls in the C# language server alongside it. Takes about a minute.
 
 When you open a `.cs` file later, you'll see colours, suggestions, and an inline *Run | Debug* link above `Main`. That's this extension.
-
-### Make the terminal prompt show git status
-
-Default PowerShell prompt is one line of useless: `PS C:\code\kingdom>`. Real developers run a *styled prompt* that shows the current git branch, whether you have uncommitted changes, and which folder you're in — all at a glance. This is **oh-my-posh**, a tiny add-on that makes the terminal genuinely useful.
-
-**Install a font that has the icons.** Oh-my-posh uses small symbols (a branch icon, a folder icon, a `±` for unstaged changes) that come from a *Nerd Font*. Without one, you'll see boxes where icons should be.
-
-1. Go to <https://www.nerdfonts.com/font-downloads>.
-2. Find **CaskaydiaCove Nerd Font** (it's a tweaked version of Cascadia Code, the default Windows Terminal font). Download.
-3. Unzip. Right-click the `CaskaydiaCoveNerdFont-Regular.ttf` file → **Install for all users**.
-
-**Tell Windows Terminal to use it.** Open Windows Terminal → click the `∨` next to the tab bar → **Settings** → **Profiles → Defaults → Appearance** → **Font face** → **CaskaydiaCove Nerd Font** → **Save**.
-
-**Install oh-my-posh.** In Windows Terminal:
-
-```powershell
-winget install JanDeDobbeleer.OhMyPosh -s winget
-```
-
-Close Windows Terminal and reopen it (so the new tool is on the path).
-
-**Make oh-my-posh load every time you open the terminal.** Edit your PowerShell profile:
-
-```powershell
-notepad $PROFILE
-```
-
-If Notepad asks whether to create the file, say yes. Paste this single line, save, close:
-
-```powershell
-oh-my-posh init pwsh --config "$env:LOCALAPPDATA\Programs\oh-my-posh\themes\paradox.omp.json" | Invoke-Expression
-```
-
-That's the full path to a clean theme called *paradox*. Other tutorials online use a shorter `$env:POSH_THEMES_PATH/...` form — that env var doesn't always resolve in fresh shells right after install, so the full path here is bulletproof.
-
-Open a fresh Windows Terminal tab. Your prompt is now coloured, shows the folder, and — once you're inside a git repo — the branch name plus a `±` mark when you have uncommitted changes. Try a few themes later via `Get-PoshThemes`; if you find one you prefer, swap `paradox.omp.json` in your `$PROFILE` for `<that-theme-name>.omp.json`.
-
-> **If something looks wrong** — boxes instead of icons mean the font isn't actually being used (recheck the Settings step); a slow first prompt is normal (oh-my-posh warms up on first call); a red error from `notepad $PROFILE` usually means PowerShell's execution policy blocks scripts (run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once, type `Y`, and you're fine); if the prompt shows `CONFIG_NOT_FOUND`, the theme path didn't resolve — check the `$PROFILE` line spells the path exactly as above.
 
 ### Tell git who you are
 

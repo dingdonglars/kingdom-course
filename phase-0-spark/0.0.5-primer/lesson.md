@@ -65,7 +65,7 @@ Two things worth knowing:
 
 ## Step 3 — The terminal, and what PowerShell actually is
 
-Open **Windows Terminal**. You see a coloured prompt (thanks to oh-my-posh) that shows the current folder, the current branch when you're inside a git repo, and an arrow waiting for input. The thing you're looking at is *the terminal* — a window where text goes in and text comes out.
+Open **Windows Terminal**. You see a prompt — `PS C:\Users\YourName>` or similar — followed by a blinking cursor waiting for you to type. The thing you're looking at is *the terminal* — a window where text goes in and text comes out.
 
 But what's actually *processing* what you type? That's the **shell**. The shell is a program that runs *inside* the terminal, reads what you type, and turns it into actions. On Windows the default shell is **PowerShell**. On Mac and Linux it's typically **bash** or **zsh**. Different shells, same idea: type a command, it runs, you see output.
 
