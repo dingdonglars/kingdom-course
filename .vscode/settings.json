@@ -1,0 +1,7 @@
+{
+    "// purpose": "Open markdown files (lessons, READMEs, etc.) directly in preview instead of splitting source + preview. Applies only to the kingdom-course window — the learner's own kingdom repo keeps the default source view, which is what he wants when editing his journal.",
+    "// to view source instead": "Right-click the editor tab -> 'Reopen Editor With...' -> 'Text Editor'. Or Ctrl+Shift+P -> 'View: Reopen Editor With...'.",
+    "workbench.editorAssociations": {
+        "*.md": "vscode.markdown.preview.editor"
+    }
+}

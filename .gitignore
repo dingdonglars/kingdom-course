@@ -31,9 +31,11 @@ appsettings.Development.json
 appsettings.Local.json
 
 # Editor / OS
-.vscode/
-!**/starter/.vscode/
-!**/starter-template/.vscode/
+.vscode/*
+!**/starter/.vscode/*
+!**/starter-template/.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .idea/
 *.swp
 *.swo
