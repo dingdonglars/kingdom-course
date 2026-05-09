@@ -52,6 +52,16 @@ You finished a small, sharp bonus. The whole arc was: install LocalDB, change th
 - **migration regen** — provider change means regenerating migration SQL
 - **SSMS as a lifelong tool** — the GUI that travels with you
 
+## Wrap up
+
+No quiz this lesson — the reflection paragraph is the artefact. So:
+
+1. **Progress** — one line in `journal/progress.md`: `Module B1.4 — Reflection and Close — DATE — closed B1: 3-line DB swap, all tests green. Learnt: one sentence.`
+2. **Commit and push** — your reflection paragraph plus the progress line, commit message `Module B1.4 done`, Sync.
+3. **Post in `#wins`** — *"B1 closed."* with the URL of the commit (the tag from Step 2 is separate; it doesn't need its own #wins post).
+
+Module 0.1 covers the why and the panel/CLI steps if you need a refresher.
+
 ## Next
 
 You're done with B1. **B2 (Context Engineering)** is the deeper bonus — it names and sharpens what you've been doing with AI tools since the AI Unlock at Module 4.0.

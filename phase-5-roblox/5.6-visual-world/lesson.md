@@ -137,9 +137,14 @@ You wired the engine to a 3D world. Server code laid out a five-by-five grid of 
 - **`Instance.new`** — create a runtime object of a given class.
 - **`ClickDetector`** — child of a Part that fires server-side click events.
 
-## Quiz
+## Wrap up
 
-Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.
+2. **Progress** — one line in `journal/progress.md`: `Module 5.6 — Title — DATE — short build summary. Learnt: one sentence.`
+3. **Commit and push** — stage both files, commit message `Module 5.6 done`, Sync.
+4. **Post in `#wins`** — one line about today, plus the URL of the commit.
+
+Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring quiz answers you're least sure about to the next weekly sync.
 
 ## Next
 

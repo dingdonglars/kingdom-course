@@ -153,9 +153,14 @@ You picked up three windows into your database: DB Browser (the friendly GUI), t
 - **`dotnet ef migrations script`** — preview SQL without applying
 - **`__EFMigrationsHistory`** — visible in any of the tools above
 
-## Quiz
+## Wrap up
 
-Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.
+2. **Progress** — one line in `journal/progress.md`: `Module 2.8 — Title — DATE — short build summary. Learnt: one sentence.`
+3. **Commit and push** — stage both files, commit message `Module 2.8 done`, Sync.
+4. **Post in `#wins`** — one line about today, plus the URL of the commit.
+
+Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring quiz answers you're least sure about to the next weekly sync.
 
 ## Next
 

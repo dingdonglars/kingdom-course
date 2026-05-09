@@ -2,6 +2,8 @@
 
 > A rolling log of your quiz answers. One entry per quiz. Same idea as `wins.md` — write things down so you remember.
 
+> From now on, this file gets committed each lesson alongside `progress.md`.
+
 ## How to use this file
 
 After each lesson's quiz, add a section here:

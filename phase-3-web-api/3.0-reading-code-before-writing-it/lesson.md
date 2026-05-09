@@ -124,9 +124,14 @@ You spent thirty minutes reading two real ASP.NET Core files written by the peop
 - **smell** — a pattern that makes you uneasy, not always a bug
 - **the five questions** — a reusable mini-protocol for any unfamiliar file
 
-## Quiz
+## Wrap up
 
-Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.
+2. **Progress** — one line in `journal/progress.md`: `Module 3.0 — Title — DATE — short build summary. Learnt: one sentence.`
+3. **Commit and push** — stage both files, commit message `Module 3.0 done`, Sync.
+4. **Post in `#wins`** — one line about today, plus the URL of the commit.
+
+Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring quiz answers you're least sure about to the next weekly sync.
 
 ## Next
 

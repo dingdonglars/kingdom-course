@@ -136,9 +136,14 @@ You sat with the codebase and tightened every public name. Some you renamed; som
 - **vocabulary discipline** — pick `Save`/`Load`/`Delete`, not a mix
 - **IDE Rename** — the only safe way to change a name everywhere
 
-## Quiz
+## Wrap up
 
-Open `quiz.md`. (Lighter than usual — naming-themed.) When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+1. **Quiz** — open `quiz.md` (lighter than usual — naming-themed). Jot your answers in `journal/quiz-notes.md`.
+2. **Progress** — one line in `journal/progress.md`: `Module 2.11 — Title — DATE — short build summary. Learnt: one sentence.`
+3. **Commit and push** — stage both files, commit message `Module 2.11 done`, Sync.
+4. **Post in `#wins`** — one line about today, plus the URL of the commit.
+
+Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring quiz answers you're least sure about to the next weekly sync.
 
 ---
 

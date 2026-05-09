@@ -365,9 +365,14 @@ In VS Code's Source Control panel: `...` menu (top right of the panel) → *Stas
 
 The stash is non-destructive — your changes are saved, not gone. Use it any time you want a clean tree without losing what you had.
 
-## Quiz
+## Wrap up
 
-Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.
+2. **Progress** — one line in `journal/progress.md`: `Module 2.3 — Title — DATE — short build summary. Learnt: one sentence.`
+3. **Commit and push** — stage both files, commit message `Module 2.3 done`, Sync.
+4. **Post in `#wins`** — one line about today, plus the URL of the commit.
+
+Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring quiz answers you're least sure about to the next weekly sync.
 
 ## Next
 

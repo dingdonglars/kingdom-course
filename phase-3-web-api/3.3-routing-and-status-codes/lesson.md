@@ -193,9 +193,14 @@ The thing nobody tells you about git: it almost never actually loses your work. 
 
 Specifically: if you panic-`reset --hard` past commits you wanted to keep, run `git reflog`, find the SHA from before the reset, run `git reset --hard <that-sha>` — and they're back. We go properly into the safety net in B3.3 if you take that bonus.
 
-## Quiz
+## Wrap up
 
-Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.
+2. **Progress** — one line in `journal/progress.md`: `Module 3.3 — Title — DATE — short build summary. Learnt: one sentence.`
+3. **Commit and push** — stage both files, commit message `Module 3.3 done`, Sync.
+4. **Post in `#wins`** — one line about today, plus the URL of the commit.
+
+Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring quiz answers you're least sure about to the next weekly sync.
 
 ## Next
 

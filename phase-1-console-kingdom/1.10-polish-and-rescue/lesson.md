@@ -179,9 +179,14 @@ Phase 1 closes today. You wrote a four-section README, dropped doc comments on f
 - **`git reset --hard`** — destructive rewind, useful when sure
 - **the rescue rule** — read state before acting on it
 
-## Quiz
+## Wrap up
 
-Open `quiz.md`. (Lighter than usual — milestone-themed.) When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+1. **Quiz** — open `quiz.md` (lighter than usual — milestone-themed). Jot your answers in `journal/quiz-notes.md`.
+2. **Progress** — one line in `journal/progress.md`: `Module 1.10 — Title — DATE — short build summary. Learnt: one sentence.`
+3. **Commit and push** — stage both files, commit message `Module 1.10 done`, Sync.
+4. **Post in `#wins`** — one line about today, plus the URL of the commit.
+
+Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring quiz answers you're least sure about to the next weekly sync.
 
 ---
 

@@ -73,9 +73,37 @@ You made your program ask a question and listen for the answer. Two extra lines 
 - **string interpolation** — `$"..."` with `{placeholders}`
 - **`Console.ReadLine`** — wait for input, return a string
 
-## Quiz
+## Wrap up
 
-Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.
+A short routine at the end of every lesson from now on. Three things, one commit, on your phase branch:
+
+1. **Quiz** — open `quiz.md`. Jot your answers and a sentence of reasoning in `journal/quiz-notes.md`, same layout as the entries already in there. Bring whichever you're least sure about to the next weekly sync.
+
+2. **One line of progress** — in `journal/progress.md`. (If the file isn't there yet, copy `kingdom-course/starter-template/journal/progress.md` into your `kingdom/journal/` folder first — that gives you the format and a worked example.) Add a new line below the example:
+
+   ```
+   Module 0.1 — Tinker — 2026-MM-DD — added input + interpolation. Learnt: variables let the same code mean two different things.
+   ```
+
+   The "Learnt" half is the bit worth thinking about. One sentence, your own words.
+
+3. **Commit and push.**
+
+   - First, **make sure you're in the right repo.** Open Source Control (`Ctrl + Shift + G G`) — the panel header must say **`kingdom`** (the folder is `C:\code\kingdom`), *not* `kingdom-course`. Two folders, two roles, remember from the primer — your work goes in `kingdom`. The `kingdom-course` folder is read-only; nothing you write goes there. **Get this right every single time** — committing into `kingdom-course` is the easiest mistake to make in the first weeks, and it's annoying to undo.
+   - Stage `journal/quiz-notes.md` and `journal/progress.md` (click the `+` next to each).
+   - Commit message: `Module 0.1 done`.
+   - Click the checkmark, then Sync.
+
+   > **Or in the terminal** — same folder rule. Run `pwd` first; it should print `C:\code\kingdom`. If it prints `C:\code\kingdom-course`, `cd ..\kingdom` before going further.
+   > ```powershell
+   > git add journal/quiz-notes.md journal/progress.md
+   > git commit -m "Module 0.1 done"
+   > git push
+   > ```
+
+Then post in `#wins` — one line about today, plus the URL of the commit you just pushed. (Open your `kingdom` repo on github.com, click *Commits*, click the latest one, copy the URL from the address bar.)
+
+The point isn't paperwork. It's a tiny visible trace that you did the lesson — proof for you, signal for Lars.
 
 ## Next
 
