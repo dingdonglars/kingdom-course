@@ -69,6 +69,50 @@ dotnet run
 
 The file `hero.txt` appears in the project folder. **You wrote to disk.**
 
+## Listen to the editor
+
+Your editor talks to you while you type. When it draws a coloured line under your code, it's pointing at something specific. Here's how to read it.
+
+In `Program.cs`, find the line `var name = Console.ReadLine();`. Change `ReadLine` to `readLine` (lowercase r — small change, nothing else). Save the file.
+
+Three things happen:
+
+1. **Red squiggle under `readLine`.** Hover your mouse over it. A box pops up: *"'Console' does not contain a definition for 'readLine'"*. The editor is telling you: that method does not exist. C# is case-sensitive — `ReadLine` and `readLine` are different names.
+
+2. **No autocomplete after `name.`** Go to the next line, put your cursor right after `name.` in `{name.ToUpper()}`. Normally a dropdown appears with `.ToUpper()`, `.ToLower()`, `.Trim()` and friends. Now it's gone or wrong. Because the line above failed, the editor doesn't know what `name` is, so it can't help you on the next line either.
+
+3. **The build is broken.** Run `dotnet run`. It refuses. The same error from the hover shows up in the terminal.
+
+Change `readLine` back to `ReadLine`. Save. The squiggle vanishes. Autocomplete returns. `dotnet run` works.
+
+**Red means: this will not compile. Your program is broken until you fix it.** The compiler will not run code with a red squiggle. Ever.
+
+Now for a different colour. Add a line near the top of `Program.cs`, just under the `var art = @"..."` block:
+
+```csharp
+var debug = 5;
+```
+
+Save. A **yellow** squiggle appears under `debug`. Hover it: *"The variable 'debug' is assigned but its value is never used."* That's a warning. The code compiles. `dotnet run` works. But the compiler is pointing out a line that does nothing — probably by mistake. Delete the line; the yellow goes away.
+
+**Yellow means: this compiles, but I think you made a mistake.** Yellow squiggles don't stop the program from running. Most of them are worth reading — they're future bugs the compiler is warning about now. Other yellow situations you'll meet: code that can never be reached, a value the compiler thinks might be empty, an import you don't use.
+
+(There's also pale blue or grey "suggestions" — style nudges, lowest priority. Skip them for now.)
+
+**What you just learned.**
+
+The editor has no expectations of you. It doesn't care whether you're rushing, whether your code *looks* like the sample, or whether you'd like to be done. It only knows what works and what doesn't — and tells you, for free, in real time.
+
+When the autocomplete dropdown stops appearing — when you type a dot after a variable and nothing useful comes up — that's the same signal in a different costume. The editor has lost the thread. Something earlier is wrong.
+
+Three rules from here on:
+
+- **Red squiggle = stop and read the hover.** Don't keep typing on top of it. It won't go away on its own.
+- **Yellow squiggle = read it before you ship.** Probably not blocking, probably worth knowing.
+- **Autocomplete missing where you expected it = something upstream is broken.** Scroll up, find the squiggle, fix it.
+
+The compiler is the one thing in this whole course with no expectations of you. It has rules. Trust it more than you trust yourself.
+
 ## Tinker
 
 Make the welcome message a different colour the *second* time the program runs (when the file already exists). You'll need to check `File.Exists("hero.txt")` *before* writing anything.
