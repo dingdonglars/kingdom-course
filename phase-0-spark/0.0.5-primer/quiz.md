@@ -1,6 +1,8 @@
 # Quiz — Module 0.0.5
 
 > Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+>
+> Travou no inglês? Abra o `quiz.pt.md` — é este mesmo quiz em português. Tente em inglês primeiro.
 
 ## 1. You're working in `C:\code\kingdom\` and your terminal prompt shows that. You type `cd ..`. Where does the terminal end up?
 

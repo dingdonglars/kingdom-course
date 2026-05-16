@@ -1,6 +1,8 @@
 # Quiz — Module 0.0.8
 
 > Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+>
+> Travou no inglês? Abra o `quiz.pt.md` — é este mesmo quiz em português. Tente em inglês primeiro.
 
 Today's quiz is mostly celebratory. Pick the right answer, but the real check is: did you write code today, did you push it to GitHub, and is it actually there when you look? If yes — you passed.
 
