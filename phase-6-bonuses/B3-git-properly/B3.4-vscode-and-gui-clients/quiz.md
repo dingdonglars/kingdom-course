@@ -1,6 +1,8 @@
 # Quiz — Bonus B3.4
 
 > Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+>
+> Travou no inglês? Abra o `quiz.pt.md` — é este mesmo quiz em português. Tente em inglês primeiro.
 
 ## 1. What's the killer feature of VS Code's Source Control panel for unsloppy commits?
 
