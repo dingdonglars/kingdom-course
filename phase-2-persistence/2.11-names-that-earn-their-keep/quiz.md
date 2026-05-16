@@ -11,7 +11,7 @@
 - **c.** It conflicts with a reserved C# keyword
 - **d.** Naming conventions explicitly forbid suffixes longer than five letters
 
-## 2. The 3-letter local `b` for a building inside a 5-line method is...
+## 2. The single-letter local `b` for a building inside a 5-line method is...
 
 - **a.** Always wrong; names should always be at least four letters
 - **b.** Fine — scope is tiny, the type is obvious from the surrounding code
