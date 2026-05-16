@@ -1,6 +1,8 @@
 # Quiz — Module 5.5
 
 > Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+>
+> Travou no inglês? Abra o `quiz.pt.md` — é este mesmo quiz em português. Tente em inglês primeiro.
 
 ## 1. Why use string keys (`"Gold"`) instead of an enum in Luau?
 

@@ -1,6 +1,8 @@
 # Quiz — Module 5.8 (the last one)
 
 > Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+>
+> Travou no inglês? Abra o `quiz.pt.md` — é este mesmo quiz em português. Tente em inglês primeiro.
 
 ## 1. The final reflection asks you to re-read `journal/wins.md` from M0 to M6 in order. Why?
 
