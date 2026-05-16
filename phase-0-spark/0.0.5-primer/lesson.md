@@ -247,6 +247,8 @@ This is your first quiz, so a quick word on how these work — once, here. Futur
 
 **Then bring whichever question you were least sure about to the next weekly sync.** That's the rhythm: read the lesson, do the quiz, write the answers, talk through the shaky bits at the sync. Every module from here on follows this.
 
+**There's a Portuguese copy if the English blocks you.** Every quiz has a `quiz.pt.md` next to the `quiz.md` — the same quiz, in Portuguese. The deal: always try the English `quiz.md` first. Only open `quiz.pt.md` when an English *word* trips you up — it's there to help with the language, not to skip the thinking.
+
 Open `quiz.md` now.
 
 ## Next
