@@ -1,6 +1,8 @@
 # Quiz — Module 3.9
 
 > Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+>
+> Travou no inglês? Abra o `quiz.pt.md` — é este mesmo quiz em português. Tente em inglês primeiro.
 
 ## 1. The AI Unlock takes effect at...
 

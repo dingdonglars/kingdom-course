@@ -1,6 +1,8 @@
 # Quiz — Module 3.7
 
 > Don't write your answers in this file — open `journal/quiz-notes.md` and write them there.
+>
+> Travou no inglês? Abra o `quiz.pt.md` — é este mesmo quiz em português. Tente em inglês primeiro.
 
 ## 1. What's the difference between a unit test and an integration test?
 
