@@ -1,21 +1,21 @@
 # Module 3.6 — Multi-User Persistence
 
-Today every kingdom belongs to a *user*. The signed-in user's `sub` is stored alongside every save. `GET /kingdoms` returns *only your* kingdoms — never anyone else's. This is what turns the API from a global free-for-all into a real multi-user product.
+Today every kingdom belongs to a *user*. The signed-in user's `sub` is saved along with every kingdom. `GET /kingdoms` returns *only your* kingdoms — never anyone else's. This is what turns the API from a single shared pile of data into a real product with separate users.
 
-The change is small in lines of code. It's enormous in importance. Multi-user data is *the* most-bug-prone code in any web app, and the bugs are quiet: one user sees another user's data, or modifies it, and nobody notices for weeks. The fix is a single `WHERE` clause; the cost of forgetting is enormous. We're going to bake the discipline in now, while the codebase is small enough to grasp end-to-end.
+The change is small in lines of code. It is very important all the same. Multi-user data is the part of any web app where bugs hide most easily, and these bugs are quiet: one user sees another user's data, or changes it, and nobody notices for weeks. The fix is a single `WHERE` clause, and the cost of forgetting it is huge. We're going to build this habit in now, while the codebase is still small enough to understand from end to end.
 
 > **Words to watch**
 >
 > - **owner** — the user who created the resource (we use Google's `sub` claim)
 > - **authorisation** vs. **authentication** — auth*entication* is *who are you*; auth*orisation* is *what are you allowed to do*
-> - **scoped query** — every `WHERE` clause includes `OwnerSub = currentUser` to prevent cross-user reads or writes
-> - **migration with data preservation** — adding a non-null column to a table with existing rows requires a default value
+> - **scoped query** — every `WHERE` clause includes `OwnerSub = currentUser`, so one user can't read or change another user's data
+> - **migration with data preservation** — when you add a non-null column to a table that already has rows, you must give it a default value
 
 ---
 
 ## Why this matters more than it looks
 
-This is the bug class that lands on the front page when it goes wrong. The classic version: a user types `/kingdoms/1234` into the URL bar, and gets back somebody else's kingdom. The fix is one `WHERE OwnerSub = ?` clause; the absence of that clause is what lets the bug exist. We codify the discipline now so it's automatic forever.
+This is the kind of bug that makes the news when it goes wrong. The classic version: a user types `/kingdoms/1234` into the address bar and gets back somebody else's kingdom. The fix is one `WHERE OwnerSub = ?` clause. Leaving that clause out is exactly what lets the bug happen. We build the habit in now so it becomes automatic.
 
 ## What ships in the starter
 
@@ -52,11 +52,11 @@ Then generate the migration:
 dotnet ef migrations add AddOwnerSub --project Kingdom.Persistence --startup-project Kingdom.Console
 ```
 
-The generated migration adds the column. For existing rows, EF will use the default `""` — meaning they'll be unowned. Real production migrations would either backfill the column or refuse to add it without a strategy. For our learning DB, the default is fine.
+The generated migration adds the column. For rows that already exist, EF will use the default `""`, which means they'll have no owner. A real production migration would either fill in the column for the old rows or refuse to run until you have a plan for them. For our learning DB, the default is fine.
 
 ## Step 2 — store methods take `ownerSub`
 
-Every public method gains a `string ownerSub` parameter and scopes the query. Notice the LINQ break-before-the-dot pattern when the chain has three or more methods:
+Every public method gets a `string ownerSub` parameter and adds it to the query. Notice the LINQ pattern of breaking the line before the dot when the chain has three or more methods:
 
 ```csharp
 public int Save(string ownerSub, Kingdom.Engine.Kingdom kingdom)
@@ -97,7 +97,7 @@ public IReadOnlyList<KingdomSlotInfo> ListSlots(string ownerSub)
 // Same pattern for Update and Delete: WHERE Id = id AND OwnerSub = ownerSub
 ```
 
-The bug-resistant pattern: **`ownerSub` is a required parameter on every method.** A caller who forgets it gets a compile error, not a security bug. Don't make it optional.
+The pattern that keeps bugs out: **`ownerSub` is a required parameter on every method.** A caller who forgets it gets a compile error, not a security bug. Don't make it optional.
 
 ## Step 3 — extract `ownerSub` in `Program.cs`
 
@@ -164,41 +164,41 @@ public void Load_OfOtherUsersKingdom_Throws()
 }
 ```
 
-The second test is the one that would catch the bug. Always test the cross-user case.
+The second test is the one that would catch the bug. Always write a test for the cross-user case.
 
 ## Tinker
 
-Sign in as User A, create a kingdom. Sign out. Sign in as User B (a different Google account). `GET /kingdoms` is empty. Try `GET /kingdoms/<UserA_kingdom_id>` — 404. The scoped lookup returns nothing, treated as not-found.
+Sign in as User A and create a kingdom. Sign out. Sign in as User B (a different Google account). `GET /kingdoms` is empty. Try `GET /kingdoms/<UserA_kingdom_id>` — you get a 404. The scoped lookup finds nothing, which is treated as not-found.
 
-Drop the `&& k.OwnerSub == ownerSub` clause from `Load`. Run the tests — the cross-user test fails. Restore the clause. That's the test that earns its keep.
+Remove the `&& k.OwnerSub == ownerSub` clause from `Load`. Run the tests — the cross-user test fails. Put the clause back. That's the test doing its job.
 
-Add an `IsPublic` boolean field to allow players to share kingdoms read-only. Now scoped queries become `OwnerSub == ownerSub OR IsPublic == true`. Same discipline, slightly relaxed scope.
+Add an `IsPublic` boolean field so players can share kingdoms read-only. Now the scoped query becomes `OwnerSub == ownerSub OR IsPublic == true`. Same habit, with one careful exception.
 
-## The through-line
+## The main point
 
-Multi-user safety lives in the data layer, not the UI. The UI can hide buttons, but if the API doesn't scope its queries, anyone with `curl` can read anyone's data. The `WHERE OwnerSub = ?` clause is the contract.
+Multi-user safety belongs in the data layer, not the UI. The UI can hide buttons, but if the API doesn't scope its queries, anyone with `curl` can read anyone's data. The `WHERE OwnerSub = ?` clause is the real protection.
 
 ## What you just did
 
-You turned the API from *one big shared kingdom database* into *each user sees only their own kingdoms*. The change was one new column (`OwnerSub`), one new index, and a `WHERE OwnerSub = ?` clause on every read and write. The bug-resistant pattern: make `ownerSub` a required parameter on every store method, so a caller who forgets it gets a compile error, not a 4 a.m. security incident. The cross-user test you wrote — *Load of another user's kingdom throws* — is the test that matters most; it's the test that would catch a missing `WHERE` clause before it ships. Two new tests, eighty-plus passing total.
+You turned the API from *one big shared kingdom database* into *each user sees only their own kingdoms*. The change was one new column (`OwnerSub`), one new index, and a `WHERE OwnerSub = ?` clause on every read and write. The pattern that keeps bugs out: make `ownerSub` a required parameter on every store method, so a caller who forgets it gets a compile error instead of a serious security bug. The cross-user test you wrote — *Load of another user's kingdom throws* — is the one that matters most. It's the test that would catch a missing `WHERE` clause before it goes live. Two new tests, eighty-plus passing in total.
 
 **Key concepts you can now name:**
 
 - **owner** — the user who owns a resource; we use Google's `sub` claim
 - **scoped query** — every read/write filters by owner
 - **authorisation** — what you're allowed to do (vs. authentication = who you are)
-- **`HasIndex(k => k.OwnerSub)`** — keeps lookup-by-owner fast as data grows
-- **the cross-user test** — the test that earns its keep when somebody refactors
+- **`HasIndex(k => k.OwnerSub)`** — keeps lookup-by-owner fast as the data grows
+- **the cross-user test** — the test that proves its worth when somebody refactors
 
 ## Git move of the week — resolving a merge conflict
 
-Sooner or later, two branches change the same lines and git can't auto-merge. You'll see a message: *"Conflicts must be resolved."*
+Sooner or later, two branches change the same lines and git can't merge them on its own. You'll see a message: *"Conflicts must be resolved."*
 
-In VS Code: open the conflicted file. Each conflicted *hunk* (a contiguous block of changed lines) shows inline buttons — *Accept Current Change*, *Accept Incoming Change*, *Accept Both Changes*, *Compare Changes*. Click whichever applies for each hunk. Once every conflict is resolved, the file is no longer marked conflicted. Stage it, commit (the commit message is pre-filled with *"Merge branch ..."*), push.
+In VS Code: open the file with the conflict. Each conflicting *hunk* (a block of changed lines next to each other) shows buttons in the editor — *Accept Current Change*, *Accept Incoming Change*, *Accept Both Changes*, *Compare Changes*. Click the one that's right for each hunk. Once you've handled every conflict, the file is no longer marked as conflicting. Stage it, commit (the commit message is already filled in with *"Merge branch ..."*), and push.
 
-> **Or in the terminal:** conflicts appear as `<<<<<<<` / `=======` / `>>>>>>>` markers in the file. Edit the file by hand to keep the right version, remove the markers, run `git add <file>`, then `git commit` (or `git rebase --continue`).
+> **Or in the terminal:** conflicts show up as `<<<<<<<` / `=======` / `>>>>>>>` markers in the file. Edit the file by hand to keep the version you want, delete the markers, run `git add <file>`, then `git commit` (or `git rebase --continue`).
 
-The discipline: **read both versions before picking.** Auto-accepting without reading is how silent bugs get merged.
+The habit to build: **read both versions before you pick one.** Clicking accept without reading is how silent bugs get merged in.
 
 ## Wrap up
 
@@ -211,4 +211,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 3.7 introduces **integration tests** with `WebApplicationFactory<Program>`. Real HTTP, real auth, real DB — fully scripted, fully verified. The thing that gives you confidence to refactor without manually clicking through every endpoint.
+Module 3.7 introduces **integration tests** with `WebApplicationFactory<Program>`. Real HTTP, real auth, real DB — all written down as tests and checked automatically. This is what lets you refactor with confidence, instead of clicking through every endpoint by hand.

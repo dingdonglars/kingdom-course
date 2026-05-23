@@ -1,8 +1,8 @@
 # Module 3.1 — HTTP and Your First Endpoint
 
-By the end of today, your kingdom will live at `http://localhost:5000/kingdom`. You'll open the URL in a browser and the kingdom will appear as JSON. The browser is just one of infinitely many clients now — a friend's `curl`, a JavaScript fetch, your phone — they all speak the same language and all hit the same engine. The console you wrote in Phase 1 was one outer layer; today you add another.
+By the end of today, your kingdom will be at `http://localhost:5000/kingdom`. You'll open that URL in a browser and the kingdom will appear as JSON. The browser is now just one of many possible clients — a friend's `curl`, some JavaScript code, your phone — they all speak the same language and they all reach the same engine. The console you wrote in Phase 1 was one outer layer. Today you add another.
 
-We're going to learn HTTP in one screen, then write a single ASP.NET endpoint that serves your kingdom over the network. *ASP.NET Core* is Microsoft's web framework — the part of .NET that handles HTTP. Its **minimal API** style is the new, lightweight way of writing endpoints: a few lines instead of a folder full of controllers.
+We're going to learn HTTP in one screen, then write a single ASP.NET endpoint that serves your kingdom over the network. *ASP.NET Core* is Microsoft's web framework — the part of .NET that handles HTTP. Its **minimal API** style is the new, lightweight way of writing endpoints: a few lines instead of a whole folder of controllers.
 
 > **Words to watch**
 >
@@ -33,7 +33,7 @@ Content-Type: application/json
 { "name": "Eldoria", "day": 11 }
 ```
 
-Three parts you have to know: the **verb plus path** (`GET /kingdom`), the **status code** (200, 404, 500), and the **body** (the JSON). Everything else is detail you can pick up as you need it.
+Three parts you have to know: the **verb plus path** (`GET /kingdom`), the **status code** (200, 404, 500), and the **body** (the JSON). Everything else is detail you can learn as you need it.
 
 The five verbs you'll meet today and tomorrow:
 
@@ -45,7 +45,7 @@ The five verbs you'll meet today and tomorrow:
 | `PATCH` | partial update | depends |
 | `DELETE` | remove | yes |
 
-*Idempotent* (eye-dem-poh-tent) means doing the action twice has the same effect as doing it once. That matters when networks blip and clients retry — you don't want a retry to charge a credit card a second time.
+*Idempotent* (eye-dem-poh-tent) means doing the action twice has the same effect as doing it once. This matters when the network has a hiccup and the client sends the request again — you don't want a second try to charge a credit card twice.
 
 ## Common status codes
 
@@ -60,7 +60,7 @@ The five verbs you'll meet today and tomorrow:
 | 404 Not Found | the resource doesn't exist |
 | 500 Internal Server Error | the server crashed |
 
-You'll memorise these by using them. The most important split is between 4xx (client's fault) and 5xx (server's fault). Everything else is detail.
+You'll remember these by using them. The most important difference is between 4xx (the client's fault) and 5xx (the server's fault). Everything else is detail.
 
 ## What ships in the starter
 
@@ -73,6 +73,8 @@ A new project — `Kingdom.Api` — plus a placeholder test project. The earlier
 
 For this module the API has one endpoint: `GET /kingdom` returns a `KingdomSummary`.
 
+(*Endpoint* is a URL the API answers, like `/kingdom`. Each endpoint does one job.)
+
 ## Step 0 — create the project
 
 ```powershell
@@ -82,7 +84,7 @@ dotnet add Kingdom.Api reference Kingdom.Persistence
 dotnet sln Kingdom.slnx add Kingdom.Api
 ```
 
-`dotnet new web` creates a minimal API project. The default `Program.cs` it generates already has a `MapGet("/", () => "Hello World!")` line — you can run it now and visit <http://localhost:5000> to see it work.
+`dotnet new web` creates a minimal API project. The `Program.cs` it makes for you already has a `MapGet("/", () => "Hello World!")` line — you can run it now and visit <http://localhost:5000> to see it work.
 
 ## Step 1 — your first kingdom endpoint
 
@@ -115,11 +117,11 @@ app.Run();
 
 Three lines to slow down on:
 
-- **`WebApplication.CreateBuilder(args)`** — the entry point. Configures hosting, logging, and configuration sources. It returns a *builder*; you call `Build()` on it to get the actual `app`.
-- **`app.MapGet("/kingdom", () => ...)`** — registers a route. When a `GET /kingdom` arrives, run that lambda. The return value is automatically turned into JSON.
-- **`app.Run()`** — start the server. This call blocks until you shut it down.
+- **`WebApplication.CreateBuilder(args)`** — the starting point. It sets up hosting, logging, and where settings come from. It gives you back a *builder*. You call `Build()` on it to get the real `app`.
+- **`app.MapGet("/kingdom", () => ...)`** — sets up a route. When a `GET /kingdom` request arrives, run that lambda. Whatever it returns is turned into JSON for you.
+- **`app.Run()`** — start the server. This line keeps running until you stop the program.
 
-That's the entire setup. No XML config, no servlet container. Run it:
+That's the whole setup. No XML config, nothing else to install. Run it:
 
 ```powershell
 dotnet run --project Kingdom.Api
@@ -135,7 +137,7 @@ Open another terminal:
 curl http://localhost:5xxx/kingdom
 ```
 
-Same JSON. The browser doesn't matter, `curl` doesn't matter — every client speaks HTTP. *`curl`* (pronounced like the word "curl") is a command-line tool that sends HTTP requests and prints the response.
+Same JSON. The browser doesn't matter, `curl` doesn't matter — every client speaks HTTP. *`curl`* (pronounced like the word "curl") is a command-line tool that sends HTTP requests and prints the response back to you.
 
 Try a path that doesn't exist:
 
@@ -143,11 +145,11 @@ Try a path that doesn't exist:
 curl -i http://localhost:5xxx/nonsense
 ```
 
-The `-i` flag tells `curl` to include the response headers in the output. You'll see `HTTP/1.1 404 Not Found`. That's ASP.NET handling the route-not-matched case for you, with no extra code on your part.
+The `-i` flag tells `curl` to also show the response headers. You'll see `HTTP/1.1 404 Not Found`. That's ASP.NET dealing with a path it doesn't recognise for you, with no extra code on your part.
 
 ## Step 3 — test the endpoint
 
-`tests/Kingdom.Api.Tests/Kingdom.Api.Tests.csproj` already exists as a placeholder. Add a smoke test using a light pattern (real integration testing arrives in Module 3.7). For now, just verify the project builds and the endpoint compiles:
+`tests/Kingdom.Api.Tests/Kingdom.Api.Tests.csproj` already exists as a placeholder. Add a simple first test (real integration testing arrives in Module 3.7). For now, just check that the project builds and the endpoint compiles:
 
 ```csharp
 namespace Kingdom.Api.Tests;
@@ -167,23 +169,23 @@ Module 3.7 brings real HTTP integration tests with `WebApplicationFactory<Progra
 
 ## Tinker
 
-Hit your URL from a chat message. A friend can hit it too if you tunnel with `ngrok http 5000`. Don't deploy yet — there's no auth, and anyone could mess with your data.
+Open your URL from a chat message. A friend can open it too if you set up a tunnel with `ngrok http 5000`. Don't deploy it yet — there's no sign-in, so anyone could change your data.
 
 Add a second endpoint: `app.MapGet("/", () => "Welcome, traveller.");`. Visit `/` in the browser.
 
-Add `app.MapGet("/buildings", () => kingdom.Buildings.Select(b => new { b.Name, Kind = b.GetType().Name, b.Level }));`. The `new { ... }` is an *anonymous object* — ideal for one-off API responses.
+Add `app.MapGet("/buildings", () => kingdom.Buildings.Select(b => new { b.Name, Kind = b.GetType().Name, b.Level }));`. The `new { ... }` is an *anonymous object* — a quick, unnamed object that's handy for a one-off API response.
 
-Stop the server with Ctrl+C and try the URL again. The browser shows "Connection refused." That's how you know your own running process was the thing serving the page — when it's not running, nothing answers.
+Stop the server with Ctrl+C and try the URL again. The browser shows "Connection refused." That's how you know your own running program was the thing serving the page. When it's not running, nothing answers.
 
-## The through-line, again
+## The same idea, again
 
-The API is another outer layer. Same engine, fourth host. `Program.cs` reads inputs (HTTP requests), calls into the engine plus persistence, returns outputs (HTTP responses). The engine has not changed at all.
+The API is another outer layer. Same engine, a fourth way to reach it. `Program.cs` reads the inputs (HTTP requests), calls into the engine and the persistence code, and sends back the outputs (HTTP responses). The engine itself has not changed at all.
 
 That's the third outer layer now: console (Phase 1), persistence (Phase 2 — sort of), web API (this phase). Still the same engine inside.
 
 ## What you just did
 
-Your kingdom is now reachable over HTTP. You created a new project, wrote a single `MapGet("/kingdom", ...)` line, and exposed your engine to any client in the world that speaks HTTP. You also met the request-response model in concrete form — verb, path, status code, body — and watched ASP.NET handle the boring parts (404 routing, JSON serialisation, content type headers) without a line of code from you. The engine you wrote in Phase 1 didn't change at all; only the outer layer is new. One endpoint live; many more to come.
+Your kingdom is now reachable over HTTP. You created a new project, wrote a single `MapGet("/kingdom", ...)` line, and opened your engine up to any client in the world that speaks HTTP. You also saw the request-response model in real form — verb, path, status code, body — and watched ASP.NET handle the boring parts (404 routing, turning your object into JSON, content type headers) without a line of code from you. The engine you wrote in Phase 1 didn't change at all; only the outer layer is new. One endpoint live, many more to come.
 
 **Key concepts you can now name:**
 

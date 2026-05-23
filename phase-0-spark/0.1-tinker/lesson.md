@@ -1,6 +1,6 @@
 # Module 0.1 — Tinker (Roast-O-Matic v2)
 
-Last time, Roast-O-Matic shouted the same three roasts at nobody in particular. Today it asks for your friend's name and roasts them by name. *"Hey BOB — your password is 'password'."* Same code as last time, two new lines. The point of today is small: you're going to learn how to ask the user a question, store what they typed, and stitch it into a string.
+Last time, Roast-O-Matic printed the same three roasts to no one in particular. Today it asks for your friend's name and roasts them by name. *"Hey BOB — your password is 'password'."* Same code as last time, plus two new lines. Today's goal is small. You're going to learn how to ask the user a question, store what they typed, and put it inside a string.
 
 > **Words to watch**
 >
@@ -21,7 +21,7 @@ Console.Write("Who do you want to roast? ");
 var name = Console.ReadLine();
 ```
 
-`Console.Write` prints without moving to the next line — the cursor stays right after the question mark, so the answer types in next to the prompt. `Console.ReadLine()` waits for the user to type a line and press Enter, then gives you back whatever they typed as a string. We store that string in a variable called `name`.
+`Console.Write` prints without moving to the next line. The cursor stays right after the question mark, so the answer appears next to the question. `Console.ReadLine()` waits for the user to type a line and press Enter, then gives you back whatever they typed, as a string. We store that string in a variable called `name`.
 
 ## Step 2 — use the name in the roast
 
@@ -31,7 +31,7 @@ Change the last line so the roast uses the name:
 Console.WriteLine($"Hey {name.ToUpper()} — {roast}");
 ```
 
-The `$` in front of the string is **string interpolation**. Anything inside `{curly braces}` is treated as real C# — it gets evaluated, turned into text, and dropped into the string. So `$"Hey {name.ToUpper()}"` becomes `Hey BOB` if `name` is `"bob"`. Beats jamming things together with `+`.
+The `$` in front of the string is **string interpolation**. Anything inside `{curly braces}` is treated as real C#. C# works it out, turns the result into text, and puts that text into the string. So `$"Hey {name.ToUpper()}"` becomes `Hey BOB` if `name` is `"bob"`. This is much tidier than joining pieces together with `+`.
 
 Run it:
 
@@ -39,31 +39,31 @@ Run it:
 dotnet run
 ```
 
-Type a name. Hit enter. Get a personalised roast.
+Type a name. Press Enter. You get a roast with their name in it.
 
 ## Tinker
 
-Try two names per run — `Console.ReadLine()` can be called twice. Each call waits for its own line of input.
+Try two names per run. You can call `Console.ReadLine()` twice. Each call waits for its own line of input.
 
-Make Roast-O-Matic ask for what *kind* of roast they want (mild, spicy, nuclear) and pick a roast list based on the answer.
+Make Roast-O-Matic ask what *kind* of roast they want (mild, spicy, nuclear) and pick a roast list based on the answer.
 
 Add a roast that uses two names — *"Hey BOB — at least you're not as bad as ALICE."* Use string interpolation with two placeholders: `$"... {name1} ... {name2} ..."`.
 
 ## Name it
 
-You used four ideas today; they have names worth knowing.
+You used four ideas today. Each one has a name worth knowing.
 
-A **variable** is a labelled spot in memory holding a value. The `var` keyword tells C# *"figure out the type from what I'm assigning."* So `var name = Console.ReadLine();` declares a variable called `name`, and C# works out from `ReadLine()` that the type is `string`.
+A **variable** is a named place that holds a value. The `var` keyword tells C# *"work out the type from the value I'm giving it."* So `var name = Console.ReadLine();` creates a variable called `name`, and C# sees from `ReadLine()` that the type is `string`.
 
-A **string** is anything in `"double quotes"` — a piece of text. C# treats strings as a real type; later you'll see `string` written explicitly in front of variable names.
+A **string** is anything in `"double quotes"` — a piece of text. C# treats text as a real type. Later you'll see the word `string` written out in front of variable names.
 
-A **method** is a named chunk of code you call by writing its name plus `()`. Methods often take something inside the parens (the *argument*) and give back something (the *return value*). `ReadLine()` takes nothing and gives back a string. `WriteLine(...)` takes a string and gives back nothing.
+A **method** is a named piece of code you call by writing its name plus `()`. Methods often take something inside the brackets (the *argument*) and give back something (the *return value*). `ReadLine()` takes nothing and gives back a string. `WriteLine(...)` takes a string and gives back nothing.
 
-**String interpolation** is the `$"Hey {name}"` syntax — a string with placeholders that get replaced at runtime. The cleanest way to build text from values you already have.
+**String interpolation** is the `$"Hey {name}"` style — a string with placeholders that get filled in while the program runs. It's the tidiest way to build text from values you already have.
 
 ## What you just did
 
-You made your program ask a question and listen for the answer. Two extra lines turned a one-shot script into a tiny conversation: prompt, read, use the answer. You met four named ideas — variable, string, method, string interpolation — that turn up in every program you'll write from here on. The roast lines are the same as yesterday; the program reads completely differently. That's what variables buy you.
+You made your program ask a question and wait for the answer. Two extra lines turned a program that just printed into a small conversation: ask, read, use the answer. You met four named ideas — variable, string, method, string interpolation — that show up in every program you'll write from here on. The roast lines are the same as yesterday, but the program reads completely differently. That's what variables give you.
 
 **Key concepts you can now name:**
 
@@ -107,4 +107,4 @@ The point isn't paperwork. It's a tiny visible trace that you did the lesson —
 
 ## Next
 
-Module 0.2 brings randomness on purpose — your first guessing game, where the program picks a number and you try to find it.
+Module 0.2 uses randomness on purpose — your first guessing game, where the program picks a number and you try to find it.

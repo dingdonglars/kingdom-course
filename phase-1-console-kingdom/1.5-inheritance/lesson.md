@@ -1,8 +1,10 @@
 # Module 1.5 — Inheritance: Specialised Buildings
 
-Yesterday `Tick()` did nothing. Today we make three specific kinds of building — `Farm` produces food, `Lumberyard` produces wood, `Mine` produces stone. Each one *is* a building (same name, same level, same upgrade) but each ticks differently. The OOP feature that lets you say *"a farm is a kind of building"* is called **inheritance**, and that's the lesson today.
+Yesterday `Tick()` did nothing. Today we make three specific kinds of building — `Farm` produces food, `Lumberyard` produces wood, `Mine` produces stone. Each one *is* a building (same name, same level, same upgrade), but each one ticks differently. The OOP feature that lets you say *"a farm is a kind of building"* is called **inheritance**, and that's today's lesson.
 
-The alternative would be three separate classes — `Farm`, `Lumberyard`, `Mine` — each with its own `Name`, `Level`, `Upgrade`, and `Tick`. Every change to one would have to be made three times. Inheritance lets you write `Building` once, then say *"Farm is a Building, and here's the bit that's specific to farms."* Farm gets all the rest for free.
+The other choice would be three separate classes — `Farm`, `Lumberyard`, `Mine` — each with its own `Name`, `Level`, `Upgrade`, and `Tick`. Then every change to one would have to be made three times. Inheritance lets you write `Building` once, then say *"Farm is a Building, and here's the small part that's special to farms."* Farm gets everything else for free.
+
+It's a bit like animals. A dog is a kind of animal. It already has everything an animal has — it breathes, it eats, it moves. You only have to describe the part that makes a dog a dog: it barks. You don't re-describe breathing.
 
 > **Words to watch**
 >
@@ -14,11 +16,11 @@ The alternative would be three separate classes — `Farm`, `Lumberyard`, `Mine`
 
 ---
 
-## Why inheritance, and where it gets dangerous
+## Why inheritance, and when to be careful
 
-Inheritance is one of the older ideas in object-oriented programming, and it's easy to overuse. A common modern guideline is *"prefer composition over inheritance"* — meaning, when one thing wants to use another, it's often cleaner for it to *contain* the other rather than *inherit* from it. Long inheritance chains (five or six levels deep) become rigid: a change near the top ripples through every descendant.
+Inheritance is one of the older ideas in object-oriented programming, and it's easy to use too much. A common piece of modern advice is *"prefer composition over inheritance."* That means: when one thing wants to use another, it's often cleaner for it to *contain* the other instead of *inheriting* from it. Long inheritance chains (five or six levels deep) get hard to change. A change near the top reaches down into every class below it, and that's easy to break.
 
-For one level deep, though — `Building` → `Farm`, `Lumberyard`, `Mine` — inheritance is the right tool. Three classes, three things they really do share, no chain. We'll meet composition properly when it earns its place.
+For one level deep, though — `Building` → `Farm`, `Lumberyard`, `Mine` — inheritance is the right tool. Three classes, three things they really do share, and no long chain. We'll come back to composition later, when there's a clear reason for it.
 
 ## Step 1 — three subclasses
 
@@ -49,7 +51,7 @@ public class Farm : Building
 }
 ```
 
-Three things to read carefully. The `: Building` after `class Farm` means *"inherit from Building."* `Farm` now has `Name`, `Level`, `Upgrade`, and `Tick` for free. The `: base(name)` in the constructor passes the `name` parameter up to `Building`'s constructor — the parent class still does the work of setting `Name`; the child only adds anything new (which here is nothing). And `override void Tick(...)` replaces the empty default from the parent. The compiler insists you write `override` when you replace a `virtual` method, so you can never replace one by accident.
+Three things to read carefully. The `: Building` after `class Farm` means *"inherit from Building."* `Farm` now has `Name`, `Level`, `Upgrade`, and `Tick` for free. The `: base(name)` in the constructor passes the `name` parameter up to `Building`'s constructor — the parent class still does the work of setting `Name`, and the child only adds whatever is new (which here is nothing). And `override void Tick(...)` replaces the empty default from the parent. The compiler makes you write `override` when you replace a `virtual` method, so you can never replace one by accident.
 
 `Lumberyard.cs`:
 
@@ -83,7 +85,7 @@ public class Mine : Building
 }
 ```
 
-Three almost-identical classes. That feels like duplication, and it is, a little. The question worth asking is *"would each of these grow differently over time?"* A future `Farm` might add a `Crop` enum; a future `Mine` might track an `OreVein`. Yes, they probably would. So separate classes are worth it. When two classes really would never split apart, fold them into one — don't make a class for every word in the design doc.
+Three classes that look almost the same. That feels like repeating yourself, and it is, a little. The question worth asking is *"would each of these change differently over time?"* A future `Farm` might add a `Crop` enum. A future `Mine` might track an `OreVein`. Yes, they probably would. So having separate classes is worth it. If two classes really would never grow apart, put them together as one — don't make a new class for every word in the design.
 
 ## Step 2 — use the subclasses in `Program.cs`
 
@@ -120,7 +122,7 @@ void PrintKingdom(Kingdom.Engine.Kingdom k)
 }
 ```
 
-Notice `b.GetType().Name`. **`GetType()`** is a method every object has — it returns the type the object actually is at runtime. `.Name` gives the type's short name as a string (`"Farm"`, `"Lumberyard"`, `"Mine"`). That's how the same loop can show different building kinds without us writing a `switch` statement. The list holds `Building` references, but each item *runs* its own `Tick`, because each item is really a `Farm` or `Lumberyard` or `Mine`. The technical name for that is **polymorphism** — same type at the surface, different behaviour at the implementation.
+Notice `b.GetType().Name`. **`GetType()`** is a method every object has — it gives back the type the object really is while the program runs. `.Name` gives the type's short name as a string (`"Farm"`, `"Lumberyard"`, `"Mine"`). That's how the same loop can show different kinds of building without us writing a `switch` statement. The list holds `Building` references, but each item *runs* its own `Tick`, because each item is really a `Farm` or a `Lumberyard` or a `Mine`. The name for this is **polymorphism** — they all look like the same type on the outside, but each one behaves differently on the inside.
 
 Build and run:
 
@@ -129,7 +131,7 @@ dotnet build
 dotnet run --project Kingdom.Console
 ```
 
-You should see Day 1 through Day 6, with food climbing (5 from the farm, minus 2 for the citizens equals net +3 a day), wood +3 a day, stone +2 a day. The resources actually move now.
+You should see Day 1 through Day 6, with food going up (5 from the farm, minus 2 for the citizens, so +3 a day), wood +3 a day, stone +2 a day. The resources really change now.
 
 ## Step 3 — test the subclasses
 
@@ -219,25 +221,25 @@ You should see `Passed: 22` — sixteen from earlier modules, six new ones.
 
 ## Tinker
 
-Add a `Quarry` (think marble for fancy buildings later). Copy `Mine.cs`, change the class name and the resource produced. Add a test for it. About five minutes of work.
+Add a `Quarry` (marble, for fancy buildings later). Copy `Mine.cs`, change the class name and the resource it produces. Add a test for it. About five minutes of work.
 
-Try making `Building` `abstract` (`public abstract class Building`). The compiler will refuse `new Building("Generic")` anywhere — abstract classes can only be inherited from, not instantiated directly. Does that break Module 1.3's tests? It does — `BuildingTests` uses `new Building("Farm")`. Take it back out. `abstract` is the next step we *could* take, and we'll meet it when we need it.
+Try making `Building` `abstract` (`public abstract class Building`). Now the compiler will refuse `new Building("Generic")` anywhere — an abstract class can only be inherited from, not created on its own. Does that break Module 1.3's tests? It does — `BuildingTests` uses `new Building("Farm")`. Take it back out. `abstract` is a step we *could* take next, and we'll come to it when we need it.
 
-Reverse the constructor: write `Building(string name) : this("default") { }`. Run the program. You'll get a stack overflow — the constructor is calling itself recursively. Worth seeing once, never to forget.
+Change the constructor to call itself: write `Building(string name) : this("default") { }`. Run the program. You'll get a stack overflow error — the constructor keeps calling itself with no end. Worth seeing once, so you remember it.
 
-Add a method to `Building` called `Describe()` that returns `$"{GetType().Name} {Name} (level {Level})"`. Call it from `Program.cs` instead of building the string by hand. Same output, less typing, and the engine owns the format string.
+Add a method to `Building` called `Describe()` that returns `$"{GetType().Name} {Name} (level {Level})"`. Call it from `Program.cs` instead of building the string by hand. Same output, less typing, and now the engine owns the format string.
 
 ## What you just did
 
-Three subclasses extend `Building` — `Farm`, `Lumberyard`, `Mine` — and each replaces the empty `Tick` with its own production rule. The same `foreach` loop in `Kingdom.AdvanceDay` ticks all three correctly, because each list item *runs as the type it really is*, not as the type the list says it holds. That's polymorphism in one paragraph. You also met `: base(...)` for chaining to a parent constructor, and you saw the compiler insist on `override` so you can't replace a `virtual` method by accident. Six new tests passed; twenty-two total now.
+Three subclasses build on `Building` — `Farm`, `Lumberyard`, `Mine` — and each one replaces the empty `Tick` with its own production rule. The same `foreach` loop in `Kingdom.AdvanceDay` ticks all three correctly, because each item in the list *runs as the type it really is*, not as the type the list says it holds. That's polymorphism, in one paragraph. You also met `: base(...)` for calling a parent's constructor, and you saw the compiler require `override` so you can't replace a `virtual` method by accident. Six new tests passed; twenty-two total now.
 
 **Key concepts you can now name:**
 
 - **inheritance** — child class gets parent's methods and fields
-- **`override`** — explicit replacement of a `virtual` method
-- **`: base(...)`** — calls parent's constructor from child's
-- **`GetType().Name`** — runtime type name, useful for logging
-- **polymorphism** — same surface type, different behaviour per subclass
+- **`override`** — clearly replacing a `virtual` method
+- **`: base(...)`** — calls the parent's constructor from the child's
+- **`GetType().Name`** — the real type's name while the program runs
+- **polymorphism** — same type on the outside, different behaviour per subclass
 
 ## Wrap up
 

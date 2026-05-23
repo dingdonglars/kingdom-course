@@ -1,6 +1,6 @@
 # Module 5.3 — OOP in Luau (Tables-as-Classes, Metatables)
 
-Lua doesn't have classes. It has tables and one extra mechanism called *metatables*, and that turns out to be enough to build classes by hand. Every Lua codebase you'll ever read uses some flavour of the same recipe. Today we port the Phase 1 `Building` and `Farm` to Luau using that recipe — same idea, smaller language, a bit more typing.
+Lua doesn't have classes. It has tables and one extra tool called *metatables*, and that's enough to build classes by hand. Every piece of Lua code you'll ever read uses some version of the same recipe. Today we port the Phase 1 `Building` and `Farm` to Luau using that recipe — same idea, smaller language, a bit more typing.
 
 > **Words to watch**
 >
@@ -14,7 +14,7 @@ Lua doesn't have classes. It has tables and one extra mechanism called *metatabl
 
 ## The OOP-via-tables recipe
 
-Lua has one container (the table) and one trick (metatables). Every Lua codebase uses some variant of this recipe to fake classes.
+Lua has one container (the table) and one extra tool (metatables). Every piece of Lua code uses some version of this recipe to make classes by hand.
 
 ```lua
 -- The "class" is just a table.
@@ -49,7 +49,7 @@ Read it line by line:
 - `function Building:upgrade()` — the colon means *implicit `self` parameter*. It's equivalent to writing `Building.upgrade = function(self) ... end`.
 - `setmetatable(t, mt)` attaches `mt` as `t`'s metatable.
 
-You'll write this same recipe for every "class" in your engine. It's a bit verbose, but mechanical — by the third one your fingers know it.
+You'll write this same recipe for every "class" in your engine. It's a bit long, but it's always the same steps. By the third one, your fingers will know it.
 
 ## Inheritance
 
@@ -74,17 +74,17 @@ end
 return Farm
 ```
 
-`Farm` "is a" `Building` because the parent sits in `Farm`'s `__index`, and instances of `Farm` get re-parented in the constructor. Method dispatch then walks the chain: an instance method falls back to `Farm`, then to `Building`.
+A `Farm` "is a" `Building` because the parent is set as `Farm`'s `__index`, and instances of `Farm` get re-parented in the constructor. When Lua looks up a method, it follows this chain: it checks the instance, then `Farm`, then `Building`.
 
 ## Module pattern (Roblox-specific)
 
-Scripts in Roblox come in three flavours:
+Roblox has three kinds of script:
 
 - **Script** — runs on the server when the place starts.
 - **LocalScript** — runs on a client (a player's machine) when they join.
-- **ModuleScript** — defines a module. It doesn't run on its own; another script calls `require` on it.
+- **ModuleScript** — defines a module. It doesn't run on its own. Another script calls `require` on it.
 
-Engine code lives in **ModuleScripts** under `ReplicatedStorage`, so both server and client scripts can import it. Every module file has the same layout: declare a table at the top, attach functions to it, return it at the bottom.
+Engine code lives in **ModuleScripts** under `ReplicatedStorage`, so both server and client scripts can import it. Every module file has the same layout: declare a table at the top, attach functions to it, and return it at the bottom.
 
 ```lua
 -- consumer
@@ -95,21 +95,21 @@ farm:upgrade()
 print(farm.level)          -- 2
 ```
 
-`require` caches the module — calling it a hundred times returns the same table, not a hundred copies. Modules are effectively singletons.
+`require` saves the module after the first call. Calling it a hundred times returns the same table, not a hundred copies. So there is only ever one of each module.
 
 ## Tinker
 
-Add a `Mine.lua` that mirrors `Farm.lua` but adds to `"Stone"` instead of `"Food"`. The pattern is identical; you're rehearsing the recipe.
+Add a `Mine.lua` that copies `Farm.lua` but adds to `"Stone"` instead of `"Food"`. The pattern is the same; you're practising the recipe.
 
-Try `farm.upgrade()` (with a dot instead of a colon). It throws an error — `self` is missing because the dot doesn't pass it. The colon vs the dot is one of the two or three Luau details you'll trip on early; let it bite you once so the rule sticks.
+Try `farm.upgrade()` (with a dot instead of a colon). It gives an error, because `self` is missing — the dot doesn't pass it. The colon versus the dot is one of the two or three Luau details that catch people out early. Make this mistake once on purpose so the rule sticks.
 
-Print `getmetatable(farm)`. The output is the `Farm` class table — proof that the metatable *is* the class.
+Print `getmetatable(farm)`. The output is the `Farm` class table. This shows you that the metatable *is* the class.
 
-Add a `Building:describe()` method that returns a string. Override it in `Farm`. Call `farm:describe()` and watch dispatch find the `Farm` version first, falling back to `Building`'s if you delete the override.
+Add a `Building:describe()` method that returns a string. Override it in `Farm`. Call `farm:describe()` and see Lua find the `Farm` version first. If you delete the override, it falls back to `Building`'s version.
 
 ## What you just did
 
-You met Lua's idea of object-oriented programming, which is a recipe rather than a keyword. A class is a table; a method is a function attached to that table; an instance is a fresh table whose metatable points at the class; `__index` is the rule that makes method lookup work. Inheritance is the same recipe with one more step. The whole recipe is mechanical, and it's the same one every Lua codebase uses — once you've written `Building` and `Farm` you can read `Mine`, `Lumberyard`, and the next twenty classes without thinking. You also met Roblox's three script flavours: ordinary Scripts that run on the server, LocalScripts that run on a player's machine, and ModuleScripts that hold engine code that other scripts `require`.
+You met Lua's idea of object-oriented programming. There's no `class` keyword — it's a recipe instead. A class is a table. A method is a function attached to that table. An instance is a new table whose metatable points at the class. `__index` is the rule that makes method lookup work. Inheritance is the same recipe with one more step. The whole recipe is always the same steps, and every piece of Lua code uses it. Once you've written `Building` and `Farm`, you can read `Mine`, `Lumberyard`, and the next twenty classes without effort. You also met Roblox's three kinds of script: a Script that runs on the server, a LocalScript that runs on a player's machine, and a ModuleScript that holds engine code other scripts `require`.
 
 **Key concepts you can now name:**
 
@@ -138,4 +138,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 5.4 introduces the **Roblox-specific concepts** — Workspace, RemoteEvents, server vs client. The runtime context the engine plugs into.
+Module 5.4 introduces the **Roblox-specific concepts** — Workspace, RemoteEvents, server vs client. This is the setup your engine runs inside.

@@ -1,6 +1,6 @@
 # Module 2.10 — Save-Slot UI (Interactive Console)
 
-The demo `Program.cs` does the right things, but it's a script — *open program → it runs → done*. Real games loop. Today we wrap the CRUD operations from Module 2.9 in an interactive menu — *"1. New, 2. Load, 3. Delete, 4. Quit"* — and finally have something playable.
+The demo `Program.cs` does the right things, but it's just a script — *open the program, it runs once, it's done*. Real games keep going in a loop. Today we put the CRUD operations from Module 2.9 behind an interactive menu — *"1. New, 2. Load, 3. Delete, 4. Quit"* — and at last have something you can play.
 
 > **Words to watch**
 >
@@ -13,13 +13,13 @@ The demo `Program.cs` does the right things, but it's a script — *open program
 
 ## Why a real loop matters
 
-A script `Program.cs` is fine for testing your code. But a *user* — even an audience of one (you) — needs to *interact*. Today's loop is your first interactive shell. The pattern repeats at every layer:
+A script `Program.cs` is fine for testing your code. But a *user* — even if that user is just you — needs to *interact* with it. Today's loop is your first interactive shell. You'll see the same pattern at every level:
 
 - Console: `while (true) { print menu; read input; act; }`
 - Web API: `while (true) { receive request; route; act; respond; }`
-- Browser: `eventListener('click', () => act())` (event-driven; same idea)
+- Browser: `eventListener('click', () => act())` (driven by events, but the same idea)
 
-The form changes; the heart is the same.
+The form changes, but the core idea stays the same.
 
 ## Delta starter
 
@@ -141,9 +141,9 @@ public static class SaveSlotUI
 }
 ```
 
-Read this carefully. Every method does one thing. The dispatching `switch` in `Run` is the central nervous system. The handlers call out to the store and back.
+Read this carefully. Every method does one thing. The `switch` in `Run` is the part that decides what happens next, based on what the user typed. Each handler then calls the store and comes back.
 
-`System.Console.WriteLine` (instead of just `Console.WriteLine`) is a workaround — our class lives in `namespace Kingdom.Console`, which collides with the `System.Console` type name. Use the explicit `System.Console`.
+Why `System.Console.WriteLine` instead of just `Console.WriteLine`? Our class lives in `namespace Kingdom.Console`, and that name clashes with the `System.Console` type. Writing the full `System.Console` clears up which one we mean.
 
 ## Step 2 — `Program.cs` becomes a one-liner
 
@@ -165,7 +165,7 @@ var store = new KingdomEfStore(dbPath);
 SaveSlotUI.Run(store, rng, clock);
 ```
 
-That's the whole shell. Read input, dispatch, save. Engine and persistence do the actual work.
+That's the whole shell. Read input, decide what to do, save. The engine and the persistence layer do the real work.
 
 Build and run:
 
@@ -174,11 +174,11 @@ dotnet build
 dotnet run --project Kingdom.Console
 ```
 
-You're now in your kingdom's first real game loop. New a kingdom, advance some days, save, quit, restart, load. The kingdom has memory.
+You're now in your kingdom's first real game loop. Make a kingdom, advance a few days, save, quit, start again, and load. The kingdom remembers.
 
 ## Step 3 — testing an interactive UI
 
-Tests need to *script* the user input. .NET makes this easy: redirect `Console.In` and `Console.Out`.
+For a test, we need to *feed in* the user's input ahead of time. .NET makes this easy: you redirect `Console.In` and `Console.Out` so the test reads from a string and writes to a string.
 
 `tests/Kingdom.Persistence.Tests/SaveSlotUITests.cs`:
 
@@ -273,13 +273,13 @@ public class SaveSlotUITests
 }
 ```
 
-The tests don't try to be exhaustive — they're *sanity* tests. Three things you really want to know:
+These tests don't try to cover everything — they're quick checks of the basics. Three things you really want to be sure of:
 
 - Quit works
-- A full create → play → save → quit cycle persists
+- A full create → play → save → quit cycle keeps the data
 - Bad input doesn't crash the loop
 
-(The first test asserts *"Quit"* appears in output; this works because `4` simply returns from `Run` — but if you want stronger evidence, assert that the menu doesn't appear *twice*.)
+(The first test checks that *"Quit"* appears in the output. This works because typing `4` simply returns from `Run`. If you want a stronger check, make sure the menu doesn't appear *twice*.)
 
 Run:
 
@@ -291,17 +291,17 @@ Expect `Passed: 71` (68 + 3).
 
 ## Tinker
 
-Add a `5. Quick stats` menu option that prints total saves, oldest, richest. One LINQ query inside the handler.
+Add a `5. Quick stats` menu option that prints the total number of saves, plus the oldest and the richest. One LINQ query inside the handler.
 
-Add a renaming option to the play loop — read a new name, `k.Name = newName`... wait, `Name` is read-only. Add a method `Rename(string)` to the engine. Saving forced a model change in Module 2.3; UX forces another one here.
+Add a rename option to the play loop. Read a new name, then `k.Name = newName`... wait, `Name` is read-only. Add a `Rename(string)` method to the engine. Saving made you change the model back in Module 2.3, and now the user interface makes you change it again.
 
-Try running the program with input redirected from a file: `dotnet run --project Kingdom.Console < script.txt`. Whatever's in `script.txt` becomes the input. Any console UI is automatable that way.
+Try running the program with input coming from a file: `dotnet run --project Kingdom.Console < script.txt`. Whatever is in `script.txt` becomes the input. Any console UI can be run from a file like this.
 
-`string.IsNullOrWhiteSpace(name)` — replace `IsNullOrEmpty`. Now `"   "` also fails validation. Always check for whitespace, not just empty.
+Replace `IsNullOrEmpty` with `string.IsNullOrWhiteSpace(name)`. Now a name of `"   "` (just spaces) also fails the check. Always check for spaces too, not just for an empty string.
 
 ## What you just did
 
-You wrapped your save-slot CRUD in a real interactive menu. `Program.cs` collapsed from a long demo script to about five lines — set up the store, hand control to `SaveSlotUI.Run`. The UI loop reads input, dispatches to handlers, and the handlers do exactly what you'd expect. Three new tests script the input through `Console.SetIn`/`SetOut` (71 passing total): quit-works, full-cycle-persists, bad-input-recovers. From here on, the kingdom is something you can actually sit down and play across sessions.
+You put your save-slot CRUD behind a real interactive menu. `Program.cs` shrank from a long demo script to about five lines — set up the store, then hand control to `SaveSlotUI.Run`. The UI loop reads input and sends it to the right handler, and each handler does just what you'd expect. Three new tests feed in the input through `Console.SetIn`/`SetOut` (71 passing total): quit works, a full cycle keeps the data, and bad input recovers. From here on, the kingdom is something you can sit down and play across more than one session.
 
 **Key concepts you can now name:**
 
@@ -313,10 +313,10 @@ You wrapped your save-slot CRUD in a real interactive menu. `Program.cs` collaps
 
 ## Git move of the week — merge vs rebase (preview)
 
-By now your `git log` is thick with commits. Two ways to combine work from one branch into another, with different histories:
+By now your `git log` is full of commits. There are two ways to bring work from one branch into another, and they leave different histories:
 
-- **Merge** preserves the parallel-work layout with a *merge commit* joining two branches. Honest about how the work happened.
-- **Rebase** replays your commits on top of another branch, giving them new SHAs (the unique fingerprint git uses to identify each commit) and a linear history. Cleaner to read; loses the parallel-work layout.
+- **Merge** keeps the picture of two branches running side by side, joined by a *merge commit*. It's honest about how the work really happened.
+- **Rebase** replays your commits on top of another branch. It gives them new SHAs (the SHA is the unique fingerprint git uses to identify each commit) and a single straight line of history. It reads more cleanly, but you lose the side-by-side picture.
 
 In VS Code's Source Control panel: `...` menu → *Branch → Merge from* (or *Rebase from*). Pick the source branch.
 
@@ -327,9 +327,9 @@ In VS Code's Source Control panel: `...` menu → *Branch → Merge from* (or *R
 > git switch feature/save-slots && git rebase main    # rebase
 > ```
 
-The rule of thumb: **rebase your own unpushed branches** to clean them up before merging. **Merge** when work crosses into a shared branch like `main`. **Never rebase** a branch others might have pulled — their commits get new SHAs, theirs don't, and the next `git pull` is confused.
+A good rule to follow: **rebase your own branches that you haven't pushed yet** to tidy them up before merging. **Merge** when the work goes into a shared branch like `main`. **Never rebase** a branch that other people might have already pulled — your commits get new SHAs but theirs don't, and the next `git pull` gets confused.
 
-We go properly into both moves in B3.2 if you take that bonus.
+We cover both moves properly in B3.2 if you take that bonus.
 
 ## Wrap up
 
@@ -342,4 +342,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 2.11 closes Phase 2: **Names That Earn Their Keep** — a deliberate naming pass over everything we've built across this phase. The thing that turns *"good code"* into *"good code anyone can read in six months."*
+Module 2.11 closes Phase 2: **Names That Earn Their Keep** — a careful pass over the names of everything we've built this phase. It's what turns *"good code"* into *"good code anyone can read six months later."*

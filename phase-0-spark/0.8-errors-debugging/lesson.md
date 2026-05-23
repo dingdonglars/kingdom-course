@@ -1,10 +1,10 @@
 # Module 0.8 — Errors, Debugging, and M1
 
-Today you make Inventory Tool *not crash* when things go wrong, and you meet the VS Code debugger — the single most important tool for understanding code that isn't doing what you expect. Then you ship M1. End of Foundations, end of Phase 0.
+Today you make the Inventory Tool *not crash* when things go wrong, and you meet the VS Code debugger — the most important tool there is for understanding code that isn't doing what you expect. Then you finish M1. End of Foundations, end of Phase 0.
 
 > **Words to watch**
 >
-> - **exception** — a runtime error; something the program couldn't handle and threw up its hands about
+> - **exception** — a runtime error; a problem the program ran into while running and couldn't deal with
 > - **`try / catch`** — the C# pattern for "try this; if it throws, do that instead"
 > - **`throw`** — the keyword for raising your own exception
 > - **debugger** — a tool that pauses your program at chosen points so you can see what's happening
@@ -15,13 +15,13 @@ Today you make Inventory Tool *not crash* when things go wrong, and you meet the
 
 ## Step 1 — what can go wrong
 
-Open the Inventory Tool you wrote in Module 0.7. Look at the `load` case. As written, what happens if `inventory.txt` exists but is corrupt? Or if a line has `apple=banana` instead of `apple=2`? The `int.TryParse` we used handles bad numbers gracefully — that's why TryParse exists, to give back success or failure instead of throwing. But other things can still break things.
+Open the Inventory Tool you wrote in Module 0.7. Look at the `load` case. As it stands, what happens if `inventory.txt` exists but is broken? Or if a line says `apple=banana` instead of `apple=2`? The `int.TryParse` we used deals with bad numbers calmly — that's the whole reason TryParse exists, to tell you whether it worked instead of crashing. But other things can still go wrong.
 
-The file might exist but be locked by another program — that throws `IOException`. The path might be on a read-only drive — `UnauthorizedAccessException`. The user might type `add` with no argument — currently we silently add an item named `""` (empty string), which is a quiet bug rather than a noisy one. Quiet bugs are worse.
+The file might exist but be locked by another program — that gives an `IOException`. The file might be on a drive you can't write to — that gives an `UnauthorizedAccessException`. The user might type `add` with nothing after it — right now we quietly add an item with an empty name (`""`), which is a silent bug. Silent bugs are worse than loud ones, because nobody notices them.
 
 ## Step 2 — harden the tool
 
-Replace your `Program.cs` with this hardened version. Changes are flagged with `// NEW`:
+Replace your `Program.cs` with this stronger version. The changes are marked with `// NEW`:
 
 ```csharp
 // Inventory Tool — v2 (Module 0.8)
@@ -161,51 +161,51 @@ while (true)
 }
 ```
 
-The `try` block wraps the whole switch. If any case throws, control jumps to whichever `catch` matches the exception type. The catches are tested top-to-bottom; the first match wins. We catch `IOException` and `UnauthorizedAccessException` specifically because we can describe those problems to the user in plain language. The final `catch (Exception)` is the safety net — it handles anything we didn't think of, so a single bad input never kills the program.
+The `try` block goes around the whole switch. If any case throws an error, the program jumps to whichever `catch` matches the type of error. C# checks the catches from top to bottom, and the first match is the one that runs. We catch `IOException` and `UnauthorizedAccessException` by name, because we can explain those problems to the user in plain words. The final `catch (Exception)` is the backstop — it handles anything we didn't think of, so one bad input never crashes the whole program.
 
-Run again. Try `add` with no argument. Try `remove` with nothing after it. Try saving to a folder you don't have permission to write to (modify `SaveFile` temporarily to `"C:\\Windows\\inventory.txt"` if you want to see the catch fire). The program no longer crashes.
+Run it again. Try `add` with nothing after it. Try `remove` with nothing after it. Try saving to a folder you don't have permission to write to (change `SaveFile` for a moment to `"C:\\Windows\\inventory.txt"` if you want to see a catch run). The program no longer crashes.
 
 ## Step 3 — the debugger
 
-Open `Program.cs` in VS Code. Click in the gutter — the empty space to the left of the line numbers — next to the line `inventory[arg] = inventory.GetValueOrDefault(arg, 0) + 1;`. A red dot appears. That's a **breakpoint**.
+Open `Program.cs` in VS Code. Click in the narrow empty strip just left of the line numbers, next to the line `inventory[arg] = inventory.GetValueOrDefault(arg, 0) + 1;`. A red dot appears. That's a **breakpoint**.
 
-Press `F5`, or use *Run → Start Debugging*. VS Code may prompt you to install the C# Dev Kit debugger if you haven't already; confirm. The program runs, then pauses *at* your breakpoint when you type `add apple` — before that line executes.
+Press `F5`, or use *Run → Start Debugging*. VS Code may ask you to install the C# Dev Kit debugger if you haven't already; say yes. The program runs, then pauses *at* your breakpoint when you type `add apple` — just before that line runs.
 
-The left panel shows two things worth knowing about. **Variables** lists the current value of `arg` (`"apple"`), `inventory` (an empty dictionary right now), `cmd` (`"add"`), and so on. **Call stack** shows the chain of methods that called each other to get here. Right now it's just `Program.<Main>$` — the top-level entry point — but once you're calling your own methods you'll see the chain.
+The left panel shows two things worth knowing about. **Variables** lists the current value of `arg` (`"apple"`), `inventory` (an empty dictionary right now), `cmd` (`"add"`), and so on. **Call stack** shows which methods called which to get to this point. Right now it's just `Program.<Main>$`, the place where your program starts. Once you're calling your own methods, you'll see the full chain here.
 
-Hover your mouse over `arg` in the code. The value pops up. Press `F10` (*step over*) — the line executes and you advance to the next line. `inventory` now contains `{"apple": 1}`. You watched the dictionary change. Press `F5` to continue; the program prints `Added: apple (now have 1)` and waits for your next command.
+Hover your mouse over `arg` in the code. Its value pops up. Press `F10` (*step over*) — the line runs and you move to the next line. `inventory` now contains `{"apple": 1}`. You just watched the dictionary change. Press `F5` to carry on; the program prints `Added: apple (now have 1)` and waits for your next command.
 
 ## Tinker with the debugger
 
-Set a breakpoint inside the `load` case. Run the program. Type `load` and step through the loop with `F10`, watching `kv`, `loaded`, and `skipped` change as each line is parsed.
+Set a breakpoint inside the `load` case. Run the program. Type `load` and step through the loop with `F10`, watching `kv`, `loaded`, and `skipped` change as each line is read.
 
-Set a breakpoint inside the `catch (IOException)` block. Provoke an `IOException` by holding `inventory.txt` open in another program (Notepad works) while you call `save`.
+Set a breakpoint inside the `catch (IOException)` block. Cause an `IOException` on purpose by keeping `inventory.txt` open in another program (Notepad works) while you call `save`.
 
-Right-click a variable in the editor and choose *Add to Watch*. The variable now appears in the *Watch* panel and its value updates live as you step.
+Right-click a variable in the editor and choose *Add to Watch*. The variable now appears in the *Watch* panel, and its value updates as you step through the code.
 
 ## Name it
 
-**Exception.** A runtime error. C# represents it as a value of type `Exception` (or one of its subclasses like `IOException`, `FileNotFoundException`, `ArgumentException`).
+**Exception.** A runtime error. C# stores it as a value of type `Exception`, or one of its more specific kinds like `IOException`, `FileNotFoundException`, or `ArgumentException`.
 
-**`try / catch`.** Wrap risky code in a `try` block. If something throws, a `catch (TypeOfException)` block runs instead. Execution continues after the `catch`.
+**`try / catch`.** Put risky code in a `try` block. If something throws an error, a `catch (TypeOfException)` block runs instead. The program then carries on after the `catch`.
 
-**Catch order matters.** Catches are tested top-to-bottom; the first matching one runs. Catch specific types first; `catch (Exception)` last as a safety net.
+**Catch order matters.** C# checks the catches from top to bottom, and the first one that matches runs. Put the specific types first, and `catch (Exception)` last as a backstop.
 
-**`finally`** (we didn't use it today, but you'll see it). A block that always runs after `try`, whether it threw or not. Useful for closing files, releasing locks, and other cleanup that has to happen no matter what.
+**`finally`** (we didn't use it today, but you'll see it). A block that always runs after `try`, whether an error happened or not. Useful for closing files, freeing locks, and other tidy-up that has to happen no matter what.
 
-**Breakpoint.** A marked line where the debugger pauses *before* executing that line.
+**Breakpoint.** A marked line where the debugger pauses, *before* running that line.
 
-**Step over (`F10`)** runs the current line and moves to the next line in the same method. **Step into (`F11`)** dives into a method call so you can step through it line by line.
+**Step over (`F10`)** runs the current line and moves to the next line in the same method. **Step into (`F11`)** goes inside a method call so you can step through that method line by line.
 
-**Call stack.** When a method calls another method which calls another, the debugger shows the chain. Useful for understanding *how you got here* — often more useful than knowing where the error happened.
+**Call stack.** When one method calls another, which calls another, the debugger shows that chain. It's useful for seeing *how the program reached this point* — often more useful than just knowing where the error happened.
 
 ## M1 — Inventory Tool, shipped
 
-You now have the M1 deliverable. Make sure your repo has:
+You now have the program to hand in for M1. Make sure your repo has:
 
-- `InventoryTool/` folder at the root with the v2 `Program.cs` and a `.csproj`
-- A top-level `README.md` describing the tool (use the four-section anatomy from Module 0.4)
-- A `journal/wins.md` entry for M1 (your milestone ritual, below)
+- An `InventoryTool/` folder at the top, with the v2 `Program.cs` and a `.csproj`
+- A `README.md` at the top describing the tool (use the four sections from Module 0.4)
+- A `journal/wins.md` entry for M1 (the milestone steps below)
 
 Run the M1 challenge:
 
@@ -213,7 +213,7 @@ Run the M1 challenge:
 dotnet test path\to\challenges\M1\M1.Tests.csproj
 ```
 
-Green means M1 met.
+If the tests pass (green), M1 is done.
 
 ## Commit your work
 
@@ -234,7 +234,7 @@ In VS Code's Source Control panel (`Ctrl + Shift + G G`):
 
 ## What you just did
 
-You hardened a real program. The Inventory Tool went from "crashes on weird input" to "tells the user what went wrong and keeps running." You met `try/catch`, the three rules of catch ordering, and the `Exception` type tree. You met the VS Code debugger — breakpoints, step over, the variables panel, the call stack. The skipped-bad-lines counter in `load` is a small thing, but it's the difference between a tool you trust and one you don't. Eight modules of Phase 0 are behind you; you have two shipped programs (M0 toolbox, M1 Inventory Tool) on your GitHub, and the foundation pieces of C# are named.
+You made a real program stronger. The Inventory Tool went from "crashes on strange input" to "tells the user what went wrong and keeps running." You met `try/catch`, the three rules for the order of catches, and the family of `Exception` types. You met the VS Code debugger — breakpoints, step over, the variables panel, the call stack. The "skipped bad lines" counter in `load` is a small thing, but it's the difference between a tool you trust and one you don't. Eight modules of Phase 0 are behind you. You have two finished programs on your GitHub (the M0 toolbox and the M1 Inventory Tool), and the basic parts of C# now have names.
 
 **Key concepts you can now name:**
 
@@ -245,21 +245,21 @@ You hardened a real program. The Inventory Tool went from "crashes on weird inpu
 - **step over vs step into** — skip a call, vs follow it in
 - **call stack** — chain of who called whom
 
-## M1 close — the milestone ritual
+## M1 close — the milestone steps
 
-You just shipped M1. Time for the ritual.
+You just finished M1. Here are the steps to close it out.
 
-1. **`journal/wins.md`** — open it in your repo and write one paragraph about M1 in your own words. What the Inventory Tool does, what was harder than expected, what you trust about it now that you didn't trust about v1.
-2. **`#wins` Slack post** — paste the link to your repo plus a screenshot of the tool running. One-line caption like *"M1 shipped — Inventory Tool v2."*
-3. **Before/after one-liner** — *"Six weeks ago I'd never written a line of code. Today I shipped a tool I'll actually use."* Say it out loud.
-4. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags:
+1. **`journal/wins.md`** — open it in your repo and write one paragraph about M1 in your own words. What the Inventory Tool does, what was harder than you expected, and what you trust about it now that you didn't trust in v1.
+2. **`#wins` Slack post** — paste the link to your repo plus a screenshot of the tool running. Add a one-line caption like *"M1 done — Inventory Tool v2."*
+3. **Before-and-after line** — *"Six weeks ago I'd never written a line of code. Today I finished a tool I'll actually use."* Say it out loud.
+4. **Tag the milestone.** This one is terminal-only — the Source Control panel doesn't have a button for tags:
 
    ```powershell
    git tag m1-inventory-tool-complete
    git push origin m1-inventory-tool-complete
    ```
 
-Then take the rest of the day off. You earned it.
+Then take the rest of the day off. You've earned it.
 
 ## Wrap up
 
@@ -272,4 +272,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Phase 1 starts the real mainstay — the Kingdom itself. You'll meet your first **classes** (Module 1.1), then split your code into an *engine* and a *shell* (1.2 — the lesson the rest of the course is named after). After that, you write your first **tests**.
+Phase 1 starts the main project — the Kingdom itself. You'll meet your first **classes** (Module 1.1), then split your code into an *engine* and a *shell* (1.2 — the lesson the rest of the course is named after). After that, you write your first **tests**.

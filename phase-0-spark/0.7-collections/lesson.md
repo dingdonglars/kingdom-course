@@ -1,6 +1,6 @@
 # Module 0.7 — Collections + Inventory Tool, v1
 
-Today you start the **Inventory Tool** — your M1 milestone deliverable. A small command-line program that adds, removes, finds, lists, saves, and loads items. By the end of this lesson it works for the happy path: every command does what you'd expect when the input is well-formed. Module 0.8 hardens it against the weird cases. Along the way you meet the two collection types you'll use most for the rest of the course — `List<T>` and `Dictionary<K, V>` — plus LINQ, the query syntax that makes working with collections feel like writing English.
+Today you start the **Inventory Tool** — the program you'll hand in for the M1 milestone. It's a small command-line program that adds, removes, finds, lists, saves, and loads items. By the end of this lesson it works when everything goes right: every command does what you'd expect when the input is typed correctly. Module 0.8 makes it stronger against the strange cases. Along the way you meet the two collection types you'll use most for the rest of the course — `List<T>` and `Dictionary<K, V>` — plus LINQ, a way of working with collections that reads almost like plain English.
 
 > **Words to watch**
 >
@@ -63,17 +63,17 @@ for (int i = 0; i < resources.Count; i++)
 }
 ```
 
-Two collection types in one demo. `List<string>` is ordered and indexed by integer position — `resources[0]` is `"gold"`. Items can repeat (`"wood"` appears twice in the example). `Dictionary<string, int>` is indexed by *key*; each key appears at most once, and the lookup is fast no matter how many entries are in the dictionary.
+Two collection types in one demo. `List<string>` keeps its items in order, and you reach each one by its number position — `resources[0]` is `"gold"`. Items can repeat (`"wood"` appears twice in the example). `Dictionary<string, int>` looks things up by a *key* instead. Each key appears only once, and the lookup is fast no matter how many entries are in the dictionary.
 
-The two loop forms are worth pausing on. `foreach` walks each item in order; the loop variable `r` holds one item at a time. `for` uses a counter — handy when you need the index, or when you want to loop a fixed number of times. Use whichever reads more clearly for the task.
+The two loop forms are worth a closer look. `foreach` goes through each item in order, and the loop variable `r` holds one item at a time. `for` uses a counter, which is handy when you need the position number, or when you want to loop a set number of times. Use whichever reads more clearly for the job.
 
-LINQ is the query language built into C#. The methods `Distinct`, `Where`, `OrderBy`, `Sum`, and many more work on any collection. They return a *new sequence*; the original is untouched. The argument to `Where` is a tiny inline function — `r => r.StartsWith("w")` — called a *lambda*. You'll meet lambdas properly in Phase 1; for now, read them as *"given an `r`, give back whether `r` starts with `w`."*
+LINQ is a query language built into C#. The methods `Distinct`, `Where`, `OrderBy`, `Sum`, and many more work on any collection. They give back a *new sequence* and leave the original alone. The thing you pass to `Where` is a tiny one-line function — `r => r.StartsWith("w")` — called a *lambda*. You'll meet lambdas properly in Phase 1. For now, read this one as *"given an `r`, tell me whether `r` starts with `w`."*
 
-Run, see the output. Two new collection types are in your toolbox.
+Run it and look at the output. You now have two new collection types to work with.
 
 ## Step 2 — the Inventory Tool
 
-Make a new project for the M1 deliverable:
+Make a new project for the M1 program you'll hand in:
 
 ```powershell
 cd <your-repo-root>
@@ -215,29 +215,29 @@ Run the program again. Type `load`. Your inventory comes back.
 
 ## Tinker
 
-Add a `count <item>` command that prints just the count for one item — same logic as `find`, simpler output.
+Add a `count <item>` command that prints just the count for one item — the same idea as `find`, with simpler output.
 
 Add a `total` command that prints the sum of all item counts. LINQ makes this one line: `inventory.Values.Sum()`.
 
-Make `save` automatic — every command that changes state also writes to disk. You'll lose nothing if the program crashes.
+Make `save` happen on its own — every command that changes the inventory also writes to the disk. That way you lose nothing if the program crashes.
 
-Add a `clear` command. One method call: `inventory.Clear()`.
+Add a `clear` command. It's one method call: `inventory.Clear()`.
 
 ## Name it
 
-**`List<T>`** is ordered, growable, and allows duplicates. Indexed by integer position with `list[0]`, `list[1]`, and so on.
+**`List<T>`** keeps items in order, can grow and shrink, and lets the same item appear more than once. You reach each item by its number position with `list[0]`, `list[1]`, and so on.
 
-**`Dictionary<K, V>`** is a lookup by key. Each key appears at most once. Lookup is fast — internally the dictionary uses a hash table — so it scales to thousands of entries without slowing down.
+**`Dictionary<K, V>`** looks things up by a key. Each key appears only once. The lookup stays fast even with thousands of entries, because of the clever way the dictionary stores things inside (it uses something called a hash table).
 
-**`foreach (var x in collection)`** visits each element once. Don't modify the collection during the loop; doing so throws an exception.
+**`foreach (var x in collection)`** goes through each item once. Don't add or remove items from the collection while the loop is running — if you do, the program crashes with an error.
 
-**`for (int i = 0; i < n; i++)`** is the counter loop. Use when you need the index, or when looping a known number of times that doesn't come from a collection.
+**`for (int i = 0; i < n; i++)`** is the counter loop. Use it when you need the position number, or when you're looping a set number of times that doesn't come from a collection.
 
-**LINQ** is the family of methods (`.Where`, `.Select`, `.OrderBy`, `.Distinct`, `.Sum`, and many more) that work on any collection. They take a function — often a lambda like `r => r.StartsWith("w")` — and produce a new collection. They compose: a chain of `.Where`, `.Distinct`, `.OrderBy` calls reads as a small story.
+**LINQ** is the group of methods (`.Where`, `.Select`, `.OrderBy`, `.Distinct`, `.Sum`, and many more) that work on any collection. They take a function — often a lambda like `r => r.StartsWith("w")` — and give back a new collection. You can join them up: a chain of `.Where`, `.Distinct`, and `.OrderBy` calls reads almost like a sentence.
 
 ## What you just did
 
-You built the Inventory Tool, v1 — your first useful program. It accepts commands, edits a `Dictionary<string, int>`, sorts output with LINQ, saves to disk and loads back. About a hundred lines of code. The save format is plain text (`apple=2` per line) — nothing fancy, fully readable in any editor. Two collection types and one query language are now part of your working vocabulary; you'll use all three in nearly every program from here on.
+You built the Inventory Tool, v1 — your first useful program. It takes commands, edits a `Dictionary<string, int>`, sorts the output with LINQ, saves to the disk, and loads it back. About a hundred lines of code. The save format is plain text (`apple=2` on each line) — simple, and easy to read in any editor. Two collection types and one query language are now part of what you can use. You'll reach for all three in nearly every program from here on.
 
 **Key concepts you can now name:**
 
@@ -258,4 +258,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 0.8 hardens the Inventory Tool against bad input — empty arguments, a corrupt save file, an unknown command — and ships M1. Same code; better defences.
+Module 0.8 makes the Inventory Tool stronger against bad input — empty arguments, a broken save file, an unknown command — and finishes M1. Same code, but it copes better when things go wrong.

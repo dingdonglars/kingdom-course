@@ -1,13 +1,13 @@
 # Module 3.7 — Integration Tests with `WebApplicationFactory<T>`
 
-Today the test project starts your *whole API* in-memory, makes real HTTP calls to it, and asserts on the real responses. No real port, no manual cleanup — the framework hosts the app inside the test process. This is the test class that catches the bugs unit tests can't see, the ones that live in the seams: a wrong content-type header, a route that compiles but doesn't match, an auth handler wired in the wrong order.
+Today the test project starts your *whole API* in memory, makes real HTTP calls to it, and checks the real responses. No real port, no cleanup by hand — the framework runs the app inside the test process. This is the test class that catches the bugs unit tests can't see: the ones that happen where two parts meet. A wrong content-type header. A route that compiles but doesn't match. An auth handler set up in the wrong order.
 
-Up to now your tests have been *unit tests* — one method, one assertion, sub-millisecond runtime. Integration tests are the other half of a healthy test suite. They cost more (~100ms each, more setup) but pay for themselves the first time they catch a renamed-route bug before deploy.
+Up to now your tests have been *unit tests* — one method, one check, and they run in under a millisecond. Integration tests are the other half of a healthy test suite. They cost more (about 100ms each, and more setup), but they pay for themselves the first time they catch a renamed-route bug before you deploy.
 
 > **Words to watch**
 >
 > - **integration test** — a test that exercises multiple components together (vs. a unit test, which tests one)
-> - **`WebApplicationFactory<TEntryPoint>`** — ASP.NET Core test helper that boots the app in-process; `TEntryPoint` is your `Program` class
+> - **`WebApplicationFactory<TEntryPoint>`** — ASP.NET Core test helper that starts the app inside the test process; `TEntryPoint` is your `Program` class
 > - **`HttpClient`** — the test gets a real client pointed at the in-memory server
 > - **test fixture** — shared setup across multiple tests; `IClassFixture<T>` in xUnit
 
@@ -15,9 +15,9 @@ Up to now your tests have been *unit tests* — one method, one assertion, sub-m
 
 ## Why integration tests now
 
-Unit tests verify one method. Integration tests verify the whole path: HTTP → routing → handler → store → DB → response. They catch the bugs only the seams produce — wrong content-type, wrong status code, missing auth wiring, JSON layout divergence between the docs and the code.
+Unit tests check one method. Integration tests check the whole path: HTTP → routing → handler → store → DB → response. They catch the bugs that only happen where two parts meet — a wrong content-type, a wrong status code, missing auth setup, or JSON that doesn't match between the docs and the code.
 
-The cost is real: integration tests are slower (~100ms each vs <1ms for unit tests) and more brittle (any layer change can ripple). The right ratio is small: for most APIs, five to ten integration tests covering the critical paths is enough. Keep them in one fixture; share the server across tests in the class.
+The cost is real: integration tests are slower (about 100ms each, against under 1ms for unit tests) and they break more easily (a change in any layer can affect them). You don't need many: for most APIs, five to ten integration tests covering the most important paths is enough. Keep them in one fixture and share the server across the tests in the class.
 
 ## `WebApplicationFactory` — what it is
 
@@ -29,7 +29,7 @@ var client = factory.CreateClient();
 var response = await client.GetAsync("/kingdoms");
 ```
 
-Three lines and the entire API is running, in-process, with no port. The `client` is a real `HttpClient` — make any request the framework supports, get a real response back.
+Three lines and the entire API is running, inside the test process, with no port. The `client` is a real `HttpClient` — make any request the framework supports, and you get a real response back.
 
 ## What ships in the starter
 
@@ -46,7 +46,7 @@ dotnet add package Shouldly
 dotnet add reference ..\..\Kingdom.Api\Kingdom.Api.csproj
 ```
 
-`Program` needs to be visible to the test project. The `public partial class Program { }` line at the bottom of `Kingdom.Api/Program.cs` makes it visible — the type now exists in the API project's compiled assembly under that name.
+`Program` needs to be visible to the test project. The `public partial class Program { }` line at the bottom of `Kingdom.Api/Program.cs` makes it visible — the type now exists in the API project's compiled output under that name.
 
 ## Step 1 — fixture
 
@@ -77,7 +77,7 @@ public class IntegrationFixture : WebApplicationFactory<Program>
 }
 ```
 
-Real Google auth would require a real OAuth flow — out of scope for tests. We swap the auth scheme to a **test scheme** that signs every request as a fixed test user (the ASP.NET docs cover `TestAuthHandler`). For this lesson, our integration tests will hit *unauthenticated* endpoints (`/`, `/openapi/v1.json`).
+Real Google auth would need a real OAuth flow, which we don't want inside a test. Instead, we swap the auth scheme for a **test scheme** that signs every request as one fixed test user (the ASP.NET docs cover `TestAuthHandler`). For this lesson, our integration tests will call the endpoints that *don't* need sign-in (`/`, `/openapi/v1.json`).
 
 ## Step 2 — first integration test
 
@@ -141,46 +141,46 @@ Run:
 dotnet test
 ```
 
-The integration tests boot the API in-process, make real HTTP calls, and assert on real responses. No web server, no port, no manual cleanup.
+The integration tests start the API inside the test process, make real HTTP calls, and check the real responses. No web server, no port, no cleanup by hand.
 
 ## Step 3 — trade-offs
 
 Integration tests:
 
-- Slower (~100ms each)
-- Catch bugs that span layers (routing, serialisation, auth wiring)
-- Fewer needed — five to ten covers the critical paths
-- Should be deterministic — use temp DBs, fixed seeds
+- Slower (about 100ms each)
+- Catch bugs that cross several layers (routing, JSON, auth setup)
+- You need fewer — five to ten covers the most important paths
+- Should give the same result every time — use temp DBs and fixed seeds
 
 Unit tests:
 
-- Fast (sub-millisecond)
+- Fast (under a millisecond)
 - Catch logic bugs in one place
-- Many needed — one per behaviour
-- Easy to keep deterministic
+- You need many — about one per behaviour
+- Easy to keep giving the same result every time
 
-Use both. Use unit tests for breadth; use integration tests for the seams.
+Use both. Use unit tests to cover a lot of ground, and integration tests to cover the places where parts meet.
 
 ## Tinker
 
-Add a test that POSTs `{"name":"Test"}` and asserts the response is `Created` with a `Location:` header. (Requires test-auth wiring — see ASP.NET docs for `TestAuthHandler`.)
+Add a test that POSTs `{"name":"Test"}` and checks the response is `Created` with a `Location:` header. (This needs the test auth set up — see the ASP.NET docs for `TestAuthHandler`.)
 
-Time `dotnet test --logger "console;verbosity=detailed"`. Notice how integration tests run measurably slower than unit tests. The cost is real, even if it's small.
+Time `dotnet test --logger "console;verbosity=detailed"`. Notice that the integration tests run noticeably slower than the unit tests. The cost is real, even if it's small.
 
-Try changing a route from `/kingdoms` to `/realms` in the API. Run the integration tests — they catch the renamed-route bug instantly. That's the value.
+Try renaming a route from `/kingdoms` to `/realms` in the API. Run the integration tests — they catch the renamed-route bug right away. That's the value.
 
-## The through-line
+## The main point
 
-Test the seams. Unit tests prove individual pieces work; integration tests prove they work *together*. Skip integration tests and the *"everything looks fine but it broke in prod"* surprises pile up.
+Test the places where parts meet. Unit tests prove each piece works on its own. Integration tests prove the pieces work *together*. Skip integration tests, and you'll keep getting the *"everything looked fine, but it broke in production"* surprise.
 
 ## What you just did
 
-You added integration tests that boot your whole API in-memory and hit it with a real `HttpClient`. Three lines start the API; five-to-ten tests cover the critical seams — the OpenAPI spec endpoint, the auth-required guard, the redirect to Google for sign-in. You also met the trade-off explicitly: integration tests run roughly a hundred times slower than unit tests, so you keep the count small and let unit tests do the breadth. Together they form the test suite you can refactor against without manually clicking through every endpoint.
+You added integration tests that start your whole API in memory and call it with a real `HttpClient`. Three lines start the API; five to ten tests cover the most important places where parts meet — the OpenAPI endpoint, the sign-in guard, and the redirect to Google for sign-in. You also saw the trade-off clearly: integration tests run about a hundred times slower than unit tests, so you keep the number small and let unit tests cover most of the ground. Together they make a test suite you can refactor against without clicking through every endpoint by hand.
 
 **Key concepts you can now name:**
 
-- **integration test** — exercises multiple components together
-- **`WebApplicationFactory<TEntryPoint>`** — boots your app in-process for testing
+- **integration test** — tests several components working together
+- **`WebApplicationFactory<TEntryPoint>`** — starts your app inside the test process for testing
 - **`IClassFixture<T>`** — xUnit's *share this expensive setup across tests in the class*
 - **test scheme** — fake auth that signs every request as a fixed test user
 - **per-fixture temp DB** — each run gets its own isolated DB, gone after the run

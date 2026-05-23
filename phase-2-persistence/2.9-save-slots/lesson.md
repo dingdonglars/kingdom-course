@@ -1,6 +1,6 @@
 # Module 2.9 — Save Slots (Multiple Kingdoms)
 
-One save isn't a feature; *many* saves is. Today the EF store grows beyond `Save` and `Load`: `Update`, `Delete`, `ListAll` (already there) — the full **CRUD** quartet. With a real DB underneath, *"give me my last 10 kingdoms"* is a one-line query. The kingdom now has *save slots*, like every game ever made.
+One save on its own isn't much. *Many* saves is a real feature. Today the EF store grows past `Save` and `Load` to add `Update` and `Delete` (and `ListAll`, which is already there) — the full **CRUD** group of four. With a real database underneath, *"give me my last 10 kingdoms"* is a one-line query. The kingdom now has *save slots*, like every game you've ever played.
 
 > **Words to watch**
 >
@@ -13,9 +13,9 @@ One save isn't a feature; *many* saves is. Today the EF store grows beyond `Save
 
 ## Why slots matter
 
-Save slots changed games. Before them, you saved over your one save and prayed you didn't load at the wrong time. After them: try a risky strategy, save before, fall back if it goes wrong. Slots invite experimentation.
+Save slots changed games. Before them, you saved over your one save and hoped you hadn't saved at a bad moment. With slots, you can try a risky plan, save first, and go back to the earlier save if it goes wrong. Slots make it safe to experiment.
 
-Mechanically: each slot is one row in `kingdoms`. Listing slots is `SELECT *`. Loading is `SELECT WHERE id =`. Saving over an existing slot is `UPDATE`. Creating a new slot is `INSERT`. Deleting is `DELETE`. Five queries for the entire feature.
+Here's how it works in code: each slot is one row in `kingdoms`. Listing the slots is `SELECT *`. Loading one is `SELECT WHERE id =`. Saving over a slot that already exists is `UPDATE`. Making a new slot is `INSERT`. Removing one is `DELETE`. The whole feature is five queries.
 
 ## Delta starter
 
@@ -26,7 +26,7 @@ Mechanically: each slot is one row in `kingdoms`. Listing slots is `SELECT *`. L
 
 ## Step 1 — `KingdomSlotInfo` DTO
 
-The console doesn't need (and shouldn't see) `KingdomEntity`. Give it a small DTO:
+The console doesn't need to see `KingdomEntity`, and it shouldn't. Give it a small DTO instead:
 
 ```csharp
 namespace Kingdom.Persistence.EfCore;
@@ -34,7 +34,7 @@ namespace Kingdom.Persistence.EfCore;
 public record KingdomSlotInfo(int Id, string Name, int Day);
 ```
 
-Three fields — exactly what a slot picker needs to display.
+Three fields — exactly what a slot picker needs to show.
 
 ## Step 2 — `Update` and `Delete`
 
@@ -64,7 +64,7 @@ public void Update(int id, Kingdom.Engine.Kingdom kingdom)
 }
 ```
 
-> **One detail in that snippet.** `b.GetType().Name` returns the class name as a string — `"Farm"`, `"Lumberyard"`, `"Mine"`. Every C# object knows its own type at runtime; `GetType()` gives you the type, and `.Name` reads the short name off it. Useful trick when you're persisting "what kind of thing is this?" to a database column.
+> **One detail in that code.** `b.GetType().Name` returns the class name as a string — `"Farm"`, `"Lumberyard"`, `"Mine"`. Every C# object knows its own type while the program runs. `GetType()` gives you the type, and `.Name` reads its short name. It's a handy way to save "what kind of thing is this?" into a database column.
 
 ```csharp
 
@@ -90,10 +90,10 @@ public IReadOnlyList<KingdomSlotInfo> ListSlots()
 
 A few notes:
 
-- **`Find(id)` vs `Single(...)`** — `Find` returns `null` if missing (good for delete-if-exists semantics), `Single` throws.
-- **`.Select(k => new KingdomSlotInfo(...))`** is *projection* — EF generates SQL that pulls only those three columns, not the whole row. Faster + less memory + no unwanted entity tracking.
-- **`Clear()` + `AddRange()`** for the building list — EF tracks the deletions and inserts in a single transaction. For a small list this is fine; for a list of 10000, you'd diff and update.
-- **Cascade delete** — by default EF deletes child rows (buildings) when the parent (kingdom) is deleted. If you don't want that, configure it in `OnModelCreating`.
+- **`Find(id)` vs `Single(...)`** — `Find` returns `null` when the row is missing (good for "delete it if it's there"). `Single` throws an error instead.
+- **`.Select(k => new KingdomSlotInfo(...))`** is *projection* — EF writes SQL that pulls only those three columns, not the whole row. That's faster, uses less memory, and skips tracking you don't need.
+- **`Clear()` + `AddRange()`** for the building list — EF handles the deletes and inserts together in one transaction. (A *transaction* is a group of database changes that all succeed together or all fail together.) For a small list this is fine. For a list of 10000, you'd compare the two and update only what changed.
+- **Cascade delete** — by default, EF deletes the child rows (the buildings) when you delete the parent (the kingdom). If you don't want that, you can change it in `OnModelCreating`.
 
 ## Step 3 — multi-slot demo from the console
 
@@ -133,7 +133,7 @@ void ListSlots(KingdomEfStore store)
 }
 ```
 
-Run. The output reads like a save-slot UI:
+Run it. The output reads like a save-slot screen:
 
 ```
 All slots:
@@ -266,17 +266,17 @@ Expect `Passed: 68` (63 + 5).
 
 ## Tinker
 
-Add a sixth slot, then `ListSlots().OrderByDescending(s => s.Day).First()` — the most-played save. One LINQ line; EF generates the `ORDER BY` + `LIMIT 1` SQL.
+Add a sixth slot, then `ListSlots().OrderByDescending(s => s.Day).First()` — the save you've played the most. One LINQ line, and EF writes the `ORDER BY` + `LIMIT 1` SQL.
 
 Add a `LastSavedAt DateTime` field on `KingdomEntity` (and a migration). Sort by it instead. Now your slot picker can show *"last played 3 hours ago."*
 
-What if two saves have the same name? It's allowed — `Id` is the unique identifier. The runtime decides how to display them (e.g., add the date).
+What if two saves have the same name? That's allowed — the `Id` is what makes each one unique. The app decides how to show them apart (for example, by adding the date).
 
-Try `store.Update(999, kingdom)`. It throws because of `Single(...)`. Real apps catch this and show *"save slot is gone — you've been looking at stale data."*
+Try `store.Update(999, kingdom)`. It throws an error because of `Single(...)`. Real apps catch this and show a message like *"that save slot is gone — your list was out of date."*
 
 ## What you just did
 
-You completed the CRUD quartet — Create, Read, Update, Delete — over the kingdoms table. Five new tests prove every operation does what it should, including delete-then-list and update-replaces-buildings (68 passing total). You also met two small-but-good EF tricks: `.Select(k => new KingdomSlotInfo(...))` to project only the columns you need (lightweight, less data, no tracking), and `Find(id)` vs `Single(id)` for *"missing is OK"* vs *"missing is an error."* The kingdom now behaves like every game's save screen: list everything, pick one, load it.
+You completed the four CRUD operations — Create, Read, Update, Delete — on the kingdoms table. Five new tests prove each one does what it should, including delete-then-list and update-replaces-buildings (68 passing total). You also met two small but useful EF moves: `.Select(k => new KingdomSlotInfo(...))` to pull only the columns you need (less data, no tracking), and `Find(id)` versus `Single(id)` for *"missing is OK"* versus *"missing is an error."* The kingdom now works like a game's save screen: list everything, pick one, load it.
 
 **Key concepts you can now name:**
 
@@ -297,4 +297,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 2.10 builds the **save-slot UI** in the console — a real interactive pick-and-load loop using the CRUD operations from today.
+Module 2.10 builds the **save-slot UI** in the console — a real pick-and-load loop you can use, built on the CRUD operations from today.

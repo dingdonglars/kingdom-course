@@ -1,15 +1,15 @@
 # Module 3.9 — M4 Close + the AI Unlock
 
-The kingdom is on the internet. Friends sign in with Google, save their progress, and play. Phase 3 is done. This module is three things at once: the **M4 milestone close** (wins log, before/after, the per-milestone ritual), **Claude Code's arrival** (account + install), and the **AI Unlock** (the moment the rules around AI-assisted code change). Until today you've worked without an AI assistant — Lars has been the friction-helper via Slack `#help`, under the 20-minute rule. Today Claude arrives, and on the same day the rules expand: you can ask the AI for *implementation* — provided you can explain every line you merge.
+The kingdom is on the internet. Friends sign in with Google, save their progress, and play. Phase 3 is done. This module is three things at once: the **M4 milestone close** (wins log, before/after, the per-milestone ritual), **Claude Code's arrival** (account + install), and the **AI Unlock** (the moment the rules around AI-assisted code change). Until today you've worked without an AI assistant — Lars has been the one who helps when you're stuck, through Slack `#help`, under the 20-minute rule. Today Claude arrives, and on the same day the rules open up: you can ask the AI to *write code for you* — as long as you can explain every line you merge.
 
-This is the most important transition in the year. The discipline you've built across Phases 0 through 3 — the engine-vs-shell rule, deterministic tests, reading-before-writing, naming things on purpose — is what makes today safe. AI with implementation rights is a power tool that only works if the discipline is already there. You've earned this.
+This is the most important change in the whole year. The discipline you've built across Phases 0 through 3 — the engine-vs-shell rule, tests that give the same result every time, reading before writing, naming things on purpose — is what makes today safe. An AI that can write your code is a power tool, and it only works well if that discipline is already there. You've earned this.
 
 > **Words to watch**
 >
-> - **AI Unlock** — the curriculum's named transition: AI from "friction-only" to "real collaborator"
-> - **mode flag** — a single line in `CLAUDE.md` that the AI reads to decide its behaviour
-> - **viva** (vee-vah) — a one-on-one oral defense of your code; mentor (Lars) asks "explain this line" at random
-> - **AI-assistance section** — required block in every post-unlock PR description: which lines did the AI write, which did you?
+> - **AI Unlock** — the course's named change: AI goes from "only when you're stuck" to "real collaborator"
+> - **mode flag** — a single line in `CLAUDE.md` that the AI reads to decide how to behave
+> - **viva** (vee-vah) — a one-on-one spoken check of your code; the mentor (Lars) picks a line and asks you to explain it
+> - **AI-assistance section** — a required block in every post-unlock PR description: which lines did the AI write, and which did you write?
 
 ---
 
@@ -21,13 +21,13 @@ You've shipped:
 - Persistence with EF Core, save slots, an interactive UI (Phase 2, M3)
 - A live HTTP API on the internet, with Google sign-in, multi-user, integration tests, and auto-deploy (Phase 3, M4)
 
-By the count of repos: four milestones reached, roughly twelve weeks of curriculum behind you, eighty-plus tests passing across engine, persistence, and API. **You are no longer a beginner.**
+Counting it up: four milestones reached, about twelve weeks of the course behind you, eighty-plus tests passing across the engine, persistence, and API. **You are no longer a beginner.**
 
 ## The M4 milestone ritual
 
-Same pattern as M2 and M3 — but louder, because M4 is the milestone where the AI Unlock takes effect:
+Same pattern as M2 and M3 — but this one matters more, because M4 is the milestone where the AI Unlock takes effect:
 
-1. **Refresh the README** at the repo root — re-walk the four sections from Module 0.4. *How to run* now needs the live URL plus the `dotnet user-secrets` step; *What I learned* gets a Phase 3 paragraph (HTTP, OpenAPI, OAuth, multi-user persistence, App Service deploy). Every milestone close circles back to the README — the discipline that started in M2 close is the discipline now.
+1. **Refresh the README** at the repo root — go back through the four sections from Module 0.4. *How to run* now needs the live URL plus the `dotnet user-secrets` step; *What I learned* gets a Phase 3 paragraph (HTTP, OpenAPI, OAuth, multi-user persistence, App Service deploy). Every milestone close comes back to the README — the same habit you started at the M2 close.
 2. Open `journal/wins.md`.
 3. Write the M4 entry:
 
@@ -47,31 +47,31 @@ Same pattern as M2 and M3 — but louder, because M4 is the milestone where the 
 
 4. Take a screenshot of your live URL plus the Scalar UI. Post in `#wins`.
 5. **Tag the milestone.** This one's CLI-only — the panel doesn't have a button for tags: `git tag m4-phase-3-complete && git push origin m4-phase-3-complete`
-6. **Open the M4 PR.** On github.com → your `kingdom` repo → banner *"phase-3 had recent pushes — Compare & pull request"* (or *Pull requests → New pull request*, base `main`, compare `phase-3`). Title: `M4 — Phase 3 — Live API`. Body: this milestone's `wins.md` bullets + `**Reviewer:** @dingdonglars` + the AI-assistance section per the post-unlock template (empty for this PR — Phase 3 was pre-unlock — but the section's presence marks that the new world starts now). Lars reviews → Approves → you Merge → delete the `phase-3` branch. Locally: `git switch main && git pull`. (Full walkthrough: Module 1.10.)
+6. **Open the M4 PR.** On github.com → your `kingdom` repo → the banner *"phase-3 had recent pushes — Compare & pull request"* (or *Pull requests → New pull request*, base `main`, compare `phase-3`). Title: `M4 — Phase 3 — Live API`. Body: this milestone's `wins.md` bullets + `**Reviewer:** @dingdonglars` + the AI-assistance section from the post-unlock template. (Leave the AI-assistance section empty for this PR — Phase 3 was pre-unlock — but include it anyway, to mark that the new rules start now.) Lars reviews → Approves → you Merge → delete the `phase-3` branch. On your machine: `git switch main && git pull`. (Full walkthrough: Module 1.10.)
 
 ## The AI Unlock
 
 Claude arrived in `pre-unlock` mode (its default — what it reads from `CLAUDE.md` when first installed). The pre-unlock rules:
 
-- **Don't:** write course exercise code, solve quizzes, refactor for you
-- **OK when asked (limited):** friction (git messes, env setup, error messages you've already tried), concept explanations *after* you've tried, routine boilerplate
-- **Always fine:** syntax lookups, naming suggestions, *"is this good practice?"*
+- **Don't:** write course exercise code, answer quizzes, or refactor for you
+- **OK when asked (limited):** help when you're stuck (git tangles, environment setup, error messages you've already tried), explain a concept *after* you've tried, write routine boilerplate
+- **Always fine:** look up syntax, suggest names, answer *"is this good practice?"*
 
-Claude reads `Current mode: pre-unlock` and pushes back when you ask for implementation. **Today, you flip the flag to `post-unlock`.** The new picture:
+Claude reads `Current mode: pre-unlock` and says no when you ask it to write your code. **Today, you change the flag to `post-unlock`.** The new picture:
 
-- *Don't* still applies — but the line is *"don't lose the lesson,"* not *"don't write code"*
-- *OK when asked* expands — implementation help is allowed, with a strict rule attached
-- *Always fine* unchanged
+- *Don't* still applies — but now the line is *"don't skip the learning,"* not *"don't write code"*
+- *OK when asked* gets bigger — the AI can write code for you now, with one strict rule attached
+- *Always fine* stays the same
 
 ### The post-unlock hard rule
 
 > **You must be able to explain every line of AI-generated code before you merge it.**
 
-Concretely, when you ask the AI for code, the AI's job changes too. Its responses end with:
+In practice, when you ask the AI for code, the AI's job changes too. Its answers end with:
 
 > *"Before you merge this, walk me through what each line does. If you can't explain a line, ask me about it instead of merging it."*
 
-This is the discipline that prevents the failure mode where you ship code that works but you don't understand. Code you don't understand can't be debugged, refactored, or extended later. **Explanation is the merge rule.**
+This is the habit that stops you from shipping code that works but that you don't understand. Code you don't understand can't be debugged, refactored, or built on later. **Being able to explain it is the rule for merging it.**
 
 ### The PR template grows a section
 
@@ -86,19 +86,19 @@ Every post-unlock PR description includes an AI-assistance section:
 - Anything I'm unsure about: [be honest — flag for the mentor]
 ```
 
-`/milestone-review` reads this section and prepares the viva from it. **You'll be asked to explain a random AI-written line.** If you can't, the merge gets pushed back — not as punishment but as a *"you're missing something; let's close that gap before it builds up over time."*
+`/milestone-review` reads this section and uses it to set up the viva. **You'll be asked to explain a line the AI wrote, picked at random.** If you can't, the merge waits — not as a punishment, but as a *"there's a gap here; let's close it before it builds up over time."*
 
 ## Set up Claude Code — install + account
 
-Before flipping the mode flag, Claude Code has to exist on your machine and be signed in to an account. Lars sits with you for this part — he puts his card on the subscription, but the account is in **your name and your email**, with a password only you know.
+Before you change the mode flag, Claude Code has to be on your machine and signed in to an account. Lars sits with you for this part — he puts his card on the subscription, but the account is in **your name and your email**, with a password only you know.
 
 ### 1. Create your Anthropic account, together with Lars
 
-In a browser, go to <https://console.anthropic.com>. Sign up with your email; pick a password (only you know it); complete the email confirmation. Lars enters the card details for the subscription tier he picked. You're now the owner of an Anthropic account that Lars pays for.
+In a browser, go to <https://console.anthropic.com>. Sign up with your email, pick a password (only you know it), and finish the email confirmation. Lars enters the card details for the subscription level he picked. You now own an Anthropic account that Lars pays for.
 
 ### 2. Install Claude Code
 
-Claude Code is the CLI form — a chat that runs in your terminal, in the same folder as your repo, with your code in context. Install it:
+Claude Code is the command-line version — a chat that runs in your terminal, in the same folder as your repo, with your code right there for it to read. Install it:
 
 ```powershell
 npm install -g @anthropic-ai/claude-code
@@ -121,17 +121,17 @@ cd C:\code\kingdom
 claude
 ```
 
-The first launch pops a browser to sign in to Anthropic. Sign in with the account you just created. After sign-in, the browser closes, the terminal shows a prompt, and Claude is alive in your kingdom folder.
+The first launch opens a browser to sign in to Anthropic. Sign in with the account you just created. After sign-in, the browser closes, the terminal shows a prompt, and Claude is running in your kingdom folder.
 
 ### 4. Try one slash command
 
-Type `/` in the Claude prompt. You'll see a list including `/explain-this-concept`, `/code-review`, `/stuck-on-error`, `/walk-through-code`. These came in with the day-1 kit (in `.claude/commands/`) and have been waiting for Claude to arrive.
+Type `/` in the Claude prompt. You'll see a list that includes `/explain-this-concept`, `/code-review`, `/stuck-on-error`, `/walk-through-code`. These came in with the day-1 kit (in `.claude/commands/`) and have been waiting for Claude to arrive.
 
-Pick one. *"explain what `git push` actually does, briefly"* — `/explain-this-concept` is the right shape for that. Read what comes back. Type `/exit` (or `Ctrl + C`) to leave.
+Pick one. *"explain what `git push` actually does, briefly"* — `/explain-this-concept` is the right one for that. Read what comes back. Type `/exit` (or `Ctrl + C`) to leave.
 
 The full rules — what to ask, what not to ask, the three buckets — are in `ai-tools.md`. Read it tonight; you'll come back to it through the rest of the year.
 
-> **Why Claude and not Copilot or ChatGPT?** Claude is what Lars uses, so it's what Lars can guide you on. Copilot and Cursor and ChatGPT are fine tools too — once you know the patterns the course teaches with Claude, the patterns transfer. The full *why* is in `ai-tools.md`.
+> **Why Claude and not Copilot or ChatGPT?** Claude is what Lars uses, so it's what Lars can help you with. Copilot, Cursor, and ChatGPT are fine tools too — once you know the patterns the course teaches with Claude, those patterns carry over to the others. The full *why* is in `ai-tools.md`.
 
 ---
 
@@ -146,9 +146,9 @@ Open `CLAUDE.md` at the root of your kingdom repo (`C:\code\kingdom\CLAUDE.md`).
 
 Change it. Save.
 
-The next time you (or any AI agent) opens this project, the AI reads the new mode and behaves accordingly. **No code change required in the AI's prompt — the file flag is the contract.**
+The next time you (or any AI agent) opens this project, the AI reads the new mode and behaves the new way. **You don't have to change anything in the AI's prompt — this one line in the file is what controls it.**
 
-**Commit it.** *"[M4] AI Unlock — flip mode flag pre-unlock → post-unlock"*. (Source Control panel → stage → commit → Sync. Or CLI: `git add . && git commit -m "[M4] AI Unlock — flip mode flag pre-unlock → post-unlock" && git push`.)
+**Commit it.** *"[M4] AI Unlock — flip mode flag pre-unlock → post-unlock"*. (Source Control panel → stage → commit → Sync. Or in the terminal: `git add . && git commit -m "[M4] AI Unlock — flip mode flag pre-unlock → post-unlock" && git push`.)
 
 ## What stays the same
 
@@ -159,27 +159,27 @@ The next time you (or any AI agent) opens this project, the AI reads the new mod
 
 ## Tinker
 
-Compare the same prompt before and after the flip. Ask Claude *"write me a function that converts a Kingdom to a JSON string."* Pre-unlock: it pushes back. Post-unlock: it writes the function and asks you to explain each line.
+Compare the same prompt before and after the change. Ask Claude *"write me a function that converts a Kingdom to a JSON string."* Before the unlock: it says no. After the unlock: it writes the function and asks you to explain each line.
 
-Read `CLAUDE.md` end-to-end one more time. You'll come back to it many times this year.
+Read `CLAUDE.md` from start to finish one more time. You'll come back to it many times this year.
 
-Browse some "AI helped me" PRs in well-run open source projects. Notice the pattern: small commits, careful per-file review, the human author still owns the mental model. The AI helps; the author still understands the code.
+Look at some "AI helped me" PRs in well-run open source projects. Notice the pattern: small commits, careful review file by file, and the human author still understanding the whole thing. The AI helps; the author still understands the code.
 
-## The through-line
+## The main point
 
-The AI is a power tool, not an autopilot. Power tools require respect. The discipline you've built across Phases 0 through 3 — engine vs shell, deterministic tests, read-before-write, names that earn their keep — is what lets you wield the AI without losing yourself. Without that discipline, AI-assisted code is a liability. With it, AI-assisted code multiplies your output without multiplying your bugs.
+The AI is a power tool, not an autopilot. Power tools need respect. The discipline you've built across Phases 0 through 3 — engine vs shell, tests that give the same result every time, read before write, clear names that pull their weight — is what lets you use the AI well and stay in control. Without that discipline, AI-written code becomes a problem. With it, the AI gets you more done without giving you more bugs.
 
 ## What you just did
 
-You closed M4 — the most important milestone of the year. Your kingdom is on the internet, friends can sign in and play, and CI/CD redeploys on every push. Eighty-plus tests pass across three projects. You also flipped the AI Unlock: the mode flag in `CLAUDE.md` moved from `pre-unlock` to `post-unlock` in three repos, which means every AI agent that opens those projects from now on operates under the new rules. The hard rule stands: you must be able to explain every line of AI-generated code before merging it. Phase 4 begins with the AI on as a real collaborator — and with the discipline you've spent six months building, ready to make that change safe.
+You closed M4 — the most important milestone of the year. Your kingdom is on the internet, friends can sign in and play, and CI/CD redeploys on every push. Eighty-plus tests pass across three projects. You also did the AI Unlock: the mode flag in `CLAUDE.md` moved from `pre-unlock` to `post-unlock` in three repos, which means every AI agent that opens those projects from now on follows the new rules. The strict rule stands: you must be able to explain every line of AI-written code before you merge it. Phase 4 begins with the AI on as a real collaborator — and with the discipline you've spent six months building, ready to make that change safe.
 
 **Key concepts you can now name:**
 
-- **AI Unlock** — the named transition; M4; today
-- **mode flag** — single line in `CLAUDE.md` that controls AI behaviour
-- **viva** — one-on-one oral defense at milestones; random-line explanation tests
-- **AI-assistance PR section** — required post-unlock; what you wrote vs what AI wrote
-- **explanation as merge rule** — you can't ship code you can't explain
+- **AI Unlock** — the named change; M4; today
+- **mode flag** — a single line in `CLAUDE.md` that controls how the AI behaves
+- **viva** — one-on-one spoken check at milestones; you explain a line picked at random
+- **AI-assistance PR section** — required after the unlock; what you wrote vs what the AI wrote
+- **explanation as the merge rule** — you can't ship code you can't explain
 
 ## Wrap up
 
@@ -194,4 +194,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-**Phase 4 begins.** Phase 4 is the **browser kingdom** — your engine ported to a JavaScript/TypeScript outer layer, served alongside your API. With the AI Unlock now in effect, the iteration loop speeds up considerably.
+**Phase 4 begins.** Phase 4 is the **browser kingdom** — your engine moved to a JavaScript/TypeScript outer layer, served alongside your API. With the AI Unlock now in effect, you'll be able to work through changes a lot faster.

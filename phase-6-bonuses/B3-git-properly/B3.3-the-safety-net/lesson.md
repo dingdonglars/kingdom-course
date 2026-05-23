@@ -1,8 +1,8 @@
 # Bonus B3.3 — The safety net (reflog and recovery)
 
-The thing nobody tells you about git: it almost never actually loses your work. Even when you've run `git reset --hard` and watched commits vanish from `git log`, they're still there — git just stopped pointing at them. The reason most "I broke git" panic ends without lost work is a single command: `git reflog`.
+The thing nobody tells you about git: it almost never actually loses your work. Even when you have run `git reset --hard` and watched commits disappear from `git log`, they are still there — git just stopped pointing at them. The reason most "I broke git" panic ends without lost work is a single command: `git reflog`.
 
-Today's lesson is the safety net. Specifically: how to find work that looks gone, how to recover from `reset --hard` mistakes, and how to develop the discipline that prevents most of these moments in the first place. The discipline is one sentence — *read state before acting*. The commands below are how you read state.
+Today's lesson is the safety net. To be exact: how to find work that looks gone, how to recover from `reset --hard` mistakes, and how to build the habit that prevents most of these moments in the first place. The habit is one sentence — *read the state before you act*. The commands below are how you read the state.
 
 > **Words to watch**
 >
@@ -16,15 +16,15 @@ Today's lesson is the safety net. Specifically: how to find work that looks gone
 
 ## The model: nothing is gone (yet)
 
-When you `git commit`, git stores the commit in its object database, keyed by SHA. *Nothing ever removes that object directly.* Branches, tags, HEAD — these are all just pointers. When you "delete" a commit by moving a branch off it, the commit still exists in git's storage. It's just not reachable through any pointer you normally see.
+When you `git commit`, git stores the commit in its object database, named by its SHA. *Nothing ever deletes that object directly.* Branches, tags, HEAD — these are all just pointers. When you "delete" a commit by moving a branch off it, the commit still exists in git's storage. It is just not reachable through any pointer you normally see.
 
-`git reflog` is the secret extra log of *where pointers used to be*. Every time HEAD moves — checkout, commit, reset, rebase, merge — git logs the move. Each entry has a SHA and a description like *"HEAD@{3}: rebase: feature/farms"*.
+`git reflog` is the hidden extra log of *where the pointers used to be*. Every time HEAD moves — checkout, commit, reset, rebase, merge — git records the move. Each entry has a SHA and a short description like *"HEAD@{3}: rebase: feature/farms"*.
 
-This is the safety net. As long as the reflog still has the SHA, the commit is recoverable.
+This is the safety net. As long as the reflog still has the SHA, you can get the commit back.
 
 ## Step 1 — using reflog
 
-This whole module is **CLI-only**. The Source Control panel doesn't have a button for `reflog`, `fsck`, or the rescue moves built on them — these are exactly the cases where the terminal is the right tool. (You've been using the panel all year; this is the lesson where you'll appreciate that the CLI is *also* still under your fingers.)
+This whole module is **CLI-only**. The Source Control panel doesn't have a button for `reflog`, `fsck`, or the rescue moves built on them — these are exactly the cases where the terminal is the right tool. (You have been using the panel all year; this is the lesson where you'll be glad the CLI is *also* still there for you.)
 
 In any repo, run:
 
@@ -41,9 +41,9 @@ b2a3c4d HEAD@{2}: checkout: moving from main to feature/farms
 ...
 ```
 
-This is your last hundred or so HEAD positions, in reverse order. The numbers in `HEAD@{N}` are how-many-moves-ago, not commit ages.
+This is your last hundred or so HEAD positions, newest first. The numbers in `HEAD@{N}` mean how many moves ago, not how old the commit is.
 
-Any of those SHAs can be used like a commit reference:
+You can use any of those SHAs like a commit reference:
 
 ```powershell
 git show 8c9d1e0
@@ -53,7 +53,7 @@ git branch rescue 8c9d1e0    # creates a branch pointing at that commit
 
 ## Step 2 — the canonical "I lost work" rescue
 
-You ran `git reset --hard HEAD~3`. Three commits worth of work just vanished from `git log`. Panic.
+You ran `git reset --hard HEAD~3`. Three commits' worth of work just disappeared from `git log`. Panic.
 
 The rescue:
 
@@ -63,9 +63,9 @@ git reflog
 git reset --hard HEAD@{1}
 ```
 
-That's it. You moved HEAD back to where it was before the reset. The "lost" commits are reachable again.
+That is it. You moved HEAD back to where it was before the reset. The "lost" commits are reachable again.
 
-Equivalent forms:
+Other ways to do the same thing:
 
 ```powershell
 git reset --hard <SHA-from-reflog>
@@ -73,40 +73,40 @@ git switch -c rescue <SHA-from-reflog>     # if you'd rather create a branch
 git cherry-pick <SHA-from-reflog>          # if you only want one of the commits back
 ```
 
-The rescue works because the commits were never actually deleted — only *orphaned* (no branch or tag pointing at them anymore). `reflog` showed you the SHA; everything else is moving a pointer.
+The rescue works because the commits were never actually deleted — they were only *orphaned* (no branch or tag points at them anymore). `reflog` showed you the SHA; everything else is just moving a pointer.
 
 ## Step 3 — when the safety net runs out
 
-Git's garbage collection (`git gc`) eventually deletes truly unreachable objects. The default is 30-90 days. Until then, even commits you "lost" weeks ago are still in storage.
+Git's garbage collection (`git gc`) eventually deletes objects that nothing can reach. The default is 30-90 days. Until then, even commits you "lost" weeks ago are still in storage.
 
-After `gc` runs, an unreachable commit is genuinely gone. If you suspect you've lost something old, try:
+After `gc` runs, an unreachable commit is really gone. If you think you have lost something old, try:
 
 ```powershell
 git fsck --lost-found
 ```
 
-This finds dangling commits and writes them to `.git/lost-found/`. It's a last-resort rescue; the contents are unlabelled, so you'll have to inspect each one.
+This finds dangling commits and writes them to `.git/lost-found/`. It is a last-resort rescue; the contents have no labels, so you'll have to look at each one.
 
 ## Step 4 — the discipline (the actual lesson)
 
-Most rescues are unnecessary. They're caused by typing a command without reading what state you're in first.
+Most rescues are not needed. They happen because someone typed a command without reading what state they were in first.
 
-Three states matter at any moment:
+Three things matter at any moment:
 
 1. **Where is HEAD?** (`git status` answers this — the first line)
-2. **What's modified, what's staged?** (`git status` again)
+2. **What is modified, and what is staged?** (`git status` again)
 3. **Where do I want to end up?** (you, the human, decide)
 
-If you can't name those three things, *don't run the next command yet*. Read first. Most "git ate my work" stories are *"I didn't actually know what state I was in, ran something, panicked, ran something else."*
+If you can't name those three things, *don't run the next command yet*. Read first. Most "git ate my work" stories are really *"I didn't actually know what state I was in, ran something, panicked, then ran something else."*
 
-The rescue rule: **read state before acting.** Specifically:
+The rescue rule: **read the state before you act.** To be exact:
 
-- Before `reset` of any kind: `git status` and `git log --oneline -10`. Make sure you understand which commits you're about to move past.
-- Before `force-push`: `git log @{upstream}..HEAD` (commits you have that the remote doesn't) and `git log HEAD..@{upstream}` (commits the remote has that you'd overwrite).
-- Before `rebase` of a pushed branch: think *"is anyone else pulling this?"* If yes, don't rebase.
-- Before `clean -f` or `git restore .`: realise you're throwing away uncommitted changes. There is no reflog for those.
+- Before any kind of `reset`: run `git status` and `git log --oneline -10`. Make sure you understand which commits you are about to move past.
+- Before `force-push`: run `git log @{upstream}..HEAD` (commits you have that the remote doesn't) and `git log HEAD..@{upstream}` (commits the remote has that you would overwrite).
+- Before a `rebase` of a pushed branch: ask *"is anyone else pulling this?"* If yes, don't rebase.
+- Before `clean -f` or `git restore .`: know that you are throwing away uncommitted changes. There is no reflog for those.
 
-The two real ways to lose work are: uncommitted changes (no reflog covers them) and force-pushing over your own work (rare; you have to actively try). Everything else is recoverable.
+The two real ways to lose work are: uncommitted changes (no reflog covers them) and force-pushing over your own work (rare; you have to really try). Everything else can be recovered.
 
 ## Hands-on
 
@@ -123,13 +123,13 @@ Now try the cherry-pick variant:
 6. From `git reflog`, pick the SHA of one of the three commits (not the most recent).
 7. `git cherry-pick <that-SHA>`. That single commit's changes are reapplied on top of HEAD.
 
-The hands-on reps build the muscle of *"oh, that was just a pointer move; I can put it back."*
+Doing this a few times builds the habit of thinking *"oh, that was just a pointer move; I can put it back."*
 
 ## Tinker
 
-Run `git fsck --lost-found` in your kingdom repo. Probably nothing — but if there's anything in `.git/lost-found/`, that's an old dangling commit, recoverable until the next `gc`.
+Run `git fsck --lost-found` in your kingdom repo. Probably nothing — but if there is anything in `.git/lost-found/`, that is an old dangling commit, still recoverable until the next `gc`.
 
-Run `git gc --prune=now --aggressive` in a *test* repo (not the kingdom). Notice that after `gc`, dangling commits are gone for real. This is why the safety net has a clock on it.
+Run `git gc --prune=now --aggressive` in a *test* repo (not the kingdom). Notice that after `gc`, dangling commits are gone for real. This is why the safety net has a time limit on it.
 
 Set up a useful alias:
 
@@ -138,11 +138,11 @@ git config --global alias.last "log -1 HEAD --stat"
 git config --global alias.tree "log --oneline --graph --decorate --all"
 ```
 
-Now `git last` and `git tree` are short forms for the long commands. Aliases save typing time across the year.
+Now `git last` and `git tree` are short forms for the long commands. Aliases save you typing time across the year.
 
 ## What you just did
 
-You met `git reflog` — the secret extra log of HEAD's history that's also git's safety net. You learned that "lost" commits aren't actually deleted until `gc` runs days or weeks later, so most rescues are pointer moves not data recovery. You worked through the canonical rescue: undo a `reset --hard` by reading the reflog and resetting again. You named the discipline that prevents most rescues: read state before acting — `git status` and `git log` before any move that changes history.
+You met `git reflog` — the hidden extra log of HEAD's history that is also git's safety net. You learned that "lost" commits aren't actually deleted until `gc` runs days or weeks later, so most rescues are pointer moves, not data recovery. You worked through the standard rescue: undo a `reset --hard` by reading the reflog and resetting again. You named the habit that prevents most rescues: read the state before you act — `git status` and `git log` before any move that changes history.
 
 **Key concepts you can now name:**
 
@@ -163,4 +163,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module B3.4 closes B3 with the *tools* around git — the VS Code Source Control panel (your main day-to-day GUI), plus a brief tour of the dedicated GUI clients (Fork, GitKraken). The model is in your head; the tools just show it to you visually.
+Module B3.4 closes B3 with the *tools* around git — the VS Code Source Control panel (your main day-to-day GUI), plus a short tour of the dedicated GUI clients (Fork, GitKraken). The model is in your head; the tools just show it to you on screen.

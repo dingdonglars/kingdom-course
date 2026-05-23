@@ -1,8 +1,10 @@
 # Module 2.1 — File I/O
 
-Until now, your kingdom dies the moment you close the program. Today we change that. By the end of this module, your kingdom writes itself to a plain text file on disk; tomorrow we'll make that JSON; the day after, SQLite. But you have to start with the simplest thing: open a file, write some text, close it. The first time you watch a file appear and survive a program restart, the trick of *persistence* stops feeling like a trick.
+Until now, your kingdom is gone the moment you close the program. Today we change that. By the end of this module, your kingdom writes itself to a plain text file on disk. Tomorrow we'll make that JSON. The day after, SQLite. But we start with the simplest thing: open a file, write some text, close it.
 
-Along the way you'll meet the small but very specific way Windows deals with paths and line endings. After today you'll never confuse `C:\foo` with `C:/foo` again.
+Saving your work so it stays after the program ends is called *persistence*. The first time you see a file appear, close the program, and find the file still there, persistence will start to make sense.
+
+Along the way you'll learn the exact way Windows handles file paths and line endings. After today you'll know the difference between `C:\foo` and `C:/foo`.
 
 > **Words to watch**
 >
@@ -22,26 +24,26 @@ cd C:\code\kingdom
 git switch -c phase-2
 ```
 
-Every commit this phase lands on `phase-2`. At Module 2.11 (M3 close), you'll PR it back to `main`.
+Every commit this phase goes on the `phase-2` branch. At Module 2.11 (the M3 milestone), you'll open a PR to merge it back into `main`.
 
 ---
 
 ## Why a file first
 
-Files are the simplest way to save: open, write a string, close. Nothing is faster to add and nothing is more familiar to debug — you can open the file in Notepad and read what's inside. JSON (Module 2.2) and SQLite (Module 2.4) are layers on top of *"write some bytes to disk."* So we start with the raw thing.
+Files are the simplest way to save: open, write a string, close. Nothing is faster to add, and nothing is easier to check — you can open the file in Notepad and read what's inside. JSON (Module 2.2) and SQLite (Module 2.4) both build on the same basic idea: write some bytes to disk. So we start with that basic idea.
 
-This module *doesn't change the engine yet.* All the file work happens in `Kingdom.Console/Program.cs`. The engine still doesn't know that disk exists. Tomorrow we'll change that — but only after you've seen the full picture.
+This module *doesn't change the engine yet.* All the file work happens in `Kingdom.Console/Program.cs`. The engine still doesn't know the disk exists. Tomorrow we'll change that — but only after you've seen how it all fits together.
 
 ## Step 1 — paths
 
-In Windows, paths use backslashes. In .NET source code, a backslash inside a string is an escape character, so you either *double* it or use a *verbatim* string:
+In Windows, file paths use backslashes. But in C# code, a backslash inside a string is a special character. So you have two choices: write it *twice*, or put an `@` in front of the string (this is called a *verbatim* string):
 
 ```csharp
 string a = "C:\\Users\\Athos\\save.txt";       // double
 string b = @"C:\Users\Athos\save.txt";          // verbatim @"..." — what you'll usually see
 ```
 
-But hard-coding paths is brittle. Use `Path.Combine` so your code works on any OS:
+But writing the full path by hand is risky — it breaks easily. Use `Path.Combine` so your code works on any operating system:
 
 ```csharp
 using System.IO;
@@ -50,7 +52,7 @@ var saveFolder = Path.Combine(AppContext.BaseDirectory, "saves");
 var savePath   = Path.Combine(saveFolder, "kingdom.txt");
 ```
 
-`AppContext.BaseDirectory` is *"the folder where the .exe is running from."* Combine that with `"saves"` and you get a folder next to the program — predictable, clean, and the same on Windows or Mac.
+`AppContext.BaseDirectory` is the folder where the program is running from. Combine that with `"saves"` and you get a folder right next to the program. It works the same way on Windows or Mac, and you always know where it is.
 
 ## Step 2 — write it, read it
 
@@ -97,21 +99,21 @@ Run:
 dotnet run --project Kingdom.Console
 ```
 
-Open `bin/Debug/net10.0/saves/kingdom.txt` in Notepad. There it is — text on disk. Close the program. Reopen it. The file is still there. Tiny step, big idea.
+Open `bin/Debug/net10.0/saves/kingdom.txt` in Notepad. There it is — your text on disk. Close the program. Open it again. The file is still there. It's a small step, but it's a big idea.
 
-## Step 3 — encoding (one-time pain)
+## Step 3 — encoding (learn it once)
 
-`File.WriteAllText(path, text)` writes UTF-8 *without a BOM* (byte-order mark) by default in modern .NET. That's the right choice for almost everything. If you ever want to be explicit:
+*Encoding* is how text gets turned into bytes for storing. `File.WriteAllText(path, text)` uses an encoding called UTF-8 *without a BOM* (byte-order mark) by default in modern .NET. That's the right choice for almost everything. If you ever want to say it out loud in your code:
 
 ```csharp
 File.WriteAllText(savePath, contents, System.Text.Encoding.UTF8);
 ```
 
-If a file ever opens in another tool with a strange `` (BOM-mangled) at the start, encoding mismatch is the cause. Always UTF-8 unless you're talking to a legacy system that demands something else.
+If a file ever opens in another tool with a strange `` at the start, the encoding is the cause — the two tools disagree on how to read the bytes. Always use UTF-8, unless you're working with an old system that needs something else.
 
 ## Step 4 — round-trip what you wrote
 
-A real test: write something, read it back, check they're equal.
+Here's a real test: write something, read it back, and check that the two match.
 
 `tests/Kingdom.Engine.Tests/FileIOTests.cs` (new):
 
@@ -163,7 +165,7 @@ public class FileIOTests
 }
 ```
 
-Three tests. The `try / finally` blocks clean up — never leave temp files lying around in tests. Run:
+Three tests. The `try / finally` blocks delete the temp files at the end — a test should never leave files behind on disk. Run:
 
 ```powershell
 dotnet test
@@ -173,17 +175,17 @@ Expect `Passed: 38` (35 + 3).
 
 ## Tinker
 
-Try saving a different file every day: `kingdom-day-{kingdom.Day}.txt`. Now your `saves/` folder fills up. Look at it after thirty days — that's a tiny event log.
+Try saving a different file every day: `kingdom-day-{kingdom.Day}.txt`. Now your `saves/` folder fills up with files. Look at it after thirty days — you have a small record of every day.
 
-Try `File.AppendAllText(path, text)` — it adds to the end of a file instead of overwriting. Use it to log every event to `events.log` and watch the log grow.
+Try `File.AppendAllText(path, text)`. It adds to the end of a file instead of replacing what's there. Use it to write every event to `events.log` and watch the file grow.
 
-Try writing one million lines: `File.WriteAllText(path, string.Join('\n', Enumerable.Range(1, 1_000_000)))`. Open the file in Notepad. Notepad will struggle. That's the file size where you start reaching for a database.
+Try writing one million lines: `File.WriteAllText(path, string.Join('\n', Enumerable.Range(1, 1_000_000)))`. Open the file in Notepad. Notepad will be slow. That's the file size where a database starts to make sense instead.
 
-Comment out `Directory.CreateDirectory(saveFolder)`. Run again. You'll get `DirectoryNotFoundException`. That's why we create-or-skip first.
+Delete the line `Directory.CreateDirectory(saveFolder)`, or turn it into a comment. Run again. You'll get a `DirectoryNotFoundException` error. That's why we make the folder first if it isn't there yet.
 
 ## What you just did
 
-Your kingdom went from a program that prints to a program that *saves*. You wrote a tiny snapshot to a real file on disk, read it back, and confirmed the round trip with three tests — total now is 38 passing. You also met two facts about Windows that will save you hours later: paths use backslashes (which need either doubling or `@"..."`), and modern .NET writes UTF-8 without a BOM, which is what you want every time. The interesting thing is what you *didn't* change: the engine has zero edits this module. Disk is a shell concern; the engine doesn't know about it.
+Your kingdom went from a program that only prints to a program that *saves*. You wrote a small snapshot to a real file on disk, read it back, and checked the round trip with three tests — your total is now 38 passing. You also learned two facts about Windows that will save you hours later: paths use backslashes (which need either doubling or `@"..."`), and modern .NET writes UTF-8 without a BOM, which is what you want every time. The interesting part is what you *didn't* change: the engine has no edits at all this module. The disk is the shell's job; the engine doesn't know about it.
 
 **Key concepts you can now name:**
 
@@ -195,13 +197,13 @@ Your kingdom went from a program that prints to a program that *saves*. You wrot
 
 ## Git move of the week — `.gitignore`
 
-You started writing files to disk this module. Some files belong in git (your code, your `.csproj`, the test files). Some don't (the build outputs in `bin/` and `obj/`, user secrets, `.env` files, OS junk like `.DS_Store`).
+You started writing files to disk this module. Some files belong in git (your code, your `.csproj`, the test files). Some don't (the build outputs in `bin/` and `obj/`, secret keys, `.env` files, and extra files the operating system makes, like `.DS_Store`).
 
-Your `kingdom` repo already has a `.gitignore` from the day-1 kit — open it at the repo root. Each line is a pattern of files git should *ignore*. When you create a new file matching one of those patterns, the Source Control panel quietly skips it; it never shows up in *Changes*.
+Your `kingdom` repo already has a `.gitignore` from the day-1 kit — open it at the repo root. Each line is a pattern for files git should *ignore*. When you make a new file that matches one of those patterns, the Source Control panel skips it. It never shows up in *Changes*.
 
-If you're confused why VS Code isn't offering a file you expected: check `.gitignore`. Most *"git is being weird about this file"* moments are this.
+If you can't figure out why VS Code isn't showing a file you expected, check `.gitignore`. Most of the time, that's the reason.
 
-> **Or in the terminal:** `git status --ignored` lists what git is currently ignoring — useful when you want to be sure.
+> **Or in the terminal:** `git status --ignored` lists every file git is ignoring right now — useful when you want to be sure.
 
 ## Wrap up
 
@@ -214,4 +216,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 2.2 introduces **JSON serialisation** — instead of writing five lines of human-readable text, we serialise the entire kingdom as JSON and load it back into a real `Kingdom` object. That's where saving stops being a toy.
+Module 2.2 introduces **JSON serialisation** — instead of writing five lines of plain text, we save the whole kingdom as JSON and load it back into a real `Kingdom` object. That's where saving becomes truly useful.

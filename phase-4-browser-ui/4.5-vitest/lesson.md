@@ -1,10 +1,10 @@
 # Module 4.5 — Vitest (Frontend Testing)
 
-The browser code gets unit tests today. **Vitest** is xUnit's JavaScript-flavoured cousin — fast, Vite-aware, the same `expect(x).toBe(y)` discipline you've been using all year. We'll test the components from Module 4.4: given a `KingdomSlot`, the `KingdomCard` renders the expected HTML; given a string with angle brackets, `escapeHtml` returns escaped output.
+The browser code gets unit tests today. **Vitest** is the JavaScript version of xUnit — fast, made to work with Vite, and using the same `expect(x).toBe(y)` style you've been using all year. We'll test the components from Module 4.4: given a `KingdomSlot`, `KingdomCard` should render the HTML we expect; given a string with angle brackets, `escapeHtml` should return escaped output.
 
 > **Words to watch**
 >
-> - **Vitest** — the test runner. Vite-aware; the API is nearly drop-in compatible with Jest.
+> - **Vitest** — the test runner. Made to work with Vite; its API is almost the same as Jest's.
 > - **`describe` / `it` / `expect`** — the standard test vocabulary.
 > - **`toBe` / `toEqual` / `toContain`** — common assertions, Jest-style.
 > - **happy-dom** — a fake DOM environment for tests that need `document` without a real browser.
@@ -13,9 +13,9 @@ The browser code gets unit tests today. **Vitest** is xUnit's JavaScript-flavour
 
 ## Why a frontend test runner
 
-C# tests gave you confidence to refactor. Frontend tests give the same. Without them, `KingdomCard`'s rendering can quietly drift from what `main.ts` expects. With them, every change to a component runs against its tests; regressions surface in seconds.
+C# tests gave you the confidence to change code. Frontend tests give you the same confidence. Without them, what `KingdomCard` renders can slowly stop matching what `main.ts` expects, and you won't notice. With them, every change to a component runs against its tests, and a broken one shows up in seconds.
 
-Frontend tests fall into three rough buckets. *Unit tests* exercise one function or component (Vitest alone). *Integration tests* run several components together against a fake DOM (Vitest plus `happy-dom`). *End-to-end tests* drive a real browser (Playwright — its own world, not in scope here). We'll do unit and light integration today.
+Frontend tests come in three rough groups. *Unit tests* check one function or component (Vitest on its own). *Integration tests* run several components together against a fake DOM (Vitest plus `happy-dom`). *End-to-end tests* run a real browser (Playwright — a big topic on its own, not covered here). Today we'll do unit tests and a little integration testing.
 
 ## What changes in this module
 
@@ -46,7 +46,7 @@ export default defineConfig({
 });
 ```
 
-`globals: true` lets `describe`, `it`, and `expect` be used without imports — same xUnit feel.
+`globals: true` lets you use `describe`, `it`, and `expect` without importing them — the same feel as xUnit.
 
 ## Step 3 — first tests
 
@@ -91,7 +91,7 @@ describe('KingdomCard', () => {
 });
 ```
 
-The second test is the security test — proof that `escapeHtml` is wired up correctly.
+The second test is the security test — it proves that `escapeHtml` is connected correctly.
 
 ## Step 4 — run
 
@@ -99,11 +99,11 @@ The second test is the security test — proof that `escapeHtml` is wired up cor
 npm test
 ```
 
-Vitest finds `*.test.ts` files and runs each `describe`/`it`. You'll see green ticks (or red exes) instantly. For watch mode, `npm test -- --watch` re-runs only the affected tests on file change. That tight feedback loop is the rhythm of modern frontend work.
+Vitest finds `*.test.ts` files and runs each `describe`/`it`. You'll see green ticks (or red crosses) right away. For watch mode, `npm test -- --watch` re-runs only the tests affected by a file change. That fast feedback is a big part of how modern frontend work feels.
 
 ## Step 5 — light DOM integration
 
-To test components that touch the DOM, the `happy-dom` environment provides a fake `document`:
+To test components that use the DOM, the `happy-dom` environment gives you a fake `document`:
 
 ```ts
 import { describe, it, expect, beforeEach } from 'vitest';
@@ -121,23 +121,23 @@ describe('main rendering', () => {
 });
 ```
 
-`document` exists in tests because `happy-dom` provides one — about ten times faster than spinning up real Chrome. For full-browser testing, Playwright is the tool; explore it on your own time if you want.
+`document` works in tests because `happy-dom` gives you one — about ten times faster than starting up real Chrome. For full-browser testing, Playwright is the tool; look into it on your own if you want.
 
 ## Tinker
 
-Add coverage reporting: `npm test -- --coverage`. See which lines aren't covered by tests. Don't aim for 100% — aim for *the parts that would silently break if changed*. Coverage chasing produces bad tests.
+Add coverage reporting: `npm test -- --coverage`. See which lines aren't covered by tests. Don't aim for 100% — aim to cover *the parts that would break without warning if you changed them*. Chasing a high coverage number leads to bad tests.
 
 Mock `fetch` with `vi.fn()` — Vitest's spy and mock helper. Test main's error handling without making a real network call.
 
-Add a snapshot test: `expect(KingdomCard(slot)).toMatchSnapshot()`. Vitest writes the expected output to a `__snapshots__/` file the first time, and flags any change after that.
+Add a snapshot test: `expect(KingdomCard(slot)).toMatchSnapshot()`. Vitest writes the expected output to a `__snapshots__/` file the first time, then flags any change after that.
 
 ## What you just did
 
-The browser code now has tests. You wired Vitest into the Vite project, set the test environment to `happy-dom`, and wrote four tests across two files: `escapeHtml` covers the five characters and the no-op case, and `KingdomCard` covers both the happy path and the security path (proving the escape is wired through). About sixty lines of test code; one command (`npm test`) runs them all in under a second. The same testing instinct you've been building since Module 1.3 — *if it can break, write a test* — now reaches into the browser.
+The browser code now has tests. You connected Vitest to the Vite project, set the test environment to `happy-dom`, and wrote four tests across two files: `escapeHtml` covers the five characters and the do-nothing case, and `KingdomCard` covers both the normal case and the security case (proving the escape is connected). About sixty lines of test code; one command (`npm test`) runs them all in under a second. The same testing habit you've been building since Module 1.3 — *if it can break, write a test* — now works in the browser too.
 
 **Key concepts you can now name:**
 
-- **Vitest** — Vite-native test runner; xUnit cousin in JavaScript
+- **Vitest** — test runner built for Vite; the JavaScript version of xUnit
 - **`describe` / `it` / `expect`** — the standard test vocabulary
 - **happy-dom** — fast fake DOM for tests
 - **watch mode** — re-runs affected tests on save

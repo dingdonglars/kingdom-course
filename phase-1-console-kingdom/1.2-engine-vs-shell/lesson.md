@@ -1,8 +1,8 @@
 # Module 1.2 — Engine vs Shell
 
-This is the lesson the rest of the course is named after. You take the kingdom you wrote in 1.1 — all in one project — and split it into two. The kingdom's *rules* (buildings, resources, the math) move into a class library called `Kingdom.Engine`. The program that prints things to the terminal becomes a small `Kingdom.Console` project that *uses* the engine. Same code in the end; completely different layout. The point of today is to feel why that layout matters before any of the later phases ask you to live with it.
+This is the lesson the rest of the course is named after. You take the kingdom you wrote in 1.1 — all in one project — and split it into two. The kingdom's *rules* (buildings, resources, the math) move into a class library called `Kingdom.Engine`. The program that prints things to the terminal becomes a small `Kingdom.Console` project that *uses* the engine. Same code in the end, but a very different layout. The point of today is to see why that layout matters before the later phases ask you to use it.
 
-We're using a piece of vocabulary you'll meet a lot from here on: **shell**. A shell is whatever talks to the outside world — the console here, a web page later in the year, Roblox after that. The engine never talks to the outside. The shell does. The engine just knows about the kingdom; the shell knows about humans.
+We're introducing a word you'll see a lot from here on: **shell**. A shell is whatever talks to the outside world — the console here, a web page later in the year, Roblox after that. The engine never talks to the outside. The shell does. The engine only knows about the kingdom. The shell knows about people.
 
 > **Words to watch**
 >
@@ -16,11 +16,11 @@ We're using a piece of vocabulary you'll meet a lot from here on: **shell**. A s
 
 ## Why split
 
-In Module 1.1 your `Building`, `Resource`, `Kingdom`, and `Citizen` classes lived in the same project as `Program.cs`. That works for now. But ask yourself: if you wanted the same kingdom on a website later in the year, what would you do? You can't reuse `Program.cs` — websites don't have a console to print to. You'd be copying the kingdom classes out of one project and into another. The split today prevents that copy. The engine becomes the kingdom's logic; the console becomes one way of *playing* it. Phase 4's browser version will be a different way of playing the same logic. Phase 5's Roblox port will translate the same logic into Luau. The engine is the bet.
+In Module 1.1 your `Building`, `Resource`, `Kingdom`, and `Citizen` classes lived in the same project as `Program.cs`. That works for now. But ask yourself: if you wanted the same kingdom on a website later in the year, what would you do? You can't reuse `Program.cs` — websites don't have a console to print to. You'd be copying the kingdom classes out of one project and into another. The split today stops you from having to copy. The engine becomes the kingdom's logic. The console becomes one way of *playing* it. Phase 4's browser version will be a different way of playing the same logic. Phase 5's Roblox version will turn the same logic into Luau. The engine is the part you keep across all of them.
 
 ## Step 1 — create the new layout
 
-You have a `KingdomConsole` project from 1.1. We'll restructure into two:
+You have a `KingdomConsole` project from 1.1. We'll rearrange it into two:
 
 ```
 your-repo/
@@ -29,7 +29,7 @@ your-repo/
 │   ├─ Building.cs
 │   ├─ Citizen.cs
 │   ├─ Resource.cs
-│   ├─ ResourceLedger.cs            ← new — wraps the dictionary
+│   ├─ ResourceLedger.cs            ← new — a class around the dictionary
 │   └─ Kingdom.Engine.csproj
 ├─ Kingdom.Console/                 ← console app (no game logic)
 │   ├─ Program.cs
@@ -49,15 +49,15 @@ dotnet sln add Kingdom.Engine Kingdom.Console
 dotnet add Kingdom.Console reference Kingdom.Engine
 ```
 
-The last line is the important one. It writes a `<ProjectReference>` into `Kingdom.Console.csproj` that says *"the console project depends on the engine project."* The build system uses that line to compile the engine first, then the console with the engine's `.dll` available.
+The last line is the important one. It writes a `<ProjectReference>` into `Kingdom.Console.csproj` that says *"the console project depends on the engine project."* The build system reads that line, compiles the engine first, then compiles the console with the engine's `.dll` ready to use.
 
 ## Step 2 — move the classes into Engine
 
-Move `Building.cs`, `Citizen.cs`, `Resource.cs`, `Kingdom.cs` from your backup folder into `Kingdom.Engine/`. Open each one and change the namespace from `KingdomConsole` to `Kingdom.Engine`. The convention is namespaces match folders — same idea you'll meet again in Module 1.9.
+Move `Building.cs`, `Citizen.cs`, `Resource.cs`, `Kingdom.cs` from your backup folder into `Kingdom.Engine/`. Open each one and change the namespace from `KingdomConsole` to `Kingdom.Engine`. The rule is that namespaces match folders — the same idea you'll see again in Module 1.9.
 
 ## Step 3 — introduce `ResourceLedger`
 
-The dictionary on `Kingdom` is going to grow logic over the next few modules — refusing to spend more than you have, refusing negative amounts, and so on. That's class-shaped behaviour, not dictionary-shaped. Wrap it now while it's small.
+The dictionary on `Kingdom` is going to gain rules over the next few modules — refusing to spend more than you have, refusing negative amounts, and so on. A plain dictionary can't do that on its own; a class can. So let's put it inside a class now, while it's still small.
 
 `Kingdom.Engine/ResourceLedger.cs`:
 
@@ -94,7 +94,7 @@ public class ResourceLedger
 }
 ```
 
-The dictionary is `private readonly` — outside code can't reach it. The only way to change it is through `Add` and `Spend`, both of which check their inputs. `Snapshot()` returns it as `IReadOnlyDictionary` — outside code can read all four amounts in a loop, but it can't write.
+The dictionary is `private readonly` — code outside the class can't reach it. The only way to change it is through `Add` and `Spend`, and both of those check their inputs first. `Snapshot()` gives it back as an `IReadOnlyDictionary` — outside code can read all four amounts in a loop, but it can't write to them.
 
 Update `Kingdom.cs`:
 
@@ -151,7 +151,7 @@ void PrintKingdom(Kingdom.Engine.Kingdom k)
 }
 ```
 
-Notice the type is `Kingdom.Engine.Kingdom` — the full name, because `Kingdom` is also the name of a namespace and C# wants to know which one you mean. (You'll meet this same situation again in Module 1.4 with the `global::` prefix in tests; same family of compiler-confusion.)
+Notice the type is `Kingdom.Engine.Kingdom` — the full name. We write the full name because `Kingdom` is also the name of a namespace, so C# needs to know which one you mean. (You'll see this same situation again in Module 1.4, with the `global::` prefix in tests. It's the same kind of confusion for the compiler.)
 
 ## Step 5 — build and run
 
@@ -164,21 +164,21 @@ Same output as 1.1. But the layout is completely different.
 
 ## Tinker
 
-Open `Kingdom.Engine/Kingdom.Engine.csproj`. There's no `<OutputType>Exe</OutputType>` line — that's why it's a library, not an executable. Try adding one. The build fails because the engine has no `Main` method. Take the line back out. The engine has nothing to *run*; it's a thing other projects use.
+Open `Kingdom.Engine/Kingdom.Engine.csproj`. There's no `<OutputType>Exe</OutputType>` line — that's why it's a library, not a program you can run. Try adding one. The build fails, because the engine has no `Main` method. Take the line back out. The engine has nothing to *run* on its own; it's a thing other projects use.
 
-Try adding `Console.WriteLine("hello");` to a method on `Kingdom`. It compiles, but you've broken the rule. The engine is not allowed to print. If something inside the engine wants to communicate, it returns a value; the shell decides what to do with it.
+Try adding `Console.WriteLine("hello");` to a method on `Kingdom`. It compiles, but you've broken the rule. The engine is not allowed to print. If something inside the engine needs to say something, it returns a value, and the shell decides what to do with it.
 
-Try changing `_amounts` in `ResourceLedger` from `private` to `public`. The compiler still likes it. Now external code could reach in and write whatever it likes. Why is that bad? Because the ledger is supposed to refuse negative amounts and refuse overspending — `_amounts.Add(...)` directly skips both checks. Make it private again.
+Try changing `_amounts` in `ResourceLedger` from `private` to `public`. The compiler is still happy. But now outside code could reach in and write whatever it wants. Why is that bad? Because the ledger is supposed to refuse negative amounts and refuse overspending, and calling `_amounts.Add(...)` directly skips both of those checks. Make it private again.
 
 ## The through-line
 
-The course has a single rule we keep coming back to — the **through-line**. It shows up in different flavours per module, but the underlying idea stays the same. This module's flavour: **the engine never references the shell. The shell references the engine.** If you ever find yourself wanting to call `Console.WriteLine` from inside the engine, that's the engine asking to be coupled to the console. The fix is always the same — the engine returns a value, and the shell decides what to print.
+The course has one rule we keep coming back to — the **through-line**. It looks a little different in each module, but the idea underneath stays the same. In this module the rule is: **the engine never references the shell. The shell references the engine.** If you ever want to call `Console.WriteLine` from inside the engine, that's the engine trying to tie itself to the console. The fix is always the same — the engine returns a value, and the shell decides what to print.
 
-You'll see this rule grow as the course goes. In Phase 2 the engine returns save data and the persistence shell writes it to a file. In Phase 3 the engine returns a result and the web shell wraps it in JSON. The engine never knows how it's being used. That ignorance is what lets the same engine work in five different runtimes.
+You'll see this rule grow as the course goes on. In Phase 2 the engine returns save data, and the saving shell writes it to a file. In Phase 3 the engine returns a result, and the web shell turns it into JSON. The engine never knows how it's being used. Because it doesn't know, the same engine can work in five different places.
 
 ## What you just did
 
-You took a single project and split it into two — an engine that holds the kingdom's rules and a console that talks to a human. You introduced `ResourceLedger`, the first class whose whole job is to *protect* a dictionary from being misused. You wrote a project reference in one direction (console depends on engine) and never the other way, which is the whole point — the engine is the part you'll keep, the console is the part you'll replace four times this year. Same output as 1.1, but the codebase has been rearranged, and that rearrangement is the entire bet of the course.
+You took a single project and split it into two — an engine that holds the kingdom's rules, and a console that talks to a person. You added `ResourceLedger`, the first class whose whole job is to *protect* a dictionary from being used wrongly. You wrote a project reference in one direction (console depends on engine) and never the other way. That one direction is the whole point: the engine is the part you'll keep, and the console is the part you'll replace four times this year. Same output as 1.1, but the code is arranged differently, and that new arrangement is the main idea of the course.
 
 **Key concepts you can now name:**
 
@@ -199,4 +199,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 1.3 introduces unit testing. Tests are about the engine, not the shell — and now that the engine is a project of its own, a test project can reference it without dragging the console along. The split you did today is what makes the next lesson possible.
+Module 1.3 introduces unit testing. Tests are about the engine, not the shell — and now that the engine is its own project, a test project can reference it without pulling in the console too. The split you did today is what makes the next lesson possible.

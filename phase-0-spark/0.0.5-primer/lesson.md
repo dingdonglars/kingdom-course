@@ -1,8 +1,8 @@
 # Module 0.0.5 — Primer: what's actually on your computer
 
-Tools are installed and the two folders are on your disk. Before you write any code, here's a half-hour walk through the parts of the computer that the rest of the course will assume you understand. Folders and files. The terminal. What "running a command" actually means. How to read a path. None of this is programming yet — it's the floor under the programming. Get this clear and the next module (and every module after) is much less mysterious.
+The tools are installed and the two folders are on your computer. Before you write any code, here's a half-hour walk through the parts of the computer that the rest of the course expects you to understand. Folders and files. The terminal. What "running a command" really means. How to read a path. None of this is programming yet. It's what the programming sits on top of. Get this clear and the next module, and every module after, is much easier to follow.
 
-You'll have File Explorer and Windows Terminal open in two windows for most of this. Hands-on; nothing to install.
+For most of this you'll have File Explorer and Windows Terminal open in two windows. You do it by hand; there's nothing to install.
 
 > **Words to watch**
 >
@@ -21,32 +21,32 @@ You'll have File Explorer and Windows Terminal open in two windows for most of t
 
 ## Step 1 — Folders and files
 
-Open **File Explorer** (Windows key + E). Click *This PC* in the left sidebar. You see drives — usually at least `C:` (where Windows lives) and maybe `D:`, `E:`, etc. Inside each drive is a tree of *folders*; inside folders are more folders or *files*. That's the whole filesystem.
+Open **File Explorer** (Windows key + E). Click *This PC* in the left sidebar. You see drives — usually at least `C:` (where Windows lives), and maybe `D:`, `E:`, and so on. Inside each drive is a tree of *folders*. Inside folders are more folders, or *files*. That is the whole filesystem.
 
-Click into `C:\` (just `Local Disk (C:)` in the sidebar). Look around. You'll see folders like `Windows`, `Program Files`, `Users`. Don't poke at these — Windows lives in some of them and gets cranky if you delete things. They're just here so you know they exist.
+Click into `C:\` (it's called `Local Disk (C:)` in the sidebar). Look around. You'll see folders like `Windows`, `Program Files`, and `Users`. Don't change these. Windows lives in some of them and breaks if you delete things. They're just here so you know they exist.
 
-Now click into `C:\code\` (the folder you made on Day 1). Inside, you should see exactly two folders: `kingdom-course/` (the course you cloned) and `kingdom/` (your own repo, currently empty).
+Now click into `C:\code\` (the folder you made on Day 1). Inside, you should see exactly two folders: `kingdom-course/` (the course you cloned) and `kingdom/` (your own repo, empty for now).
 
-Open `kingdom-course/`. Look around. *Folders inside folders inside folders.* That's the shape. Every file lives at the bottom of some folder tree; every folder has a parent (except the drive itself); navigating means going *up* (back toward the drive) or *down* (deeper into a subfolder).
+Open `kingdom-course/`. Look around. *Folders inside folders inside folders.* That's how it's laid out. Every file lives at the bottom of some folder tree. Every folder has a parent, except the drive itself. Moving around means going *up* (back toward the drive) or *down* (deeper into a folder).
 
-Mental model: think of the filesystem as a tree turned on its head — the drive is the root at the top, branches are folders, leaves are files. Or, if you'd rather: think of folders like Roblox places — a place can contain other places and items; you walk into one to see what's inside.
+Here's a way to picture it. Think of the filesystem as a tree turned upside down: the drive is the root at the top, the branches are folders, and the leaves are files. Or, if you prefer, think of folders like Roblox places. A place can hold other places and items, and you walk into one to see what's inside.
 
-> **The folder you're in matters.** Most things in this course act on *the folder you're currently in*. Run a command in the wrong folder, you get a confusing error. Whenever something doesn't work, your first check is *"am I in the right folder?"*
+> **The folder you're in matters.** Most things in this course act on *the folder you're currently in*. Run a command in the wrong folder and you get a confusing error. Whenever something doesn't work, the first thing to check is *"am I in the right folder?"*
 
 ### Two folders, two roles
 
-Your `C:\code\` has exactly two folders right now, and they're not the same kind of thing.
+Your `C:\code\` has exactly two folders right now, and they do different jobs.
 
-- `kingdom-course/` — **the course textbook**. Lessons, starter kit, glossary. You read from it; you never edit it. When the course updates, you pull the changes down with `git pull` from inside the folder. Think of it as a library book.
-- `kingdom/` — **your repo**. Everything you write goes here. You commit, push, and one day a real PR review happens here. This is the folder with your name on it.
+- `kingdom-course/` — **the course textbook**. Lessons, starter kit, glossary. You read from it; you never edit it. When the course gets an update, you pull the changes down with `git pull` from inside the folder. Think of it as a library book.
+- `kingdom/` — **your repo**. Everything you write goes here. You commit, push, and one day a real pull-request review happens here. This is the folder with your name on it.
 
-**The rule:** never edit anything inside `kingdom-course/`. Not the lessons, not the starter files, not a typo you spot. If something's wrong, post in `#help` — Lars fixes it in the source and you `git pull` the fix. Editing your local copy makes your next `git pull` fail with merge conflicts; small problem becomes a big confusing one fast.
+**The rule:** never edit anything inside `kingdom-course/`. Not the lessons, not the starter files, not even a typo you spot. If something's wrong, post in `#help`. Lars fixes it in the original and you `git pull` the fix. If you edit your own copy, your next `git pull` fails with a merge conflict. A small problem turns into a big, confusing one fast.
 
-**Working with both in VS Code.** Open each as its own window: *File → Open Folder* → `C:\code\kingdom`, then in a fresh VS Code window, *File → Open Folder* → `C:\code\kingdom-course`. Two VS Code icons in the taskbar, one per repo, title bar shows which is which. Don't merge them into one workspace — keeping them as two windows means you're physically less likely to type into the wrong one.
+**Working with both in VS Code.** Open each one in its own window. Use *File → Open Folder* → `C:\code\kingdom`. Then, in a new VS Code window, use *File → Open Folder* → `C:\code\kingdom-course`. Now you have two VS Code icons in the taskbar, one per repo, and the title bar tells you which is which. Don't join them into one workspace. Keeping them as two windows makes it much harder to type into the wrong one by accident.
 
 ## Step 2 — File extensions: how programs know what you've got
 
-Every file has a name and (usually) an *extension* — the bit after the dot. The extension tells programs what kind of content the file holds. It's not magic; it's a convention everyone agrees to.
+Every file has a name and, usually, an *extension* — the part after the dot. The extension tells programs what kind of content the file holds. It's not magic. It's just a habit everyone agrees to follow.
 
 In `C:\code\kingdom-course\`, you'll see files with different extensions:
 
@@ -60,16 +60,16 @@ In `C:\code\kingdom-course\`, you'll see files with different extensions:
 
 Two things worth knowing:
 
-1. **The extension is part of the filename**, even though Windows often hides it. If you see `Program` in File Explorer, the actual filename on disk is probably `Program.cs`. To make Windows always show extensions: in File Explorer, click *View* → *Show* → *File name extensions*. Tick it. **Do that now.** Hidden extensions cause confusing bugs (you save `Program.txt` thinking you saved `Program.cs`).
-2. **Renaming the extension doesn't change the contents.** Renaming `Program.cs` to `Program.txt` doesn't make it text — it's still C# code; you've just lied to whoever opens it. Tools that act based on extension will now treat it wrong.
+1. **The extension is part of the filename**, even though Windows often hides it. If you see `Program` in File Explorer, the real filename on disk is probably `Program.cs`. To make Windows always show extensions: in File Explorer, click *View* → *Show* → *File name extensions*, and tick it. **Do that now.** Hidden extensions cause confusing bugs. For example, you save `Program.txt` while thinking you saved `Program.cs`.
+2. **Renaming the extension doesn't change what's inside.** If you rename `Program.cs` to `Program.txt`, it doesn't turn into text. It's still C# code; the name now says something untrue about it. Any tool that decides what to do based on the extension will now handle it the wrong way.
 
 ## Step 3 — The terminal, and what PowerShell actually is
 
-Open **Windows Terminal**. You see a prompt — `PS C:\Users\YourName>` or similar — followed by a blinking cursor waiting for you to type. The thing you're looking at is *the terminal* — a window where text goes in and text comes out.
+Open **Windows Terminal**. You see a prompt — `PS C:\Users\YourName>` or something like it — and then a blinking cursor, waiting for you to type. What you're looking at is *the terminal*: a window where text goes in and text comes out.
 
-But what's actually *processing* what you type? That's the **shell**. The shell is a program that runs *inside* the terminal, reads what you type, and turns it into actions. On Windows the default shell is **PowerShell**. On Mac and Linux it's typically **bash** or **zsh**. Different shells, same idea: type a command, it runs, you see output.
+But what actually *reads and runs* what you type? That's the **shell**. The shell is a program that runs *inside* the terminal. It reads what you type and turns it into actions. On Windows the default shell is **PowerShell**. On Mac and Linux it's usually **bash** or **zsh**. Different shells, same idea: you type a command, it runs, you see the output.
 
-Think of it like a chat window for your computer. You type a question or instruction, the computer types back. Difference from a regular chat: the computer doesn't get personality, it gets very specific. Type the right command, you get the answer. Type a wrong one, you get an error message — usually one that tells you exactly what's missing.
+Think of it like a chat window for your computer. You type a question or an instruction, and the computer types back. The difference from a normal chat: the computer has no personality, and it needs you to be exact. Type the right command and you get the answer. Type a wrong one and you get an error message — usually one that tells you exactly what's missing.
 
 Try this. In Windows Terminal, type:
 
@@ -77,7 +77,7 @@ Try this. In Windows Terminal, type:
 cd C:\code
 ```
 
-Hit Enter. Your prompt changes — now it shows you're in `C:\code`. The command `cd` stands for *"change directory"* and it moved your *working directory* to `C:\code`. *Working directory* is just *"the folder this terminal is currently sitting in."*
+Press Enter. Your prompt changes — it now shows you're in `C:\code`. The command `cd` stands for *"change directory"*, and it moved your *working directory* to `C:\code`. *Working directory* just means *"the folder this terminal is currently in."*
 
 Now type:
 
@@ -85,25 +85,25 @@ Now type:
 ls
 ```
 
-Hit Enter. You see a listing of what's in `C:\code\` — the same two folders File Explorer showed you in Step 1: `kingdom-course/` and `kingdom/`. `ls` is short for *"list"*. The terminal can see exactly what File Explorer can see; it just shows it as text instead of icons.
+Press Enter. You see a list of what's in `C:\code\` — the same two folders File Explorer showed you in Step 1: `kingdom-course/` and `kingdom/`. `ls` is short for *"list"*. The terminal can see exactly what File Explorer can see. It just shows it as text instead of icons.
 
-Type `cd kingdom-course` then `ls` again. You see the inside of the course repo — same files you saw in File Explorer. Two windows on the same data.
+Type `cd kingdom-course`, then `ls` again. You see what's inside the course repo — the same files you saw in File Explorer. Two windows looking at the same thing.
 
-> **Why two ways to look at the same thing?** File Explorer is great for browsing and dragging things around. The terminal is great for *automation* — running tools, building code, doing the same thing on a hundred files at once. Most of programming is done in the terminal because most programming tools are command-line tools.
+> **Why two ways to look at the same thing?** File Explorer is great for browsing and dragging things around. The terminal is great for getting the computer to do work for you: running tools, building code, doing the same thing to a hundred files at once. Most programming is done in the terminal, because most programming tools are run by typing commands.
 
 ## Step 4 — What "running a command" actually means
 
 This is the most important section in the primer.
 
-When you type `cd C:\code` and hit Enter, PowerShell runs that command and finishes — instantly, basically. Your prompt comes back, ready for the next command. *That command is done.*
+When you type `cd C:\code` and press Enter, PowerShell runs that command and finishes almost instantly. Your prompt comes back, ready for the next command. *That command is done.*
 
-But some commands take time. Or never finish on their own. When you eventually type `dotnet run`, that command will:
+But some commands take time. Some never finish on their own. When you later type `dotnet run`, that command will:
 
-1. Compile your C# code into a program.
+1. Turn your C# code into a program. (Turning code into a program is called *compiling*.)
 2. Start that program.
-3. Wait for the program to finish (which might be milliseconds, or might be forever if the program loops).
+3. Wait for the program to finish. That might take a few milliseconds, or it might never end if the program loops forever.
 
-While `dotnet run` is *running*, the terminal looks busy — it's showing the program's output, but it isn't accepting new commands. The prompt is gone or frozen. **The program is alive, inside PowerShell, inside the terminal window.**
+While `dotnet run` is *running*, the terminal looks busy. It's showing the program's output, but it won't take new commands. The prompt is gone or frozen. **The program is running, inside PowerShell, inside the terminal window.**
 
 ```
 Windows Terminal  (the window you can see)
@@ -111,40 +111,40 @@ Windows Terminal  (the window you can see)
        └── your program  (the process running inside PowerShell)
 ```
 
-Three layers. The window contains the shell; the shell contains the running program. **If you close the window, you kill PowerShell, and PowerShell kills the program with it.** That's how "running" works on a computer — running things live inside other running things, and the chain has to stay alive.
+Three layers. The window holds the shell; the shell holds the running program. **If you close the window, you stop PowerShell, and that stops the program with it.** That's how "running" works on a computer: running things live inside other running things, and the whole chain has to stay open.
 
-This is why, on Day 1, the rule was *don't close PowerShell while a command is running*. Closing the window mid-command is like ripping the power cord out of a microwave mid-cycle: whatever was happening stops, half-cooked. Sometimes that's fine. Sometimes it leaves a mess.
+This is why, on Day 1, the rule was *don't close PowerShell while a command is running*. Closing the window in the middle of a command is like pulling the power cord out of a microwave halfway through: whatever was happening just stops, half done. Sometimes that's fine. Sometimes it leaves a mess.
 
 **The right way to stop a running program:**
 
-- If the program finishes on its own — great, it just ends, you get your prompt back.
-- If you want to stop it early, hit `Ctrl + C`. That sends a *"please stop"* signal. The program usually stops, cleanly, and gives you your prompt back.
-- *Then* you can close the window if you want. The window is just the container; closing it after stopping the program is fine.
+- If the program finishes on its own, great. It just ends, and you get your prompt back.
+- If you want to stop it early, press `Ctrl + C`. That sends a *"please stop"* signal. The program usually stops cleanly and gives you your prompt back.
+- *Then* you can close the window if you want. The window is just the container. Closing it after the program has stopped is fine.
 
-The vocabulary worth knowing: a *running program* is called a **process**. Your computer has hundreds of processes alive right now (Windows itself, Chrome, the terminal, every game and app you have open). Each one is a thing the computer is keeping alive. When a process ends, it disappears.
+One word worth knowing: a *running program* is called a **process**. Your computer has hundreds of processes running right now — Windows itself, Chrome, the terminal, every game and app you have open. Each one is something the computer is keeping going. When a process ends, it disappears.
 
-> **Save vs run is not the same thing.** Saving a `.cs` file writes the code to disk — that's permanent until you delete it. Running it (`dotnet run`) starts a process that's alive only while the command is alive. *Saving the code does not run it; running it does not save anything new to disk.* The two are completely separate moves. People mix them up at first; you won't, now.
+> **Saving and running are not the same thing.** Saving a `.cs` file writes the code to disk, and it stays there until you delete it. Running it (`dotnet run`) starts a process that exists only while the command is running. *Saving the code does not run it. Running it does not save anything new to disk.* They are two completely separate actions. People mix them up at first; you won't now.
 
 ## Step 5 — The .NET SDK: your C# toolkit
 
-That `dotnet run` command from the previous step. What's `dotnet`? Where did it come from?
+Let's look at that `dotnet run` command from the last step. What is `dotnet`? Where does it come from?
 
-When you installed the **.NET SDK** on Day 1, what actually landed on your computer was a *toolkit* — a bundle of programs, libraries, and built-in rules that together turn C# code into runnable software. *SDK* stands for *Software Development Kit*; lots of platforms have one (the iOS SDK, the Android SDK, the Roblox-Studio-as-an-SDK). They all mean roughly the same thing: *"here's everything you need to build software for this platform, in one install."*
+When you installed the **.NET SDK** on Day 1, what you really added to your computer was a *toolkit*: a set of programs, libraries, and built-in rules that together turn C# code into a working program. *SDK* stands for *Software Development Kit*. Lots of platforms have one — the iOS SDK, the Android SDK, Roblox Studio as a kind of SDK. They all mean roughly the same thing: *"here is everything you need to build software for this platform, in one install."*
 
-`dotnet` is the headline command that fronts the SDK. Three flavours of it you'll meet often:
+`dotnet` is the main command for the SDK. Three forms of it you'll use often:
 
-- `dotnet --version` — print the installed SDK version (you used this on Day 1 to confirm install).
-- `dotnet new console -n MyApp` — create a new C# console-application project called `MyApp`. This makes a folder, drops in a `Program.cs` and a `MyApp.csproj`, and you have something buildable.
+- `dotnet --version` — print the installed SDK version (you used this on Day 1 to check the install).
+- `dotnet new console -n MyApp` — create a new C# console-application project called `MyApp`. This makes a folder, puts a `Program.cs` and a `MyApp.csproj` inside it, and now you have something you can build.
 - `dotnet run` — *compile* the C# code in the current project, then *run* the result. Two steps in one command.
 
 What's *inside* the SDK that makes `dotnet run` work?
 
-- The **compiler** — a program that turns your `.cs` source files into a `.dll` or `.exe` your computer can execute. C# is not read line-by-line at runtime; it gets compiled to a binary form first.
-- The **runtime** — the engine that loads and runs the compiled output. Even after compilation, C# programs need this engine to work. The SDK includes one.
-- **Built-in libraries** — pre-written code your programs can use without installing anything extra. When you call `Console.WriteLine` in the next module, that method lives in a built-in library that came with the SDK.
-- The **NuGet** client — when you need a *third-party* library (not built in), `dotnet` pulls it from a public registry called NuGet and wires it in. You won't use this for a while; just know the word.
+- The **compiler** — a program that turns your `.cs` source files into a `.dll` or `.exe` that your computer can run. C# is not read line by line as it runs; it gets compiled into a form the computer understands first.
+- The **runtime** — the engine that loads and runs the compiled result. Even after compiling, C# programs need this engine to work. The SDK includes one.
+- **Built-in libraries** — code that comes ready-made, so your programs can use it without installing anything extra. When you call `Console.WriteLine` in the next module, that method lives in a built-in library that came with the SDK.
+- The **NuGet** tool — when you need a library that someone else wrote and that isn't built in, `dotnet` downloads it from a public store called NuGet and adds it to your project. You won't use this for a while; just know the word.
 
-So when you run `dotnet --version` and see `10.0.x`, you're confirming **.NET 10's SDK is installed and ready to compile and run C# code**. That's what the toolbox under your hood holds.
+So when you run `dotnet --version` and see `10.0.x`, you're confirming that **.NET 10's SDK is installed and ready to compile and run C# code**. That's what's inside the toolkit.
 
 ## Step 6 — Paths: addresses for files
 
@@ -155,20 +155,20 @@ A **path** is the full address of a file or folder. `C:\code\kingdom\Program.cs`
 - `\kingdom\` — a folder inside `code`
 - `\Program.cs` — the file inside `kingdom`
 
-The `\` (backslash) is Windows's separator between folders. On Mac and Linux it's `/` (forward slash). Some Windows tools accept both. Stick with `\` and you'll never be wrong on this OS.
+The `\` (backslash) is what Windows uses to separate folders. On Mac and Linux it's `/` (forward slash). Some Windows tools accept both. Stick with `\` and you'll always be right on Windows.
 
-Two flavours of path you'll see all year:
+Two kinds of path you'll see all year:
 
-**Absolute paths** start at a drive root: `C:\code\kingdom\Program.cs`. They work no matter where the terminal is currently sitting — every part of the address is spelled out.
+**Absolute paths** start at a drive root, like `C:\code\kingdom\Program.cs`. They work no matter which folder the terminal is in, because every part of the address is written out.
 
-**Relative paths** start from the working directory. If your terminal is in `C:\code\kingdom\`, then `Program.cs` is a relative path that means "the `Program.cs` file in this folder." Likewise `RoastOMatic\Program.cs` means "the `Program.cs` inside the `RoastOMatic` folder inside this folder."
+**Relative paths** start from the working directory. If your terminal is in `C:\code\kingdom\`, then `Program.cs` is a relative path meaning "the `Program.cs` file in this folder." In the same way, `RoastOMatic\Program.cs` means "the `Program.cs` inside the `RoastOMatic` folder inside this folder."
 
 Two shortcuts that show up everywhere:
 
 - `.` (single dot) means *"this folder"* — the current working directory. `code .` opens VS Code on this folder. `git add .` stages every change in this folder.
-- `..` (two dots) means *"the parent folder"* — one level up. `cd ..` moves the terminal up one level. From `C:\code\kingdom\`, `cd ..` lands you in `C:\code\`.
+- `..` (two dots) means *"the parent folder"* — one level up. `cd ..` moves the terminal up one level. From `C:\code\kingdom\`, `cd ..` takes you to `C:\code\`.
 
-Combine them: from `C:\code\kingdom\`, the path `..\kingdom-course\STANDARDS.md` means *"go up to `code`, then into `kingdom-course`, then to `STANDARDS.md`."* Reading paths gets quick once you've stared at a few.
+Put them together: from `C:\code\kingdom\`, the path `..\kingdom-course\STANDARDS.md` means *"go up to `code`, then into `kingdom-course`, then to `STANDARDS.md`."* Reading paths gets quick once you've read a few.
 
 Try this in Windows Terminal:
 
@@ -181,25 +181,25 @@ cd kingdom
 ls
 ```
 
-Three `ls` outputs, three different folders, all reached by walking the path tree. You're now navigating like a developer.
+Three `ls` outputs, three different folders, all reached by walking through the path tree. You're now finding your way around the folders the way a developer does.
 
 ## Step 7 — Keeping order: why `C:\code\`, why not `Documents`
 
 You put your year of work under `C:\code\`. Why not under `Documents`?
 
-Because `Documents` is special on Windows. Two reasons it bites you:
+Because `Documents` is a special folder on Windows. Two reasons it causes trouble:
 
-1. **OneDrive often syncs `Documents` automatically.** OneDrive is fine for Word files; it's *terrible* for code. It locks files mid-save, copies half-written commits, sometimes silently renames things. Git and OneDrive fight; git loses. You don't want that fight.
-2. **It mixes domains.** `Documents` ends up holding school PDFs, screenshots, downloaded forms, a thesis your cousin wrote in 2019. Code in there gets lost. Code in `C:\code\` is *only* code. You always know where to look.
+1. **OneDrive often copies `Documents` to the cloud on its own.** OneDrive is fine for Word files, but it's *terrible* for code. It locks files while you're saving, copies half-finished commits, and sometimes renames things without telling you. OneDrive and git get in each other's way, and git is the one that loses. You don't want that.
+2. **It mixes everything together.** `Documents` ends up holding school PDFs, screenshots, downloaded forms, and a report your cousin wrote in 2019. Code gets lost in there. Code in `C:\code\` is *only* code, so you always know where to look.
 
-The "keeping order" habit is small but pays off all year:
+Keeping things tidy is a small habit, but it helps all year:
 
-- **One root folder for code.** That's `C:\code\`. Everything code-related goes inside it.
-- **One folder per project, directly under the root.** `C:\code\kingdom\`, `C:\code\kingdom-course\`, plus future ones. Don't nest projects inside each other.
-- **Project folders match repo names.** Your repo on GitHub is `kingdom`; the folder on disk is `kingdom`. Same name, no surprises.
-- **Don't move folders around manually after git is involved.** Once a folder is a git repo, treat the path like part of its identity. If you really need to move it, `git status` should be clean first, then move.
+- **One main folder for code.** That's `C:\code\`. Everything to do with code goes inside it.
+- **One folder per project, directly inside that folder.** `C:\code\kingdom\`, `C:\code\kingdom-course\`, and others later. Don't put one project folder inside another.
+- **Project folders match repo names.** Your repo on GitHub is `kingdom`, and the folder on disk is `kingdom`. Same name, no surprises.
+- **Don't move folders by hand once git is involved.** Once a folder is a git repo, treat its path as part of what it is. If you really need to move it, first make sure `git status` is clean, then move it.
 
-These aren't laws — they're conventions that prevent specific kinds of confusion. Adopt them now and you skip a class of *"why isn't this working"* moments.
+These aren't rules you'll be tested on. They're habits that prevent certain kinds of confusion. Start them now and you'll avoid a whole set of *"why isn't this working"* moments.
 
 ---
 
@@ -207,50 +207,50 @@ These aren't laws — they're conventions that prevent specific kinds of confusi
 
 Open **File Explorer** and **Windows Terminal** side by side on the screen.
 
-In File Explorer, navigate to `C:\code\kingdom-course\`. In Windows Terminal, type `cd C:\code\kingdom-course` and `ls`. Notice the same files appear in both. Same folder, two views.
+In File Explorer, go to `C:\code\kingdom-course\`. In Windows Terminal, type `cd C:\code\kingdom-course` and `ls`. Notice that the same files appear in both. One folder, two views.
 
 In File Explorer, double-click into `phase-0-spark/`. In Windows Terminal, type `cd phase-0-spark` and `ls`. Same place again, same files.
 
-Try going up: in File Explorer, click the *back* arrow or `phase-0-spark` in the breadcrumbs. In Windows Terminal, `cd ..`. Confirm both went up to `kingdom-course`.
+Now try going up. In File Explorer, click the *back* arrow, or click `phase-0-spark` in the path bar at the top. In Windows Terminal, type `cd ..`. Check that both went up to `kingdom-course`.
 
-Now this: in Windows Terminal, type `code .` (the dot — *this folder*). VS Code opens on `kingdom-course`. **The same `kingdom-course` you've been looking at in File Explorer and listing in PowerShell.** Three windows on the same folder, three different ways of looking at it.
+Now this: in Windows Terminal, type `code .` (with the dot, which means *this folder*). VS Code opens on `kingdom-course`. **It's the same `kingdom-course` you've been looking at in File Explorer and listing in PowerShell.** Three windows on the same folder, three different ways of looking at it.
 
-That's the whole picture. Folders and files on disk; one or more programs (File Explorer, PowerShell, VS Code) showing them in different shapes; commands acting on whatever folder the program happens to be sitting in.
+That's the whole picture. Folders and files sit on the disk. One or more programs (File Explorer, PowerShell, VS Code) show them in different ways. Commands act on whichever folder the program happens to be in.
 
 ---
 
 ## What you just did
 
-You walked the filesystem. You saw `C:\` and the tree of folders inside it; you understood that File Explorer and PowerShell are two views on the same underlying disk. You met file extensions and turned on *"show extensions"* in File Explorer so they stop being hidden. You learned that the terminal is a window, the shell (PowerShell on Windows) runs inside it, and the programs you launch run inside the shell — three layers, kill one and you kill what's inside it. You read absolute and relative paths, used `cd` and `..` to navigate, and adopted the conventions that keep `C:\code\` an orderly working folder for the year. Nothing here is "code" yet — but every line of code you write will live in this filesystem, run in this shell, and follow these path rules.
+You walked through the filesystem. You saw `C:\` and the tree of folders inside it, and you learned that File Explorer and PowerShell are two views of the same disk. You met file extensions and turned on *"show extensions"* in File Explorer so they stop being hidden. You learned that the terminal is a window, the shell (PowerShell on Windows) runs inside it, and the programs you start run inside the shell — three layers, where stopping one stops everything inside it. You read absolute and relative paths, used `cd` and `..` to move around, and picked up the habits that keep `C:\code\` a tidy work folder for the year. None of this is "code" yet, but every line of code you write will live in this filesystem, run in this shell, and follow these path rules.
 
 **Key concepts you can now name:**
 
 - *filesystem* — the tree of folders and files; drives at the top, files at the leaves
 - *path* — the full address of a file; absolute starts at the drive, relative starts at the working directory
 - *terminal vs shell* — the window vs the program inside it that runs commands; PowerShell is Windows's default shell
-- *process* — a program that's currently alive; closing the terminal kills processes inside it
-- *.NET SDK* — the toolkit `dotnet` fronts; compiler + runtime + libraries + NuGet client, all installed Day 1
+- *process* — a program that is currently running; closing the terminal stops the processes inside it
+- *.NET SDK* — the toolkit you run with `dotnet`; compiler plus runtime plus libraries plus NuGet, all installed Day 1
 
 ## Quiz
 
-This is your first quiz, so a quick word on how these work — once, here. Future lessons close with the standard one-line pointer.
+This is your first quiz, so here's a quick word on how these work — just once, here. Later lessons end with the standard one-line pointer.
 
-**Quizzes are self-checks, not tests.** Five or six multiple-choice questions, no time limit, no marks. The point is *you* checking yourself — did the lesson sink in or not? A quiz that goes badly isn't a problem; it just shows the bits worth bringing up at the next weekly sync.
+**Quizzes are self-checks, not tests.** Five or six multiple-choice questions, no time limit, no marks. The point is for *you* to check yourself: did the lesson make sense or not? A quiz that goes badly isn't a problem. It just shows you which parts are worth bringing up at the next weekly sync.
 
-**Where you write your answers.** Normally, answers go in `journal/quiz-notes.md` inside your kingdom repo. Small thing about this first time: that file isn't in your repo yet — you'll copy it in during the next module (`0.0.8`), as part of the day-1 kit. So for this one quiz: write your answers anywhere fast — a notes app, paper, your phone, doesn't matter. Once you've copied the kit in during `0.0.8`, move them into `journal/quiz-notes.md` properly. From the next quiz on, you write straight into that file.
+**Where you write your answers.** Normally, your answers go in `journal/quiz-notes.md` inside your kingdom repo. One small thing about this first time: that file isn't in your repo yet. You'll copy it in during the next module (`0.0.8`), as part of the day-1 kit. So for this one quiz, write your answers anywhere quick — a notes app, paper, your phone, it doesn't matter. Once you've copied the kit in during `0.0.8`, move them into `journal/quiz-notes.md` properly. From the next quiz on, you write straight into that file.
 
-**The format is short.** One letter for each question, plus one quick sentence about *why* you picked it. You can see how it looks at the top of the template file — open `C:\code\kingdom-course\starter-template\journal\quiz-notes.md` if you want a peek. The *why* matters more than the letter. *"I picked b because..."* is the bit you'll re-read months later and actually get something out of. The letter alone — useless after a week.
+**The format is short.** One letter for each question, plus one quick sentence about *why* you picked it. You can see how it looks at the top of the template file — open `C:\code\kingdom-course\starter-template\journal\quiz-notes.md` if you want a look. The *why* matters more than the letter. *"I picked b because..."* is the part you'll re-read months later and actually learn something from. The letter on its own is no help after a week.
 
-**Don't write answers in `quiz.md` itself.** Keep that file clean. You might want to come back in a month or two and try the quiz again — a quiz with the answers already on it isn't really a quiz any more.
+**Don't write answers in `quiz.md` itself.** Keep that file clean. You might want to come back in a month or two and try the quiz again, and a quiz with the answers already on it isn't really a quiz any more.
 
-**If you're stuck on a question.** Try for twenty minutes. Re-read the part of the lesson the question is about. If it still won't come together, post in Slack `#help` (it's been live since Module 0.0). The 20-minute rule from `MENTOR-PROTOCOL.md` is for exactly this — there's a difference between *trying-and-getting-somewhere* and *staring-at-it-going-in-circles*.
+**If you're stuck on a question.** Try for twenty minutes. Re-read the part of the lesson the question is about. If it still doesn't come together, post in Slack `#help` (it's been open since Module 0.0). The 20-minute rule in `MENTOR-PROTOCOL.md` is for exactly this. There's a difference between trying and slowly getting somewhere, and just staring at it with no progress.
 
-**Then bring whichever question you were least sure about to the next weekly sync.** That's the rhythm: read the lesson, do the quiz, write the answers, talk through the shaky bits at the sync. Every module from here on follows this.
+**Then bring whichever question you were least sure about to the next weekly sync.** That's the rhythm: read the lesson, do the quiz, write your answers, talk through the parts you're unsure about at the sync. Every module from here on works this way.
 
-**There's a Portuguese copy if the English blocks you.** Every quiz has a `quiz.pt.md` next to the `quiz.md` — the same quiz, in Portuguese. The deal: always try the English `quiz.md` first. Only open `quiz.pt.md` when an English *word* trips you up — it's there to help with the language, not to skip the thinking.
+**There's a Portuguese copy if the English blocks you.** Every quiz has a `quiz.pt.md` next to the `quiz.md` — the same quiz, in Portuguese. Here's how to use it: always try the English `quiz.md` first. Only open `quiz.pt.md` when an English *word* stops you. It's there to help with the language, not to skip the thinking.
 
 Open `quiz.md` now.
 
 ## Next
 
-You now know what's underneath the lessons. **Module 0.0.8 — Roast-O-Matic** is your first solo session — you'll write a real program, commit it, push it, and post your first win. See you there.
+You now know what sits underneath the lessons. **Module 0.0.8 — Roast-O-Matic** is your first session on your own. You'll write a real program, commit it, push it, and post your first win. See you there.

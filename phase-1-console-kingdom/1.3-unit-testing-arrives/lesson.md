@@ -1,10 +1,10 @@
 # Module 1.3 — Unit Testing Arrives
 
-Today you write tests. Real ones, with xUnit and Shouldly, run with `dotnet test` from the terminal. By the end of the lesson the engine has eleven passing tests and a safety net to grow on. The split you did in 1.2 is what makes today possible — the test project will reference the engine the same way the console does, and never touch the console at all.
+Today you write tests. Real ones, with xUnit and Shouldly, run with `dotnet test` from the terminal. By the end of the lesson the engine has eleven passing tests. The split you did in 1.2 is what makes today possible — the test project will reference the engine the same way the console does, and never touch the console at all.
 
-The reason to test now, before the engine has any real complexity, is the same reason to learn the seatbelt before you drive. You wrote `Building.Upgrade()` last week. You're confident it works. Six weeks from now you'll change `Building` to support different upgrade costs per level. Did you break anything? Without tests, you find out when something downstream crashes — possibly minutes later, possibly months later. With tests, `dotnet test` tells you in 0.3 seconds.
+A unit test is a small piece of code that checks one thing your code does. Why write tests now, while the engine is still simple? Think of a smoke alarm. You put it up before there's a fire, not after. You wrote `Building.Upgrade()` last week. You're sure it works. Six weeks from now you'll change `Building` so each level costs a different amount. Did you break anything? Without tests, you only find out when something else crashes — maybe minutes later, maybe months later. With tests, `dotnet test` tells you in 0.3 seconds.
 
-Tests are also documentation that doesn't go stale. A test called `Upgrade_IncreasesLevelByOne` *says what `Upgrade` is supposed to do*. The test runs every time you build, so the documentation can never silently drift away from the truth.
+Tests are also a kind of documentation that stays correct. A test called `Upgrade_IncreasesLevelByOne` *says what `Upgrade` is supposed to do*. The test runs every time you build, so this description can never quietly stop matching the real code.
 
 > **Words to watch**
 >
@@ -43,7 +43,7 @@ your-repo/
 └─ Kingdom.slnx
 ```
 
-The test project references `Kingdom.Engine` directly, the same way `Kingdom.Console` does. It does not reference the console at all. Tests check the engine; they don't need to know there's a console.
+The test project references `Kingdom.Engine` directly, the same way `Kingdom.Console` does. It does not reference the console at all. Tests check the engine. They don't need to know there's a console.
 
 ## Step 2 — your first three tests
 
@@ -87,7 +87,7 @@ public class BuildingTests
 }
 ```
 
-The names follow the convention from `STANDARDS.md`: `Method_Scenario_ExpectedBehaviour`. Reads like documentation. Each test is structured the same way — *arrange* (set up the state), *act* (do the thing), *assert* (check the result). The comments are there in the first test as a teaching prop; they fall off in the rest because the structure is obvious once you've seen it.
+The names follow the rule from `STANDARDS.md`: `Method_Scenario_ExpectedBehaviour`. A name like that reads almost like a sentence. Each test is built the same way — *arrange* (set things up), *act* (do the thing), *assert* (check the result). The comments are in the first test to show you the three steps. The other tests leave them out, because the pattern is easy to see once you know it.
 
 Run from the repo root:
 
@@ -105,7 +105,7 @@ Three green check-marks. The engine has tests now.
 
 ## Step 3 — more tests, for `ResourceLedger`
 
-Create `tests/Kingdom.Engine.Tests/ResourceLedgerTests.cs`. The full file is in `starter/tests/Kingdom.Engine.Tests/ResourceLedgerTests.cs` — it contains eight tests that cover the empty-ledger initial state, `Add`, `Spend` (success and failure), the negative-amount throw, and a `[Theory]` with three `[InlineData]` cases for parameterised input.
+Create `tests/Kingdom.Engine.Tests/ResourceLedgerTests.cs`. The full file is in `starter/tests/Kingdom.Engine.Tests/ResourceLedgerTests.cs`. It has eight tests. They check the starting state of an empty ledger, `Add`, `Spend` (both when it works and when it fails), the error thrown for a negative amount, and a `[Theory]` with three `[InlineData]` cases that run the same test with different inputs.
 
 Run `dotnet test` again. You should now have 11 passing tests.
 
@@ -126,19 +126,19 @@ public void Add_StartingFromZero_GetReturnsAmount(Resource r, int amount)
 }
 ```
 
-Three `[InlineData]` lines becomes three test runs of the same method body, each with different inputs. Saves writing the same test three times. Use `[Theory]` whenever you'd be tempted to copy-paste a test and change one number.
+Three `[InlineData]` lines become three runs of the same test, each with different inputs. That saves you from writing the same test three times. Use `[Theory]` whenever you would otherwise copy a test and change one number.
 
 ## Tinker
 
-Make a test fail on purpose. Change one `.ShouldBe(50)` to `.ShouldBe(51)` and run `dotnet test`. Read the failure message — Shouldly tells you exactly what was expected and what it actually got, and it points at the line. Compare to xUnit's own assertion (`Assert.Equal(50, ledger.Get(Resource.Wood))`) — same effect, but the message is less helpful. That's why the project pulls Shouldly in.
+Make a test fail on purpose. Change one `.ShouldBe(50)` to `.ShouldBe(51)` and run `dotnet test`. Read the failure message — Shouldly tells you exactly what it expected and what it actually got, and it points at the line. Compare that to xUnit's own check (`Assert.Equal(50, ledger.Get(Resource.Wood))`) — same result, but the message helps you less. That's why the project uses Shouldly.
 
-Add a test for `Citizen` — call it `Citizen_New_StartsIdle` and check that `c.Job` is `"Idle"` right after construction. One file, three lines. You'll write a hundred of these this year.
+Add a test for `Citizen` — call it `Citizen_New_StartsIdle` and check that `c.Job` is `"Idle"` right after you create the citizen. One file, three lines. You'll write a hundred of these this year.
 
-Try `Should.NotThrow(() => ...)` to assert that some code *doesn't* throw. Useful when "doesn't crash" is the behaviour you care about.
+Try `Should.NotThrow(() => ...)` to check that some code *doesn't* throw an error. This is useful when "it doesn't crash" is the thing you care about.
 
 ## What you just did
 
-The engine has a safety net now. Eleven small tests that run in under a second and prove every claim you've made about `Building`, `Upgrade`, and `ResourceLedger`. You met the three pieces every test framework gives you — a way to mark a method as a test (`[Fact]`), a way to parameterise a test (`[Theory]` + `[InlineData]`), and a way to express expectations (`ShouldBe`). You also met the *arrange / act / assert* layout, which is the same in every testing framework you'll ever use, in any language. From here on, every new feature ships with the tests that prove it works — and the tests stay green forever, because if anything breaks them, you'll see it before you commit.
+The engine is protected by tests now. Eleven small tests that run in under a second and prove everything you've said about `Building`, `Upgrade`, and `ResourceLedger`. You met the three pieces every test framework gives you — a way to mark a method as a test (`[Fact]`), a way to run a test with several inputs (`[Theory]` + `[InlineData]`), and a way to say what you expect (`ShouldBe`). You also met the *arrange / act / assert* layout, which is the same in every testing framework you'll ever use, in any language. From here on, every new feature comes with the tests that prove it works — and the tests stay green, because if anything breaks them, you'll see it before you commit.
 
 **Key concepts you can now name:**
 
@@ -159,4 +159,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 1.4 adds the **game loop** — the tick that makes the kingdom move forward in time. The tests you wrote today will catch any regression there, and we'll add five more for the new behaviour. Eleven becomes sixteen.
+Module 1.4 adds the **game loop** — the tick that makes the kingdom move forward in time. The tests you wrote today will catch anything that breaks there, and we'll add five more for the new behaviour. Eleven becomes sixteen.

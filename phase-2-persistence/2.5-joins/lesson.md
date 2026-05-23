@@ -1,6 +1,6 @@
 # Module 2.5 — JOINs
 
-In Module 2.4 we had one table. Real apps have ten or fifty. Today we add a `buildings` table that *belongs to* the `kingdoms` table — and learn how to ask *"give me each kingdom along with all its buildings"* in one query. This is what makes a database *relational*.
+In Module 2.4 we had one table. Real apps have ten or fifty. Today we add a `buildings` table that *belongs to* the `kingdoms` table, and learn how to ask *"show me each kingdom together with all its buildings"* in one query. This is what makes a database *relational* — it can hold things that relate to each other.
 
 > **Words to watch**
 >
@@ -14,7 +14,7 @@ In Module 2.4 we had one table. Real apps have ten or fifty. Today we add a `bui
 
 ## Why two tables
 
-Storing buildings inside the `kingdoms` table is awkward. How would you fit a list of buildings into one cell? You'd have to JSON-encode them — which works, but you can't query *inside* JSON cleanly. Each entity gets its own table; relationships are foreign keys.
+Storing buildings inside the `kingdoms` table is awkward. How would you fit a whole list of buildings into one cell? You'd have to turn them into JSON — which works, but then you can't query *inside* that JSON easily. The better way: each kind of thing gets its own table, and you link the tables with foreign keys.
 
 ```
 kingdoms                 buildings
@@ -25,9 +25,9 @@ id  name      day        id  kingdom_id  kind     name      level
                          3   2           Farm     East      2
 ```
 
-The `buildings.kingdom_id` *points back* at `kingdoms.id`. That's the foreign key. You can now ask: *"all buildings for kingdom 1"* (`WHERE kingdom_id = 1`), *"the kingdom for building 3"* (`JOIN ... ON kingdom_id = id`), and *"each kingdom along with how many buildings it has"* (`JOIN ... GROUP BY ...`).
+The `buildings.kingdom_id` *points back* at `kingdoms.id`. That's the foreign key. You can now ask: *"all buildings for kingdom 1"* (`WHERE kingdom_id = 1`), *"the kingdom for building 3"* (`JOIN ... ON kingdom_id = id`), and *"each kingdom with the number of buildings it has"* (`JOIN ... GROUP BY ...`).
 
-## The three JOIN types you'll use 99% of the time
+## The three JOIN types you'll use almost every time
 
 ```sql
 -- INNER JOIN: rows that exist on both sides
@@ -44,7 +44,7 @@ LEFT JOIN buildings b ON b.kingdom_id = k.id
 GROUP BY k.id;
 ```
 
-`k` and `b` are *aliases* — short names for the tables in the query. Without them you'd write `kingdoms.name` and `buildings.name` everywhere.
+`k` and `b` are *aliases* — short nicknames for the tables inside the query. Without them, you'd have to write `kingdoms.name` and `buildings.name` everywhere.
 
 ## Delta starter
 
@@ -163,11 +163,11 @@ public static class SqliteJoinsDemo
 }
 ```
 
-Notice the helpers (`Exec`, `Read<T>`, `InsertKingdom`, `InsertBuilding`). They're not magic — just small reductions of the boilerplate. Once you write SQL three times, extract a helper.
+Notice the helper methods (`Exec`, `Read<T>`, `InsertKingdom`, `InsertBuilding`). There's nothing clever about them — they just save you from repeating the same setup code over and over. Once you've written the same SQL setup three times, pull it out into a helper.
 
-> **Don't worry about the angle brackets yet.** `Read<T>` and `Func<SqliteDataReader, T>` use a feature called *generics* — a way to write one helper that works for any type `T`. We'll formally meet generics later; for now, read `T` as *"whatever type the caller asks for"* and the helper will fill in. The fact that it works is enough.
+> **Don't worry about the angle brackets yet.** `Read<T>` and `Func<SqliteDataReader, T>` use a feature called *generics* — a way to write one helper that works for any type `T`. We'll cover generics properly later. For now, read `T` as *"whatever type the caller asks for"*, and the helper fills it in. It's enough that it works.
 
-`last_insert_rowid()` is a SQLite function that returns the autoincrement id of the last `INSERT`. The standard pattern for *"I just inserted; what's its id?"*
+`last_insert_rowid()` is a SQLite function that returns the id of the row you just inserted. It's the standard way to answer *"I just inserted a row — what id did it get?"*
 
 ## Step 2 — call from console
 
@@ -192,7 +192,7 @@ foreach (var c in counts)
     Console.WriteLine($"  {c.Name}: {c.BuildingCount} building(s)");
 ```
 
-`Stoneholt` shows up with `0` because `LEFT JOIN` keeps it; `INNER JOIN` would have dropped it.
+`Stoneholt` shows up with `0` because `LEFT JOIN` keeps it. An `INNER JOIN` would have left it out.
 
 Run it and look at the output.
 
@@ -263,17 +263,17 @@ Expect `Passed: 57` (54 + 3).
 
 ## Tinker
 
-Switch the LEFT JOIN to INNER JOIN in the counts query. Stoneholt disappears. That's the difference made visible.
+Switch the LEFT JOIN to INNER JOIN in the counts query. Stoneholt disappears. Now you can see the difference between the two.
 
-Add a `WHERE k.name LIKE 'B%'` clause. Only Briarholm shows up. `LIKE` + `%` is SQL's wildcard.
+Add a `WHERE k.name LIKE 'B%'` clause. Only Briarholm shows up. In SQL, `LIKE` together with `%` lets you match part of a word.
 
-Try `SELECT k.name, b.kind, AVG(b.level) FROM kingdoms k JOIN buildings b ON b.kingdom_id = k.id GROUP BY k.id, b.kind`. Aggregate by *two* dimensions at once.
+Try `SELECT k.name, b.kind, AVG(b.level) FROM kingdoms k JOIN buildings b ON b.kingdom_id = k.id GROUP BY k.id, b.kind`. This groups by *two* things at once: kingdom and building kind.
 
-Drop the foreign key reference: `kingdom_id INTEGER NOT NULL` (without `REFERENCES kingdoms(id)`). Insert a building with `kingdom_id = 999`. It works — by default, SQLite doesn't enforce foreign keys (a quirk). Run `PRAGMA foreign_keys = ON;` first to enforce them.
+Drop the foreign key link: write `kingdom_id INTEGER NOT NULL` without the `REFERENCES kingdoms(id)` part. Insert a building with `kingdom_id = 999`. It works — by default, SQLite doesn't check foreign keys (one thing to know about it). Run `PRAGMA foreign_keys = ON;` first to make it check them.
 
 ## What you just did
 
-You went from one table to two and from one query to four. Buildings now belong to kingdoms via a foreign key, and you can ask the database real questions about both at once: every building with its kingdom (`INNER JOIN`), every kingdom *even if it has no buildings* (`LEFT JOIN`), and the count of buildings per kingdom (`GROUP BY` + `COUNT`). Three new tests prove the queries return what you expect — 57 passing total. You also met `last_insert_rowid()`, the standard SQLite trick for getting the id of the row you just inserted.
+You went from one table to two, and from one query to four. Buildings now belong to kingdoms through a foreign key, and you can ask the database real questions about both at once: every building with its kingdom (`INNER JOIN`), every kingdom *even if it has no buildings* (`LEFT JOIN`), and the number of buildings per kingdom (`GROUP BY` + `COUNT`). Three new tests prove the queries return what you expect — 57 passing total. You also met `last_insert_rowid()`, the standard SQLite way to get the id of the row you just inserted.
 
 **Key concepts you can now name:**
 
@@ -281,7 +281,7 @@ You went from one table to two and from one query to four. Buildings now belong 
 - **`INNER JOIN`** — only rows that match on both sides
 - **`LEFT JOIN`** — every row from the left, even unmatched
 - **`GROUP BY` + aggregate** — `COUNT`/`SUM`/`AVG`, one row per group
-- **table alias** — `k` for `kingdoms`; readability win
+- **table alias** — `k` for `kingdoms`; shorter to read
 
 ## Wrap up
 
@@ -294,4 +294,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 2.6 introduces **EF Core** — the .NET ORM (object-relational mapper) that maps `class Kingdom { }` to a row in a table, and lets you write `dbContext.Kingdoms.Add(kingdom)` instead of raw SQL. Same database underneath; less ceremony on top.
+Module 2.6 introduces **EF Core** — the .NET ORM (object-relational mapper) that matches `class Kingdom { }` to a row in a table, and lets you write `dbContext.Kingdoms.Add(kingdom)` instead of raw SQL. Same database underneath, with much less code to write on top.

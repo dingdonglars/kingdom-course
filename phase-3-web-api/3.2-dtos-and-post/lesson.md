@@ -1,28 +1,28 @@
 # Module 3.2 — DTOs at the API Boundary, and `POST /kingdom/tick`
 
-Yesterday your kingdom was readable over HTTP. Today it *changes* over HTTP. A `POST /kingdom/tick` request advances one day; the response shows the new state. The kingdom now responds to the network the same way it responded to the keyboard in Phase 1 — same engine, same `AdvanceDay` method, just a different caller pulling the trigger.
+Yesterday your kingdom could be read over HTTP. Today it can *change* over HTTP. A `POST /kingdom/tick` request advances one day, and the response shows the new state. The kingdom now answers the network the same way it answered the keyboard in Phase 1 — same engine, same `AdvanceDay` method, just a different caller asking for it.
 
-While we're here, we'll formalise the rule we first met in Phase 2: **the data going across the wire is a DTO, not the engine type.** The engine returns objects with hidden state and constructors that need an `IRandom`; the API returns small `record` types that turn into JSON cleanly. Same lesson, second time.
+While we're here, we'll set out clearly the rule we first met in Phase 2: **the data you send across the network is a DTO, not the engine type.** The engine returns objects with hidden state and constructors that need an `IRandom`. The API returns small `record` types that turn into JSON cleanly. Same lesson, second time.
 
 > **Words to watch**
 >
-> - **request DTO** — the data layout the client sends in the request body
-> - **response DTO** — the data layout the server returns in the response body
-> - **`Results.Ok(...)` / `Results.NotFound()`** — minimal-API helpers that let you control the status code explicitly
-> - **`[FromBody]`** — the attribute that says *read this parameter from the request JSON*; minimal APIs apply it implicitly for record parameters
+> - **request DTO** — the layout of the data the client sends in the request body
+> - **response DTO** — the layout of the data the server returns in the response body
+> - **`Results.Ok(...)` / `Results.NotFound()`** — minimal-API helpers that let you choose the status code yourself
+> - **`[FromBody]`** — the attribute that says *read this parameter from the request JSON*; minimal APIs add it for you on record parameters
 
 ---
 
 ## Why DTOs again
 
-We met DTOs in Module 2.2 (JSON persistence). The same logic applies at the API boundary, doubled. The wire layout needs to:
+We met DTOs in Module 2.2 (JSON persistence). The same reasoning applies at the API boundary, and it matters even more here. The data you send over the network needs to:
 
 - Turn into JSON cleanly — no constructors that need an `IRandom`, no virtual methods
 - Stay *stable* even when the engine changes — adding a private field shouldn't break a client
-- Stay *small* — return only what the client actually needs (saves bytes)
-- Stay *explicit* — every property visible at the boundary should be intentional
+- Stay *small* — return only what the client actually needs (this sends fewer bytes)
+- Stay *clear* — every property the client can see should be there on purpose
 
-`KingdomSummary` (from Module 2.2) already fits the bill for `GET /kingdom`. Today we add `TickResponse` for the new endpoint.
+`KingdomSummary` (from Module 2.2) already works for `GET /kingdom`. Today we add `TickResponse` for the new endpoint.
 
 ## What ships in the starter
 
@@ -46,7 +46,7 @@ public record TickResponse(
 );
 ```
 
-A small explicit record. The client knows exactly what to expect — no surprises in the JSON, no risk of an internal engine field accidentally leaking out.
+A small, clear record. The client knows exactly what to expect — no surprises in the JSON, and no risk of a hidden engine field showing up by accident.
 
 ## Step 2 — the `POST /kingdom/tick` endpoint
 
@@ -93,11 +93,11 @@ app.MapPost("/kingdom/tick", (int? days) =>
 app.Run();
 ```
 
-The new bits, slowly:
+The new parts, slowly:
 
-- **`(int? days)`** — minimal-API parameters bind by name. `days` is optional (the `?` allows it to be null); the framework will look for `?days=N` in the query string. Body binding for complex types comes from `[FromBody]`, which minimal APIs apply automatically for record parameters.
-- **`Math.Clamp(days ?? 1, 1, 100)`** — input validation in one line. If `days` is null, default to 1; otherwise force the value into the range 1 to 100. Refuse the 1000-day tick that would lock up your server for a minute.
-- **`Results.Ok(value)`** — return `200 OK` explicitly with `value` as the body. There's also `Results.NotFound()`, `Results.BadRequest("msg")`, `Results.Created(uri, value)`, and a few more. Use these when you want to control the status code; otherwise just `return value` and the framework picks 200 for you.
+- **`(int? days)`** — minimal-API parameters are matched by name. `days` is optional (the `?` lets it be null), and the framework looks for `?days=N` in the query string. For bigger types, the data comes from the request body through `[FromBody]`, which minimal APIs add for you on record parameters.
+- **`Math.Clamp(days ?? 1, 1, 100)`** — checking the input in one line. If `days` is null, use 1. Otherwise keep the value inside the range 1 to 100. This blocks the 1000-day tick that would freeze your server for a minute.
+- **`Results.Ok(value)`** — return `200 OK` yourself, with `value` as the body. There's also `Results.NotFound()`, `Results.BadRequest("msg")`, `Results.Created(uri, value)`, and a few more. Use these when you want to choose the status code. Otherwise just `return value` and the framework picks 200 for you.
 
 Build, run, try:
 
@@ -110,23 +110,23 @@ curl -X POST "http://localhost:5xxx/kingdom/tick?days=5"
 curl http://localhost:5xxx/kingdom
 ```
 
-Each tick changes state. The `GET` reflects the new day.
+Each tick changes the state. The `GET` shows the new day.
 
 ## Step 3 — what the framework does for you
 
 Notice all the things you *didn't* write:
 
-- JSON parsing of the request (none here — `int?` is a primitive)
-- JSON serialisation of the response (`TickResponse` becomes JSON automatically)
-- Status code handling (`Results.Ok` becomes 200; 404 if the route doesn't match)
-- Content-Type negotiation (the response gets `application/json; charset=utf-8` for free)
-- Routing — `/kingdom/tick` knows it's the right handler
+- Reading the JSON from the request (none here — `int?` is a simple number)
+- Turning the response into JSON (`TickResponse` becomes JSON automatically)
+- Setting the status code (`Results.Ok` becomes 200; 404 if no route matches)
+- Choosing the content type (the response gets `application/json; charset=utf-8` for free)
+- Routing — `/kingdom/tick` finds the right handler on its own
 
-That's the value of a framework over a raw socket. You write the business logic; the framework handles the boilerplate.
+That's what a framework gives you over writing everything from scratch. You write the part that's special to your app, and the framework handles the repetitive setup.
 
 ## Step 4 — tests
 
-For now, a placeholder smoke test confirming the project compiles. Real integration tests with `WebApplicationFactory<Program>` arrive in Module 3.7.
+For now, a simple first test that confirms the project compiles. Real integration tests with `WebApplicationFactory<Program>` arrive in Module 3.7.
 
 `tests/Kingdom.Api.Tests/Endpoint_GET_Kingdom_Tests.cs`:
 
@@ -149,32 +149,32 @@ public class Endpoint_GET_Kingdom_Tests
 }
 ```
 
-A real test would call `WebApplicationFactory<Program>().CreateClient()` and POST to the endpoint. We hold that for Module 3.7 — too much new ceremony to introduce in one go.
+A real test would call `WebApplicationFactory<Program>().CreateClient()` and POST to the endpoint. We save that for Module 3.7 — it's too much new setup to learn all at once.
 
 ## Tinker
 
-Try `?days=10000` and observe the clamp keeping you safe. Comment out the clamp and try again — the server still responds, but the call takes a noticeable moment. That's why we clamp.
+Try `?days=10000` and watch the clamp keep you safe. Comment out the clamp and try again — the server still answers, but the call takes a moment you can feel. That's why we clamp.
 
-Add a `GET /kingdom/buildings` endpoint returning `kingdom.Buildings.Select(b => new { b.Name, Kind = b.GetType().Name, b.Level })`. The anonymous record becomes JSON without you doing anything extra.
+Add a `GET /kingdom/buildings` endpoint returning `kingdom.Buildings.Select(b => new { b.Name, Kind = b.GetType().Name, b.Level })`. The anonymous object becomes JSON without you doing anything extra.
 
-Add `GET /healthz` returning `Results.Ok("ok")`. That's the standard convention for *"is the server alive?"* — used by load balancers and monitoring tools to check whether the process is still healthy.
+Add `GET /healthz` returning `Results.Ok("ok")`. That's the common way to ask *"is the server alive?"* — load balancers and monitoring tools call an endpoint like this to check the program is still running.
 
-Try `curl -i -X POST http://localhost:5xxx/kingdom/tick`. The `-i` flag shows the response headers — `Content-Type: application/json` is auto-set, the `Date` header is auto-set, and so on.
+Try `curl -i -X POST http://localhost:5xxx/kingdom/tick`. The `-i` flag shows the response headers — `Content-Type: application/json` is set for you, the `Date` header is set for you, and so on.
 
-## Validate at the boundary
+## Check the input at the boundary
 
-Untrusted input enters at the outer layer. Clamp it, check it, reject the bad parts — all *before* the engine sees it. The engine should never have to defend itself against caller bugs. That's why `Math.Clamp` lives in the handler, not inside `AdvanceDay`.
+Input you can't trust comes in at the outer layer. Clamp it, check it, and reject the bad values — all *before* the engine sees it. The engine should never have to protect itself against a caller's mistakes. That's why `Math.Clamp` is in the handler, not inside `AdvanceDay`.
 
 ## What you just did
 
-Your kingdom now both reads and writes over HTTP. You wrote a `TickResponse` DTO — a small, explicit record designed for the wire — and a `POST /kingdom/tick` handler that advances the kingdom by one or more days, returning the new state. The handler validates its input with `Math.Clamp` so a thousand-day request can't lock up the server. You also met `Results.Ok(...)` and saw how the framework handles JSON serialisation, status codes, and content-type headers without you writing a line for any of it.
+Your kingdom now reads *and* writes over HTTP. You wrote a `TickResponse` DTO — a small, clear record made for sending over the network — and a `POST /kingdom/tick` handler that advances the kingdom by one or more days and returns the new state. The handler checks its input with `Math.Clamp` so a thousand-day request can't freeze the server. You also met `Results.Ok(...)` and saw how the framework turns objects into JSON, sets status codes, and adds content-type headers without you writing a line for any of it.
 
 **Key concepts you can now name:**
 
-- **DTO at the API boundary** — small explicit record, designed for the wire
+- **DTO at the API boundary** — small, clear record made for sending over the network
 - **`Results.Ok` / `NotFound` / `BadRequest`** — control the status code from a handler
 - **optional query parameter** — `(int? days)` becomes `?days=5` in the URL
-- **input validation at the boundary** — clamp, check, reject before the engine runs
+- **checking input at the boundary** — clamp, check, reject before the engine runs
 
 ## Wrap up
 
@@ -187,4 +187,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 3.3 introduces **multiple endpoints with proper status codes** — `POST /kingdoms` to create, `DELETE /kingdoms/{id}` to remove, plus 404s and 400s when things don't fit. This is CRUD over HTTP, the pattern under every web API ever built.
+Module 3.3 introduces **several endpoints with the right status codes** — `POST /kingdoms` to create one, `DELETE /kingdoms/{id}` to remove one, plus 404s and 400s when something doesn't fit. This is CRUD over HTTP, the pattern behind every web API ever built.

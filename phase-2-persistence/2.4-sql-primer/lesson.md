@@ -1,6 +1,6 @@
 # Module 2.4 — SQL Primer (with SQLite)
 
-JSON files are great for *one* save. But what if you want a *list* of all your saved kingdoms? What if you want to ask *"give me the kingdom with the most gold"*? Files force you to load everything to find anything. Today we meet **the database** — and the language databases speak: **SQL**. We use **SQLite** *(es-queue-el-ite)*, a database that lives in a single `.db` file, no server, no install.
+JSON files are great for *one* save. But what if you want a *list* of all your saved kingdoms? What if you want to ask *"which kingdom has the most gold?"* With files, you have to load everything just to find one thing. Today we meet **the database**, and the language databases speak: **SQL**. We use **SQLite** *(es-queue-el-ite)*, a database that lives in a single `.db` file — no server to run, nothing to install.
 
 > **Words to watch**
 >
@@ -18,13 +18,13 @@ JSON files are great for *one* save. But what if you want a *list* of all your s
 
 A file holds *one* thing well. A database holds *many* things and lets you ask questions about them.
 
-Suppose you save 100 kingdoms over a year. With files: 100 JSON files sorted by filename. *"Find the one with the most gold"* means open all 100, parse each, compare. With a database: `SELECT name FROM kingdoms ORDER BY gold DESC LIMIT 1;`. One line. Milliseconds.
+Say you save 100 kingdoms over a year. With files, you have 100 JSON files sorted by name. To *"find the one with the most gold"*, you have to open all 100, read each one, and compare them. With a database, it's one line: `SELECT name FROM kingdoms ORDER BY gold DESC LIMIT 1;`. It finishes in a few milliseconds.
 
-That's why every non-trivial application uses one. The harder question is *which* database. For a kingdom that lives on your laptop, SQLite is perfect: no server to run, no port to open, the entire database is a single file you can copy around.
+That's why almost every real program uses a database. The harder question is *which* one. For a kingdom that lives on your laptop, SQLite is a great fit: no server to run, no port to open, and the whole database is a single file you can copy anywhere.
 
 ## SQLite, in one paragraph
 
-SQLite is a **library**, not a server. You include it in your project, point it at a path, and it manages everything. It's used everywhere — your phone, your browser, every Mac, your TV. Probably the most-deployed software of all time. It runs at real production scale (Stack Overflow uses it for some things), but it's also perfect for a single-player game or a learning exercise.
+SQLite is a **library**, not a server. You add it to your project, tell it where the file is, and it handles the rest. It's used everywhere — your phone, your browser, every Mac, your TV. It may be the most-installed software ever made. It can handle real, large workloads (Stack Overflow uses it for some tasks), but it's also a great fit for a single-player game or a learning project.
 
 ## The five SQL commands
 
@@ -53,7 +53,7 @@ UPDATE kingdoms SET gold = gold + 50 WHERE name = 'Eldoria';
 DELETE FROM kingdoms WHERE gold = 0;
 ```
 
-That's 80% of SQL. The other 20% is JOINs (Module 2.5), aggregates (`COUNT`, `SUM`), and indexes (later).
+That's most of SQL right there. The rest is JOINs (Module 2.5), aggregates (`COUNT`, `SUM`), and indexes (later).
 
 ## Delta starter
 
@@ -62,7 +62,7 @@ That's 80% of SQL. The other 20% is JOINs (Module 2.5), aggregates (`COUNT`, `SU
 - **MODIFIED:** `Kingdom.Console/Program.cs` (calls the demo)
 - **NEW:** `tests/Kingdom.Persistence.Tests/SqliteDemoTests.cs`
 
-Engine code unchanged. JSON code unchanged. SQLite is purely additive — a *new* save option living alongside JSON.
+Engine code unchanged. JSON code unchanged. SQLite only adds something new — a second way to save, right next to JSON.
 
 ## Step 0 — install the package
 
@@ -71,7 +71,7 @@ cd Kingdom.Persistence
 dotnet add package Microsoft.Data.Sqlite
 ```
 
-This brings in `SqliteConnection` and friends.
+This adds `SqliteConnection` and the related classes to your project.
 
 ## Step 1 — `SqliteDemo`
 
@@ -142,9 +142,9 @@ public static class SqliteDemo
 
 Three things to read carefully:
 
-1. **`using var conn = new SqliteConnection(...)`.** `using` ensures `Dispose` runs automatically (which closes the connection). Always `using` for connections, commands, readers — otherwise you'll leak file handles.
-2. **`$name`, `$day`, `$gold` parameters.** *Never* paste user input into SQL with string concatenation — that's SQL injection. Use parameters; SQLite quotes and escapes them safely.
-3. **`reader.GetInt32(0)`.** Read the first column as an int. The reader is a one-row-at-a-time cursor.
+1. **`using var conn = new SqliteConnection(...)`.** The `using` keyword makes sure `Dispose` runs by itself, which closes the connection. Always use `using` for connections, commands, and readers. If you don't, the program keeps file handles open that it should have released.
+2. **`$name`, `$day`, `$gold` parameters.** *Never* paste user input straight into a SQL string. That opens you up to SQL injection (more on this below). Use parameters instead. SQLite quotes and escapes them for you, safely.
+3. **`reader.GetInt32(0)`.** This reads the first column as an int. The reader hands you one row at a time, in order.
 
 ## Step 2 — call it from the console
 
@@ -169,13 +169,13 @@ dotnet build
 dotnet run --project Kingdom.Console
 ```
 
-You'll see the row come out of the database. Find the file:
+You'll see the row come back out of the database. Find the file here:
 
 ```
 bin/Debug/net10.0/saves/kingdoms.db
 ```
 
-You can open it in any SQLite browser (DB Browser for SQLite is free). One file, queryable forever.
+You can open it in any SQLite browser (DB Browser for SQLite is free). One file, and you can ask it questions any time.
 
 ## Step 3 — tests
 
@@ -244,17 +244,17 @@ Expect `Passed: 54` (51 + 3).
 
 ## Tinker
 
-Add a column: `wood INTEGER NOT NULL DEFAULT 0`. `ALTER TABLE` works — the existing rows get the default. (We'll cover migrations properly in Module 2.7.)
+Add a column: `wood INTEGER NOT NULL DEFAULT 0`. `ALTER TABLE` works — the rows that already exist get the default value. (We'll cover migrations properly in Module 2.7.)
 
-Run a query directly via the `sqlite3` CLI: `sqlite3 saves/kingdoms.db "SELECT * FROM kingdoms"`. Same data, different tool.
+Run a query straight from the `sqlite3` command line: `sqlite3 saves/kingdoms.db "SELECT * FROM kingdoms"`. Same data, a different tool.
 
-Try concatenating user input: `cmd.CommandText = "INSERT INTO kingdoms (name) VALUES ('" + userInput + "')";`. If `userInput` is `'); DROP TABLE kingdoms; --`, your data dies. That's SQL injection — and exactly why we always use parameters.
+Try pasting user input into the SQL string: `cmd.CommandText = "INSERT INTO kingdoms (name) VALUES ('" + userInput + "')";`. If `userInput` is `'); DROP TABLE kingdoms; --`, your whole table gets deleted. That's SQL injection — and exactly why we always use parameters.
 
-Insert 10,000 rows in a loop. Notice how fast SQLite is on small data. (For *bulk* inserts, wrap in `BEGIN TRANSACTION ... COMMIT` — a 100x speedup.)
+Insert 10,000 rows in a loop. See how fast SQLite is on small amounts of data. (For big batches of inserts, put them inside `BEGIN TRANSACTION ... COMMIT` — that makes it about 100 times faster.)
 
 ## What you just did
 
-Your kingdom now has a third place to live: a SQLite database file. You wrote your first `CREATE TABLE`, your first parametrised `INSERT`, your first `SELECT` reader loop — and three tests to prove the round trip (54 passing total). Along the way you met the five SQL commands (`CREATE`, `INSERT`, `SELECT`, `UPDATE`, `DELETE`) which between them cover most of what you'll write for the rest of the year. You also met the most-published security bug in the world — *SQL injection* — and saw why parameters, never concatenation, are the only safe answer. The engine and the JSON code didn't change today; that's the third shell over the same engine.
+Your kingdom now has a third place to live: a SQLite database file. You wrote your first `CREATE TABLE`, your first `INSERT` with parameters, and your first `SELECT` reader loop — plus three tests to prove the round trip (54 passing total). Along the way you met the five SQL commands (`CREATE`, `INSERT`, `SELECT`, `UPDATE`, `DELETE`), which together cover most of what you'll write for the rest of the year. You also met the most common security bug in the world — *SQL injection* — and saw why using parameters, never pasting input into the string, is the only safe answer. The engine and the JSON code didn't change today. This is the third shell over the same engine.
 
 **Key concepts you can now name:**
 
@@ -275,4 +275,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 2.5 introduces **JOINs** — the SQL feature that makes relational databases *relational*. We'll add a `buildings` table with a foreign key to `kingdoms`, and learn how to query across them.
+Module 2.5 introduces **JOINs** — the SQL feature that makes relational databases *relational*. We'll add a `buildings` table that links back to `kingdoms`, and learn how to query across both tables at once.

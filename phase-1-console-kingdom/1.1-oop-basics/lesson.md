@@ -1,8 +1,10 @@
 # Module 1.1 — OOP Basics
 
-Today the Kingdom begins. You're going to make four classes — `Building`, `Resource`, `Citizen`, `Kingdom` — and from those four, build a tiny medieval realm that exists in your computer's memory while the program runs. By the end of the lesson you'll print Eldoria to the terminal, with two buildings, a citizen, and a treasury. None of it does anything yet. That's fine. The first thing the kingdom needs is a body; we'll teach it to move in Module 1.4.
+Today the Kingdom begins. You're going to make four classes — `Building`, `Resource`, `Citizen`, `Kingdom`. From those four, you'll build a tiny medieval kingdom. It exists in your computer's memory while the program runs. By the end of the lesson you'll print Eldoria to the terminal, with two buildings, a citizen, and a treasury. None of it does anything yet. That's fine. First the kingdom needs a body. We'll teach it to move in Module 1.4.
 
-The big idea this lesson is **classes**. A class is a blueprint — it describes what a thing *is* and what it *can do*. `new Building("Main Farm")` then makes one specific thing from that blueprint, called an *object* (or an *instance*). One class, many objects. One `Building` blueprint, many farms and mines and lumberyards built from it.
+The big idea this lesson is **classes**. A class is a blueprint. It describes what a thing *is* and what it *can do*. `new Building("Main Farm")` then makes one specific thing from that blueprint. That thing is called an *object* (or an *instance*). One class, many objects. One `Building` blueprint, and many farms and mines and lumberyards built from it.
+
+Think of a class like the blueprint for a house. The blueprint is one piece of paper. From it you can build many real houses. Each house is a separate thing, but they all came from the same blueprint.
 
 > **Words to watch**
 >
@@ -10,7 +12,7 @@ The big idea this lesson is **classes**. A class is a blueprint — it describes
 > - **object** (also *instance*) — a thing created from a class with `new`
 > - **property** — a named value on an object, with a `get` and an optional `set`
 > - **constructor** — the special method that runs when an object is created (`new Building(...)`)
-> - **encapsulation** — a class hiding its internals behind methods and properties so the outside can't poke at them
+> - **encapsulation** — a class hiding its inner values behind methods and properties, so code outside the class can't change them directly
 > - **enum** — a named set of allowed values (e.g. `Resource.Gold`, `Resource.Wood`)
 > - **`new`** — the C# keyword that calls a constructor and gives you back a fresh object
 
@@ -25,9 +27,9 @@ cd C:\code\kingdom
 git switch -c phase-1
 ```
 
-You're now on a *branch* called `phase-1`. A branch is a separate line of work in git: your commits from now through the end of Phase 1 land on `phase-1` instead of `main`. At Module 1.10 (the close of Phase 1), you'll bring all that work back into `main` through a **pull request** — the formal review surface on GitHub. Lars reviews, approves, you merge. The reason: `main` stays the *"good, reviewed work"* line, and the phase-end PR shows your whole phase as one reviewable chunk — the way working teams ship changes.
+You're now on a *branch* called `phase-1`. A branch is a separate line of work in git. From now until the end of Phase 1, your commits go onto `phase-1` instead of `main`. At Module 1.10 (the end of Phase 1), you'll bring all that work back into `main` through a **pull request**. A pull request is the way GitHub lets someone review your work before it joins `main`. Lars reviews it, approves it, and you merge it. The reason: `main` stays the line of *good, reviewed work*, and the pull request at the end of the phase shows your whole phase as one piece to review. This is how real teams add changes.
 
-**If "branch" and "pull request" feel fuzzy right now, that's expected.** It's the first time you've met them. What you actually have to do is small: one command at the start of each phase (`git switch -c phase-N`), open a PR on github.com at the end. That's it for today. The proper *sense* of what branches and pull requests really are builds across the next ten modules. Module 1.8 comes back to branches once you've already lived with one for a few weeks. Module 1.10 walks the PR end-to-end. Bonus B3 (much later) is the full git-internals deep dive if you ever want it.
+**If "branch" and "pull request" feel unclear right now, that's expected.** It's the first time you've seen them. What you actually have to do is small. Run one command at the start of each phase (`git switch -c phase-N`), and open a pull request on github.com at the end. That's it for today. You'll understand what branches and pull requests really are over the next ten modules. Module 1.8 comes back to branches once you've used one for a few weeks. Module 1.10 walks through the pull request step by step. Bonus B3 (much later) goes deep into how git works inside, if you ever want it.
 
 For now: run the command, confirm you're on the new branch, and move on. After a few weeks of using branches, the idea stops feeling fuzzy.
 
@@ -51,7 +53,7 @@ dotnet new console -n KingdomConsole
 cd KingdomConsole
 ```
 
-You'll create five files in here. Each holds one class (or one enum). The convention in C# is one type per file, and the filename matches the type name. We'll keep it.
+You'll create five files in here. Each one holds one class (or one enum). The usual rule in C# is one type per file, and the filename matches the type name. We'll follow that rule.
 
 ## Step 2 — `Resource.cs`, the resource enum
 
@@ -67,7 +69,7 @@ public enum Resource
 }
 ```
 
-An *enum* is a fixed set of named values. Anywhere you use `Resource`, the only valid options are `Resource.Gold`, `Resource.Wood`, `Resource.Stone`, `Resource.Food`. The compiler refuses anything else. That's the win — you can't accidentally pass `42` or `"goldd"` to something expecting a resource.
+An *enum* is a fixed set of named values. Anywhere you use `Resource`, the only allowed options are `Resource.Gold`, `Resource.Wood`, `Resource.Stone`, `Resource.Food`. The compiler refuses anything else. That's the good part: you can't pass `42` or `"goldd"` by accident to something that expects a resource. It's like a drop-down menu where you can only pick from the four choices given.
 
 ## Step 3 — `Building.cs`
 
@@ -91,9 +93,9 @@ public class Building
 }
 ```
 
-Three things to read carefully here. `Name` is a property — a named value on the building — and it has only a `get`, no `set`. That means you can read `b.Name` from outside, but you can never write `b.Name = "something else"`. Once a building is built, its name doesn't change. `Level` has a `get` and a `private set` — anyone can read it, but only code inside the `Building` class can write it. The default is `1`. To raise the level, you call `Upgrade()`. That's encapsulation: the outside world doesn't reach in and set numbers; it asks the class to do something, and the class decides what changes.
+Three things to read carefully here. `Name` is a property — a named value on the building. It has only a `get`, no `set`. That means you can read `b.Name` from outside, but you can never write `b.Name = "something else"`. Once a building is made, its name doesn't change. `Level` has a `get` and a `private set`. Anyone can read it, but only code inside the `Building` class can change it. It starts at `1`. To raise the level, you call `Upgrade()`. That's encapsulation: code outside the class doesn't set the numbers itself. It asks the class to do something, and the class decides what changes.
 
-The line `public Building(string name)` is the **constructor**. Same name as the class. When you write `new Building("Main Farm")`, that constructor runs once, and its job is to set things up — here, copy the `name` parameter into the `Name` property.
+The line `public Building(string name)` is the **constructor**. It has the same name as the class. When you write `new Building("Main Farm")`, that constructor runs once. Its job is to set things up. Here, it copies the `name` parameter into the `Name` property.
 
 ## Step 4 — `Citizen.cs`
 
@@ -112,7 +114,7 @@ public class Citizen
 }
 ```
 
-Same pattern — read-only `Name`, read-write `Job` defaulting to `"Idle"`. The job is something the kingdom changes over time; the name isn't.
+Same pattern — `Name` is read-only, `Job` can be read and written and starts at `"Idle"`. The kingdom changes the job over time. The name stays the same.
 
 ## Step 5 — `Kingdom.cs`
 
@@ -140,7 +142,7 @@ public class Kingdom
 }
 ```
 
-A `Kingdom` owns three collections — its buildings, its citizens, and its resources — plus a name. The constructor seeds the treasury with 100 gold, 50 wood, 20 stone, 30 food. The two short methods at the bottom let outside code add buildings and citizens. They're written with C#'s **expression-bodied** syntax — `=>` instead of `{ ... }` for one-line methods. Same meaning, less typing.
+A `Kingdom` owns three collections — its buildings, its citizens, and its resources — plus a name. The constructor fills the treasury to start with: 100 gold, 50 wood, 20 stone, 30 food. The two short methods at the bottom let outside code add buildings and citizens. They use C#'s **expression-bodied** form — `=>` instead of `{ ... }` for one-line methods. Same meaning, less typing.
 
 ## Step 6 — `Program.cs`
 
@@ -172,19 +174,19 @@ Run it:
 dotnet run
 ```
 
-You should see Eldoria printed — two buildings, one citizen, four resources. Entirely in your computer's memory, gone the moment the program ends. Persistence comes in Phase 2.
+You should see Eldoria printed — two buildings, one citizen, four resources. It all lives in your computer's memory, and it's gone the moment the program ends. Saving it to disk comes in Phase 2.
 
 ## Tinker
 
 Add a third building to `Program.cs` and run again. Then call `kingdom.Buildings[0].Upgrade()` before the print loop — the first building's level should now show as 2.
 
-Try writing `kingdom.Buildings[0].Name = "New Name";`. The compiler will refuse — `Name` has no setter. Good. That's encapsulation working: a kingdom can't quietly rename one of its own buildings by accident.
+Try writing `kingdom.Buildings[0].Name = "New Name";`. The compiler will refuse — `Name` has no setter. Good. That's encapsulation working: a kingdom can't rename one of its own buildings by accident.
 
-Add a method on `Kingdom` called `HireCitizen` that takes a name, creates a `Citizen`, and adds it to the list. Use it from `Program.cs` instead of the long form. The kingdom does the work; the program just asks for it.
+Add a method on `Kingdom` called `HireCitizen` that takes a name, creates a `Citizen`, and adds it to the list. Use it from `Program.cs` instead of the long version. The kingdom does the work; the program just asks for it.
 
 ## What you just did
 
-You wrote four classes and saw them connect — a `Kingdom` that owns lists of `Building` and `Citizen` and a dictionary of `Resource`. You met the parts of a class that you'll use every day from now on: properties with `get` and `private set`, a constructor that sets things up, the difference between a class (the blueprint) and an object (the thing you got from `new`). You also saw encapsulation in action when the compiler refused to let outside code rewrite a building's name. Five files of real C#, and a kingdom prints to the terminal — all of it living in memory for the eight seconds the program runs.
+You wrote four classes and saw them connect — a `Kingdom` that owns lists of `Building` and `Citizen` and a dictionary of `Resource`. You met the pieces of a class that you'll use every day from now on: properties with `get` and `private set`, a constructor that sets things up, and the difference between a class (the blueprint) and an object (the thing you got from `new`). You also saw encapsulation at work when the compiler refused to let outside code rewrite a building's name. Five files of real C#, and a kingdom prints to the terminal — all of it living in memory for the few seconds the program runs.
 
 **Key concepts you can now name:**
 
@@ -205,4 +207,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Right now everything's in one project. That's fine for one lesson. Module 1.2 splits it: the kingdom's rules (Building, Citizen, Resource, Kingdom) move into their own *class library*, and the program becomes a thin layer on top of it. That refactor is the lesson the rest of the course is named after.
+Right now everything is in one project. That's fine for one lesson. Module 1.2 splits it apart: the kingdom's rules (Building, Citizen, Resource, Kingdom) move into their own *class library*, and the program becomes a thin layer on top. That change is what the rest of the course is named after.

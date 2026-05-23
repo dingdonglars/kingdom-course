@@ -1,8 +1,8 @@
 # Module 2.7 — Migrations
 
-`EnsureCreated()` works for an empty database. But what happens when you ship version 1, players have data, and version 2 needs a new column? You can't just delete and recreate — you'd lose every save. Today we meet **migrations** — the proper, versioned way to evolve a schema.
+`EnsureCreated()` works for an empty database. But what happens when you release version 1, players save data with it, and version 2 needs a new column? You can't just delete the database and make it again — you'd lose every save. Today we meet **migrations** — the proper way to change the database structure step by step, with each step kept on record.
 
-A *migration* (in the database sense) is a small recorded change to the schema — an "Up" step that applies the change and a "Down" step that reverses it. We're using the word for the first time today; it'll come up again in Phase 3 and beyond. The idea is the same anywhere a database lives.
+A *migration* (in the database sense) is a small recorded change to the structure. It has an "Up" step that makes the change and a "Down" step that takes it back out. We're using the word for the first time today. You'll see it again in Phase 3 and later. The idea is the same anywhere a database is used.
 
 > **Words to watch**
 >
@@ -16,13 +16,13 @@ A *migration* (in the database sense) is a small recorded change to the schema �
 
 ## Why migrations
 
-Imagine version 1 of Kingdom shipped. Players have 50 kingdoms saved. Version 2 adds a `Citizens` table. You can't:
+Imagine version 1 of Kingdom is out. Players have 50 kingdoms saved. Version 2 adds a `Citizens` table. You can't:
 
-- Drop the database (player data lost)
-- Edit the existing tables manually (every player has to do this)
-- Hope EF figures it out (`EnsureCreated` won't, and shouldn't)
+- Delete the database (you'd lose the player's data)
+- Edit the existing tables by hand (every player would have to do this)
+- Hope EF works it out (`EnsureCreated` won't, and shouldn't)
 
-What you need is **a recorded list of schema changes**, applied in order, kept in sync with the code. That's a migration.
+What you need is **a recorded list of structure changes**, applied in order, kept matching the code. That's a migration.
 
 ```
 00_InitialCreate     → CREATE TABLE kingdoms (...);
@@ -31,11 +31,11 @@ What you need is **a recorded list of schema changes**, applied in order, kept i
 03_AddSavedAt        → ALTER TABLE kingdoms ADD COLUMN saved_at TEXT;
 ```
 
-Each migration has a timestamp, an "Up" method (apply), and a "Down" method (revert). EF stores the applied list in a special `__EFMigrationsHistory` table. When you deploy v2, EF sees `00`, `01`, `02` are applied, `03` is not — runs only `03`. Ship-safe schema evolution.
+Each migration has a timestamp, an "Up" method (make the change), and a "Down" method (take it back out). EF keeps the list of applied ones in a special `__EFMigrationsHistory` table. When you release v2, EF sees that `00`, `01`, and `02` are already applied and `03` is not — so it runs only `03`. That makes it safe to change the structure between releases.
 
 ## Delta starter
 
-This module is more workflow than code. The starter:
+This module is more about the steps you run than about new code. The starter:
 
 - **MODIFIED:** `Kingdom.Persistence/Kingdom.Persistence.csproj` (adds `Microsoft.EntityFrameworkCore.Design` package)
 - **NEW:** `Kingdom.Persistence/Migrations/` (folder with the generated migration files — created by `dotnet ef migrations add`)
@@ -53,7 +53,7 @@ dotnet tool install --global dotnet-ef
 # or update if installed: dotnet tool update --global dotnet-ef
 ```
 
-`dotnet-ef` is a CLI tool, not a runtime dependency. It generates code at *design time*. Production deploys don't need it.
+`dotnet-ef` is a command-line tool, not part of your program. It writes code while you build, not while the program runs. A released app doesn't need it.
 
 ## Step 1 — generate the initial migration
 
@@ -70,9 +70,9 @@ What you'll see:
   - `20260503120000_InitialCreate.Designer.cs` — model snapshot at this migration
   - `KingdomDbContextModelSnapshot.cs` — the *current* model snapshot
 
-The `Up` method has `migrationBuilder.CreateTable(...)` calls — readable C# that EF translates to SQL at apply time.
+The `Up` method has `migrationBuilder.CreateTable(...)` calls — plain C# that you can read, which EF turns into SQL when the migration is applied.
 
-> **Project + startup-project.** The migration tool needs to *load your DbContext*, which means starting up a project. We use `Kingdom.Console` because that's our entry point. The migration code goes in `Kingdom.Persistence` (where `KingdomDbContext` lives).
+> **Project + startup-project.** The migration tool needs to *load your DbContext*, and to do that it has to start a project. We use `Kingdom.Console` because that's where the program starts. The migration code itself goes in `Kingdom.Persistence`, where `KingdomDbContext` lives.
 
 ## Step 2 — apply the migration
 
@@ -84,7 +84,7 @@ Two ways:
 dotnet ef database update --project Kingdom.Persistence --startup-project Kingdom.Console
 ```
 
-Updates the DB at the path your `OnConfiguring` is using. You'll see `Applying migration '20260503120000_InitialCreate'`.
+This updates the database at the path your `OnConfiguring` is using. You'll see `Applying migration '20260503120000_InitialCreate'`.
 
 **B. From code (more useful in a real app):**
 
@@ -98,9 +98,9 @@ public void EnsureCreated()
 }
 ```
 
-Now every Save call brings the database forward to the current model. Hands-off for the player.
+Now every Save call brings the database up to date with the current model. The player doesn't have to do anything.
 
-`EnsureCreated` and `Migrate` *don't mix* — once a database is created via `EnsureCreated`, EF won't accept migrations on it (and vice versa). Pick one and stick with it. **Migrate** is the production answer.
+`EnsureCreated` and `Migrate` *don't work together* — once a database is made with `EnsureCreated`, EF won't accept migrations on it, and the other way around too. Pick one and stick with it. **Migrate** is the right answer for a real app.
 
 ## Step 3 — change the model and add a second migration
 
@@ -116,7 +116,7 @@ Generate a new migration:
 dotnet ef migrations add AddSavedAt --project Kingdom.Persistence --startup-project Kingdom.Console
 ```
 
-EF compares the *current* model to the *previous* snapshot, generates only the difference:
+EF compares the *current* model to the *last* snapshot and writes only what changed:
 
 ```csharp
 // Inside the generated 20260503130000_AddSavedAt.cs
@@ -131,9 +131,9 @@ protected override void Up(MigrationBuilder migrationBuilder)
 }
 ```
 
-Apply it: `dotnet ef database update --project Kingdom.Persistence --startup-project Kingdom.Console`. Existing rows get `SavedAt = 0001-01-01` (the default). New rows get whatever you write.
+Apply it: `dotnet ef database update --project Kingdom.Persistence --startup-project Kingdom.Console`. The rows that already exist get `SavedAt = 0001-01-01` (the default). New rows get whatever you write.
 
-(For the starter we'll only ship `InitialCreate` — adding `SavedAt` is left as a Tinker.)
+(For the starter we'll only include `InitialCreate` — adding `SavedAt` is left as a Tinker.)
 
 ## Step 4 — set `SavedAt` in `Save`
 
@@ -143,7 +143,7 @@ In `KingdomEfStore.Save`, add:
 SavedAt = DateTime.UtcNow,
 ```
 
-To the entity initialiser. Now every save records its timestamp.
+to the entity initialiser. Now every save records the time it happened.
 
 ## Step 5 — tests
 
@@ -211,17 +211,17 @@ Expect `Passed: 63` (60 + 3).
 
 ## Tinker
 
-Add the `SavedAt` migration as described in Step 3. Look at the generated SQL: `ALTER TABLE Kingdoms ADD ...`. Apply it on a database that has rows. Existing rows get the default; nothing's lost. That's the win.
+Add the `SavedAt` migration as described in Step 3. Look at the SQL it writes: `ALTER TABLE Kingdoms ADD ...`. Apply it on a database that already has rows. The old rows get the default value, and nothing is lost. That's the whole point.
 
-Run `dotnet ef migrations remove --project Kingdom.Persistence --startup-project Kingdom.Console` to undo the *last unapplied* migration. (You can't `remove` an applied one — for that you use `update <PreviousMigration>`.)
+Run `dotnet ef migrations remove --project Kingdom.Persistence --startup-project Kingdom.Console` to undo the *last migration that hasn't been applied yet*. (You can't `remove` one that's already applied — for that you use `update <PreviousMigration>`.)
 
-Run `dotnet ef migrations script --project Kingdom.Persistence --startup-project Kingdom.Console` — outputs the SQL the migrations would run. Useful for review with a DBA on a real product.
+Run `dotnet ef migrations script --project Kingdom.Persistence --startup-project Kingdom.Console`. It prints the SQL the migrations would run. On a real product, this is handy when a database admin wants to review the change first.
 
-Open the DB in DB Browser. Notice the `__EFMigrationsHistory` table. That's how EF knows what's been applied.
+Open the database in DB Browser. Look for the `__EFMigrationsHistory` table. That's how EF knows which migrations it has already applied.
 
 ## What you just did
 
-You moved from *"create the schema if it doesn't exist"* to *"evolve the schema as the code evolves."* You generated your first migration with `dotnet ef migrations add InitialCreate`, applied it both from the CLI and from code, and proved the apply path is safe to call repeatedly (three new tests, 63 passing total). You also met `__EFMigrationsHistory` — the small bookkeeping table that turns a list of migrations into ship-safe schema evolution. From here on, schema changes are a code review concern, not a production scare.
+You moved from *"create the structure if it doesn't exist"* to *"change the structure as the code changes."* You made your first migration with `dotnet ef migrations add InitialCreate`, applied it both from the command line and from code, and proved it's safe to run that apply step more than once (three new tests, 63 passing total). You also met `__EFMigrationsHistory` — the small record-keeping table that lets a list of migrations change a live database safely. From here on, a structure change is something you review in code, not something that scares you on release day.
 
 **Key concepts you can now name:**
 
@@ -242,4 +242,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 2.8 — **DB tooling** — covers the *tools* around databases. DB Browser for SQLite, the `sqlite3` CLI, the VS Code SQLTools extension. Knowing the tools is half the fight.
+Module 2.8 — **DB tooling** — covers the *tools* around databases. DB Browser for SQLite, the `sqlite3` command line, and the VS Code SQLTools extension. Knowing the tools makes the whole job easier.

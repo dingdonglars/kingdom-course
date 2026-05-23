@@ -1,6 +1,6 @@
 # Module 0.5 — Types Deep Dive + Naming Conventions
 
-You've been writing code for about a month now — strings, numbers, booleans — without us ever stopping to put names on them. Today we slow down and name the building blocks. Six types you've already used; one new one (`DateTime`); and a small new feature called *nullable* that the compiler started warning you about somewhere around Module 0.1 if you were watching the squiggles. This is the lesson where the squiggles get explained.
+You've been writing code for about a month now — strings, numbers, booleans — without us ever stopping to give them names. Today we slow down and name the basic building blocks. Six types you've already used, one new one (`DateTime`), and a small new feature called *nullable*. The compiler may have started warning you about nullable around Module 0.1, if you noticed the squiggles. This is the lesson where those squiggles get explained.
 
 > **Words to watch**
 >
@@ -57,7 +57,7 @@ Eldoria (founded 2024-01-15)
   at war: False
 ```
 
-Six types declared in five lines. **Each one tells the compiler what kind of value to expect**, and the compiler refuses anything else. Try `int gold = 3.5;` — won't compile. Try `bool isAtWar = "false";` — won't compile. *That's the point of types.* The compiler catches the mistake before the program ever runs.
+Six types in five lines. **Each one tells the compiler what kind of value to expect**, and the compiler refuses anything else. Try `int gold = 3.5;` — it won't compile. Try `bool isAtWar = "false";` — it won't compile either. *That's the whole point of types.* The compiler catches the mistake before the program ever runs.
 
 | Type | What it holds | Example |
 |---|---|---|
@@ -79,22 +79,22 @@ int roundedToBank = (int)exactlyHalfGold;   // 50 (truncates)
 Console.WriteLine($"  half: {exactlyHalfGold}, banked: {roundedToBank}");
 ```
 
-The `(int)` is the cast — *"treat this `double` as an `int` instead."* Two things to remember about C# math, both of which catch beginners:
+The `(int)` is the cast — *"treat this `double` as an `int` instead."* Two things to remember about C# math, and both of them trip up beginners:
 
-- `int / int` is *integer division* — the decimal is dropped. `5 / 2` gives you `2`, not `2.5`. If you want `2.5`, at least one side must be a `double`: `5 / 2.0` or `5.0 / 2`.
-- Casting from `double` to `int` *truncates* — `(int)3.99` is `3`, not `4`. It drops the decimal; it doesn't round.
+- `int / int` is *integer division* — the decimal part is dropped. `5 / 2` gives you `2`, not `2.5`. If you want `2.5`, at least one side must be a `double`: `5 / 2.0` or `5.0 / 2`.
+- Casting from `double` to `int` *truncates* — `(int)3.99` is `3`, not `4`. It drops the decimal part; it does not round.
 
-Both rules will bite you eventually. Knowing them now means you'll recognise the bug when it happens.
+Both of these will catch you out at some point. Knowing them now means you'll recognise the bug when it happens.
 
 ## Step 3 — nullable, and turning the warning system on
 
-This is the new piece. Open `TypesDemo.csproj` in your editor. Near the top you'll see:
+This is the new part. Open `TypesDemo.csproj` in your editor. Near the top you'll see:
 
 ```xml
 <Nullable>enable</Nullable>
 ```
 
-That single line turns on a feature called **nullable reference types**. With it on, the C# compiler now keeps track of which values are *allowed* to be `null` (no value at all) and which aren't — and it warns you when you mix them up.
+That one line turns on a feature called **nullable reference types**. With it on, the C# compiler keeps track of which values are *allowed* to be `null` (no value at all) and which aren't. It then warns you when you mix the two up.
 
 Add this to `Program.cs`:
 
@@ -116,7 +116,7 @@ string? nickname = null;
 
 The `?` makes the type **nullable** — *"this might be a `string`, or it might be `null`."* The squiggle goes away.
 
-Now the question is: **once a value might be `null`, what do you do with it?** Three operators help.
+Now the question is: **once a value might be `null`, what do you do with it?** Three operators help here.
 
 ```csharp
 string? nickname = null;
@@ -135,31 +135,31 @@ int trustedLength = nickname!.Length;   // works, because we just set it
 Console.WriteLine($"Trusted length: {trustedLength}");
 ```
 
-Read each one slowly. The patterns repeat through the rest of the year:
+Read each one slowly. You'll use these again and again through the year:
 
-- **`??`** — *"give me a fallback when it's `null`."* Most useful when you read user input or load a file.
-- **`?.`** — *"don't crash if it's `null`; just give me `null` back."* Lets you chain calls safely.
-- **`!`** — *"I know better than the compiler; this isn't actually `null`."* Use sparingly — it's an override, and an override is a thing you have to defend later.
+- **`??`** — *"give me this backup value when it's `null`."* Most useful when you read user input or load a file.
+- **`?.`** — *"don't crash if it's `null`; just give me `null` back."* This lets you call one method after another without checking for `null` at every step.
+- **`!`** — *"I know better than the compiler; this isn't actually `null`."* Use this rarely. You're overruling the compiler, and if you're wrong, the program crashes.
 
 ### Why warnings only show up *now*
 
-Your earlier toys (Roast-O-Matic, the number guess game, the tiny adventure) didn't show these warnings. That's because their `.csproj` files have `<Nullable>disable</Nullable>` instead of `enable`. Until today, you weren't ready to meet this concept — so we turned the warnings off. As of `TypesDemo`, they're on. **From this module forward, all your projects will have nullable enabled.** The starter projects for the rest of the curriculum already do.
+Your earlier programs (Roast-O-Matic, the number guess game, the tiny adventure) didn't show these warnings. That's because their `.csproj` files say `<Nullable>disable</Nullable>` instead of `enable`. Until today, this idea was too much to add on top of everything else, so we left the warnings off. From `TypesDemo` on, they're on. **From this module forward, all your projects have nullable turned on.** The starter projects for the rest of the course already do.
 
-If you're curious, open `RoastOMatic/RoastOMatic.csproj` and change `disable` to `enable`. Save. Open `Program.cs`. Yellow squiggles will appear. None of them are bugs in your code; they're places where the compiler is uncertain. Change it back to `disable` if you want; it's optional. The point is to *see* what the rule does.
+If you're curious, open `RoastOMatic/RoastOMatic.csproj` and change `disable` to `enable`. Save. Open `Program.cs`. Yellow squiggles appear. None of them are bugs in your code; they're places where the compiler isn't sure whether a value could be `null`. Change it back to `disable` if you want; it's up to you. The point is just to *see* what the rule does.
 
 ## Tinker
 
-Try `int gold = 3.5;` — read the error.
+Try `int gold = 3.5;` and read the error.
 
-Try printing `founded` without the format string: `Console.WriteLine($"founded: {founded}");`. What's the default layout?
+Try printing `founded` without the format part: `Console.WriteLine($"founded: {founded}");`. How does it look by default?
 
-Try `string name; Console.WriteLine(name);` — declared but never given a value. The compiler refuses it. *Why?*
+Try `string name; Console.WriteLine(name);` — the variable is created but never given a value. The compiler refuses it. *Why?*
 
 Add a method `int? FindGold(string kingdomName)` that returns `100` if the name is `"Eldoria"` and `null` otherwise. Call it twice — once with `"Eldoria"`, once with `"Nowhere"`. Use `??` to print `"none"` when the answer is `null`.
 
 ## Naming conventions
 
-Now the second half of today's lesson. C# has strict naming conventions. Every C# developer follows them. The reason is *predictability* — if you see `Kingdom`, you know it's a type; if you see `kingdom`, you know it's a variable. The pattern of capital-or-not carries information.
+Now the second half of today's lesson. C# has strict naming conventions, and every C# developer follows them. The reason is that they make code easy to predict. If you see `Kingdom`, you know it's a type. If you see `kingdom`, you know it's a variable. Whether the first letter is capital or not tells you something.
 
 | What | Style | Example |
 |---|---|---|
@@ -171,18 +171,18 @@ Now the second half of today's lesson. C# has strict naming conventions. Every C
 | Constant | **PascalCase** | `const int MaxBuildings = 50;` |
 | Async method | adds `Async` suffix | `SaveAsync`, `LoadAsync` |
 
-The full set is in `STANDARDS.md` at the root of the curriculum. VS Code (with the C# Dev Kit extension) flags any violation as you type — yellow squiggle, hover for the suggestion. **Use auto-complete and the rename refactor (press `F2` on a name to rename it everywhere it's used). Don't fight the conventions.**
+The full set is in `STANDARDS.md` at the top of the curriculum. VS Code (with the C# Dev Kit extension) marks any break from these rules as you type — a yellow squiggle, with the suggestion in the hover box. **Use code suggestions and the rename tool (press `F2` on a name to rename it everywhere at once). Go along with the conventions, don't push against them.**
 
 The two you'll use most this year:
 
 - **Type names — `PascalCase`.** First letter capital, no underscores, no spaces. `Building`, `ResourceLedger`, `KingdomDbContext`.
 - **Variables — `camelCase`.** First letter lowercase, then capitals at word starts. `goldCount`, `firstName`, `currentDay`.
 
-Match what you see in the code around you. When in doubt, your **IDE** (*Integrated Development Environment* — the editor you write code in; for this course, that's VS Code) will tell you with a red squiggle under the wrong-cased name.
+Copy the style you see in the code around you. When you're not sure, your **IDE** (*Integrated Development Environment* — the editor you write code in; for this course, that's VS Code) tells you with a red squiggle under a name that has the wrong capital letters.
 
 ## What you just did
 
-You learned the six types you'll use for the rest of the year — `int`, `double`, `bool`, `string`, `DateTime`, plus the *nullable* form like `string?`. You met two C# math traps that bite beginners (integer division and truncating casts). You turned on the nullable-warning system in your project, saw what the squiggles mean, and learned three operators (`??`, `?.`, `!`) for working with values that might be missing. And you met the naming conventions every C# developer follows — `PascalCase` for types, `camelCase` for variables. Six new vocabulary items, one new compiler feature, and a stack of conventions that govern every line of C# you'll write from here on.
+You learned the six types you'll use for the rest of the year — `int`, `double`, `bool`, `string`, `DateTime`, plus the *nullable* form like `string?`. You met two C# math rules that catch out beginners (integer division and truncating casts). You turned on the nullable warnings in your project, saw what the squiggles mean, and learned three operators (`??`, `?.`, `!`) for working with values that might be missing. And you met the naming conventions every C# developer follows — `PascalCase` for types, `camelCase` for variables. Six new words, one new compiler feature, and a set of naming rules that shape every line of C# you'll write from here on.
 
 **Key concepts you can now name:**
 
@@ -202,4 +202,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 0.6 introduces **methods** — named chunks of code you call by name. You've been calling methods since day 1 (`Console.WriteLine` is a method); now you'll write your own.
+Module 0.6 introduces **methods** — named pieces of code you call by name. You've been calling methods since day 1 (`Console.WriteLine` is a method). Now you'll write your own.

@@ -1,12 +1,12 @@
 # Module 4.7 — M5 Close + Phase 0 Reflection
 
-The kingdom is in browsers. **Phase 4 done. Five milestones, four shells, one engine.** Today closes the phase with the per-milestone ritual and a quietly powerful exercise: re-read the code you wrote in Phase 0 — Spark Week — with current eyes. Eight months of growth, visible in one comparison.
+The kingdom runs in browsers. **Phase 4 done. Five milestones, four shells, one engine.** Today closes the phase with the milestone ritual and one quiet but powerful exercise: read the code you wrote in Phase 0 — Spark Week — again, now that you know much more. Eight months of progress, easy to see in one comparison.
 
 > **Words to watch**
 >
-> - **reflection** — looking back at past code with current eyes.
-> - **before/after** — the small one-liner you write at every milestone.
-> - **wins log** — your milestone history in `journal/wins.md`.
+> - **reflection** — reading your old code again, now that you know more.
+> - **before/after** — the short one-line note you write at every milestone.
+> - **wins log** — your list of milestones in `journal/wins.md`.
 
 ---
 
@@ -14,17 +14,17 @@ The kingdom is in browsers. **Phase 4 done. Five milestones, four shells, one en
 
 Open your Phase 0 code. The first toys you wrote — `RoastOMatic`, `NumberGuess`, `TinyAdventure`. Read them.
 
-Pick *one* of those toys (the worst, ideally) and spend thirty minutes refactoring with current eyes. Don't add features — clean up. Look for variables that should have been constants. Methods that should be split. Names that don't pull weight. Comments that have rotted. Magic numbers. The thing you'd do *completely differently* now.
+Pick *one* of those toys (the worst one, ideally) and spend thirty minutes cleaning it up, now that you know more. Don't add features — just improve what's there. Look for variables that should have been constants. Methods that should be split into smaller ones. Names that don't say what they mean. Comments that are now out of date. Magic numbers. The thing you'd do *completely differently* now.
 
-Save the diff. Commit with `[refactor] phase-0 <toy> — applying lessons from phases 1-4`. The commit *is* the proof that you can see the gap.
+Save the diff. Commit with `[refactor] phase-0 <toy> — applying lessons from phases 1-4`. That commit *is* the proof that you can see the difference between your old code and your new code.
 
-Don't refactor *all* of Phase 0 — that's busywork. One toy is the experiment. The point is *seeing the gap*.
+Don't clean up *all* of Phase 0 — that's busywork. One toy is the experiment. The point is to *see the difference*.
 
 ## M5 milestone ritual
 
-Same pattern as M2, M3, and M4. The README refresh comes first — that's the discipline; everything else follows.
+Same pattern as M2, M3, and M4. The README update comes first — that's the rule; everything else follows.
 
-First, **refresh the README** at the repo root. Re-walk the four sections from Module 0.4. *How to run* now needs the `vite dev` step alongside the API; *What I learned* gets a Phase 4 paragraph (the browser as a runtime, vanilla TS, fetch + render). Don't skip this — every milestone close circles back here.
+First, **update the README** at the repo root. Go through the four sections from Module 0.4 again. *How to run* now needs the `vite dev` step next to the API; *What I learned* gets a Phase 4 paragraph (the browser as a runtime, vanilla TS, fetch + render). Don't skip this — every milestone close comes back to this step.
 
 Second, open `journal/wins.md` and write the M5 entry:
 
@@ -43,37 +43,37 @@ Second, open `journal/wins.md` and write the M5 entry:
 Posted to `#wins` on YYYY-MM-DD.
 ```
 
-Third, take a screenshot of your live URL plus the kingdom rendering, and post to `#wins` in Slack.
+Third, take a screenshot of your live URL with the kingdom rendered on it, and post it to `#wins` in Slack.
 
-Fourth, tag the milestone. This one's CLI-only — the panel doesn't have a button for tags:
+Fourth, tag the milestone. This step is CLI-only — the panel doesn't have a button for tags:
 
 ```powershell
 git tag m5-phase-4-complete
 git push origin m5-phase-4-complete
 ```
 
-Fifth, **open the M5 PR.** On github.com → your `kingdom` repo → banner *"phase-4 had recent pushes — Compare & pull request"* (or *Pull requests → New pull request*, base `main`, compare `phase-4`). Title: `M5 — Phase 4 — Browser-Playable Kingdom`. Body: this milestone's `wins.md` bullets + `**Reviewer:** @dingdonglars` + the AI-assistance section per the post-Unlock template. Lars reads it before the weekly sync, Approves, you Merge → delete the `phase-4` branch. Locally: `git switch main && git pull`. (Full walkthrough: Module 1.10.)
+Fifth, **open the M5 PR.** On github.com → your `kingdom` repo → banner *"phase-4 had recent pushes — Compare & pull request"* (or *Pull requests → New pull request*, base `main`, compare `phase-4`). Title: `M5 — Phase 4 — Browser-Playable Kingdom`. Body: this milestone's `wins.md` bullets + `**Reviewer:** @dingdonglars` + the AI-assistance section from the post-Unlock template. Lars reads it before the weekly sync and Approves; then you Merge and delete the `phase-4` branch. On your machine: `git switch main && git pull`. (Full walkthrough: Module 1.10.)
 
 ## Tinker
 
-Compare your `KingdomCard.ts` from Module 4.4 to your Phase 0 `Program.cs`. One file is twenty lines of clean TypeScript; the other is hundreds of lines doing one thing. The growth is real and visible.
+Compare your `KingdomCard.ts` from Module 4.4 to your Phase 0 `Program.cs`. One file is twenty lines of clean TypeScript; the other is hundreds of lines all doing one thing. The progress is real, and you can see it.
 
-Re-read `STANDARDS.md`. Does anything in there now feel obvious that didn't last year? That's mastery.
+Read `STANDARDS.md` again. Does anything in there feel obvious now that didn't a year ago? That's a sign of how much you've learned.
 
-Re-read `CLAUDE.md`. Notice the mode is `post-unlock`. Has your AI use changed since Phase 4 started? What works? What doesn't? Jot two sentences in `journal/wins.md` if anything stands out.
+Read `CLAUDE.md` again. Notice the mode is `post-unlock`. Has the way you use the AI changed since Phase 4 started? What works well? What doesn't? Write two sentences in `journal/wins.md` if anything stands out.
 
-Take a screenshot of your kingdom-on-browser and use it as the first commit message of Phase 5 (Roblox). Phase 4 → Phase 5 transition.
+Take a screenshot of your kingdom running in the browser and use it as the first commit message of Phase 5 (Roblox). It marks the move from Phase 4 to Phase 5.
 
 ## What you just did
 
-Phase 4 closed. The kingdom now plays in any browser, you wrote a Phase 0 reflection refactor that proves you can see the gap between old code and new, and the M5 ritual is on disk — `wins.md` entry, `#wins` Slack post, milestone tag pushed, PR opened. Four shells, one engine, eight months of growth. The exercise of re-reading old code with new eyes is one of the cheapest mastery checks there is — generic dissatisfaction with code is anxiety; specific dissatisfaction (*"I'd extract this method, rename this variable, drop this comment"*) is mastery.
+Phase 4 closed. The kingdom now plays in any browser. You cleaned up one Phase 0 toy, which proves you can see the difference between your old code and your new code. The M5 ritual is on disk — `wins.md` entry, `#wins` Slack post, milestone tag pushed, PR opened. Four shells, one engine, eight months of progress. Reading old code again, now that you know more, is one of the cheapest ways to check how much you've learned. If you only feel a vague unease about old code, that's anxiety; if you can say exactly what you'd change (*"I'd pull this out into a method, rename this variable, delete this comment"*), that's real skill.
 
 **Key concepts you can now name:**
 
-- **reflection** — looking back at past code with current eyes
-- **before/after** — one-liner per milestone; reads as a story over time
-- **wins log** — `journal/wins.md`; your milestone history
-- **specific vs generic dissatisfaction** — the second is mastery, the first is anxiety
+- **reflection** — reading your old code again, now that you know more
+- **before/after** — one line per milestone; together they tell your story over time
+- **wins log** — `journal/wins.md`; your list of milestones
+- **specific vs vague dissatisfaction** — knowing exactly what to change is skill; vague unease is just anxiety
 
 ## Wrap up
 
@@ -86,4 +86,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-**Phase 5 begins.** Phase 5 is the Roblox port — your engine moves into a different runtime and a different language (Luau). Same engine vs shell discipline; the proof that the discipline was never about C#.
+**Phase 5 begins.** Phase 5 is the Roblox port — your engine moves into a different runtime and a different language (Luau). Same engine-vs-shell idea as before; it's the proof that the idea was never really about C#.

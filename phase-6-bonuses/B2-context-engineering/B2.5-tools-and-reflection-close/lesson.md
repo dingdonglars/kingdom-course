@@ -1,8 +1,8 @@
 # Bonus B2.5 — Comparing Tools, then the Close
 
-Claude isn't the only AI assistant. Cursor, GitHub Copilot, Claude Code, Continue, Codeium — each one fits a different niche. Today we name the field, talk about when each shines, and then you write the one-page reflection that closes B2 and the curriculum at the same time.
+Claude isn't the only AI assistant. Cursor, GitHub Copilot, Claude Code, Continue, Codeium — each one fits a different job. Today we name the tools out there, talk about when each one is good, and then you write the one-page reflection that closes B2 and the course at the same time.
 
-The point of comparing tools isn't to convince you to use them all. The point is to recognise the *shapes* — chat-style, inline completion, agentic — so when a new tool launches next year (and one will), you know what category it falls into and whether to bother trying it.
+The point of comparing tools isn't to get you to use them all. The point is to learn the *types* — chat-style, inline completion, agentic — so when a new tool comes out next year (and one will), you know which type it is and whether it is worth trying.
 
 > **Words to watch**
 >
@@ -31,9 +31,9 @@ For a learning project like yours, the recommended stack:
 - **GitHub Copilot** for in-IDE small completions
 - **Claude desktop** for pure conversation and explanation
 
-You don't need all of them. Pick one chat-style and one inline. Ship.
+You don't need all of them. Pick one chat-style and one inline. That is enough.
 
-## When each shines
+## When each one is good
 
 A few examples of which tool fits which task:
 
@@ -43,7 +43,7 @@ A few examples of which tool fits which task:
 - *"Refactor this 200-line file into four components."* → **Cursor agent** or **Claude Code**
 - *"Translate this Spanish error message."* → **Claude desktop** (or any chat-style tool)
 
-When in doubt: chat-style for thinking, inline for typing, agentic for doing.
+When you are not sure: chat-style for thinking, inline for typing, agentic for doing.
 
 ## Step — write the reflection
 
@@ -55,7 +55,7 @@ Open `journal/B2-what-i-learned.md`. The template has five prompts. Pick the one
 4. **One concrete piece of advice for someone starting next year?** Three sentences max.
 5. **Where will you use AI more next year? Where less?**
 
-Aim for ~500 words total. The exercise isn't literary polish — it's thinking about how you think (which is what the Module 5.8 reflection touched on too). Naming what you've been doing is what turns a bunch of habits into a transferable skill.
+Aim for about 500 words in total. This isn't about nice writing — it is about thinking about how you think (which the Module 5.8 reflection touched on too). Naming what you have been doing is what turns a set of habits into a skill you can take anywhere.
 
 ## Step — tag the bonus
 
@@ -68,18 +68,18 @@ git push origin b2-context-engineering-complete
 
 ## What's next (genuine end of curriculum)
 
-You've finished M6 *and* both bonuses. The course is over.
+You have finished M6 *and* both bonuses. The course is over.
 
 Some directions if you want them, none required:
 
-- **Start a new project.** Anything. Your toolset travels.
-- **Contribute to an open-source project.** Read its README; pick a `good-first-issue`; learn how a real codebase is maintained by people who didn't write it from scratch.
-- **Teach someone else.** Pick the lesson that helped you most and write it for a friend who's about to start. The act of explaining is its own next level.
-- **Stay sharp.** Read code, write code, read about code. The skill keeps building over time as long as you keep showing up.
+- **Start a new project.** Anything. Your tools come with you.
+- **Help out on an open-source project.** Read its README, pick a `good-first-issue`, and learn how a real codebase is looked after by people who didn't write it from scratch.
+- **Teach someone else.** Pick the lesson that helped you most and write it for a friend who is about to start. Explaining something is its own next level.
+- **Keep practising.** Read code, write code, read about code. The skill keeps growing over time as long as you keep showing up.
 
 ## What you just did
 
-You closed B2 and the curriculum at the same time. The closing reflection is what you keep — five hundred words about what AI did well, what it did badly, how your workflow changed, what advice you'd give next year's beginner. Five modules of context engineering — frame, scaffolding, scoping, eval, tools — and you've named what you were already doing. The discipline is yours now; the tools come and go around it.
+You closed B2 and the whole course at the same time. The closing reflection is what you keep — five hundred words about what AI did well, what it did badly, how the way you work changed, and what advice you'd give next year's beginner. Five modules of context engineering — frame, scaffolding, scoping, eval, tools — and you have named what you were already doing. The skill is yours now; the tools come and go around it.
 
 **Key concepts you can now name:**
 

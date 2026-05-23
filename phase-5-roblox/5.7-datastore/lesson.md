@@ -1,6 +1,6 @@
 # Module 5.7 — Roblox DataStore: Persistence
 
-Today the kingdom survives across sessions. Roblox provides **DataStoreService** — a key/value store accessible from server code only. We save the kingdom's snapshot when a player leaves and reload it when they come back. Same idea as Phase 2's JSON file, with a different API.
+Today the kingdom stays saved between play sessions. Roblox gives you **DataStoreService** — a key/value store you can only use from server code. We save the kingdom's snapshot when a player leaves and load it again when they come back. Same idea as Phase 2's JSON file, with a different API.
 
 > **Words to watch**
 >
@@ -27,13 +27,13 @@ local data = store:GetAsync("player_12345")
 print(data.day, data.gold)
 ```
 
-That's the entire API for ninety-five percent of cases. The two functions are server-only — `DataStore` won't load in a `LocalScript`.
+That's almost the whole API for most cases. The two functions only work on the server — `DataStore` won't load in a `LocalScript`.
 
-`SetAsync` and `GetAsync` are async — they make a network round-trip to Roblox's servers. They can throw on transient errors, so production code wraps them in `pcall`.
+`SetAsync` and `GetAsync` are async: they send a request to Roblox's servers and wait for the reply. Sometimes that request fails for a moment, and the call throws an error. So real games wrap these calls in `pcall`.
 
 ## Snapshot to JSON
 
-Most of the time you don't need to convert anything yourself — DataStore can store a Lua table directly. When you do need a string (for example, sending one through a RemoteEvent), Roblox provides JSON via `HttpService`:
+Most of the time you don't need to convert anything yourself — DataStore can store a Lua table as-is. When you do need a string (for example, to send one through a RemoteEvent), Roblox gives you JSON through `HttpService`:
 
 ```lua
 local HttpService = game:GetService("HttpService")
@@ -103,17 +103,17 @@ game:BindToClose(function()
 end)
 ```
 
-Five hooks worth naming:
+Five things worth naming:
 
-- `PlayerAdded` — fires when someone joins; load their kingdom here.
-- `PlayerRemoving` — fires when someone leaves; save their kingdom here.
-- `BindToClose` — fires when the server itself is shutting down; Roblox gives you about thirty seconds to flush.
-- `pcall` — Lua's try/catch. DataStore errors are recoverable, so wrapping the call lets the script continue if the network blips.
-- `warn` — logs to the Output panel in yellow; visible in production logs as well as in Studio.
+- `PlayerAdded` — runs when someone joins; load their kingdom here.
+- `PlayerRemoving` — runs when someone leaves; save their kingdom here.
+- `BindToClose` — runs when the server itself is shutting down; Roblox gives you about thirty seconds to save everything.
+- `pcall` — Lua's try/catch. A DataStore error can be recovered from, so wrapping the call lets the script keep going if the network fails for a moment.
+- `warn` — prints to the Output panel in yellow; you can see it in the live server logs as well as in Studio.
 
-## Engine snapshot and rehydrate
+## Engine: save and load
 
-`Kingdom:toSnapshot()` and `Kingdom.fromSnapshot(data)` need to exist on the Luau engine — same idea as the `KingdomSnapshot` you wrote in Phase 2. A first sketch:
+`Kingdom:toSnapshot()` and `Kingdom.fromSnapshot(data)` need to exist on the Luau engine — same idea as the `KingdomSnapshot` you wrote in Phase 2. `toSnapshot` turns the kingdom into a plain table you can save; `fromSnapshot` builds a full kingdom back from that table. A first sketch:
 
 ```lua
 function Kingdom:toSnapshot()
@@ -139,39 +139,39 @@ function Kingdom.fromSnapshot(snap: any)
 end
 ```
 
-Each subclass sets `__name` on its metatable — `Farm.__name = "Farm"`, `Mine.__name = "Mine"` — which plays the same role as `b.GetType().Name` did in C#.
+Each subclass sets `__name` on its metatable — `Farm.__name = "Farm"`, `Mine.__name = "Mine"` — which does the same job as `b.GetType().Name` did in C#.
 
 ## DataStore quotas
 
-The free tier gives you about sixty calls per minute per server, with up to four megabytes per key. Plenty for one player at a time. Don't save on every tick — save on player leave plus every five minutes or so for safety.
+The free plan gives you about sixty calls per minute per server, with up to four megabytes per key. That's plenty for one player at a time. Don't save on every tick — save when the player leaves, plus every five minutes or so to be safe.
 
-For production, you'd add three more layers:
+For a real, busy game, you'd add three more things:
 
-- **Session locking** — prevent two server instances from writing the same key at once.
-- **Backups** — version history in case a save corrupts.
-- **Migration** — handle older snapshot shapes when you change the format.
+- **Session locking** — stop two servers from writing the same key at the same time.
+- **Backups** — keep old versions in case a save gets corrupted.
+- **Migration** — handle older save formats when you change the layout.
 
-Roblox has community libraries for these — `ProfileService` and `Suphi DataStore` are the two most-named — but they're out of scope for this lesson.
+Roblox has community libraries for these — `ProfileService` and `Suphi DataStore` are the two most often named — but they're beyond what this lesson covers.
 
 ## Tinker
 
-Test in Studio with *Test → Local Server*. DataStore is **disabled** in Studio by default; enable it via *Game Settings → Security → Enable Studio Access to API Services*.
+Test in Studio with *Test → Local Server*. DataStore is **turned off** in Studio by default. Turn it on with *Game Settings → Security → Enable Studio Access to API Services*.
 
-Save explicitly via a chat command (`/save`), restart the server, reload as the same player, and watch the same kingdom return.
+Add a chat command (`/save`) that saves on demand, restart the server, join again as the same player, and see the same kingdom come back.
 
-Notice the parallel with the EF Core migrations table from Phase 2: in DataStore, you'd add a `version` field to your snapshot and handle older versions on load. Same migration concept; different mechanism.
+Notice how this is like the EF Core migrations table from Phase 2: in DataStore, you'd add a `version` field to your snapshot and handle older versions when you load. Same migration idea; different tool.
 
 ## What you just did
 
-You taught the kingdom to survive across sessions on Roblox. `Players.PlayerAdded` loads the player's snapshot from DataStore on join; `Players.PlayerRemoving` saves it on leave; `game:BindToClose` flushes everyone when the server itself shuts down. `pcall` wraps the network calls so a transient blip doesn't kill the script. The `Kingdom:toSnapshot` and `Kingdom.fromSnapshot` methods live on the engine itself, mirroring the Phase 2 design — the engine knows how to describe itself, and the persistence layer just moves bytes. **The same pattern five times now: file (Module 2.1), JSON (Module 2.2), SQLite (Module 2.4), EF Core (Module 2.6), DataStore (Module 5.7).** The medium changes; the discipline doesn't.
+You taught the kingdom to stay saved between sessions on Roblox. `Players.PlayerAdded` loads the player's snapshot from DataStore when they join. `Players.PlayerRemoving` saves it when they leave. `game:BindToClose` saves everyone when the server itself shuts down. `pcall` wraps the network calls, so a short failure doesn't stop the whole script. The `Kingdom:toSnapshot` and `Kingdom.fromSnapshot` methods live on the engine itself, the same as the Phase 2 design — the engine knows how to describe itself, and the saving code just moves the data. **The same pattern five times now: file (Module 2.1), JSON (Module 2.2), SQLite (Module 2.4), EF Core (Module 2.6), DataStore (Module 5.7).** The way you store it changes; the careful method doesn't.
 
 **Key concepts you can now name:**
 
 - *DataStoreService* — Roblox's built-in key/value store, server-only
 - *`SetAsync` / `GetAsync` / `UpdateAsync`* — the three basic operations
-- *`pcall`* — Lua's try/catch wrapper; protects against transient errors
-- *`PlayerAdded` / `PlayerRemoving` / `BindToClose`* — lifecycle hooks for save and load
-- *snapshot and rehydrate* — engine method on one side, persistence on the other
+- *`pcall`* — Lua's try/catch wrapper; keeps the script going if a call fails for a moment
+- *`PlayerAdded` / `PlayerRemoving` / `BindToClose`* — events that run on join, leave, and shutdown
+- *save and load* — the engine describes itself; the saving code moves the data
 
 ## Words to add to the glossary
 
@@ -179,7 +179,7 @@ You taught the kingdom to survive across sessions on Roblox. `Players.PlayerAdde
 - **`SetAsync` / `GetAsync` / `UpdateAsync`** — the basic DataStore operations.
 - **`pcall`** — Lua's protected call; returns success boolean plus result or error.
 - **`warn`** — yellow log in Output; visible in production server logs.
-- **`BindToClose`** — final-flush hook when the server shuts down.
+- **`BindToClose`** — runs one last save when the server shuts down.
 
 ## Wrap up
 

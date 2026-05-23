@@ -1,6 +1,6 @@
 # Module 0.3 — Tiny Adventure
 
-Today you build a three-room text adventure. *"You stand in a dim hallway. There's a door north and a door east. >"* The world is yours; the bones come from this lesson. Two new ideas land along the way: a *list* (how the player carries items between rooms) and writing your own *methods* (a method per room, calling each other as the player walks around).
+Today you build a three-room text adventure. *"You stand in a dim hallway. There's a door north and a door east. >"* The world is yours to design; this lesson gives you the frame to build on. Two new ideas come up along the way: a *list* (how the player carries items between rooms) and writing your own *methods* (one method per room, each calling the next as the player walks around).
 
 > **Words to watch**
 >
@@ -98,9 +98,9 @@ void Library()
 }
 ```
 
-There are two new ideas in this code worth pausing on. The first line creates a `List<string>` — a list that holds text items, starting empty. Each method (`Hallway`, `Kitchen`, `Library`) is one room. When the player chooses a direction, the current room's method calls the next room's method directly. The methods call each other; that's how the player walks around.
+There are two new ideas in this code worth a closer look. The first line creates a `List<string>` — a list that holds text items, and it starts empty. Each method (`Hallway`, `Kitchen`, `Library`) is one room. When the player chooses a direction, the current room's method calls the next room's method directly. The methods call each other, and that's how the player walks around.
 
-The other small thing to notice: `Console.ReadLine().Trim().ToLower()` reads a line, removes any spaces around the edges (`Trim`), and converts it to lowercase (`ToLower`). That way `"NORTH"`, `" north "`, and `"North"` all match `"north"`.
+One more small thing to notice: `Console.ReadLine().Trim().ToLower()` reads a line, removes any spaces at the start and end (`Trim`), and changes it to lowercase (`ToLower`). That way `"NORTH"`, `" north "`, and `"North"` all match `"north"`.
 
 Run it:
 
@@ -108,29 +108,29 @@ Run it:
 dotnet run
 ```
 
-Walk around. Try every command. Try the win condition (take the knife, read the book).
+Walk around. Try every command. Try to win the game (take the knife, then read the book).
 
 ## Tinker
 
-Add a fourth room — a basement, a garden, a tower — and connect it to one of the existing rooms.
+Add a fourth room — a basement, a garden, a tower — and connect it to one of the rooms you already have.
 
-Add an item the player can pick up in your new room. Maybe a key, a candle, an old letter.
+Add an item the player can pick up in your new room. Maybe a key, a candle, or an old letter.
 
-Add a second win condition that needs the new item. Now the game has two ways to win.
+Add a second way to win that needs the new item. Now the game has two ways to win.
 
-Make the rooms talk to the player about what's in their `inventory` if they type `look` or `inventory`. You'll need a small loop to print each item.
+Make the rooms list what's in the player's `inventory` when they type `look` or `inventory`. You'll need a small loop to print each item.
 
 ## Name it
 
-A **list** is an ordered collection. `List<string>` is C#'s flexible list type, specifically holding strings. You created an empty one with `new List<string>()`. You added to it with `inventory.Add(...)`. You checked membership with `inventory.Contains(...)`. The `<string>` part says *"this is a list of strings"* — you'll see `<int>`, `<Building>`, and others later. The angle brackets are how you tell a generic class what type it works with.
+A **list** keeps things in order. `List<string>` is C#'s list type that can grow and shrink, and this one holds strings. You created an empty one with `new List<string>()`. You added to it with `inventory.Add(...)`. You checked whether something was in it with `inventory.Contains(...)`. The `<string>` part says *"this is a list of strings."* You'll see `<int>`, `<Building>`, and others later. The angle brackets are how you tell this kind of list which type it holds.
 
-A **method (defined)** is one you write yourself. You wrote three today: `Hallway()`, `Kitchen()`, `Library()`. The `void` keyword in front says the method doesn't give back a value — it just *does* something. The body runs when the method is called. When the body finishes, control returns to the line that called it.
+A **method (defined)** is one you write yourself. You wrote three today: `Hallway()`, `Kitchen()`, `Library()`. The `void` keyword in front says the method doesn't give back a value — it just *does* something. The body runs when the method is called. When the body finishes, the program goes back to the line that called it.
 
-**Organisation** is what splitting code into methods buys you. Imagine the same game written as one giant `if/else` chain — three rooms, three sets of choices, all jammed together. Unreadable. With each room as a method, the structure of the game maps to the structure of the code. That mapping is the whole point.
+**Organisation** is what you get when you split code into methods. Imagine the same game written as one giant `if/else` chain: three rooms, three sets of choices, all crammed together. You couldn't read it. With each room as its own method, the parts of the code line up with the parts of the game. That match is the whole point.
 
 ## What you just did
 
-You wrote a real game with state — an inventory the player carries between rooms — and you wrote your own methods for the first time. Three rooms, each its own method, calling each other as the player walks around. You met `List<string>` for storing items, and you saw what `void` methods look like when *you* write them rather than just calling them. The whole adventure is about ninety lines of code, split into four named pieces that each do one thing.
+You wrote a real game that remembers things — an inventory the player carries between rooms — and you wrote your own methods for the first time. Three rooms, each its own method, calling each other as the player walks around. You met `List<string>` for storing items, and you saw what `void` methods look like when *you* write them, not just call them. The whole adventure is about ninety lines of code, split into four named pieces that each do one thing.
 
 **Key concepts you can now name:**
 
@@ -151,4 +151,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 0.4 is a polish day. You pick your favourite of the three programs from this week, dress it up, and ship it. End of Spark Week.
+Module 0.4 is a day for making things look nice. You pick your favourite of the three programs from this week, improve it, and finish it. End of Spark Week.

@@ -1,14 +1,14 @@
 # Module 4.1 — HTML & CSS Fundamentals
 
-Today the kingdom shows up in a browser tab. Not as JSON, not as a console printout — as a page. We write the smallest useful HTML and CSS, open the file in a browser, and there it is. No framework, no build step, no `npm install`. Just a `.html` file and a `.css` file you can double-click. The next module makes the page talk to your live API; today is about the layout.
+Today the kingdom appears in a browser tab. Not as JSON, not as console text — as a page. We write the smallest useful HTML and CSS, open the file in a browser, and there it is. No framework, no build step, no `npm install`. Just a `.html` file and a `.css` file you can double-click. The next module makes the page talk to your live API. Today is about the layout.
 
-If you've never written HTML before, the model is simpler than it looks. **HTML** describes structure: this is a heading, this is a list, this is the main section. **CSS** describes appearance: this much spacing, that font, those colours. The two languages stay separate on purpose. If you ever find yourself writing colours into HTML or structure into CSS, you've crossed a wire.
+If you've never written HTML before, it's simpler than it looks. **HTML** describes structure: this is a heading, this is a list, this is the main section. **CSS** describes appearance: this much spacing, that font, those colours. The two languages stay separate on purpose. If you ever find yourself writing colours into HTML, or structure into CSS, something is in the wrong place.
 
 > **Words to watch**
 >
 > - **HTML** — markup language. Describes structure: headings, lists, sections, links.
 > - **CSS** — style language. Describes appearance: colours, spacing, fonts, layout.
-> - **DOM** — the in-memory tree the browser builds from your HTML. JavaScript will mutate this in Module 4.2.
+> - **DOM** — the in-memory tree the browser builds from your HTML. JavaScript will change it in Module 4.2.
 > - **semantic markup** — using `<header>`, `<main>`, `<nav>` instead of `<div>` for everything.
 
 ---
@@ -41,9 +41,9 @@ Create `web/index.html` at your repo root:
 </html>
 ```
 
-Eight elements; full structure. Double-click the file in your file explorer — the browser opens it. You'll see the static skeleton: a heading "Eldoria", an empty Day, two empty lists. The page references a `kingdom.js` file that doesn't exist yet — the browser shrugs and continues. We'll write that file in the next module.
+Eight elements, and that's the whole structure. Double-click the file in your file explorer — the browser opens it. You'll see the bare page: a heading "Eldoria", an empty Day, two empty lists. The page asks for a `kingdom.js` file that doesn't exist yet. The browser just skips it and keeps going. We'll write that file in the next module.
 
-A note on the elements you'll see most: `<header>` is the page top, `<main>` is the body, `<nav>` is for menus, `<article>` and `<section>` group related content, `<h1>` through `<h6>` are headings in order of importance. Using these instead of `<div>` everywhere is what's meant by **semantic markup**. Screen readers, search engines, and your future self all read meaning from the tag name.
+A note on the elements you'll see most: `<header>` is the page top, `<main>` is the body, `<nav>` is for menus, `<article>` and `<section>` group related content, and `<h1>` through `<h6>` are headings in order of importance. Using these instead of `<div>` everywhere is what **semantic markup** means. Screen readers, search engines, and you yourself later all read meaning from the tag name.
 
 ## Step 2 — the smallest useful CSS
 
@@ -69,23 +69,23 @@ ul { padding-left: 1.5rem; }
 li { padding: 0.25rem 0; }
 ```
 
-Three rules of thumb live in those few lines.
+Those few lines hold three useful habits.
 
-The first is **`box-sizing: border-box`** on every element. Without this, the width you set on a box doesn't include its padding or border, so a `width: 200px` element with `padding: 10px` actually takes 220 pixels. With `border-box`, the math is what you'd expect. Set it once, on `*`, at the top of the file.
+The first is **`box-sizing: border-box`** on every element. Without it, the width you set on a box does not include its padding or border. So a `width: 200px` element with `padding: 10px` actually takes 220 pixels. With `border-box`, the width is exactly what you set. Add it once, on `*`, at the top of the file.
 
-The second is **`max-width` plus `margin: auto`** on the body. That centres the content and caps line length at something readable. Long lines of text on a wide screen are unpleasant to read; this is the cheapest fix.
+The second is **`max-width` plus `margin: auto`** on the body. That centres the content and stops lines of text from getting too long to read. Long lines on a wide screen are tiring to read; this is the cheapest way to fix it.
 
-The third is **system fonts** — `system-ui` resolves to whatever native UI font the operating system uses (Segoe UI on Windows, San Francisco on macOS, Roboto on Android). No download, fast, looks right by default. Custom fonts have their place, but for the kingdom UI, system is plenty.
+The third is **system fonts** — `system-ui` uses whatever font the operating system already uses for its own menus (Segoe UI on Windows, San Francisco on macOS, Roboto on Android). Nothing to download, fast, and it looks right by default. Custom fonts are fine when you need them, but for the kingdom UI, the system font is plenty.
 
 Refresh the page. It already looks like a real page.
 
 ## Step 3 — what's not in this module
 
-A short list, so you know where the limits are.
+A short list, so you know where the limits are for today.
 
-JavaScript is in Module 4.2 and Module 4.3 — today the page is static. Frameworks like React or Svelte come later, optionally. Build tooling (Vite) lands in Module 4.3. Real CSS layout — Grid, Flexbox — is its own world; the basics here are enough for the kingdom shell, and you can read deeper on your own when you need them.
+JavaScript comes in Module 4.2 and Module 4.3 — today the page just sits there. Frameworks like React or Svelte come later, and they're optional. Build tools (Vite) come in Module 4.3. Real CSS layout — Grid, Flexbox — is a big topic on its own. The basics here are enough for the kingdom page, and you can read more about layout on your own when you need it.
 
-This module is the floor. The next five build up.
+This module is the starting point. The next five build on top of it.
 
 ## Step 4 — the delta starter
 
@@ -97,17 +97,17 @@ Create the empty `kingdom.js` so the `<script>` tag has something to load. One l
 
 ## Tinker
 
-Change the body background to your favourite colour. Refresh. The instant feedback is the joy of frontend work — there's no compile step, no rebuild, nothing between your edit and seeing the result.
+Change the body background to your favourite colour. Refresh. You see the result at once — that's one of the nice things about frontend work. There's no compile step, no rebuild, nothing between your edit and seeing it on screen.
 
-Add a `<nav>` with three links (just `href="#"` for now) inside the `<header>`. Notice the browser puts them inline by default. Style is what makes them look like a menu; markup just says "these are navigation links."
+Add a `<nav>` with three links (just `href="#"` for now) inside the `<header>`. Notice the browser puts them in a row by default. CSS is what makes them look like a menu; the HTML just says "these are navigation links."
 
-Open browser DevTools (F12 in most browsers) and click the Elements panel. Inspect the `<header>`. You're looking at the live tree — the DOM. We'll talk to it from JavaScript in the next module.
+Open browser DevTools (F12 in most browsers) and click the Elements panel. Look at the `<header>`. You're seeing the live tree — the DOM. We'll talk to it from JavaScript in the next module.
 
-Add `<meta name="viewport" content="width=device-width, initial-scale=1">` to the `<head>`. The page now renders correctly on a phone. One line; large effect.
+Add `<meta name="viewport" content="width=device-width, initial-scale=1">` to the `<head>`. The page now displays correctly on a phone. One line, big effect.
 
 ## What you just did
 
-You wrote a webpage by hand. The HTML laid out the structure — a header with a name and a day counter, a main section with two lists. The CSS gave it spacing, a sensible width, and a system font, plus the `box-sizing` reset that fixes the most common width-math surprise. You opened the file in a browser and it rendered. No framework, no build step, no install — just two files and a tab. About forty lines of code total; you've already met the three rules of thumb (`box-sizing: border-box`, `max-width` for readable line length, system fonts) that carry most simple pages. Markup first, style second.
+You wrote a webpage by hand. The HTML set out the structure — a header with a name and a day counter, a main section with two lists. The CSS gave it spacing, a sensible width, and a system font, plus the `box-sizing` line that fixes the most common width surprise. You opened the file in a browser and it rendered. No framework, no build step, no install — just two files and a tab. About forty lines of code in total. You've already met the three useful habits (`box-sizing: border-box`, `max-width` for readable line length, system fonts) that handle most simple pages. HTML first, CSS second.
 
 **Key concepts you can now name:**
 

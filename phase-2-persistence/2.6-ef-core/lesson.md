@@ -1,6 +1,6 @@
 # Module 2.6 — EF Core (Code-First)
 
-Raw SQL is fine for one query. Twenty queries — each with its own `using` block for connection, command, and reader — gets old fast. Today we meet **Entity Framework Core**, the .NET *ORM*. An ORM is a library that maps classes to database rows: you define C# classes; EF turns them into tables. You write `db.Kingdoms.Add(k); db.SaveChanges();` and the SQL writes itself.
+Raw SQL is fine for one query. But twenty queries — each with its own `using` block for the connection, the command, and the reader — gets tiring fast. Today we meet **Entity Framework Core**, the .NET *ORM*. An ORM is a library that matches classes to database rows: you write C# classes, and EF turns them into tables. You write `db.Kingdoms.Add(k); db.SaveChanges();`, and EF writes the SQL for you.
 
 > **Words to watch**
 >
@@ -15,7 +15,7 @@ Raw SQL is fine for one query. Twenty queries — each with its own `using` bloc
 
 ## Why an ORM
 
-Once you've written `using var conn / cmd / reader` thirty times, you'll notice patterns. ORMs codify them:
+Once you've written `using var conn / cmd / reader` thirty times, you start to see the same patterns over and over. An ORM turns those patterns into ready-made code:
 
 | Raw SQL | EF Core |
 |---|---|
@@ -23,21 +23,23 @@ Once you've written `using var conn / cmd / reader` thirty times, you'll notice 
 | `SELECT * FROM kingdoms WHERE name = $n` | `db.Kingdoms.Single(k => k.Name == n)` |
 | Manual mapping rows → objects | `Kingdom` is the type |
 
-EF is LINQ over a database. The same `Where`/`Select`/`OrderBy` you learned in Module 1.6 — the LINQ provider translates them to SQL behind the scenes.
+EF is LINQ over a database. It's the same `Where`/`Select`/`OrderBy` you learned in Module 1.6 — EF turns them into SQL behind the scenes.
 
-When *not* to use an ORM: when you need a hand-tuned query for performance, or when the SQL is genuinely simpler than the EF expression. That's rare in normal code.
+When should you *not* use an ORM? When you need a query hand-tuned for speed, or when the raw SQL is genuinely simpler than the EF version. In normal code, that doesn't happen often.
 
 ## Persistence entity vs engine model
 
-We **don't** map `Kingdom.Engine.Kingdom` directly to a table — that class has interfaces, private fields, and a constructor with `IRandom`/`IClock`. EF can't read those cleanly.
+We **don't** match `Kingdom.Engine.Kingdom` directly to a table — that class has interfaces, private fields, and a constructor that needs `IRandom` and `IClock`. EF can't read those cleanly.
 
-Instead, we add **entity classes** in `Kingdom.Persistence` — flat C# classes with public properties, designed for EF. Conversion between the engine model and the entities is the persistence layer's job (just like the JSON DTO in Module 2.2).
+Instead, we add **entity classes** in `Kingdom.Persistence` — flat C# classes with public properties, built for EF. Turning the engine model into entities and back is the persistence layer's job (just like the JSON DTO in Module 2.2).
 
 ```
 Kingdom.Engine.Kingdom   <─ToEntity / FromEntity─>   KingdomEntity (EF)   <─EF─>   kingdoms (table)
 ```
 
 Three layers, each with one job. The engine never imports `Microsoft.EntityFrameworkCore`.
+
+(An *entity* here just means a class that EF maps to a table.)
 
 ## Delta starter
 
@@ -56,7 +58,7 @@ dotnet add package Microsoft.EntityFrameworkCore
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 ```
 
-Two packages: the core ORM + the SQLite driver. (You'd use `Microsoft.EntityFrameworkCore.SqlServer` or `.PostgreSQL` for those databases — same EF API on top of a different driver.)
+Two packages: the core ORM, plus the SQLite driver. (For other databases you'd use `Microsoft.EntityFrameworkCore.SqlServer` or `.PostgreSQL` instead — the same EF code on top, just a different driver underneath.)
 
 ## Step 1 — entities
 
@@ -96,11 +98,11 @@ public class BuildingEntity
 }
 ```
 
-EF's conventions:
+The rules EF follows by default:
 
 - A property called `Id` is automatically the primary key.
-- A `List<X>` on entity A + an `int AId` + `A? A` on entity X = a one-to-many relationship. EF figures it out.
-- Properties with `set;` are required for EF to populate them when reading.
+- If entity A has a `List<X>`, and entity X has an `int AId` plus an `A? A`, EF reads that as a one-to-many relationship (one A has many X). It works this out on its own.
+- Properties need `set;` so EF can fill them in when it reads a row.
 
 ## Step 2 — `DbContext`
 
@@ -125,9 +127,9 @@ public class KingdomDbContext : DbContext
 }
 ```
 
-`DbSet<KingdomEntity> Kingdoms` is the `kingdoms` table. The default name is the type name pluralised; EF figures that out. Same pattern: `DbSet<BuildingEntity> Buildings` = `buildings` table.
+`DbSet<KingdomEntity> Kingdoms` is the `kingdoms` table. By default, EF names the table after the type, made plural. It works this out on its own. Same pattern: `DbSet<BuildingEntity> Buildings` is the `buildings` table.
 
-`OnConfiguring` tells EF *"use SQLite at this path."* Production apps usually configure the connection string elsewhere (DI container) — for our learning context, this inline form is fine.
+`OnConfiguring` tells EF *"use SQLite at this path."* Real apps usually set the connection string somewhere else (in a DI container). For learning, writing it right here is fine.
 
 ## Step 3 — `KingdomEfStore` — save and load
 
@@ -219,10 +221,10 @@ public class KingdomEfStore
 
 Things to read carefully:
 
-- `ctx.Database.EnsureCreated()` — creates the database file + tables if they don't exist. Convenient for learning; we'll switch to *migrations* in Module 2.7 (the proper way).
-- `ctx.Kingdoms.Add(entity); ctx.SaveChanges()` — two lines, one INSERT statement (well, several, but EF batches them). The `Buildings` list is auto-saved too because EF tracks the relationship.
-- `Include(k => k.Buildings)` — by default EF doesn't load navigation properties (lazy-loading is off). `Include` says *"also fetch the buildings."*
-- `AsNoTracking()` — for read-only queries. Faster and safer when you don't intend to modify the results.
+- `ctx.Database.EnsureCreated()` — creates the database file and tables if they don't exist yet. Handy for learning. We'll switch to *migrations* in Module 2.7 (the proper way).
+- `ctx.Kingdoms.Add(entity); ctx.SaveChanges()` — two lines. EF turns them into the INSERT statements (it sends several at once). The `Buildings` list gets saved too, because EF keeps track of the link between them.
+- `Include(k => k.Buildings)` — by default, EF doesn't load the related buildings. `Include` tells it *"also fetch the buildings."*
+- `AsNoTracking()` — for read-only queries. It's faster and safer when you don't plan to change the results.
 
 ## Step 4 — call from console
 
@@ -331,17 +333,17 @@ Expect `Passed: 60` (57 + 3).
 
 ## Tinker
 
-Open `bin/Debug/net10.0/saves/kingdoms-ef.db` in DB Browser for SQLite. The schema EF created is *exactly* what we'd have written by hand. No magic.
+Open `bin/Debug/net10.0/saves/kingdoms-ef.db` in DB Browser for SQLite. The tables EF created are *exactly* what we'd have written by hand. Nothing hidden.
 
-Add a property to `KingdomEntity`: `public DateTime SavedAt { get; set; }`. Re-run. It crashes — the existing schema doesn't have that column. That's the migrations problem (Module 2.7).
+Add a property to `KingdomEntity`: `public DateTime SavedAt { get; set; }`. Run it again. It crashes — the database doesn't have that column yet. That's the problem migrations solve (Module 2.7).
 
-Switch `EnsureCreated()` to log SQL: in `OnConfiguring` add `.LogTo(Console.WriteLine, LogLevel.Information)`. Re-run. You'll see the actual SQL EF is generating. Reading it makes the ORM less mysterious.
+Make EF print its SQL: in `OnConfiguring`, add `.LogTo(Console.WriteLine, LogLevel.Information)`. Run again. You'll see the real SQL that EF is writing. Reading it makes the ORM much less mysterious.
 
-`db.Kingdoms.Where(k => k.Gold > 100).ToList()` — same LINQ as `List<T>.Where`, translated to SQL. Try `OrderByDescending`, `Count`, `Sum`. They all work.
+`db.Kingdoms.Where(k => k.Gold > 100).ToList()` — the same LINQ as `List<T>.Where`, turned into SQL. Try `OrderByDescending`, `Count`, `Sum`. They all work.
 
 ## What you just did
 
-You replaced raw SQL with C# objects and let EF Core do the translation. Two entity classes, one `DbContext`, and a small store give you save, load, and list — three new tests proving it works (60 total). You also met the three-layer pattern that holds the rest of this phase together: engine model on one side, database on the other, an *entity* in the middle that exists so the engine doesn't import `Microsoft.EntityFrameworkCore`. That separation feels like extra work in a small project — and it is — but it's the difference between *"we can swap the database one day"* and *"we're stuck with this stack forever."*
+You replaced raw SQL with C# objects and let EF Core do the translating. Two entity classes, one `DbContext`, and a small store give you save, load, and list — with three new tests proving it works (60 total). You also met the three-layer pattern that holds the rest of this phase together: the engine model on one side, the database on the other, and an *entity* in the middle so the engine never has to import `Microsoft.EntityFrameworkCore`. Keeping those apart feels like extra work in a small project — and it is — but it's the difference between *"we can switch databases one day"* and *"we're stuck with this one forever."*
 
 **Key concepts you can now name:**
 
@@ -353,11 +355,11 @@ You replaced raw SQL with C# objects and let EF Core do the translation. Two ent
 
 ## Git move of the week — read a diff line by line
 
-You changed a lot today: new EF entities, a DbContext, a new store. Before merging or sharing this with someone (or with future-you), read the diff *carefully* — line by line.
+You changed a lot today: new EF entities, a DbContext, a new store. Before you merge or share this with someone (or with future-you), read the diff *carefully*, line by line.
 
-In VS Code's Source Control panel: click any file under *Changes* to open the side-by-side diff. Step through the *hunks* (a hunk is a contiguous block of changed lines, with a few unchanged lines around it for context); ask yourself *"why this line?"* for each one. The hunks you can't justify in plain English are the ones to either understand better or revert.
+In VS Code's Source Control panel: click any file under *Changes* to open the side-by-side diff. Go through the *hunks* one at a time (a hunk is a block of changed lines, with a few unchanged lines around it so you can see where you are). For each one, ask yourself *"why this line?"* The hunks you can't explain in plain English are the ones to either understand better or undo.
 
-To read someone else's diff (a teammate's PR, your own old commit): in the GitLens Commit Graph, click any commit; the panel on the right shows the same hunk-by-hunk view.
+To read someone else's diff (a teammate's PR, or one of your own old commits): in the GitLens Commit Graph, click any commit. The panel on the right shows the same hunk-by-hunk view.
 
 > **Or in the terminal:** `git show <commit-hash>` shows a single commit's diff. `git log -p` shows every commit's diff in your history.
 
@@ -372,4 +374,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 2.7 introduces **migrations** — the proper way to evolve the schema after the first deploy. `EnsureCreated` works for *fresh DB*; migrations work for *DB has data, schema needs to change*.
+Module 2.7 introduces **migrations** — the proper way to change the database structure after the first release. `EnsureCreated` works for a *brand new database*. Migrations work when the *database already has data and the structure needs to change*.

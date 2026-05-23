@@ -1,8 +1,8 @@
 # Module 3.5 — OAuth (Sign In With Google)
 
-Today every request can know *who* it's for. Your friend opens the URL, clicks Sign in with Google, and now the API can attribute every save to a real human. No hand-rolled passwords, no email-and-confirm flows, no arguments about hashing at two in the morning — Google does the hard part.
+Today every request can know *who* it's for. Your friend opens the URL, clicks Sign in with Google, and now the API can link every save to a real person. No passwords you have to store yourself, no email-and-confirm steps, no late-night worry about how to hash a password safely — Google does the hard part.
 
-We're going to wire up the smallest correct version of authentication: Sign In With Google plus a session cookie. The API will gain a `/login` and `/me` endpoint, and we'll mark the kingdom endpoints as auth-required. By the end of this lesson, an unsigned-in client gets a 401; a signed-in client gets the full API.
+We're going to set up the smallest correct version of sign-in: Sign In With Google plus a session cookie. The API gets a `/login` and a `/me` endpoint, and we'll mark the kingdom endpoints as needing sign-in. By the end of this lesson, a client that isn't signed in gets a 401, and a signed-in client gets the full API.
 
 > **Words to watch**
 >
@@ -14,38 +14,38 @@ We're going to wire up the smallest correct version of authentication: Sign In W
 
 ---
 
-## Why never roll your own auth
+## Why you should never build your own sign-in
 
-Building a username-plus-password-plus-reset-email-plus-2FA system *correctly* is a six-month project. Even huge companies (LinkedIn, Yahoo) have leaked their entire user databases over a single bug in this code path. **The first rule of auth: don't build it.** Use a well-tested provider — Google, Microsoft, GitHub, Auth0, Clerk — and let them carry the risk.
+Building a username-plus-password-plus-reset-email-plus-2FA system *correctly* is a six-month project. Even huge companies (LinkedIn, Yahoo) have leaked every user's details because of a single bug in this kind of code. **The first rule of sign-in: don't build it.** Use a well-tested provider — Google, Microsoft, GitHub, Auth0, Clerk — and let them carry the risk.
 
-For a learning project, **Sign In With Google** is the simplest meaningful answer:
+For a learning project, **Sign In With Google** is the simplest answer that's worth doing:
 
 - One library on the .NET side: `Microsoft.AspNetCore.Authentication.Google`
-- A five-minute setup in [Google Cloud Console](https://console.cloud.google.com/) to register your app and get credentials
-- Users click a button; Google handles email, password, two-factor, account recovery — none of that is your code
+- A five-minute setup in [Google Cloud Console](https://console.cloud.google.com/) to register your app and get your keys
+- Users click a button, and Google handles email, password, two-factor, and account recovery — none of that is your code
 - You get back a **claim**: *"this is user `sub=12345`, email `lyra@gmail.com`"*
 
-## The OAuth dance, in six steps
+## The OAuth flow, in six steps
 
 1. **User clicks Sign in with Google** on your site.
-2. **Browser redirects to Google** with `?client_id=YOUR_ID&redirect_uri=YOUR_URL&scope=email+profile`.
+2. **Browser sends the user to Google** with `?client_id=YOUR_ID&redirect_uri=YOUR_URL&scope=email+profile`.
 3. **User logs into Google** (or is already logged in).
-4. **Google redirects back to your URL** with `?code=AUTHCODE`.
-5. **Your server exchanges the code for an ID token** — a JWT containing the claims. This happens on the server, using your client *secret*. The user's browser never sees the secret.
-6. **Your server reads the claims** and sets an auth cookie. The user is now signed in for the lifetime of the cookie.
+4. **Google sends the user back to your URL** with `?code=AUTHCODE`.
+5. **Your server trades the code for an ID token** — a JWT (a signed token that holds the claims; pronounced "jot"). This happens on the server, using your client *secret*. The user's browser never sees the secret.
+6. **Your server reads the claims** and sets an auth cookie. The user is now signed in for as long as the cookie lasts.
 
-Steps 2 through 5 are handled by the ASP.NET Core Google authentication middleware. You write almost no auth code yourself — you install the package, configure it, and protect endpoints with `.RequireAuthorization()`.
+Steps 2 through 5 are handled for you by the ASP.NET Core Google authentication middleware. You write almost no sign-in code yourself — you install the package, set it up, and protect endpoints with `.RequireAuthorization()`.
 
 ## What ships in the starter
 
-OAuth setup has a manual side (Google Cloud Console) and a code side (NuGet packages plus `Program.cs` config).
+OAuth setup has a by-hand side (Google Cloud Console) and a code side (NuGet packages plus `Program.cs` config).
 
 - **MODIFIED:** `Kingdom.Api/Kingdom.Api.csproj` — adds `Microsoft.AspNetCore.Authentication.Google` plus `Microsoft.AspNetCore.Authentication.Cookies`
-- **MODIFIED:** `Kingdom.Api/Program.cs` — wires Google auth, cookies, and `.RequireAuthorization()` on the `/kingdoms/*` endpoints
+- **MODIFIED:** `Kingdom.Api/Program.cs` — sets up Google auth, cookies, and `.RequireAuthorization()` on the `/kingdoms/*` endpoints
 - **NEW:** `Kingdom.Api/appsettings.Development.json` — placeholder for `Google:ClientId` and `Google:ClientSecret`
 - **NEW:** `journal/3.5-google-setup.md` — your notes from the Google Cloud Console setup
 
-The biggest thing for this module is the Google Cloud Console setup, which you do by hand once.
+The biggest part of this module is the Google Cloud Console setup, which you do by hand once.
 
 ## Step 0 — Google Cloud Console
 
@@ -57,9 +57,9 @@ In a browser:
 4. APIs & Services → Credentials → Create credentials → OAuth client ID:
    - Application type: Web application
    - Authorized redirect URI: `https://localhost:7XXX/signin-google` (you'll see the actual port in `dotnet run --project Kingdom.Api`)
-5. Save. **Copy the Client ID and Client Secret immediately** — the secret won't be shown again.
+5. Save. **Copy the Client ID and Client Secret right away** — the secret won't be shown to you again.
 
-Document this in `journal/3.5-google-setup.md`. Keep it private — never commit secrets!
+Write this down in `journal/3.5-google-setup.md`. Keep it private — never commit secrets!
 
 ## Step 1 — install packages
 
@@ -80,13 +80,13 @@ dotnet user-secrets set "Google:ClientId" "YOUR_ID.apps.googleusercontent.com"
 dotnet user-secrets set "Google:ClientSecret" "YOUR_SECRET"
 ```
 
-The secrets land in `%APPDATA%/Microsoft/UserSecrets/<id>/secrets.json` — outside the repo, only on your machine. ASP.NET Core auto-loads them in development.
+The secrets are saved in `%APPDATA%/Microsoft/UserSecrets/<id>/secrets.json` — outside the repo, only on your machine. ASP.NET Core loads them for you in development.
 
-For deployment, the environment variables `Google__ClientId` and `Google__ClientSecret` work the same way (Azure App Service, container envs, etc.).
+For deployment, the environment variables `Google__ClientId` and `Google__ClientSecret` work the same way (Azure App Service, container environments, and so on).
 
-> **Heads up — name collision.** `Microsoft.AspNetCore.Authentication` ships its own `SystemClock` class, which clashes with our `Kingdom.Engine.Infrastructure.SystemClock`. When you write `new SystemClock()` in this file, the C# compiler sees both names and stops. Fully qualify ours: `new Kingdom.Engine.Infrastructure.SystemClock()`. This is the same family of issue as Module 1.4's `global::Kingdom.Engine.Kingdom`.
+> **Watch out — two classes with the same name.** `Microsoft.AspNetCore.Authentication` has its own `SystemClock` class, and it has the same name as our `Kingdom.Engine.Infrastructure.SystemClock`. When you write `new SystemClock()` in this file, the C# compiler sees both names and can't tell which one you mean, so it stops with an error. Write out the full name of ours: `new Kingdom.Engine.Infrastructure.SystemClock()`. This is the same kind of problem as Module 1.4's `global::Kingdom.Engine.Kingdom`.
 
-## Step 3 — wire auth in `Program.cs`
+## Step 3 — set up auth in `Program.cs`
 
 ```csharp
 using System.Security.Claims;
@@ -161,12 +161,12 @@ app.MapGet("/me", (HttpContext ctx) =>
 // (etc.)
 ```
 
-The new bits, slowly:
+The new parts, slowly:
 
-- **`AddAuthentication(...).AddCookie().AddGoogle(...)`** — registers two schemes: cookies for "remember the user across requests" and Google for "let me hand the actual sign-in off to Google."
-- **`Results.Challenge(...)`** — kicks off the OAuth dance. The framework redirects to Google for you.
-- **`ctx.User.FindFirst("email")`** — read claims from the cookie. The user is identified, parsed, ready to use.
-- **`.RequireAuthorization()`** — endpoint-level guard. Without a valid auth cookie, the framework returns `401 Unauthorized` before your handler runs.
+- **`AddAuthentication(...).AddCookie().AddGoogle(...)`** — sets up two schemes: cookies for "remember the user across requests," and Google for "let me hand the actual sign-in over to Google."
+- **`Results.Challenge(...)`** — starts the OAuth flow. The framework sends the user to Google for you.
+- **`ctx.User.FindFirst("email")`** — read claims from the cookie. The user is now identified and ready to use.
+- **`.RequireAuthorization()`** — a guard on the endpoint. Without a valid auth cookie, the framework returns `401 Unauthorized` before your handler even runs.
 
 ## Step 4 — try it
 
@@ -174,29 +174,29 @@ The new bits, slowly:
 dotnet run --project Kingdom.Api
 ```
 
-Visit `https://localhost:7XXX/login`. You're redirected to Google → sign in → redirected back to `/`. The cookie is set.
+Visit `https://localhost:7XXX/login`. Google takes over → you sign in → you're sent back to `/`. The cookie is now set.
 
-Visit `https://localhost:7XXX/me`. JSON: `{ "Email": "...", "Name": "...", "Sub": "..." }`.
+Visit `https://localhost:7XXX/me`. You get JSON: `{ "Email": "...", "Name": "...", "Sub": "..." }`.
 
-Visit `https://localhost:7XXX/kingdoms` — works (cookie present). In a private window — `401 Unauthorized` (no cookie).
+Visit `https://localhost:7XXX/kingdoms` — it works, because the cookie is there. Now try it in a private window — `401 Unauthorized`, because there's no cookie.
 
 ## Tinker
 
-Sign in. Open browser dev tools → Application → Cookies. You'll see a `.AspNetCore.Cookies` entry with a long opaque value. That's the auth cookie.
+Sign in. Open browser dev tools → Application → Cookies. You'll see a `.AspNetCore.Cookies` entry with a long, scrambled value. That's the auth cookie.
 
-POST `/logout` (use Postman or `curl -X POST -b cookies.txt`). The cookie clears. `/me` now returns 401.
+POST `/logout` (use Postman or `curl -X POST -b cookies.txt`). The cookie is cleared. `/me` now returns 401.
 
-Try a custom authorization policy. Add `.RequireAuthorization("Admin")` somewhere and define the policy in `AddAuthorization` to require a specific claim — like `email == "you@gmail.com"`.
+Try a custom authorization policy. Add `.RequireAuthorization("Admin")` somewhere, and define the policy in `AddAuthorization` to require a specific claim — for example, `email == "you@gmail.com"`.
 
-**Don't ship without HTTPS.** Cookie auth over plain HTTP is insecure — the cookie can be intercepted on the wire. For local dev, `https://localhost:...` is auto-set up; in production, App Service does it for you.
+**Don't deploy without HTTPS.** Cookie auth over plain HTTP is not safe — someone on the network can read the cookie. For local dev, `https://localhost:...` is set up for you; in production, App Service handles it for you.
 
-## The through-line
+## The main point
 
-Two rules, side by side: **never commit secrets, never roll your own auth.** Together they prevent roughly half of all real-world security incidents. Use a provider; use user-secrets or environment variables; never the repo. These are the low-effort, high-payoff disciplines that separate a hobby project from one you can let other humans use.
+Two rules, side by side: **never commit secrets, never build your own sign-in.** Together they stop about half of all real-world security problems. Use a provider. Use user-secrets or environment variables. Never put secrets in the repo. These two habits are easy to follow and they protect you a lot. They're what separate a hobby project from one you can safely let other people use.
 
 ## What you just did
 
-You added real authentication to your API without writing a single password-handling line. Five lines of `AddAuthentication / AddCookie / AddGoogle` config wired Google's full OAuth flow into your app. Your endpoints can now know *which Google account* sent each request via the `sub` claim. Secrets live outside the repo — in `dotnet user-secrets` for dev, environment variables for prod. You also met your second name-collision teaching point: `Microsoft.AspNetCore.Authentication.SystemClock` and `Kingdom.Engine.Infrastructure.SystemClock` look identical to the compiler unless you fully qualify yours. Same family of issue as the `global::Kingdom.Engine.Kingdom` quirk in Module 1.4.
+You added real sign-in to your API without writing a single line that handles passwords. Five lines of `AddAuthentication / AddCookie / AddGoogle` config connected Google's full OAuth flow to your app. Your endpoints can now tell *which Google account* sent each request, through the `sub` claim. Secrets stay outside the repo — in `dotnet user-secrets` for dev, and environment variables for prod. You also met your second example of two classes with the same name: `Microsoft.AspNetCore.Authentication.SystemClock` and `Kingdom.Engine.Infrastructure.SystemClock` look identical to the compiler unless you write out the full name of yours. Same kind of problem as the `global::Kingdom.Engine.Kingdom` one in Module 1.4.
 
 **Key concepts you can now name:**
 

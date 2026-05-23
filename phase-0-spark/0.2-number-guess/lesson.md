@@ -1,6 +1,6 @@
 # Module 0.2 — Number Guess
 
-The computer picks a number between 1 and 100. You guess. It tells you if you're too high, too low, or right — and it's snarky about it. Today is your first program with a *loop*: code that runs over and over until something tells it to stop. By the end you'll have a real little game, and you'll know three new ideas — loops, conditionals, and how to turn typed text into a number.
+The computer picks a number between 1 and 100. You guess. It tells you if you're too high, too low, or right — and it's a bit rude about it. Today is your first program with a *loop*: code that runs over and over until something tells it to stop. By the end you'll have a real little game, and you'll know three new ideas — loops, conditionals, and how to turn typed text into a number.
 
 > **Words to watch**
 >
@@ -14,7 +14,7 @@ The computer picks a number between 1 and 100. You guess. It tells you if you're
 
 ## Step 1 — make a new project
 
-Make a new folder next to `RoastOMatic`, in your repo root. In PowerShell:
+Make a new folder next to `RoastOMatic`, at the top of your repo. In PowerShell:
 
 ```powershell
 cd ..
@@ -22,7 +22,7 @@ dotnet new console -n NumberGuess
 cd NumberGuess
 ```
 
-You now have two console projects living side by side in the same repo. They don't know about each other; they're independent little programs.
+You now have two console projects sitting next to each other in the same repo. They don't know about each other. They are two separate little programs.
 
 ## Step 2 — write the game
 
@@ -58,11 +58,11 @@ while (true)
 }
 ```
 
-A lot is happening in those thirty lines. The first three set up the game: a random-number generator, the secret number it picked, and a counter for how many guesses the player has used.
+A lot is happening in those thirty lines. The first three lines set up the game: a thing that makes random numbers, the secret number it picked, and a counter for how many guesses the player has used.
 
-The `while (true) { ... }` block is your first **loop** — it runs the code inside over and over, forever, until something tells it to stop. Inside the loop, the program prompts, reads the input, turns the typed string into an integer with `int.Parse`, and bumps the counter.
+The `while (true) { ... }` block is your first **loop**. It runs the code inside over and over, forever, until something tells it to stop. Inside the loop, the program shows a prompt, reads what the player types, turns that text into a whole number with `int.Parse`, and adds one to the counter.
 
-The `if / else if / else` chain is a **conditional** — a fork in the road. Only one of the three branches runs each time through the loop, depending on which condition is true. When the player finally guesses right, the `else` branch prints the win message and the `break` keyword jumps out of the loop, ending the program.
+The `if / else if / else` chain is a **conditional**. Think of it as a split in the path. Only one of the three branches runs each time around the loop, depending on which condition is true. When the player finally guesses right, the `else` branch prints the win message, and the `break` keyword jumps out of the loop, which ends the program.
 
 Run it:
 
@@ -74,25 +74,25 @@ Guess until you get it right.
 
 ## Tinker
 
-Make the messages even snarkier — the program is yours, lean into it.
+Make the messages even ruder. The program is yours, so have fun with it.
 
 Track the number of guesses and rate the player at the end. *"1 guess: are you cheating? 5 guesses: acceptable. 50 guesses: have you considered a different hobby?"*
 
-Add a give-up option — if the user types `quit`, reveal the number and exit. You'll need an extra `if` before the `int.Parse` line, since `quit` isn't a number.
+Add a give-up option. If the user types `quit`, show the number and exit. You'll need an extra `if` before the `int.Parse` line, because `quit` isn't a number.
 
-Make the range a variable. Pull `1` and `101` out into named integers at the top, so you can change the difficulty by editing one place instead of two.
+Make the range a variable. Move `1` and `101` into named whole numbers at the top, so you can change the difficulty by editing one place instead of two.
 
 ## Name it
 
-A **loop** is code that runs repeatedly. The `while (condition) { ... }` form keeps running while the condition is true; `while (true)` runs forever, until a `break;` inside the body jumps out.
+A **loop** is code that runs again and again. The `while (condition) { ... }` form keeps running while the condition is true. `while (true)` runs forever, until a `break;` inside the body jumps out.
 
-A **conditional** is the `if (...) { } else if (...) { } else { }` form. The conditions are tested top to bottom; the first one that's true runs its block, and the rest are skipped.
+A **conditional** is the `if (...) { } else if (...) { } else { }` form. C# checks the conditions from top to bottom. The first one that is true runs its block, and the rest are skipped.
 
-The **`Random` class** knows how to make *pseudo-random* numbers (a sequence of numbers that *looks* random but is actually generated by a fixed math formula — close enough to feel random in a game, and reproducible if you want it to be). You created one with `new Random()`, which gives you a `Random` object stored in the `random` variable. Then you asked it for a number with `random.Next(1, 101)` — a method call on that object. The number is from 1 to 100 inclusive — the lower bound is included, the upper bound is excluded. That's Microsoft's choice and it trips up nearly everyone the first time.
+The **`Random` class** knows how to make *pseudo-random* numbers. These are numbers that *look* random but are really worked out by a fixed math formula. They feel random enough for a game, and you can get the same sequence again if you ever want to. You created one with `new Random()`, which gives you a `Random` object, stored in the `random` variable. Then you asked it for a number with `random.Next(1, 101)`, which is a method call on that object. The number is from 1 to 100. The lower number (1) is included, but the upper number (101) is not. That's a choice Microsoft made, and it surprises almost everyone the first time.
 
 ## What you just did
 
-You wrote a real game. The program picks a number, you guess, it gives you feedback, you guess again — that loop is the heartbeat of every program that does more than print once and quit. You met three named ideas: loops (`while`), conditionals (`if`/`else if`/`else`), and number parsing (`int.Parse`). The whole game is about thirty lines of code, and one of those is a comment.
+You wrote a real game. The program picks a number, you guess, it tells you how you did, you guess again. That loop is at the centre of every program that does more than print once and stop. You met three named ideas: loops (`while`), conditionals (`if`/`else if`/`else`), and turning text into a number (`int.Parse`). The whole game is about thirty lines of code, and one of those is a comment.
 
 **Key concepts you can now name:**
 
@@ -113,4 +113,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 0.3 turns this into a tiny adventure — multiple rooms, choices that matter, your first text game. Same loops and conditionals; bigger story.
+Module 0.3 turns this into a tiny adventure — several rooms, choices that change what happens, your first text game. Same loops and conditionals, just a bigger story.

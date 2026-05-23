@@ -1,10 +1,10 @@
 # Module 1.7 — Events and Randomness
 
-The kingdom is too predictable right now. Same farms produce same food, same citizens eat the same amount, every day forever. Today we add a roll — each tick, with some chance, *something happens*. A trader arrives with gold. A citizen falls ill. A building burns. Each event is recorded in a list, so by Day 50 the kingdom has a story you can read back.
+The kingdom is too predictable right now. The same farms produce the same food, the same citizens eat the same amount, every day forever. Today we add chance. Each tick, there is some chance that *something happens*. A trader arrives with gold. A citizen falls ill. A building burns down. Each event is saved in a list, so by Day 50 the kingdom has a story you can read back.
 
-Two reasons for an event log. The first is **the story** — a management game without events is a spreadsheet. Random visitors, fires, illnesses are the texture that makes the kingdom feel alive. The second is **memory** — when something interesting happens, you want to know *when*. The event log is the kingdom's memory. With LINQ from yesterday, you can ask *"what happened in the last seven days?"* in one line.
+There are two reasons for an event log. The first is **the story** — a management game with no events is just a spreadsheet. Random visitors, fires, and illnesses are what make the kingdom feel alive. The second is **memory** — when something interesting happens, you want to know *when* it happened. The event log is the kingdom's memory. With LINQ from yesterday, you can ask *"what happened in the last seven days?"* in one line.
 
-There's a problem we're going to introduce on purpose today, and fix in Module 1.8. The events come from `Random` — and using `Random` directly inside the engine makes the engine non-deterministic. The same starting state produces different events on different runs, and you can't write a meaningful test for that. We're going to feel that pain in Step 5 of this lesson, then fix it tomorrow.
+There's a problem we're going to add on purpose today, then fix in Module 1.8. The events come from `Random`, and using `Random` directly inside the engine makes the engine non-deterministic. That means the same starting state produces different events each run, and you can't write a useful test for something that keeps changing. You'll run into this problem in Step 5 of this lesson, and we fix it tomorrow.
 
 > **Words to watch**
 >
@@ -43,9 +43,9 @@ public record BuildingBurned(int Day, string BuildingName)
     : KingdomEvent(Day, $"{BuildingName} burned to the ground.");
 ```
 
-The `record` keyword is C#'s shorthand for a small immutable data class. The line `public record TraderArrived(int Day, int GoldAmount)` is roughly the same as writing a class with two read-only properties, a constructor that sets them, an equality check that compares fields, a `ToString` that prints them, and a deconstructor — all generated for you. Two records with the same values are equal automatically, which is exactly the behaviour you want for events.
+The `record` keyword is C#'s short way to write a small data class that can't be changed after it's made. The line `public record TraderArrived(int Day, int GoldAmount)` does about the same as writing a class with two read-only properties, a constructor that sets them, an equality check that compares the fields, a `ToString` that prints them, and a deconstructor — and C# writes all of that for you. Two records with the same values are equal automatically, which is exactly what you want for events.
 
-The pattern here: an `abstract record KingdomEvent` with the common fields (`Day`, `Description`), then three subclass records that add specifics. Each subclass passes a friendly description string up to the base record. That description is what gets printed in the log.
+The pattern here: one `abstract record KingdomEvent` with the shared fields (`Day`, `Description`), then three subclass records that add their own details. Each subclass passes a clear description string up to the base record. That description is what gets printed in the log.
 
 ## Step 2 — `EventEngine`
 
@@ -80,7 +80,7 @@ public class EventEngine
 }
 ```
 
-Three things to notice. First, the **switch expression** — modern C# pattern: `pick switch { 0 => ..., 1 => ..., _ => default }`. The underscore means *"anything else."* It's cleaner than a stack of `if`/`else if`. Second, **pattern matching with `when`**: `1 when k.Citizens.Count > 0` says *"case 1, but only if there are citizens."* If there are none, the next pattern is checked. Third, the trader event doesn't actually add the gold to the ledger here — events are informational for now. We'll wire that up properly in Module 1.10's polish.
+Three things to notice. First, the **switch expression** — a modern C# pattern: `pick switch { 0 => ..., 1 => ..., _ => default }`. The underscore means *"anything else."* It's cleaner than a long chain of `if`/`else if`. Second, **pattern matching with `when`**: `1 when k.Citizens.Count > 0` says *"case 1, but only if there are citizens."* If there are none, C# checks the next pattern instead. Third, the trader event doesn't actually add the gold to the ledger here — for now, events just describe what happened. We'll connect that up properly in Module 1.10's polish.
 
 ## Step 3 — wire it into `Kingdom`
 
@@ -125,7 +125,7 @@ public class Kingdom
 }
 ```
 
-Two new properties (`EventLog`, `_eventEngine`) and two new lines in `AdvanceDay`. Everything else is unchanged.
+Two new properties (`EventLog`, `_eventEngine`) and two new lines in `AdvanceDay`. Everything else stays the same.
 
 ## Step 4 — print the event log
 
@@ -158,7 +158,7 @@ foreach (var e in kingdom.EventLog)
     Console.WriteLine($"  Day {e.Day,3}: {e.Description}");
 ```
 
-`{e.Day,3}` is a format hint — pad the day to three characters wide. Aligns the log nicely.
+`{e.Day,3}` is a formatting hint — it pads the day number to three characters wide. That lines up the log neatly.
 
 Build and run twice:
 
@@ -168,9 +168,9 @@ dotnet run --project Kingdom.Console
 dotnet run --project Kingdom.Console
 ```
 
-Different events each time. The kingdom is no longer deterministic. Hold that thought for the next step.
+Different events each time. The kingdom is no longer deterministic. Keep that in mind for the next step.
 
-## Step 5 — test what we can (and feel the pain)
+## Step 5 — test what we can (and see the problem)
 
 `tests/Kingdom.Engine.Tests/EventLogTests.cs`:
 
@@ -214,7 +214,7 @@ public class EventLogTests
 }
 ```
 
-Three tests, and you can already see the trouble. We *cannot* test things like *"when the dice rolls 0, a TraderArrived event is created"*, because we have no way to control the dice. We can't say *"TraderArrived's GoldAmount is between 10 and 50"* — well, we could run it a thousand times and hope. We can't say *"this scenario produces this exact event sequence"* at all. So the tests are vague — *"some events happen"*, *"days are in range"*. They pass, but they barely verify anything. This is the pain that motivates Module 1.8.
+Three tests, and you can already see the problem. We *cannot* test things like *"when the dice roll a 0, a TraderArrived event is created"*, because we have no way to control the dice. We can't check that *"TraderArrived's GoldAmount is between 10 and 50"* — well, we could run it a thousand times and hope. We can't check that *"this exact setup produces this exact list of events"* at all. So the tests stay vague — *"some events happen"*, *"days are in range"*. They pass, but they barely check anything. This is the problem that Module 1.8 fixes.
 
 Run:
 
@@ -228,27 +228,27 @@ You should see `Passed: 30` (27 plus 3 new ones).
 
 Run `dotnet run --project Kingdom.Console` ten times in a row. Different output every time. That's the non-determinism in action.
 
-Try seeding `Random` with a fixed number — change `new Random()` to `new Random(42)`. Now runs are identical every time. Reproducible. But the seed is baked into the engine, which is also wrong for a real game (you want different worlds for different players). Module 1.8's `IRandom` lets the *shell* pick.
+Try giving `Random` a fixed starting number — change `new Random()` to `new Random(42)`. Now every run is identical. You can repeat it exactly. But that starting number is now fixed inside the engine, which is also wrong for a real game (you want a different world for each player). Module 1.8's `IRandom` lets the *shell* choose instead.
 
-Increase the chance from 30% to 90%. The console gets noisy fast.
+Raise the chance from 30% to 90%. The console fills up with events fast.
 
-Add a fourth event subclass — `SecretFound`? — mostly mechanical. Wire it into the `switch`. Watch your tests still pass without changes. The tests are too loose to catch new behaviour — exactly the problem we'll fix tomorrow.
+Add a fourth event subclass — maybe `SecretFound`? — it's mostly the same steps. Add it to the `switch`. Notice that your tests still pass without any changes. The tests are too loose to notice the new behaviour — exactly the problem we'll fix tomorrow.
 
 ## The through-line
 
-The through-line in this module: **engines should be deterministic by default**. Anything random must come *in* through a parameter, never sourced from `new Random()` deep inside. Today we broke this rule on purpose, to feel why it matters. Tomorrow we fix it.
+The through-line in this module: **engines should be deterministic by default**. Anything random must come *in* through a parameter, never be created with `new Random()` deep inside. Today we broke this rule on purpose, so you can see why it matters. Tomorrow we fix it.
 
 ## What you just did
 
-You added a non-trivial system to the engine in about forty lines: a base record, three event subclasses, a small dice-roller, and a list to hold the results. You met `record` (C# shorthand for a small immutable data class with field-by-field equality), the modern `switch` expression, and pattern matching with `when`. You also met the limit of testing when randomness is hidden inside the engine — three vague tests is the best you can do, which is the lesson tomorrow opens with. Thirty passing tests now.
+You added a real system to the engine in about forty lines: a base record, three event subclasses, a small piece of code that rolls the dice, and a list to hold the results. You met `record` (C#'s short way to write a small data class that can't change, where equality compares the fields), the modern `switch` expression, and pattern matching with `when`. You also met the limit of testing when randomness is hidden inside the engine — three vague tests are the best you can do, which is exactly where tomorrow's lesson begins. Thirty passing tests now.
 
 **Key concepts you can now name:**
 
-- **event** — small immutable record describing one thing that happened
-- **event log** — list of events in order, the kingdom's memory
-- **`record`** — concise C# data class, equality compares fields
-- **`switch` expression** — value-returning switch, `_` for default
-- **non-deterministic engine** — same inputs, different outputs, untestable
+- **event** — a small record that can't change, describing one thing that happened
+- **event log** — a list of events in order, the kingdom's memory
+- **`record`** — a short C# data class where equality compares the fields
+- **`switch` expression** — a switch that returns a value, `_` for "anything else"
+- **non-deterministic engine** — same inputs, different outputs, hard to test
 
 ## Wrap up
 
@@ -261,4 +261,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 1.8 introduces **`IRandom`**, **`IClock`**, and **FakeItEasy** — the fix for everything painful in this module. Same `EventEngine`, this time properly testable. You'll feel the difference in the first three minutes.
+Module 1.8 introduces **`IRandom`**, **`IClock`**, and **FakeItEasy** — the fix for everything that was hard in this module. Same `EventEngine`, but this time you can test it properly. You'll see the difference in the first three minutes.

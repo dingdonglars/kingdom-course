@@ -1,8 +1,8 @@
 # Module 2.3 — Round-Trip Tests
 
-Yesterday we saved a *summary* of the kingdom. Today we save the *whole thing* and load it back. The discipline that lets us prove it works is a **round-trip test** — *"any kingdom I save will equal itself when I load it back."*
+Yesterday we saved a *summary* of the kingdom. Today we save the *whole kingdom* and load it back. The test that proves this works is a **round-trip test**: any kingdom I save should match itself when I load it back.
 
-Adding load support also forces a small redesign of the engine. That's not a bug, it's the lesson: saving real state often pushes you to fix things in the model that were *almost* fine before. Persistence is one of the most honest pressures a domain model ever feels.
+Adding load support also makes us change a small part of the engine. That's not a problem — it's part of the lesson. Saving real state often shows you things in the model that need fixing, even when they looked fine before. Saving puts honest pressure on your model and shows where it's weak.
 
 > **Words to watch**
 >
@@ -15,23 +15,23 @@ Adding load support also forces a small redesign of the engine. That's not a bug
 
 ## Why round-trip
 
-Saving bugs are sneaky. The save looks fine in Notepad. The load returns *some* kingdom. But subtle things go wrong: a building's `Level` resets to 1, a citizen's job is lost, the resource ordering shifts. You don't notice until the player loads a save three weeks later and complains.
+Saving bugs are easy to miss. The save file looks fine in Notepad. The load returns *some* kingdom. But small things can go wrong: a building's `Level` resets to 1, a citizen's job is lost, the order of the resources changes. You don't notice until the player loads a save three weeks later and complains.
 
-The cure: a test that says *"save this kingdom; load it back; everything equal."* Run it on dozens of randomised kingdoms; if any fail, the JSON form is wrong. One test pattern, lots of confidence.
+The fix: a test that says *"save this kingdom, load it back, and check that everything matches."* Run it on lots of random kingdoms. If any of them fail, the JSON form is wrong. One test pattern, and a lot of confidence that saving works.
 
 ## Saving forces design
 
-To round-trip a kingdom, we need to *reconstruct* it from data. Today's `Kingdom` constructor takes `(name, IRandom, IClock)` and lets you `AddBuilding(...)`, `AddCitizen(...)`. But `Day` has only a `private set;` — there's no way to load `Day = 47`. Same for `Building.Level`. Same for `Resources` (you can `Add` but the snapshot might say `Gold = 250`).
+To round-trip a kingdom, we need to *rebuild* it from data. Today's `Kingdom` constructor takes `(name, IRandom, IClock)` and lets you call `AddBuilding(...)` and `AddCitizen(...)`. But `Day` has only a `private set;`, so there's no way to load `Day = 47`. Same for `Building.Level`. Same for `Resources` (you can `Add`, but the snapshot might say `Gold = 250`).
 
 We have three options:
 
-**A.** Make those setters public. Unsafe — anyone could now mess with state in production.
+**A.** Make those setters public. Unsafe — now anyone could change the state in a way they shouldn't.
 **B.** Add a `LoadFrom` static factory method that knows how to set them. Cleaner.
-**C.** Use reflection at load time to bypass setters. Magical, fragile.
+**C.** Use reflection at load time to get around the setters. Clever, but fragile and hard to follow.
 
-Option B is the standard answer. We add a small *factory method* (a static method that returns an instance) on `Kingdom` that takes a snapshot record and returns a fully-loaded `Kingdom`.
+Option B is the standard answer. We add a small *factory method* (a static method that builds and returns an object) on `Kingdom`. It takes a snapshot record and returns a fully-loaded `Kingdom`.
 
-> **Lesson within a lesson:** adding load support often pushes you to redesign the model. That's a feature, not a problem. The model that "looks right" sometimes only looks right for one shell. Persistence forces you to confront the data form.
+> **Lesson within a lesson:** adding load support often makes you change the model. That's a good thing, not a problem. A model that "looks right" sometimes only looks right for one shell. Saving makes you face the real form of the data.
 
 ## Delta starter
 
@@ -64,7 +64,7 @@ public record CitizenSnapshot(string Name);
 
 A flat layout — arrays of small records. Easy for JSON, easy to read.
 
-`Kind` is a string: `"Farm"`, `"Lumberyard"`, `"Mine"`. We'll switch on it during load.
+`Kind` is a string: `"Farm"`, `"Lumberyard"`, `"Mine"`. We'll use it to pick the right building type during load.
 
 ## Step 2 — `Building` gains a load constructor
 
@@ -89,7 +89,7 @@ public class Building
 }
 ```
 
-`protected` — only the subclasses can use this constructor. The normal construction path stays the same (start at level 1).
+`protected` means only the subclasses can use this constructor. The normal way of making a building stays the same (it starts at level 1).
 
 `Farm.cs`, `Lumberyard.cs`, `Mine.cs` each get a matching constructor:
 
@@ -160,10 +160,10 @@ public static Kingdom LoadFrom(KingdomSnapshot snap, IRandom rng, IClock clock)
 
 ## Step 4 — `Kingdom.Day` becomes a backing field
 
-To set Day from a static method that received an instance, we need to write to it. Options:
+To set `Day` from a static method, we need a way to write to it. Two options:
 
-- Make `Day` setter `internal` (visible inside the engine).
-- Add a private `_day` field that the property reads.
+- Make the `Day` setter `internal` (so it's visible inside the engine).
+- Add a private `_day` field that the property reads from.
 
 We'll go with the field. In `Kingdom.cs`:
 
@@ -183,7 +183,7 @@ public void AdvanceDay()
 }
 ```
 
-`Day` is now read-only from outside; `_day` is mutable from inside. Same external API — but `LoadFrom` can write to `_day` directly.
+`Day` is now read-only from outside the class. `_day` can still be changed from inside. The outside still sees the same thing — but `LoadFrom` can now write to `_day` directly.
 
 ## Step 5 — `ResourceLedger.SetTo`
 
@@ -197,7 +197,7 @@ public void SetTo(Resource r, int amount)
 }
 ```
 
-Same validation as `Add`. Used only for load (and tests). Don't use it inside game logic.
+Same check as `Add`. It's used only for loading (and in tests). Don't use it inside the game logic.
 
 ## Step 6 — Persistence: `SaveFull` / `LoadFull`
 
@@ -318,7 +318,7 @@ public class RoundTripTests
 }
 ```
 
-The `[Theory]` test runs four times — each `[InlineData]` is one run. All four pass means the round trip works for that whole family of kingdoms. That's the seed of property-based testing.
+The `[Theory]` test runs four times — each `[InlineData]` is one run. When all four pass, the round trip works for that whole group of kingdoms. That's the start of property-based testing.
 
 Run:
 
@@ -330,17 +330,17 @@ Expect `Passed: 51` (43 + 8: 5 round-trip facts + the 1 theory expanding to 4 ca
 
 ## Tinker
 
-Add a fifth `[InlineData]` — `999`. Runs in under a second. Round-trip is fast.
+Add a fifth `[InlineData]` — `999`. It runs in under a second. The round trip is fast.
 
-Edit a saved JSON file by hand: change `"Gold": 100` to `"Gold": 999999`. Reload. The kingdom now has 999999 gold. JSON is honest — whatever's in the file becomes the state.
+Edit a saved JSON file by hand: change `"Gold": 100` to `"Gold": 999999`. Reload. The kingdom now has 999999 gold. JSON is honest — whatever is in the file becomes the state.
 
-Delete the `Kind` field from a snapshot building. Reload. It throws at the `switch` — *"Unknown building kind ''."* That's a good failure: explicit and immediate.
+Delete the `Kind` field from a building in a snapshot. Reload. It throws an error at the `switch` — *"Unknown building kind ''."* That's a good failure: clear, and it happens right away.
 
-Add a fourth building subclass (`Quarry`?). Add it to the `switch`. The round-trip test passes without changes — exactly because the test loops over whatever the kingdom contains.
+Add a fourth building subclass (a `Quarry`, maybe?). Add it to the `switch`. The round-trip test passes without any changes — because the test loops over whatever the kingdom actually holds.
 
 ## What you just did
 
-You proved a save-and-load cycle preserves the whole kingdom — five round-trip facts plus a `[Theory]` running four day-counts each (51 tests total, eight new today). To get there, you redesigned three small parts of the engine: a `protected` constructor on `Building`, a backing field for `Day`, and a `SetTo` on `ResourceLedger`. None of those were *wrong* before, but they were under-exposed — the kind of design crack persistence is good at finding. You also met the **factory method** pattern (`Kingdom.LoadFrom`) and the seed of property-based testing (`[Theory] + [InlineData]`).
+You proved that saving and loading keeps the whole kingdom intact — five round-trip facts plus a `[Theory]` that runs four day-counts each (51 tests total, eight new today). To get there, you changed three small parts of the engine: a `protected` constructor on `Building`, a backing field for `Day`, and a `SetTo` on `ResourceLedger`. None of those were *wrong* before, but they didn't give you a way to set the state on load — the kind of small gap that saving is good at finding. You also met the **factory method** pattern (`Kingdom.LoadFrom`) and the start of property-based testing (`[Theory] + [InlineData]`).
 
 **Key concepts you can now name:**
 
@@ -352,9 +352,9 @@ You proved a save-and-load cycle preserves the whole kingdom — five round-trip
 
 ## Git move of the week — `git stash`
 
-You started a change. Halfway through, something else came up — a quick fix, an experiment, a lesson you wanted to do clean. *Stash* sets your current changes aside without committing them, leaving a clean working tree.
+You started a change. Halfway through, something else came up — a quick fix, an experiment, or a lesson you wanted to start with a clean slate. *Stash* sets your current changes aside without committing them, and leaves you with a clean working tree.
 
-In VS Code's Source Control panel: `...` menu (top right of the panel) → *Stash → Stash*. Type a description, hit Enter. Your changes disappear from *Changes*. To get them back: `...` menu → *Stash → Pop Latest Stash*.
+In VS Code's Source Control panel: open the `...` menu (top right of the panel) → *Stash → Stash*. Type a description, press Enter. Your changes disappear from *Changes*. To get them back: `...` menu → *Stash → Pop Latest Stash*.
 
 > **Or in the terminal:**
 >
@@ -363,7 +363,7 @@ In VS Code's Source Control panel: `...` menu (top right of the panel) → *Stas
 > git stash pop          # bring it back
 > ```
 
-The stash is non-destructive — your changes are saved, not gone. Use it any time you want a clean tree without losing what you had.
+A stash is safe — your changes are saved, not lost. Use it any time you want a clean tree without throwing away what you had.
 
 ## Wrap up
 
@@ -376,4 +376,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 2.4 introduces **SQL** — the language databases speak. We'll set up SQLite (a self-contained file database) and write our first `INSERT` and `SELECT`. JSON files are great for *one* save; databases are great for *every save your player ever made, queryable in any direction*.
+Module 2.4 introduces **SQL** — the language databases speak. We'll set up SQLite (a database that lives in a single file) and write our first `INSERT` and `SELECT`. JSON files are great for *one* save. Databases are great for *every save your player ever made*, and you can ask them questions in any direction.

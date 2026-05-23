@@ -1,19 +1,19 @@
 # Module 5.5 — Engine Port: ResourceLedger, Citizen, Kingdom, Tick
 
-Today the engine reaches feature parity with Phase 1 — but in Luau, on a Roblox server. `ResourceLedger`, `Citizen`, the `Kingdom` aggregate, the day-tick loop. Same idea, smaller language, a different runtime. By the end of this module the engine works the same way in both worlds.
+Today the engine does everything it did in Phase 1 — but in Luau, on a Roblox server. `ResourceLedger`, `Citizen`, the `Kingdom` aggregate, the day-tick loop. Same idea, smaller language, a different place to run. By the end of this module the engine works the same way in both versions.
 
 > **Words to watch**
 >
 > - **port** — translate code into another language while keeping its meaning.
 > - **`task.wait(seconds)`** — Roblox's pause-this-script-for-a-while function. Doesn't block other scripts.
-> - **`game:GetService("RunService")`** — the per-frame heartbeat service, used for game loops that need a frame-rate tick.
+> - **`game:GetService("RunService")`** — the service that fires once every frame, used for game loops that need to run at the frame rate.
 > - **coroutine** — a function that can pause itself and be resumed later. Roblox runs every script in one of these, which is why `task.wait` doesn't freeze the place.
 
 ---
 
 ## The port plan
 
-Reading the C# version next to the Luau version is the fastest way to internalise the translation:
+Reading the C# version next to the Luau version is the fastest way to learn the translation:
 
 | Phase 1 (C#) | Roblox (Luau) | Note |
 | --- | --- | --- |
@@ -161,38 +161,38 @@ while true do
 end
 ```
 
-`task.wait(5)` pauses *this script* for five seconds. It doesn't block other scripts — Roblox runs each script in its own coroutine. A *coroutine* is a function that can pause itself and be resumed later; the runtime quietly switches between them while one is sleeping. Worth knowing the word; you'll see it in the docs.
+`task.wait(5)` pauses *this script* for five seconds. It doesn't stop other scripts, because Roblox runs each script in its own coroutine. A *coroutine* is a function that can pause itself and start again later. While one script is paused, Roblox quietly switches to the others. It's worth knowing the word, because you'll see it in the docs.
 
-For a real game, the loop would tick faster (every second, or every 0.1 second), and you'd hook into `RunService.Heartbeat:Connect(function(dt) ... end)` to sync with the frame rate. For learning, `task.wait` is enough.
+For a real game, the loop would tick faster (every second, or every 0.1 second), and you'd use `RunService.Heartbeat:Connect(function(dt) ... end)` to match the frame rate. For learning, `task.wait` is enough.
 
 ## Tinker
 
-Increase the tick rate to `task.wait(1)`. The resources change every second now; the place feels noticeably more alive.
+Change the tick to `task.wait(1)`. The resources change every second now, and the place feels much more alive.
 
-Add a third `Lumberyard.new("Eastern Lumberyard")` to the kingdom. Wood starts climbing.
+Add a third building, `Lumberyard.new("Eastern Lumberyard")`, to the kingdom. Wood starts going up.
 
-Replace the `while true do` with `RunService.Heartbeat:Connect(function() ... end)` and tick every N frames. Same engine, different scheduler — one of the more satisfying small ports you'll write this year.
+Replace the `while true do` with `RunService.Heartbeat:Connect(function() ... end)` and tick every N frames. Same engine, different way of timing it — a small, satisfying port.
 
-Open the C# `Kingdom.cs` and the Luau `Kingdom.lua` side by side in two windows. Read them top to bottom and notice how few lines actually changed.
+Open the C# `Kingdom.cs` and the Luau `Kingdom.lua` side by side in two windows. Read them top to bottom and notice how few lines really changed.
 
 ## What you just did
 
-You took the engine you wrote in Phase 1 and translated it into Luau on a Roblox server. `ResourceLedger`, `Citizen`, and `Kingdom` are now ModuleScripts under `ReplicatedStorage`; a server Script in `ServerScriptService` calls `kingdom:advanceDay()` every five seconds and prints the result. The ports come out shorter than the C# versions because Luau has less ceremony — no namespaces, no `using` directives, no public/private modifiers. The pattern is the proof: the engine doesn't care what runtime it sits in. **Five times now: console, file with JSON and SQLite, web API, browser, Roblox. Five different runtimes; one engine.** That is the point of the whole curriculum, in your hands.
+You took the engine you wrote in Phase 1 and translated it into Luau on a Roblox server. `ResourceLedger`, `Citizen`, and `Kingdom` are now ModuleScripts under `ReplicatedStorage`. A server Script in `ServerScriptService` calls `kingdom:advanceDay()` every five seconds and prints the result. The Luau version comes out shorter than the C# version because Luau needs less extra code — no namespaces, no `using` lines, no public or private labels. And here is the proof of the whole idea: the engine doesn't care where it runs. **Five times now: console, file with JSON and SQLite, web API, browser, Roblox. Five different places to run; one engine.** That is the point of the whole course, and you just did it.
 
 **Key concepts you can now name:**
 
-- *port* — translate to another language while preserving meaning
-- *string keys instead of enums* — the Lua idiom for closed sets
-- *`task.wait(seconds)`* — pauses one script; doesn't block others
-- *coroutine* — a function that can pause and resume; Roblox runs scripts in these
-- *`RunService.Heartbeat`* — frame-rate-synced game loop hook
+- *port* — translate to another language while keeping the meaning
+- *string keys instead of enums* — the Lua way to handle a fixed set of values
+- *`task.wait(seconds)`* — pauses one script; lets the others keep running
+- *coroutine* — a function that can pause and start again; Roblox runs scripts in these
+- *`RunService.Heartbeat`* — an event that fires every frame; used for a frame-rate game loop
 
 ## Words to add to the glossary
 
 - **port** — translate code from one language or runtime into another while keeping its meaning.
 - **`task.wait`** — pause the current script for N seconds; other scripts keep running.
-- **coroutine** — a function that can pause and be resumed later; the unit Roblox runs scripts in.
-- **`RunService.Heartbeat`** — Roblox event that fires every frame; used for frame-rate-synced loops.
+- **coroutine** — a function that can pause and start again later; Roblox runs each script in one.
+- **`RunService.Heartbeat`** — a Roblox event that fires every frame; used for frame-rate game loops.
 
 ## Wrap up
 

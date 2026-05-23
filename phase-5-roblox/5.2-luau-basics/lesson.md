@@ -1,6 +1,6 @@
 # Module 5.2 — Luau Basics
 
-Luau is the language Roblox runs on. It's a variant of Lua with optional types added on top — smaller than C#, simpler than JavaScript, but built from the same parts: variables, functions, conditionals, loops, and one container called a *table*. Today we walk through the syntax differences. Tomorrow you use Luau to build classes.
+Luau is the language Roblox runs on. It's a version of Lua with optional types added on top. It's smaller than C# and simpler than JavaScript, but it's made of the same building blocks: variables, functions, conditionals, loops, and one container called a *table*. Today we walk through how the syntax is different. Tomorrow you use Luau to build classes.
 
 > **Words to watch**
 >
@@ -14,7 +14,7 @@ Luau is the language Roblox runs on. It's a variant of Lua with optional types a
 
 ## C# to Luau, side by side
 
-The fastest way to learn a second language is to read a translation table. The shapes are familiar; only the words have changed.
+The fastest way to learn a second language is to read a translation table. The ideas are the same ones you already know. Only the words have changed.
 
 | C# | Luau | Note |
 | --- | --- | --- |
@@ -31,7 +31,7 @@ The fastest way to learn a second language is to read a translation table. The s
 | `var d = new Dictionary<string,int>();` | `local d = {}` | Tables do double duty. |
 | `var l = new List<string>();` | `local l = {}` | Same literal. Array vs dictionary is a usage distinction, not a type one. |
 
-Luau is roughly half the syntax of C#. The runtime is much smaller too — no garbage-collection pauses, no JIT warmup, and a one-second tick is fast.
+Luau has about half as much syntax as C#. It's also a much smaller language to run, so it stays fast even when the game ticks every second.
 
 ## Tables — the one container
 
@@ -51,7 +51,7 @@ print(kingdom["name"])         -- same thing, different syntax
 local mixed = { "first", "second", name = "test" }
 ```
 
-The biggest gotcha when you come from C# or JavaScript is that **arrays start at index 1**, not index 0. Muscle memory writes `for i = 0, n - 1` and gets nothing — every loop in Luau wants `for i = 1, n`. Re-train this once and the rest of the language gets out of your way.
+The thing that trips up C# and JavaScript programmers most is that **arrays start at index 1**, not index 0. Your fingers will want to type `for i = 0, n - 1`, and that gives you nothing. Every loop in Luau wants `for i = 1, n`. Once you get used to this, the rest of the language is easy.
 
 ## Functions
 
@@ -63,9 +63,9 @@ end
 greet("Athos")
 ```
 
-`local` keeps the function name scoped to its file — without it, the function leaks into the global namespace, which Roblox places have one of, and which Lua programmers have collectively learned to dread. Always `local`.
+`local` keeps the function name inside its own file. Without it, the function becomes global, which means every script in the place can see it. A whole Roblox place shares one global space, so this causes hard-to-find bugs. Always write `local`.
 
-Lua supports multiple return values with no special syntax — `function f() return 1, 2 end` returns two values, and `local a, b = f()` unpacks them. Anonymous functions look like `local f = function(x) return x * 2 end`.
+Lua lets a function return more than one value, with no special syntax. `function f() return 1, 2 end` returns two values, and `local a, b = f()` reads them both. A function with no name looks like `local f = function(x) return x * 2 end`.
 
 ## Conditionals
 
@@ -110,13 +110,13 @@ while x < 10 do
 end
 ```
 
-Two iteration helpers worth memorising: `ipairs` walks an array in order and stops at the first nil; `pairs` walks every key in a dictionary in unspecified order. If you reach for the wrong one, you'll either skip entries or visit them in a strange order.
+Two helpers are worth learning. `ipairs` goes through an array in order and stops at the first `nil`. `pairs` goes through every key in a dictionary, but the order is not fixed. If you pick the wrong one, you'll either skip entries or get them in a strange order.
 
 ## The `print` debugging loop
 
-The Output panel in Studio is your debugger ninety percent of the time. There is a real debugger — *Debug menu → Breakpoints* — and you'll meet it the day you really need it. For now, `print(x)` is enough.
+The Output panel in Studio is what you'll use to debug most of the time. There is a real debugger too — *Debug menu → Breakpoints* — and you'll meet it when you really need it. For now, `print(x)` is enough.
 
-## Type annotations — the Luau bit
+## Type annotations — the Luau part
 
 Plain Lua has no types. Luau adds optional ones on top:
 
@@ -128,27 +128,27 @@ end
 local kingdom: { name: string, day: number } = { name = "X", day = 1 }
 ```
 
-Studio checks the types as you type — pass a string where a number was promised and the line gets a red squiggle. The check is similar to TypeScript's: it's a hint to the editor, not a runtime guard. Recommended for any function with two or more parameters.
+Studio checks the types as you type. Pass a string where you promised a number, and the line gets a red underline. This works like TypeScript's check: it warns you in the editor, but it doesn't stop the code while it runs. It's a good idea for any function with two or more parameters.
 
 ## Tinker
 
 Open Studio, insert a Script in `ServerScriptService`, and paste the small playground from the starter file `luau-basics.lua`. Hit Play and read the Output panel.
 
-Try a typo on purpose: `local x: number = "hello"`. Studio underlines it. Hover the squiggle for the error.
+Make a typo on purpose: `local x: number = "hello"`. Studio underlines it. Hover over the red underline to read the error.
 
-`#resources` gives the length of a table-as-array. Print it.
+`#resources` gives the length of a table used as an array. Print it.
 
-`table.insert(resources, "Food")` adds an element to the end; `table.remove(resources, 1)` removes the first. The standard library has the array operations you'd expect, but they're functions on the `table` module, not methods on the array itself.
+`table.insert(resources, "Food")` adds an item to the end. `table.remove(resources, 1)` removes the first. The standard library has the array operations you'd expect, but they're functions in the `table` module. You don't call them on the array itself.
 
 ## What you just did
 
-You walked through the syntax of a second language and noticed it's mostly familiar. Variables, functions, conditionals, loops — same ideas, different keywords. Luau's one container, the table, does the work that C# splits across `List`, `Dictionary`, and class-with-fields. The big gotcha you'll trip on for the first day or two is that arrays are one-indexed. Once that re-trains, you can read most Luau code on the page without slowing down. The syntax delta is roughly thirty minutes of reading; the rest comes from typing a few hundred lines of it over the next six modules.
+You walked through the syntax of a second language and saw that most of it is already familiar. Variables, functions, conditionals, loops — same ideas, different keywords. Luau's one container, the table, does the work that C# splits across `List`, `Dictionary`, and a class with fields. The one thing that catches people out for the first day or two is that arrays start at index 1. Once you're used to that, you can read most Luau code without slowing down. The syntax takes about thirty minutes to read through. The rest comes from typing a few hundred lines of it over the next six modules.
 
 **Key concepts you can now name:**
 
 - *`local`* — declares a scoped variable; without it, you've made a global
 - *table* — Luau's one container; array, dictionary, and object in one
-- *one-indexed arrays* — the daily gotcha for C# and JavaScript brains
+- *one-indexed arrays* — the thing C# and JavaScript programmers trip on most
 - *`..`* — string concat operator; `+` is numbers only
 - *type annotations* — optional hints Studio checks while you type
 

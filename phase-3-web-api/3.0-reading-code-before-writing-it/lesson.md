@@ -1,14 +1,14 @@
 # Module 3.0 — Reading Code Before Writing It
 
-Every module so far has been *write code*. Today is *read* code — somebody else's. Before we write our first ASP.NET endpoint, you'll spend about thirty minutes reading two real ones and saying out loud what they do. What you produce is a journal entry, not a program. That's the whole module: read, take notes, commit your notes.
+Every module so far has been about *writing* code. Today is about *reading* code that someone else wrote. Before we write our first ASP.NET endpoint, you'll spend about thirty minutes reading two real ones and saying out loud what they do. What you make today is a journal entry, not a program. That's the whole module: read, take notes, commit your notes.
 
-Reading is the skill nobody teaches and everyone needs. The senior on a team reads roughly five times more code than they write. They know which file to open first, they scan rather than parse, they notice the *missing* things. None of that is innate — it's a habit you build by doing it on purpose, weekly, even when you're not chasing a bug.
+Reading is a skill nobody teaches but everyone needs. An experienced developer on a team reads about five times more code than they write. They know which file to open first. They scan instead of reading every word. They notice when something is *missing*. Nobody is born knowing how to do this. It's a habit you build by doing it on purpose, every week, even when you're not chasing a bug.
 
 > **Words to watch**
 >
 > - **read-don't-write hour** — a deliberate window where you only read code; no editing
-> - **call graph** — who calls what; how a method's behaviour ripples through a project
-> - **smell** — a not-yet-bug; something that makes you suspicious without being clearly broken
+> - **call graph** — who calls what; how a change in one method affects the rest of a project
+> - **smell** — not yet a bug; something that makes you suspicious without being clearly broken
 
 ---
 
@@ -21,15 +21,15 @@ cd C:\code\kingdom
 git switch -c phase-3
 ```
 
-Every commit this phase lands on `phase-3`. At Module 3.9 (M4 close + AI Unlock), you'll PR it back to `main`.
+Every commit this phase goes on `phase-3`. At Module 3.9 (M4 close + AI Unlock), you'll open a pull request to merge it back into `main`.
 
 ---
 
 ## Why read first
 
-The default learning loop most people use is *read tutorial → write thing → break → fix*. It works for syntax. It does not work for *judgement* — knowing why one way of structuring code is better than another. Judgement comes from reading lots of code and asking *"what does this person know that I don't?"*
+Most people learn like this: read a tutorial, write something, break it, fix it. That works for learning syntax. It does not teach *judgement* — knowing why one way of laying out code is better than another. Judgement comes from reading a lot of code and asking *"what does this person know that I don't?"*
 
-The standard you can aim for is one hour of reading per week, deliberately, not just when you're hunting a bug. That's the habit this module starts.
+A good target is one hour of reading per week, on purpose, not just when you're hunting a bug. That's the habit this module starts.
 
 ## What you're doing today
 
@@ -43,30 +43,30 @@ The second one is bigger — a real TODO API by David Fowler, one of the people 
 
 > [`https://github.com/davidfowl/TodoApi/blob/main/TodoApi/Program.cs`](https://github.com/davidfowl/TodoApi/blob/main/TodoApi/Program.cs)
 
-For each file, answer these five questions in your `journal/3.0-reading.md` (template at the bottom of this lesson). One or two sentences each — handwritten reasoning, not Wikipedia summaries.
+For each file, answer these five questions in your `journal/3.0-reading.md` (there's a template at the bottom of this lesson). One or two sentences each. Write your own reasoning in your own words — don't copy a summary from somewhere else.
 
 1. **What does this file do, in one English sentence?**
 2. **What's the very first thing it sets up?** (`builder = WebApplication.CreateBuilder(args);` — what does that line actually do?)
 3. **List the endpoints in order.** For each one: HTTP verb, path, what it returns.
-4. **Find one thing that surprises you.** Some syntax you've never seen, a pattern you don't recognise. Write down what you don't yet understand.
-5. **Find one thing you think you understand. Write a one-sentence summary.** When we cover it formally next module, you'll check whether you were right.
+4. **Find one thing that surprises you.** Some syntax you've never seen, or a pattern you don't recognise. Write down what you don't understand yet.
+5. **Find one thing you think you understand. Write a one-sentence summary.** When we cover it properly next module, you'll check whether you were right.
 
-> Don't search for answers as you read. The point is to *try* understanding, then *check yourself* later. Wrong guesses are part of how you build judgement — they're where the new knowledge actually fits.
+> Don't search for answers as you read. The point is to *try* to understand first, then *check yourself* later. Wrong guesses are part of how you build judgement. A wrong guess is where the right answer fits in once you learn it.
 
 ## Smell test
 
-While you're reading, also note things that look a bit off. Real codebases are full of these. Examples:
+While you're reading, also note things that look a little off. Real codebases are full of these. Examples:
 
-- Anything that looks copy-pasted that could have been a helper
-- Variable names that say nothing (`var thing = ...`)
-- Long methods doing many different things
+- Code that looks copy-pasted, where a helper method would have done the job
+- Variable names that tell you nothing (`var thing = ...`)
+- Long methods doing many different things at once
 - Magic numbers — `if (x > 100)` — why a hundred? Where does that number come from?
 
-Most of the time, the answer for code in the wild is *"yes, it's not perfect, but the cost of fixing is higher than the cost of leaving."* Knowing what to fix and what to live with is also a senior judgement. Reading like this is how you build the eye for it.
+Most of the time, with real code, the answer is *"yes, it's not perfect, but fixing it would cost more than leaving it alone."* Knowing what to fix and what to leave alone is also part of an experienced developer's judgement. Reading like this is how you learn to spot it.
 
 ## What ships in the starter
 
-This module is reading plus a journal entry. The starter folder ships:
+This module is reading plus a journal entry. The starter folder gives you:
 
 - `journal/3.0-reading.md` — a template with the five questions to fill in for each file
 
@@ -103,26 +103,26 @@ The template:
 
 ## Tinker
 
-Pick a third file from the `dotnet/aspnetcore` repo — anything that catches your eye. Time-box it to fifteen minutes. Whatever you read, write one sentence about it in your journal.
+Pick a third file from the `dotnet/aspnetcore` repo — anything that catches your eye. Give it fifteen minutes, no more. Whatever you read, write one sentence about it in your journal.
 
-Compare the two files you read. How do their styles differ? `MvcSandbox` is a one-screen demo; `TodoApi` is a real application. Both are written by people who know the framework deeply. Neither is wrong. Style varies by purpose, and noticing that is itself a step forward.
+Compare the two files you read. How are their styles different? `MvcSandbox` is a one-screen demo. `TodoApi` is a real application. Both are written by people who know the framework very well. Neither one is wrong. The style changes with the job, and noticing that is itself a step forward.
 
-**Commit** your `journal/3.0-reading.md` to your repo. *"Module 3.0 reading notes"* is a fine message. (Source Control panel → stage → commit → Sync. Or CLI: `git add . && git commit -m "Module 3.0 reading notes" && git push`.) Reading-and-noting is real work, and a real commit makes it visible in your git log. Future-you scrolling through commits in three months will see *"yep, that was the day I started reading other people's code on purpose."*
+**Commit** your `journal/3.0-reading.md` to your repo. *"Module 3.0 reading notes"* is a fine message. (Source Control panel → stage → commit → Sync. Or in the terminal: `git add . && git commit -m "Module 3.0 reading notes" && git push`.) Reading and taking notes is real work, and a real commit makes it show up in your git log. In three months you'll scroll past this commit and think *"that was the day I started reading other people's code on purpose."*
 
-## Reading as a deliverable
+## Your notes are the result
 
-The notes you write today are what you keep for this module. Coming sessions will refer back to them — *"compare the surprise you wrote down to what we just learned."* The journal is the through-line; treat it like any other commit.
+The notes you write today are what you keep for this module. Later sessions will point back to them — *"compare the surprise you wrote down to what we just learned."* The journal runs through the whole course. Treat it like any other commit.
 
 ## What you just did
 
-You spent thirty minutes reading two real ASP.NET Core files written by the people who built the framework — and you wrote down what you saw, including what surprised you and what you guessed at. No code, no tests, just notes. That seems small, but it starts the habit that separates beginners from intermediates: senior developers read far more code than they write, and they read on purpose. By committing your `journal/3.0-reading.md` to your repo, you also treated reading as a real deliverable instead of an unpaid prerequisite. Next module you'll meet the same patterns from inside, in your own code.
+You spent thirty minutes reading two real ASP.NET Core files written by the people who built the framework. You wrote down what you saw, including what surprised you and what you guessed at. No code, no tests, just notes. That seems small, but it starts a habit that sets stronger developers apart: they read far more code than they write, and they read on purpose. By committing your `journal/3.0-reading.md` to your repo, you treated reading as real work that counts, not just a step on the way to writing. Next module you'll meet the same patterns from the inside, in your own code.
 
 **Key concepts you can now name:**
 
 - **read-don't-write hour** — reading time set aside on purpose
 - **call graph** — following who calls what through a project
 - **smell** — a pattern that makes you uneasy, not always a bug
-- **the five questions** — a reusable mini-protocol for any unfamiliar file
+- **the five questions** — a set of questions you can reuse on any new file
 
 ## Wrap up
 
@@ -135,4 +135,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Module 3.1 starts the actual API: HTTP basics, the minimal API setup you just read about, and your first endpoint serving your kingdom over the internet.
+Module 3.1 starts the real API: HTTP basics, the minimal API setup you just read about, and your first endpoint serving your kingdom over the internet.

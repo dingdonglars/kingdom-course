@@ -1,15 +1,15 @@
 # Module 1.10 — Polish and Repo Rescue (M2 close)
 
-Phase 1 ends today. The kingdom is a real engine — thirty-five tests, deterministic, organised by area. Now we shine it. Better README, a few well-placed comments, the names you wish you'd picked the first time. Then we cover the **repo rescue workflow** — the moves to know on the day your git branch is a smoking ruin.
+Phase 1 ends today. The kingdom is a real engine — thirty-five tests, deterministic, organised by area. Now we make it nicer. A better README, a few well-placed comments, and the names you wish you'd picked the first time. Then we cover the **repo rescue workflow** — the moves to know on the day your git branch is a complete mess.
 
-There's no big new code in this lesson. It's a quiet day on purpose. Quiet competence is what closing a milestone looks like — read your own repo end-to-end, make the small fixes, write a short README that future-you will appreciate, then mark the moment with the milestone ritual.
+There's no big new code in this lesson. It's a calm day on purpose. Closing a milestone looks like this: read through your own repo from start to finish, make the small fixes, write a short README that will help you later, then mark the moment with the milestone steps at the end.
 
 > **Words to watch**
 >
-> - **README** — the document at the top of a repo. Four sections that always matter: *what / how to run / what you learned / what's next.*
-> - **XML doc comment** — `///` comments above a public type or method. The IDE shows them as tooltips and IntelliSense.
-> - **stash** — `git stash` — set aside uncommitted changes for later, returning the working tree to clean
-> - **rescue** — when your branch is a mess: snapshot, reset, recover only what you wanted
+> - **README** — the main document at the top of a repo. Four sections that always matter: *what / how to run / what you learned / what's next.*
+> - **XML doc comment** — `///` comments above a public type or method. The editor shows them as tooltips and in IntelliSense.
+> - **stash** — `git stash` — set aside changes you haven't committed for later, leaving the working tree clean
+> - **rescue** — when your branch is a mess: save a copy, reset, then get back only what you wanted
 
 ---
 
@@ -17,7 +17,7 @@ There's no big new code in this lesson. It's a quiet day on purpose. Quiet compe
 
 ### 1. README at the repo root
 
-The README is the front door to the repo. It's the first thing a stranger reads on GitHub — and it's the first thing *you* read six months from now when you've forgotten how this project runs. A good README answers four questions before anyone has to ask: *what is this, how do I run it, what was learned building it, what's next.* Four short sections beat one long paragraph; future-you will thank present-you.
+The README is the first thing people see when they open the repo. It's the first thing a stranger reads on GitHub — and it's the first thing *you* read six months from now, when you've forgotten how this project runs. A good README answers four questions before anyone has to ask: *what is this, how do I run it, what did I learn building it, what's next.* Four short sections are better than one long paragraph, and you'll be glad later that you wrote them.
 
 Four sections, in this order:
 
@@ -40,7 +40,7 @@ Output: Eldoria runs for 30 days, prints the final state and a deterministic eve
 - Inheritance — Farm/Lumberyard/Mine override `Building.Tick`
 - LINQ — `.OfType<>().Count()` instead of manual `for` loops
 - Interfaces and dependency injection — `IRandom`/`IClock` make the engine testable
-- FakeItEasy — surgical control of dependencies in tests
+- FakeItEasy — exact control of dependencies in tests
 - Sub-namespaces — `Kingdom.Engine.Buildings` and friends
 
 ## What's next
@@ -49,9 +49,9 @@ Output: Eldoria runs for 30 days, prints the final state and a deterministic eve
 - Phase 3 (M4): web API — same engine, HTTP shell
 ```
 
-### 2. XML doc comments on the public surface
+### 2. XML doc comments on the public types
 
-A small number of `///` comments above the public types. Skip private fields and obvious methods — comments on every property is noise. Comment the *why* and the *non-obvious*.
+A few `///` comments above the public types. Skip private fields and obvious methods — a comment on every property just adds clutter. Comment the *why*, and the things that aren't obvious.
 
 ```csharp
 /// <summary>
@@ -64,13 +64,13 @@ public class Kingdom { ... }
 public interface IRandom { ... }
 ```
 
-The `<see cref="..."/>` becomes a hyperlink in the IDE. Useful, but don't go overboard.
+The `<see cref="..."/>` becomes a clickable link in the editor. Useful, but don't add too many.
 
 ### 3. Naming pass
 
-Walk every public name. Could it be clearer?
+Look at every public name. Could it be clearer?
 
-`RollOnce` is fine — it rolls once. `Snapshot()` on `ResourceLedger` returns a read-only dict — fine. `_eventEngine` (private field) — fine. If you find a stale name, rename it; modern IDEs make rename across the codebase and tests trivial.
+`RollOnce` is fine — it rolls once. `Snapshot()` on `ResourceLedger` returns a read-only dictionary — fine. `_eventEngine` (private field) — fine. If you find an old name that no longer fits, rename it. Modern editors make it easy to rename across the whole project and the tests at once.
 
 ### 4. Tinker section in the README
 
@@ -81,13 +81,13 @@ Add three lines under "What's next":
 > - Add a `Mood` enum to `Citizen` and an event `CitizenHappy`
 > - Print a CSV of the event log at the end
 
-These are invitations, not assignments.
+These are optional ideas, not required work.
 
 ---
 
 ## Repo rescue
 
-Sometimes your git tree is a mess: half-finished commits, a branch that diverged, edits you don't want. Knowing how to *rescue* a working state saves hours.
+Sometimes your git tree is a mess: half-finished commits, a branch that has gone its own way, edits you don't want. Knowing how to *rescue* a working state saves hours.
 
 ### Scenario A — uncommitted changes you don't want
 
@@ -113,7 +113,7 @@ git checkout feature/my-thing     # continue on the right branch
 
 ```powershell
 git fetch origin
-git reset --hard origin/main      # nuclear: discard ALL local work, match remote
+git reset --hard origin/main      # warning: discards ALL local work, matches remote
 ```
 
 > ⚠ `git reset --hard` is **destructive**. Always `git stash` or commit-then-reset first if you might want anything back.
@@ -141,7 +141,7 @@ git cherry-pick <hash1> <hash2>    # reapply just those commits
 
 > **If you don't know what `git status` and `git log --oneline -10` say, stop. Read. Then decide.**
 
-Most git incidents are *"I didn't actually know the state I was in, so I tried something and it got worse."* The rescue is in the read.
+Most git accidents are *"I didn't actually know what state I was in, so I tried something and it got worse."* Reading the state first is most of the rescue.
 
 ---
 
@@ -149,35 +149,35 @@ Most git incidents are *"I didn't actually know the state I was in, so I tried s
 
 There's no new code today. Walk through *your* repo:
 
-1. Check the README at the root. Edit until it satisfies the four-section template above.
-2. Add `<summary>` doc comments to `Kingdom`, `IRandom`, `IClock`, `EventEngine` (the four most "public" types). Skip the rest.
+1. Check the README at the root. Edit it until it matches the four-section template above.
+2. Add `<summary>` doc comments to `Kingdom`, `IRandom`, `IClock`, `EventEngine` (the four most public types). Skip the rest.
 3. `dotnet build` — must still be 0 errors.
 4. `dotnet test` — must still be 35 passing.
 5. **Commit the polish.** *"[M2] polish: README + doc comments"*. (Source Control panel → stage → commit → Sync. Or CLI: `git add . && git commit -m "[M2] polish: README + doc comments" && git push`.)
 
 ## Tinker
 
-Run `dotnet build /verbosity:diagnostic`. Overwhelming, but skim it once just to see how much the build does behind the scenes.
+Run `dotnet build /verbosity:diagnostic`. It's a lot of output, but read over it once just to see how much the build does for you.
 
-Run `dotnet --list-sdks` to confirm you're on .NET 10.
+Run `dotnet --list-sdks` to check you're on .NET 10.
 
-Run `git log --oneline --graph --decorate -20`. You'll see your last twenty commits as a tree. The discipline of small commits with `[P###-T##]` prefixes is now visible at a glance.
+Run `git log --oneline --graph --decorate -20`. You'll see your last twenty commits as a tree. The habit of making small commits now shows up clearly in the picture.
 
 ## The through-line
 
-The through-line in this module: **the repo is what you keep**. Polish the code, polish the README, polish the commit log. The kingdom you can show your future self in a year is the one that's organised, not just functional.
+The through-line in this module: **the repo is what you keep**. Tidy the code, tidy the README, tidy the commit log. The kingdom you'll be glad to look back on in a year is the one that's organised, not just the one that works.
 
 ## What you just did
 
-Phase 1 closes today. You wrote a four-section README, dropped doc comments on four public types, walked your own naming once, and learned the five rescue moves you'll reach for some random Tuesday in 2026 when your tree is on fire. The code didn't change in any meaningful way — the same thirty-five tests still pass — and that's the point. Closing well is itself a skill.
+Phase 1 closes today. You wrote a four-section README, added doc comments to four public types, checked your own naming once, and learned the five rescue moves you'll need on some ordinary day when your git tree is a mess. The code didn't really change — the same thirty-five tests still pass — and that's the point. Finishing well is its own skill.
 
 **Key concepts you can now name:**
 
 - **README four sections** — what, run, learned, next
-- **XML doc comment** — `///` on the public surface, sparingly
-- **`git stash`** — non-destructive set-aside of uncommitted work
-- **`git reset --hard`** — destructive rewind, useful when sure
-- **the rescue rule** — read state before acting on it
+- **XML doc comment** — `///` on the public types, used sparingly
+- **`git stash`** — set work aside safely without losing it
+- **`git reset --hard`** — throws work away, useful when you're sure
+- **the rescue rule** — read the state before you act on it
 
 ## Wrap up
 
@@ -192,16 +192,16 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Open the milestone PR
 
-You've been committing to the `phase-1` branch since Module 1.1. Time to send the whole phase to Lars as a *pull request* — the formal review surface — and merge it into `main`.
+You've been committing to the `phase-1` branch since Module 1.1. Now it's time to send the whole phase to Lars as a *pull request* — the place where he reviews your work — and merge it into `main`.
 
-On github.com, open your `kingdom` repo. A yellow banner near the top says something like *"phase-1 had recent pushes — Compare & pull request"*. Click **Compare & pull request**. (Banner missing? *Pull requests* tab → *New pull request* → base: `main`, compare: `phase-1`.)
+On github.com, open your `kingdom` repo. A yellow banner near the top says something like *"phase-1 had recent pushes — Compare & pull request"*. Click **Compare & pull request**. (No banner? Go to the *Pull requests* tab → *New pull request* → base: `main`, compare: `phase-1`.)
 
 Fill in:
 
 - **Title:** `M2 — Phase 1 — Console Kingdom`
 - **Body:** the four `wins.md` bullet points + a line `**Reviewer:** @dingdonglars`
 
-Click **Create pull request**. GitHub notifies Lars; he reviews on the *Files changed* tab, leaves comments or clicks **Approve**. If he asks for changes, push more commits to `phase-1` — they appear on the PR automatically. When the review is **Approved**, click **Merge pull request** → **Confirm merge**. GitHub offers to delete the `phase-1` branch — accept; the merged history lives on `main` from now on.
+Click **Create pull request**. GitHub tells Lars; he reviews on the *Files changed* tab, leaves comments or clicks **Approve**. If he asks for changes, push more commits to `phase-1` — they show up on the pull request automatically. When the review is **Approved**, click **Merge pull request** → **Confirm merge**. GitHub offers to delete the `phase-1` branch — accept it; the merged history now lives on `main`.
 
 Switch back locally:
 
@@ -210,24 +210,24 @@ git switch main
 git pull
 ```
 
-You're back on `main` with Phase 1 merged in. Phase 2 begins in Module 2.1 with a fresh `phase-2` branch.
+You're back on `main` with Phase 1 merged in. Phase 2 begins in Module 2.1 with a new `phase-2` branch.
 
 ---
 
 ## Milestone ritual — M2
 
-You just shipped **M2 — Kingdom v1, Console**. Time for the ritual:
+You just finished **M2 — Kingdom v1, Console**. Time for the milestone steps:
 
-1. **`journal/wins.md` entry.** Open `wins.md` (in your repo's `journal/` folder) and add a paragraph in your own words about what M2 felt like. Keep it short.
+1. **`journal/wins.md` entry.** Open `wins.md` (in your repo's `journal/` folder) and add a paragraph, in your own words, about what M2 felt like. Keep it short.
 
-2. **`#wins` Slack post.** Drop a screenshot of the running kingdom + a link to the merged PR + a one-line caption.
+2. **`#wins` Slack post.** Post a screenshot of the running kingdom, a link to the merged pull request, and a one-line caption.
 
-3. **Before/after one-liner.** Pick the thing you couldn't do six weeks ago and the thing you can do today, and put them in one sentence. Save it in `wins.md`. Future-you will thank present-you.
+3. **Before/after one-liner.** Pick something you couldn't do six weeks ago and something you can do today, and put them in one sentence. Save it in `wins.md`. You'll be glad later that you wrote it down.
 
-   Example: *"Six weeks ago I'd never opened a terminal. Today I shipped a deterministic kingdom engine with thirty-five tests."*
+   Example: *"Six weeks ago I'd never opened a terminal. Today I built a deterministic kingdom engine with thirty-five tests."*
 
 Then take the rest of the day off.
 
 ## Next
 
-**Phase 2 begins.** Phase 2 introduces *persistence* — write the kingdom to a file (JSON), then to SQLite. Same engine, brand new shell — the persistence shell. The first real proof that engine/shell separation pays off.
+**Phase 2 begins.** Phase 2 introduces *persistence* (saving) — write the kingdom to a file (JSON), then to SQLite. Same engine, a brand new shell — the saving shell. The first real proof that splitting the engine from the shell was worth it.
