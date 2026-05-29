@@ -241,6 +241,30 @@ Three subclasses build on `Building` — `Farm`, `Lumberyard`, `Mine` — and ea
 - **`GetType().Name`** — the real type's name while the program runs
 - **polymorphism** — same type on the outside, different behaviour per subclass
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: making a subclass. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Write a new building from memory: a `Quarry` that produces marble. (For this exercise just add `Marble` to your `Resource` enum first, or produce `Stone` if you'd rather not touch the enum.) The `Quarry` should inherit from `Building`, pass the name up to the parent with `: base(name)`, and `override` the `Tick` method so it adds `4 * Level` of its resource to the ledger. Add it to the kingdom in `Program.cs` and run.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+public class Quarry : Building
+{
+    public Quarry(string name) : base(name) { }
+
+    public override void Tick(ResourceLedger ledger)
+    {
+        ledger.Add(Resource.Stone, 4 * Level);
+    }
+}
+```
+
+Three things had to be right: `: Building` to inherit, `: base(name)` to pass the name to the parent's constructor, and `override` on `Tick`. If you forget `override`, the compiler complains — and that's on purpose, so you can never replace a `virtual` method by accident.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

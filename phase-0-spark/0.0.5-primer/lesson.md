@@ -231,6 +231,29 @@ You walked through the filesystem. You saw `C:\` and the tree of folders inside 
 - *process* — a program that is currently running; closing the terminal stops the processes inside it
 - *.NET SDK* — the toolkit you run with `dotnet`; compiler plus runtime plus libraries plus NuGet, all installed Day 1
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that you can move around the folders. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open Windows Terminal. Without looking, do this: go into `C:\code`, list what's there, go into `kingdom-course`, list again, then go back up one level to `C:\code`. Watch how the prompt changes each time — it always shows the folder you're currently in.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```powershell
+cd C:\code
+ls
+cd kingdom-course
+ls
+cd ..
+```
+
+- After `cd C:\code`, the prompt shows `C:\code`.
+- The first `ls` shows two folders: `kingdom-course` and `kingdom`.
+- The second `ls` shows the files inside `kingdom-course`.
+- `cd ..` means "go up one level", so the prompt is back to `C:\code`. (`..` is the parent folder; `.` is this folder.)
+
+</details>
+
 ## Quiz
 
 This is your first quiz, so here's a quick word on how these work — just once, here. Later lessons end with the standard one-line pointer.

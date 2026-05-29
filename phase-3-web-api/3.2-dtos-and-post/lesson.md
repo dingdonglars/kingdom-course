@@ -176,6 +176,24 @@ Your kingdom now reads *and* writes over HTTP. You wrote a `TickResponse` DTO �
 - **optional query parameter** — `(int? days)` becomes `?days=5` in the URL
 - **checking input at the boundary** — clamp, check, reject before the engine runs
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — write a small response DTO from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new file. Imagine the API needs to return a building over the network. Write a `record` called `BuildingResponse` that holds the building's `Name`, its `Kind` (a string like "Farm"), and its `Level` (a number). Keep it small — only what a client needs. Build the project to check it compiles.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+namespace Kingdom.Api.Dtos;
+
+public record BuildingResponse(string Name, string Kind, int Level);
+```
+
+One short line does it. A DTO is just a small, clear `record` made for sending over the network — no hidden engine state, no constructors that need an `IRandom`. It turns into JSON cleanly, and the client knows exactly what it will get.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

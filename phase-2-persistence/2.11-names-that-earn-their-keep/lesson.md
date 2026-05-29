@@ -136,6 +136,28 @@ You went through the codebase and made every public name tighter. Some you renam
 - **vocabulary discipline** — pick `Save`/`Load`/`Delete`, not a mix
 - **IDE Rename** — the only safe way to change a name everywhere
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the five questions — show yourself, from your own head, that the one big idea stuck: a good name says what the thing is, and the wider its reach, the harder it has to work. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Here are three weak names. For each one, pick a better name and say in one sentence *why* it's better:
+
+- a class called `DataManager` that loads and saves players
+- a method called `Process(p)` that turns a player into a save record
+- a method called `DoIt()` that deletes a save slot
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+There's no single right answer — names are a judgement. But good answers look like these:
+
+- `DataManager` → `PlayerStore` (or `PlayerRepository`). *Why:* `Manager` is a noise word that says nothing; `Store` says what it does — it stores players.
+- `Process(p)` → `ToSaveRecord(p)` (or `ToSnapshot`). *Why:* `Process` could mean anything; the new name says what it returns.
+- `DoIt()` → `DeleteSlot()`. *Why:* a name should say what happens; and if the class already has `Save`/`Load`, `Delete` matches the words next to it.
+
+The pattern in every answer: drop noise words, say what the thing *is* or *does*, and match the words already around it.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md` (lighter than usual — naming-themed). Jot your answers in `journal/quiz-notes.md`.

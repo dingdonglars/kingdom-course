@@ -96,6 +96,32 @@ You met the multiplayer split that the rest of Phase 5 builds on. One server, ma
 - *`ReplicatedStorage`* — shared library; both sides can `require` modules here
 - *the multiplayer rule* — client shows and asks; server checks and applies
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that the two sides stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+In your own words, finish this sentence out loud: "The client ___ and ___; the server ___ and ___." Then write the two lines that send a message from a client to a server: the client fires the event, and the server listens for it.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The rule: **the client shows and asks; the server checks and applies.** The real state lives on the server.
+
+The two lines, with a RemoteEvent that already sits in `ReplicatedStorage`:
+
+```lua
+-- Client
+event:FireServer(5)
+
+-- Server
+event.OnServerEvent:Connect(function(player, days)
+    print(player.Name, "asked for", days, "days")
+end)
+```
+
+The server line always gets `player` first, then whatever the client sent. And the server should check that value before using it — never trust a message from a client.
+
+</details>
+
 ## Words to add to the glossary
 
 - **server** — the side that holds the real game state; one per Roblox place.

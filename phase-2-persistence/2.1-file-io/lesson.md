@@ -195,6 +195,31 @@ Your kingdom went from a program that only prints to a program that *saves*. You
 - **`Directory.CreateDirectory`** — make a folder, idempotent
 - **engine vs shell** — disk lives in the shell; engine stays clean
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: write a string to a file, then read it back. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, build a save path with `Path.Combine`, make the folder, write the text `"Hello kingdom"` to a file, then read the same file back and print what you read. Run it. The text you print should match the text you wrote.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+using System.IO;
+
+var folder = Path.Combine(AppContext.BaseDirectory, "saves");
+Directory.CreateDirectory(folder);
+var path = Path.Combine(folder, "hello.txt");
+
+File.WriteAllText(path, "Hello kingdom");
+
+var back = File.ReadAllText(path);
+Console.WriteLine(back);          // Hello kingdom
+```
+
+If the text you read matches the text you wrote, you have it. If you forgot `Directory.CreateDirectory`, you'll get a `DirectoryNotFoundException` — that's the lesson from the Tinker section, right on cue.
+
+</details>
+
 ## Git move of the week — `.gitignore`
 
 You started writing files to disk this module. Some files belong in git (your code, your `.csproj`, the test files). Some don't (the build outputs in `bin/` and `obj/`, secret keys, `.env` files, and extra files the operating system makes, like `.DS_Store`).

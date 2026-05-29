@@ -231,6 +231,30 @@ You moved from *"create the structure if it doesn't exist"* to *"change the stru
 - **`__EFMigrationsHistory`** — EF's record of applied migrations
 - **schema drift** — DB and model diverging; what migrations prevent
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: a migration is a recorded structure change you generate, then apply. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+From memory, run the two commands that (1) generate a new migration from the model and (2) apply it to the database. Then say out loud — or jot down — what each one did and where the new files went.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The two commands:
+
+```powershell
+dotnet ef migrations add InitialCreate --project Kingdom.Persistence --startup-project Kingdom.Console
+dotnet ef database update --project Kingdom.Persistence --startup-project Kingdom.Console
+```
+
+What you should have seen:
+
+- `migrations add` created a `Migrations/` folder with a `..._InitialCreate.cs` file (the `Up`/`Down` methods) plus a model snapshot file.
+- `database update` printed `Applying migration '..._InitialCreate'` and created or updated the `.db` file.
+- The `add` command writes code; the `update` command changes the database. Two separate steps.
+- Run `update` a second time and nothing happens — the migration is already applied. That's the safe-to-rerun behaviour you tested.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

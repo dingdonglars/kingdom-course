@@ -136,6 +136,28 @@ The kingdom now loads in a browser tab. JavaScript called your live API, got JSO
 - **`async` / `await`** — write async code that reads synchronous
 - **CORS** — the server must allow your origin before the browser shows you the response
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — from your own head, write a small `async` function that fetches a URL and reads the body as JSON. You need the `async` keyword, a `fetch`, and two `await`s — one for the response, one for the JSON. Run it (the DevTools Console is a quick place to try it). No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```js
+async function load(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    console.error("Request failed:", response.status);
+    return;
+  }
+  const data = await response.json();
+  return data;
+}
+```
+
+The thing to get right: `async` on the function, `await` before `fetch`, and a second `await` before `.json()`. Forget either `await` and you end up working with a Promise instead of the value — that is the most common bug here.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

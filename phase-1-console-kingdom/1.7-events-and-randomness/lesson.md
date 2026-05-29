@@ -250,6 +250,23 @@ You added a real system to the engine in about forty lines: a base record, three
 - **`switch` expression** — a switch that returns a value, `_` for "anything else"
 - **non-deterministic engine** — same inputs, different outputs, hard to test
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: writing a `record`. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Add a fourth kind of event from memory: `SecretFound`. It should be a `record` that inherits from `KingdomEvent`, take a `Day` and a `string Place`, and pass a clear description up to the base record, like `$"A secret was found at {Place}."`. You don't have to add it to the `switch` — just get the record itself to compile.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+public record SecretFound(int Day, string Place)
+    : KingdomEvent(Day, $"A secret was found at {Place}.");
+```
+
+That one line gives you a small data class that can't be changed after it's made, with a constructor, value equality, and a `ToString` — all written for you. Two `SecretFound` records with the same `Day` and `Place` count as equal automatically.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

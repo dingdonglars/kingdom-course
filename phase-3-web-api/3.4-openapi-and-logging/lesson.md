@@ -162,6 +162,22 @@ You turned your API from *a set of working endpoints* into *a service that's doc
 - **`ILogger<T>`** — a logger the framework provides; the type `T` names the calling class, used for filtering
 - **structured logging** — log entries with named fields, queryable later
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — write a structured log line from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Imagine you have a logger called `log` and two values: an `int id` and a `string name`. Write one `LogInformation` call that records "deleted a kingdom" *and* keeps the id and name as named fields, not just text glued into the sentence. Then say, in a sentence, why the named-field form beats `Console.WriteLine`.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+log.LogInformation("Deleted kingdom {KingdomId} '{KingdomName}'", id, name);
+```
+
+The `{KingdomId}` and `{KingdomName}` are placeholders, and the values come after as arguments. A log tool saves them as named fields, so later you can run a query like `WHERE KingdomId = 42` instead of searching a text file by hand. With ten thousand log lines, that's the difference between seconds and hours.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

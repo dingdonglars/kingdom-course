@@ -105,6 +105,28 @@ You met the scoping template (goal, non-goals, traps, success criteria) and the 
 - **success criterion** — how you judge "done"
 - **the three-sentence prompt** — fallback for small asks
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, write a scoped prompt from memory for a small task. Pick something real you might ask the AI for — say, adding a small method to your store. Write it in the three-sentence form, filling in the blanks for your own task. Then read it back: would the AI have to guess anything?
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The three-sentence form:
+
+1. **In `<file>`, add `<methodSignature>` that does `<one sentence>`.**
+2. **Match the style of `<existing method or example>`.**
+3. **Don't `<known trap>`.**
+
+A filled-in example:
+
+> In `KingdomEfStore.cs`, add `LoadRichest(string ownerSub): KingdomSlotInfo?` that returns the user's slot with the highest gold. Match the projection style of `ListSlots`. Don't load full Kingdom entities — project to summary inline.
+
+If your prompt names the file, the signature, the style to match, and one thing not to do, the AI has nothing left to guess.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

@@ -89,6 +89,24 @@ You closed B2 and the whole course at the same time. The closing reflection is w
 - **MCP** — Model Context Protocol; emerging tool-talking standard
 - **your picked stack** — one chat-style tool, one inline tool, optionally one agent
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, name the three *types* of AI tool from memory. For each type, say in a few words what it is best for, and name one tool of that type. The point isn't the brand names — it's the types, so you can place any new tool that comes out next year.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The three types:
+
+1. **Chat-style** — you talk, the AI talks back. Best for thinking: planning, explaining, design talk. Example: Claude desktop.
+2. **Inline completion** — ghost text as you type, Tab to accept. Best for typing: finishing the line you're on. Example: GitHub Copilot.
+3. **Agentic** — the AI writes, edits, and runs commands across many files. Best for doing: multi-file edits and test loops. Example: Claude Code.
+
+The shortcut: chat-style for thinking, inline for typing, agentic for doing.
+
+</details>
+
 ## The through-line — for the last time
 
 > **The discipline is yours. The tools come and go. The thing you take with you is the way you think.**

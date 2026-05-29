@@ -75,6 +75,22 @@ Phase 4 closed. The kingdom now plays in any browser. You cleaned up one Phase 0
 - **wins log** — `journal/wins.md`; your list of milestones
 - **specific vs vague dissatisfaction** — knowing exactly what to change is skill; vague unease is just anxiety
 
+## On your own
+
+Time to put the book away. Don't scroll back up — open your old Phase 0 code one more time and pick three lines you would change. For each one, say the exact change out loud or write it down: not "this feels off" but "I would rename this variable to `goldCount`", "I would pull these lines into a method called `RollDice`", "I would delete this comment, it is out of date". No one marks this — it's just for you. It's the easiest way to see whether the difference between old and new code is real skill or just a vague feeling. Getting stuck here is completely fine — that's exactly what it's for.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+There's no single right answer here — it's your code. A good answer names the *exact* change, like these:
+
+- "This `int x = 5;` should be a named constant — `const int StartingGold = 5;`."
+- "These ten lines that pick a random number belong in their own method, `RollDice()`."
+- "This variable `temp` should be `roastLine` — the name should say what it holds."
+
+If your three changes are that specific, that's the skill the lesson is about. If all you can say is "it just feels messy," that's the vague unease — and naming even one concrete fix is how you turn it into skill.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

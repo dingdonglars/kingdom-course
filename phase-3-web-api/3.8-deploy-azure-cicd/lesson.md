@@ -168,6 +168,26 @@ You took your local API and put it on the public internet at a URL anyone can vi
 - **environment variables (prod)** — settings and secrets, set on the platform, never in the repo
 - **HTTPS-only** — required for cookie auth; toggle on in App Service settings
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — describe the deploy loop from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+On paper, write the steps that happen automatically between you running `git push` to `main` and your site being live. Put them in order. Then answer one question: where in that order do the tests run, and what happens if a test fails?
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The loop, in order:
+
+1. You `git push` to `main`.
+2. GitHub Actions starts the workflow (because it watches `push` to `main`).
+3. **Build job:** restore, build, **test**, then publish the output.
+4. **Deploy job:** download that output and send it to Azure App Service.
+5. About three minutes later, the live URL is updated.
+
+The tests run in the build job, **before** the deploy. If a test fails, the build job stops, so the deploy job never runs and the broken code never reaches the live site. That's why the rule is *"never deploy by hand twice"* — automate it once, the tests guard every release, and deploys become boring and safe.
+
+</details>
+
 ## Git move of the week — `gh pr` from the CLI
 
 You've been opening pull requests by clicking around on github.com. The `gh` CLI is a faster way once you've used it a couple of times. Install it from [cli.github.com](https://cli.github.com/) — it's a single-file installer.

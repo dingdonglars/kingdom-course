@@ -124,6 +124,26 @@ You spent thirty minutes reading two real ASP.NET Core files written by the peop
 - **smell** — a pattern that makes you uneasy, not always a bug
 - **the five questions** — a set of questions you can reuse on any new file
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — from your own head, name the five questions you asked of each file you read today. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Take a blank piece of paper. Without looking, write down all five questions you answer for every new file. Then say why each one helps you understand code you didn't write.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The five questions:
+
+1. **What does this file do, in one English sentence?**
+2. **What's the very first thing it sets up?**
+3. **List the endpoints in order** (verb, path, what it returns).
+4. **Find one thing that surprises you** — syntax or a pattern you don't know yet.
+5. **Find one thing you think you understand** — write a one-sentence summary.
+
+The point of the set: question 1 forces the big picture, question 2 finds the starting line, question 3 maps the real work, question 4 marks what to learn next, and question 5 gives you something to check later. You can use this same list on any new file for the rest of your life.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

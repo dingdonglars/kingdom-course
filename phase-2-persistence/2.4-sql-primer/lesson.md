@@ -264,6 +264,30 @@ Your kingdom now has a third place to live: a SQLite database file. You wrote yo
 - **parameters (`$name`)** — the only safe way to put user input in SQL
 - **`using var conn`** — guarantees the connection closes on scope exit
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: write SQL that makes a table, puts a row in it, and reads it back. No one marks this — the database engine does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open the `sqlite3` prompt on a fresh file: `sqlite3 scratch.db`. Without looking, write SQL that creates a table called `heroes` (an `id`, a `name`, and a `level`), inserts one hero, then selects every row back out. You should see your row come back.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```sql
+CREATE TABLE heroes (
+    id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    name  TEXT NOT NULL,
+    level INTEGER NOT NULL
+);
+
+INSERT INTO heroes (name, level) VALUES ('Lyra', 7);
+
+SELECT id, name, level FROM heroes;
+```
+
+If the `SELECT` shows your hero, all three commands worked. The same `CREATE` / `INSERT` / `SELECT` shape is most of the SQL you'll write all year.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

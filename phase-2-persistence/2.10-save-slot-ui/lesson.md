@@ -311,6 +311,37 @@ You put your save-slot CRUD behind a real interactive menu. `Program.cs` shrank 
 - **`Console.SetIn` / `SetOut`** — script and capture in tests
 - **EOF handling** — return cleanly when input runs out
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: a menu loop prints the options, reads a line, decides what to do, and repeats. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, write a small menu loop: print three options (`1. Say hi`, `2. Count up`, `3. Quit`), read a line, and use a `switch` to act — option 1 prints a greeting, option 2 prints a number that goes up each time, option 3 returns out of the loop. Anything else prints a short "pick 1, 2, or 3" line. Run it and click through your own menu.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+int count = 0;
+while (true)
+{
+    Console.WriteLine("1. Say hi   2. Count up   3. Quit");
+    Console.Write("> ");
+    var line = Console.ReadLine();
+    if (line is null) return;          // input ran out
+
+    switch (line.Trim())
+    {
+        case "1": Console.WriteLine("Hi!"); break;
+        case "2": Console.WriteLine(++count); break;
+        case "3": return;
+        default:  Console.WriteLine("Pick 1, 2, or 3."); break;
+    }
+}
+```
+
+The shape is always the same: `while (true)` around print → read → `switch`, with one branch that `return`s to leave. The `if (line is null)` guard handles the moment input runs out, so the loop never spins forever.
+
+</details>
+
 ## Git move of the week — merge vs rebase (preview)
 
 By now your `git log` is full of commits. There are two ways to bring work from one branch into another, and they leave different histories:

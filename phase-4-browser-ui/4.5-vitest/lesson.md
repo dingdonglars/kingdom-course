@@ -143,6 +143,27 @@ The browser code now has tests. You connected Vitest to the Vite project, set th
 - **watch mode** — re-runs affected tests on save
 - **snapshot test** — capture output once; fail on any future change
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — in a `.test.ts` file, from your own head, write one Vitest test for `escapeHtml`. Use a `describe`, an `it`, and an `expect(...).toBe(...)` that checks `escapeHtml('<script>')` turns the angle brackets into `&lt;script&gt;`. Run `npm test`. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for. The test runner is your grader: a green tick means you got the shape right.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```ts
+import { describe, it, expect } from 'vitest';
+import { escapeHtml } from '../escape';
+
+describe('escapeHtml', () => {
+  it('escapes angle brackets', () => {
+    expect(escapeHtml('<script>')).toBe('&lt;script&gt;');
+  });
+});
+```
+
+The shape to remember: `describe` names the thing under test, `it` names one behaviour, and `expect(actual).toBe(expected)` makes the check. It is the same `expect(x).toBe(y)` instinct you have had since your C# tests.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

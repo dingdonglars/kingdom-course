@@ -199,6 +199,22 @@ You met the two ways to combine git history — `merge` (keeps the two-branches-
 - **force-push** — overwrite the remote; dangerous on shared branches
 - **`--force-with-lease`** — safer force-push that refuses if the remote moved
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, answer three things from memory. (1) What does `merge` do to the history, and what does `rebase` do to it? (2) Which one changes the commit SHAs? (3) The rule of thumb: which one do you use on your own un-pushed branch, and which one do you use to put work into a shared branch like `main`?
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+1. **`merge`** keeps the history as it happened — it adds a merge commit with two parents, so the graph shows the two branches joining. **`rebase`** rewrites the history — it replays your commits onto a new base, giving a straight line.
+2. **`rebase`** changes the SHAs — the replayed commits are new commits, even though the message and changes are the same. `merge` keeps the original SHAs.
+3. **Rebase** your own branch that you haven't pushed yet (safe — local only). **Merge** into a shared branch like `main`. Never rebase a branch others may have pulled.
+
+Both moves are in VS Code's Source Control panel (`...` menu → *Branch → Merge from* / *Rebase from*); the CLI (`git merge` / `git rebase`) is there for the advanced cases like interactive rebase.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

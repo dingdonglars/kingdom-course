@@ -245,6 +245,52 @@ You made a real program stronger. The Inventory Tool went from "crashes on stran
 - **step over vs step into** — skip a call, vs follow it in
 - **call stack** — chain of who called whom
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the two big ideas stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+### 1. The `try / catch` shape, from memory
+
+Open a new empty file. Without looking, write a `try` block with **two** `catch` blocks after it: one that catches `IOException`, and a last one that catches plain `Exception`. Put a line inside the `try` that throws on purpose — `throw new IOException("test");` will do — and a `Console.WriteLine` inside each catch so you can see which one runs. Run it.
+
+Then swap the order: put `catch (Exception)` *first*. What does the compiler say? That error is the whole reason for "specific first, generic last."
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+try
+{
+    throw new IOException("test");
+}
+catch (IOException ex)
+{
+    Console.WriteLine($"IO: {ex.Message}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Other: {ex.Message}");
+}
+```
+
+With `catch (Exception)` first, the build fails: *"A previous catch clause already catches all exceptions."* The general catch would swallow everything before the specific one ever got a turn — so C# won't let you.
+
+</details>
+
+### 2. Use the debugger from memory
+
+Open your Inventory Tool. Without scrolling back to Step 3, do this from memory: set a breakpoint on the line inside `add` that changes the dictionary, start debugging, type `add sword`, and — when it pauses — find the value of `arg` in the Variables panel. Step over one line and watch `inventory` change. Then let it finish.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+- Breakpoint: click the narrow strip just left of the line number — a red dot appears.
+- Start debugging: `F5`.
+- It pauses *before* the breakpoint line runs.
+- Variables panel (left): `arg` is `"sword"`.
+- Step over: `F10` — `inventory` now shows `{"sword": 1}`.
+- Carry on: `F5`.
+
+</details>
+
 ## M1 close — the milestone steps
 
 You just finished M1. Here are the steps to close it out.

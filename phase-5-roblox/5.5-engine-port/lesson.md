@@ -187,6 +187,28 @@ You took the engine you wrote in Phase 1 and translated it into Luau on a Roblox
 - *coroutine* — a function that can pause and start again; Roblox runs scripts in these
 - *`RunService.Heartbeat`* — an event that fires every frame; used for a frame-rate game loop
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that the server loop stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new Script in Studio. Without looking, write the forever loop that waits one second, advances the kingdom one day, and prints the day number. (You can make a fake kingdom with a plain table and a `day` field if you don't want to require the real engine.) Press Play and watch the day count climb in Output.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```lua
+local kingdom = { day = 1 }
+
+while true do
+    task.wait(1)
+    kingdom.day = kingdom.day + 1
+    print("Day", kingdom.day)
+end
+```
+
+`task.wait(1)` pauses only this script for one second; the rest of the place keeps running. With the real engine you'd call `kingdom:advanceDay()` in place of the `day + 1` line. Press Stop to end the loop.
+
+</details>
+
 ## Words to add to the glossary
 
 - **port** — translate code from one language or runtime into another while keeping its meaning.

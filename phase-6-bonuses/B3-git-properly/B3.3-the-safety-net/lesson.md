@@ -152,6 +152,29 @@ You met `git reflog` — the hidden extra log of HEAD's history that is also git
 - **the rescue rule** — read state (`git status`, `git log`) before acting
 - **the two real ways to lose work** — uncommitted changes; force-pushing over your own work
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, walk through the rescue from memory. You just ran `git reset --hard HEAD~3` and three commits vanished from `git log`. From your own head: which command shows you where HEAD used to be, and which command puts you back? Then say *why* this works — where were those commits the whole time?
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```powershell
+git reflog
+# find the entry from just before the reset, e.g. HEAD@{1}
+git reset --hard HEAD@{1}
+```
+
+- `git reflog` is the hidden log of where HEAD has been; it still lists the "lost" commits with their SHAs.
+- `git reset --hard HEAD@{1}` moves HEAD back to where it was before the reset.
+
+Why it works: the commits were never deleted. `reset --hard` only moved a *pointer* off them. They sit in git's storage until `gc` runs (about 30 days later), so the rescue is just a pointer move, not data recovery.
+
+This module is CLI-only — the Source Control panel has no button for `reflog`.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

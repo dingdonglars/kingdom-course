@@ -167,6 +167,30 @@ You split the page into components. `KingdomCard` is a function that turns a `Ki
 - **event delegation** — listen on a parent; dispatch by `e.target`
 - **render function** — `(data) => HTML`; the idea every framework copies
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — from your own head, write a small component function. It takes one `KingdomSlot` and returns an HTML string with the name in an `<h2>` and the day in a `<p>`. Run the name through `escapeHtml` so user input stays safe. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```ts
+import type { KingdomSlot } from '../types';
+import { escapeHtml } from './escape';
+
+export function KingdomCard(slot: KingdomSlot): string {
+  return `
+    <article class="card">
+      <h2>${escapeHtml(slot.name)}</h2>
+      <p>Day ${slot.day}</p>
+    </article>
+  `;
+}
+```
+
+The shape to remember: a plain function, data in, an HTML string out. The one safety rule is `escapeHtml` around any text the user typed — without it, a name like `<script>` would run as code.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

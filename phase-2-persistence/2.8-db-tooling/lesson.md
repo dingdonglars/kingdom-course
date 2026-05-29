@@ -153,6 +153,25 @@ You picked up three ways to look inside your database: DB Browser (the easy-to-u
 - **`dotnet ef migrations script`** — see the SQL without applying it
 - **`__EFMigrationsHistory`** — visible in any of the tools above
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: you can open the `.db` file in a tool and look at what's really inside it. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Pick whichever tool you liked best — DB Browser, `sqlite3`, or SQLTools. Open your `kingdoms-ef.db` file, find the list of tables, look at the rows in one table, and then run one `SELECT` of your own. No notes — just open it and look.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+What you should have managed:
+
+- Opened `bin/Debug/net10.0/saves/kingdoms-ef.db` in your chosen tool.
+- Seen the tables EF made: `Kingdoms`, `Buildings`, and `__EFMigrationsHistory`.
+- Browsed the rows of one table (or ran `SELECT * FROM Kingdoms;`).
+- Run one query you wrote yourself and got a result grid back.
+
+If you used `sqlite3`, the quick path is `.tables` to list them, then `SELECT * FROM Kingdoms;`. If the tool shows your rows, you can now see inside any database you build — that's the whole skill for today.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

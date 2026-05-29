@@ -188,6 +188,22 @@ You took a single project and split it into two — an engine that holds the kin
 - **solution** — file that groups projects to build together
 - **read-only wrapping** — class around a dictionary, controlled access
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: the engine and the shell, and which one is allowed to use the other. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without looking, answer these three out loud or on paper. (1) Which project depends on the other — does the engine depend on the console, or the console on the engine? (2) The engine has a rule it must never break. What is it? (3) If something inside the engine needs to tell the player a message, what should it do, since it isn't allowed to print?
+
+Then test rule 2 yourself: open any engine file and add `Console.WriteLine("hi");` inside a method. It still builds — the compiler won't stop you. But you've broken the rule. Take the line back out.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+- The **console depends on the engine**, never the other way. The project reference points one way: `Kingdom.Console` → `Kingdom.Engine`.
+- The rule: **the engine never talks to the outside world.** No `Console.WriteLine`, no files, no network. That's the shell's job.
+- If the engine needs to say something, it **returns a value**, and the shell decides what to print. This is why the same engine can later run in a browser or in Roblox — it doesn't know or care which shell is using it.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

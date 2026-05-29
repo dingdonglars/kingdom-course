@@ -174,6 +174,26 @@ You moved fourteen files into five subfolders, gave each subfolder a matching su
 - **`internal` vs `public`** — visible to project vs visible everywhere
 - **aggregate root** — top class that owns the model
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: a folder and its sub-namespace line up by hand. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without looking, do this from memory in your engine. Make a new subfolder called `Trade/`. Add an empty class file `Caravan.cs` inside it. Write the right `namespace` line at the top of that file so it matches the folder. Then, back in `Kingdom.cs`, picture what one new line you would need if `Kingdom` wanted to use `Caravan`. Build to check the file compiles.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+- The file in `Trade/` gets the namespace that matches the folder:
+
+  ```csharp
+  namespace Kingdom.Engine.Trade;
+
+  public class Caravan { }
+  ```
+
+- For `Kingdom.cs` to use `Caravan`, it would need one `using` line: `using Kingdom.Engine.Trade;`. The compiler doesn't care about folders — only namespaces. We line the two up by hand, by convention, so the layout is easy to read.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

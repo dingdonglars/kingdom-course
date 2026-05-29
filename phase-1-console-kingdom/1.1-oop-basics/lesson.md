@@ -196,6 +196,43 @@ You wrote four classes and saw them connect — a `Kingdom` that owns lists of `
 - **encapsulation** — class controls who can change what
 - **enum** — fixed set of named values, compiler-checked
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: writing a class. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, write a small class called `Wall`. Give it a `Name` property that can be read but not changed from outside (`get` only). Give it a `Height` property that starts at `1` and can only be changed from inside the class (a `private set`). Write a constructor that takes a name and sets `Name`. Add a method `Raise()` that adds `1` to `Height`. Then in `Program.cs`, make a `Wall` with `new`, call `Raise()` twice, and print its name and height. Run it.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+public class Wall
+{
+    public string Name { get; }
+    public int Height { get; private set; } = 1;
+
+    public Wall(string name)
+    {
+        Name = name;
+    }
+
+    public void Raise()
+    {
+        Height++;
+    }
+}
+```
+
+```csharp
+var wall = new Wall("North Wall");
+wall.Raise();
+wall.Raise();
+Console.WriteLine($"{wall.Name} is at height {wall.Height}");
+```
+
+Height should print as `3`. If you try `wall.Name = "South Wall";` the build fails — `Name` has only a `get`. That is encapsulation: the class decides what outside code can change.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

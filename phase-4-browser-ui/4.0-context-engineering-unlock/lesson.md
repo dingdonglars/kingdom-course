@@ -171,6 +171,23 @@ You learned the skill you'll use for the rest of the course. **Context engineeri
 - **invented APIs** — the mistake where the AI calls methods that don't exist
 - **the explanation rule** — you must be able to explain every line you ship
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — from your own head, list the four things you give the AI before it writes code for you, in order. Say each one out loud, or write it down. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The four-step frame, in order:
+
+1. **The goal** — one sentence on what the code should do.
+2. **Where it goes** — the file, the class, what calls it.
+3. **The rules** — your naming style, your `STANDARDS.md`, how you handle errors.
+4. **What it should not do** — the traps. (For example: don't `new Random()` — use `IRandom`.)
+
+If you got the four in the right order, you have the move. The fifth thing — one similar example from your own code — is the bonus you add once the four feel easy.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

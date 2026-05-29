@@ -178,6 +178,28 @@ You moved the API from one kingdom in memory to many kingdoms in the database, w
 - **201 Created** — successful POST that made something new, with a `Location` header
 - **204 No Content** — successful operation with nothing to return; standard for `DELETE`
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — pick the right status code for each action from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+On paper, write the matching status code for each of these. For each one, say in a few words why.
+
+1. A `POST /kingdoms` that creates a new kingdom — success.
+2. A `GET /kingdoms/{id}` for an id that doesn't exist.
+3. A `DELETE /kingdoms/{id}` that works.
+4. A `POST /kingdoms` with an empty name.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+1. **201 Created** — a new thing was made; it also sends a `Location` header with the URL of the new kingdom.
+2. **404 Not Found** — the thing the client asked for isn't there.
+3. **204 No Content** — it worked, and there's nothing to send back.
+4. **400 Bad Request** — the client sent bad data.
+
+The big split to remember: 2xx means success, 4xx is the client's fault, 5xx is the server's fault. Clients make decisions based on the status code, so the wrong one is a real bug, not a small detail.
+
+</details>
+
 ## Git move of the week — `git reflog`
 
 Here's something nobody tells you about git: it almost never really loses your work. Even after `git reset --hard`, even after a rebase that went wrong, the commits are still saved by git — git just stopped pointing at them.

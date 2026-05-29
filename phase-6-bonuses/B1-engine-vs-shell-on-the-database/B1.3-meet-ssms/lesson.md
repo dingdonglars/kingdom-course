@@ -89,6 +89,26 @@ You installed SSMS, connected to your LocalDB instance, and used the five basic 
 - **execution plan** — visual map of how a query will run
 - **Activity Monitor** — live view of running queries
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, open SSMS from cold and reach one of your own rows. From memory: connect to your LocalDB instance, find one of your `Kingdom_*` databases in the tree, open a new query window, and run one query that shows the rows your engine wrote.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+- Connect dialog: Server type **Database Engine**, Server name `(localdb)\MSSQLLocalDB`, Authentication **Windows Authentication**, then **Connect**.
+- In Object Explorer on the left, expand **Databases** → one of your `Kingdom_*` databases → **Tables** → `Kingdoms`.
+- Press `Ctrl+N` for a new query window and run:
+
+```sql
+SELECT * FROM Kingdoms;
+```
+
+You should see the rows your engine wrote, shown by Microsoft's own tool.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

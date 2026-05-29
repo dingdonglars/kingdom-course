@@ -282,6 +282,31 @@ You met LINQ — about ten methods that cover almost every "ask the list a quest
 - **extension method** — static method with a `this` first parameter, called like a method on the object
 - **deferred execution** — LINQ waits, and runs when you ask for the results
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: asking a list a question with LINQ instead of writing a loop. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Here is the old `for`-loop way to count the mines:
+
+```csharp
+int mineCount = 0;
+foreach (var b in kingdom.Buildings)
+    if (b is Mine) mineCount++;
+```
+
+Without looking, rewrite that as a single LINQ line. Then write one more LINQ line on your own: the **total of all building levels** added up. Print both and run.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+int mineCount = kingdom.Buildings.OfType<Mine>().Count();
+int totalLevels = kingdom.Buildings.Sum(b => b.Level);
+```
+
+`OfType<Mine>()` keeps only the mines, then `.Count()` gives how many. `Sum(b => b.Level)` adds up `b.Level` across every building. One line each, and they read almost like the question you asked.
+
+</details>
+
 ## Git move of the week — see your history as a graph
 
 Your commit log is now long enough to draw as a picture. Want to see it?

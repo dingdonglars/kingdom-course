@@ -283,6 +283,24 @@ You went from one table to two, and from one query to four. Buildings now belong
 - **`GROUP BY` + aggregate** — `COUNT`/`SUM`/`AVG`, one row per group
 - **table alias** — `k` for `kingdoms`; shorter to read
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: a `JOIN` reads from two tables at once, matching rows on a shared id. No one marks this — the database engine does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open `sqlite3` on a fresh file. Make two tables — `kingdoms` (`id`, `name`) and `buildings` (`id`, `kingdom_id`, `name`). Put one kingdom and two of its buildings in. Then, without looking, write one `SELECT` that uses an `INNER JOIN` to show each building's name next to its kingdom's name. You should get two rows back, both showing the kingdom name.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```sql
+SELECT k.name, b.name
+FROM kingdoms k
+INNER JOIN buildings b ON b.kingdom_id = k.id;
+```
+
+The join condition is the part to get right: `b.kingdom_id = k.id` is how the database knows which building belongs to which kingdom. The `k` and `b` are just short nicknames for the tables.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

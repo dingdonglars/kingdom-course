@@ -350,6 +350,31 @@ You proved that saving and loading keeps the whole kingdom intact — five round
 - **`protected` constructor** — only subclasses can call it
 - **property-based testing (light)** — one assertion across many inputs
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: a round-trip test saves something, loads it back, and checks the two match. No one marks this — well, the test runner does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open the round-trip test file. Without looking at the others, write one new `[Fact]` that makes a kingdom, advances it 30 days, saves it full and loads it back through the `Roundtrip` helper, and checks the loaded `Day` equals the original `Day`. Run `dotnet test`. It should pass.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+[Fact]
+public void Day_Survives_30DayRoundtrip()
+{
+    var k = new global::Kingdom.Engine.Kingdom("Mine", new SystemRandom(1), new SystemClock());
+    for (int i = 0; i < 30; i++) k.AdvanceDay();
+
+    var loaded = Roundtrip(k);
+
+    loaded.Day.ShouldBe(k.Day);   // both 31
+}
+```
+
+The shape is always the same: build it, save+load it, assert the loaded thing equals the original. If the test passes, the save form keeps `Day`. If it fails, you found a real saving bug — that's a round-trip test earning its keep.
+
+</details>
+
 ## Git move of the week — `git stash`
 
 You started a change. Halfway through, something else came up — a quick fix, an experiment, or a lesson you wanted to start with a clean slate. *Stash* sets your current changes aside without committing them, and leaves you with a clean working tree.

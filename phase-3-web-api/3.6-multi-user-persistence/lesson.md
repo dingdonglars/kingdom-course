@@ -190,6 +190,29 @@ You turned the API from *one big shared kingdom database* into *each user sees o
 - **`HasIndex(k => k.OwnerSub)`** — keeps lookup-by-owner fast as the data grows
 - **the cross-user test** — the test that proves its worth when somebody refactors
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — write a scoped lookup from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Imagine a store method `Load` that finds one kingdom by `id`. Write the method signature and the `Single(...)` lookup so that one user can *never* load another user's kingdom. Then say why `ownerSub` is a required parameter and not an optional one.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+public Kingdom.Engine.Kingdom Load(string ownerSub, int id, IRandom rng, IClock clock)
+{
+    using var ctx = new KingdomDbContext(_dbPath);
+    var entity = ctx.Kingdoms
+        .Include(k => k.Buildings)
+        .Single(k => k.Id == id && k.OwnerSub == ownerSub);   // scoped lookup
+    // ... build the kingdom from entity ...
+}
+```
+
+The `&& k.OwnerSub == ownerSub` part is the real protection. Without it, anyone could read anyone's data just by guessing an id. `ownerSub` is required, not optional, so a caller who forgets it gets a compile error — not a silent security bug that nobody notices for weeks.
+
+</details>
+
 ## Git move of the week — resolving a merge conflict
 
 Sooner or later, two branches change the same lines and git can't merge them on its own. You'll see a message: *"Conflicts must be resolved."*

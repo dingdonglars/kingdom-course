@@ -148,6 +148,32 @@ The engine is protected by tests now. Eleven small tests that run in under a sec
 - **`ShouldBe`** — Shouldly's readable assertion form
 - **`Method_Scenario_Expected`** — test naming convention from STANDARDS
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: the shape of a test. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+In your test project, add one new test from memory. Name it `Upgrade_CalledTwice_LevelIsThree`. Inside it: *arrange* — make a new `Building`. *Act* — call `Upgrade()` twice. *Assert* — check the level is `3` with `ShouldBe`. Don't forget the `[Fact]` line above the method. Then run `dotnet test` and watch the count go up by one.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+[Fact]
+public void Upgrade_CalledTwice_LevelIsThree()
+{
+    // arrange
+    var b = new Building("Farm");
+    // act
+    b.Upgrade();
+    b.Upgrade();
+    // assert
+    b.Level.ShouldBe(3);
+}
+```
+
+`dotnet test` should now report one more passing test than before. If you forget the `[Fact]` line, the runner never sees the method and the count doesn't change — that's the most common slip.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

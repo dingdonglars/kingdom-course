@@ -191,6 +191,27 @@ You learned the six types you'll use for the rest of the year — `int`, `double
 - *nullable* — `string?` allows `null`; `??`, `?.`, `!` work with it
 - *PascalCase* and *camelCase* — type names vs variable names
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, make a variable that is allowed to hold `null` — a nullable string — and set it to `null`. Then print it, but use `??` to print `"unknown"` when it is `null`. Run it; it should print `unknown`. Then change the value to a real word and run again; now it should print the word.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+string? title = null;
+Console.WriteLine(title ?? "unknown");
+
+title = "the Brave";
+Console.WriteLine(title ?? "unknown");
+```
+
+- The `?` in `string?` makes the type nullable — it may hold a string, or `null`.
+- `??` means "use this backup value when the left side is `null`." So the first line prints `unknown`, the second prints `the Brave`.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

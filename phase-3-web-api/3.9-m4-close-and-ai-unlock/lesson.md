@@ -181,6 +181,20 @@ You closed M4 — the most important milestone of the year. Your kingdom is on t
 - **AI-assistance PR section** — required after the unlock; what you wrote vs what the AI wrote
 - **explanation as the merge rule** — you can't ship code you can't explain
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — explain the AI Unlock from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+In your own words, answer three things on paper: (1) what one line in `CLAUDE.md` did you change today, and from what to what? (2) what is the one strict rule for AI-written code now? (3) what stays exactly the same after the unlock?
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+1. You changed **`Current mode: pre-unlock`** to **`Current mode: post-unlock`**. That one line is what every AI agent reads to decide how to behave — you don't touch the AI's prompt, just the flag in the file.
+2. The hard rule: **you must be able to explain every line of AI-written code before you merge it.** If you can't explain a line, you ask about it instead of merging it. Code you can't explain can't be debugged or built on later.
+3. Unchanged: the hard rules (no first names in your visible work, English only), the three buckets (only the line between yellow and red moved), the mentor protocol (20-minute rule, weekly sync, milestone PR review), and the per-milestone ritual.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

@@ -247,6 +247,29 @@ You built the Inventory Tool, v1 — your first useful program. It takes command
 - **LINQ** — `.Where` `.OrderBy` `.Distinct` `.Sum` on any collection
 - **lambda** — inline function like `r => r.StartsWith("w")`
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, make a `Dictionary<string, int>` that maps an item name to a count. Put `"gold"` with the value `100` into it. Then read `"gold"` back out and print it. Add `25` to it and print again.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+var stock = new Dictionary<string, int>();
+stock["gold"] = 100;
+Console.WriteLine(stock["gold"]);
+
+stock["gold"] += 25;
+Console.WriteLine(stock["gold"]);
+```
+
+- A `Dictionary<string, int>` looks things up by a key. Here the key is a `string` (the item name) and the value is an `int` (the count).
+- `stock["gold"] = 100;` stores the value under the key `"gold"`.
+- `stock["gold"]` reads it back. The second print shows `125`.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

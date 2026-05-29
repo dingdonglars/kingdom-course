@@ -102,6 +102,33 @@ You wrote a real game. The program picks a number, you guess, it tells you how y
 - **`int.Parse`** — turn a string of digits into an `int`
 - **`Random.Next(min, max)`** — random number, upper bound excluded
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, write a small program with a `while (true)` loop that counts up. Start a number at `1`. Each time around the loop, print it and add `1`. When it reaches `5`, use `break` to jump out of the loop. So it should print `1 2 3 4 5` and then stop.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+var n = 1;
+while (true)
+{
+    Console.WriteLine(n);
+    if (n == 5)
+    {
+        break;
+    }
+    n++;
+}
+```
+
+- `while (true)` runs forever, until a `break` inside jumps out.
+- The `if` checks one condition each time around. When `n` is `5`, `break` ends the loop.
+- `n++` adds `1` to `n`.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

@@ -110,6 +110,24 @@ You checked your scaffold (the background context the AI reads on every session)
 - **"you are here" header** — top-of-file orientation comment
 - **an out-of-date scaffold is worse than none** — check and update each phase
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, run the audit on one real file. Pick one scaffold file in your repo (say `ARCHITECTURE.md` or `STANDARDS.md`), and from memory, ask it the three questions that decide whether a scaffold file is worth its cost. Then answer them for that file.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The three questions:
+
+1. **Does it answer the AI's most likely first question?** If it doesn't answer a real first question, it is just filler.
+2. **Is it short enough to be cheap context?** Every line is read every session, so keep it tight.
+3. **Is it current?** A wrong scaffold file wastes tokens *and* sends the AI confidently to the wrong answer — an out-of-date scaffold is worse than none.
+
+If your chosen file fails question 3, fix one line right now.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

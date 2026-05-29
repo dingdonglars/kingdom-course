@@ -129,6 +129,27 @@ You connected the engine to a 3D world. Server code laid out a five-by-five grid
 - *`ClickDetector`* — child of a Part that fires server-side click events
 - *engine is the one true record* — what you see follows it, never the other way around
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that spawning a Part stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new Script in `ServerScriptService`. Without looking, write the lines that build one Part from code: make it, set its size, set its position, set its colour, and parent it to `workspace`. Press Play and look for it in the Viewport.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```lua
+local p = Instance.new("Part")
+p.Anchored = true
+p.Size = Vector3.new(8, 1, 8)
+p.Position = Vector3.new(0, 5, 0)
+p.Color = Color3.fromRGB(120, 180, 100)
+p.Parent = workspace
+```
+
+The Part shows up in the Viewport and in the Explorer under `Workspace`. The last line, `p.Parent = workspace`, is the one that actually puts it in the world — without it, the Part exists but no one sees it. `Anchored = true` stops it from falling.
+
+</details>
+
 ## Words to add to the glossary
 
 - **Part** — the basic 3D building block in Roblox.

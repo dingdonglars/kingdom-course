@@ -179,6 +179,22 @@ Phase 1 closes today. You wrote a four-section README, added doc comments to fou
 - **`git reset --hard`** — throws work away, useful when you're sure
 - **the rescue rule** — read the state before you act on it
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — and don't open any of the earlier lessons either. This one looks back over the whole of Phase 1 and asks you to say the one big idea in your own words. No one marks this one — it's just for you. This is a stretch — it covers six weeks, not one lesson — so getting stuck is completely fine. Getting stuck is the point: it shows you what's worth a second look before Phase 2.
+
+Without looking anything up, answer in your own words, out loud or on paper: **Phase 1 is named after one rule. What is it, and why does it make the engine easy to test?** Then name the two things the engine takes in through its constructor so it never has to create them itself.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+- The rule: **the engine holds the kingdom's rules and never talks to the outside world; the shell (console, web, Roblox) talks outside and uses the engine.** The dependency points one way — shell → engine.
+- It makes the engine **easy to test** because the engine creates none of its outside helpers itself. They come in through the constructor, so a test can hand the engine fake versions it controls — like dice that always roll the number you choose.
+- The two the engine takes in: **`IRandom`** (the dice) and **`IClock`** (the clock). The console gives it the real `SystemRandom` and `SystemClock`; tests give it fakes.
+
+If any part of that felt shaky, that's the thing to glance back at — Module 1.2 for the rule, Module 1.8 for the dependencies.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md` (lighter than usual — milestone-themed). Jot your answers in `journal/quiz-notes.md`.

@@ -185,6 +185,26 @@ You finished Spark Week. Four working programs in one repo, each one small but c
 - **README anatomy** — what, how to run, what I learned, what's next
 - **the Spark Week toolkit** — variables, loops, conditionals, lists, methods
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, write a program that saves a word to a file and then reads it back. Write `"dragon"` to a file called `note.txt`, then read that file back into a variable, then print what you read. Run it. Check that `note.txt` shows up in the folder.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+File.WriteAllText("note.txt", "dragon");
+var saved = File.ReadAllText("note.txt");
+Console.WriteLine($"The file says: {saved}");
+```
+
+- `File.WriteAllText("note.txt", "dragon")` makes the file (in the current folder) and writes the text into it.
+- `File.ReadAllText("note.txt")` reads the whole file back as a string.
+- The file stays on disk after the program ends, so the next run could read it again.
+
+</details>
+
 ## M0 close — the milestone steps
 
 You just finished M0. Here are the steps to close it out.

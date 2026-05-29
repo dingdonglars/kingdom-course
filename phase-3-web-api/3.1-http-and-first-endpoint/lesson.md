@@ -195,6 +195,27 @@ Your kingdom is now reachable over HTTP. You created a new project, wrote a sing
 - **`WebApplication.CreateBuilder`** — the entry point that configures hosting and logging
 - **idempotent** — doing it twice has the same effect as doing it once
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — write a tiny endpoint from your own head and watch it answer in the browser. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+In your `Program.cs`, add a new `GET /hello` endpoint that returns the text `"Hello, kingdom"`. You need three things in a tiny web app: build the app, map the route, run the app. Write them without looking. Run it, then open `http://localhost:5xxx/hello` in your browser.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/hello", () => "Hello, kingdom");
+
+app.Run();
+```
+
+The browser shows `Hello, kingdom`. `CreateBuilder` gives you a builder, `Build()` turns it into the app, `MapGet` says "when a GET request comes to `/hello`, run this", and `Run()` starts the server and keeps it listening.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

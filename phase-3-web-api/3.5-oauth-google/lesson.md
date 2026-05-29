@@ -207,6 +207,27 @@ You added real sign-in to your API without writing a single line that handles pa
 - **`.RequireAuthorization()`** — endpoint guard that returns 401 if the cookie is missing
 - **`dotnet user-secrets`** — local-only secret storage; never in the repo
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — explain the sign-in flow from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+On paper, walk through what happens when a user clicks "Sign in with Google", from the click to the moment they're signed in. You don't need every word — just the order: who sends the user where, and where the secret is used. Then write the two security rules this module repeated.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The flow, in order:
+
+1. User clicks **Sign in with Google** on your site.
+2. The browser sends the user to **Google** (with your client id, your redirect URL, and the scopes you want).
+3. The user logs in to Google (or is already logged in).
+4. Google sends the user back to **your URL** with a one-time code.
+5. **Your server** trades that code for an ID token, using your client *secret*. The browser never sees the secret.
+6. Your server reads the claims (`email`, `name`, `sub`) and sets an auth cookie. Now the user is signed in.
+
+The two rules: **never build your own sign-in** (use a provider), and **never commit secrets** (use `dotnet user-secrets` for dev, environment variables for production). Steps 2 to 5 are done for you by the ASP.NET Core Google middleware — you mostly just set it up and add `.RequireAuthorization()` to the endpoints that need a signed-in user.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

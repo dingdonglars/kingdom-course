@@ -112,6 +112,26 @@ You proved the engine-vs-shell rule isn't just a nice phrase — it's a real pat
 - **dialect** — small SQL differences EF hides for you
 - **the engine-vs-shell rule pays back** — same engine, swappable storage, tests prove it
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, name the parts that change to move EF Core from SQLite to SQL Server. From memory, list the three things you edit, and say which one part of your code you must regenerate after the swap. Then say the one thing that does *not* change — the part that proves the whole point of the bonus.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The three things you edit:
+
+1. The package in the `.csproj` — `Microsoft.EntityFrameworkCore.Sqlite` becomes `Microsoft.EntityFrameworkCore.SqlServer`.
+2. The provider call — `options.UseSqlite(...)` becomes `options.UseSqlServer(...)`.
+3. The connection string inside that call — the SQLite file path becomes the SQL Server form (`Server=(localdb)\MSSQLLocalDB;...`).
+
+You must regenerate the migration files — delete the old ones and run `dotnet ef migrations add InitialCreate`, because the SQL differs between providers.
+
+The part that does *not* change: your engine code and your tests. They pass unchanged. That is the proof.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

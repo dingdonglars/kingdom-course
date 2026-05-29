@@ -87,6 +87,26 @@ You installed SQL Server LocalDB — the developer version of Microsoft's main d
 - **connection string** — the text EF uses to find a database
 - **Trusted_Connection / Integrated Security** — Windows auth (no password needed)
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, do this from memory: open a fresh PowerShell window and prove your LocalDB install is alive. Check that the default instance exists, start it, and run one query that gets a real answer back from SQL Server.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```powershell
+sqllocaldb info
+sqllocaldb start MSSQLLocalDB
+sqlcmd -S "(localdb)\MSSQLLocalDB" -Q "SELECT @@VERSION"
+```
+
+- `sqllocaldb info` should list `MSSQLLocalDB`.
+- `start` should say the instance started (or that it is already running).
+- The `sqlcmd` query should print a long version string — that is SQL Server answering you.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

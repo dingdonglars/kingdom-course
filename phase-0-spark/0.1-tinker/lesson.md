@@ -73,6 +73,25 @@ You made your program ask a question and wait for the answer. Two extra lines tu
 - **string interpolation** — `$"..."` with `{placeholders}`
 - **`Console.ReadLine`** — wait for input, return a string
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, write a tiny program that asks for the user's name, reads what they type, and then prints `Hello, NAME!` using their name. Use string interpolation (the `$"..."` style with `{curly braces}`), not `+`. Run it and type your name.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+Console.Write("What's your name? ");
+var name = Console.ReadLine();
+Console.WriteLine($"Hello, {name}!");
+```
+
+- `Console.ReadLine()` waits for the user to type a line and gives back what they typed, as a string.
+- The `$` in front of the string is string interpolation. Anything inside `{ }` is real C#, worked out and dropped into the text.
+
+</details>
+
 ## Wrap up
 
 A short routine at the end of every lesson from now on. Three things, one commit, on your phase branch:

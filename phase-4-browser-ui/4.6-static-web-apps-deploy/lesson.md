@@ -112,6 +112,24 @@ The frontend is on the internet. You created a Static Web App in Azure (free tie
 - **`AllowCredentials()`** — CORS flag needed for cookie auth; incompatible with `AllowAnyOrigin()`
 - **two services, one architecture** — frontend and backend deploy independently
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — from your own head, list the steps that took your frontend from your machine to a live URL. What did you tell Azure? What did Azure make for you? What makes it deploy again after the first time? No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+You should be able to name these:
+
+- In the Azure Portal you made a **Static Web App**, picked the **Free** plan, and pointed it at your GitHub repo and branch.
+- You set the **app location** to `web-vite/` and the **output location** to `dist/` (where Vite puts the build).
+- Azure made a **GitHub Actions workflow file** in `.github/workflows/` and committed it to your repo. You **pulled** that file down to your machine.
+- From then on, **every push to `main`** builds and deploys on its own — no extra steps.
+- You added the live frontend URL to the API's **CORS allow-list**, with `AllowCredentials()` for the auth cookie (and you cannot pair that with `AllowAnyOrigin()`).
+
+If you can say roughly that, the procedure stuck. The exact menu names matter less than the flow: tell Azure where the build is, it wires up auto-deploy, every push goes live.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

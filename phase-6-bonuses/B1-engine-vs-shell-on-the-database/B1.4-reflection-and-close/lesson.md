@@ -52,6 +52,25 @@ You finished a small, focused bonus. The whole arc was: install LocalDB, change 
 - **migration regen** — provider change means regenerating migration SQL
 - **SSMS as a lifelong tool** — the GUI that travels with you
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, say the whole bonus in one breath. From memory, name the four steps the arc took, in order, and then say in one sentence what the whole thing proved.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The four steps, in order:
+
+1. Install LocalDB (B1.1).
+2. Change three lines of config and regenerate migrations (B1.2).
+3. Watch every test pass unchanged (B1.2, Step 4).
+4. Open SSMS to look at the rows your engine wrote (B1.3).
+
+What it proved: the engine-vs-shell rule is real — the database is a part you can swap out in a few lines, and the engine and its tests never notice.
+
+</details>
+
 ## Wrap up
 
 No quiz this lesson — the reflection paragraph is the artefact. So:

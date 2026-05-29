@@ -232,6 +232,31 @@ The kingdom went from a still photograph to a thing that *moves*. You added a me
 - *`virtual`* — a method more specific classes are allowed to replace
 - the through-line — engine knows *how*; shell decides *when*
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: making the kingdom move forward one step. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open `Kingdom.cs`. Without looking, write the `AdvanceDay()` method from your own head. It should do three things, in this order: every building ticks, every citizen eats one food, then the day counter goes up by one. Build and run the console for five days and watch the day number climb and food drop.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+public void AdvanceDay()
+{
+    foreach (var b in Buildings)
+        b.Tick(Resources);
+
+    foreach (var _ in Citizens)
+        Resources.Spend(Resource.Food, 1);
+
+    Day++;
+}
+```
+
+The order matters: buildings produce **before** citizens eat. `AdvanceDay` returns nothing (`void`) — it changes the day counter and the ledger instead of giving back a value. That kind of change is a **side effect**.
+
+</details>
+
 ## Git move of the week — read your diff
 
 You wrote real code today: a `Tick` override on `Building`, an `AdvanceDay` on `Kingdom`, new tests. Before you commit, *read what you're about to commit.*

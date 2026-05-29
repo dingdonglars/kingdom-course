@@ -353,6 +353,29 @@ You replaced raw SQL with C# objects and let EF Core do the translating. Two ent
 - **`Add` + `SaveChanges`** — EF's INSERT pattern
 - **`Include`** — eager-load a related collection
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: with EF you add an object and call `SaveChanges`, and EF writes the SQL for you. No one marks this — the test runner does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without looking, write the three lines that save a new `KingdomEntity` (give it just a `Name`) to a `KingdomDbContext`, then a query that reads every kingdom back out. Run it. You should get your one kingdom back.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+using var ctx = new KingdomDbContext(dbPath);
+ctx.Database.EnsureCreated();
+
+ctx.Kingdoms.Add(new KingdomEntity { Name = "Eldoria" });
+ctx.SaveChanges();
+
+foreach (var k in ctx.Kingdoms)
+    Console.WriteLine($"#{k.Id} {k.Name}");   // #1 Eldoria
+```
+
+`Add` then `SaveChanges` is the whole save. EF gave the row an `Id` for you — you never wrote a line of SQL.
+
+</details>
+
 ## Git move of the week — read a diff line by line
 
 You changed a lot today: new EF entities, a DbContext, a new store. Before you merge or share this with someone (or with future-you), read the diff *carefully*, line by line.

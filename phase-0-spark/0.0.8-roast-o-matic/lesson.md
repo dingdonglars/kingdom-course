@@ -167,6 +167,44 @@ You copied in the day-1 kit, made your first commit and your first push using VS
 - *`dotnet run`* — build the C# code and run the result
 - *`journal/wins.md`* — your record of milestones inside the repo, posted to `#wins` at the same time
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the two big moves stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+### 1. Make and run a new project, from memory
+
+In Windows Terminal, go into your `kingdom` folder. Without looking, make a brand-new console project called `Hello`, move into it, and run it. You should see a line of text print out.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```powershell
+cd C:\code\kingdom
+dotnet new console -n Hello
+cd Hello
+dotnet run
+```
+
+- `dotnet new console -n Hello` makes a `Hello` folder with a `Program.cs` and a `.csproj` inside.
+- `cd Hello` moves into it.
+- `dotnet run` builds the code and runs it. You should see `Hello, World!`.
+
+</details>
+
+### 2. Commit and push, from memory
+
+You just made new files. Send them to GitHub using the Source Control panel — from memory, no scrolling back. Then refresh your repo page on github.com and check the `Hello` folder is there.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+- Open the Source Control panel (`Ctrl + Shift + G` then `G`). The header should say `kingdom`.
+- Hover the word *Changes* and click `+` to stage all the new files.
+- Type a commit message in the box, like *"add hello project"*.
+- Click the blue checkmark to commit.
+- Click *Sync Changes* to push to GitHub.
+- Refresh your repo on github.com — the `Hello` folder is now there.
+
+</details>
+
 ## Quiz
 
 Open `quiz.md`. When you're done, jot your answers and a sentence of reasoning in `journal/quiz-notes.md` — same layout as the entries that came before. Bring whichever you're least sure about to the next weekly sync.

@@ -152,6 +152,26 @@ You walked through the syntax of a second language and saw that most of it is al
 - *`..`* — string concat operator; `+` is numbers only
 - *type annotations* — optional hints Studio checks while you type
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that the syntax stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new Script in Studio. Without looking, make a table with three resource names in it, then loop over it and print each one. Watch for the index — Luau arrays start at 1. Press Play.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```lua
+local resources = {"Gold", "Wood", "Stone"}
+
+for index, value in ipairs(resources) do
+    print(index, value)
+end
+```
+
+The Output panel shows `1 Gold`, `2 Wood`, `3 Stone`. The first index is `1`, not `0`. If you wrote `for i = 0, ...` you got nothing for index 0, because there's no item there.
+
+</details>
+
 ## Words to add to the glossary
 
 - **Luau** — Roblox's variant of Lua, with optional types.

@@ -286,6 +286,29 @@ You completed the four CRUD operations — Create, Read, Update, Delete — on t
 - **`Find` vs `Single`** — null-on-miss vs throw-on-miss
 - **cascade delete** — parent gone, children gone too
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: the four CRUD moves, and how `Delete` works in EF — find the row, remove it, save. No one marks this — the test runner does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+First, name the four CRUD operations out loud and the EF move for each (Create → `Add`, Read → a query, Update → change then `SaveChanges`, Delete → `Remove`). Then, without looking, write the body of a `Delete(int id)` method: open a context, find the row, return if it's missing, remove it, save.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+public void Delete(int id)
+{
+    using var ctx = new KingdomDbContext(_dbPath);
+    var entity = ctx.Kingdoms.Find(id);
+    if (entity is null) return;       // missing is OK — nothing to do
+    ctx.Kingdoms.Remove(entity);
+    ctx.SaveChanges();
+}
+```
+
+`Find(id)` returns `null` when the row isn't there, so the `if` makes "delete something that's already gone" safe instead of an error. `Remove` then `SaveChanges` does the delete. EF also removes the building rows under it — that's the cascade delete.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

@@ -103,6 +103,25 @@ You closed B3 by connecting the model in your head to the on-screen tools that s
 - **the CLI fallback** — scripts, hidden commands, when the GUI confuses
 - **dedicated GUI clients** — Fork, GitKraken, etc.; optional, often skippable
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, match the CLI to the panel from memory. For each terminal command, say what you click in the VS Code Source Control panel to do the same thing: `git status`, `git add file.cs`, `git commit -m "..."`, `git push`. Then name the panel's best feature — the one that beats the terminal for tidying up a messy commit.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+| In the terminal | In the panel |
+|---|---|
+| `git status` | what the panel shows by default (the *Changes* list) |
+| `git add file.cs` | click the `+` next to the file in *Changes* |
+| `git commit -m "..."` | type the message in the box, click the checkmark |
+| `git push` | `...` menu → Push (or the sync icon at the bottom) |
+
+The best feature: **stage individual lines** — in the diff view, click the `+` next to a single changed block (hunk) to stage just that part. It splits a too-big commit faster than `git add -p`.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

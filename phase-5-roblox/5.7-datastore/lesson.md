@@ -173,6 +173,28 @@ You taught the kingdom to stay saved between sessions on Roblox. `Players.Player
 - *`PlayerAdded` / `PlayerRemoving` / `BindToClose`* — events that run on join, leave, and shutdown
 - *save and load* — the engine describes itself; the saving code moves the data
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that the save and load calls stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new Script in `ServerScriptService` (turn DataStore on first: *Game Settings → Security → Enable Studio Access to API Services*). Without looking, get a DataStore, save a small table under a key, then read it back and print one field. Press Play.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```lua
+local DataStoreService = game:GetService("DataStoreService")
+local store = DataStoreService:GetDataStore("Kingdoms")
+
+store:SetAsync("player_12345", { day = 11, gold = 250 })
+
+local data = store:GetAsync("player_12345")
+print(data.day, data.gold)   -- 11   250
+```
+
+`GetDataStore` gives you a named store. `SetAsync` writes; `GetAsync` reads. Both only work on the server. In a real game you wrap each call in `pcall`, because the request can fail for a moment and throw an error.
+
+</details>
+
 ## Words to add to the glossary
 
 - **DataStore** — Roblox's key/value persistence; server-only.

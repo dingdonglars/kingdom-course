@@ -129,6 +129,22 @@ You looked at git not as a set of commands but as a *data structure* — a graph
 - **HEAD** — git's *"you are here"* pointer
 - **detached HEAD** — HEAD pointing at a commit directly, not at a branch
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, follow this story in your head and answer at the end. You start with `main` pointing at commit `C3`. You make a branch `feature/farms` (it points at `C3` too). You make one commit on `feature/farms`. Now: where does `main` point? Where does `feature/farms` point? How many commits got copied when you made the branch?
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+- `main` still points at **`C3`** — making a branch doesn't move `main`, and committing on a *different* branch doesn't move it either.
+- `feature/farms` points at the **new commit** (call it `C4`), whose parent is `C3`. Committing moved that branch's pointer forward.
+- **Zero** commits got copied. A branch is just a new name (a pointer) — making one is free.
+
+If you said `main` moved, remember: a commit only moves the branch that HEAD is currently on.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

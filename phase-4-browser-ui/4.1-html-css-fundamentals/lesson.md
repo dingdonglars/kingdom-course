@@ -117,6 +117,32 @@ You wrote a webpage by hand. The HTML set out the structure — a header with a 
 - **`box-sizing: border-box`** — width includes padding and border
 - **system fonts** — `system-ui` resolves to the OS's native UI font
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — make a new empty `.html` file and, from your own head, write a tiny page: a full HTML skeleton with one `<h1>` with your kingdom's name in it, and one CSS rule (in a `<style>` tag in the head, or a linked file) that colours that heading. Open it in the browser. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for. The browser is your grader: if your heading shows up coloured, you got it right.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Page</title>
+  <style>
+    h1 { color: teal; }
+  </style>
+</head>
+<body>
+  <h1>Eldoria</h1>
+</body>
+</html>
+```
+
+The exact tags and colour don't matter. What matters: a `<!DOCTYPE html>` line, the `<head>`/`<body>` split, structure in the HTML, and appearance in the CSS — never the other way around.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

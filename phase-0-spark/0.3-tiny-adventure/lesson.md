@@ -140,6 +140,30 @@ You wrote a real game that remembers things — an inventory the player carries 
 - **organisation** — split code so structure mirrors problem
 - **`void` return** — method that does, doesn't give back
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, write your own method called `Greet` that takes nothing and gives nothing back (a `void` method). Inside it, print a short message. Then, above the method, call it twice. Run it and check the message prints two times.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+Greet();
+Greet();
+
+void Greet()
+{
+    Console.WriteLine("Welcome, traveller.");
+}
+```
+
+- `void` means the method gives nothing back — it just does something.
+- You call a method by writing its name plus `()`.
+- The two calls at the top run before the method below them. C# lets you write the method underneath.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

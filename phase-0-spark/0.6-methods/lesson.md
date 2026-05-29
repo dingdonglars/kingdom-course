@@ -182,6 +182,30 @@ Five new ideas show up here. Every method you write from now on uses some of the
 - **expression body** — `=> expr` shorthand for `{ return expr; }`
 - **`static`** — belongs to the type, not an instance
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Without looking, write a method called `Add` that takes two `int` parameters and gives back their sum. Then call it, store the answer in a variable, and print it. Run it and check the number is right.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+int total = Add(7, 5);
+Console.WriteLine(total);
+
+int Add(int a, int b)
+{
+    return a + b;
+}
+```
+
+- The two `int` names in the brackets — `a` and `b` — are the parameters (empty slots).
+- `7` and `5` are the arguments (the real values you pass).
+- The `int` before `Add` is the return type. `return a + b;` hands the answer back, so `total` holds `12`.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

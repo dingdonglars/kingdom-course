@@ -303,6 +303,32 @@ You built your first real save format. Same kingdom from yesterday, but now it s
 - **DTO** — small data-only record at a boundary
 - **`WriteIndented`** — readable vs compact JSON output
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: turn a record into JSON, then turn the JSON back into a record. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new empty file. Make a tiny `record Player(string Name, int Score)`. Without looking, serialise one to a JSON string with `JsonSerializer.Serialize(...)`, print the string so you can see it, then deserialise it back into a `Player` with `JsonSerializer.Deserialize<Player>(...)`. Run it. The name and score you get back should match the ones you put in.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+using System.Text.Json;
+
+var player = new Player("Lyra", 250);
+
+var json = JsonSerializer.Serialize(player);
+Console.WriteLine(json);                 // {"Name":"Lyra","Score":250}
+
+var back = JsonSerializer.Deserialize<Player>(json);
+Console.WriteLine($"{back!.Name} {back.Score}");   // Lyra 250
+
+record Player(string Name, int Score);
+```
+
+A `record` needs no extra setup — `Serialize` reads its properties, `Deserialize<T>` fills them back in. That's the whole idea.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

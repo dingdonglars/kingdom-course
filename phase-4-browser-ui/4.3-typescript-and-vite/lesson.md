@@ -141,6 +141,27 @@ The project moved up a level. You set up a Vite project (`web-vite/`), defined a
 - **HMR** — edit, save, browser updates without losing state
 - **types at every boundary** — the same DTO discipline, in the browser
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — in a `.ts` file, from your own head, write and `export` an `interface` that describes one kingdom slot: an `id` that is a number, a `name` that is a string, and a `day` that is a number. Then make a variable of that type and put a string where the number should go. Save. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for. The compiler is your grader: it should underline the wrong type at once.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```ts
+export interface KingdomSlot {
+  id: number;
+  name: string;
+  day: number;
+}
+
+const slot: KingdomSlot = { id: 1, name: "Eldoria", day: "twelve" };
+// TypeScript flags this: "twelve" is a string, but day must be a number.
+```
+
+The point: each field has a type after the colon, and TypeScript checks every value against it. The last line is meant to fail — that red underline is the whole reason for adding types.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

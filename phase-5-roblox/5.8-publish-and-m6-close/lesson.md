@@ -92,6 +92,20 @@ You took the engine you wrote in Phase 1 and published it as a public Roblox pla
 - *final reflection* — the hour-long sit-down with `m6-looking-back.md`
 - *the main idea, proven* — five shells, one engine, two languages
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the last big move stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without looking, say the Studio menu path that turns your local place into a URL friends can open. Then say the one sentence the whole course was proving — the engine vs where it runs.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The publish path: **File → Publish to Roblox** → *Create New* → name the place → save. After that you get a URL, `roblox.com/games/<id>/<name>`, that anyone can open.
+
+The one idea: **the model lasts; where it runs is just a detail.** The same engine ran in five shells — console, file with JSON and SQLite, web API, browser, Roblox — and the `Building`, `ResourceLedger`, and `Kingdom` never changed.
+
+</details>
+
 ## The main idea, one last time
 
 > **The model lasts. Where it runs is just a detail.**

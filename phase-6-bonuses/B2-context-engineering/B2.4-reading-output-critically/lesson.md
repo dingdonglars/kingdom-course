@@ -94,6 +94,26 @@ You met the five-point read — invented APIs, unhappy paths, style drift, over-
 - **over-help** — does more than you asked
 - **swallowed error** — `catch` without rethrow or log
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, write out the five-point read from memory. List all five checks you run on every code response. Then say the one standard that decides whether you keep the output or push back.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The five-point read:
+
+1. **Invented APIs** — does every method call actually exist? Grep the ones you're unsure about.
+2. **The unhappy path** — what happens on null, empty, zero, or huge input?
+3. **Style drift** — same patterns, naming, and return types as a recent file like `KingdomEfStore.cs`?
+4. **Over-help** — did it change code you didn't ask about?
+5. **Swallowed errors** — a `catch` that doesn't rethrow or log.
+
+The standard: keep the output only if you can explain every line in the viva. If you can't explain it, ask more questions until you can — *output you can explain*, not *output that looks right*.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

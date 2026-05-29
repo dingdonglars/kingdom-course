@@ -185,6 +185,31 @@ You added integration tests that start your whole API in memory and call it with
 - **test scheme** — fake auth that signs every request as a fixed test user
 - **per-fixture temp DB** — each run gets its own isolated DB, gone after the run
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — write the shape of an integration test from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Write a small `[Fact]` test that starts the whole API, calls `GET /openapi/v1.json`, and checks the response is a success. You need three things to get a live client: the factory, the client, the request. Write them without looking.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+[Fact]
+public async Task OpenApi_Spec_IsServed()
+{
+    var factory = new WebApplicationFactory<Program>();
+    var client = factory.CreateClient();
+
+    var resp = await client.GetAsync("/openapi/v1.json");
+
+    resp.IsSuccessStatusCode.ShouldBeTrue();
+}
+```
+
+`WebApplicationFactory<Program>` starts your whole API inside the test process — no real port, no server to start by hand. `CreateClient()` gives you a real `HttpClient` pointed at it. Then you make a normal HTTP call and check the real response. Real test code keeps the factory in a fixture and shares it, since starting the app is the slow part.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

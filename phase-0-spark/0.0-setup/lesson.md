@@ -196,6 +196,25 @@ You installed six tools (VS Code, Git, .NET 10, Node.js, Windows Terminal, and a
 - *GitHub account* — your home on the internet for code
 - the four Slack channels — `#all-kingdom-hq`, `#wins`, `#help`, `#milestones`
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that you can find your way back to your work tomorrow. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Close VS Code completely. Now open it again and get back to your `kingdom` folder, from memory. Then do the same from Windows Terminal: move into the folder and open it in VS Code from there. Both ways should land you on the same `C:\code\kingdom` folder.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+- In VS Code: *File → Open Recent → kingdom*. VS Code opens on the `kingdom` folder.
+- In Windows Terminal:
+  ```powershell
+  cd C:\code\kingdom
+  code .
+  ```
+  The `.` means "this folder", so VS Code opens on `kingdom`.
+- Either way, the VS Code title bar should show `kingdom`, and you should see your files in the left sidebar.
+
+</details>
+
 ## Wrap up
 
 No quiz today — the proof of work is on the screen. Your terminal shows three version numbers; `C:\code\` has two folders inside (`kingdom-course` and `kingdom`); VS Code is open on the empty kingdom folder; `kingdom-hq` is open in your Slack desktop app and on your phone.

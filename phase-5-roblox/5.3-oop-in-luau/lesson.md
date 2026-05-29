@@ -119,6 +119,39 @@ You met Lua's idea of object-oriented programming. There's no `class` keyword �
 - *ModuleScript* — Roblox's importable code unit, returned by `require`
 - *module pattern* — declare a table, attach functions, return it
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the recipe — prove to yourself, from your own head, that it stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open a new Script in Studio. Without looking, write a tiny class called `Tower`: a `.new(name)` constructor that sets `name` and `level = 1`, and an `:upgrade()` method that adds 1 to the level. Then make one, call upgrade twice, and print the level. Press Play.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```lua
+local Tower = {}
+Tower.__index = Tower
+
+function Tower.new(name: string)
+    local self = setmetatable({}, Tower)
+    self.name = name
+    self.level = 1
+    return self
+end
+
+function Tower:upgrade()
+    self.level = self.level + 1
+end
+
+local t = Tower.new("North Tower")
+t:upgrade()
+t:upgrade()
+print(t.level)   -- 3
+```
+
+The three steps that make it a class: `Tower.__index = Tower`, `setmetatable({}, Tower)` in the constructor, and the colon in `Tower:upgrade()` to pass `self`. If you used a dot (`t.upgrade()`), `self` is missing and you get an error.
+
+</details>
+
 ## Words to add to the glossary
 
 - **metatable** — a table attached to another table that defines extra behaviour.

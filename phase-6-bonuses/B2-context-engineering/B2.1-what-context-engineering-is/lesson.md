@@ -71,6 +71,25 @@ You met the four-step frame — prompt, context, output, eval — and the rule t
 - **eval** — your judgement on whether the output fits your project
 - **the three failure modes** — generic-tutorial, invented APIs, style drift
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Without scrolling back up, write the four-step frame from memory: name all four steps, then mark which three you can change and which one you can't. Then say the rule that follows from that.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+The four steps:
+
+1. **Prompt** — what you ask. (You control this.)
+2. **Context** — everything else the AI sees: system prompt, project files, earlier turns, tools. (You control this.)
+3. **Output** — what comes back from the model. (You do *not* control this.)
+4. **Eval** — your judgement on whether the output fits your project. (You control this.)
+
+The rule: spend your effort on the three you control — prompt, context, and eval — not on the one you can't.
+
+</details>
+
 ## Wrap up
 
 1. **Quiz** — open `quiz.md`, jot your answers in `journal/quiz-notes.md`.

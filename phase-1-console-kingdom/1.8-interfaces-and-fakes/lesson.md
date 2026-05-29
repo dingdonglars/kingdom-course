@@ -370,6 +370,44 @@ You took `IRandom` and `IClock` out of the engine, passed them in through the `E
 - **`A.CallTo(...).Returns(...)`** — exact control of what a fake returns
 - **deterministic** — same inputs always give the same outputs
 
+## On your own
+
+Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: taking a dependency in through the constructor instead of creating it with `new` inside. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+Here is a class with a hidden dependency:
+
+```csharp
+public class Greeter
+{
+    private readonly IClock _clock = new SystemClock();
+    public string Greet() => $"Hello! It is now {_clock.Now}.";
+}
+```
+
+Without looking, rewrite `Greeter` so the `IClock` comes in through the constructor instead of being made inside. Then, in a test, use FakeItEasy to make a fake `IClock`, set its `Now` to a fixed date, and check that `Greet()` puts that exact date in the message.
+
+<details><summary>Stuck? Open this to check yourself.</summary>
+
+```csharp
+public class Greeter
+{
+    private readonly IClock _clock;
+    public Greeter(IClock clock) { _clock = clock; }
+    public string Greet() => $"Hello! It is now {_clock.Now}.";
+}
+```
+
+```csharp
+var clock = A.Fake<IClock>();
+A.CallTo(() => clock.Now).Returns(new DateTime(2030, 1, 1));
+var greeter = new Greeter(clock);
+greeter.Greet().ShouldContain("2030");
+```
+
+Now the dependency is **visible** in the constructor and you can **swap it** for a fake. That's what made the dice testable in this lesson: the shell hands the engine its real version, and the test hands it one it controls.
+
+</details>
+
 ## Git move of the week — branches
 
 Until now your work has all been on `main`. From here on, anything bigger than a tiny change deserves its own branch — that way your `main` stays clean for finished, reviewed work.
