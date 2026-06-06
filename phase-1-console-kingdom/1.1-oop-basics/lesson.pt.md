@@ -181,6 +181,8 @@ dotnet run --project Kingdom.Console
 
 Você deve ver Eldoria impresso — dois prédios, um cidadão, quatro recursos. Tudo fica na memória do computador, e desaparece no momento em que o programa termina. Salvar no disco vem na Fase 2.
 
+> **Experimente o depurador também.** Coloque um breakpoint (um ponto vermelho, logo à esquerda do número de uma linha) no primeiro `Console.WriteLine`, aperte **F5**, depois abra `kingdom` no painel **Variables** à esquerda — você pode expandi-lo e ver seus prédios, cidadãos e recursos como objetos de verdade. É o mesmo depurador do Módulo 0.8, agora apontado para as suas próprias classes. O Módulo 1.4 o usa para valer.
+
 ## Mexa um pouco
 
 Adicione um terceiro prédio em `Program.cs` e rode de novo. Depois chame `kingdom.Buildings[0].Upgrade()` antes do loop de impressão — o nível do primeiro prédio deve aparecer agora como 2.

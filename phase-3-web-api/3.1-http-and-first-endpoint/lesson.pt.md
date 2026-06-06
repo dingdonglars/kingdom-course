@@ -145,6 +145,11 @@ dotnet run --project Kingdom.Api
 
 Você vai ver `Now listening on: http://localhost:5xxx` no console. Abra a URL no navegador. O reino aparece como JSON.
 
+> **Agora são dois projetos que rodam — escolhendo o que o F5 inicia.** Durante as Fases 1 e 2, o `Kingdom.Console` era a *única* coisa que podia rodar, então o **F5** simplesmente sabia o que iniciar. Agora o `Kingdom.Api` é um segundo projeto executável na solution, e o F5 precisa que você diga qual deles você quer. Dois jeitos:
+>
+> - **Pelo terminal (o que o curso usa):** `dotnet run --project Kingdom.Api` nomeia o projeto direto — nunca há dúvida. É por isso que todo comando de rodar nomeia o projeto. Use `--project Kingdom.Console` para rodar o console antigo.
+> - **Para depurar com F5:** `Ctrl+Shift+P` → **"Select C# Startup Project"** → escolha `Kingdom.Api` (ou `Kingdom.Console`). Depois disso, o F5 inicia o que você escolheu. Rode o comando de novo quando quiser trocar.
+
 ## Passo 2 — tente um cliente de verdade
 
 Abra outro terminal:

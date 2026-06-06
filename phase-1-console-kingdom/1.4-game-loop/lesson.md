@@ -150,6 +150,19 @@ dotnet run --project Kingdom.Console
 
 You should see Day 1 through Day 6 printed, and food going down by 2 each day — two citizens, one bite each. The other resources don't change yet. That's tomorrow's job. Today's job was just to make the world tick at all.
 
+## Watch a tick happen — in the debugger
+
+You watched five days scroll past in the output. Now slow *one* day right down and watch it happen line by line, with the same debugger you met in Module 0.8 — this time on your own engine.
+
+1. Open `Kingdom.cs` and click in the strip just left of the first line inside `AdvanceDay` — the `foreach (var b in Buildings)` line. A red **breakpoint** dot appears.
+2. Press **F5**. (Your window is `kingdom-game`, and `Kingdom.Console` is the only thing that can run, so F5 starts it with no questions asked.) The program runs the first print, then **pauses at your breakpoint** — right at the start of the first tick.
+3. Open the **Variables** panel on the left and find `Resources` and `Day`. Note the food value, and that `Day` is `1`.
+4. Press **F10** (*step over*) to run one line at a time. Step past the buildings loop, then through the citizens loop — **watch the food value drop by one each time a citizen eats**. Carry on to `Day++` and watch `Day` tick to `2`.
+5. Press **F11** (*step into*) on `b.Tick(Resources)` to go *inside* a building's `Tick`. Today it's empty, so you step straight back out — but remember this spot: in Module 1.5 the farms and mines fill that method in, and stepping into it will show real production.
+6. Press **F5** to let the remaining days run, or the red **Stop** square to end it.
+
+That's what a debugger is for: instead of guessing what `AdvanceDay` does from the printed output, you *watch each line change the kingdom*. Any time a number looks wrong later this year, this is how you find out why.
+
 ## Step 4 — write the tests
 
 > **A small C# detail you'll meet here.** The test file is in the namespace `Kingdom.Engine.Tests`. Inside that namespace, if you write just the word `Kingdom` on its own, the C# compiler can't tell whether you mean the `Kingdom` *namespace* or the `Kingdom` *class*. So it picks the namespace, and the test won't compile. The fix is to write `global::Kingdom.Engine.Kingdom`. The `global::` prefix tells the compiler *"start at the very top, then work your way down."* You'll see this once or twice in the next few modules, and that's it.

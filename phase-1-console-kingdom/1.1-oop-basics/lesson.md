@@ -181,6 +181,8 @@ dotnet run --project Kingdom.Console
 
 You should see Eldoria printed — two buildings, one citizen, four resources. It all lives in your computer's memory, and it's gone the moment the program ends. Saving it to disk comes in Phase 2.
 
+> **Try the debugger too.** Drop a breakpoint (a red dot, just left of a line number) on the first `Console.WriteLine`, press **F5**, then open `kingdom` in the **Variables** panel on the left — you can expand it and see its buildings, citizens, and resources as real objects. It's the same debugger from Module 0.8, now pointed at your own classes. Module 1.4 puts it to proper use.
+
 ## Tinker
 
 Add a third building to `Program.cs` and run again. Then call `kingdom.Buildings[0].Upgrade()` before the print loop — the first building's level should now show as 2.
