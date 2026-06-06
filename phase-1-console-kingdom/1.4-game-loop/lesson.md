@@ -163,6 +163,8 @@ You watched five days scroll past in the output. Now slow *one* day right down a
 
 That's what a debugger is for: instead of guessing what `AdvanceDay` does from the printed output, you *watch each line change the kingdom*. Any time a number looks wrong later this year, this is how you find out why.
 
+> Want every key and panel in one place? `using-the-debugger.md` at the course root is your debugger reference — breakpoints, step over/into/out, Watch, Call Stack, and changing a value while paused.
+
 ## Step 4 — write the tests
 
 > **A small C# detail you'll meet here.** The test file is in the namespace `Kingdom.Engine.Tests`. Inside that namespace, if you write just the word `Kingdom` on its own, the C# compiler can't tell whether you mean the `Kingdom` *namespace* or the `Kingdom` *class*. So it picks the namespace, and the test won't compile. The fix is to write `global::Kingdom.Engine.Kingdom`. The `global::` prefix tells the compiler *"start at the very top, then work your way down."* You'll see this once or twice in the next few modules, and that's it.

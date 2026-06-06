@@ -169,6 +169,8 @@ Rode de novo. Tente `add` sem nada depois. Tente `remove` sem nada depois. Tente
 
 ## Passo 3 — o depurador
 
+> **Deixe à mão:** o `using-the-debugger.md` na raiz do curso é uma referência de uma página para cada tecla, painel e truque do depurador — breakpoints, as teclas de step, Watch, Call Stack, e mudar um valor enquanto pausado. Esta seção te dá o começo; aquela página é a que você volta a consultar.
+
 Abra `Program.cs` no VS Code. Clique na faixa estreita vazia logo à esquerda dos números de linha, ao lado da linha `inventory[arg] = inventory.GetValueOrDefault(arg, 0) + 1;`. Um ponto vermelho aparece. Isso é um **breakpoint**.
 
 Primeiro, uma verificação rápida: a janela do VS Code deve estar aberta na pasta **`InventoryTool`** — a barra de título e a árvore de arquivos devem dizer `InventoryTool`, não o repositório `kingdom` inteiro. Se não estiverem, use *File → Open Folder…* → a pasta `InventoryTool`. (Um programa, uma janela — caso contrário, o F5 não saberá qual programa iniciar. O guia curto é `running-your-project.md`.)

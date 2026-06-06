@@ -163,6 +163,8 @@ Você viu cinco dias passarem na saída. Agora desacelere *um* dia bem devagar e
 
 É para isso que serve um depurador: em vez de adivinhar o que o `AdvanceDay` faz pela saída impressa, você *vê cada linha mudar o reino*. Toda vez que um número parecer errado mais tarde no ano, é assim que você descobre o porquê.
 
+> Quer todas as teclas e painéis num lugar só? O `using-the-debugger.md` na raiz do curso é a sua referência do depurador — breakpoints, step over/into/out, Watch, Call Stack, e mudar um valor enquanto pausado.
+
 ## Passo 4 — escreva os testes
 
 > **Um detalhe pequeno do C# que você vai encontrar aqui.** O arquivo de testes está no namespace `Kingdom.Engine.Tests`. Dentro desse namespace, se você escrever só a palavra `Kingdom` sozinha, o compilador C# não consegue dizer se você quer dizer o *namespace* `Kingdom` ou a *classe* `Kingdom`. Então ele escolhe o namespace, e o teste não vai compilar. A correção é escrever `global::Kingdom.Engine.Kingdom`. O prefixo `global::` diz ao compilador *"comece bem do topo, depois desça."* Você vai ver isso uma ou duas vezes nos próximos módulos, e só isso.

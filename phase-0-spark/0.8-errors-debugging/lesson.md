@@ -169,6 +169,8 @@ Run it again. Try `add` with nothing after it. Try `remove` with nothing after i
 
 ## Step 3 — the debugger
 
+> **Keep this handy:** `using-the-debugger.md` at the course root is a one-page reference for every debugger key, panel, and trick — breakpoints, the step keys, Watch, Call Stack, and changing a value while paused. This section gets you started; that page is the one you come back to.
+
 Open `Program.cs` in VS Code. Click in the narrow empty strip just left of the line numbers, next to the line `inventory[arg] = inventory.GetValueOrDefault(arg, 0) + 1;`. A red dot appears. That's a **breakpoint**.
 
 First, one quick check: the VS Code window must be open on the **`InventoryTool` folder itself** — the title bar and the file tree should say `InventoryTool`, not the whole `kingdom` repo. If they don't, do *File → Open Folder…* → the `InventoryTool` folder. (One program, one window — otherwise F5 won't know which program to start. The short guide is `running-your-project.md`.)
