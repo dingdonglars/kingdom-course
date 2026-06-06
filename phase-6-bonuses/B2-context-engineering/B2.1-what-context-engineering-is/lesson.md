@@ -1,5 +1,7 @@
 # Bonus B2.1 — What Context Engineering Is
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 You have been doing context engineering since the AI Unlock at Module 4.0. You probably haven't called it that. Today we give it a name. By the end of B2, every time you use an AI tool you'll see four parts you can change — instead of a black box you ask things and hope.
 
 The skill works a lot like editing. Most of the value is in two places: the choices you make *before* you write the first prompt, and the way you read the answer *after* the AI writes it. The middle part — the AI actually writing — is the part you don't control. The whole point of context engineering is to spend your effort on the parts you do control.

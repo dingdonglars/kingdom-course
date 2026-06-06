@@ -1,5 +1,7 @@
 # Bonus B1.2 — Swap SQLite for SQL Server (Three Lines)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 This is the lesson the whole bonus exists for. You are going to change three lines of config, regenerate migrations, and run the tests. Then you watch every test pass without touching a single line of engine code. The whole point is how ordinary this feels. The engine-vs-shell rule said the change would be small. Today is the day you prove it.
 
 If this feels boring, the careful work you put in across Phases 1 and 2 just paid you back. Boring on purpose. The engine treated the database as a part it could swap out, and now we get to prove it.

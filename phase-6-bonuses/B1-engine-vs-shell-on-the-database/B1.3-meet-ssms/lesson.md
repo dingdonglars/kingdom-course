@@ -1,5 +1,7 @@
 # Bonus B1.3 — Meet SSMS
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Yesterday you moved your kingdom onto SQL Server with three lines of config. Now your data lives in a real Microsoft database, and there is a professional tool for working with it: **SQL Server Management Studio**, or SSMS for short. It is the GUI that most working database admins keep open all day. It is free, it has every feature, and ten minutes of clicking around is enough to feel comfortable. After that you can browse any SQL Server you ever meet, for the rest of your career.
 
 The point of today is not to learn every part of SSMS — it has parts no one ever uses. The point is to learn the five basic moves so the tool stops feeling strange.

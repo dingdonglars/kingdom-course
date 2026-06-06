@@ -1,5 +1,7 @@
 # Module 5.3 — OOP in Luau (Tables-as-Classes, Metatables)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Lua doesn't have classes. It has tables and one extra tool called *metatables*, and that's enough to build classes by hand. Every piece of Lua code you'll ever read uses some version of the same recipe. Today we port the Phase 1 `Building` and `Farm` to Luau using that recipe — same idea, smaller language, a bit more typing.
 
 Back in Module 1.1, a class was built in: you wrote `class Building { ... }` and C# did the rest. Luau has no `class` keyword. So you build the *same blueprint-and-objects idea* yourself, out of two parts you've now met — a table to hold one object's data, and a metatable that says "for the methods, go look over there":

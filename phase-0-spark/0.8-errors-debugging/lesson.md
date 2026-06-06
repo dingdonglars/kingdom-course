@@ -1,5 +1,7 @@
 # Module 0.8 — Errors, Debugging, and M1
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today you make the Inventory Tool *not crash* when things go wrong, and you meet the VS Code debugger — the most important tool there is for understanding code that isn't doing what you expect. Then you finish M1. End of Foundations, end of Phase 0.
 
 > **Words to watch**

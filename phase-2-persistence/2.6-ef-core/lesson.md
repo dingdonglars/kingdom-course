@@ -1,5 +1,7 @@
 # Module 2.6 — EF Core (Code-First)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Raw SQL is fine for one query. But twenty queries — each with its own `using` block for the connection, the command, and the reader — gets tiring fast. Today we meet **Entity Framework Core**, the .NET *ORM*. An ORM is a library that matches classes to database rows: you write C# classes, and EF turns them into tables. You write `db.Kingdoms.Add(k); db.SaveChanges();`, and EF writes the SQL for you.
 
 > **Words to watch**

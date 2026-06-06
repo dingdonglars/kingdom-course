@@ -1,5 +1,7 @@
 # Module 3.9 — M4 Close + the AI Unlock
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The kingdom is on the internet. Friends sign in with Google, save their progress, and play. Phase 3 is done. This module is three things at once: the **M4 milestone close** (wins log, before/after, the per-milestone ritual), **Claude Code's arrival** (account + install), and the **AI Unlock** (the moment the rules around AI-assisted code change). Until today you've worked without an AI assistant — Lars has been the one who helps when you're stuck, through Slack `#help`, under the 20-minute rule. Today Claude arrives, and on the same day the rules open up: you can ask the AI to *write code for you* — as long as you can explain every line you merge.
 
 This is the most important change in the whole year. The discipline you've built across Phases 0 through 3 — the engine-vs-shell rule, tests that give the same result every time, reading before writing, naming things on purpose — is what makes today safe. An AI that can write your code is a power tool, and it only works well if that discipline is already there. You've earned this.

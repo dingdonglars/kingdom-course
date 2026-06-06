@@ -1,5 +1,7 @@
 # Module 0.9 — Foundations Check
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Phase 0 is done. You have two finished programs on GitHub, and the basic parts of C# now have names. Before the Kingdom begins, there is one checkpoint: build a small new program from an empty file, using what you learned in Phase 0 — no lessons open, and no copying old code. Then show it to Lars and talk through it.
 
 This is a checkpoint. Phase 1 — the Kingdom — starts once you and Lars are both happy that you really know the basics.

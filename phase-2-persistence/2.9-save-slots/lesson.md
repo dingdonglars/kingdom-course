@@ -1,5 +1,7 @@
 # Module 2.9 — Save Slots (Multiple Kingdoms)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 One save on its own isn't much. *Many* saves is a real feature. Today the EF store grows past `Save` and `Load` to add `Update` and `Delete` (and `ListAll`, which is already there) — the full **CRUD** group of four. With a real database underneath, *"give me my last 10 kingdoms"* is a one-line query. The kingdom now has *save slots*, like every game you've ever played.
 
 > **Words to watch**

@@ -1,5 +1,7 @@
 # Module 0.1 — Tinker (Roast-O-Matic v2)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Last time, Roast-O-Matic printed the same three roasts to no one in particular. Today it asks for your friend's name and roasts them by name. *"Hey BOB — your password is 'password'."* Same code as last time, plus two new lines. Today's goal is small. You're going to learn how to ask the user a question, store what they typed, and put it inside a string.
 
 > **Words to watch**

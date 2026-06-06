@@ -1,5 +1,7 @@
 # Module 3.1 — HTTP and Your First Endpoint
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 By the end of today, your kingdom will be at `http://localhost:5000/kingdom`. You'll open that URL in a browser and the kingdom will appear as JSON. The browser is now just one of many possible clients — a friend's `curl`, some JavaScript code, your phone — they all speak the same language and they all reach the same engine. The console you wrote in Phase 1 was one outer layer. Today you add another.
 
 We're going to learn HTTP in one screen, then write a single ASP.NET endpoint that serves your kingdom over the network. *ASP.NET Core* is Microsoft's web framework — the part of .NET that handles HTTP. Its **minimal API** style is the new, lightweight way of writing endpoints: a few lines instead of a whole folder of controllers.

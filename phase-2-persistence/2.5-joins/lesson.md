@@ -1,5 +1,7 @@
 # Module 2.5 — JOINs
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 In Module 2.4 we had one table. Real apps have ten or fifty. Today we add a `buildings` table that *belongs to* the `kingdoms` table, and learn how to ask *"show me each kingdom together with all its buildings"* in one query. This is what makes a database *relational* — it can hold things that relate to each other.
 
 > **Words to watch**

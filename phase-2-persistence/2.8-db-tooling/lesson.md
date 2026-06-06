@@ -1,5 +1,7 @@
 # Module 2.8 — DB Tooling
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 You can write the perfect structure, the cleanest migrations, and the best queries — and still lose hours when something looks wrong, because you can't see what's actually in the database. Today is short and about tools: three ways to *look inside* your SQLite file, plus an EF command that answers *"what would this migration do?"* in ten seconds.
 
 > **Words to watch**

@@ -1,5 +1,7 @@
 # Module 2.2 — JSON Serialisation
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Yesterday you wrote five lines of plain text to disk. Today the kingdom learns to write itself as **JSON** — the `{ "Name": "Eldoria", "Day": 11, ... }` format used by almost every API on the internet. You'll also add a brand new project — `Kingdom.Persistence` — to keep the JSON code separate from both the engine and the console. Same kingdom, third shell.
 
 JSON is also where you meet a small but important pattern: the **DTO**. The letters stand for *Data Transfer Object*. It's a small record that holds only data, built for one job: moving that data across a boundary, like writing it to disk or sending it over the network. You'll use DTOs again in every phase from here on. We're introducing them properly today.

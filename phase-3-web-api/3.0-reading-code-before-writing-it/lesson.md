@@ -1,5 +1,7 @@
 # Module 3.0 — Reading Code Before Writing It
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Every module so far has been about *writing* code. Today is about *reading* code that someone else wrote. Before we write our first ASP.NET endpoint, you'll spend about thirty minutes reading two real ones and saying out loud what they do. What you make today is a journal entry, not a program. That's the whole module: read, take notes, commit your notes.
 
 Reading is a skill nobody teaches but everyone needs. An experienced developer on a team reads about five times more code than they write. They know which file to open first. They scan instead of reading every word. They notice when something is *missing*. Nobody is born knowing how to do this. It's a habit you build by doing it on purpose, every week, even when you're not chasing a bug.

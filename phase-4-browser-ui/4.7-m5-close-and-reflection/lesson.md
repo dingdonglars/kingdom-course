@@ -1,5 +1,7 @@
 # Module 4.7 — M5 Close + Phase 0 Reflection
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The kingdom runs in browsers. **Phase 4 done. Five milestones, four shells, one engine.** Today closes the phase with the milestone ritual and one quiet but powerful exercise: read the code you wrote in Phase 0 — Spark Week — again, now that you know much more. Eight months of progress, easy to see in one comparison.
 
 > **Words to watch**

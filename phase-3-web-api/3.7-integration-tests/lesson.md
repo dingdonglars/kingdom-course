@@ -1,5 +1,7 @@
 # Module 3.7 — Integration Tests with `WebApplicationFactory<T>`
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today the test project starts your *whole API* in memory, makes real HTTP calls to it, and checks the real responses. No real port, no cleanup by hand — the framework runs the app inside the test process. This is the test class that catches the bugs unit tests can't see: the ones that happen where two parts meet. A wrong content-type header. A route that compiles but doesn't match. An auth handler set up in the wrong order.
 
 Up to now your tests have been *unit tests* — one method, one check, and they run in under a millisecond. Integration tests are the other half of a healthy test suite. They cost more (about 100ms each, and more setup), but they pay for themselves the first time they catch a renamed-route bug before you deploy.

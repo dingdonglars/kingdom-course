@@ -1,5 +1,7 @@
 # Module 4.3 — TypeScript + Vite + JS Modules
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The browser code gets more serious today. Two new tools join. **TypeScript** brings the type-checking you've had in C# all year — the same `slot.day is a number` checking, written in a JavaScript file. **Vite** brings the modern tools — a dev server with hot-reload, real module support, and fast builds. The third change is quieter but it matters: `import` and `export` between files replace the old `<script src=...>` style where everything shared one global space. The web project starts to feel like a real codebase.
 
 This is the first time you'll meet TypeScript and Vite by name. **TypeScript** is JavaScript with a type system added on top — the same kind of type-checking C# has given you all year. **Vite** (you say it *"veet"*) is a bundle of tools for web projects. Two of those tools matter today, and both have plain jobs:

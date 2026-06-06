@@ -1,5 +1,7 @@
 # Module 1.4 — The Game Loop
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Right now your kingdom is like a photograph. You build it, you print it, the program ends, and nothing has changed. Today the kingdom learns to *move*. Each day, every farm makes a little food, every mine makes a little stone, and citizens eat. Numbers go up. Numbers go down. By the end of this module the program runs five days and shows you what happened.
 
 We need one new word for today. **Tick.** A tick is one step of game time. In a fast game like a shooter, a tick might happen sixty times a second. In a slow game like ours — a kingdom you run for many days — a tick is once per *day*. The exact length doesn't matter. What matters is that the engine has a method that means *"move time forward by one step."* That method will be called `AdvanceDay`. Once it exists, anything that wants to move time forward calls the same method — the console today, a button on a webpage in a few months, a Roblox game later in the year. Same engine, many shells.

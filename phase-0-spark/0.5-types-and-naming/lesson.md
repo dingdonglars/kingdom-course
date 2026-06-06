@@ -1,5 +1,7 @@
 # Module 0.5 — Types Deep Dive + Naming Conventions
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 You've been writing code for about a month now — strings, numbers, booleans — without us ever stopping to give them names. Today we slow down and name the basic building blocks. Six types you've already used, one new one (`DateTime`), and a small new feature called *nullable*. The compiler may have started warning you about nullable around Module 0.1, if you noticed the squiggles. This is the lesson where those squiggles get explained.
 
 > **Words to watch**

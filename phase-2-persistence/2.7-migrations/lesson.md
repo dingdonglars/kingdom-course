@@ -1,5 +1,7 @@
 # Module 2.7 — Migrations
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 `EnsureCreated()` works for an empty database. But what happens when you release version 1, players save data with it, and version 2 needs a new column? You can't just delete the database and make it again — you'd lose every save. Today we meet **migrations** — the proper way to change the database structure step by step, with each step kept on record.
 
 A *migration* (in the database sense) is a small recorded change to the structure. It has an "Up" step that makes the change and a "Down" step that takes it back out. We're using the word for the first time today. You'll see it again in Phase 3 and later. The idea is the same anywhere a database is used.

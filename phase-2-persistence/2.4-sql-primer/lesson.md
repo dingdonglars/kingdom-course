@@ -1,5 +1,7 @@
 # Module 2.4 — SQL Primer (with SQLite)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 JSON files are great for *one* save. But what if you want a *list* of all your saved kingdoms? What if you want to ask *"which kingdom has the most gold?"* With files, you have to load everything just to find one thing. Today we meet **the database**, and the language databases speak: **SQL**. We use **SQLite** *(es-queue-el-ite)*, a database that lives in a single `.db` file — no server to run, nothing to install.
 
 > **Words to watch**

@@ -1,5 +1,7 @@
 # Module 3.3 — Routing, Status Codes, and Multi-Kingdom CRUD
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 So far the API has held one kingdom in memory. Today the API handles many kingdoms, saved through the EF store from Phase 2. `POST /kingdoms` creates one. `GET /kingdoms` lists them. `GET /kingdoms/{id}` reads a specific one. `DELETE /kingdoms/{id}` removes one. This is **CRUD over HTTP** — *create, read, update, delete* — the pattern behind every web API ever built.
 
 The other half of today is using the *right* status code for each action. 201 when a `POST` creates something. 404 when the thing isn't there. 204 when a delete works. Clients make decisions based on the status code, so returning the wrong one isn't a small detail. It's a real bug that the client will trip over.

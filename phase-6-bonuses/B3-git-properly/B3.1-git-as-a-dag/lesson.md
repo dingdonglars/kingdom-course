@@ -1,5 +1,7 @@
 # Bonus B3.1 — Git as a DAG (the model)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 You have been typing `git add`, `git commit`, `git push` for a year. The commands work; you have written a year of code with them. What you probably haven't done is look at *what git actually stores* underneath. Today's lesson is the model — the picture that turns the commands into something you can reason about instead of memorise.
 
 Why this matters: most git confusion comes from using git without a model. People type commands they have seen others type, get a result they didn't expect, panic, and add `--force` to make the panic go away. With the model in your head, git stops being a mystery. Most "I broke git" moments turn into *"oh, I see what happened — and here is the move that fixes it."*

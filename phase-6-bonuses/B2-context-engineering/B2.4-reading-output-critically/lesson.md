@@ -1,5 +1,7 @@
 # Bonus B2.4 — Reading AI Output Critically
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The AI's output looks confident. Often it shouldn't. Today's lesson is about the eval step — the part where you read what came back and decide whether to keep it. There is a five-point read you can do on every code response in about two minutes. Do it twenty times and it becomes automatic.
 
 The point isn't that AI output is bad. Most of the time it is fine. The point is that the AI being confident is not the same as you checking it. The times it produces confident-looking nonsense are exactly the times a careful read saves you from accepting something broken.

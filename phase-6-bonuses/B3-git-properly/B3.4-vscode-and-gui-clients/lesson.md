@@ -1,5 +1,7 @@
 # Bonus B3.4 — Tools — git inside VS Code (and other clients)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 You have spent a year using VS Code's Source Control panel as your daily git tool. By now you have also used enough CLI to know when each one is the right choice. Today's lesson goes deeper on the panel and GitLens (the extension you installed back at Module 1.6), and tours the dedicated GUI clients people reach for when they want even more.
 
 The main point: keep what you have been doing. The Source Control panel for daily work, the CLI for the moves the panel doesn't have a button for (`reflog`, `cherry-pick`, `rebase -i`, scripts, CI, server work). Reach for a dedicated GUI (Fork, GitKraken, and so on) only if you find yourself wanting one; many experienced developers never do.

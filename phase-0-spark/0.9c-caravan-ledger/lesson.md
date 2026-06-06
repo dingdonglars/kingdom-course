@@ -1,5 +1,7 @@
 # Module 0.9c — Caravan Ledger
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 This is the last build-from-scratch checkpoint before the Kingdom. It's a small step harder than the Quest Board, and there is one genuinely new idea in it — clearly marked below, so you'll know exactly what's new and why. Everything else is the Phase 0 toolkit you already own.
 
 Same deal as before: build it from an empty file, no lessons open, no copying. Then show Lars and talk it through. Take your time — this one rewards going slowly.

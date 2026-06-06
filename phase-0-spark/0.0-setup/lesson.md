@@ -1,5 +1,7 @@
 # Module 0.0 — Setup
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 By the end of today your computer is ready, your code folder is set up, and you're in Slack. You will install an editor, a compiler, a terminal, and git. You will make a GitHub account. You will create the two folders where every line of code this year will live. And you will join the chat workspace where Lars and you talk through the week. You do all of this with Lars next to you. From the next module on, you work on your own. This takes about two hours, often less.
 
 ## What you need first

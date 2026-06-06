@@ -1,5 +1,7 @@
 # Module 1.6 — LINQ on the Kingdom
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today there are almost no new lines of code, but a real change in how you *think*. The kingdom has lists — buildings, citizens. So far, every time you wanted to know something about them ("how many farms?", "which building has the highest level?"), you wrote a `for` loop. Today you stop. **LINQ** (say it "link") lets you describe the answer instead of writing the loop.
 
 LINQ stands for *Language Integrated Query*. It's a set of helper methods (`Where`, `Select`, `Count`, `Sum`, `Any`, `OrderBy`, `First`, and more) that work on every collection in C#. It's built into the language — nothing to install, just `using System.Linq;` (often added for you already). Once you know about twenty of these methods, you almost never write a loop just to count or filter again.

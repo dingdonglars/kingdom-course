@@ -1,5 +1,7 @@
 # Module 3.4 — OpenAPI and Structured Logging
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The API works, but right now the only way for someone else to learn what it does is to read your source code. Today the API gets two features that real services have. **OpenAPI** writes the documentation for you — visit `/swagger` (or `/scalar/v1`) and a web page lets anyone explore your endpoints, send test requests, and see real responses. **Logging** writes a tidy record of every request — useful for fixing bugs now, and useful six months from now when something goes wrong in production and you have to work out what happened.
 
 Both features are cheap to add today and very expensive to add later, once the API is live and something is broken. We add them now while the API is still small enough to understand from end to end.

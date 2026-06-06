@@ -1,5 +1,7 @@
 # Module 1.10 — Polish and Repo Rescue (M2 close)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Phase 1 ends today. The kingdom is a real engine — thirty-five tests, deterministic, organised by area. Now we make it nicer. A better README, a few well-placed comments, and the names you wish you'd picked the first time. Then we cover the **repo rescue workflow** — the moves to know on the day your git branch is a complete mess.
 
 There's no big new code in this lesson. It's a calm day on purpose. Closing a milestone looks like this: read through your own repo from start to finish, make the small fixes, write a short README that will help you later, then mark the moment with the milestone steps at the end.

@@ -1,5 +1,7 @@
 # Bonus B2.3 — Scoping (Per-Task Framing)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Scaffolding sets the stage. Scoping is what you say *for this one task.* Yesterday's lesson was about the files the AI reads on every session. Today's is about the per-prompt framing that turns a vague request into a clear ask. Scoping is the difference between *"write me a method that finds the kingdom with the most gold"* and *"in `KingdomEfStore.cs`, add `LoadRichest(string ownerSub)` returning a `KingdomSlotInfo?`, matching the projection style of `ListSlots`, with a test in `SlotCrudTests.cs`."*
 
 The first prompt makes the AI guess your limits. The second one tells it. Three minutes typing the second saves ten minutes of cleaning up what comes back.

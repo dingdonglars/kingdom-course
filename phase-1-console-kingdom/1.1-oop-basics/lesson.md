@@ -1,5 +1,7 @@
 # Module 1.1 — OOP Basics
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today the Kingdom begins. You're going to make four new types — `Resource`, `Building`, `Citizen`, `Kingdom` — and from them build a tiny medieval kingdom that prints to your terminal: two buildings, a citizen, and a treasury. None of it *does* anything yet. That's fine. First the kingdom needs a body; we teach it to move in Module 1.4.
 
 Before any code, it's worth one minute on the big change that starts here — because the whole rest of the course is built on it. This is the largest new idea in the course, so go slow today. You are not expected to feel fluent by the end of one lesson; you're expected to have *met* it. It clicks over the next few modules, by using it.

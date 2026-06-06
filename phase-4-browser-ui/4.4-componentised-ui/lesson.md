@@ -1,5 +1,7 @@
 # Module 4.4 — Componentised UI
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today the page is split into reusable parts. A `KingdomCard` renders one slot. A `ResourceList` renders the resources. The main file becomes a small *orchestrator* — the file that loads the data and tells each component what to do, like a conductor in front of a band. It's the same idea as splitting a script into classes back in Module 1.1: pull out reusable pieces, and the rest of the code is easier to read.
 
 You're not using a framework yet. These components are plain TypeScript functions: data goes in, HTML or DOM comes out. The same idea works in React (`function Component({ slot })`), Vue, Svelte, and any other framework. Frameworks add automatic re-rendering on top of this idea, but the idea itself stays the same.

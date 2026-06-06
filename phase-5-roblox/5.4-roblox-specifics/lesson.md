@@ -1,5 +1,7 @@
 # Module 5.4 — Roblox Specifics: Workspace, Server vs Client, RemoteEvents
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Roblox isn't just "Lua plus 3D." It's built for multiplayer from the start. Every place is split between *one server* and *many clients*. Today we name that split, work out which code belongs where, and meet **RemoteEvents** — the way clients and the server send messages to each other.
 
 > **Words to watch**

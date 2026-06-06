@@ -1,5 +1,7 @@
 # Module 3.5 — OAuth (Sign In With Google)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today every request can know *who* it's for. Your friend opens the URL, clicks Sign in with Google, and now the API can link every save to a real person. No passwords you have to store yourself, no email-and-confirm steps, no late-night worry about how to hash a password safely — Google does the hard part.
 
 We're going to set up the smallest correct version of sign-in: Sign In With Google plus a session cookie. The API gets a `/login` and a `/me` endpoint, and we'll mark the kingdom endpoints as needing sign-in. By the end of this lesson, a client that isn't signed in gets a 401, and a signed-in client gets the full API.

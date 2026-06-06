@@ -1,5 +1,7 @@
 # Module 4.0 — Context Engineering Unlock
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 You've been programming for about seven months. You have an engine, a database, and an API on the internet that anyone with the URL can call. Today the AI joins in. You're now allowed to use it as a tool for writing code. The question is no longer *can the AI write something* — of course it can — it's *how do I get the AI to write something that fits my project*?
 
 This module gives that skill a name. It's called **context engineering** — choosing what the AI sees before it answers. AI-assisted code usually fails the same way: it comes out as generic-tutorial code. It works on its own, but it ignores your rules, it names things differently from your existing code, and it uses libraries you don't have. Context fixes this. Ask the same question with the right context and you get a useful answer in three seconds. Ask it without context and you get thirty minutes of back-and-forth. You spend a little time on context, and it saves you a lot.

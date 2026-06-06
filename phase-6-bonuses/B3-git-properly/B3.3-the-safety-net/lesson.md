@@ -1,5 +1,7 @@
 # Bonus B3.3 — The safety net (reflog and recovery)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The thing nobody tells you about git: it almost never actually loses your work. Even when you have run `git reset --hard` and watched commits disappear from `git log`, they are still there — git just stopped pointing at them. The reason most "I broke git" panic ends without lost work is a single command: `git reflog`.
 
 Today's lesson is the safety net. To be exact: how to find work that looks gone, how to recover from `reset --hard` mistakes, and how to build the habit that prevents most of these moments in the first place. The habit is one sentence — *read the state before you act*. The commands below are how you read the state.

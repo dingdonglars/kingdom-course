@@ -1,5 +1,7 @@
 # Module 0.3 — Tiny Adventure
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today you build a three-room text adventure. *"You stand in a dim hallway. There's a door north and a door east. >"* The world is yours to design; this lesson gives you the frame to build on. Two new ideas come up along the way: a *list* (how the player carries items between rooms) and writing your own *methods* (one method per room, each calling the next as the player walks around).
 
 > **Words to watch**

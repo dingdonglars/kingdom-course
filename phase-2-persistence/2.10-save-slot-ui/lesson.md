@@ -1,5 +1,7 @@
 # Module 2.10 — Save-Slot UI (Interactive Console)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The demo `Program.cs` does the right things, but it's just a script — *open the program, it runs once, it's done*. Real games keep going in a loop. Today we put the CRUD operations from Module 2.9 behind an interactive menu — *"1. New, 2. Load, 3. Delete, 4. Quit"* — and at last have something you can play.
 
 > **Words to watch**

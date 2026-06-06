@@ -1,5 +1,7 @@
 # Running your project — the one rule that saves you
 
+> Travou no inglês? Abra o `running-your-project.pt.md` — é este mesmo guia em português. Tente em inglês primeiro.
+
 > Read this once. Come back to it any time *Run* or the debugger doesn't behave.
 >
 > **Setup assumed:** Windows + VS Code, your `kingdom` repo at `C:\code\kingdom`.

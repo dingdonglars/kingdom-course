@@ -1,5 +1,7 @@
 # Module 3.2 — DTOs at the API Boundary, and `POST /kingdom/tick`
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Yesterday your kingdom could be read over HTTP. Today it can *change* over HTTP. A `POST /kingdom/tick` request advances one day, and the response shows the new state. The kingdom now answers the network the same way it answered the keyboard in Phase 1 — same engine, same `AdvanceDay` method, just a different caller asking for it.
 
 While we're here, we'll set out clearly the rule we first met in Phase 2: **the data you send across the network is a DTO, not the engine type.** The engine returns objects with hidden state and constructors that need an `IRandom`. The API returns small `record` types that turn into JSON cleanly. Same lesson, second time.

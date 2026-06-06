@@ -1,5 +1,7 @@
 # Module 5.7 — Roblox DataStore: Persistence
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today the kingdom stays saved between play sessions. Roblox gives you **DataStoreService** — a key/value store you can only use from server code. We save the kingdom's snapshot when a player leaves and load it again when they come back. Same idea as Phase 2's JSON file, with a different API.
 
 > **Words to watch**

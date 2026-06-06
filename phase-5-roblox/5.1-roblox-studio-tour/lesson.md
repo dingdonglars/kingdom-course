@@ -1,5 +1,7 @@
 # Module 5.1 — Roblox Studio Tour
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Roblox is one of the biggest game platforms in the world, and your friends are already there. **Roblox Studio** is the editor for it. It is free and downloads in a couple of minutes. Today we install it, open the default world, click around the panels, and run our first script. No real code yet. The goal is to learn where everything is, so the next seven modules don't waste their first ten minutes on it.
 
 > **Words to watch**

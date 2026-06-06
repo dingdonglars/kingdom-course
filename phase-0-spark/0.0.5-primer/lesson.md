@@ -1,5 +1,7 @@
 # Module 0.0.5 — Primer: what's actually on your computer
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The tools are installed and the two folders are on your computer. Before you write any code, here's a half-hour walk through the parts of the computer that the rest of the course expects you to understand. Folders and files. The terminal. What "running a command" really means. How to read a path. None of this is programming yet. It's what the programming sits on top of. Get this clear and the next module, and every module after, is much easier to follow.
 
 For most of this you'll have File Explorer and Windows Terminal open in two windows. You do it by hand; there's nothing to install.

@@ -1,5 +1,7 @@
 # Module 5.8 — Publish + M6 Close
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The last technical step of the year is one button: *File → Publish to Roblox*. After that, a URL. After that, friends play. **One year. Five shells. One engine. M6.**
 
 > **Words to watch**

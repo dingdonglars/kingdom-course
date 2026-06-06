@@ -1,5 +1,7 @@
 # Module 0.0.8 — Roast-O-Matic
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 By the end of this session you have a real program on your computer that prints roasts you wrote — and it's on the internet, in your own GitHub repo. About two hours. This is your first session on your own. The tools are installed (Module 0.0), you've read the primer (Module 0.0.5), and now you write the code.
 
 Here's the plan for today. You copy the day-1 kit into your repo and push it to GitHub for the first time. You create a tiny C# project called Roast-O-Matic. You edit it to print roasts you wrote, and push that too. Then you post your first win, in `journal/wins.md` and in Slack `#wins`.

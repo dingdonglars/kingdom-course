@@ -1,5 +1,7 @@
 # Module 4.6 — Deploy the Frontend (Azure Static Web Apps)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The browser kingdom goes live on the internet today. **Azure Static Web Apps** hosts your Vite build for free, with automatic SSL, a global content delivery network, and the same kind of GitHub Actions auto-deploy you set up for the API in Phase 3. By the end of the day you'll have two URLs: one for the back end (`kingdom-api-yourname.azurewebsites.net`) and one for the front end (`kingdom-yourname.azurestaticapps.net`).
 
 > **Words to watch**

@@ -1,5 +1,7 @@
 # Module 1.7 — Events and Randomness
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The kingdom is too predictable right now. The same farms produce the same food, the same citizens eat the same amount, every day forever. Today we add chance. Each tick, there is some chance that *something happens*. A trader arrives with gold. A citizen falls ill. A building burns down. Each event is saved in a list, so by Day 50 the kingdom has a story you can read back.
 
 There are two reasons for an event log. The first is **the story** — a management game with no events is just a spreadsheet. Random visitors, fires, and illnesses are what make the kingdom feel alive. The second is **memory** — when something interesting happens, you want to know *when* it happened. The event log is the kingdom's memory. With LINQ from yesterday, you can ask *"what happened in the last seven days?"* in one line.

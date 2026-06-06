@@ -1,5 +1,7 @@
 # Bonus B1.4 — Reflection and Close
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 B1 ends with a paragraph. You changed a database in three lines, met SSMS, and your tests stayed green the whole time. Today's job is to write down what that proves — in your own words, in your own journal — and close the bonus.
 
 The point of writing it down is not nice writing. It is that putting what happened into your own words turns it into something you remember. A change you did and forgot about fades. A change you described in your own words stays with you.

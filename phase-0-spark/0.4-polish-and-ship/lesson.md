@@ -1,5 +1,7 @@
 # Module 0.4 — Polish + Ship + README Anatomy
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today is the end of Spark Week. You make your programs *look* good — ASCII art, coloured text, and a saved file the program reads back the next time it runs. You write the README that pulls all of M0 together. And you finish it off: commit, push, post in `#wins`. By the end of today you have four working programs in your repo with a real README, and you're ready for Foundations.
 
 > **Words to watch**

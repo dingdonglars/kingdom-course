@@ -1,5 +1,7 @@
 # Module 0.9b — Quest Board
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 You built the Tavern Tab from a blank file. Here is one more, the same kind of checkpoint: a small new program, made from scratch, using only what Phase 0 taught you. Then you show it to Lars and talk through it.
 
 Why a second one? Because the skills that carry you through the whole Kingdom — a loop, a collection, a method that gives something back, checking numbers, catching errors — get stronger every time you reach for them from your own head instead of copying. The Tavern Tab proved you can do it once. This proves it wasn't a fluke. Take your time; there is no rush.

@@ -1,5 +1,7 @@
 # Bonus B3.2 — Branches, merge, rebase
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 There are two ways to combine work from different branches. They produce different histories. Both have good uses. People online argue endlessly about which one to prefer. For now, you just want to know what each one *does* to the DAG, so you can pick the one that fits the situation.
 
 The short version: **`merge` keeps the history as it happened**; **`rebase` rewrites the history.** Neither is wrong. The trade-off is between *showing how the work really happened* and *a clean, straight-line story.*

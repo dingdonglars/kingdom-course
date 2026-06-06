@@ -1,5 +1,7 @@
 # Module 1.5 — Inheritance: Specialised Buildings
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Yesterday `Tick()` did nothing. Today we make three specific kinds of building — `Farm` produces food, `Lumberyard` produces wood, `Mine` produces stone. Each one *is* a building (same name, same level, same upgrade), but each one ticks differently. The OOP feature that lets you say *"a farm is a kind of building"* is called **inheritance**, and that's today's lesson.
 
 The other choice would be three separate classes — `Farm`, `Lumberyard`, `Mine` — each with its own `Name`, `Level`, `Upgrade`, and `Tick`. Then every change to one would have to be made three times. Inheritance lets you write `Building` once, then say *"Farm is a Building, and here's the small part that's special to farms."* Farm gets everything else for free.

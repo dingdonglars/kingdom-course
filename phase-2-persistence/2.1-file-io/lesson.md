@@ -1,5 +1,7 @@
 # Module 2.1 — File I/O
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Until now, your kingdom is gone the moment you close the program. Today we change that. By the end of this module, your kingdom writes itself to a plain text file on disk. Tomorrow we'll make that JSON. The day after, SQLite. But we start with the simplest thing: open a file, write some text, close it.
 
 Saving your work so it stays after the program ends is called *persistence*. The first time you see a file appear, close the program, and find the file still there, persistence will start to make sense.

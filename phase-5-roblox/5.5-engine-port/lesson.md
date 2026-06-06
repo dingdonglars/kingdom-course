@@ -1,5 +1,7 @@
 # Module 5.5 — Engine Port: ResourceLedger, Citizen, Kingdom, Tick
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today the engine does everything it did in Phase 1 — but in Luau, on a Roblox server. `ResourceLedger`, `Citizen`, the `Kingdom` aggregate, the day-tick loop. Same idea, smaller language, a different place to run. By the end of this module the engine works the same way in both versions.
 
 > **Words to watch**

@@ -1,5 +1,7 @@
 # Module 4.1 — HTML & CSS Fundamentals
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today the kingdom appears in a browser tab. Not as JSON, not as console text — as a page. We write the smallest useful HTML and CSS, open the file in a browser, and there it is. No framework, no build step, no `npm install`. Just a `.html` file and a `.css` file you can double-click. The next module makes the page talk to your live API. Today is about the layout.
 
 If you've never written HTML before, it's simpler than it looks. **HTML** describes structure: this is a heading, this is a list, this is the main section. **CSS** describes appearance: this much spacing, that font, those colours. The two languages stay separate on purpose. If you ever find yourself writing colours into HTML, or structure into CSS, something is in the wrong place.

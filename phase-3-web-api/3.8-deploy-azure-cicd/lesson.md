@@ -1,5 +1,7 @@
 # Module 3.8 — Deploy to Azure Plus GitHub Actions CI/CD
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today the kingdom is *on the internet*. A real URL — `https://kingdom-api-yourname.azurewebsites.net` — that anyone in the world can visit. And every push to `main` redeploys the site automatically through GitHub Actions. From *code on my laptop* to *live URL that deploys itself* in one module.
 
 This is also the module where we slow down for a moment on the **good habits that keep a live service safe**. Secrets stay out of the repo. HTTPS is on. Logs are structured. The habits you set today are the ones you'll keep for the rest of your career.

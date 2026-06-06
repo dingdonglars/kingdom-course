@@ -1,5 +1,7 @@
 # Module 5.2 — Luau Basics
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Luau is the language Roblox runs on. It's a version of Lua with optional types added on top. It's smaller than C# and simpler than JavaScript, but it's made of the same building blocks: variables, functions, conditionals, loops, and one container called a *table*. Today we walk through how the syntax is different. Tomorrow you use Luau to build classes.
 
 None of today's *ideas* are new. Variables, functions, `if`, loops, a key-and-value container — you met all of these back in Phase 0 and have used them every week since. Luau has the exact same pieces; it just spells them differently and keeps everything in one container instead of separate lists and dictionaries. So read today as a *translation*, not a fresh start. You already think in these shapes — you're learning Roblox's words for them.

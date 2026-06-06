@@ -1,5 +1,7 @@
 # Module 5.6 — The Visual World
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today the kingdom appears in the world. A grid of tiles in `Workspace`; click a tile, build a farm; a 3D model appears on top. The engine controls what you see — the same kingdom that printed to the console in Phase 1, now showing as Parts in Roblox.
 
 > **Words to watch**

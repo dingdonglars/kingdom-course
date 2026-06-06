@@ -1,5 +1,7 @@
 # Module 4.2 — The Browser as a Runtime: DOM, DevTools, fetch
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today the page starts working. JavaScript reads from the live `https://localhost:5xxx/kingdoms` API and writes the result into the page. The same engine that's been running since Phase 1, the same JSON your `curl` saw in Phase 3 — now arriving in a browser tab and showing up as HTML you can see. You'll also meet the browser's three developer tabs: Elements (the DOM), Console (run JavaScript live), and Network (every request).
 
 "The browser as a runtime" is the idea in the title, and it just means: the browser is a place your code *runs*, not only a place that shows pages. Your JavaScript runs there, reaches out to your API, and edits the page live. Here's the whole round-trip — and notice it ends at the same engine you wrote in Phase 1:

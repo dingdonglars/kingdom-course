@@ -1,5 +1,7 @@
 # Bonus B2.5 — Comparing Tools, then the Close
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Claude isn't the only AI assistant. Cursor, GitHub Copilot, Claude Code, Continue, Codeium — each one fits a different job. Today we name the tools out there, talk about when each one is good, and then you write the one-page reflection that closes B2 and the course at the same time.
 
 The point of comparing tools isn't to get you to use them all. The point is to learn the *types* — chat-style, inline completion, agentic — so when a new tool comes out next year (and one will), you know which type it is and whether it is worth trying.

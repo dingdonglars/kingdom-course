@@ -1,5 +1,7 @@
 # Bonus B1.1 — Install LocalDB
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Back in Phase 2 you put the kingdom on SQLite. It works. So why install another database? Because the engine-vs-shell rule made a promise. The engine doesn't care which database it talks to. Changing the database should be a config change, not a rewrite. B1 is the test that checks the promise. Today's job is the small first step — install **SQL Server LocalDB** on your machine. Tomorrow we point your existing EF Core code at it and run the tests.
 
 LocalDB is the right tool for this. It is *real* SQL Server — full T-SQL, the same engine that big companies run in production — but the version made for developers. It installs in five minutes. It runs on your laptop. There is no background service to manage, and it costs nothing. Real, but small.

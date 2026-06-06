@@ -1,5 +1,7 @@
 # Module 0.2 — Number Guess
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The computer picks a number between 1 and 100. You guess. It tells you if you're too high, too low, or right — and it's a bit rude about it. Today is your first program with a *loop*: code that runs over and over until something tells it to stop. By the end you'll have a real little game, and you'll know three new ideas — loops, conditionals, and how to turn typed text into a number.
 
 > **Words to watch**

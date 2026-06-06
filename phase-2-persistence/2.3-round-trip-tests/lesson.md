@@ -1,5 +1,7 @@
 # Module 2.3 — Round-Trip Tests
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Yesterday we saved a *summary* of the kingdom. Today we save the *whole kingdom* and load it back. The test that proves this works is a **round-trip test**: any kingdom I save should match itself when I load it back.
 
 Adding load support also makes us change a small part of the engine. That's not a problem — it's part of the lesson. Saving real state often shows you things in the model that need fixing, even when they looked fine before. Saving puts honest pressure on your model and shows where it's weak.

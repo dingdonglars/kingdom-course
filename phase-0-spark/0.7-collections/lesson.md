@@ -1,5 +1,7 @@
 # Module 0.7 — Collections + Inventory Tool, v1
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today you start the **Inventory Tool** — the program you'll hand in for the M1 milestone. It's a small command-line program that adds, removes, finds, lists, saves, and loads items. By the end of this lesson it works when everything goes right: every command does what you'd expect when the input is typed correctly. Module 0.8 makes it stronger against the strange cases. Along the way you meet the two collection types you'll use most for the rest of the course — `List<T>` and `Dictionary<K, V>` — plus LINQ, a way of working with collections that reads almost like plain English.
 
 > **Words to watch**

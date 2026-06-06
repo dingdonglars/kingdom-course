@@ -1,5 +1,7 @@
 # Module 3.6 — Multi-User Persistence
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today every kingdom belongs to a *user*. The signed-in user's `sub` is saved along with every kingdom. `GET /kingdoms` returns *only your* kingdoms — never anyone else's. This is what turns the API from a single shared pile of data into a real product with separate users.
 
 The change is small in lines of code. It is very important all the same. Multi-user data is the part of any web app where bugs hide most easily, and these bugs are quiet: one user sees another user's data, or changes it, and nobody notices for weeks. The fix is a single `WHERE` clause, and the cost of forgetting it is huge. We're going to build this habit in now, while the codebase is still small enough to understand from end to end.

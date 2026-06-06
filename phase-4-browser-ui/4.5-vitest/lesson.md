@@ -1,5 +1,7 @@
 # Module 4.5 — Vitest (Frontend Testing)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The browser code gets unit tests today. **Vitest** is the JavaScript version of xUnit — fast, made to work with Vite, and using the same `expect(x).toBe(y)` style you've been using all year. We'll test the components from Module 4.4: given a `KingdomSlot`, `KingdomCard` should render the HTML we expect; given a string with angle brackets, `escapeHtml` should return escaped output.
 
 > **Words to watch**

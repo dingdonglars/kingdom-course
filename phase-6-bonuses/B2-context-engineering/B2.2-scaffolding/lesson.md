@@ -1,5 +1,7 @@
 # Bonus B2.2 — Scaffolding (Persistent Context)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Scaffolding is the *files* and *snippets* that make every AI conversation better, on their own. You set them up once, and they pay back every time you talk to the AI from that day on. You already have a good scaffold — you have been adding to it since `ARCHITECTURE.md` appeared at Module 4.0. Today's lesson is about checking what you have, tightening it, and adding a couple of new pieces that are worth their cost.
 
 The idea is simple. Each scaffold file is text the AI reads on every session. The cheaper the text (short, current, correct), the better the output. Padding hurts twice — you pay tokens for it, and the AI has to read past it to reach the useful parts.

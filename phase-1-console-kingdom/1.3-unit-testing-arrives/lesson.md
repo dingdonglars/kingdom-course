@@ -1,5 +1,7 @@
 # Module 1.3 — Unit Testing Arrives
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Today you write tests. Real ones, with xUnit and Shouldly, run with `dotnet test` from the terminal. By the end of the lesson the engine has eleven passing tests. The split you did in 1.2 is what makes today possible — the test project will reference the engine the same way the console does, and never touch the console at all.
 
 A unit test is a small piece of code that checks one thing your code does. Why write tests now, while the engine is still simple? Think of a smoke alarm. You put it up before there's a fire, not after. You wrote `Building.Upgrade()` last week. You're sure it works. Six weeks from now you'll change `Building` so each level costs a different amount. Did you break anything? Without tests, you only find out when something else crashes — maybe minutes later, maybe months later. With tests, `dotnet test` tells you in 0.3 seconds.

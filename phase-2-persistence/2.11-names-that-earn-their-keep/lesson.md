@@ -1,5 +1,7 @@
 # Module 2.11 — Names That Earn Their Keep (M3 close)
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 The kingdom now has 35 engine tests, JSON, SQLite, EF Core, migrations, save slots, and an interactive UI. The code works. Today is about a deeper skill: a careful pass over the names of everything you've written this phase. This is what turns *"code that works"* into *"code anyone can read six months later — including future-you."*
 
 > **Words to watch**

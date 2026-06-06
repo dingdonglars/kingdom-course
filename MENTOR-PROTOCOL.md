@@ -1,5 +1,7 @@
 # How we work — you & Lars
 
+> Travou no inglês? Abra o `MENTOR-PROTOCOL.pt.md` — é este mesmo documento em português. Tente em inglês primeiro.
+
 > A two-way agreement on how we run the year together. This file lives in the course repo because both of us need to read it, not just Lars. Read it once now. Come back to it whenever something feels off.
 
 ## Why this exists

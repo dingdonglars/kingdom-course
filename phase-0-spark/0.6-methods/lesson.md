@@ -1,5 +1,7 @@
 # Module 0.6 — Methods Deep Dive
 
+> Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
+
 Back in Tiny Adventure you wrote three methods: `Hallway`, `Kitchen`, and `Library`. You called them and they worked. But we never talked about how a method is built — the values you put in, and the answer it gives back. Today we will.
 
 Think of a method as a button with a name on it. Once the button exists, you press it and it does its job. You don't rebuild it every time. In a game, "Jump" is a button. You press it, your character jumps. You don't think about *how* the jump works each time you press it. A method is that same idea, in code.
