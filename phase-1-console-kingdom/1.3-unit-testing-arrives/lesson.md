@@ -139,6 +139,29 @@ public void Add_StartingFromZero_GetReturnsAmount(Resource r, int amount)
 
 Three `[InlineData]` lines become three runs of the same test, each with different inputs. That saves you from writing the same test three times. Use `[Theory]` whenever you would otherwise copy a test and change one number.
 
+## Debug a test
+
+In Module 0.8 you met the debugger by pressing **F5** on a program. Tests give you a second way in — and it's often the handiest one. You can drop a breakpoint in your engine code and **debug straight into it from a test**. There's no console to run and nothing to choose to start: the test sets up a tiny, exact scenario, and you watch your code handle it, line by line.
+
+**Where the buttons are.** Hover over any `[Fact]` and VS Code shows two small links right above it: **Run | Debug**. (There's also a **Testing** view — the beaker icon in the bar on the far left — that lists every test with its own run and debug buttons.) *Run* just runs the test; *Debug* runs it with the debugger attached, so your breakpoints stop it.
+
+**Try it on `Upgrade`:**
+
+1. Open `Kingdom.Engine/Building.cs` and put a breakpoint on the `Level++;` line inside `Upgrade()`.
+2. Open `BuildingTests.cs` and click **Debug** above `Upgrade_IncreasesLevelByOne`.
+3. The test starts and **pauses inside `Upgrade()`** — with the test's little world already set up: one `Building` called `"Farm"`, its `Level` at `1`. Confirm that in the **Variables** panel on the left.
+4. Press **F10** to run the `Level++;` line. Watch `Level` change from `1` to `2`.
+5. Press **Shift+F11** (*step out*) to come back up into the test — you land on `b.Level.ShouldBe(2)`, the line that checks the result.
+6. Press **F5** to finish. The test passes (green).
+
+You just watched the exact line the test is checking, from the inside — not the output, the *actual code running*.
+
+**This is how you investigate a test that's gone red.** When a test fails and the message still doesn't tell you *why*, don't guess: put a breakpoint in the method the test calls, click **Debug** on the failing test, and step forward until you see a value go wrong. Try it now — break a test on purpose (the **Tinker** below shows the quickest way), then debug into it and find the line that's off.
+
+One handy thing: debugging a test launches the **test runner**, not your console — so it doesn't matter which project would normally start. The test takes you straight to the code it exercises.
+
+> You first met the debugger in **Module 0.8**. For the full set of keys, panels, and tricks — including this test-debugging shortcut — keep **`using-the-debugger.md`** (at the course root) open as your reference.
+
 ## Tinker
 
 Make a test fail on purpose. Change one `.ShouldBe(50)` to `.ShouldBe(51)` and run `dotnet test`. Read the failure message — Shouldly tells you exactly what it expected and what it actually got, and it points at the line. Compare that to xUnit's own check (`Assert.Equal(50, ledger.Get(Resource.Wood))`) — same result, but the message helps you less. That's why the project uses Shouldly.

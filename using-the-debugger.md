@@ -71,6 +71,16 @@ A normal breakpoint pauses *every* time. Sometimes you only care about one case.
 
 (There's also a **Logpoint** — right-click the strip → *Add Logpoint…* — which **prints a message instead of pausing**. Handy when you want to watch without stopping the program.)
 
+## Debugging a test (no console needed)
+
+You can debug straight into your code *from a test* — no program to launch, no startup project to choose. The test sets up a tiny, exact scenario and drops you inside the code it calls.
+
+- Every **`[Fact]`** / **`[Theory]`** has **Run | Debug** links right above it — click **Debug**. (Or open the **Testing** view — the beaker icon on the far left — for the full list with run/debug buttons.)
+- Put a breakpoint in the method the test calls, click **Debug** on the test, and it pauses there with the test's values already set up. Step with **F10** / **F11** as usual.
+- **To investigate a failing (red) test:** breakpoint the method under test → **Debug** the test → step forward until a value goes wrong. That's the fastest way from *"it failed"* to *"here's why."*
+
+Module 1.3 walks through this on a real test.
+
 ## A 60-second tour on your kingdom
 
 Once you have a game loop (Module 1.4):

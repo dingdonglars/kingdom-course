@@ -71,6 +71,16 @@ Um breakpoint normal pausa *toda* vez. Às vezes você só se importa com um cas
 
 (Há também um **Logpoint** — botão direito na faixa → *Add Logpoint…* — que **imprime uma mensagem em vez de pausar**. Útil quando você quer observar sem parar o programa.)
 
+## Depurando um teste (sem precisar de console)
+
+Você pode depurar direto para dentro do seu código *a partir de um teste* — sem programa para iniciar, sem startup project para escolher. O teste monta um cenário pequeno e exato e te deixa dentro do código que ele chama.
+
+- Todo **`[Fact]`** / **`[Theory]`** tem links **Run | Debug** logo acima dele — clique em **Debug**. (Ou abra a view **Testing** — o ícone de béquer à esquerda — para a lista completa com botões de run/debug.)
+- Coloque um breakpoint no método que o teste chama, clique em **Debug** no teste, e ele pausa ali com os valores do teste já montados. Avance com **F10** / **F11** como sempre.
+- **Para investigar um teste que falhou (vermelho):** breakpoint no método sob teste → **Debug** no teste → avance passo a passo até um valor dar errado. É o caminho mais rápido de *"falhou"* para *"é por isso."*
+
+O Módulo 1.3 mostra isso passo a passo num teste de verdade.
+
 ## Um tour de 60 segundos no seu reino
 
 Quando você tiver um game loop (Módulo 1.4):

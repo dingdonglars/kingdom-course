@@ -139,6 +139,29 @@ public void Add_StartingFromZero_GetReturnsAmount(Resource r, int amount)
 
 Três linhas `[InlineData]` viram três execuções do mesmo teste, cada uma com entradas diferentes. Isso te poupa de escrever o mesmo teste três vezes. Use `[Theory]` sempre que você escreveria um teste copiado mudando apenas um número.
 
+## Depure um teste
+
+No Módulo 0.8 você conheceu o depurador apertando **F5** em um programa. Os testes te dão um segundo jeito de entrar — e muitas vezes o mais prático. Você pode colocar um breakpoint no código do seu engine e **depurar direto para dentro dele a partir de um teste**. Não há console para rodar nem nada para escolher iniciar: o teste monta um cenário pequeno e exato, e você vê seu código lidar com ele, linha por linha.
+
+**Onde ficam os botões.** Passe o mouse por cima de qualquer `[Fact]` e o VS Code mostra dois links pequenos logo acima dele: **Run | Debug**. (Há também a view **Testing** — o ícone de béquer na barra à esquerda — que lista cada teste com seus próprios botões de run e debug.) O *Run* só roda o teste; o *Debug* o roda com o depurador anexado, então seus breakpoints o param.
+
+**Experimente no `Upgrade`:**
+
+1. Abra `Kingdom.Engine/Building.cs` e coloque um breakpoint na linha `Level++;` dentro de `Upgrade()`.
+2. Abra `BuildingTests.cs` e clique em **Debug** acima de `Upgrade_IncreasesLevelByOne`.
+3. O teste começa e **pausa dentro de `Upgrade()`** — com o pequeno mundo do teste já montado: um `Building` chamado `"Farm"`, com `Level` em `1`. Confirme isso no painel **Variables** à esquerda.
+4. Aperte **F10** para rodar a linha `Level++;`. Veja `Level` mudar de `1` para `2`.
+5. Aperte **Shift+F11** (*step out*) para voltar para o teste — você cai em `b.Level.ShouldBe(2)`, a linha que checa o resultado.
+6. Aperte **F5** para terminar. O teste passa (verde).
+
+Você acabou de ver a exata linha que o teste checa, por dentro — não a saída, o *código de verdade rodando*.
+
+**É assim que você investiga um teste que ficou vermelho.** Quando um teste falha e a mensagem ainda não te diz *por quê*, não adivinhe: coloque um breakpoint no método que o teste chama, clique em **Debug** no teste que falhou, e avance passo a passo até ver um valor dar errado. Experimente agora — quebre um teste de propósito (o **Mexa um pouco** abaixo mostra o jeito mais rápido), depois depure para dentro dele e ache a linha que está errada.
+
+Uma coisa prática: depurar um teste inicia o **test runner**, não o seu console — então não importa qual projeto normalmente iniciaria. O teste te leva direto ao código que ele exercita.
+
+> Você conheceu o depurador no **Módulo 0.8**. Para o conjunto completo de teclas, painéis e truques — incluindo este atalho de depurar testes — mantenha o **`using-the-debugger.md`** (na raiz do curso) aberto como referência.
+
 ## Mexa um pouco
 
 Faça um teste falhar de propósito. Mude um `.ShouldBe(50)` para `.ShouldBe(51)` e rode `dotnet test`. Leia a mensagem de falha — o Shouldly diz exatamente o que esperava e o que realmente recebeu, e aponta para a linha. Compare com a verificação própria do xUnit (`Assert.Equal(50, ledger.Get(Resource.Wood))`) — mesmo resultado, mas a mensagem te ajuda menos. É por isso que o projeto usa Shouldly.
