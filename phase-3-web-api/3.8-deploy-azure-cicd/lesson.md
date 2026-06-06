@@ -172,7 +172,10 @@ You took your local API and put it on the public internet at a URL anyone can vi
 
 Time to put the book away. Don't scroll back up to the steps — describe the deploy loop from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-On paper, write the steps that happen automatically between you running `git push` to `main` and your site being live. Put them in order. Then answer one question: where in that order do the tests run, and what happens if a test fails?
+On paper:
+
+1. Write the steps that happen automatically between you running `git push` to `main` and your site being live — in order.
+2. Then answer: where in that order do the tests run, and what happens if a test fails?
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

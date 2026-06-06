@@ -195,7 +195,11 @@ You learned the six types you'll use for the rest of the year — `int`, `double
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Without looking, make a variable that is allowed to hold `null` — a nullable string — and set it to `null`. Then print it, but use `??` to print `"unknown"` when it is `null`. Run it; it should print `unknown`. Then change the value to a real word and run again; now it should print the word.
+Open a new empty file. Without looking:
+
+1. Make a variable that is allowed to hold `null` — a nullable string — and set it to `null`.
+2. Print it, but use `??` to print `"unknown"` when it's `null`. Run it; it should print `unknown`.
+3. Change the value to a real word and run again — now it should print the word.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

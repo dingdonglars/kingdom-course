@@ -186,7 +186,11 @@ Five new ideas show up here. Every method you write from now on uses some of the
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Without looking, write a method called `Add` that takes two `int` parameters and gives back their sum. Then call it, store the answer in a variable, and print it. Run it and check the number is right.
+Open a new empty file. Without looking:
+
+1. Write a method called `Add` that takes two `int` parameters and gives back their sum.
+2. Call it, store the answer in a variable, and print it.
+3. Run it and check the number is right.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

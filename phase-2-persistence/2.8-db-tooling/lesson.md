@@ -157,7 +157,14 @@ You picked up three ways to look inside your database: DB Browser (the easy-to-u
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: you can open the `.db` file in a tool and look at what's really inside it. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Pick whichever tool you liked best — DB Browser, `sqlite3`, or SQLTools. Open your `kingdoms-ef.db` file, find the list of tables, look at the rows in one table, and then run one `SELECT` of your own. No notes — just open it and look.
+Pick whichever tool you liked best — DB Browser, `sqlite3`, or SQLTools. Then:
+
+1. Open your `kingdoms-ef.db` file.
+2. Find the list of tables.
+3. Look at the rows in one table.
+4. Run one `SELECT` of your own.
+
+No notes — just open it and look.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

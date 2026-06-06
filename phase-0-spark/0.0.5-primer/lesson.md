@@ -235,7 +235,13 @@ You walked through the filesystem. You saw `C:\` and the tree of folders inside 
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that you can move around the folders. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open Windows Terminal. Without looking, do this: go into `C:\code`, list what's there, go into `kingdom-course`, list again, then go back up one level to `C:\code`. Watch how the prompt changes each time — it always shows the folder you're currently in.
+Open Windows Terminal. Without looking:
+
+1. Go into `C:\code` and list what's there.
+2. Go into `kingdom-course` and list again.
+3. Go back up one level to `C:\code`.
+
+Watch how the prompt changes each time — it always shows the folder you're currently in.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

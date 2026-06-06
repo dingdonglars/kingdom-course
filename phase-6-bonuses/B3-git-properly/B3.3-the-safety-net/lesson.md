@@ -156,7 +156,11 @@ You met `git reflog` — the hidden extra log of HEAD's history that is also git
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, walk through the rescue from memory. You just ran `git reset --hard HEAD~3` and three commits vanished from `git log`. From your own head: which command shows you where HEAD used to be, and which command puts you back? Then say *why* this works — where were those commits the whole time?
+Without scrolling back up, walk through the rescue from memory. You just ran `git reset --hard HEAD~3` and three commits vanished from `git log`:
+
+1. Which command shows you where HEAD used to be?
+2. Which command puts you back?
+3. Then say *why* this works — where were those commits the whole time?
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

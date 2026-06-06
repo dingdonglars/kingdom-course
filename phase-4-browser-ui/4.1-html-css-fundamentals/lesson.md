@@ -4,6 +4,26 @@ Today the kingdom appears in a browser tab. Not as JSON, not as console text —
 
 If you've never written HTML before, it's simpler than it looks. **HTML** describes structure: this is a heading, this is a list, this is the main section. **CSS** describes appearance: this much spacing, that font, those colours. The two languages stay separate on purpose. If you ever find yourself writing colours into HTML, or structure into CSS, something is in the wrong place.
 
+HTML is really just a nested tree — boxes inside boxes. The page you build today is this shape:
+
+```text
+   html
+   |
+   +-- body
+       |
+       +-- header
+       |     +-- h1   "Eldoria"
+       |     +-- p    "Day -"
+       |
+       +-- main
+             +-- h2  "Resources"
+             +-- ul   (the resources list)
+             +-- h2  "Buildings"
+             +-- ul   (the buildings list)
+```
+
+Every tag you open sits inside another tag, and that nesting *is* the structure. CSS then paints that tree, and (next module) JavaScript edits it. Same tree, three jobs: HTML builds it, CSS styles it, JS changes it.
+
 > **Words to watch**
 >
 > - **HTML** — markup language. Describes structure: headings, lists, sections, links.
@@ -43,6 +63,8 @@ Create `web/index.html` at your repo root:
 
 Eight elements, and that's the whole structure. Double-click the file in your file explorer — the browser opens it. You'll see the bare page: a heading "Eldoria", an empty Day, two empty lists. The page asks for a `kingdom.js` file that doesn't exist yet. The browser just skips it and keeps going. We'll write that file in the next module.
 
+If HTML is brand new, here's how to read one line of it. A piece like `<h1>Eldoria</h1>` has three parts: an **opening tag** `<h1>`, the **content** `Eldoria`, and a **closing tag** `</h1>` — the `/` means "close this". The tag name (`h1`, `p`, `ul`, `li`) says what *kind* of thing it is: a heading, a paragraph, a list, a list item. Some tags also carry **attributes** — extra labels inside the opening tag, like `id="day"` in `<span id="day">`. An `id` is just a name you pin on one element so your CSS and JavaScript can find it later. That's the whole language: named boxes, some with labels, nested inside one another.
+
 A note on the elements you'll see most: `<header>` is the page top, `<main>` is the body, `<nav>` is for menus, `<article>` and `<section>` group related content, and `<h1>` through `<h6>` are headings in order of importance. Using these instead of `<div>` everywhere is what **semantic markup** means. Screen readers, search engines, and you yourself later all read meaning from the tag name.
 
 ## Step 2 — the smallest useful CSS
@@ -69,7 +91,23 @@ ul { padding-left: 1.5rem; }
 li { padding: 0.25rem 0; }
 ```
 
-Those few lines hold three useful habits.
+Before the habits, the big picture of *how CSS works* — because this one idea is the whole language.
+
+A CSS file is a list of **rules**. Each rule has two parts: a **selector** that picks which elements it applies to, and a set of **declarations** inside `{ }` that say how those elements should look.
+
+```text
+   h1 { color: teal; }
+   ^^   ^^^^^^^^^^^^
+   |    |
+   |    the declarations -- what to change (property: value)
+   the selector -- which elements this rule paints
+```
+
+So `h1 { color: teal; }` reads as *"find every `<h1>` in the page, make its text teal."* `body { ... }` styles the `<body>`. You can also aim at one specific element by its `id` using `#` — `#day { ... }` styles `<span id="day">` — or a whole group using a class with `.`. **That is the entire link between your two files:** HTML names the boxes, and CSS points at them with selectors and paints them. Change the HTML's structure with one file; change how it *looks* with the other; never mix the two. Once selectors click, every CSS rule you'll ever read is just *which elements* plus *what to change*.
+
+Your CSS can live in one of two places. We're using a separate `styles.css` file, linked from the HTML with `<link rel="stylesheet" href="styles.css">` — that keeps structure and appearance in their own files, which is what you want for anything real. The other way is to write the rules straight inside a `<style>` tag in the page's `<head>`, like `<style> h1 { color: teal; } </style>`. Same rules, same selectors — only the location differs. The inline `<style>` is handy for a tiny one-page experiment (you'll use it in *On your own* below); the linked file is the habit for everything bigger.
+
+With that in mind, the few lines above also hold three habits worth keeping.
 
 The first is **`box-sizing: border-box`** on every element. Without it, the width you set on a box does not include its padding or border. So a `width: 200px` element with `padding: 10px` actually takes 220 pixels. With `border-box`, the width is exactly what you set. Add it once, on `*`, at the top of the file.
 
@@ -119,7 +157,14 @@ You wrote a webpage by hand. The HTML set out the structure — a header with a 
 
 ## On your own
 
-Time to put the book away. Don't scroll back up to the steps — make a new empty `.html` file and, from your own head, write a tiny page: a full HTML skeleton with one `<h1>` with your kingdom's name in it, and one CSS rule (in a `<style>` tag in the head, or a linked file) that colours that heading. Open it in the browser. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for. The browser is your grader: if your heading shows up coloured, you got it right.
+Time to put the book away. Don't scroll back up to the steps. Make a new empty `.html` file and, from your own head, build this:
+
+1. A full HTML skeleton — `<!DOCTYPE html>`, then `<html>`, `<head>`, and `<body>`.
+2. One `<h1>` inside the body, with your kingdom's name in it.
+3. One CSS rule (in a `<style>` tag in the `<head>`, or a linked `.css` file) that gives that heading a colour.
+4. Open the file in the browser.
+
+No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for. The browser is your grader: if your heading shows up coloured, you got it right.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

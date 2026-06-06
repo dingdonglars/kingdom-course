@@ -180,7 +180,10 @@ Your kingdom now reads *and* writes over HTTP. You wrote a `TickResponse` DTO �
 
 Time to put the book away. Don't scroll back up to the steps — write a small response DTO from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new file. Imagine the API needs to return a building over the network. Write a `record` called `BuildingResponse` that holds the building's `Name`, its `Kind` (a string like "Farm"), and its `Level` (a number). Keep it small — only what a client needs. Build the project to check it compiles.
+Open a new file. Imagine the API needs to return a building over the network. Without looking:
+
+1. Write a `record` called `BuildingResponse` holding the building's `Name`, its `Kind` (a string like "Farm"), and its `Level` (a number) — only what a client needs.
+2. Build the project to check it compiles.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

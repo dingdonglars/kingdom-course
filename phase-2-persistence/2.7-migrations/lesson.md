@@ -235,7 +235,11 @@ You moved from *"create the structure if it doesn't exist"* to *"change the stru
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: a migration is a recorded structure change you generate, then apply. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-From memory, run the two commands that (1) generate a new migration from the model and (2) apply it to the database. Then say out loud — or jot down — what each one did and where the new files went.
+From memory:
+
+1. Run the command that generates a new migration from the model.
+2. Run the command that applies it to the database.
+3. Then say out loud — or jot down — what each one did, and where the new files went.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

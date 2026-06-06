@@ -4,6 +4,20 @@ By the end of today, your kingdom will be at `http://localhost:5000/kingdom`. Yo
 
 We're going to learn HTTP in one screen, then write a single ASP.NET endpoint that serves your kingdom over the network. *ASP.NET Core* is Microsoft's web framework — the part of .NET that handles HTTP. Its **minimal API** style is the new, lightweight way of writing endpoints: a few lines instead of a whole folder of controllers.
 
+And here's the thing to hold onto: this is the *engine and shell* idea from Phase 1, one more time. The web API is just a new shell. The clients ask it questions; it asks the same `Kingdom.Engine` you've had all along.
+
+```text
+   CLIENTS                       SERVER (a new shell)         ENGINE
+
+   browser / curl / phone
+        |  --- GET /kingdom --->   +------------------+
+        |       (a request)        | ASP.NET endpoint |--uses-->  Kingdom.Engine
+        |  <-- 200 + JSON -------   +------------------+          (same rules
+        |       (a response)                                       as Phase 1)
+```
+
+The console was one shell; the API is another. Neither holds the rules — they just carry questions to the engine and answers back out.
+
 > **Words to watch**
 >
 > - **HTTP** — Hypertext Transfer Protocol — the language clients and servers speak over the network
@@ -199,7 +213,13 @@ Your kingdom is now reachable over HTTP. You created a new project, wrote a sing
 
 Time to put the book away. Don't scroll back up to the steps — write a tiny endpoint from your own head and watch it answer in the browser. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-In your `Program.cs`, add a new `GET /hello` endpoint that returns the text `"Hello, kingdom"`. You need three things in a tiny web app: build the app, map the route, run the app. Write them without looking. Run it, then open `http://localhost:5xxx/hello` in your browser.
+In your `Program.cs`, add a new `GET /hello` endpoint that returns the text `"Hello, kingdom"`. A tiny web app needs three things — write them without looking:
+
+1. Build the app.
+2. Map the route.
+3. Run the app.
+
+Then run it and open `http://localhost:5xxx/hello` in your browser.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

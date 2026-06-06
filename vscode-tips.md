@@ -58,6 +58,8 @@ Install via the Extensions sidebar (Ctrl+Shift+X) or by typing into the Command 
 
 Don't install fifty extensions out of excitement. Each one is a moving part. Add them as the course needs them.
 
+> **Running and debugging a program?** There's one habit that makes it painless — open each program in its own window (one program, one window). The full how-to, including what to do when *Run* or **F5** misbehaves, is in `running-your-project.md`. Read it once.
+
 ## The editor will fight you sometimes — read the squiggle
 
 Three colours of squiggle live under your code:
@@ -107,7 +109,7 @@ You can also resize the panel by dragging its top edge. If the terminal is hoggi
 
 ### Make the terminal shortcut sane
 
-If the default `` Ctrl + ` `` doesn't work for you (the dead-key problem above), rebind it to something your fingers can hit reliably. Recommendation: `Ctrl + Ç` — Athos's keyboard has a real `Ç` key right where US keyboards put `;`, and nothing in VS Code uses it.
+If the default `` Ctrl + ` `` doesn't work for you (the dead-key problem above), rebind it to something your fingers can hit reliably. Recommendation: `Ctrl + Ç` — your keyboard has a real `Ç` key right where US keyboards put `;`, and nothing in VS Code uses it.
 
 How:
 

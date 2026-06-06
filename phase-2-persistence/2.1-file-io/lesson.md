@@ -4,11 +4,25 @@ Until now, your kingdom is gone the moment you close the program. Today we chang
 
 Saving your work so it stays after the program ends is called *persistence*. The first time you see a file appear, close the program, and find the file still there, persistence will start to make sense.
 
+Here's the whole idea of this phase in one picture:
+
+```text
+   IN MEMORY (while running)              ON DISK (a file)
+   -------------------------             -------------------
+   your Kingdom object          save      save.txt
+   gold 100, wood 50, ...      ------->   "Eldoria 100 50 20 30"
+                                          |
+   vanishes the moment          load      | still there after you close,
+   the program closes         <-------     reboot, and come back tomorrow
+```
+
+Everything so far has lived only in the left column — gone the instant the program stops. Phase 2 is about the arrows: writing the kingdom *out* to disk, and reading it back *in* next time. Today's file is the simplest version of that; JSON, then SQLite, then a real database are the same two arrows done better.
+
 Along the way you'll learn the exact way Windows handles file paths and line endings. After today you'll know the difference between `C:\foo` and `C:/foo`.
 
 > **Words to watch**
 >
-> - **path** — a file's address on disk: `C:\Users\Athos\save.txt`, or written portably with `Path.Combine(...)`
+> - **path** — a file's address on disk: `C:\code\kingdom\save.txt`, or written portably with `Path.Combine(...)`
 > - **absolute vs relative** — `C:\foo\bar.txt` is absolute; `bar.txt` is relative (to the program's working directory)
 > - **encoding** — how text becomes bytes. UTF-8 is the answer for almost everything written this decade.
 > - **`File.WriteAllText`** / **`File.ReadAllText`** — the two simplest ways to put a string on disk and get it back.
@@ -39,8 +53,8 @@ This module *doesn't change the engine yet.* All the file work happens in `Kingd
 In Windows, file paths use backslashes. But in C# code, a backslash inside a string is a special character. So you have two choices: write it *twice*, or put an `@` in front of the string (this is called a *verbatim* string):
 
 ```csharp
-string a = "C:\\Users\\Athos\\save.txt";       // double
-string b = @"C:\Users\Athos\save.txt";          // verbatim @"..." — what you'll usually see
+string a = "C:\\code\\kingdom\\save.txt";       // double
+string b = @"C:\code\kingdom\save.txt";          // verbatim @"..." — what you'll usually see
 ```
 
 But writing the full path by hand is risky — it breaks easily. Use `Path.Combine` so your code works on any operating system:
@@ -199,7 +213,13 @@ Your kingdom went from a program that only prints to a program that *saves*. You
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: write a string to a file, then read it back. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Without looking, build a save path with `Path.Combine`, make the folder, write the text `"Hello kingdom"` to a file, then read the same file back and print what you read. Run it. The text you print should match the text you wrote.
+Open a new empty file. Without looking:
+
+1. Build a save path with `Path.Combine`.
+2. Make the folder.
+3. Write the text `"Hello kingdom"` to a file.
+4. Read the same file back and print what you read.
+5. Run it — the text you print should match the text you wrote.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

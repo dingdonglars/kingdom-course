@@ -194,7 +194,10 @@ You turned the API from *one big shared kingdom database* into *each user sees o
 
 Time to put the book away. Don't scroll back up to the steps — write a scoped lookup from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Imagine a store method `Load` that finds one kingdom by `id`. Write the method signature and the `Single(...)` lookup so that one user can *never* load another user's kingdom. Then say why `ownerSub` is a required parameter and not an optional one.
+Imagine a store method `Load` that finds one kingdom by `id`. Without looking:
+
+1. Write the method signature and the `Single(...)` lookup so one user can *never* load another user's kingdom.
+2. Then say why `ownerSub` is a required parameter, not an optional one.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

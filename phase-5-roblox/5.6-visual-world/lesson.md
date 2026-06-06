@@ -133,7 +133,15 @@ You connected the engine to a 3D world. Server code laid out a five-by-five grid
 
 Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that spawning a Part stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new Script in `ServerScriptService`. Without looking, write the lines that build one Part from code: make it, set its size, set its position, set its colour, and parent it to `workspace`. Press Play and look for it in the Viewport.
+Open a new Script in `ServerScriptService`. Without looking, write the lines that build one Part from code:
+
+1. Make it.
+2. Set its size.
+3. Set its position.
+4. Set its colour.
+5. Parent it to `workspace`.
+
+Press Play and look for it in the Viewport.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

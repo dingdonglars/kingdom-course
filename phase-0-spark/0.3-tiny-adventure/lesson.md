@@ -144,7 +144,12 @@ You wrote a real game that remembers things — an inventory the player carries 
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Without looking, write your own method called `Greet` that takes nothing and gives nothing back (a `void` method). Inside it, print a short message. Then, above the method, call it twice. Run it and check the message prints two times.
+Open a new empty file. Without looking:
+
+1. Write your own method called `Greet` that takes nothing and gives nothing back (a `void` method).
+2. Inside it, print a short message.
+3. Above the method, call it twice.
+4. Run it and check the message prints two times.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

@@ -189,7 +189,12 @@ You finished Spark Week. Four working programs in one repo, each one small but c
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Without looking, write a program that saves a word to a file and then reads it back. Write `"dragon"` to a file called `note.txt`, then read that file back into a variable, then print what you read. Run it. Check that `note.txt` shows up in the folder.
+Open a new empty file. Without looking:
+
+1. Write `"dragon"` to a file called `note.txt`.
+2. Read that file back into a variable.
+3. Print what you read.
+4. Run it, and check that `note.txt` shows up in the folder.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

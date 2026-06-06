@@ -109,7 +109,10 @@ You met the scoping template (goal, non-goals, traps, success criteria) and the 
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, write a scoped prompt from memory for a small task. Pick something real you might ask the AI for — say, adding a small method to your store. Write it in the three-sentence form, filling in the blanks for your own task. Then read it back: would the AI have to guess anything?
+Without scrolling back up, write a scoped prompt from memory. Pick something real you might ask the AI for — say, adding a small method to your store:
+
+1. Write it in the three-sentence form, filling in the blanks for your own task.
+2. Then read it back — would the AI have to guess anything?
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

@@ -177,7 +177,12 @@ You taught the kingdom to stay saved between sessions on Roblox. `Players.Player
 
 Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that the save and load calls stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new Script in `ServerScriptService` (turn DataStore on first: *Game Settings → Security → Enable Studio Access to API Services*). Without looking, get a DataStore, save a small table under a key, then read it back and print one field. Press Play.
+Open a new Script in `ServerScriptService` (turn DataStore on first: *Game Settings → Security → Enable Studio Access to API Services*). Without looking:
+
+1. Get a DataStore.
+2. Save a small table under a key.
+3. Read it back and print one field.
+4. Press Play.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

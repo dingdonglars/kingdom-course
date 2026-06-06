@@ -114,7 +114,10 @@ You checked your scaffold (the background context the AI reads on every session)
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, run the audit on one real file. Pick one scaffold file in your repo (say `ARCHITECTURE.md` or `STANDARDS.md`), and from memory, ask it the three questions that decide whether a scaffold file is worth its cost. Then answer them for that file.
+Without scrolling back up, run the audit on one real file. Pick one scaffold file in your repo (say `ARCHITECTURE.md` or `STANDARDS.md`), and from memory:
+
+1. Ask it the three questions that decide whether a scaffold file is worth its cost.
+2. Then answer them for that file.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

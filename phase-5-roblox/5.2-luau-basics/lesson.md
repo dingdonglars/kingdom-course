@@ -2,6 +2,8 @@
 
 Luau is the language Roblox runs on. It's a version of Lua with optional types added on top. It's smaller than C# and simpler than JavaScript, but it's made of the same building blocks: variables, functions, conditionals, loops, and one container called a *table*. Today we walk through how the syntax is different. Tomorrow you use Luau to build classes.
 
+None of today's *ideas* are new. Variables, functions, `if`, loops, a key-and-value container — you met all of these back in Phase 0 and have used them every week since. Luau has the exact same pieces; it just spells them differently and keeps everything in one container instead of separate lists and dictionaries. So read today as a *translation*, not a fresh start. You already think in these shapes — you're learning Roblox's words for them.
+
 > **Words to watch**
 >
 > - **Luau** — Roblox's variant of Lua. Adds optional types and a few performance tweaks.
@@ -60,7 +62,7 @@ local function greet(name: string)
     print("Hello, " .. name)
 end
 
-greet("Athos")
+greet("Lyra")
 ```
 
 `local` keeps the function name inside its own file. Without it, the function becomes global, which means every script in the place can see it. A whole Roblox place shares one global space, so this causes hard-to-find bugs. Always write `local`.
@@ -156,7 +158,11 @@ You walked through the syntax of a second language and saw that most of it is al
 
 Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that the syntax stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new Script in Studio. Without looking, make a table with three resource names in it, then loop over it and print each one. Watch for the index — Luau arrays start at 1. Press Play.
+Open a new Script in Studio. Without looking:
+
+1. Make a table with three resource names in it.
+2. Loop over it and print each one. (Watch the index — Luau arrays start at 1.)
+3. Press Play.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

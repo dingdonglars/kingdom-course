@@ -185,7 +185,11 @@ You closed M4 — the most important milestone of the year. Your kingdom is on t
 
 Time to put the book away. Don't scroll back up to the steps — explain the AI Unlock from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-In your own words, answer three things on paper: (1) what one line in `CLAUDE.md` did you change today, and from what to what? (2) what is the one strict rule for AI-written code now? (3) what stays exactly the same after the unlock?
+In your own words, answer three things on paper:
+
+1. What one line in `CLAUDE.md` did you change today, and from what to what?
+2. What is the one strict rule for AI-written code now?
+3. What stays exactly the same after the unlock?
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

@@ -128,7 +128,10 @@ You spent thirty minutes reading two real ASP.NET Core files written by the peop
 
 Time to put the book away. Don't scroll back up to the steps — from your own head, name the five questions you asked of each file you read today. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Take a blank piece of paper. Without looking, write down all five questions you answer for every new file. Then say why each one helps you understand code you didn't write.
+Take a blank piece of paper. Without looking:
+
+1. Write down all five questions you answer for every new file.
+2. Then say why each one helps you understand code you didn't write.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

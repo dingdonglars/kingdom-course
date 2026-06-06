@@ -189,7 +189,11 @@ You added integration tests that start your whole API in memory and call it with
 
 Time to put the book away. Don't scroll back up to the steps — write the shape of an integration test from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Write a small `[Fact]` test that starts the whole API, calls `GET /openapi/v1.json`, and checks the response is a success. You need three things to get a live client: the factory, the client, the request. Write them without looking.
+Write a small `[Fact]` test that starts the whole API, calls `GET /openapi/v1.json`, and checks the response is a success. Getting a live client needs three things — write them without looking:
+
+1. The factory.
+2. The client.
+3. The request.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

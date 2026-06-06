@@ -2,7 +2,7 @@
 
 -- variables
 local x: number = 10
-local name: string = "Athos"
+local name: string = "Lyra"
 local active: boolean = true
 print(x, name, active)
 

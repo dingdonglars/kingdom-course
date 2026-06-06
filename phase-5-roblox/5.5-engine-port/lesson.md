@@ -191,7 +191,13 @@ You took the engine you wrote in Phase 1 and translated it into Luau on a Roblox
 
 Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that the server loop stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new Script in Studio. Without looking, write the forever loop that waits one second, advances the kingdom one day, and prints the day number. (You can make a fake kingdom with a plain table and a `day` field if you don't want to require the real engine.) Press Play and watch the day count climb in Output.
+Open a new Script in Studio. Without looking, write the forever loop that:
+
+1. Waits one second.
+2. Advances the kingdom one day.
+3. Prints the day number.
+
+(You can use a fake kingdom — a plain table with a `day` field — if you don't want to wire up the real engine.) Press Play and watch the day count climb in Output.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

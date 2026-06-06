@@ -287,7 +287,13 @@ You went from one table to two, and from one query to four. Buildings now belong
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: a `JOIN` reads from two tables at once, matching rows on a shared id. No one marks this — the database engine does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open `sqlite3` on a fresh file. Make two tables — `kingdoms` (`id`, `name`) and `buildings` (`id`, `kingdom_id`, `name`). Put one kingdom and two of its buildings in. Then, without looking, write one `SELECT` that uses an `INNER JOIN` to show each building's name next to its kingdom's name. You should get two rows back, both showing the kingdom name.
+Open `sqlite3` on a fresh file. Without looking:
+
+1. Make two tables — `kingdoms` (`id`, `name`) and `buildings` (`id`, `kingdom_id`, `name`).
+2. Put one kingdom and two of its buildings in.
+3. Write one `SELECT` that uses an `INNER JOIN` to show each building's name next to its kingdom's name.
+
+You should get two rows back, both showing the kingdom name.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

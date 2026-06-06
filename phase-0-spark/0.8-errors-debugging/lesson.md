@@ -169,7 +169,9 @@ Run it again. Try `add` with nothing after it. Try `remove` with nothing after i
 
 Open `Program.cs` in VS Code. Click in the narrow empty strip just left of the line numbers, next to the line `inventory[arg] = inventory.GetValueOrDefault(arg, 0) + 1;`. A red dot appears. That's a **breakpoint**.
 
-Press `F5`, or use *Run → Start Debugging*. VS Code may ask you to install the C# Dev Kit debugger if you haven't already; say yes. The program runs, then pauses *at* your breakpoint when you type `add apple` — just before that line runs.
+First, one quick check: the VS Code window must be open on the **`InventoryTool` folder itself** — the title bar and the file tree should say `InventoryTool`, not the whole `kingdom` repo. If they don't, do *File → Open Folder…* → the `InventoryTool` folder. (One program, one window — otherwise F5 won't know which program to start. The short guide is `running-your-project.md`.)
+
+Now press `F5`, or use *Run → Start Debugging*. VS Code may ask you to install the C# Dev Kit debugger if you haven't already; say yes. The program runs, then pauses *at* your breakpoint when you type `add apple` — just before that line runs.
 
 The left panel shows two things worth knowing about. **Variables** lists the current value of `arg` (`"apple"`), `inventory` (an empty dictionary right now), `cmd` (`"add"`), and so on. **Call stack** shows which methods called which to get to this point. Right now it's just `Program.<Main>$`, the place where your program starts. Once you're calling your own methods, you'll see the full chain here.
 
@@ -251,7 +253,11 @@ Time to put the book away. Don't scroll back up to the steps — prove to yourse
 
 ### 1. The `try / catch` shape, from memory
 
-Open a new empty file. Without looking, write a `try` block with **two** `catch` blocks after it: one that catches `IOException`, and a last one that catches plain `Exception`. Put a line inside the `try` that throws on purpose — `throw new IOException("test");` will do — and a `Console.WriteLine` inside each catch so you can see which one runs. Run it.
+Open a new empty file. Without looking:
+
+1. Write a `try` block with **two** `catch` blocks after it — one catching `IOException`, a last one catching plain `Exception`.
+2. Put a line inside the `try` that throws on purpose — `throw new IOException("test");` will do.
+3. Put a `Console.WriteLine` inside each catch so you can see which one runs. Run it.
 
 Then swap the order: put `catch (Exception)` *first*. What does the compiler say? That error is the whole reason for "specific first, generic last."
 
@@ -278,7 +284,12 @@ With `catch (Exception)` first, the build fails: *"A previous catch clause alrea
 
 ### 2. Use the debugger from memory
 
-Open your Inventory Tool. Without scrolling back to Step 3, do this from memory: set a breakpoint on the line inside `add` that changes the dictionary, start debugging, type `add sword`, and — when it pauses — find the value of `arg` in the Variables panel. Step over one line and watch `inventory` change. Then let it finish.
+Open your Inventory Tool. Without scrolling back to Step 3, from memory:
+
+1. Set a breakpoint on the line inside `add` that changes the dictionary.
+2. Start debugging, and type `add sword`.
+3. When it pauses, find the value of `arg` in the Variables panel.
+4. Step over one line and watch `inventory` change. Then let it finish.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

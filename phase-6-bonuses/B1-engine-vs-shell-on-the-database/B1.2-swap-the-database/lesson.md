@@ -116,7 +116,11 @@ You proved the engine-vs-shell rule isn't just a nice phrase — it's a real pat
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, name the parts that change to move EF Core from SQLite to SQL Server. From memory, list the three things you edit, and say which one part of your code you must regenerate after the swap. Then say the one thing that does *not* change — the part that proves the whole point of the bonus.
+Without scrolling back up, from memory:
+
+1. List the three things you edit to move EF Core from SQLite to SQL Server.
+2. Say which one part of your code you must regenerate after the swap.
+3. Say the one thing that does *not* change — the part that proves the whole point of the bonus.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

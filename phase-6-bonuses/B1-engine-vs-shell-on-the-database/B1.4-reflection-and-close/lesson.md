@@ -56,7 +56,10 @@ You finished a small, focused bonus. The whole arc was: install LocalDB, change 
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, say the whole bonus in one breath. From memory, name the four steps the arc took, in order, and then say in one sentence what the whole thing proved.
+Without scrolling back up, from memory:
+
+1. Name the four steps the arc took, in order.
+2. Then say, in one sentence, what the whole thing proved.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

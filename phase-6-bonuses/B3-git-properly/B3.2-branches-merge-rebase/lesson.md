@@ -203,7 +203,11 @@ You met the two ways to combine git history — `merge` (keeps the two-branches-
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, answer three things from memory. (1) What does `merge` do to the history, and what does `rebase` do to it? (2) Which one changes the commit SHAs? (3) The rule of thumb: which one do you use on your own un-pushed branch, and which one do you use to put work into a shared branch like `main`?
+Without scrolling back up, answer three things from memory:
+
+1. What does `merge` do to the history, and what does `rebase` do to it?
+2. Which one changes the commit SHAs?
+3. The rule of thumb: which one do you use on your own un-pushed branch, and which one to put work into a shared branch like `main`?
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

@@ -236,7 +236,13 @@ The kingdom went from a still photograph to a thing that *moves*. You added a me
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: making the kingdom move forward one step. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open `Kingdom.cs`. Without looking, write the `AdvanceDay()` method from your own head. It should do three things, in this order: every building ticks, every citizen eats one food, then the day counter goes up by one. Build and run the console for five days and watch the day number climb and food drop.
+Open `Kingdom.cs`. Without looking, write the `AdvanceDay()` method from your own head. It should do three things, **in this order**:
+
+1. Every building ticks (`b.Tick(Resources)`).
+2. Every citizen eats one food.
+3. The day counter goes up by one.
+
+Then build and run the console for five days, and watch the day number climb and the food drop.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

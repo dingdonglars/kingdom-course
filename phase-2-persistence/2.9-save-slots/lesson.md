@@ -290,7 +290,13 @@ You completed the four CRUD operations — Create, Read, Update, Delete — on t
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: the four CRUD moves, and how `Delete` works in EF — find the row, remove it, save. No one marks this — the test runner does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-First, name the four CRUD operations out loud and the EF move for each (Create → `Add`, Read → a query, Update → change then `SaveChanges`, Delete → `Remove`). Then, without looking, write the body of a `Delete(int id)` method: open a context, find the row, return if it's missing, remove it, save.
+First, name the four CRUD operations out loud, with the EF move for each (Create → `Add`, Read → a query, Update → change then `SaveChanges`, Delete → `Remove`). Then, without looking, write the body of a `Delete(int id)` method:
+
+1. Open a context.
+2. Find the row.
+3. Return if it's missing.
+4. Remove it.
+5. Save.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

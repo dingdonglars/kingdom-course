@@ -315,7 +315,13 @@ You put your save-slot CRUD behind a real interactive menu. `Program.cs` shrank 
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: a menu loop prints the options, reads a line, decides what to do, and repeats. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Without looking, write a small menu loop: print three options (`1. Say hi`, `2. Count up`, `3. Quit`), read a line, and use a `switch` to act — option 1 prints a greeting, option 2 prints a number that goes up each time, option 3 returns out of the loop. Anything else prints a short "pick 1, 2, or 3" line. Run it and click through your own menu.
+Open a new empty file. Without looking, write a small menu loop:
+
+1. Print three options — `1. Say hi`, `2. Count up`, `3. Quit`.
+2. Read a line, and use a `switch` to act on it.
+3. Option 1 prints a greeting; option 2 prints a number that goes up each time; option 3 returns out of the loop.
+4. Anything else prints a short "pick 1, 2, or 3" line.
+5. Run it and click through your own menu.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

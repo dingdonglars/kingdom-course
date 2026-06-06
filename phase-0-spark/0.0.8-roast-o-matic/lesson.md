@@ -173,7 +173,13 @@ Time to put the book away. Don't scroll back up to the steps — prove to yourse
 
 ### 1. Make and run a new project, from memory
 
-In Windows Terminal, go into your `kingdom` folder. Without looking, make a brand-new console project called `Hello`, move into it, and run it. You should see a line of text print out.
+In Windows Terminal, go into your `kingdom` folder. Without looking:
+
+1. Make a brand-new console project called `Hello`.
+2. Move into it.
+3. Run it.
+
+You should see a line of text print out.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 
@@ -192,7 +198,10 @@ dotnet run
 
 ### 2. Commit and push, from memory
 
-You just made new files. Send them to GitHub using the Source Control panel — from memory, no scrolling back. Then refresh your repo page on github.com and check the `Hello` folder is there.
+You just made new files. From memory, no scrolling back:
+
+1. Send them to GitHub using the Source Control panel — stage, commit, Sync.
+2. Refresh your repo page on github.com and check the `Hello` folder is there.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

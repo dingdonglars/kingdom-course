@@ -4,6 +4,27 @@ This is the lesson the rest of the course is named after. You take the kingdom y
 
 We're introducing a word you'll see a lot from here on: **shell**. A shell is whatever talks to the outside world — the console here, a web page later in the year, Roblox after that. The engine never talks to the outside. The shell does. The engine only knows about the kingdom. The shell knows about people.
 
+Here is the shape of the whole idea — one engine in the middle, and over the year, several shells around it:
+
+```text
+                  +------------------------------+
+                  |        Kingdom.Engine        |
+                  |  the rules: buildings,       |
+                  |  citizens, resources, maths  |
+                  |  (never prints, never asks)  |
+                  +------------------------------+
+                     ^            ^             ^
+                     |            |             |
+            +--------+---+   +----+-----+   +---+--------+
+            |  Console   |   | Browser  |   |  Roblox    |
+            | (Phase 1)  |   | (Phase 4)|   | (Phase 5)  |
+            +------------+   +----------+   +------------+
+              prints to        a web        a Luau
+              the terminal     page         game
+```
+
+Same engine, three shells. The arrows mean "uses": each shell *uses* the engine, never the other way round. The engine is the part you keep all year; each shell is just one way to *play* the same kingdom. That's why this one lesson is the one the course is named after — get this split right today and Phases 4 and 5 become "write a new shell", not "rewrite everything".
+
 > **Words to watch**
 >
 > - **class library** — a project that compiles to a `.dll`, not an `.exe`. No `Main`. Other projects use it.
@@ -192,7 +213,11 @@ You took a single project and split it into two — an engine that holds the kin
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: the engine and the shell, and which one is allowed to use the other. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without looking, answer these three out loud or on paper. (1) Which project depends on the other — does the engine depend on the console, or the console on the engine? (2) The engine has a rule it must never break. What is it? (3) If something inside the engine needs to tell the player a message, what should it do, since it isn't allowed to print?
+Without looking, answer these out loud or on paper:
+
+1. Which project depends on the other — does the engine depend on the console, or the console on the engine?
+2. The engine has a rule it must never break. What is it?
+3. If something inside the engine needs to tell the player a message, what should it do, since it isn't allowed to print?
 
 Then test rule 2 yourself: open any engine file and add `Console.WriteLine("hi");` inside a method. It still builds — the compiler won't stop you. But you've broken the rule. Take the line back out.
 

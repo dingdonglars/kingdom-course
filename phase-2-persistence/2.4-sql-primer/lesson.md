@@ -26,6 +26,22 @@ That's why almost every real program uses a database. The harder question is *wh
 
 SQLite is a **library**, not a server. You add it to your project, tell it where the file is, and it handles the rest. It's used everywhere — your phone, your browser, every Mac, your TV. It may be the most-installed software ever made. It can handle real, large workloads (Stack Overflow uses it for some tasks), but it's also a great fit for a single-player game or a learning project.
 
+## What a table looks like
+
+A database keeps data in **tables** — grids of rows and columns. One table for your saved kingdoms might look like this:
+
+```text
+   a table called  kingdoms
+   +----+-----------+-----+------+
+   | id | name      | day | gold |   <- columns: each one has a type
+   +----+-----------+-----+------+
+   |  1 | Eldoria   |  12 |  340 |   <- a row: one saved kingdom
+   |  2 | Stormhold |   4 |   90 |   <- another row
+   +----+-----------+-----+------+
+```
+
+Each **row** is one saved kingdom. Each **column** is one fact about it, with a fixed type (`name` is text, `gold` is a whole number). SQL — the five commands below — is how you add rows, change them, and ask questions across the whole grid without loading it all yourself.
+
 ## The five SQL commands
 
 ```sql
@@ -268,7 +284,13 @@ Your kingdom now has a third place to live: a SQLite database file. You wrote yo
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: write SQL that makes a table, puts a row in it, and reads it back. No one marks this — the database engine does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open the `sqlite3` prompt on a fresh file: `sqlite3 scratch.db`. Without looking, write SQL that creates a table called `heroes` (an `id`, a `name`, and a `level`), inserts one hero, then selects every row back out. You should see your row come back.
+Open the `sqlite3` prompt on a fresh file: `sqlite3 scratch.db`. Without looking, write SQL that:
+
+1. Creates a table called `heroes` — an `id`, a `name`, and a `level`.
+2. Inserts one hero.
+3. Selects every row back out.
+
+You should see your row come back.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

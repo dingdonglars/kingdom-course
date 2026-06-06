@@ -6,6 +6,8 @@ A unit test is a small piece of code that checks one thing your code does. Why w
 
 Tests are also a kind of documentation that stays correct. A test called `Upgrade_IncreasesLevelByOne` *says what `Upgrade` is supposed to do*. The test runs every time you build, so this description can never quietly stop matching the real code.
 
+One thing to know going in: this isn't a one-day topic you tick off. From today, tests ride along with the engine for the rest of the year. Almost every lesson from here adds a feature *and* the tests that guard it. So it's worth getting the rhythm — arrange, act, assert — into your fingers now, while the things you're testing are still small and easy to reason about.
+
 > **Words to watch**
 >
 > - **unit test** — a small automated check that exercises one piece of behaviour
@@ -152,7 +154,14 @@ The engine is protected by tests now. Eleven small tests that run in under a sec
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: the shape of a test. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-In your test project, add one new test from memory. Name it `Upgrade_CalledTwice_LevelIsThree`. Inside it: *arrange* — make a new `Building`. *Act* — call `Upgrade()` twice. *Assert* — check the level is `3` with `ShouldBe`. Don't forget the `[Fact]` line above the method. Then run `dotnet test` and watch the count go up by one.
+In your test project, add one new test from memory, named `Upgrade_CalledTwice_LevelIsThree`:
+
+1. **Arrange** — make a new `Building`.
+2. **Act** — call `Upgrade()` twice.
+3. **Assert** — check the level is `3` with `ShouldBe`.
+4. Don't forget the `[Fact]` line above the method.
+
+Then run `dotnet test` and watch the count go up by one.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

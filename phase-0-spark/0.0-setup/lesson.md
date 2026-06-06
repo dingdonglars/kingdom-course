@@ -49,6 +49,8 @@ An extension is a small add-on that gives VS Code extra powers. Without this one
 
 When you open a `.cs` file later, you'll see colours, code suggestions, and a small *Run | Debug* link above `Main`. That all comes from this extension.
 
+> **One habit worth learning now.** There's a single rule that makes running and debugging painless every time: open each program in *its own window* — one program, one window. It's one short page. Read `running-your-project.md` once now, and come back to it the first time *Run* or the debugger ever acts up.
+
 ### Tell git who you are
 
 Every commit gets stamped with a name and an email. Set them once, for your whole computer, to match your GitHub account:
@@ -200,7 +202,12 @@ You installed six tools (VS Code, Git, .NET 10, Node.js, Windows Terminal, and a
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that you can find your way back to your work tomorrow. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Close VS Code completely. Now open it again and get back to your `kingdom` folder, from memory. Then do the same from Windows Terminal: move into the folder and open it in VS Code from there. Both ways should land you on the same `C:\code\kingdom` folder.
+From memory, get back to your work two ways:
+
+1. Close VS Code completely, then open it again and return to your `kingdom` folder.
+2. Now do the same from Windows Terminal: move into the folder, then open it in VS Code from there.
+
+Both ways should land you on the same `C:\code\kingdom` folder.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

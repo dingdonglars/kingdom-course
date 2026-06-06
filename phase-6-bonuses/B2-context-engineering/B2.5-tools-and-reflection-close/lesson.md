@@ -93,7 +93,12 @@ You closed B2 and the whole course at the same time. The closing reflection is w
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, name the three *types* of AI tool from memory. For each type, say in a few words what it is best for, and name one tool of that type. The point isn't the brand names — it's the types, so you can place any new tool that comes out next year.
+Without scrolling back up, from memory:
+
+1. Name the three *types* of AI tool.
+2. For each type, say in a few words what it's best for, and name one tool of that type.
+
+The point isn't the brand names — it's the types, so you can place any new tool that comes out next year.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

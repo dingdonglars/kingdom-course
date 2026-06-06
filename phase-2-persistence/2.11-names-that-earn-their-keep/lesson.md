@@ -142,9 +142,9 @@ Time to put the book away. Don't scroll back up to the five questions — show y
 
 Here are three weak names. For each one, pick a better name and say in one sentence *why* it's better:
 
-- a class called `DataManager` that loads and saves players
-- a method called `Process(p)` that turns a player into a save record
-- a method called `DoIt()` that deletes a save slot
+1. a class called `DataManager` that loads and saves players
+2. a method called `Process(p)` that turns a player into a save record
+3. a method called `DoIt()` that deletes a save slot
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

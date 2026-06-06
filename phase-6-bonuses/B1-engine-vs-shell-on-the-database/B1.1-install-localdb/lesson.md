@@ -91,7 +91,11 @@ You installed SQL Server LocalDB — the developer version of Microsoft's main d
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, do this from memory: open a fresh PowerShell window and prove your LocalDB install is alive. Check that the default instance exists, start it, and run one query that gets a real answer back from SQL Server.
+Without scrolling back up, from memory — open a fresh PowerShell window and prove your LocalDB install is alive:
+
+1. Check that the default instance exists.
+2. Start it.
+3. Run one query that gets a real answer back from SQL Server.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

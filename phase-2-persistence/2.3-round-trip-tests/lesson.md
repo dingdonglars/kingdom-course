@@ -354,7 +354,12 @@ You proved that saving and loading keeps the whole kingdom intact — five round
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: a round-trip test saves something, loads it back, and checks the two match. No one marks this — well, the test runner does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open the round-trip test file. Without looking at the others, write one new `[Fact]` that makes a kingdom, advances it 30 days, saves it full and loads it back through the `Roundtrip` helper, and checks the loaded `Day` equals the original `Day`. Run `dotnet test`. It should pass.
+Open the round-trip test file. Without looking at the others, write one new `[Fact]` that:
+
+1. Makes a kingdom and advances it 30 days.
+2. Saves it full, and loads it back through the `Roundtrip` helper.
+3. Checks the loaded `Day` equals the original `Day`.
+4. Run `dotnet test` — it should pass.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

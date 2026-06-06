@@ -4,6 +4,19 @@ Today is the lesson Module 1.7 was setting up. We take two interfaces out of the
 
 The fix here is one of the most common patterns in modern code: **make an interface, take it in through the constructor, and let the caller choose the version**. Yesterday's `EventEngine` had `private readonly Random _rng = new();` — a hidden dependency that you couldn't change. Today's version has `private readonly IRandom _rng;`, set from a constructor parameter — a dependency you can see and can swap out. The change is small to read, but the difference in what you can test is huge.
 
+An **interface** is a *contract* — a list of what something can do, with no say in how. Once `EventEngine` asks for "anything that fulfils the `IRandom` contract", you get to choose which version it gets:
+
+```text
+            IRandom            the contract: "ask me for a number, I give one back"
+           /        \
+   SystemRandom      a fake
+   (real dice —      (test dice — returns
+    the console       exactly what a test
+    hands this in)    tells it to)
+```
+
+Same socket, two plugs. The engine doesn't know or care which one it got — it just calls the contract. That's the whole trick that makes the engine testable.
+
 > **Words to watch**
 >
 > - **interface** — a contract: a list of method shapes with no bodies. Many classes can implement the same interface.

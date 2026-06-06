@@ -93,7 +93,12 @@ You installed SSMS, connected to your LocalDB instance, and used the five basic 
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, open SSMS from cold and reach one of your own rows. From memory: connect to your LocalDB instance, find one of your `Kingdom_*` databases in the tree, open a new query window, and run one query that shows the rows your engine wrote.
+Without scrolling back up, from memory — open SSMS from cold and reach one of your own rows:
+
+1. Connect to your LocalDB instance.
+2. Find one of your `Kingdom_*` databases in the tree.
+3. Open a new query window.
+4. Run one query that shows the rows your engine wrote.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

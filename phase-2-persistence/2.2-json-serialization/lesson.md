@@ -307,7 +307,12 @@ You built your first real save format. Same kingdom from yesterday, but now it s
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: turn a record into JSON, then turn the JSON back into a record. No one marks this — it's just for you. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Make a tiny `record Player(string Name, int Score)`. Without looking, serialise one to a JSON string with `JsonSerializer.Serialize(...)`, print the string so you can see it, then deserialise it back into a `Player` with `JsonSerializer.Deserialize<Player>(...)`. Run it. The name and score you get back should match the ones you put in.
+Open a new empty file. Make a tiny `record Player(string Name, int Score)`. Then, without looking:
+
+1. Serialise one `Player` to a JSON string with `JsonSerializer.Serialize(...)`.
+2. Print the string so you can see it.
+3. Deserialise it back into a `Player` with `JsonSerializer.Deserialize<Player>(...)`.
+4. Run it — the name and score you get back should match the ones you put in.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

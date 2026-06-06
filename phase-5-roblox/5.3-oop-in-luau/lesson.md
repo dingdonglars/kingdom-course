@@ -2,6 +2,21 @@
 
 Lua doesn't have classes. It has tables and one extra tool called *metatables*, and that's enough to build classes by hand. Every piece of Lua code you'll ever read uses some version of the same recipe. Today we port the Phase 1 `Building` and `Farm` to Luau using that recipe — same idea, smaller language, a bit more typing.
 
+Back in Module 1.1, a class was built in: you wrote `class Building { ... }` and C# did the rest. Luau has no `class` keyword. So you build the *same blueprint-and-objects idea* yourself, out of two parts you've now met — a table to hold one object's data, and a metatable that says "for the methods, go look over there":
+
+```text
+   one Building object              the Building "class" table
+   (made by Building.new)           (holds the shared methods)
+   +------------------+             +----------------------+
+   | name  = "Farm"   |   __index   | new()                |
+   | level = 1        | ----------> | upgrade()            |
+   +------------------+   "missing  | tick()               |
+                          a method? +----------------------+
+                          look here"
+```
+
+Each object keeps its own `name` and `level`. The methods live once on the `Building` table, and every object reaches them through `__index`. That's the whole trick — it's the same "one blueprint, many objects" from 1.1, just wired up by hand.
+
 > **Words to watch**
 >
 > - **metatable** — a table that defines extra behaviour for *another* table (operators, lookup, comparison).
@@ -123,7 +138,11 @@ You met Lua's idea of object-oriented programming. There's no `class` keyword �
 
 Time to put the book away. Don't scroll back up to the recipe — prove to yourself, from your own head, that it stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new Script in Studio. Without looking, write a tiny class called `Tower`: a `.new(name)` constructor that sets `name` and `level = 1`, and an `:upgrade()` method that adds 1 to the level. Then make one, call upgrade twice, and print the level. Press Play.
+Open a new Script in Studio. Without looking, write a tiny class called `Tower`:
+
+1. A `.new(name)` constructor that sets `name` and `level = 1`.
+2. An `:upgrade()` method that adds 1 to the level.
+3. Make one, call `upgrade` twice, and print the level. Press Play.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

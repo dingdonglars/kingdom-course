@@ -109,7 +109,11 @@ You installed Roblox Studio and ran your first script in it. You met the four pa
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open Studio with the Baseplate. Without looking, add a Script to `ServerScriptService`, make it print one word, and press Play. Then point at each of the four panels and say its name out loud.
+Open Studio with the Baseplate. Without looking:
+
+1. Add a Script to `ServerScriptService`.
+2. Make it print one word, and press Play.
+3. Then point at each of the four panels and say its name out loud.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

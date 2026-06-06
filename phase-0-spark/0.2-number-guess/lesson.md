@@ -106,7 +106,13 @@ You wrote a real game. The program picks a number, you guess, it tells you how y
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Without looking, write a small program with a `while (true)` loop that counts up. Start a number at `1`. Each time around the loop, print it and add `1`. When it reaches `5`, use `break` to jump out of the loop. So it should print `1 2 3 4 5` and then stop.
+Open a new empty file. Without looking, write a small program with a `while (true)` loop that counts up:
+
+1. Start a number at `1`.
+2. Each time around the loop, print it and add `1`.
+3. When it reaches `5`, use `break` to jump out of the loop.
+
+It should print `1 2 3 4 5` and then stop.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

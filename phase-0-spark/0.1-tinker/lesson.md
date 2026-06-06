@@ -14,7 +14,7 @@ Last time, Roast-O-Matic printed the same three roasts to no one in particular. 
 
 ## Step 1 — ask for a name
 
-Open your `RoastOMatic` folder in VS Code. Above the `string[] roasts = ...` line, add this:
+Open your `RoastOMatic` folder in VS Code — open it **as its own window** (*File → Open Folder…* → the `RoastOMatic` folder), so the file tree on the left shows `RoastOMatic`, not the whole `kingdom` repo. One program, one window — that's the habit that keeps *Run* and the debugger simple all year. (There's a one-page guide, `running-your-project.md`, if you want the full picture.) Above the `string[] roasts = ...` line, add this:
 
 ```csharp
 Console.Write("Who do you want to roast? ");
@@ -77,7 +77,11 @@ You made your program ask a question and wait for the answer. Two extra lines tu
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Without looking, write a tiny program that asks for the user's name, reads what they type, and then prints `Hello, NAME!` using their name. Use string interpolation (the `$"..."` style with `{curly braces}`), not `+`. Run it and type your name.
+Open a new empty file. Without looking:
+
+1. Write a tiny program that asks for the user's name and reads what they type.
+2. Print `Hello, NAME!` using their name — with string interpolation (the `$"..."` style with `{curly braces}`), not `+`.
+3. Run it and type your name.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

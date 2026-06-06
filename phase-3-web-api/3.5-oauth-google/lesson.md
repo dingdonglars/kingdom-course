@@ -4,6 +4,32 @@ Today every request can know *who* it's for. Your friend opens the URL, clicks S
 
 We're going to set up the smallest correct version of sign-in: Sign In With Google plus a session cookie. The API gets a `/login` and a `/me` endpoint, and we'll mark the kingdom endpoints as needing sign-in. By the end of this lesson, a client that isn't signed in gets a 401, and a signed-in client gets the full API.
 
+Before the details, here's the whole dance at a glance — three players, passing one person between them:
+
+```text
+   [1] You click "Sign in with Google"
+            |
+            v
+   [2] Your API bounces your browser over to Google
+            |
+            v
+   [3] You log in to Google   (Google handles password + 2FA — never your code)
+            |
+            v
+   [4] Google sends you back to your API with a short, one-time code
+            |
+            v
+   [5] Your API + its secret quietly trade that code with Google for a token
+            |
+            v
+   [6] Your API reads who you are from the token and sets a cookie
+
+   After that: your browser sends the cookie on every request, so the API
+   knows who you are — and your API never once handled a password.
+```
+
+The six numbered steps below are just this picture, said slowly.
+
 > **Words to watch**
 >
 > - **OAuth 2.0** (oh-auth two-point-zero) — the protocol for "let *another service* (Google) verify the user; tell *me* who they are"
@@ -211,7 +237,10 @@ You added real sign-in to your API without writing a single line that handles pa
 
 Time to put the book away. Don't scroll back up to the steps — explain the sign-in flow from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-On paper, walk through what happens when a user clicks "Sign in with Google", from the click to the moment they're signed in. You don't need every word — just the order: who sends the user where, and where the secret is used. Then write the two security rules this module repeated.
+On paper:
+
+1. Walk through what happens when a user clicks "Sign in with Google", from the click to the moment they're signed in — just the order: who sends the user where, and where the secret is used.
+2. Then write the two security rules this module repeated.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

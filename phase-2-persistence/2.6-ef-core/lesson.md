@@ -357,7 +357,11 @@ You replaced raw SQL with C# objects and let EF Core do the translating. Two ent
 
 Time to put the book away. Don't scroll back up to the steps — show yourself, from your own head, that the one big idea stuck: with EF you add an object and call `SaveChanges`, and EF writes the SQL for you. No one marks this — the test runner does, which is the point. It's the fastest way to spot what hasn't stuck yet, while it's still small to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without looking, write the three lines that save a new `KingdomEntity` (give it just a `Name`) to a `KingdomDbContext`, then a query that reads every kingdom back out. Run it. You should get your one kingdom back.
+Without looking:
+
+1. Write the lines that save a new `KingdomEntity` (give it just a `Name`) to a `KingdomDbContext`.
+2. Write a query that reads every kingdom back out.
+3. Run it — you should get your one kingdom back.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

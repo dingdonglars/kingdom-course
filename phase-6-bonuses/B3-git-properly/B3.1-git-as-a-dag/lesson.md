@@ -133,7 +133,11 @@ You looked at git not as a set of commands but as a *data structure* — a graph
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, follow this story in your head and answer at the end. You start with `main` pointing at commit `C3`. You make a branch `feature/farms` (it points at `C3` too). You make one commit on `feature/farms`. Now: where does `main` point? Where does `feature/farms` point? How many commits got copied when you made the branch?
+Without scrolling back up, follow this story in your head: you start with `main` pointing at commit `C3`. You make a branch `feature/farms` (it points at `C3` too). You make one commit on `feature/farms`. Now answer:
+
+1. Where does `main` point?
+2. Where does `feature/farms` point?
+3. How many commits got copied when you made the branch?
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

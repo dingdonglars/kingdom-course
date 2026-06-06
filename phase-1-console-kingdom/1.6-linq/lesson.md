@@ -4,6 +4,8 @@ Today there are almost no new lines of code, but a real change in how you *think
 
 LINQ stands for *Language Integrated Query*. It's a set of helper methods (`Where`, `Select`, `Count`, `Sum`, `Any`, `OrderBy`, `First`, and more) that work on every collection in C#. It's built into the language — nothing to install, just `using System.Linq;` (often added for you already). Once you know about twenty of these methods, you almost never write a loop just to count or filter again.
 
+Here's the real shift, and it's a way of thinking, not just shorter code. With a `for` loop you spell out *how* to get the answer — start a counter, walk every item, add one each time. With LINQ you describe *what* you want — "of the buildings, the farms, counted" — and let C# do the walking. Once you start seeing your kingdom's questions as descriptions instead of loops, a lot of the code gets shorter and easier to read at a glance.
+
 > **Words to watch**
 >
 > - **LINQ** (Language Integrated Query) — a set of methods (`Where`, `Select`, `Sum`, `Count`, `Any`, `OrderBy`, `First`) that work on any collection
@@ -294,7 +296,12 @@ foreach (var b in kingdom.Buildings)
     if (b is Mine) mineCount++;
 ```
 
-Without looking, rewrite that as a single LINQ line. Then write one more LINQ line on your own: the **total of all building levels** added up. Print both and run.
+Without looking, do two things:
+
+1. Rewrite that count as a single LINQ line.
+2. Write one more LINQ line of your own: the **total of all building levels** added up.
+
+Print both and run.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

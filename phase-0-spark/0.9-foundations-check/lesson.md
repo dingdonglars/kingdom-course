@@ -124,4 +124,6 @@ The real "done" for this module is passing the checkpoint with Lars — not the 
 
 ## Next
 
-Phase 1 — **the Kingdom begins.** In Module 1.1 you meet your first **classes** and build the first version of the Kingdom: buildings, citizens, resources. You'll use everything you just showed you can do.
+Two more short checkpoints like this one come first — Module 0.9b (the **Quest Board**) and Module 0.9c (the **Caravan Ledger**). Each is another small program built from a blank file, so the Phase 0 skills are rock-solid before the Kingdom starts to lean on them.
+
+Then Phase 1 — **the Kingdom begins.** In Module 1.1 you meet your first **classes** and build the first version of the Kingdom: buildings, citizens, resources. You'll use everything you just showed you can do.

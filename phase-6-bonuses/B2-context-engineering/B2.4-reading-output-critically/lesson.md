@@ -98,7 +98,10 @@ You met the five-point read — invented APIs, unhappy paths, style drift, over-
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, write out the five-point read from memory. List all five checks you run on every code response. Then say the one standard that decides whether you keep the output or push back.
+Without scrolling back up, from memory:
+
+1. List all five checks you run on every code response.
+2. Then say the one standard that decides whether you keep the output or push back.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

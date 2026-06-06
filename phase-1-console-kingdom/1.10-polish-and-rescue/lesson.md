@@ -183,7 +183,10 @@ Phase 1 closes today. You wrote a four-section README, added doc comments to fou
 
 Time to put the book away. Don't scroll back up to the steps — and don't open any of the earlier lessons either. This one looks back over the whole of Phase 1 and asks you to say the one big idea in your own words. No one marks this one — it's just for you. This is a stretch — it covers six weeks, not one lesson — so getting stuck is completely fine. Getting stuck is the point: it shows you what's worth a second look before Phase 2.
 
-Without looking anything up, answer in your own words, out loud or on paper: **Phase 1 is named after one rule. What is it, and why does it make the engine easy to test?** Then name the two things the engine takes in through its constructor so it never has to create them itself.
+Without looking anything up, answer in your own words, out loud or on paper:
+
+1. **Phase 1 is named after one rule. What is it, and why does it make the engine easy to test?**
+2. Name the two things the engine takes in through its constructor so it never has to create them itself.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

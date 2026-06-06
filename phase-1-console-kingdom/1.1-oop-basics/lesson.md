@@ -1,10 +1,41 @@
 # Module 1.1 — OOP Basics
 
-Today the Kingdom begins. You're going to make four classes — `Building`, `Resource`, `Citizen`, `Kingdom`. From those four, you'll build a tiny medieval kingdom. It exists in your computer's memory while the program runs. By the end of the lesson you'll print Eldoria to the terminal, with two buildings, a citizen, and a treasury. None of it does anything yet. That's fine. First the kingdom needs a body. We'll teach it to move in Module 1.4.
+Today the Kingdom begins. You're going to make four new types — `Resource`, `Building`, `Citizen`, `Kingdom` — and from them build a tiny medieval kingdom that prints to your terminal: two buildings, a citizen, and a treasury. None of it *does* anything yet. That's fine. First the kingdom needs a body; we teach it to move in Module 1.4.
 
-The big idea this lesson is **classes**. A class is a blueprint. It describes what a thing *is* and what it *can do*. `new Building("Main Farm")` then makes one specific thing from that blueprint. That thing is called an *object* (or an *instance*). One class, many objects. One `Building` blueprint, and many farms and mines and lumberyards built from it.
+Before any code, it's worth one minute on the big change that starts here — because the whole rest of the course is built on it. This is the largest new idea in the course, so go slow today. You are not expected to feel fluent by the end of one lesson; you're expected to have *met* it. It clicks over the next few modules, by using it.
 
-Think of a class like the blueprint for a house. The blueprint is one piece of paper. From it you can build many real houses. Each house is a separate thing, but they all came from the same blueprint.
+### What changes today
+
+In Phase 0, a program was a list of steps, with some data sitting nearby. In the Caravan Ledger you kept two dictionaries — `crates` and `price` — lined up by hand, joined by the caravan's name. It worked, but *you* were the one holding the two facts together. Nothing in the code itself said "these belong to the same caravan." As a program grows, that kind of loose bookkeeping is exactly where bugs hide.
+
+**Object-oriented programming** (OOP) is a different way to arrange code. Instead of data in one place and the steps that change it somewhere else, you bundle them into one thing — an **object**. A `Building` object holds its own name and level *and* knows how to upgrade itself. The facts and the things you can do with them live in the same box. A `Caravan` object would hold its crates and its price together — so they can never drift apart, because now they're *one thing*, not two dictionaries you have to remember to keep in step.
+
+That's the shift you're making: from a pile of loose variables to a world made of **things that look after themselves**. The Kingdom is a perfect fit, because it really *is* made of things — buildings, citizens, resources.
+
+### Class and object — the blueprint and the thing built from it
+
+You describe a kind of thing once, in a **class**. The class is a blueprint: it says what every building *has* (a name, a level) and what it *can do* (upgrade). Then `new Building("Main Farm")` stamps out one real building from that blueprint. The thing you get back is an **object** (also called an *instance*). One class, many objects — one `Building` blueprint, and as many farms and mines and lumberyards as you want.
+
+```text
+   CLASS  (the blueprint)              OBJECTS  (made with `new`)
+
+   +-----------------------+        new Building("Main Farm")
+   |  Building             |          +----------------------+
+   |  has:  Name, Level    |  ----->  | Name:  "Main Farm"   |
+   |  can:  Upgrade()      |          | Level: 1             |
+   +-----------------------+          +----------------------+
+       one blueprint...
+                                    new Building("Old Mine")
+                                      +----------------------+
+                                      | Name:  "Old Mine"    |
+                                      | Level: 1             |
+                                      +----------------------+
+                                        ...many objects
+```
+
+It's the same idea as the blueprint for a house: one piece of paper, many real houses built from it. Each house is its own separate thing, but they all came from the same plan.
+
+Don't try to memorise the words below yet. You'll meet each one in the code, where it makes far more sense than any definition. The list is just so you know what to watch for as you go.
 
 > **Words to watch**
 >
@@ -200,7 +231,13 @@ You wrote four classes and saw them connect — a `Kingdom` that owns lists of `
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: writing a class. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Open a new empty file. Without looking, write a small class called `Wall`. Give it a `Name` property that can be read but not changed from outside (`get` only). Give it a `Height` property that starts at `1` and can only be changed from inside the class (a `private set`). Write a constructor that takes a name and sets `Name`. Add a method `Raise()` that adds `1` to `Height`. Then in `Program.cs`, make a `Wall` with `new`, call `Raise()` twice, and print its name and height. Run it.
+Open a new empty file. Without looking, write a small class called `Wall`:
+
+1. A `Name` property that can be read but not changed from outside (`get` only).
+2. A `Height` property that starts at `1` and can only be changed from inside the class (a `private set`).
+3. A constructor that takes a name and sets `Name`.
+4. A method `Raise()` that adds `1` to `Height`.
+5. Then in `Program.cs`: make a `Wall` with `new`, call `Raise()` twice, and print its name and height. Run it.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

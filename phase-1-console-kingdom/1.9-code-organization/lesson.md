@@ -178,7 +178,13 @@ You moved fourteen files into five subfolders, gave each subfolder a matching su
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: a folder and its sub-namespace line up by hand. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without looking, do this from memory in your engine. Make a new subfolder called `Trade/`. Add an empty class file `Caravan.cs` inside it. Write the right `namespace` line at the top of that file so it matches the folder. Then, back in `Kingdom.cs`, picture what one new line you would need if `Kingdom` wanted to use `Caravan`. Build to check the file compiles.
+Without looking, do this from memory in your engine:
+
+1. Make a new subfolder called `Trade/`.
+2. Add an empty class file `Caravan.cs` inside it.
+3. Write the right `namespace` line at the top of that file so it matches the folder.
+4. Back in `Kingdom.cs`, picture the one new line you'd need if `Kingdom` wanted to use `Caravan`.
+5. Build to check the file compiles.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

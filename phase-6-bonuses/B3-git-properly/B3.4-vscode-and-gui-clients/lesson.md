@@ -107,7 +107,10 @@ You closed B3 by connecting the model in your head to the on-screen tools that s
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, match the CLI to the panel from memory. For each terminal command, say what you click in the VS Code Source Control panel to do the same thing: `git status`, `git add file.cs`, `git commit -m "..."`, `git push`. Then name the panel's best feature — the one that beats the terminal for tidying up a messy commit.
+Without scrolling back up, from memory:
+
+1. For each of these terminal commands, say what you click in the VS Code Source Control panel to do the same thing: `git status`, `git add file.cs`, `git commit -m "..."`, `git push`.
+2. Then name the panel's best feature — the one that beats the terminal for tidying up a messy commit.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

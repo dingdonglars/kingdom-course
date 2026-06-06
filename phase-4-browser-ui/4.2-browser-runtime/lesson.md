@@ -2,6 +2,23 @@
 
 Today the page starts working. JavaScript reads from the live `https://localhost:5xxx/kingdoms` API and writes the result into the page. The same engine that's been running since Phase 1, the same JSON your `curl` saw in Phase 3 — now arriving in a browser tab and showing up as HTML you can see. You'll also meet the browser's three developer tabs: Elements (the DOM), Console (run JavaScript live), and Network (every request).
 
+"The browser as a runtime" is the idea in the title, and it just means: the browser is a place your code *runs*, not only a place that shows pages. Your JavaScript runs there, reaches out to your API, and edits the page live. Here's the whole round-trip — and notice it ends at the same engine you wrote in Phase 1:
+
+```text
+   THE BROWSER  (the runtime — your JavaScript runs here)
+
+     index.html + your JS
+          |   fetch("/kingdoms")
+          v
+     your API  --uses-->  Kingdom.Engine   (Phase 1 rules, still unchanged)
+          |
+          |   JSON comes back
+          v
+     your JS writes it into the page (the DOM)  -->  you see the kingdom
+```
+
+Console (Phase 1), API (Phase 3), now browser (Phase 4) — three shells, one engine. Today you wire up the last hop: JSON into a page you can look at.
+
 > **Words to watch**
 >
 > - **DOM** — Document Object Model. The in-memory tree of your page; JavaScript reads and changes it.
@@ -11,6 +28,31 @@ Today the page starts working. JavaScript reads from the live `https://localhost
 > - **CORS** — Cross-Origin Resource Sharing — pronounced *"kors"*. Browser security around API calls. First time we name it; once-per-term explanation lives below.
 
 ---
+
+## New language: JavaScript — and why
+
+You've written C# all year. Today a second language turns up, and it's fair to ask why you can't just keep using the one you know.
+
+The reason is simple: **a web browser runs only one programming language — JavaScript.** Not C#, not Python. If you want a page to *do* anything — react to a click, load data, change its text — that code has to be JavaScript. It's the language the browser was built to speak, and there's no way around it. (Your C# is still here: it's the API the page talks to. The browser half just has to be JavaScript.)
+
+The good news: you already know how to program, and JavaScript is built from the same parts you've used all year — variables, `if`, loops, functions, objects. You're not starting over. You're learning new words for ideas you already own. Here's the quick translation:
+
+| C# | JavaScript | Note |
+| --- | --- | --- |
+| `string name = "Eldoria";` | `const name = "Eldoria";` | `const` = can't reassign later; `let` = can. No type written. |
+| `int day = 11;` | `let day = 11;` | JavaScript doesn't make you write the type. |
+| `Console.WriteLine(x);` | `console.log(x);` | Print — here, to the DevTools console. |
+| `void Greet(string n) {}` | `function greet(n) {}` | No return type, no parameter types. |
+| `if (x == 5)` | `if (x === 5)` | **Three** equals signs in JavaScript (see below). |
+| `foreach (var b in list)` | `for (const b of list)` | `of`, not `in`. |
+| `var k = new Kingdom();` | `const k = { name: "Eldoria", day: 11 };` | A plain object is just `{ key: value }` — which is also exactly what JSON is. |
+
+Two differences catch every C# person, so meet them now:
+
+1. **No types written down, and nothing checks your code before it runs.** You don't declare `int` or `string`, and the browser just runs whatever you wrote. A typo like `slot.naem` doesn't error — it quietly gives you `undefined`, and you find out later when something looks wrong. (Module 4.3 adds TypeScript to put that safety net back.)
+2. **Use `===`, not `==`.** Always three equals signs to compare. JavaScript's two-equals version has surprising rules that lead to confusing bugs; just avoid it.
+
+That's enough to read today's code. You'll be comfortable faster than you expect — the shapes are ones you already think in.
 
 ## Step 1 — open DevTools
 
@@ -138,7 +180,14 @@ The kingdom now loads in a browser tab. JavaScript called your live API, got JSO
 
 ## On your own
 
-Time to put the book away. Don't scroll back up to the steps — from your own head, write a small `async` function that fetches a URL and reads the body as JSON. You need the `async` keyword, a `fetch`, and two `await`s — one for the response, one for the JSON. Run it (the DevTools Console is a quick place to try it). No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+Time to put the book away. Don't scroll back up to the steps. From your own head, write and run this (the DevTools Console is a quick place to try it):
+
+1. An `async` function that takes a `url`.
+2. Inside it, `await fetch(url)` to get the response.
+3. A second `await` on `response.json()` to read the body as JSON.
+4. Return the data — then call the function so it actually runs.
+
+No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

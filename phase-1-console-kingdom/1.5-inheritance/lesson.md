@@ -6,6 +6,21 @@ The other choice would be three separate classes — `Farm`, `Lumberyard`, `Mine
 
 It's a bit like animals. A dog is a kind of animal. It already has everything an animal has — it breathes, it eats, it moves. You only have to describe the part that makes a dog a dog: it barks. You don't re-describe breathing.
 
+Drawn out, today's three buildings look like this:
+
+```text
+                     Building                  the parent
+                     Name, Level, Upgrade()
+                  /      |       \
+                 /       |        \
+             Farm    Lumberyard    Mine        the children: each one IS
+              |          |          |          a Building (it gets all of
+            food       wood       stone        the above for free)...
+                                               ...and only adds its own Tick()
+```
+
+Each child writes *one* small thing — what it produces each tick — and gets `Name`, `Level`, and `Upgrade()` from the parent without copying them.
+
 > **Words to watch**
 >
 > - **inheritance** — when one class (the *child*) gets all the fields and methods of another (the *parent*) and can add or replace its own
@@ -245,7 +260,12 @@ Three subclasses build on `Building` — `Farm`, `Lumberyard`, `Mine` — and ea
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: making a subclass. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Write a new building from memory: a `Quarry` that produces marble. (For this exercise just add `Marble` to your `Resource` enum first, or produce `Stone` if you'd rather not touch the enum.) The `Quarry` should inherit from `Building`, pass the name up to the parent with `: base(name)`, and `override` the `Tick` method so it adds `4 * Level` of its resource to the ledger. Add it to the kingdom in `Program.cs` and run.
+Write a new building from memory: a `Quarry` that produces marble. (First add `Marble` to your `Resource` enum, or produce `Stone` if you'd rather not touch the enum.)
+
+1. `Quarry` inherits from `Building`.
+2. Pass the name up to the parent with `: base(name)`.
+3. `override` the `Tick` method so it adds `4 * Level` of its resource to the ledger.
+4. Add it to the kingdom in `Program.cs` and run.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

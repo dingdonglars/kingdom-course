@@ -100,7 +100,10 @@ You met the multiplayer split that the rest of Phase 5 builds on. One server, ma
 
 Time to put the book away. Don't scroll back up to the code — prove to yourself, from your own head, that the two sides stuck. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-In your own words, finish this sentence out loud: "The client ___ and ___; the server ___ and ___." Then write the two lines that send a message from a client to a server: the client fires the event, and the server listens for it.
+Without looking:
+
+1. Finish this sentence out loud: "The client ___ and ___; the server ___ and ___."
+2. Write the two lines that send a message from a client to a server — the client fires the event, the server listens for it.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

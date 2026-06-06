@@ -254,7 +254,13 @@ You added a real system to the engine in about forty lines: a base record, three
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the one big idea stuck: writing a `record`. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Add a fourth kind of event from memory: `SecretFound`. It should be a `record` that inherits from `KingdomEvent`, take a `Day` and a `string Place`, and pass a clear description up to the base record, like `$"A secret was found at {Place}."`. You don't have to add it to the `switch` — just get the record itself to compile.
+Add a fourth kind of event from memory, `SecretFound`:
+
+1. It's a `record` that inherits from `KingdomEvent`.
+2. It takes a `Day` and a `string Place`.
+3. It passes a clear description up to the base record, like `$"A secret was found at {Place}."`.
+
+You don't have to add it to the `switch` — just get the record itself to compile.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

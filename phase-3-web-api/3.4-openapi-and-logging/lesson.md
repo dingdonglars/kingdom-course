@@ -166,7 +166,10 @@ You turned your API from *a set of working endpoints* into *a service that's doc
 
 Time to put the book away. Don't scroll back up to the steps — write a structured log line from your own head. No one marks this one — it's just for you. It's the easiest way to spot what *hasn't* stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Imagine you have a logger called `log` and two values: an `int id` and a `string name`. Write one `LogInformation` call that records "deleted a kingdom" *and* keeps the id and name as named fields, not just text glued into the sentence. Then say, in a sentence, why the named-field form beats `Console.WriteLine`.
+Imagine you have a logger called `log` and two values: an `int id` and a `string name`. Without looking:
+
+1. Write one `LogInformation` call that records "deleted a kingdom" *and* keeps the id and name as named fields (not text glued into the sentence).
+2. Then say, in a sentence, why the named-field form beats `Console.WriteLine`.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

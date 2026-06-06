@@ -75,7 +75,11 @@ You met the four-step frame — prompt, context, output, eval — and the rule t
 
 Time to put the book away. Don't scroll back up to the steps — prove to yourself, from your own head, that the big idea stuck. No one marks this one — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
 
-Without scrolling back up, write the four-step frame from memory: name all four steps, then mark which three you can change and which one you can't. Then say the rule that follows from that.
+Without scrolling back up, from memory:
+
+1. Name all four steps of the frame.
+2. Mark which three you can change and which one you can't.
+3. Say the rule that follows from that.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 
