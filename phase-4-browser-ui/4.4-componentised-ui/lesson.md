@@ -169,7 +169,13 @@ You split the page into components. `KingdomCard` is a function that turns a `Ki
 
 ## On your own
 
-Time to put the book away. Don't scroll back up to the steps — from your own head, write a small component function. It takes one `KingdomSlot` and returns an HTML string with the name in an `<h2>` and the day in a `<p>`. Run the name through `escapeHtml` so user input stays safe. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+Time to put the book away. Don't scroll back up to the steps. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+From your own head, write a small component function:
+
+1. It takes one `KingdomSlot` and returns an HTML string.
+2. Put the name in an `<h2>` and the day in a `<p>`.
+3. Run the name through `escapeHtml` so user input stays safe.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

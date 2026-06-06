@@ -145,7 +145,13 @@ The browser code now has tests. You connected Vitest to the Vite project, set th
 
 ## On your own
 
-Time to put the book away. Don't scroll back up to the steps — in a `.test.ts` file, from your own head, write one Vitest test for `escapeHtml`. Use a `describe`, an `it`, and an `expect(...).toBe(...)` that checks `escapeHtml('<script>')` turns the angle brackets into `&lt;script&gt;`. Run `npm test`. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for. The test runner is your grader: a green tick means you got the shape right.
+Time to put the book away. Don't scroll back up to the steps. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for. The test runner is your grader: a green tick means you got the shape right.
+
+In a `.test.ts` file, from your own head, write one Vitest test for `escapeHtml`:
+
+1. Use a `describe`, an `it`, and an `expect(...).toBe(...)`.
+2. Check that `escapeHtml('<script>')` turns the angle brackets into `&lt;script&gt;`.
+3. Run `npm test`.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

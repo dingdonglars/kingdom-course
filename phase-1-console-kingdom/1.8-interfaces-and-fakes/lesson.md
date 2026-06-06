@@ -397,7 +397,11 @@ public class Greeter
 }
 ```
 
-Without looking, rewrite `Greeter` so the `IClock` comes in through the constructor instead of being made inside. Then, in a test, use FakeItEasy to make a fake `IClock`, set its `Now` to a fixed date, and check that `Greet()` puts that exact date in the message.
+Without looking:
+
+1. Rewrite `Greeter` so the `IClock` comes in through the constructor instead of being made inside.
+2. In a test, use FakeItEasy to make a fake `IClock` and set its `Now` to a fixed date.
+3. Check that `Greet()` puts that exact date in the message.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

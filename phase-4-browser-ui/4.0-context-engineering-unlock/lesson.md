@@ -173,7 +173,12 @@ You learned the skill you'll use for the rest of the course. **Context engineeri
 
 ## On your own
 
-Time to put the book away. Don't scroll back up to the steps — from your own head, list the four things you give the AI before it writes code for you, in order. Say each one out loud, or write it down. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+Time to put the book away. Don't scroll back up to the steps. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+From your own head:
+
+1. List the four things you give the AI before it writes code for you, in order.
+2. Say each one out loud, or write it down.
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

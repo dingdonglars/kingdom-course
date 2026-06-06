@@ -114,7 +114,13 @@ The frontend is on the internet. You created a Static Web App in Azure (free tie
 
 ## On your own
 
-Time to put the book away. Don't scroll back up to the steps — from your own head, list the steps that took your frontend from your machine to a live URL. What did you tell Azure? What did Azure make for you? What makes it deploy again after the first time? No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+Time to put the book away. Don't scroll back up to the steps. No one marks this — it's just for you. It's the easiest way to spot what hasn't stuck yet, while it's still simple to fix. Getting stuck here is completely fine — that's exactly what it's for.
+
+From your own head, list the steps that took your frontend from your machine to a live URL. Answer in order:
+
+1. What did you tell Azure?
+2. What did Azure make for you?
+3. What makes it deploy again after the first time?
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 

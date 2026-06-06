@@ -77,7 +77,12 @@ Phase 4 closed. The kingdom now plays in any browser. You cleaned up one Phase 0
 
 ## On your own
 
-Time to put the book away. Don't scroll back up — open your old Phase 0 code one more time and pick three lines you would change. For each one, say the exact change out loud or write it down: not "this feels off" but "I would rename this variable to `goldCount`", "I would pull these lines into a method called `RollDice`", "I would delete this comment, it is out of date". No one marks this — it's just for you. It's the easiest way to see whether the difference between old and new code is real skill or just a vague feeling. Getting stuck here is completely fine — that's exactly what it's for.
+Time to put the book away. Don't scroll back up. No one marks this — it's just for you. It's the easiest way to see whether the difference between old and new code is real skill or just a vague feeling. Getting stuck here is completely fine — that's exactly what it's for.
+
+Open your old Phase 0 code one more time. From your own head:
+
+1. Pick three lines you would change.
+2. For each, say the *exact* change out loud or write it down — not "this feels off" but a concrete edit, like "I would rename this variable to `goldCount`", "I would pull these lines into a method called `RollDice`", or "I would delete this comment, it's out of date".
 
 <details><summary>Stuck? Open this to check yourself.</summary>
 
