@@ -24,7 +24,7 @@ Reading the C# version next to the Luau version is the fastest way to learn the 
 | `Citizen.cs` | `Citizen.lua` (ModuleScript) | Same. |
 | `Building.cs` and subclasses | done in Module 5.3 | Already ported. |
 | `Kingdom.cs` (aggregate) | `Kingdom.lua` (ModuleScript) | Owns the lists; calls `:tick(ledger)`. |
-| `EventEngine.cs` | `EventEngine.lua` | Uses Lua's `math.random`, or pass an injected function to keep tests deterministic. |
+| `EventEngine.cs` | *(not ported)* | The Roblox kingdom skips random events to stay small. Port it as a stretch if you want — Lua's `math.random`, or an injected function to keep it deterministic. |
 | Console / file shells | not applicable | Server-side game loop replaces them. |
 
 ## `ResourceLedger.lua`

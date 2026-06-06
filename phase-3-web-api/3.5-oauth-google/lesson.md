@@ -183,10 +183,13 @@ app.MapGet("/me", (HttpContext ctx) =>
     });
 });
 
-// ... rest of /kingdoms endpoints from Module 3.4 ...
-// Add .RequireAuthorization() to each:
-// group.MapGet("/", () => store.ListSlots()).RequireAuthorization();
-// (etc.)
+// ... the /kingdoms endpoints from Module 3.4 ...
+// Guard the WHOLE group in one place — change
+//   var group = app.MapGroup("/kingdoms");
+// to
+//   var group = app.MapGroup("/kingdoms").RequireAuthorization();
+// Every endpoint in the group now needs a valid auth cookie, and a new one
+// you add later can't be accidentally shipped public.
 ```
 
 The new parts, slowly:

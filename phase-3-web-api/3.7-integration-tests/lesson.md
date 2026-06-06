@@ -112,11 +112,19 @@ public class Endpoints_Integration_Tests : IClassFixture<IntegrationFixture>
         json.ShouldContain("/kingdoms");          // our endpoints are registered
     }
 
-    [Fact]
-    public async Task UnauthenticatedKingdomsList_Returns401()
+    [Theory]
+    [InlineData("GET", "/kingdoms")]
+    [InlineData("POST", "/kingdoms")]
+    [InlineData("GET", "/kingdoms/1")]
+    [InlineData("POST", "/kingdoms/1/tick")]
+    [InlineData("DELETE", "/kingdoms/1")]
+    public async Task UnauthenticatedKingdomEndpoints_Return401(string method, string path)
     {
-        var resp = await _client.GetAsync("/kingdoms");
-        ((int)resp.StatusCode).ShouldBe(401);   // requires auth (Module 3.5)
+        var resp = await _client.SendAsync(new HttpRequestMessage(new HttpMethod(method), path));
+        // Every /kingdoms endpoint needs auth — and refuses with a clean 401,
+        // not a 302 redirect to a login page (Module 3.5). One [Theory] proves
+        // it for all five at once, so a new endpoint can't slip through public.
+        ((int)resp.StatusCode).ShouldBe(401);
     }
 
     [Fact]

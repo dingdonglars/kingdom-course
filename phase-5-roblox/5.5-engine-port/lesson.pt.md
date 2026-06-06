@@ -24,7 +24,7 @@ Ler a versão em C# ao lado da versão em Luau é o jeito mais rápido de aprend
 | `Citizen.cs` | `Citizen.lua` (ModuleScript) | Igual. |
 | `Building.cs` e subclasses | feito no Módulo 5.3 | Já portado. |
 | `Kingdom.cs` (agregado) | `Kingdom.lua` (ModuleScript) | Dono das listas; chama `:tick(ledger)`. |
-| `EventEngine.cs` | `EventEngine.lua` | Usa `math.random` do Lua, ou passe uma função injetada para manter os testes determinísticos. |
+| `EventEngine.cs` | *(não portado)* | O reino do Roblox pula os eventos aleatórios para ficar pequeno. Porte como um desafio extra se quiser — `math.random` do Lua, ou uma função injetada para mantê-lo determinístico. |
 | Shells de console/arquivo | não se aplica | O game loop no servidor os substitui. |
 
 ## `ResourceLedger.lua`

@@ -184,10 +184,13 @@ app.MapGet("/me", (HttpContext ctx) =>
     });
 });
 
-// ... restante dos endpoints /kingdoms do Módulo 3.4 ...
-// Adicione .RequireAuthorization() em cada um:
-// group.MapGet("/", () => store.ListSlots()).RequireAuthorization();
-// (etc.)
+// ... os endpoints /kingdoms do Módulo 3.4 ...
+// Proteja o GRUPO INTEIRO num lugar só — troque
+//   var group = app.MapGroup("/kingdoms");
+// por
+//   var group = app.MapGroup("/kingdoms").RequireAuthorization();
+// Agora todo endpoint do grupo precisa de um cookie de auth válido, e um novo
+// que você adicionar depois não pode ser publicado sem proteção por acidente.
 ```
 
 As partes novas, devagar:

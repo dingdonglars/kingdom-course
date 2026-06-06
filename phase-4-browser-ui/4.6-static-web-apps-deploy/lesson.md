@@ -51,6 +51,14 @@ app.UseCors(p => p
 
 `AllowCredentials()` is needed because cookie auth requires it. There's a CORS rule worth knowing: `AllowAnyOrigin()` *cannot be used together with* `AllowCredentials()`. The browser refuses that combination, because it would let any website on the internet send signed-in requests to your API while pretending to be your user. So you have to list the specific origins instead.
 
+There's a matching half on the **client**. The browser only attaches the auth cookie to a cross-origin request if the `fetch` opts in, so every call in `main.ts` that needs the signed-in user gets `credentials: 'include'`:
+
+```ts
+const resp = await fetch(`${API}/kingdoms`, { credentials: 'include' });
+```
+
+Without it, the request goes out with no cookie and the API answers `401` — even though you're signed in. Server says "this origin may send credentials"; client says "send my credentials." You need both halves.
+
 ## Step 3 — the OAuth redirect URI (no change today)
 
 In Google Cloud Console you'd normally add the new origin's callback. But wait — the auth flow happens on the API, not on the frontend. The frontend sends the user to `https://kingdom-api-yourname.azurewebsites.net/login`, which then sends them to Google. So you don't need a new redirect URI in Google's console; the new origin is just a different page that starts the same login flow.
