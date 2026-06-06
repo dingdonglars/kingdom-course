@@ -2,6 +2,13 @@
 
 > Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
 
+> **Warm up — 30 seconds, from memory.** Before today, bring back what you built in Module 1.9:
+>
+> 1. You moved classes into folders like `Buildings/` and `Resources/`. What has to line up with each folder?
+> 2. Which class is the *aggregate root*, and what does that mean?
+>
+> Fuzzy on either? Re-read **Module 1.9** first — today stands right on top of it. Carry anything that felt shaky to the weekly sync.
+
 Phase 1 ends today. The kingdom is a real engine — thirty-five tests, deterministic, organised by area. Now we make it nicer. A better README, a few well-placed comments, and the names you wish you'd picked the first time. Then we cover the **repo rescue workflow** — the moves to know on the day your git branch is a complete mess.
 
 There's no big new code in this lesson. It's a calm day on purpose. Closing a milestone looks like this: read through your own repo from start to finish, make the small fixes, write a short README that will help you later, then mark the moment with the milestone steps at the end.
@@ -211,9 +218,24 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ---
 
+## The M2 checkpoint — show Lars
+
+Phase 1 is the biggest thing you've built so far. Before it joins `main`, you and Lars sit down for about fifteen minutes and you walk him through it — the same friendly idea as the halfway checkpoint after 1.5, and the checkpoints back in Phase 0. Saying it out loud is the surest way to know the *whole* phase landed, not just that the tests went green.
+
+This one is the checkpoint into Phase 2: the pull request below merges *after* this chat, not before. It isn't a test you can fail — if something's fuzzy, you two find it together and pick the one module to revisit. But Phase 2 stacks straight on top of Phase 1, so it's worth being solid first.
+
+Have the project open and running. Lars will ask you to:
+
+1. **Run the kingdom** for thirty days and read the final state and the event log out loud.
+2. **The big idea.** Open one engine file and one shell file, and explain in your own words why the engine never talks to the outside — and how that one rule lets the *same* engine run in a console now, a browser in Phase 4, and Roblox in Phase 5.
+3. **The testable engine.** Show `IRandom` and `IClock` arriving through the constructor, and explain how handing the engine a *fake* makes a test give the same answer every time. This is the idea Phase 2's save/load tests lean on.
+4. **One live change** of his choosing — say, add a `Quarry` building, or a new LINQ query over the buildings.
+
+When the walk-through is done and Lars is happy, he approves the pull request and you merge. That's the checkpoint cleared — on to Phase 2.
+
 ## Open the milestone PR
 
-You've been committing to the `phase-1` branch since Module 1.1. Now it's time to send the whole phase to Lars as a *pull request* — the place where he reviews your work — and merge it into `main`.
+You've been committing to the `phase-1` branch since Module 1.0. Now it's time to send the whole phase to Lars as a *pull request* — the place where he reviews your work — and merge it into `main`.
 
 On github.com, open your `kingdom` repo. A yellow banner near the top says something like *"phase-1 had recent pushes — Compare & pull request"*. Click **Compare & pull request**. (No banner? Go to the *Pull requests* tab → *New pull request* → base: `main`, compare: `phase-1`.)
 
@@ -222,7 +244,7 @@ Fill in:
 - **Title:** `M2 — Phase 1 — Console Kingdom`
 - **Body:** the four `wins.md` bullet points + a line `**Reviewer:** @dingdonglars`
 
-Click **Create pull request**. GitHub tells Lars; he reviews on the *Files changed* tab, leaves comments or clicks **Approve**. If he asks for changes, push more commits to `phase-1` — they show up on the pull request automatically. When the review is **Approved**, click **Merge pull request** → **Confirm merge**. GitHub offers to delete the `phase-1` branch — accept it; the merged history now lives on `main`.
+Click **Create pull request**. GitHub tells Lars; he reviews on the *Files changed* tab, leaves comments or clicks **Approve**. He approves *after* the M2 checkpoint above — the walk-through is part of the review, so do that first. If he asks for changes, push more commits to `phase-1` — they show up on the pull request automatically. When the review is **Approved**, click **Merge pull request** → **Confirm merge**. GitHub offers to delete the `phase-1` branch — accept it; the merged history now lives on `main`.
 
 Switch back locally:
 

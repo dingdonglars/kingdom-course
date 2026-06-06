@@ -2,6 +2,13 @@
 
 > Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
 
+> **Warm up — 30 seconds, from memory.** Before today, bring back what you built in Module 1.7:
+>
+> 1. What is the *event log*, and why is it called the kingdom's memory?
+> 2. You added randomness last time. Why does that make the engine hard to test?
+>
+> Fuzzy on either? Re-read **Module 1.7** first — today fixes exactly that testing problem, so it stands right on top of it. Carry anything that felt shaky to the weekly sync.
+
 Today is the lesson Module 1.7 was setting up. We take two interfaces out of the engine — `IRandom` (the dice) and `IClock` (the clock). The console gives the engine the real versions. Tests give it **fakes**, built with **FakeItEasy**. Now we can write tests like *"if the dice roll a 0, the next event is a TraderArrived for exactly 50 gold"*, and have them be true *every single time*.
 
 The fix here is one of the most common patterns in modern code: **make an interface, take it in through the constructor, and let the caller choose the version**. Yesterday's `EventEngine` had `private readonly Random _rng = new();` — a hidden dependency that you couldn't change. Today's version has `private readonly IRandom _rng;`, set from a constructor parameter — a dependency you can see and can swap out. The change is small to read, but the difference in what you can test is huge.

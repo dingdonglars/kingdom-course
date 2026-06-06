@@ -2,6 +2,13 @@
 
 > Tente primeiro o `lesson.md` em inglês. Use este aqui só quando uma palavra te travar.
 
+> **Aquecimento — 30 segundos, de cabeça.** Antes de hoje, traga de volta o que você construiu no Módulo 1.2:
+>
+> 1. Qual projeto usa o outro — o engine usa o console, ou o console usa o engine?
+> 2. O engine tem uma regra que nunca pode quebrar. Qual é?
+>
+> Inseguro em alguma? Releia primeiro o **Módulo 1.2** — é a ideia que dá nome ao curso inteiro, e a aula de hoje fica bem em cima dela. Leve qualquer coisa que ficou frágil para o sync semanal.
+
 Hoje você escreve testes. De verdade, com xUnit e Shouldly, rodados com `dotnet test` no terminal. No fim da aula o engine tem onze testes passando. A divisão que você fez no 1.2 é o que torna hoje possível — o projeto de testes vai referenciar o engine da mesma forma que o console faz, e nunca tocar o console de jeito nenhum.
 
 Um unit test é um pequeno pedaço de código que verifica uma coisa que seu código faz. Por que escrever testes agora, enquanto o engine ainda é simples? Pense em um alarme de fumaça. Você o coloca antes de haver fogo, não depois. Você escreveu `Building.Upgrade()` na semana passada. Você tem certeza que funciona. Seis semanas de agora você vai mudar `Building` para que cada nível custe uma quantidade diferente. Você quebrou alguma coisa? Sem testes, você só descobre quando algo mais crasha — talvez minutos depois, talvez meses depois. Com testes, `dotnet test` te diz em 0,3 segundos.

@@ -2,6 +2,13 @@
 
 > Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
 
+> **Warm up — 30 seconds, from memory.** Before today, bring back what you built in Module 1.4:
+>
+> 1. What is a *tick*, and what runs it again and again?
+> 2. `AdvanceDay` changes the kingdom instead of returning a value. What do we call a method like that?
+>
+> Fuzzy on either? Re-read **Module 1.4** first — today stands right on top of it. Carry anything that felt shaky to the weekly sync.
+
 Yesterday `Tick()` did nothing. Today we make three specific kinds of building — `Farm` produces food, `Lumberyard` produces wood, `Mine` produces stone. Each one *is* a building (same name, same level, same upgrade), but each one ticks differently. The OOP feature that lets you say *"a farm is a kind of building"* is called **inheritance**, and that's today's lesson.
 
 The other choice would be three separate classes — `Farm`, `Lumberyard`, `Mine` — each with its own `Name`, `Level`, `Upgrade`, and `Tick`. Then every change to one would have to be made three times. Inheritance lets you write `Building` once, then say *"Farm is a Building, and here's the small part that's special to farms."* Farm gets everything else for free.
@@ -295,6 +302,18 @@ Three things had to be right: `: Building` to inherit, `: base(name)` to pass th
 4. **Post in `#wins`** — one line about today, plus the URL of the commit.
 
 Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring quiz answers you're least sure about to the next weekly sync.
+
+## Halfway checkpoint — show Lars
+
+You're at the halfway mark of Phase 1. Before you start Module 1.6, walk Lars through what you've built — the next time you two talk, or a short call if one isn't due. About ten minutes, a friendly chat, not a test. It's the same idea as the checkpoints at the end of Phase 0: saying an idea out loud is the fastest way to find the one part that's still fuzzy, while it's still small and easy to fix.
+
+Have your project open and running. Lars will ask you to:
+
+1. **Run the kingdom** and walk him through what one day — `AdvanceDay` — does, from start to finish.
+2. **Show the engine/shell split.** Open one engine file and one console file, and say which one is allowed to use the other, and why.
+3. **Explain one subclass.** Pick `Farm`, `Lumberyard`, or `Mine`, and say what it does to `Building`'s `Tick`, and why the same `foreach` loop can run all three correctly.
+
+There's nothing to prepare and nothing to hand in. If a question catches you out, that's the point — you and Lars find it together and pick the one module to glance back at before Phase 1 carries on. Then keep going to Module 1.6.
 
 ## Next
 

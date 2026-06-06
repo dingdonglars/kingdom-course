@@ -2,6 +2,13 @@
 
 > Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
 
+> **Warm up — 30 seconds, from memory.** Before today, bring back what you built in Module 1.8:
+>
+> 1. The engine takes `IRandom` and `IClock` in through its constructor instead of making them itself. What is that called?
+> 2. How does handing the engine a *fake* `IRandom` make a test reliable?
+>
+> Fuzzy on either? Re-read **Module 1.8** first — today stands right on top of it. Carry anything that felt shaky to the weekly sync.
+
 `Kingdom.Engine/` now has fourteen files all in one folder. It's already getting hard to read through. Today we don't add features — we move things. Folders by topic, sub-namespaces, and a small naming pass. The kingdom *works* exactly the same; the *code* just becomes much easier to read.
 
 Why organise *now*, before the engine is huge? For the same reason you tidy your desk before it gets buried: it's quick while there's little, and slow once there's a lot. A useful rule: once a folder has more than about seven files, it's time to think about subfolders. One flat folder is fine for a while, and then one day it isn't.

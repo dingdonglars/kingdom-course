@@ -2,6 +2,13 @@
 
 > Tente primeiro o `lesson.md` em inglês. Use este aqui só quando uma palavra te travar.
 
+> **Aquecimento — 30 segundos, de cabeça.** Antes de hoje, traga de volta o que você construiu no Módulo 1.7:
+>
+> 1. O que é o *event log*, e por que ele é chamado de memória do reino?
+> 2. Você adicionou aleatoriedade da última vez. Por que isso deixa o engine difícil de testar?
+>
+> Inseguro em alguma? Releia primeiro o **Módulo 1.7** — a aula de hoje conserta exatamente esse problema de teste, então fica bem em cima dela. Leve qualquer coisa que ficou frágil para o sync semanal.
+
 Hoje é a aula que o Módulo 1.7 estava preparando. Tiramos duas interfaces do engine — `IRandom` (o dado) e `IClock` (o relógio). O console dá ao engine as versões reais. Os testes dão a ele **fakes**, construídos com **FakeItEasy**. Agora podemos escrever testes como *"se o dado rolar 0, o próximo evento é um TraderArrived com exatamente 50 de ouro"*, e eles são verdadeiros *toda vez*.
 
 A correção aqui é um dos padrões mais comuns no código moderno: **faça uma interface, receba-a pelo constructor, e deixe quem chama escolher a versão**. O `EventEngine` de ontem tinha `private readonly Random _rng = new();` — uma dependência escondida que você não podia mudar. A versão de hoje tem `private readonly IRandom _rng;`, definida por um parâmetro do constructor — uma dependência que você pode ver e pode trocar. A mudança é pequena de ler, mas a diferença no que você pode testar é enorme.

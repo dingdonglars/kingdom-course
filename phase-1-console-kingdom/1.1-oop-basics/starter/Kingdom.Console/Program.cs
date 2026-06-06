@@ -1,5 +1,3 @@
-using KingdomConsole;
-
 var kingdom = new Kingdom("Eldoria");
 kingdom.AddBuilding(new Building("Main Farm"));
 kingdom.AddBuilding(new Building("Old Mine"));

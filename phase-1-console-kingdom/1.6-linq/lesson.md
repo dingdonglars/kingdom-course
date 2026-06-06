@@ -2,6 +2,13 @@
 
 > Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
 
+> **Warm up — 30 seconds, from memory.** Before today, bring back what you built in Module 1.5:
+>
+> 1. `Farm`, `Lumberyard`, and `Mine` all come from `Building`. What does each one do to `Building`'s `Tick` so it behaves differently?
+> 2. The loop calls `Tick` on a list of `Building`s and each does its own thing. What's the word for that?
+>
+> Fuzzy on either? Re-read **Module 1.5** first — today stands right on top of it. Carry anything that felt shaky to the weekly sync.
+
 Today there are almost no new lines of code, but a real change in how you *think*. The kingdom has lists — buildings, citizens. So far, every time you wanted to know something about them ("how many farms?", "which building has the highest level?"), you wrote a `for` loop. Today you stop. **LINQ** (say it "link") lets you describe the answer instead of writing the loop.
 
 LINQ stands for *Language Integrated Query*. It's a set of helper methods (`Where`, `Select`, `Count`, `Sum`, `Any`, `OrderBy`, `First`, and more) that work on every collection in C#. It's built into the language — nothing to install, just `using System.Linq;` (often added for you already). Once you know about twenty of these methods, you almost never write a loop just to count or filter again.

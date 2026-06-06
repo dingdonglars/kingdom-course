@@ -2,6 +2,13 @@
 
 > Tente primeiro o `lesson.md` em inglês. Use este aqui só quando uma palavra te travar.
 
+> **Aquecimento — 30 segundos, de cabeça.** Antes de hoje, traga de volta o que você construiu no Módulo 1.6:
+>
+> 1. O que um lambda como `b => b.Level > 1` entrega para um método como `Where`?
+> 2. Cite um método LINQ que você usou no lugar de escrever um loop `for` na mão.
+>
+> Inseguro em alguma? Releia primeiro o **Módulo 1.6** — a aula de hoje fica bem em cima dele. Leve qualquer coisa que ficou frágil para o sync semanal.
+
 O reino é previsível demais agora. As mesmas fazendas produzem a mesma comida, os mesmos cidadãos comem a mesma quantidade, todo dia para sempre. Hoje adicionamos sorte. A cada tick, há alguma chance de *algo acontecer*. Um comerciante chega com ouro. Um cidadão adoece. Um prédio pega fogo. Cada evento é salvo em uma lista, para que no Dia 50 o reino tenha uma história que você pode ler de volta.
 
 Há duas razões para um log de eventos. A primeira é **a história** — um jogo de gestão sem eventos é só uma planilha. Visitantes aleatórios, incêndios e doenças são o que fazem o reino parecer vivo. A segunda é **a memória** — quando algo interessante acontece, você quer saber *quando* aconteceu. O log de eventos é a memória do reino. Com LINQ de ontem, você pode perguntar *"o que aconteceu nos últimos sete dias?"* em uma linha.

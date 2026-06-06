@@ -1,5 +1,3 @@
-namespace KingdomConsole;
-
 public class Citizen
 {
     public string Name { get; }

@@ -2,6 +2,13 @@
 
 > Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
 
+> **Warm up — 30 seconds, from memory.** Before today, bring back what you built in Module 1.6:
+>
+> 1. What does a lambda like `b => b.Level > 1` give to a method like `Where`?
+> 2. Name one LINQ method you used instead of writing a `for` loop by hand.
+>
+> Fuzzy on either? Re-read **Module 1.6** first — today stands right on top of it. Carry anything that felt shaky to the weekly sync.
+
 The kingdom is too predictable right now. The same farms produce the same food, the same citizens eat the same amount, every day forever. Today we add chance. Each tick, there is some chance that *something happens*. A trader arrives with gold. A citizen falls ill. A building burns down. Each event is saved in a list, so by Day 50 the kingdom has a story you can read back.
 
 There are two reasons for an event log. The first is **the story** — a management game with no events is just a spreadsheet. Random visitors, fires, and illnesses are what make the kingdom feel alive. The second is **memory** — when something interesting happens, you want to know *when* it happened. The event log is the kingdom's memory. With LINQ from yesterday, you can ask *"what happened in the last seven days?"* in one line.

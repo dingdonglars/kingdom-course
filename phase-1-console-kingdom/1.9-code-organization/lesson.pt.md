@@ -2,6 +2,13 @@
 
 > Tente primeiro o `lesson.md` em inglês. Use este aqui só quando uma palavra te travar.
 
+> **Aquecimento — 30 segundos, de cabeça.** Antes de hoje, traga de volta o que você construiu no Módulo 1.8:
+>
+> 1. O engine recebe `IRandom` e `IClock` pelo construtor em vez de criá-los ele mesmo. Como isso se chama?
+> 2. Como entregar um `IRandom` *fake* ao engine deixa um teste confiável?
+>
+> Inseguro em alguma? Releia primeiro o **Módulo 1.8** — a aula de hoje fica bem em cima dele. Leve qualquer coisa que ficou frágil para o sync semanal.
+
 `Kingdom.Engine/` agora tem quatorze arquivos todos em uma pasta. Já está ficando difícil de ler. Hoje não adicionamos recursos — movemos coisas. Pastas por tópico, sub-namespaces, e uma passagem de nomes pequena. O reino *funciona* exatamente igual; o *código* fica muito mais fácil de ler.
 
 Por que organizar *agora*, antes de o engine ficar enorme? Pelo mesmo motivo que você arruma a mesa antes de ela ficar enterrada: é rápido quando há pouco, e lento quando há muito. Uma regra útil: assim que uma pasta tem mais de uns sete arquivos, é hora de pensar em subpastas. Uma pasta plana está bem por um tempo, e então um dia não está mais.

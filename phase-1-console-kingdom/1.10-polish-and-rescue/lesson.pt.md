@@ -2,6 +2,13 @@
 
 > Tente primeiro o `lesson.md` em inglês. Use este aqui só quando uma palavra te travar.
 
+> **Aquecimento — 30 segundos, de cabeça.** Antes de hoje, traga de volta o que você construiu no Módulo 1.9:
+>
+> 1. Você moveu classes para pastas como `Buildings/` e `Resources/`. O que tem que bater com cada pasta?
+> 2. Qual classe é a *aggregate root*, e o que isso significa?
+>
+> Inseguro em alguma? Releia primeiro o **Módulo 1.9** — a aula de hoje fica bem em cima dele. Leve qualquer coisa que ficou frágil para o sync semanal.
+
 A Fase 1 termina hoje. O reino é um engine de verdade — trinta e cinco testes, determinístico, organizado por área. Agora a gente o deixa mais bonito. Um README melhor, alguns comentários bem colocados, e os nomes que você desejou ter escolhido da primeira vez. Depois cobrimos o **fluxo de resgate de repositório** — os movimentos para saber no dia em que sua branch git estiver uma bagunça completa.
 
 Não há código novo grande nesta aula. É um dia calmo de propósito. Fechar um marco parece assim: leia seu próprio repositório do começo ao fim, faça as correções pequenas, escreva um README curto que vai te ajudar mais tarde, depois marque o momento com os passos do marco no fim.
@@ -211,9 +218,24 @@ O Módulo 0.1 cobre o porquê e os passos do painel/CLI se você precisar relemb
 
 ---
 
+## O checkpoint M2 — mostre ao Lars
+
+A Fase 1 é a maior coisa que você já construiu. Antes de ela entrar no `main`, você e o Lars sentam por cerca de quinze minutos e você o guia por ela — a mesma ideia amigável do checkpoint da metade depois do 1.5, e dos checkpoints lá na Fase 0. Dizer em voz alta é o jeito mais seguro de saber que a fase *inteira* pegou, não só que os testes ficaram verdes.
+
+Este é o checkpoint para a Fase 2: o pull request abaixo entra no merge *depois* desta conversa, não antes. Não é uma prova que você possa reprovar — se algo estiver confuso, vocês dois acham juntos e escolhem o único módulo para revisar. Mas a Fase 2 se empilha direto em cima da Fase 1, então vale a pena estar firme primeiro.
+
+Tenha o projeto aberto e rodando. O Lars vai pedir para você:
+
+1. **Rodar o reino** por trinta dias e ler o estado final e o event log em voz alta.
+2. **A grande ideia.** Abra um arquivo do engine e um arquivo da shell, e explique com suas próprias palavras por que o engine nunca fala com o exterior — e como essa única regra deixa o *mesmo* engine rodar num console agora, num browser na Fase 4, e no Roblox na Fase 5.
+3. **O engine testável.** Mostre `IRandom` e `IClock` chegando pelo construtor, e explique como entregar um *fake* ao engine faz um teste dar a mesma resposta toda vez. Esta é a ideia em que os testes de salvar/carregar da Fase 2 se apoiam.
+4. **Uma mudança ao vivo** à escolha dele — digamos, adicionar um prédio `Quarry`, ou uma nova consulta LINQ sobre os prédios.
+
+Quando a explicação terminar e o Lars estiver satisfeito, ele aprova o pull request e você faz o merge. Esse é o checkpoint vencido — rumo à Fase 2.
+
 ## Abra o PR do marco
 
-Você vem fazendo commits na branch `phase-1` desde o Módulo 1.1. Agora é hora de enviar toda a fase para Lars como um *pull request* — o lugar onde ele revisa seu trabalho — e fazer o merge para o `main`.
+Você vem fazendo commits na branch `phase-1` desde o Módulo 1.0. Agora é hora de enviar toda a fase para Lars como um *pull request* — o lugar onde ele revisa seu trabalho — e fazer o merge para o `main`.
 
 No github.com, abra seu repositório `kingdom`. Uma faixa amarela perto do topo diz algo como *"phase-1 had recent pushes — Compare & pull request"*. Clique em **Compare & pull request**. (Sem faixa? Vá para a aba *Pull requests* → *New pull request* → base: `main`, compare: `phase-1`.)
 
@@ -222,7 +244,7 @@ Preencha:
 - **Title:** `M2 — Phase 1 — Console Kingdom`
 - **Body:** os quatro pontos do `wins.md` mais uma linha `**Reviewer:** @dingdonglars`
 
-Clique em **Create pull request**. O GitHub avisa Lars; ele revisa na aba *Files changed*, deixa comentários ou clica em **Approve**. Se ele pedir mudanças, faça push de mais commits para `phase-1` — eles aparecem no pull request automaticamente. Quando a revisão estiver **Approved**, clique em **Merge pull request** → **Confirm merge**. O GitHub oferece deletar a branch `phase-1` — aceite; o histórico do merge agora vive no `main`.
+Clique em **Create pull request**. O GitHub avisa Lars; ele revisa na aba *Files changed*, deixa comentários ou clica em **Approve**. Ele aprova *depois* do checkpoint M2 acima — a explicação faz parte da revisão, então faça isso primeiro. Se ele pedir mudanças, faça push de mais commits para `phase-1` — eles aparecem no pull request automaticamente. Quando a revisão estiver **Approved**, clique em **Merge pull request** → **Confirm merge**. O GitHub oferece deletar a branch `phase-1` — aceite; o histórico do merge agora vive no `main`.
 
 Volte para o local:
 

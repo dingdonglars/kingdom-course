@@ -2,6 +2,13 @@
 
 > Tente primeiro o `lesson.md` em inglês. Use este aqui só quando uma palavra te travar.
 
+> **Aquecimento — 30 segundos, de cabeça.** Antes de hoje, traga de volta o que você construiu no Módulo 1.3:
+>
+> 1. Quais são as três partes de um teste de unidade?
+> 2. Quando você usaria `[Theory]` em vez de `[Fact]`?
+>
+> Inseguro em alguma? Releia primeiro o **Módulo 1.3** — a aula de hoje fica bem em cima dele. Leve qualquer coisa que ficou frágil para o sync semanal.
+
 Agora o seu reino é como uma fotografia. Você o constrói, o imprime, o programa termina, e nada mudou. Hoje o reino aprende a *se mover*. Cada dia, toda fazenda produz um pouco de comida, toda mina produz um pouco de pedra, e os cidadãos comem. Números sobem. Números descem. No fim deste módulo o programa roda por cinco dias e te mostra o que aconteceu.
 
 Precisamos de uma palavra nova para hoje. **Tick.** Um tick é um passo do tempo de jogo. Em um jogo rápido como um shooter, um tick pode acontecer sessenta vezes por segundo. Em um jogo lento como o nosso — um reino que você administra por muitos dias — um tick é uma vez por *dia*. O comprimento exato não importa. O que importa é que o engine tem um método que significa *"avance o tempo em um passo."* Esse método vai se chamar `AdvanceDay`. Uma vez que existe, qualquer coisa que queira avançar o tempo chama o mesmo método — o console hoje, um botão em uma página web em alguns meses, um jogo Roblox mais tarde no ano. Mesmo engine, muitas shells.

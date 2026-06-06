@@ -2,7 +2,14 @@
 
 > Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
 
-Today the Kingdom begins. You're going to make four new types — `Resource`, `Building`, `Citizen`, `Kingdom` — and from them build a tiny medieval kingdom that prints to your terminal: two buildings, a citizen, and a treasury. None of it *does* anything yet. That's fine. First the kingdom needs a body; we teach it to move in Module 1.4.
+> **Warm up — 30 seconds, from memory.** Before today, bring back what you set up in Module 1.0:
+>
+> 1. What's the difference between a *solution* and a *project*?
+> 2. Which folder do you open in VS Code to work on the Kingdom, and what command runs it?
+>
+> Fuzzy on either? Re-read **Module 1.0** first — today you write code inside the project you made there. Carry anything that felt shaky to the weekly sync.
+
+In Module 1.0 you built the Kingdom's empty home — a solution with one console project that prints *Hello*. Today you fill it with real code. You're going to make four new types — `Resource`, `Building`, `Citizen`, `Kingdom` — and from them build a tiny medieval kingdom that prints to your terminal: two buildings, a citizen, and a treasury. None of it *does* anything yet. That's fine. First the kingdom needs a body; we teach it to move in Module 1.4.
 
 Before any code, it's worth one minute on the big change that starts here — because the whole rest of the course is built on it. This is the largest new idea in the course, so go slow today. You are not expected to feel fluent by the end of one lesson; you're expected to have *met* it. It clicks over the next few modules, by using it.
 
@@ -51,48 +58,17 @@ Don't try to memorise the words below yet. You'll meet each one in the code, whe
 
 ---
 
-## Phase opener — make a branch for Phase 1's work
+## Step 1 — open the Kingdom and add your files
 
-Run this first, before any code:
+You already made the `Kingdom.Console` project in Module 1.0. Open the `kingdom-game` folder as your window (if it isn't already) — that's your one window for the whole course.
 
-```powershell
-cd C:\code\kingdom
-git switch -c phase-1
-```
+You'll add four files to `Kingdom.Console`, one per type — `Resource`, `Building`, `Citizen`, `Kingdom` — and then replace the one-line `Program.cs` that's already there with the real thing. The usual rule in C# is one type per file, and the filename matches the type name. We'll follow that rule.
 
-You're now on a *branch* called `phase-1`. A branch is a separate line of work in git. From now until the end of Phase 1, your commits go onto `phase-1` instead of `main`. At Module 1.10 (the end of Phase 1), you'll bring all that work back into `main` through a **pull request**. A pull request is the way GitHub lets someone review your work before it joins `main`. Lars reviews it, approves it, and you merge it. The reason: `main` stays the line of *good, reviewed work*, and the pull request at the end of the phase shows your whole phase as one piece to review. This is how real teams add changes.
-
-**If "branch" and "pull request" feel unclear right now, that's expected.** It's the first time you've seen them. What you actually have to do is small. Run one command at the start of each phase (`git switch -c phase-N`), and open a pull request on github.com at the end. That's it for today. You'll understand what branches and pull requests really are over the next ten modules. Module 1.8 comes back to branches once you've used one for a few weeks. Module 1.10 walks through the pull request step by step. Bonus B3 (much later) goes deep into how git works inside, if you ever want it.
-
-For now: run the command, confirm you're on the new branch, and move on. After a few weeks of using branches, the idea stops feeling fuzzy.
-
-Confirm:
-
-```powershell
-git status
-```
-
-The first line should say *"On branch phase-1"*. Now the actual lesson.
-
----
-
-## Step 1 — start a fresh project
-
-Make a new project for the Kingdom:
-
-```powershell
-cd <your-repo-root>
-dotnet new console -n KingdomConsole
-cd KingdomConsole
-```
-
-You'll create five files in here. Each one holds one class (or one enum). The usual rule in C# is one type per file, and the filename matches the type name. We'll follow that rule.
+(You don't write a `namespace` line in any of these files yet. A single project doesn't need one — you'll meet namespaces in Module 1.2, the moment they start to earn their keep.)
 
 ## Step 2 — `Resource.cs`, the resource enum
 
 ```csharp
-namespace KingdomConsole;
-
 public enum Resource
 {
     Gold,
@@ -107,8 +83,6 @@ An *enum* is a fixed set of named values. Anywhere you use `Resource`, the only 
 ## Step 3 — `Building.cs`
 
 ```csharp
-namespace KingdomConsole;
-
 public class Building
 {
     public string Name { get; }
@@ -133,8 +107,6 @@ The line `public Building(string name)` is the **constructor**. It has the same 
 ## Step 4 — `Citizen.cs`
 
 ```csharp
-namespace KingdomConsole;
-
 public class Citizen
 {
     public string Name { get; }
@@ -152,8 +124,6 @@ Same pattern — `Name` is read-only, `Job` can be read and written and starts a
 ## Step 5 — `Kingdom.cs`
 
 ```csharp
-namespace KingdomConsole;
-
 public class Kingdom
 {
     public string Name { get; }
@@ -179,9 +149,9 @@ A `Kingdom` owns three collections — its buildings, its citizens, and its reso
 
 ## Step 6 — `Program.cs`
 
-```csharp
-using KingdomConsole;
+Open the `Program.cs` that Module 1.0 made (the one line that prints *Hello*), delete what's there, and write this instead:
 
+```csharp
 var kingdom = new Kingdom("Eldoria");
 kingdom.AddBuilding(new Building("Main Farm"));
 kingdom.AddBuilding(new Building("Old Mine"));
@@ -201,10 +171,12 @@ foreach (var (resource, count) in kingdom.Resources)
     Console.WriteLine($"  {resource}: {count}");
 ```
 
+Notice there's no `using` line for your own classes — they live in the same project as `Program.cs`, so it can see them directly.
+
 Run it:
 
 ```powershell
-dotnet run
+dotnet run --project Kingdom.Console
 ```
 
 You should see Eldoria printed — two buildings, one citizen, four resources. It all lives in your computer's memory, and it's gone the moment the program ends. Saving it to disk comes in Phase 2.
@@ -219,7 +191,7 @@ Add a method on `Kingdom` called `HireCitizen` that takes a name, creates a `Cit
 
 ## What you just did
 
-You wrote four classes and saw them connect — a `Kingdom` that owns lists of `Building` and `Citizen` and a dictionary of `Resource`. You met the pieces of a class that you'll use every day from now on: properties with `get` and `private set`, a constructor that sets things up, and the difference between a class (the blueprint) and an object (the thing you got from `new`). You also saw encapsulation at work when the compiler refused to let outside code rewrite a building's name. Five files of real C#, and a kingdom prints to the terminal — all of it living in memory for the few seconds the program runs.
+You wrote four classes and saw them connect — a `Kingdom` that owns lists of `Building` and `Citizen` and a dictionary of `Resource`. You met the pieces of a class that you'll use every day from now on: properties with `get` and `private set`, a constructor that sets things up, and the difference between a class (the blueprint) and an object (the thing you got from `new`). You also saw encapsulation at work when the compiler refused to let outside code rewrite a building's name. Four classes plus the program, and a kingdom prints to the terminal — all of it living in memory for the few seconds the program runs.
 
 **Key concepts you can now name:**
 
@@ -283,4 +255,4 @@ Module 0.1 covers the why and the panel/CLI steps if you need a refresher. Bring
 
 ## Next
 
-Right now everything is in one project. That's fine for one lesson. Module 1.2 splits it apart: the kingdom's rules (Building, Citizen, Resource, Kingdom) move into their own *class library*, and the program becomes a thin layer on top. That change is what the rest of the course is named after.
+Right now all four classes sit in the one `Kingdom.Console` project. That's fine for one lesson. Module 1.2 splits them apart: the kingdom's rules (Building, Citizen, Resource, Kingdom) move into their own *class library*, `Kingdom.Engine`, and the console becomes a thin layer on top. That change is what the rest of the course is named after — and it's where the `namespace` line finally earns its place.

@@ -2,6 +2,13 @@
 
 > Tente primeiro o `lesson.md` em inglês. Use este aqui só quando uma palavra te travar.
 
+> **Aquecimento — 30 segundos, de cabeça.** Antes de hoje, traga de volta o que você construiu no Módulo 1.4:
+>
+> 1. O que é um *tick*, e o que o roda de novo e de novo?
+> 2. `AdvanceDay` muda o reino em vez de retornar um valor. Como chamamos um método assim?
+>
+> Inseguro em alguma? Releia primeiro o **Módulo 1.4** — a aula de hoje fica bem em cima dele. Leve qualquer coisa que ficou frágil para o sync semanal.
+
 Ontem o `Tick()` não fazia nada. Hoje criamos três tipos específicos de prédio — `Farm` produz comida, `Lumberyard` produz madeira, `Mine` produz pedra. Cada um *é* um prédio (mesmo nome, mesmo nível, mesmo upgrade), mas cada um dá tick de forma diferente. O recurso de OOP que deixa você dizer *"uma fazenda é um tipo de prédio"* é chamado de **herança (inheritance)**, e essa é a aula de hoje.
 
 A outra opção seria três classes separadas — `Farm`, `Lumberyard`, `Mine` — cada uma com seu próprio `Name`, `Level`, `Upgrade` e `Tick`. Então toda mudança em uma teria que ser feita três vezes. A herança deixa você escrever `Building` uma vez, e depois dizer *"Farm é um Building, e aqui está a pequena parte especial das fazendas."* Farm ganha tudo o mais de graça.
@@ -295,6 +302,18 @@ Três coisas tinham que estar certas: `: Building` para herdar, `: base(name)` p
 4. **Poste no `#wins`** — uma linha sobre hoje, mais a URL do commit.
 
 O Módulo 0.1 cobre o porquê e os passos do painel/CLI se você precisar relembrar. Leve as respostas do quiz das quais você tiver menos certeza para a próxima conversa semanal.
+
+## Checkpoint da metade — mostre ao Lars
+
+Você está na metade da Fase 1. Antes de começar o Módulo 1.6, mostre ao Lars o que você construiu — na próxima vez que vocês dois conversarem, ou em uma ligação curta se não houver uma marcada. Cerca de dez minutos, uma conversa amigável, não uma prova. É a mesma ideia dos checkpoints no fim da Fase 0: dizer uma ideia em voz alta é o jeito mais rápido de achar a única parte que ainda está confusa, enquanto ela é pequena e fácil de consertar.
+
+Tenha seu projeto aberto e rodando. O Lars vai pedir para você:
+
+1. **Rodar o reino** e explicar o que um dia — `AdvanceDay` — faz, do início ao fim.
+2. **Mostrar a divisão engine/shell.** Abra um arquivo do engine e um do console, e diga qual deles tem permissão de usar o outro, e por quê.
+3. **Explicar uma subclasse.** Escolha `Farm`, `Lumberyard` ou `Mine`, e diga o que ela faz com o `Tick` do `Building`, e por que o mesmo loop `foreach` consegue rodar as três corretamente.
+
+Não há nada para preparar e nada para entregar. Se uma pergunta te pegar de surpresa, esse é o ponto — você e o Lars acham isso juntos e escolhem o único módulo para dar uma olhada de volta antes da Fase 1 seguir. Depois siga para o Módulo 1.6.
 
 ## Próximo
 

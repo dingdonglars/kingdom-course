@@ -2,6 +2,13 @@
 
 > Tente primeiro o `lesson.md` em inglês. Use este aqui só quando uma palavra te travar.
 
+> **Aquecimento — 30 segundos, de cabeça.** Antes de hoje, traga de volta o que você construiu no Módulo 1.1:
+>
+> 1. Qual é a diferença entre uma *classe* e um *objeto*?
+> 2. Por que deixar um campo `private` e acessá-lo por uma property — o que isso protege?
+>
+> Inseguro em alguma? Releia primeiro o **Módulo 1.1** — a aula de hoje fica bem em cima dele. Leve qualquer coisa que ficou frágil para o sync semanal.
+
 Esta é a aula que dá nome ao resto do curso. Você pega o reino que escreveu no 1.1 — tudo em um projeto — e o divide em dois. As *regras* do reino (prédios, recursos, a matemática) se movem para uma class library chamada `Kingdom.Engine`. O programa que imprime coisas no terminal se torna um pequeno projeto `Kingdom.Console` que *usa* o engine. Mesmo código no fim, mas uma organização muito diferente. O ponto de hoje é ver por que essa organização importa antes que as fases posteriores peçam a você que a use.
 
 Estamos apresentando uma palavra que você vai ver muito daqui para frente: **shell**. Uma shell é o que quer que fale com o mundo exterior — o console aqui, uma página web mais tarde no ano, Roblox depois disso. O engine nunca fala com o exterior. A shell sim. O engine só sabe sobre o reino. A shell sabe sobre pessoas.
@@ -41,12 +48,12 @@ Mesmo engine, três shells. As setas significam "usa": cada shell *usa* o engine
 
 No Módulo 1.1, suas classes `Building`, `Resource`, `Kingdom` e `Citizen` viviam no mesmo projeto que `Program.cs`. Funciona por enquanto. Mas pergunte a si mesmo: se você quisesse o mesmo reino em um site mais tarde no ano, o que faria? Você não pode reutilizar `Program.cs` — sites não têm console para imprimir. Você estaria copiando as classes do reino de um projeto para outro. A divisão de hoje impede que você precise copiar. O engine vira a lógica do reino. O console vira uma forma de *jogar* ele. A versão para browser da Fase 4 será uma forma diferente de jogar a mesma lógica. A versão Roblox da Fase 5 vai transformar a mesma lógica em Luau. O engine é a parte que você mantém em todas elas.
 
-## Passo 1 — crie o novo layout
+## Passo 1 — adicione o projeto engine
 
-Você tem um projeto `KingdomConsole` do 1.1. Vamos reorganizá-lo em dois:
+Sua solution (`Kingdom.slnx`) e seu projeto `Kingdom.Console` já existem desde o Módulo 1.0 — nada para desmontar. Hoje você adiciona **um** projeto novo, o engine, e aponta o console para ele. Aqui é para onde você vai:
 
-```
-your-repo/
+```text
+kingdom-game/
 ├─ Kingdom.Engine/                  ← class library (no Main, no Console)
 │   ├─ Kingdom.cs
 │   ├─ Building.cs
@@ -60,23 +67,42 @@ your-repo/
 └─ Kingdom.slnx                     ← ties them together
 ```
 
-```powershell
-cd <your-repo-root>
-# Back up your 1.1 folder so you can compare later
-Rename-Item KingdomConsole KingdomConsole-v1-backup
+De dentro da pasta `kingdom-game`, rode três comandos:
 
-dotnet new sln -n Kingdom
+```powershell
+cd C:\code\kingdom\kingdom-game
 dotnet new classlib -n Kingdom.Engine
-dotnet new console -n Kingdom.Console
-dotnet sln add Kingdom.Engine Kingdom.Console
+dotnet sln add Kingdom.Engine
 dotnet add Kingdom.Console reference Kingdom.Engine
 ```
 
-A última linha é a importante. Ela escreve um `<ProjectReference>` dentro de `Kingdom.Console.csproj` que diz *"o projeto console depende do projeto engine."* O sistema de build lê essa linha, compila o engine primeiro, depois compila o console com o `.dll` do engine pronto para usar.
+- `dotnet new classlib -n Kingdom.Engine` cria o engine — uma **class library**, um projeto sem `Main`. Você não o roda sozinho; outros projetos o usam.
+- `dotnet sln add Kingdom.Engine` o coloca na solution — um segundo cômodo na casa que você construiu no Módulo 1.0.
+- A última linha é a importante. Ela escreve um `<ProjectReference>` dentro de `Kingdom.Console.csproj` que diz *"o projeto console depende do projeto engine."* O sistema de build lê essa linha, compila o engine primeiro, depois compila o console com o `.dll` do engine pronto para usar. A seta aponta em um só sentido: console → engine, nunca o contrário.
 
-## Passo 2 — mova as classes para o Engine
+## Passo 2 — mova as classes para o Engine, e conheça o `namespace`
 
-Mova `Building.cs`, `Citizen.cs`, `Resource.cs`, `Kingdom.cs` da sua pasta de backup para `Kingdom.Engine/`. Abra cada um e mude o namespace de `KingdomConsole` para `Kingdom.Engine`. A regra é que namespaces combinam com pastas — a mesma ideia que você vai ver de novo no Módulo 1.9.
+Mova os quatro arquivos de classe — `Building.cs`, `Citizen.cs`, `Resource.cs`, `Kingdom.cs` — para fora de `Kingdom.Console/` e para dentro de `Kingdom.Engine/`. (Apague também o `Class1.cs` vazio que o `dotnet new classlib` criou — você não precisa dele.)
+
+No Módulo 1.1 esses arquivos não tinham linha de `namespace`, porque um projeto só não precisava de uma. Agora há dois projetos, então cada tipo precisa de um rótulo dizendo a que família ele pertence. Esse rótulo é um **namespace**. Adicione esta linha bem no topo de cada um dos quatro arquivos movidos:
+
+```csharp
+namespace Kingdom.Engine;
+```
+
+Então `Building.cs` agora começa assim:
+
+```csharp
+namespace Kingdom.Engine;
+
+public class Building
+{
+    public string Name { get; }
+    // ... o resto fica igual
+}
+```
+
+Faça o mesmo para `Citizen.cs`, `Resource.cs` e `Kingdom.cs`. A regra é que o namespace combina com o projeto (e com a pasta) — a mesma ideia que você vai ver de novo no Módulo 1.9. Os tipos do engine agora vivem sob o rótulo `Kingdom.Engine`, e o console vai pedir por eles por esse nome no Passo 4.
 
 ## Passo 3 — apresente o `ResourceLedger`
 
