@@ -1,5 +1,7 @@
 # VS Code — startup tips
 
+> Travou no inglês? Abra o `vscode-tips.pt.md` — é este mesmo guia em português. Tente em inglês primeiro.
+
 > A short list of things that make VS Code feel like home, not like a wall of menus. Skim this once after Module 0.0. Come back to it whenever something feels clunky.
 >
 > **Setup assumed below:** Windows + Portuguese (Brazil) keyboard layout (ABNT2). All shortcuts use the keys you actually have.
