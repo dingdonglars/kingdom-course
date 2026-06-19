@@ -128,11 +128,22 @@ The course gives commands in PowerShell (the Windows shell). Inside the VS Code 
 Open Settings (Ctrl+,) and search for these. All of them are quality-of-life:
 
 - **Editor: Format On Save** → on. Saves a tidied-up version of every file. C# files get auto-formatted by the C# extension; you don't have to think about indentation again.
+- **Editor: Format On Type** → on. Fixes the spacing on a line the moment you finish it — the second you type the `;` at the end of a statement, VS Code lines everything up for you. Format On Save tidies the whole file when you save; this one tidies each line as you write it, so the code looks right the whole time instead of only after a save. (It's off until you turn it on.)
 - **Editor: Word Wrap** → `on`. Long lines wrap to the editor width instead of forcing horizontal scroll.
-- **Files: Auto Save** → `afterDelay`. VS Code saves your file a second after you stop typing. Fewer "I forgot to save" moments.
+- **Files: Auto Save** → `afterDelay`. VS Code saves your file a second after you stop typing. Fewer "I forgot to save" moments. One catch worth knowing: these timed auto-saves **skip the Format On Save step** — VS Code only tidies on save when *you* press `Ctrl + S` yourself. So if you turned Auto Save on and wondered why saving never cleans up your code, that's why. This is exactly why Format On Type (above) matters: it tidies as you type, no save needed. Turn that one on and the spacing stays right no matter how the file gets saved.
 - **Editor: Tab Size** → `4`. C# convention. (Some other languages use 2 — VS Code can do per-language settings if you ever care.)
 
 You can change any of these later. They're defaults that work for almost everyone starting out.
+
+### If your C# still isn't being tidied at all
+
+If neither saving nor typing cleans up your code, VS Code probably hasn't been told *which* tool should format C#. You set it once:
+
+1. Open any `.cs` file.
+2. Right-click anywhere in the code → **Format Document With…**.
+3. Pick **Configure Default Formatter…** → choose **C#** (the Microsoft one).
+
+After that, both Format On Save and Format On Type have a tool to call, and they'll start working. A quick way to test: mess up the indentation on a line on purpose, then press `Ctrl + S`. It should snap back into place.
 
 ## When VS Code's UI shows up in Portuguese
 
