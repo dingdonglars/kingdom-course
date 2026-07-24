@@ -2,9 +2,13 @@
 
 > Tente primeiro o `lesson.md` em inglês. Use este aqui só quando uma palavra te travar.
 
-A Fase 1 começa hoje. Daqui para frente, algo muda: na Spark Week você construiu vários programas pequenos e separados — Roast-O-Matic, o Tavern Tab, e os outros. Cada um existia sozinho. Agora você começa a construir **uma** coisa — o Reino — e vai crescê-la o ano inteiro. No fim do curso, o mesmo Reino vai rodar no terminal, salvar em disco, servir uma página web e viver dentro de um jogo do Roblox.
+A Fase 1 começa hoje, e é um momento grande. Na Spark Week você construiu um punhado de programas pequenos e separados — Roast-O-Matic, o Tavern Tab, a Arena, e os outros. Cada um existia sozinho: você escrevia, rodava, mostrava, e seguia em frente. Esse era o objetivo — pegar prática, ganhar confiança, fazer as repetições.
 
-Hoje é um dia calmo de preparação. Sem regras de jogo ainda — isso é no próximo módulo. Hoje você constrói a *casa* onde o Reino vai morar, aprende como vai abri-lo e rodá-lo daqui para frente, e faz ele dizer olá. Curto e tranquilo.
+Daqui para frente é diferente. No lugar de muitos brinquedos pequenos, você começa a construir **uma** coisa — o **Reino** — e vai crescê-la, um pouco a cada semana, pelo resto do ano. É um jogo de tycoon: construções, cidadãos, recursos, dias que passam, sorte boa e sorte ruim. No fim do curso *o mesmo Reino* vai rodar de mais quatro jeitos — salvo no seu disco, morando num endereço web de verdade, jogável no navegador, e por fim publicado no Roblox para os seus amigos jogarem. Você escreve o coração dele uma vez, nesta fase, e leva ele para todo lugar depois. Este é o projeto que você vai apontar daqui a um ano e dizer *"fui eu que fiz isso."*
+
+> **Vá ler a estrada inteira primeiro.** Abra o [`the-road-ahead.pt.md`](../../the-road-ahead.pt.md) agora, antes de começar os passos de hoje — ele mostra cada lição daqui até o fim, uma frase amigável para cada uma: o que você vai fazer e o que ela ensina. É uma leitura de dois minutos. Não tente *entender* tudo — muitas das palavras ainda não vão significar nada, e é exatamente assim que tem que ser. Só pegue o formato de onde isso tudo vai dar. Depois volta para cá e constrói.
+
+**Mas não hoje.** Hoje é um dia calmo de preparação — sem regras de jogo ainda, isso é no próximo módulo. Hoje você constrói a *casa* onde o Reino vai morar, aprende como vai abri-lo e rodá-lo daqui para frente, e faz ele imprimir uma linha só para provar que está vivo. Quando você fechar o notebook hoje à noite, vai ter um projeto de verdade, rodando, montado do jeito que os desenvolvedores de verdade montam os deles. Curto e tranquilo. Vamos assentar a primeira pedra.
 
 ### Uma coisa, feita de várias partes
 

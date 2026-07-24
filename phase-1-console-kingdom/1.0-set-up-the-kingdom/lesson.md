@@ -2,9 +2,13 @@
 
 > Travou no inglês? Abra o `lesson.pt.md` — é esta mesma lição em português. Tente em inglês primeiro.
 
-Phase 1 begins today. From here on, something changes: in Spark Week you built lots of small, separate programs — Roast-O-Matic, the Tavern Tab, and the rest. Each one stood alone. Now you start building **one** thing — the Kingdom — and you keep growing it all year. By the end of the course the same Kingdom will run in the terminal, save to disk, serve a web page, and live inside a Roblox game.
+Phase 1 begins today, and it's a big moment. In Spark Week you built a handful of small, separate programs — Roast-O-Matic, the Tavern Tab, the Arena, and the rest. Each one stood alone: you wrote it, ran it, showed it off, and moved on. That was the point — get comfortable, get the reps in.
 
-Today is a calm setup day. No game rules yet — that's the next module. Today you build the *home* the Kingdom lives in, learn how you'll open and run it from now on, and make it say hello. Short and steady.
+From here it's different. Instead of many little toys, you start building **one** thing — the **Kingdom** — and you keep growing it, a little every week, for the rest of the year. It's a tycoon game: buildings, citizens, resources, days that tick past, good luck and bad luck. By the end of the course *the very same Kingdom* will run four more ways — saved to your disk, living at a real web address, playable in a browser, and finally published on Roblox for your friends to play. You write the heart of it once, this phase, and carry it everywhere after. This is the project you'll point at in a year and say *"I made that."*
+
+> **Go read the whole road first.** Open [`the-road-ahead.md`](../../the-road-ahead.md) now, before you start today's steps — it lays out every lesson from here to the finish, one friendly line each: what you'll make and what it teaches you. It's a two-minute read. Don't try to *understand* all of it — a lot of the words won't mean anything yet, and that's exactly how it should be. Just get the shape of where this is going. Then come back here and build.
+
+**But not today.** Today is a calm setup day — no game rules yet, that's the next module. Today you build the *home* the Kingdom will live in, learn how you'll open and run it from now on, and make it print one line to prove it's alive. By the time you close the laptop tonight you'll have a real, running project set up the way working developers set theirs up. Short and steady. Let's lay the first stone.
 
 ### One thing, made of many parts
 
