@@ -29,6 +29,10 @@ The clever part: the **rules of the game** — how the kingdom grows, how a day 
 ## Phase 0 — Spark Week + Foundations  *(you're finishing this)*
 *Four little toys, then the language pieces that hold them together. Milestones M0 and M1.*
 
+**Why this phase —** Get your hands making things before anyone explains the theory, and build the daily rhythm: write, run, commit, push. You meet the basics by *using* them, so the words mean something later.
+
+**Where you stand after it —** No Kingdom yet — that's Phase 1. You'll have a repo with four little toys and the Inventory Tool, and the basics proven cold at the gate. Warmed up, ready to build the real thing.
+
 - **0.0 Setup** — Install your tools and set up your workshop with Lars. Nothing to build yet — you're getting ready.
 - **0.0.5 Primer** — A calm tour of what's actually on your computer: what a file is, what "running a program" really means. No code, so nothing feels like magic later.
 - **0.0.8 Roast-O-Matic** — Your first real program: it prints funny insults you can aim at a friend. You make the computer say something *you* chose.
@@ -47,6 +51,10 @@ The clever part: the **rules of the game** — how the kingdom grows, how a day 
 ## Phase 1 — Console Kingdom  *(you start here next)*
 *The first real Kingdom, running in your terminal. Milestone M2.*
 
+**Why this phase —** Build the Kingdom's beating heart, and learn the one rule the whole year rests on: the rules of the game live apart from the screen.
+
+**The solution after it —** One "house" (solution) with three rooms: the program you run, the rules engine, and the tests that guard them. A full, playable tycoon in your terminal, all tests green.
+
 - **1.0 Set Up the Kingdom** — You build the home the Kingdom will live in all year, and make it say hello. Today is setup — the workshop, not the game yet.
 - **1.1 OOP Basics** — The first real kingdom appears on screen: buildings, citizens, resources. You learn to make your own *kinds of things* in code.
 - **1.2 Engine vs Shell** — You split the kingdom's rules away from the screen. This is the biggest idea of the whole year: the rules don't care how you look at them.
@@ -63,6 +71,10 @@ The clever part: the **rules of the game** — how the kingdom grows, how a day 
 
 ## Phase 2 — Persistence
 *Your kingdom learns to remember itself. Milestone M3.*
+
+**Why this phase —** Make the Kingdom remember itself, so closing the program doesn't wipe it. You meet the three ways software stores things — a file, JSON, a database.
+
+**The solution after it —** A new room added for saving (plus its own tests). The same terminal game, but now it saves and loads, with many separate save slots kept in a real database. Quit today, come back tomorrow — it's all still there.
 
 - **2.1 File I/O** — Your kingdom writes itself to a file on disk for the first time. Close the program — the file's still there.
 - **2.2 JSON** — You save the kingdom in a tidy, standard format that programs everywhere use. Save and load, cleanly.
@@ -81,6 +93,10 @@ The clever part: the **rules of the game** — how the kingdom grows, how a day 
 ## Phase 3 — Web API on the Internet
 *The same kingdom, now living at a real web address. Milestone M4 — and your AI assistant joins.*
 
+**Why this phase —** Lift the Kingdom off your computer and onto the internet, where a friend can reach it by a link. Same rules; a new outer layer that answers requests from anywhere.
+
+**The solution after it —** Another room — the web service — with its own tests. The Kingdom lives at a real public address, friends sign in with Google and each get their own, and every push updates the live site by itself. Your AI assistant has also joined the work.
+
 - **3.0 Reading Code Before Writing It** — No writing today: you read two real pieces of code written by pros. Reading code is a skill, and you start it early.
 - **3.1 HTTP + First Endpoint** — Your kingdom gets its first tiny door to the internet: a web address that answers when something calls it.
 - **3.2 DTOs + POST** — You learn the safe way to send and receive data over the web, and add an address that advances the kingdom a turn.
@@ -97,6 +113,10 @@ The clever part: the **rules of the game** — how the kingdom grows, how a day 
 ## Phase 4 — Browser Kingdom
 *That web address becomes a page your friends click and play. Milestone M5.*
 
+**Why this phase —** Turn that address into something people actually *play* — a page they click, not a command they type. You learn what the browser really does underneath.
+
+**The solution after it —** The house gains a front — a browser page (its own folder, with tests). Friends open a link and play in a browser tab, talking to the same web service and the same engine you wrote in Phase 1.
+
 - **4.0 Context Engineering Unlock** — You learn to set up what the AI can see before it answers, so its help actually fits your project.
 - **4.1 HTML & CSS** — The building blocks of any web page: the content, and how it looks.
 - **4.2 Browser as a Runtime** — You learn what the browser really is under the hood, and get your first page talking to your live kingdom.
@@ -111,6 +131,10 @@ The clever part: the **rules of the game** — how the kingdom grows, how a day 
 ## Phase 5 — Roblox Kingdom  *(the finale)*
 *Your game, on Roblox, where your friends already play. Milestone M6.*
 
+**Why this phase —** Put the game where your friends already spend their evenings — Roblox — by carrying the same engine into one more language.
+
+**The solution after it —** Beside everything else now sits a Roblox game, its engine rewritten in Roblox's language but following the exact same rules — and published, so anyone with the link can play. The whole point of the year, proven.
+
 - **5.1 Roblox Studio Tour** — You open Roblox Studio and learn your way around the editor where the game gets built.
 - **5.2 Luau Basics** — The basics of Roblox's language. It's a cousin of what you already know, so this goes fast.
 - **5.3 OOP in Luau** — You learn how Roblox makes "kinds of things" — a different route to the same idea you met in Phase 1.
@@ -124,6 +148,10 @@ The clever part: the **rules of the game** — how the kingdom grows, how a day 
 
 ## Phase 6 — Bonuses  *(optional, whenever you like)*
 *Three short extras, each its own small brag. Best picked up after the finale.*
+
+**Why this phase —** Optional extras that sharpen tools you've used all year. Each is a small, standalone win.
+
+**After it —** The core Kingdom doesn't change — these are skills, not new rooms. You come out able to swap an entire database in three lines, steer an AI assistant on purpose, and use git with the model in your head, not just the commands.
 
 - **B1 — Swap the Database** — You swap your database for a completely different one in three lines, and watch every test stay green — proof the engine-vs-shell idea from Phase 1 really works. Then you meet the professional database tool.
 - **B2 — Context Engineering** — You go deeper on working with your AI assistant: how to frame it, feed it the right context, and read its answers with a careful eye.

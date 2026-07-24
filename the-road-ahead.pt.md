@@ -29,6 +29,10 @@ A parte esperta: as **regras do jogo** — como o reino cresce, como um dia pass
 ## Fase 0 — Spark Week + Fundamentos  *(você está terminando esta)*
 *Quatro brinquedinhos, depois as peças da linguagem que os seguram. Marcos M0 e M1.*
 
+**Por que esta fase —** Colocar a mão na massa e fazer coisas antes de alguém explicar a teoria, e criar o ritmo diário: escrever, rodar, commitar, dar push. Você conhece o básico *usando* ele, então as palavras passam a significar algo depois.
+
+**Onde você está depois dela —** Nenhum Reino ainda — isso é a Fase 1. Você vai ter um repositório com quatro brinquedinhos e o Inventory Tool, e o básico provado a frio no checkpoint. Aquecido, pronto para construir a coisa de verdade.
+
 - **0.0 Setup** — Instalar suas ferramentas e montar seu ateliê com o Lars. Nada para construir ainda — você está se preparando.
 - **0.0.5 Primer** — Um tour calmo pelo que realmente tem no seu computador: o que é um arquivo, o que "rodar um programa" quer dizer de verdade. Sem código, para nada parecer mágica depois.
 - **0.0.8 Roast-O-Matic** — Seu primeiro programa de verdade: ele imprime insultos engraçados que você pode jogar num amigo. Você faz o computador dizer algo que *você* escolheu.
@@ -47,6 +51,10 @@ A parte esperta: as **regras do jogo** — como o reino cresce, como um dia pass
 ## Fase 1 — Reino no Console  *(você começa por aqui a seguir)*
 *O primeiro Reino de verdade, rodando no seu terminal. Marco M2.*
 
+**Por que esta fase —** Construir o coração do Reino, e aprender a regra sobre a qual o ano inteiro se apoia: as regras do jogo moram separadas da tela.
+
+**A solution depois dela —** Uma "casa" (solution) com três cômodos: o programa que você roda, o engine de regras, e os testes que os protegem. Um tycoon completo e jogável no seu terminal, com todos os testes verdes.
+
 - **1.0 Prepare o Reino** — Você constrói a casa onde o Reino vai morar o ano inteiro, e faz ele dizer olá. Hoje é preparação — o ateliê, não o jogo ainda.
 - **1.1 OOP Basics** — O primeiro reino de verdade aparece na tela: construções, cidadãos, recursos. Você aprende a criar seus próprios *tipos de coisas* no código.
 - **1.2 Engine vs Shell** — Você separa as regras do reino da tela. Esta é a maior ideia do ano inteiro: as regras não ligam para como você olha para elas.
@@ -63,6 +71,10 @@ A parte esperta: as **regras do jogo** — como o reino cresce, como um dia pass
 
 ## Fase 2 — Persistência
 *Seu reino aprende a se lembrar de si mesmo. Marco M3.*
+
+**Por que esta fase —** Fazer o Reino se lembrar de si mesmo, para que fechar o programa não apague tudo. Você conhece os três jeitos de o software guardar coisas — um arquivo, JSON, um banco de dados.
+
+**A solution depois dela —** Um cômodo novo para salvar (mais os próprios testes). O mesmo jogo de terminal, mas agora ele salva e carrega, com vários slots de save separados guardados num banco de dados de verdade. Feche hoje, volte amanhã — está tudo lá.
 
 - **2.1 File I/O** — Seu reino se escreve num arquivo em disco pela primeira vez. Feche o programa — o arquivo continua lá.
 - **2.2 JSON** — Você salva o reino num formato arrumado e padrão que programas do mundo todo usam. Salvar e carregar, limpo.
@@ -81,6 +93,10 @@ A parte esperta: as **regras do jogo** — como o reino cresce, como um dia pass
 ## Fase 3 — Web API na Internet
 *O mesmo reino, agora morando num endereço web de verdade. Marco M4 — e o seu assistente de IA entra.*
 
+**Por que esta fase —** Tirar o Reino do seu computador e colocá-lo na internet, onde um amigo alcança ele por um link. As mesmas regras; uma camada externa nova que responde a pedidos de qualquer lugar.
+
+**A solution depois dela —** Mais um cômodo — o serviço web — com os próprios testes. O Reino mora num endereço público de verdade, os amigos entram com o Google e cada um tem o seu, e todo push atualiza o site no ar sozinho. O seu assistente de IA também entrou no trabalho.
+
 - **3.0 Reading Code Before Writing It** — Nada de escrever hoje: você lê dois pedaços de código de verdade, escritos por profissionais. Ler código é uma habilidade, e você começa cedo.
 - **3.1 HTTP + First Endpoint** — Seu reino ganha a primeira portinha para a internet: um endereço web que responde quando algo o chama.
 - **3.2 DTOs + POST** — Você aprende o jeito seguro de mandar e receber dados pela web, e adiciona um endereço que avança o reino um turno.
@@ -97,6 +113,10 @@ A parte esperta: as **regras do jogo** — como o reino cresce, como um dia pass
 ## Fase 4 — Reino no Navegador
 *Aquele endereço web vira uma página que os seus amigos clicam e jogam. Marco M5.*
 
+**Por que esta fase —** Transformar aquele endereço em algo que as pessoas de fato *jogam* — uma página que elas clicam, não um comando que digitam. Você aprende o que o navegador realmente faz por baixo.
+
+**A solution depois dela —** A casa ganha uma fachada — uma página de navegador (a própria pasta, com testes). Os amigos abrem um link e jogam numa aba do navegador, conversando com o mesmo serviço web e o mesmo engine que você escreveu na Fase 1.
+
 - **4.0 Context Engineering Unlock** — Você aprende a preparar o que a IA consegue ver antes de ela responder, para a ajuda dela encaixar de verdade no seu projeto.
 - **4.1 HTML & CSS** — Os blocos de montar de qualquer página web: o conteúdo, e a aparência.
 - **4.2 O Navegador como Runtime** — Você aprende o que o navegador realmente é por baixo do capô, e faz sua primeira página conversar com o seu reino ao vivo.
@@ -111,6 +131,10 @@ A parte esperta: as **regras do jogo** — como o reino cresce, como um dia pass
 ## Fase 5 — Reino no Roblox  *(o grande final)*
 *Seu jogo, no Roblox, onde os seus amigos já jogam. Marco M6.*
 
+**Por que esta fase —** Colocar o jogo onde os seus amigos já passam as noites — o Roblox — levando o mesmo engine para mais uma linguagem.
+
+**A solution depois dela —** Ao lado de tudo o resto agora fica um jogo do Roblox, com o engine reescrito na linguagem do Roblox mas seguindo exatamente as mesmas regras — e publicado, para qualquer um com o link jogar. O sentido do ano inteiro, provado.
+
 - **5.1 Roblox Studio Tour** — Você abre o Roblox Studio e aprende a se virar no editor onde o jogo é construído.
 - **5.2 Luau Basics** — O básico da linguagem do Roblox. Ela é prima da que você já conhece, então isso vai rápido.
 - **5.3 OOP in Luau** — Você aprende como o Roblox faz "tipos de coisas" — um caminho diferente para a mesma ideia que você viu na Fase 1.
@@ -124,6 +148,10 @@ A parte esperta: as **regras do jogo** — como o reino cresce, como um dia pass
 
 ## Fase 6 — Bônus  *(opcional, quando você quiser)*
 *Três extras curtos, cada um com a sua própria pequena vitória. Melhor pegar depois do grande final.*
+
+**Por que esta fase —** Extras opcionais que afiam ferramentas que você usou o ano todo. Cada um é uma pequena vitória que se sustenta sozinha.
+
+**Depois dela —** O Reino em si não muda — são habilidades, não cômodos novos. Você sai capaz de trocar um banco de dados inteiro em três linhas, guiar um assistente de IA de propósito, e usar o git com o modelo na cabeça, não só os comandos.
 
 - **B1 — Trocar o Banco** — Você troca o seu banco de dados por um completamente diferente em três linhas, e vê cada teste continuar verde — prova de que a ideia de engine-vs-shell da Fase 1 funciona mesmo. Depois você conhece a ferramenta profissional de banco.
 - **B2 — Context Engineering** — Você vai mais fundo em trabalhar com o seu assistente de IA: como enquadrar, como dar o contexto certo, e como ler as respostas dele com olho crítico.
